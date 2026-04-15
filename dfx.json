@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "canisters": {
+    "medina": {
+      "type": "motoko",
+      "main": "icp/medina/Medina.mo"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "mops"
+    }
+  }
+}

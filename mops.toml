@@ -1,0 +1,9 @@
+[package]
+name = "medina-memory-systems"
+version = "0.1.0"
+description = "MEDINA sovereign memory-operating intelligence platform on ICP Motoko"
+repository = "https://github.com/ItsNotAILABS/MedinaMemorySystems"
+keywords = ["icp", "motoko", "memory", "governance", "architecture"]
+
+[dependencies]
+base = "0.13.7"
