@@ -93,20 +93,22 @@ actor Medina {
   stable var consensusHistory : [Sovereign.DualConsensus] = [];
 
   // Harmonic frequency state
+  // Note: PHI constant (1.6180339887498948) is inlined here because stable var
+  // initialization must be constant. See AncientMath.PHI for canonical definition.
   stable var harmonicLadderState : {
     chrono : Float;     // 0.001 Hz - deep substrate
-    brain : Float;      // 7.83 Hz - Schumann
-    flux : Float;       // 12.67 Hz - PHI scaled
-    resonex : Float;    // 20.5 Hz - PHI² scaled
-    qmem : Float;       // 33.1 Hz - PHI³ scaled
+    brain : Float;      // 7.83 Hz - Schumann fundamental
+    flux : Float;       // 12.67 Hz - Schumann × PHI
+    resonex : Float;    // 20.5 Hz - Schumann × PHI²
+    qmem : Float;       // 33.1 Hz - Schumann × PHI³
     axis : Float;       // 40.0 Hz - gamma binding
     nova : Float;       // 432.0 Hz - ancient concert pitch
   } = {
     chrono = 0.001;
     brain = 7.83;
-    flux = 7.83 * 1.6180339887498948;
-    resonex = 7.83 * 1.6180339887498948 * 1.6180339887498948;
-    qmem = 7.83 * 1.6180339887498948 * 1.6180339887498948 * 1.6180339887498948;
+    flux = 7.83 * 1.6180339887498948;           // PHI
+    resonex = 7.83 * 2.6180339887498948;        // PHI²
+    qmem = 7.83 * 4.2360679774997897;           // PHI³
     axis = 40.0;
     nova = 432.0;
   };

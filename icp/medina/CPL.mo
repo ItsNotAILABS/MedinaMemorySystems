@@ -20,6 +20,7 @@ module {
   public let SQRT_2 : Float = 1.4142135623730950488;
   public let SQRT_3 : Float = 1.7320508075688772935;
   public let SQRT_5 : Float = 2.2360679774997896964;
+  public let SQRT_13 : Float = 3.6055512754639892931;
 
   // ═══════════════════════════════════════════════════════════════════════════
   // PLATONIC SOLIDS — The Five Perfect Forms

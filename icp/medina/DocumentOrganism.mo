@@ -6,7 +6,6 @@ import Array "mo:base/Array";
 import Time "mo:base/Time";
 import Char "mo:base/Char";
 import Nat32 "mo:base/Nat32";
-import Int32 "mo:base/Int32";
 
 /// DOCUMENT ORGANISM
 /// =================
@@ -487,11 +486,11 @@ module {
 
   func simpleHash(content : Text) : Text {
     // Simple hash based on content length and character sum
-    var sum = 0;
+    var sum : Nat = 0;
     for (c in Text.toIter(content)) {
-      sum += Int.abs(Int32.toInt(Int32.fromNat32(Nat32.fromNat(Nat32.toNat(Char.toNat32(c))))));
+      sum += Nat32.toNat(Char.toNat32(c));
     };
-    "HASH-" # Nat.toText(Text.size(content)) # "-" # Int.toText(Int.abs(sum) % 1000000)
+    "HASH-" # Nat.toText(Text.size(content)) # "-" # Nat.toText(sum % 1000000)
   };
 
   /// Get document health score (0.0 to 1.0)

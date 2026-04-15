@@ -42,6 +42,11 @@ module {
     error : ?Text;
   };
 
+  // Helper function: Convert Float to Nat safely
+  func floatToNat(f : Float) : Nat {
+    Int.abs(Float.toInt(f))
+  };
+
   // ═══════════════════════════════════════════════════════════════════════════
   // READING STATE
   // ═══════════════════════════════════════════════════════════════════════════
@@ -222,7 +227,7 @@ module {
       };
       case ("schumann_harmonic") {
         if (inputs.size() >= 1) {
-          let n = Int.abs(Float.toInt(inputs[0]));
+          let n = floatToNat(inputs[0]);
           let result = Physics.schumannMode(n);
           { formulaId = "schumann_harmonic"; input = inputs; output = result; success = true; error = null }
         } else {
@@ -251,7 +256,7 @@ module {
       };
       case ("fibonacci") {
         if (inputs.size() >= 1) {
-          let n = Int.abs(Float.toInt(inputs[0]));
+          let n = floatToNat(inputs[0]);
           let result = Float.fromInt(AncientMath.fibonacci(n));
           { formulaId = "fibonacci"; input = inputs; output = result; success = true; error = null }
         } else {
@@ -365,11 +370,11 @@ module {
       case ("mayan_long_count") {
         if (inputs.size() >= 5) {
           let result = Float.fromInt(Glyph.mayanLongCount(
-            Int.abs(Float.toInt(inputs[0])),
-            Int.abs(Float.toInt(inputs[1])),
-            Int.abs(Float.toInt(inputs[2])),
-            Int.abs(Float.toInt(inputs[3])),
-            Int.abs(Float.toInt(inputs[4]))
+            floatToNat(inputs[0]),
+            floatToNat(inputs[1]),
+            floatToNat(inputs[2]),
+            floatToNat(inputs[3]),
+            floatToNat(inputs[4])
           ));
           { formulaId = "mayan_long_count"; input = inputs; output = result; success = true; error = null }
         } else {
