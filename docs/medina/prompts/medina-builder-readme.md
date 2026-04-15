@@ -40,16 +40,36 @@ ORO capabilities are embedded as internal operator intelligence inside MEDINA.
 ---
  
 ## 4. Architecture planes
-- Constitutional / law plane
-- Runtime organism plane
-- Memory kingdom plane
-- Interface / interaction plane
-- Model ecology plane
-- Enterprise / company plane
-- Security / projection plane
-- Learning / adaptation plane
-- Attention / release plane
-- Day-1 superiority plane
+
+**A) Constitutional / Law plane**
+Root law: RECITAL_PLUS_ONE. Four-register emission. Dual-read always-on. Gate A/B/C enforced everywhere. Non-collapse ontology maintained.
+
+**B) Runtime Organism plane**
+Beat-driven orchestrator. Macro field absorbs all micro domains every cycle. No orphan micro signals. Core integrations: heartbeat, cardio-cerebral, cardio-neural, memory temple, feedback fabric, law engine, risk/defense, value/economy.
+
+**C) Memory Kingdom plane**
+Memory as navigable geometry (helix/ring/coordinates). Retrieval is path-based, lineage-aware, replayable. Consolidation and promotion are explicit events. User and system traverse the same memory topology.
+
+**D) Interface / Interaction plane**
+One universal chat controls all platform planes. Command + natural language modes. Explicit, revocable, auditable toggles. Operator surfaces: memory, governance, model routing, company operations, replay.
+
+**E) Model Ecology plane**
+Multi-model runtime with role-specialized models: strategist, builder, analyst, governance, memory curator, ops, defense, projection. D1–D10 document organisms active workforce. N1–N12 sovereign macro hierarchy as control topology.
+
+**F) Enterprise / Company plane**
+Three onboarding modes: Connect, Internalize, Hybrid. Tenant isolation, policy controls, replay trails. Day-1 real company workflows, not chatbot sessions.
+
+**G) Security / Projection plane**
+Internal sovereign truth never directly exposed. External is bounded projection with evidence. Incident, rollback, and replay required. No hidden data capture, no silent access escalation.
+
+**H) Learning / Adaptation plane**
+Continuous improvement via structured trajectories. Every adaptation has lineage, evidence, rollback path. No runtime truth mutation without governance acceptance.
+
+**I) Attention / Release plane**
+Wins attention through instant utility, deep architecture, visible demos, honest constraints, rapid release cadence. Not by hype or shallow wrappers.
+
+**J) Day-1 Superiority plane**
+MEDINA must be stronger than top 20 on: memory depth, governance traceability, enterprise onboarding, replay/evidence, model orchestration coherence, operator usability, projection safety, architecture continuity.
 
 ## 5. Builder operating rules
 - Never bypass Gate A/B/C.

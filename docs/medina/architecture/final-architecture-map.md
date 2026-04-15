@@ -34,9 +34,9 @@ MEDINA is a sovereign memory-operating intelligence platform where runtime truth
 - Operator surfaces: memory, governance, routing, company ops, replay
 
 ### E) Model Ecology View
-- Multi-model runtime by role
-- D1-D10 document organisms remain active workforce
-- N1-N12 sovereign macro hierarchy remains control topology
+- Multi-model runtime with role-specialized models: strategist, builder, analyst, governance, memory curator, ops, defense, projection
+- D1–D10 document organisms remain active workforce
+- N1–N12 sovereign macro hierarchy remains control topology
 
 ### F) Enterprise / Company View
 - Day-1 onboarding modes: Connect, Internalize, Hybrid
@@ -55,10 +55,11 @@ MEDINA is a sovereign memory-operating intelligence platform where runtime truth
 - Runtime truth mutation requires governance acceptance
 
 ### I) Attention / Release View
-- Attention through utility + deep architecture + visible demos + honest constraints + release cadence
+- Wins attention by combining: instant utility, deep architecture, visible demos, honest constraints, rapid release cadence
+- Not by hype or shallow wrappers
 
 ### J) Day-1 Superiority View
-- MEDINA must exceed leading apps on memory depth, governance, onboarding, replay evidence, orchestration coherence, operator usability, projection safety, continuity
+- MEDINA must be stronger than top 20 on: memory depth, governance traceability, enterprise onboarding, replay/evidence, model orchestration coherence, operator usability, projection safety, architecture continuity
 
 ## 3. Layered Architecture
 
