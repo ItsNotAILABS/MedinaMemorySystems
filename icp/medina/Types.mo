@@ -40,6 +40,7 @@ module {
     lineage : Lineage;
     salience : Nat;
     doctrineTags : [Text];
+    pinned : Bool;
     promoted : Bool;
     consolidatedFrom : [Text];
     createdAtNs : Int;
@@ -61,6 +62,7 @@ module {
     gateSnapshot : GateStatus;
     status : ProposalStatus;
     evidenceRefs : [Text];
+    approvedBy : ?Text;
     createdAtNs : Int;
   };
 
@@ -92,9 +94,22 @@ module {
 
   public type ModelRoute = {
     family : ModelFamily;
+    label : Text;
     rationale : Text;
     fallbackSource : ?Text;
     incidentRef : ?Text;
+  };
+
+  public type ModelInvocation = {
+    id : Text;
+    family : ModelFamily;
+    taskRef : Text;
+    contextMemory : ?Text;
+    routeRationale : Text;
+    output : Text;
+    fallbackSource : ?Text;
+    incidentRef : ?Text;
+    atNs : Int;
   };
 
   public type Command = {
@@ -123,6 +138,70 @@ module {
     evidenceRefs : [Text];
   };
 
+  public type PermissionToggle = {
+    scope : Text;
+    enabled : Bool;
+    updatedBy : Text;
+    updatedAtNs : Int;
+  };
+
+  public type ReplayRecord = {
+    id : Text;
+    action : Text;
+    lineageId : ?Text;
+    gates : ?GateStatus;
+    evidenceRefs : [Text];
+    atNs : Int;
+  };
+
+  public type IncidentRecord = {
+    id : Text;
+    kind : Text;
+    detail : Text;
+    atNs : Int;
+  };
+
+  public type StateSnapshot = {
+    id : Text;
+    memoryNodes : [MemoryNode];
+    proposals : [GovernanceProposal];
+    tenants : [Tenant];
+    beat : Nat;
+    lawEpoch : Nat;
+    replayCount : Nat;
+    atNs : Int;
+  };
+
+  public type WorkspacePacket = {
+    id : Text;
+    constitution : Text;
+    work : Text;
+    arbitration : Text;
+    integration : Text;
+    replayBundle : ?Text;
+    atNs : Int;
+  };
+
+  public type RuntimeHealth = {
+    beat : Nat;
+    lawEpoch : Nat;
+    memoryCount : Nat;
+    proposalCount : Nat;
+    tenantCount : Nat;
+    replayCount : Nat;
+    incidentCount : Nat;
+    dualReadHealthy : Bool;
+    noOrphanMicroSignals : Bool;
+  };
+
+  public type MatalkoSnapshot = {
+    macroField : Float;
+    dualReadEnergy : Float;
+    stability : Float;
+    chemistryPotential : Float;
+    atNs : Int;
+  };
+
   public type BeatSummary = {
     beat : Nat;
     macroAbsorbed : Bool;
@@ -135,6 +214,6 @@ module {
   };
 
   public func nowNs() : Int {
-    Time.now()
+    Time.now();
   };
 };

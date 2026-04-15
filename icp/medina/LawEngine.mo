@@ -30,6 +30,10 @@ module {
     projectionSafe and evidenceAttached;
   };
 
+  public func allGatesPass(g : T.GateStatus) : Bool {
+    g.a and g.b and g.c;
+  };
+
   public func nonCollapseOntologyInvariant() : [Text] {
     [
       "Absolute",

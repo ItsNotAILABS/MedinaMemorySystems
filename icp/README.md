@@ -1,57 +1,79 @@
 # MEDINA on ICP (Motoko)
 
-This directory contains a Motoko-first implementation scaffold for MEDINA's architecture on the Internet Computer Protocol (ICP).
+This directory contains a Motoko implementation of MEDINA's sovereign memory-operating runtime on ICP.
 
-## What is implemented
+## MVP features implemented
 
-- **Universal chat control plane (typed command AST)**: `runCommand` in `medina/Medina.mo`
-- **Memory Temple geometry** (helix/ring/coordinate retrieval): `medina/MemoryTemple.mo`
-- **Constitutional law engine** (`RECITAL_PLUS_ONE`, dual-read, Gate A/B/C): `medina/LawEngine.mo`
-- **Governance workflows** (proposal, approval, status): `medina/Governance.mo`
-- **Company onboarding modes** (connect/internalize/hybrid): `medina/Company.mo`
-- **Model routing ecology** (role-specialized family routing + D/N contracts): `medina/ModelRouter.mo`
-- **Orchestrator registry and beat gate evaluation**: `medina/Orchestrators.mo`
-- **Matalko math/physics/chemistry/memory formalization helpers**: `medina/MatalkoICP.mo`
+### Universal command control plane
+- Typed commands: `runCommand(cmd)`
+- Text commands: `runTextCommand(raw)` with parser support for:
+  - `/memory find|pin|map`
+  - `/govern status|propose|approve`
+  - `/model invoke|route`
+  - `/workspace open`
+  - `/company onboard|connect|internalize|hybrid`
+  - `/replay show`
+  - `/run`
 
-## Canonical architecture mapping
+### Memory Temple runtime
+- Coordinate memory model `(theta, phi, depth, ring, beat)`
+- Path-based retrieval (`query`, `ring`, `depth`, `lineage`)
+- Explicit pin, promote, and consolidate flows
+- Replay/audit emission for memory mutations
 
-This Motoko implementation maps directly to:
+### Governance and law
+- RECITAL_PLUS_ONE lineage derivation
+- Four-register proposal structure
+- Dual-read and Gate A/B/C acceptance checks
+- Core-A authority for approval and rollback
 
-- ORCH-01..ORCH-08 orchestrator naming
-- Four-register contracts
-- Dual-read always-on checks
-- Gate A/B/C enforcement
-- Non-collapse ontology invariants
-- Memory lineage and replay references
+### Company operations
+- Connect/Internalize/Hybrid onboarding modes
+- Tenant mutation events with replay traces
+- Permission gates enforced for connector/filesystem operations
 
-## Key actor API (`medina/Medina.mo`)
+### Model ecology
+- Role-specialized routing: strategist, builder, analyst, governance,
+  memory-curator, operations, defense, projection
+- D1-D10 workforce and N1-N12 hierarchy registries exposed
+- Model invocations persisted with output + incident/fallback tracking
 
-- `sovereignBeat(...) -> BeatSummary`
-- `memoryAdd(...) -> MemoryNode`
-- `memoryFind(...) -> [MemoryNode]`
-- `memoryPromote(memoryId) -> Bool`
-- `memoryConsolidate(...) -> ?MemoryNode`
-- `governPropose(...) -> GovernanceProposal`
-- `governApprove(...) -> ?GovernanceProposal`
-- `governStatus(...) -> Text`
-- `companyOnboard(...) -> Tenant`
-- `modelRoute(taskRef, policy) -> ModelRoute`
-- `runCommand(cmd) -> CommandResult`
+### Replay, incidents, rollback
+- Replay log per operation
+- Incident log for gate/auth/permission/parse failures
+- State snapshots + rollback to snapshot id
 
-## Build notes
+### Matalko equation layer
+- Macro absorption
+- Dual-read energy
+- Physics stability
+- Chemistry potential
+- Memory potential
 
-This repository now includes:
+## Main modules
 
-- `dfx.json`
-- `mops.toml`
+- `medina/Medina.mo` - integrated runtime actor
+- `medina/Types.mo` - canonical runtime contracts
+- `medina/LawEngine.mo` - constitutional law and gate logic
+- `medina/MemoryTemple.mo` - memory geometry and transforms
+- `medina/Governance.mo` - proposal/approval lifecycle
+- `medina/ModelRouter.mo` - model route logic and naming
+- `medina/Company.mo` - tenant and onboarding operations
+- `medina/Orchestrators.mo` - ORCH registry and beat checks
+- `medina/MatalkoICP.mo` - mathematical/physics/chemistry helpers
 
-If your environment has `dfx` and `mops` installed:
+## Quick start
 
 ```bash
 dfx start --background
 dfx build medina
 ```
 
-## Design note
+## Suggested bootstrap sequence
 
-This is a production-oriented architecture scaffold in Motoko intended to host MEDINA's sovereign runtime contracts on ICP; it is not a mock chat wrapper.
+1. call `bootstrapDemo("core-a")`
+2. call `runTextCommand("/memory find medina-runtime-origin")`
+3. call `runTextCommand("/govern propose policy payload-alpha")`
+4. call `runTextCommand("/govern approve proposal-1")`
+5. call `runTextCommand("/company onboard tenant-1 --mode hybrid")`
+6. call `runTextCommand("/run strategy")`
