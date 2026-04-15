@@ -10,26 +10,31 @@ import CompanyOnboarding from '@/components/CompanyOnboarding';
 import ReplayPanel from '@/components/ReplayPanel';
 import PermissionsPanel from '@/components/PermissionsPanel';
 import OrganismField from '@/components/OrganismField';
+import OrganismPanel from '@/components/OrganismPanel';
 import type { PanelId } from '@/types';
+import { COLORS_432 } from '@/lib/icpOrganism';
 
 export default function HomePage() {
-  const [activePanel, setActivePanel] = useState<PanelId>('chat');
+  const [activePanel, setActivePanel] = useState<PanelId>('organism');
 
   const renderPanel = () => {
     switch (activePanel) {
       case 'chat': return <OVOChat />;
+      case 'organism': return <OrganismPanel />;
       case 'memory': return <MemoryTemple />;
       case 'governance': return <GovernancePanel />;
       case 'models': return <ModelRuntime />;
       case 'company': return <CompanyOnboarding />;
       case 'replay': return <ReplayPanel />;
       case 'permissions': return <PermissionsPanel />;
-      default: return <OVOChat />;
+      case 'devices': return <DevicesPlaceholder />;
+      case 'settings': return <SettingsPlaceholder />;
+      default: return <OrganismPanel />;
     }
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#0a0a0f]">
+    <div className="flex h-screen overflow-hidden" style={{ background: COLORS_432.root }}>
       <Sidebar activePanel={activePanel} onNavigate={setActivePanel} />
       <div className="flex flex-col flex-1 overflow-hidden">
         <OrganismField />
@@ -37,6 +42,26 @@ export default function HomePage() {
           {renderPanel()}
         </main>
       </div>
+    </div>
+  );
+}
+
+function DevicesPlaceholder() {
+  return (
+    <div className="flex flex-col items-center justify-center h-full gap-4 text-slate-500">
+      <span className="text-6xl">📱</span>
+      <span className="font-mono">Device Network Hub</span>
+      <span className="text-sm text-slate-600">Phi-encoded device registration coming soon</span>
+    </div>
+  );
+}
+
+function SettingsPlaceholder() {
+  return (
+    <div className="flex flex-col items-center justify-center h-full gap-4 text-slate-500">
+      <span className="text-6xl">⚙️</span>
+      <span className="font-mono">Settings Hub</span>
+      <span className="text-sm text-slate-600">Devices • Permissions • Contracts • Frequencies</span>
     </div>
   );
 }
