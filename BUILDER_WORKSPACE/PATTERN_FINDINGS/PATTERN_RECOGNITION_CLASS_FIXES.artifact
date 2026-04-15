@@ -1,0 +1,5 @@
+# PATTERN_RECOGNITION_CLASS_FIXES.artifact
+Dead-button remediation class:
+- detect inert action routes
+- auto-emit implementation tasks
+- enforce integration tests before release

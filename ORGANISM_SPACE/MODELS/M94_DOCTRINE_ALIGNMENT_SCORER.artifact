@@ -1,0 +1,4 @@
+# M94_DOCTRINE_ALIGNMENT_SCORER.artifact
+Pass 2 alignment model.
+Computes alpha1 and alpha2 alignment scores in [0,1].
+Flags below-threshold artifacts for human review.

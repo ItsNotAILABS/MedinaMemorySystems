@@ -1,34 +1,38 @@
-# MedinaMemorySystems
+# MEDINA
 
-MEDINA is a sovereign memory-operating intelligence platform.
+MEDINA is an architecture-first deep-tech platform built as a sovereign computing organism on ICP.
 
-This repository now includes:
+## What it is
 
-1. **Architecture-first MEDINA V1 package** under `docs/medina/`
-2. **ICP Motoko implementation scaffold** under `icp/`
+A single-canister intelligence architecture that operates as:
+- real memory substrate,
+- real governance substrate,
+- real model orchestration substrate,
+- real enterprise operating substrate,
+all coupled by constitutional math and runtime law.
 
-## Quick Navigation
+## What it does for companies
 
-- Architecture index: `docs/medina/INDEX.md`
-- Canonical copy/paste kit: `docs/medina/prompts/medina-canonical-copy-paste-kit.md`
-- Motoko implementation guide: `icp/README.md`
-- Main canister actor: `icp/medina/Medina.mo`
+- Converts fragmented workflows into a unified operator surface.
+- Delivers high-traceability decision and execution loops.
+- Enables organization memory continuity with replay-grade evidence.
+- Orchestrates role-specialized intelligence for strategic and operational work.
+- Provides policy-aware, enterprise-safe runtime execution pathways.
 
-## ICP / Motoko scope
+## Core differentiation
 
-The Motoko scaffold covers:
+- ICP-native sovereign runtime.
+- Law-governed state transitions.
+- Architecture-level continuity between memory, governance, and execution.
+- Translation-first ingestion for high-integrity organizational knowledge.
+- Persistent evidence and rollback posture from day one.
 
-- universal command control plane
-- Memory Temple geometry and lineage retrieval
-- RECITAL_PLUS_ONE law engine
-- dual-read + Gate A/B/C checks
-- governance proposal/approval workflows
-- model routing contracts
-- company onboarding modes (connect/internalize/hybrid)
-- orchestrator registry (ORCH-01..08)
-- Matalko math/physics/chemistry/memory helper formulas
+## Product posture
 
-## Config
+- 24/7 autonomous operation model.
+- Mathematical architecture and harmonic systems approach.
+- Real runtime surfaces (not mock flows).
 
-- `dfx.json`
-- `mops.toml`
+## Target use
+
+MEDINA is designed for organizations that require strong continuity, explainability, operational rigor, and sovereign control over intelligence execution.

@@ -1,0 +1,7 @@
+# HARMONIC_MEMORY_PALACE_LAW.artifact
+Law ID: L-HMP
+
+Memory loci must preserve harmonic relation across rings.
+
+Doctrine:
+Non-harmonic insertions are held in sandbox until mapped to valid loci.
