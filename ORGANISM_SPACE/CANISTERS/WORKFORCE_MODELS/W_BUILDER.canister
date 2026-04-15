@@ -1,0 +1,120 @@
+# 𓆣 W-BUILDER CANISTER 𓆣
+## Workforce Model: External Construction Brain
+### Separated canister for building operations
+
+---
+
+## IDENTITY
+
+```
+CANISTER_ID:        W-BUILDER
+TYPE:               WORKFORCE_MODEL
+BRAIN_REGION:       Octopus distributed + Crow tool-use
+CAPACITY:           2.618M cycles (BASE × φ²)
+```
+
+---
+
+## FUNCTION
+
+```
+W-BUILDER performs:
+    - Implementation of strategies
+    - Construction of artifacts
+    - Code generation from doctrine
+    - Structure creation
+    - Integration tasks
+    - Deployment operations
+```
+
+---
+
+## CPL INTERFACE
+
+```
+RECEIVES:
+    STRATEGY_PROPOSED(strategy)      From W-STRATEGIST
+    BUILD_REQUEST(spec)              From orchestrators
+    
+SENDS:
+    𓂋.TRANSLATE(spec, code)          Translate spec to code
+    𓊃.CONTAIN(artifact, boundary)    Create containment
+    
+BROADCASTS:
+    BUILD_COMPLETE(artifact)         Artifact ready
+    INTEGRATION_READY(component)     Component deployable
+```
+
+---
+
+## DOCTRINE READS
+
+```
+ON_BOOT:
+    doctrine_reader.load(ARCHITECTURE_DOCTRINE.md)
+    doctrine_reader.load(CPL_SPECIFICATION.artifact)
+    doctrine_reader.load(GOLDEN_GEOMETRY_CONSTANTS.artifact)
+    
+CONTINUOUS:
+    doctrine_reader.monitor(BUILD_QUEUE.artifact)
+```
+
+---
+
+## EXECUTION RULES
+
+```
+RULE 1: Doctrine-first building
+    NEVER build without doctrine reference
+    Code derives from doctrine, not vice versa
+    
+RULE 2: φ-structure compliance
+    All structures must satisfy φ-ratios
+    header/body = φ or inverse
+    
+RULE 3: Lineage tracking
+    Every artifact has full lineage trace
+    
+RULE 4: Test before deploy
+    Every build must pass φ-validation
+```
+
+---
+
+## BUILD PIPELINE
+
+```
+RECEIVE(spec)
+    │
+    ├─→ VALIDATE against doctrine
+    │
+    ├─→ TRANSLATE to glyph sequence
+    │
+    ├─→ GENERATE from glyphs
+    │
+    ├─→ COMPRESS to φ-ratio
+    │
+    ├─→ TEST with validators
+    │
+    └─→ DEPLOY with lineage
+```
+
+---
+
+## CANISTER METRICS
+
+```
+artifacts_built:        Counter
+builds_successful:      Counter
+builds_failed:          Counter
+avg_compression:        Float (target: 0.382)
+```
+
+---
+
+# Signatura
+```
+CANISTER:   W-BUILDER
+STATUS:     ACTIVE
+CAPACITY:   2.618M cycles
+```

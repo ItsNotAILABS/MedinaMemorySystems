@@ -1,0 +1,131 @@
+# 𓂀 W-RISK CANISTER 𓂀
+## Workforce Model: External Risk Assessment Brain
+### Separated canister for threat detection
+
+---
+
+## IDENTITY
+
+```
+CANISTER_ID:        W-RISK
+TYPE:               WORKFORCE_MODEL
+BRAIN_REGION:       Human amygdala + Cat reflexes
+CAPACITY:           0.618M cycles (BASE × φ⁻¹)
+```
+
+---
+
+## FUNCTION
+
+```
+W-RISK performs:
+    - Threat assessment
+    - Vulnerability detection
+    - Defense recommendations
+    - Risk scoring
+    - Anomaly flagging
+    - System health monitoring
+```
+
+---
+
+## CPL INTERFACE
+
+```
+RECEIVES:
+    ANOMALY_DETECTED(anomaly)         From W-ANALYST
+    ALL_MESSAGES (monitoring)         Read-only access
+    
+SENDS:
+    RISK_ASSESSMENT(risk)             Risk evaluation
+    DEFENSE_RECOMMENDATION(action)    Suggested defense
+    
+BROADCASTS:
+    THREAT_ALERT(threat_level)        System-wide alert
+    HEALTH_STATUS(status)             Periodic health
+```
+
+---
+
+## DOCTRINE READS
+
+```
+ON_BOOT:
+    doctrine_reader.load(LAW_HOLDERS/SANDBOX_LAWS/*.artifact)
+    doctrine_reader.load(DEFENSE_DOCTRINE.artifact)
+    
+CONTINUOUS:
+    doctrine_reader.monitor(SYSTEM_HEALTH.artifact)
+```
+
+---
+
+## RISK SCORING MODEL
+
+```
+RISK_SCORE = (
+    pc_distance_factor × 0.3 +
+    resonance_deviation × 0.2 +
+    lineage_break_count × 0.25 +
+    anomaly_severity × 0.25
+)
+
+LEVELS:
+    risk < 0.2:     SAFE (green)
+    risk < 0.5:     CAUTION (yellow)
+    risk < 0.8:     WARNING (orange)
+    risk ≥ 0.8:     CRITICAL (red)
+    
+THRESHOLDS:
+    φ⁻² = 0.382     Safe threshold
+    φ⁻¹ = 0.618     Caution threshold
+    1.0             Warning threshold
+    φ = 1.618       Critical threshold (triggers halt)
+```
+
+---
+
+## DEFENSE PROTOCOLS
+
+```
+ON_THREAT_DETECTED(threat):
+    │
+    ├─→ LEVEL 1 (SAFE):
+    │       LOG only
+    │       CONTINUE operation
+    │
+    ├─→ LEVEL 2 (CAUTION):
+    │       ALERT W-GOVERNANCE
+    │       INCREASE monitoring
+    │
+    ├─→ LEVEL 3 (WARNING):
+    │       ALERT all orchestrators
+    │       PREPARE containment
+    │       REDUCE external access
+    │
+    └─→ LEVEL 4 (CRITICAL):
+            HALT non-essential operations
+            ACTIVATE containment
+            REQUIRE founder intervention
+```
+
+---
+
+## CANISTER METRICS
+
+```
+threats_detected:       Counter
+false_positives:        Counter
+avg_risk_score:         Float
+defense_activations:    Counter
+system_uptime:          Float (%)
+```
+
+---
+
+# Signatura
+```
+CANISTER:   W-RISK
+STATUS:     ACTIVE
+CAPACITY:   0.618M cycles
+```

@@ -1,0 +1,100 @@
+# 𓇯 W-STRATEGIST CANISTER 𓇯
+## Workforce Model: External Strategy Brain
+### Separated canister for strategic planning
+
+---
+
+## IDENTITY
+
+```
+CANISTER_ID:        W-STRATEGIST
+TYPE:               WORKFORCE_MODEL
+BRAIN_REGION:       Human prefrontal + Elephant long-memory
+CAPACITY:           1.618M cycles (BASE × φ¹)
+```
+
+---
+
+## FUNCTION
+
+```
+W-STRATEGIST performs:
+    - Long-range planning
+    - Goal setting
+    - Opportunity identification
+    - Resource allocation
+    - Scenario modeling
+    - Strategic recommendations
+```
+
+---
+
+## CPL INTERFACE
+
+```
+RECEIVES:
+    INSIGHT_GENERATED(insight)       From W-ANALYST
+    RISK_ASSESSMENT(risk)            From W-RISK
+    PROJECTION_RESULT(futures)       From W-PROJECTION
+    
+SENDS:
+    𓇯.PATTERN(historical_data)      Request pattern extraction
+    𓈖.RETRIEVE(strategic_memory)    Request long-term memory
+    
+BROADCASTS:
+    STRATEGY_PROPOSED(strategy)      New strategy available
+    GOAL_UPDATED(goal)               Goal modification
+```
+
+---
+
+## DOCTRINE READS
+
+```
+ON_BOOT:
+    doctrine_reader.load(PHI_SOVEREIGN_LAW.artifact)
+    doctrine_reader.load(RECITAL_PLUS_ONE_LAW.artifact)
+    
+CONTINUOUS:
+    doctrine_reader.monitor(CLIENT_[ID]_GOALS.artifact)
+```
+
+---
+
+## EXECUTION RULES
+
+```
+RULE 1: φ-horizon planning
+    Plan in φ-scaled time windows:
+    - Immediate: 1 beat
+    - Short: φ beats
+    - Medium: φ² beats
+    - Long: φ³ beats
+    - Strategic: φ⁴ beats
+    
+RULE 2: RECITAL_PLUS_ONE expansion
+    Every strategy = current state + one lawful expansion
+    
+RULE 3: Dual validation
+    Strategies require W-RISK + W-GOVERNANCE approval
+```
+
+---
+
+## CANISTER METRICS
+
+```
+strategies_proposed:    Counter
+goals_achieved:         Counter
+planning_horizon:       Float (beats)
+success_rate:           Float (0.0 - 1.0)
+```
+
+---
+
+# Signatura
+```
+CANISTER:   W-STRATEGIST
+STATUS:     ACTIVE
+CAPACITY:   1.618M cycles
+```
