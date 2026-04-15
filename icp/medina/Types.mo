@@ -97,6 +97,140 @@ module {
     incidentRef : ?Text;
   };
 
+  // ========== RUDN Model Engine Types ==========
+  
+  // Role-specialized engine types per MEDINA architecture
+  public type EngineRole = {
+    #Router;     // R - Routes tasks to appropriate handlers
+    #Updater;    // U - Updates state, memory, governance
+    #Defender;   // D - Defense, risk assessment, safety checks
+    #Navigator;  // N - Navigation, pathfinding, projection
+  };
+
+  public type EngineCapability = {
+    #ReadOnly;
+    #WriteWithGate;
+    #FullMutation;
+  };
+
+  public type EngineExecutionStatus = {
+    #Completed;
+    #Blocked;
+    #Fallback;
+    #Error;
+  };
+
+  public type EngineInvocation = {
+    id : Text;
+    role : EngineRole;
+    family : ModelFamily;
+    taskRef : Text;
+    contextMemoryId : ?Text;
+    inputPayload : Text;
+    capability : EngineCapability;
+    createdAtNs : Int;
+  };
+
+  public type EngineResult = {
+    invocationId : Text;
+    status : EngineExecutionStatus;
+    outputPayload : Text;
+    dualRead : DualReadStatus;
+    gates : GateStatus;
+    memoryMutations : [Text];
+    evidenceRefs : [Text];
+    fallbackReason : ?Text;
+    executedAtNs : Int;
+  };
+
+  // ========== Work Packet/Workflow Types ==========
+
+  public type PacketStatus = {
+    #Draft;
+    #Open;
+    #InProgress;
+    #AwaitingGate;
+    #Completed;
+    #Rejected;
+    #Cancelled;
+  };
+
+  public type WorkPacket = {
+    id : Text;
+    title : Text;
+    taskRef : Text;
+    assignedEngine : ?EngineRole;
+    assignedFamily : ?ModelFamily;
+    status : PacketStatus;
+    inputPayload : Text;
+    outputPayload : ?Text;
+    registers : Register;
+    lineage : Lineage;
+    dualRead : DualReadStatus;
+    gates : GateStatus;
+    evidenceRefs : [Text];
+    parentPacketId : ?Text;
+    childPacketIds : [Text];
+    createdAtNs : Int;
+    updatedAtNs : Int;
+  };
+
+  public type WorkflowStepType = {
+    #Route;
+    #Execute;
+    #Validate;
+    #GateCheck;
+    #Branch;
+    #Merge;
+    #Complete;
+  };
+
+  public type WorkflowStep = {
+    id : Text;
+    stepType : WorkflowStepType;
+    engineRole : ?EngineRole;
+    taskRef : Text;
+    inputRefs : [Text];
+    outputRef : ?Text;
+    gateRequired : Bool;
+    completed : Bool;
+  };
+
+  public type WorkflowStatus = {
+    #Pending;
+    #Running;
+    #AwaitingGate;
+    #Completed;
+    #Failed;
+    #Rolled_Back;
+  };
+
+  public type Workflow = {
+    id : Text;
+    name : Text;
+    steps : [WorkflowStep];
+    currentStepIndex : Nat;
+    status : WorkflowStatus;
+    packets : [Text];
+    lineage : Lineage;
+    evidenceRefs : [Text];
+    createdAtNs : Int;
+    updatedAtNs : Int;
+  };
+
+  public type WorkflowResult = {
+    workflowId : Text;
+    status : WorkflowStatus;
+    completedSteps : Nat;
+    totalSteps : Nat;
+    outputPayload : ?Text;
+    gates : GateStatus;
+    evidenceRefs : [Text];
+    executedAtNs : Int;
+  };
+
+  // ========== Command Types ==========
+
   public type Command = {
     #MemoryFind : { query : Text; ring : ?Nat; depth : ?Nat; lineage : ?Text };
     #MemoryPin : { memoryId : Text; reason : ?Text };
