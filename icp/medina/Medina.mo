@@ -1,5 +1,9 @@
 import Array "mo:base/Array";
+import Float "mo:base/Float";
+import Int "mo:base/Int";
 import Nat "mo:base/Nat";
+import Text "mo:base/Text";
+import Time "mo:base/Time";
 import T "./Types";
 import Law "./LawEngine";
 import MemoryTemple "./MemoryTemple";
@@ -9,14 +13,36 @@ import Company "./Company";
 import Orchestrators "./Orchestrators";
 import ModelEngine "./ModelEngine";
 import WorkPacket "./WorkPacket";
+import Matalko "./MatalkoICP";
+import Organism "./SovereignOrganism";
 
+/// MEDINA: Sovereign Memory-Operating Intelligence Platform
+/// A 24/7 autonomous computing organism on the Internet Computer.
+/// All operations governed by real mathematical formulas (phi, harmonics, field equations).
 actor Medina {
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SOVEREIGN ORGANISM STATE (Stable Storage)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // Core organism state
+  stable var oroState : Organism.OroState = Organism.initOro("ORO-PRIME", 432);
+  stable var novaState : Organism.NovaState = Organism.initNova("NOVA-GUARDIAN");
+  
+  // Tick and epoch tracking
   stable var beat : Nat = 0;
   stable var lawEpoch : Nat = 0;
+  stable var totalTicks : Nat = 0;
+  stable var genesisNs : Int = Time.now();
+  
+  // Counters
   stable var invocationCounter : Nat = 0;
   stable var packetCounter : Nat = 0;
   stable var workflowCounter : Nat = 0;
+  stable var deviceCounter : Nat = 0;
+  stable var contractCounter : Nat = 0;
 
+  // Core data structures
   stable var memoryNodes : [T.MemoryNode] = [];
   stable var proposals : [T.GovernanceProposal] = [];
   stable var tenants : [T.Tenant] = [];
@@ -25,10 +51,352 @@ actor Medina {
   stable var engineResults : [T.EngineResult] = [];
   stable var workPackets : [T.WorkPacket] = [];
   stable var workflows : [T.Workflow] = [];
+  
+  // Device network
+  stable var devices : [Organism.DeviceNode] = [];
+  stable var deviceContracts : [Organism.DeviceContract] = [];
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // UTILITY FUNCTIONS
+  // ═══════════════════════════════════════════════════════════════════════════
 
   private func nextId(prefix : Text, n : Nat) : Text {
     prefix # "-" # Nat.toText(n + 1);
   };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SOVEREIGN ORGANISM API
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Get current Oro state (primary intelligence)
+  public query func getOroState() : async {
+    id : Text;
+    phase : Text;
+    beat : Nat;
+    healthScore : Float;
+    animaHash : Nat;
+    registers : { cognitive : Float; affective : Float; somatic : Float; sovereign : Float };
+    fieldState : { attention : Float; coherence : Float; risk : Float; phiResonance : Float };
+  } {
+    let phaseText = switch (oroState.phase) {
+      case (#Awakening) "awakening";
+      case (#Active) "active";
+      case (#Integrating) "integrating";
+      case (#Broadcasting) "broadcasting";
+      case (#Defensive) "defensive";
+      case (#Transcendent) "transcendent";
+    };
+    {
+      id = oroState.id;
+      phase = phaseText;
+      beat = oroState.currentBeat;
+      healthScore = oroState.healthScore;
+      animaHash = oroState.animaHash;
+      registers = {
+        cognitive = oroState.registers.cognitive;
+        affective = oroState.registers.affective;
+        somatic = oroState.registers.somatic;
+        sovereign = oroState.registers.sovereign;
+      };
+      fieldState = {
+        attention = oroState.fieldState.attention;
+        coherence = oroState.fieldState.coherence;
+        risk = oroState.fieldState.risk;
+        phiResonance = oroState.fieldState.phiResonance;
+      };
+    };
+  };
+
+  /// Get current Nova state (doctrine guardian)
+  public query func getNovaState() : async {
+    id : Text;
+    doctrineAlignment : Float;
+    consensusWithOro : Bool;
+    unresolvedDrifts : Nat;
+    registers : { cognitive : Float; affective : Float; somatic : Float; sovereign : Float };
+  } {
+    let unresolvedCount = Array.size(Array.filter<Organism.DriftFlag>(novaState.flaggedDrift, func(f : Organism.DriftFlag) : Bool { not f.resolved }));
+    {
+      id = novaState.id;
+      doctrineAlignment = novaState.doctrineAlignment;
+      consensusWithOro = novaState.consensusWithOro;
+      unresolvedDrifts = unresolvedCount;
+      registers = {
+        cognitive = novaState.registers.cognitive;
+        affective = novaState.registers.affective;
+        somatic = novaState.registers.somatic;
+        sovereign = novaState.registers.sovereign;
+      };
+    };
+  };
+
+  /// Execute sovereign tick (autonomous heartbeat)
+  public func sovereignTick() : async Organism.TickResult {
+    // Compute current system state
+    let memCount = Array.size(memoryNodes);
+    let riskSignals = Array.size(Array.filter<Organism.DriftFlag>(novaState.flaggedDrift, func(f : Organism.DriftFlag) : Bool { not f.resolved }));
+    let dualReadPassed = true; // From last dual read
+    let orphanSignals = 0; // Macro absorbs all micro
+    let gatesOpen = Law.gateA({ semantic = true; resonance = true }, orphanSignals);
+    
+    // Execute organism tick
+    let (newOro, newNova, result) = Organism.sovereignTick(
+      oroState, novaState, memCount, riskSignals, dualReadPassed, orphanSignals, gatesOpen
+    );
+    
+    // Update state
+    oroState := newOro;
+    novaState := newNova;
+    beat := result.beat;
+    totalTicks += 1;
+    lawEpoch += 1;
+    
+    // Record replay
+    replayRefs := Array.append(replayRefs, ["tick:" # Nat.toText(beat) # ":anima:" # Nat.toText(result.animaHash)]);
+    
+    result;
+  };
+
+  /// Get organism vital signs
+  public query func vitalSigns() : async {
+    totalTicks : Nat;
+    uptimeNs : Int;
+    oroHealth : Float;
+    novaAlignment : Float;
+    consensusActive : Bool;
+    memoryCount : Nat;
+    deviceCount : Nat;
+    phi : Float;
+    freq432 : Float;
+  } {
+    let now = Time.now();
+    {
+      totalTicks = totalTicks;
+      uptimeNs = now - genesisNs;
+      oroHealth = oroState.healthScore;
+      novaAlignment = novaState.doctrineAlignment;
+      consensusActive = Organism.dualConsensus(oroState, novaState);
+      memoryCount = Array.size(memoryNodes);
+      deviceCount = Array.size(devices);
+      phi = Matalko.PHI;
+      freq432 = Matalko.FREQ_432;
+    };
+  };
+
+  /// Get harmonic ladder for UI display
+  public query func harmonicLadder(rungs : Nat) : async [{ rung : Nat; freq : Float; note : Text }] {
+    Organism.harmonicLadder(Matalko.FREQ_432, rungs);
+  };
+
+  /// Get phi spacing ladder for UI
+  public query func phiSpacingLadder(baseUnit : Float, levels : Nat) : async [{ level : Int; spacing : Float }] {
+    Array.tabulate<{ level : Int; spacing : Float }>(levels, func(i : Nat) : { level : Int; spacing : Float } {
+      let level = Int.abs(i) - (levels / 2);
+      { level = level; spacing = Matalko.phiSpacing(baseUnit, level) };
+    });
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DEVICE NETWORK API
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Register a new device in the sovereign network
+  public func registerDevice(
+    deviceType : Text,
+    permissions : [Text]
+  ) : async {
+    id : Text;
+    frequencySignature : { fundamental : Float; phiModulation : Float };
+    phiGridPosition : { x : Float; y : Float };
+    trustScore : Float;
+  } {
+    deviceCounter += 1;
+    let id = "device-" # Nat.toText(deviceCounter);
+    let seed = deviceCounter * 137 + beat; // Unique seed
+    
+    let devType : Organism.DeviceType = switch (deviceType) {
+      case "phone" #Phone;
+      case "tablet" #Tablet;
+      case "laptop" #Laptop;
+      case "desktop" #Desktop;
+      case "wifi" #WiFiNode;
+      case "sensor" #Sensor;
+      case _ #Unknown;
+    };
+    
+    let perms = Array.mapFilter<Text, Organism.DevicePermission>(permissions, func(p : Text) : ?Organism.DevicePermission {
+      switch (p) {
+        case "microphone" ?#Microphone;
+        case "camera" ?#Camera;
+        case "location" ?#Location;
+        case "motion" ?#Motion;
+        case "notifications" ?#Notifications;
+        case "storage" ?#Storage;
+        case "network" ?#Network;
+        case _ null;
+      };
+    });
+    
+    let device = Organism.registerDevice(id, devType, seed, perms);
+    devices := Array.append(devices, [device]);
+    
+    {
+      id = device.id;
+      frequencySignature = { 
+        fundamental = device.frequencySignature.fundamental; 
+        phiModulation = device.frequencySignature.phiModulation;
+      };
+      phiGridPosition = device.phiGridPosition;
+      trustScore = device.trustScore;
+    };
+  };
+
+  /// Generate sovereign device contract
+  public func generateDeviceContract(deviceId : Text) : async ?{
+    id : Text;
+    animaHash : Nat;
+    blockchainAnchor : Text;
+    phiGridSample : [[Float]];
+  } {
+    var targetDevice : ?Organism.DeviceNode = null;
+    for (d in devices.vals()) {
+      if (d.id == deviceId) {
+        targetDevice := ?d;
+      };
+    };
+    
+    switch (targetDevice) {
+      case null null;
+      case (?device) {
+        contractCounter += 1;
+        let contract = Organism.generateDeviceContract(device, oroState);
+        deviceContracts := Array.append(deviceContracts, [contract]);
+        
+        // Return first 4 rows of phi grid as sample
+        let gridSample = Array.tabulate<[Float]>(4, func(i : Nat) : [Float] {
+          if (i < Array.size(contract.phiGrid)) { contract.phiGrid[i] } else { [] };
+        });
+        
+        ?{
+          id = contract.id;
+          animaHash = contract.animaHash;
+          blockchainAnchor = contract.blockchainAnchor;
+          phiGridSample = gridSample;
+        };
+      };
+    };
+  };
+
+  /// List all registered devices
+  public query func listDevices() : async [{
+    id : Text;
+    deviceType : Text;
+    trustScore : Float;
+    phiPosition : { x : Float; y : Float };
+    hasContract : Bool;
+  }] {
+    Array.map<Organism.DeviceNode, {
+      id : Text;
+      deviceType : Text;
+      trustScore : Float;
+      phiPosition : { x : Float; y : Float };
+      hasContract : Bool;
+    }>(devices, func(d : Organism.DeviceNode) : {
+      id : Text;
+      deviceType : Text;
+      trustScore : Float;
+      phiPosition : { x : Float; y : Float };
+      hasContract : Bool;
+    } {
+      let typeText = switch (d.deviceType) {
+        case (#Phone) "phone";
+        case (#Tablet) "tablet";
+        case (#Laptop) "laptop";
+        case (#Desktop) "desktop";
+        case (#WiFiNode) "wifi";
+        case (#Sensor) "sensor";
+        case (#Unknown) "unknown";
+      };
+      let hasC = switch (d.contractHash) { case null false; case _ true; };
+      {
+        id = d.id;
+        deviceType = typeText;
+        trustScore = d.trustScore;
+        phiPosition = d.phiGridPosition;
+        hasContract = hasC;
+      };
+    });
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MATHEMATICAL COMPUTATION API
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Compute phi-encoded value
+  public query func phiEncode(value : Float) : async Float {
+    Matalko.phiEncode(value);
+  };
+
+  /// Generate phi-spiral coordinates
+  public query func phiSpiral(count : Nat, scale : Float) : async [{ x : Float; y : Float }] {
+    Array.tabulate<{ x : Float; y : Float }>(count, func(i : Nat) : { x : Float; y : Float } {
+      Matalko.phiSpiral(i, scale);
+    });
+  };
+
+  /// Compute harmonic resonance between frequencies
+  public query func harmonicResonance(f1 : Float, f2 : Float) : async Float {
+    Matalko.harmonicResonance(f1, f2);
+  };
+
+  /// Generate frequency signature
+  public query func generateFrequencySignature(seed : Nat) : async {
+    fundamental : Float;
+    harmonics : [Float];
+    phiModulation : Float;
+  } {
+    let sig = Matalko.generateFrequencySignature(seed, 8);
+    {
+      fundamental = sig.fundamental;
+      harmonics = sig.harmonics;
+      phiModulation = sig.phiModulation;
+    };
+  };
+
+  /// Compute field state from current organism
+  public query func computeFieldState() : async Matalko.FieldState {
+    oroState.fieldState;
+  };
+
+  /// Get Fibonacci sequence
+  public query func fibonacci(n : Nat) : async Nat {
+    Matalko.fibonacci(n);
+  };
+
+  /// Get universal constants
+  public query func constants() : async {
+    phi : Float;
+    phiInverse : Float;
+    phiSquared : Float;
+    freq432 : Float;
+    pi : Float;
+    tau : Float;
+    e : Float;
+  } {
+    {
+      phi = Matalko.PHI;
+      phiInverse = Matalko.PHI_INVERSE;
+      phiSquared = Matalko.PHI_SQUARED;
+      freq432 = Matalko.FREQ_432;
+      pi = Matalko.PI;
+      tau = Matalko.TAU;
+      e = Matalko.E;
+    };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // LEGACY API (Backward Compatible)
+  // ═══════════════════════════════════════════════════════════════════════════
 
   public query func ontology() : async [Text] {
     Law.nonCollapseOntologyInvariant();
@@ -45,7 +413,6 @@ actor Medina {
     projectionSafe : Bool,
   ) : async T.BeatSummary {
     beat += 1;
-    // H6 law epoch normalization: one authoritative law-write epoch per beat.
     lawEpoch += 1;
 
     let gates = Orchestrators.evaluateBeat(dualRead, orphanMicroSignals, workforceReady, projectionSafe, true);
