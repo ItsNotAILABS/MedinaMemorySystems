@@ -2,26 +2,33 @@
 
 MEDINA is a sovereign memory-operating intelligence platform.
 
-This repository now contains a MEDINA V1 architecture-first execution package under:
+This repository now includes:
 
-- `docs/medina/`
+1. **Architecture-first MEDINA V1 package** under `docs/medina/`
+2. **ICP Motoko implementation scaffold** under `icp/`
 
 ## Quick Navigation
 
-- Package index: `docs/medina/INDEX.md`
-- Builder master prompt: `docs/medina/prompts/medina-master-builder-prompt.md`
-- Builder README: `docs/medina/prompts/medina-builder-readme.md`
-- Final architecture map: `docs/medina/architecture/final-architecture-map.md`
+- Architecture index: `docs/medina/INDEX.md`
+- Canonical copy/paste kit: `docs/medina/prompts/medina-canonical-copy-paste-kit.md`
+- Motoko implementation guide: `icp/README.md`
+- Main canister actor: `icp/medina/Medina.mo`
 
-## Deliverables Included
+## ICP / Motoko scope
 
-- final architecture map
-- orchestrator/model/module index
-- backend change specification
-- frontend change specification
-- command grammar/router contract
-- memory/govern/company flow contracts
-- H1-H8 hardening evidence framework
-- Gate A/B/C evidence contract
-- replay bundle samples
-- launch package artifact checklist
+The Motoko scaffold covers:
+
+- universal command control plane
+- Memory Temple geometry and lineage retrieval
+- RECITAL_PLUS_ONE law engine
+- dual-read + Gate A/B/C checks
+- governance proposal/approval workflows
+- model routing contracts
+- company onboarding modes (connect/internalize/hybrid)
+- orchestrator registry (ORCH-01..08)
+- Matalko math/physics/chemistry/memory helper formulas
+
+## Config
+
+- `dfx.json`
+- `mops.toml`

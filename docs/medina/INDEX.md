@@ -18,6 +18,15 @@ It translates constitutional law, runtime organism logic, memory geometry, and e
 9. Replay bundle samples -> `replay/replay-bundle-samples.md`
 10. Launch package artifacts -> `release/launch-package-artifacts.md`
 
+## ICP Motoko Implementation
+
+- Implementation root: `../../icp/`
+- Motoko guide: `../../icp/README.md`
+- Main actor: `../../icp/medina/Medina.mo`
+- Law engine: `../../icp/medina/LawEngine.mo`
+- Memory Temple geometry: `../../icp/medina/MemoryTemple.mo`
+- Matalko math/physics/chemistry/memory formulas: `../../icp/medina/MatalkoICP.mo`
+
 ## Core Doctrine (Non-Negotiable)
 
 - RECITAL_PLUS_ONE state evolution with lineage.
@@ -44,6 +53,10 @@ It translates constitutional law, runtime organism logic, memory geometry, and e
 - Phase 2: Living Document Intelligence
 - Phase 3: Macro/Micro and N/D depth
 - Phase 4: Hardening and Release
+
+## Canonical Copy/Paste Pack
+
+- Full canonical pack: `prompts/medina-canonical-copy-paste-kit.md`
 
 ## How to use
 

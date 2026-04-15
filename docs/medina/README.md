@@ -7,6 +7,8 @@ This directory contains the architecture-first execution package for MEDINA V1.
 1. `prompts/medina-master-builder-prompt.md`
 2. `prompts/medina-builder-readme.md`
 3. `INDEX.md`
+4. `prompts/medina-canonical-copy-paste-kit.md` (single-file copy/paste pack)
+5. `../../icp/README.md` (Motoko implementation guide)
 
 ## Primary Architecture Files
 
