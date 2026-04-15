@@ -1,0 +1,28 @@
+# NOVA Resonance Reader Schema
+schema_version: "1.0.0"
+schema_id: NOVA_RESONANCE_READER
+
+dual_read:
+  query: string
+
+  semantic_channel:
+    method: keyword_and_vector_matching
+    weight: 0.5
+    output: ranked_memory_list
+
+  resonance_channel:
+    method: resonance_score_ranking
+    weight: 0.5
+    output: ranked_memory_list
+
+  unification:
+    formula: "combined = semantic_score * 0.5 + resonance_score * 0.5"
+    output: unified_ranked_list
+
+  result:
+    semantic_score: float  # 0-1
+    resonance_score: float  # 0-1
+    combined_score: float  # 0-1
+    semantic_matches: array
+    resonance_matches: array
+    unified: array

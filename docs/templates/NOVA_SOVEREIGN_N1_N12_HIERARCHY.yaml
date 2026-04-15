@@ -1,0 +1,76 @@
+# NOVA Sovereign N1-N12 Hierarchy
+schema_version: "1.0.0"
+schema_id: NOVA_SOVEREIGN_N1_N12_HIERARCHY
+
+hierarchy:
+  N1:
+    name: Sovereign Core
+    authority: absolute
+    write_permission: sovereign_only
+    gate_required: [A, C]
+
+  N2:
+    name: Doctrine Layer
+    authority: constitutional
+    write_permission: sovereign
+    gate_required: [A]
+
+  N3:
+    name: Governance Layer
+    authority: legislative
+    write_permission: governance_operator
+    gate_required: [A]
+
+  N4:
+    name: Strategic Layer
+    authority: executive
+    write_permission: operator
+    gate_required: [A]
+
+  N5:
+    name: Operational Layer
+    authority: managerial
+    write_permission: operator
+    gate_required: []
+
+  N6:
+    name: Tactical Layer
+    authority: supervisory
+    write_permission: operator
+    gate_required: []
+
+  N7:
+    name: Memory Layer
+    authority: archival
+    write_permission: any_authenticated
+    gate_required: [B]
+
+  N8:
+    name: Analytical Layer
+    authority: computational
+    write_permission: any_authenticated
+    gate_required: []
+
+  N9:
+    name: Communication Layer
+    authority: relational
+    write_permission: any_authenticated
+    gate_required: []
+
+  N10:
+    name: Interface Layer
+    authority: presentational
+    write_permission: public
+    gate_required: []
+
+  N11:
+    name: External Layer
+    authority: connective
+    write_permission: connector
+    gate_required: []
+
+  N12:
+    name: Archive Layer
+    authority: historical
+    write_permission: governance_operator
+    gate_required: []

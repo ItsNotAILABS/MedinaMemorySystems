@@ -1,0 +1,29 @@
+# NOVA Living Document Packet Schema
+schema_version: "1.0.0"
+schema_id: NOVA_LIVING_DOCUMENT_PACKET
+
+packet:
+  id: uuid
+  title: string
+  version: semver  # major.minor.patch
+
+  doctrine_level:
+    type: integer
+    range: [1, 12]
+    description: N1 (highest) to N12 (archive)
+
+  content: markdown
+
+  metadata:
+    author: string
+    created_at: iso_timestamp
+    updated_at: iso_timestamp
+    ring: integer  # 1-12
+    beat: integer
+    gate_required: enum [A, B, C, null]
+
+  lineage:
+    type: array
+    items: string  # prior version titles
+
+  active: boolean

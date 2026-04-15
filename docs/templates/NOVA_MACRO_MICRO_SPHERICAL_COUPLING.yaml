@@ -1,0 +1,25 @@
+# NOVA Macro/Micro Spherical Coupling
+schema_version: "1.0.0"
+schema_id: NOVA_MACRO_MICRO_SPHERICAL_COUPLING
+
+coupling:
+  macro_sphere:
+    description: The full N1-N12 ring system
+    scale: platform_wide
+    update_frequency: per_beat
+
+  micro_sphere:
+    description: Per-session memory cluster
+    scale: session_local
+    update_frequency: per_operation
+
+  coupling_rules:
+    - micro_to_macro: high_salience_memories_migrate_inward
+    - macro_to_micro: doctrine_propagates_outward
+    - resonance_flows: bidirectional_with_decay
+    - gate_enforcement: macro_gates_override_micro
+
+  migration_threshold:
+    salience: 0.9
+    doctrine_alignment: 0.85
+    ring_promotion: inner_ring - 1

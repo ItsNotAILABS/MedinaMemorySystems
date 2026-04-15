@@ -1,0 +1,44 @@
+# NOVA Model Directory Index
+schema_version: "1.0.0"
+schema_id: NOVA_MODEL_DIRECTORY_INDEX
+
+directory:
+  total_families: 8
+  routing_algorithm: keyword_scoring_with_tiebreak
+
+  families:
+    - id: strategist
+      default_latency_ms: 420
+      status: active
+
+    - id: builder
+      default_latency_ms: 380
+      status: active
+
+    - id: analyst
+      default_latency_ms: 350
+      status: active
+
+    - id: governance
+      default_latency_ms: 400
+      status: active
+
+    - id: memory-curator
+      default_latency_ms: 290
+      status: active
+
+    - id: operations
+      default_latency_ms: 320
+      status: active
+
+    - id: risk
+      default_latency_ms: 460
+      status: idle
+
+    - id: projection
+      default_latency_ms: 510
+      status: idle
+
+  health_check:
+    interval_seconds: 30
+    timeout_ms: 5000

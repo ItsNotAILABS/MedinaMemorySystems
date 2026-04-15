@@ -1,0 +1,40 @@
+# NOVA Memory Palace Coordinate Schema
+schema_version: "1.0.0"
+schema_id: NOVA_MEMORY_PALACE_COORDINATE
+
+coordinate:
+  theta:
+    type: float
+    range: [0, 360]
+    unit: degrees
+    description: Angular position (domain/sector)
+
+  phi:
+    type: float
+    range: [0, 180]
+    unit: degrees
+    description: Elevation angle (abstraction level)
+
+  depth:
+    type: integer
+    range: [1, 100]
+    description: Penetration depth into sphere
+
+  ring:
+    type: integer
+    range: [1, 12]
+    description: Macro hierarchy ring (N1=innermost)
+
+  beat:
+    type: integer
+    description: Temporal sequence index
+
+sector_map:
+  "0-45": doctrine_constitution
+  "45-90": governance_policy
+  "90-135": strategy_vision
+  "135-180": memory_knowledge
+  "180-225": operations_execution
+  "225-270": risk_security
+  "270-315": company_external
+  "315-360": projection_future

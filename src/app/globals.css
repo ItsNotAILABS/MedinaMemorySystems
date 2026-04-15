@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #0a0a0f;
+  --bg-panel: #12121a;
+  --bg-panel-hover: #1a1a26;
+  --border: #1e1e2e;
+  --border-bright: #2d2d42;
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --memory: #8b5cf6;
+  --governance: #10b981;
+  --gold: #f59e0b;
+  --danger: #ef4444;
+  --muted: #6b7280;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-main);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+#__next,
+main {
+  height: 100%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-panel);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-bright);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Monospace for commands */
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+/* Gate indicator pills */
+.gate-green {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.gate-amber {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.gate-red {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Panel */
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
+}
+.glow-purple {
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
+}
+.glow-green {
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+/* Command input */
+.cmd-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.cmd-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.12);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* Pulse for organism */
+@keyframes organicPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.animate-organic-pulse {
+  animation: organicPulse 3s ease-in-out infinite;
+}
+
+/* Typing indicator */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Status dot */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.status-active { background-color: #10b981; }
+.status-idle { background-color: #f59e0b; }
+.status-offline { background-color: #ef4444; }
+.status-loading { background-color: #3b82f6; animation: organicPulse 1s ease-in-out infinite; }
+
+/* Gradient text */
+.gradient-text-blue {
+  background: linear-gradient(135deg, #60a5fa, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-gold {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
