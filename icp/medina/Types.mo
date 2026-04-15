@@ -40,6 +40,7 @@ module {
     lineage : Lineage;
     salience : Nat;
     doctrineTags : [Text];
+    pinned : Bool;
     promoted : Bool;
     consolidatedFrom : [Text];
     createdAtNs : Int;
@@ -61,6 +62,7 @@ module {
     gateSnapshot : GateStatus;
     status : ProposalStatus;
     evidenceRefs : [Text];
+    approvedBy : ?Text;
     createdAtNs : Int;
   };
 
@@ -92,9 +94,22 @@ module {
 
   public type ModelRoute = {
     family : ModelFamily;
+    label : Text;
     rationale : Text;
     fallbackSource : ?Text;
     incidentRef : ?Text;
+  };
+
+  public type ModelInvocation = {
+    id : Text;
+    family : ModelFamily;
+    taskRef : Text;
+    contextMemory : ?Text;
+    routeRationale : Text;
+    output : Text;
+    fallbackSource : ?Text;
+    incidentRef : ?Text;
+    atNs : Int;
   };
 
   public type Command = {
@@ -123,6 +138,283 @@ module {
     evidenceRefs : [Text];
   };
 
+  public type PermissionToggle = {
+    scope : Text;
+    enabled : Bool;
+    updatedBy : Text;
+    updatedAtNs : Int;
+  };
+
+  public type ReplayRecord = {
+    id : Text;
+    action : Text;
+    lineageId : ?Text;
+    gates : ?GateStatus;
+    evidenceRefs : [Text];
+    atNs : Int;
+  };
+
+  public type IncidentRecord = {
+    id : Text;
+    kind : Text;
+    detail : Text;
+    atNs : Int;
+  };
+
+  public type StateSnapshot = {
+    id : Text;
+    memoryNodes : [MemoryNode];
+    proposals : [GovernanceProposal];
+    tenants : [Tenant];
+    beat : Nat;
+    lawEpoch : Nat;
+    replayCount : Nat;
+    atNs : Int;
+  };
+
+  public type WorkspacePacket = {
+    id : Text;
+    constitution : Text;
+    work : Text;
+    arbitration : Text;
+    integration : Text;
+    replayBundle : ?Text;
+    atNs : Int;
+  };
+
+  public type DocumentArtifact = {
+    id : Text;
+    category : Text;
+    path : Text;
+    title : Text;
+    content : Text;
+    creator : Text;
+    version : Nat;
+    atNs : Int;
+  };
+
+  public type TranslationPass = {
+    structuralType : Text;
+    alpha1Alignment : Float;
+    alpha2Alignment : Float;
+    frequencyHz : Float;
+    thoughtForm : Text;
+    contradictions : [Text];
+  };
+
+  public type SandboxArtifact = {
+    id : Text;
+    rawInput : Text;
+    sourceRef : Text;
+    pass : TranslationPass;
+    lawRefs : [Text];
+    doctrineScore : Float;
+    accepted : Bool;
+    translatedOutput : Text;
+    animaHash : Text;
+    atNs : Int;
+  };
+
+  public type ContradictionResolution = {
+    #Pending;
+    #Override;
+    #HoldWithDecay;
+    #Reject;
+  };
+
+  public type ContradictionCase = {
+    id : Text;
+    incomingRef : Text;
+    conflictingRef : Text;
+    resolution : ContradictionResolution;
+    resolvedBy : ?Text;
+    atNs : Int;
+  };
+
+  public type VoiceProfile = {
+    id : Text;
+    persona : Text;
+    tone : Text;
+    language : Text;
+    sampleRate : Nat;
+    active : Bool;
+  };
+
+  public type VoiceSource = {
+    #MicIn;
+    #VoiceOut;
+  };
+
+  public type VoiceFrame = {
+    id : Text;
+    source : VoiceSource;
+    amplitude : Float;
+    frequency : Float;
+    timestampNs : Int;
+  };
+
+  public type TerminalEntry = {
+    id : Text;
+    thinkingStream : Text;
+    workingStream : Text;
+    commandText : Text;
+    atNs : Int;
+  };
+
+  public type ApprovalLayerRecord = {
+    id : Text;
+    workingCopyRef : Text;
+    observationRef : Text;
+    approved : Bool;
+    approvedSilently : Bool;
+    approvedAtNs : ?Int;
+  };
+
+  public type ActionOutput = {
+    id : Text;
+    action : Text;
+    payload : Text;
+    format : Text;
+    pathRef : Text;
+    atNs : Int;
+  };
+
+  public type DeviceType = {
+    #Phone;
+    #Tablet;
+    #Laptop;
+    #WifiNode;
+    #Other;
+  };
+
+  public type DevicePermissions = {
+    microphone : Bool;
+    camera : Bool;
+    location : Bool;
+    motion : Bool;
+    notifications : Bool;
+  };
+
+  public type DeviceNode = {
+    id : Text;
+    owner : Text;
+    kind : DeviceType;
+    label : Text;
+    phiFrequencySignature : Float;
+    permissions : DevicePermissions;
+    qrJumpToken : Text;
+    createdAtNs : Int;
+  };
+
+  public type DeviceJumpToken = {
+    id : Text;
+    deviceId : Text;
+    qrPayload : Text;
+    expiresAtNs : Int;
+    used : Bool;
+  };
+
+  public type SovereignContract = {
+    id : Text;
+    deviceId : Text;
+    animaHash : Text;
+    phiGrid : Text;
+    blockchainAnchorRef : Text;
+    pdfPayload : Text;
+    atNs : Int;
+  };
+
+  public type ExportKind = {
+    #Pdf;
+    #Excel;
+    #Campaign;
+    #BusinessPlan;
+    #SocialContent;
+    #Message;
+  };
+
+  public type ExportArtifact = {
+    id : Text;
+    kind : ExportKind;
+    title : Text;
+    content : Text;
+    lineageId : ?Text;
+    blockchainAnchor : Text;
+    createdAtNs : Int;
+  };
+
+  public type SettingsHub = {
+    devicesTab : Bool;
+    permissionsTab : Bool;
+    contractsTab : Bool;
+    frequenciesTab : Bool;
+    harmonicLadder : [Float];
+    storageMode : Text;
+  };
+
+  public type NovaReview = {
+    id : Text;
+    targetRef : Text;
+    doctrineDriftScore : Float;
+    adreTrace : Text;
+    flagged : Bool;
+    recommendation : Text;
+    atNs : Int;
+  };
+
+  public type DualConsensus = {
+    id : Text;
+    taskRef : Text;
+    oroAccept : Bool;
+    novaAccept : Bool;
+    finalAccept : Bool;
+    reason : Text;
+    atNs : Int;
+  };
+
+  public type WorkforceOrganism = {
+    id : Text;
+    tenantId : Text;
+    role : Text;
+    cplAddress : Text;
+    active : Bool;
+    createdAtNs : Int;
+  };
+
+  public type CplPacket = {
+    id : Text;
+    fromAddress : Text;
+    toAddress : Text;
+    lawVector : [Text];
+    mathPayload : Text;
+    architecturePayload : Text;
+    accepted : Bool;
+    atNs : Int;
+  };
+
+  public type RuntimeHealth = {
+    beat : Nat;
+    lawEpoch : Nat;
+    memoryCount : Nat;
+    proposalCount : Nat;
+    tenantCount : Nat;
+    replayCount : Nat;
+    incidentCount : Nat;
+    documentCount : Nat;
+    sandboxArtifactCount : Nat;
+    workforceCount : Nat;
+    dualReadHealthy : Bool;
+    noOrphanMicroSignals : Bool;
+  };
+
+  public type MatalkoSnapshot = {
+    macroField : Float;
+    dualReadEnergy : Float;
+    stability : Float;
+    chemistryPotential : Float;
+    atNs : Int;
+  };
+
   public type BeatSummary = {
     beat : Nat;
     macroAbsorbed : Bool;
@@ -135,6 +427,6 @@ module {
   };
 
   public func nowNs() : Int {
-    Time.now()
+    Time.now();
   };
 };

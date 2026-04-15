@@ -1,0 +1,23 @@
+# MEMORY_PALACE_MAP.artifact
+Classification: ORGANISM_INTELLIGENCE
+
+## Geometry
+Memory uses helix and ring coordinates:
+(theta, phi, depth, ring, beat)
+
+## Navigational Doctrine
+- Retrieval is path-based and lineage-aware.
+- User and organism traverse same topology.
+- Consolidation and promotion are explicit events.
+
+## Loci
+- locus.origin
+- locus.law
+- locus.runtime
+- locus.enterprise
+- locus.defense
+- locus.projection
+- locus.replay
+
+## Recall Formula
+memory_potential = (salience + 1) / ((depth + 1) * (ring + 1))

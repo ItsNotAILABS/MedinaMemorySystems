@@ -1,0 +1,14 @@
+# CLIMATE_STATE.artifact
+Classification: CLIMATE_DOCUMENT
+
+## Environmental Anchors
+- schumann_anchor_hz: 7.83
+- circadian_phase: dynamic
+- calendar_state: dynamic
+- resonance_field: dynamic
+
+## Cycle Orientation Contract
+Every sovereign beat must read climate state before ingestion operations.
+
+## Update Rule
+climate(n+1) = recital(climate_n) + lawful_field_update

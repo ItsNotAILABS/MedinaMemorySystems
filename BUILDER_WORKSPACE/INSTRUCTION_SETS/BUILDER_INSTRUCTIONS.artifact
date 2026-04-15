@@ -1,0 +1,4 @@
+# BUILDER_INSTRUCTIONS.artifact
+1. Read founder and organism docs before coding.
+2. Execute law and sandbox checks on all ingest paths.
+3. Emit replay and evidence for every state mutation.

@@ -1,0 +1,3 @@
+# M97_SOURCE_ATTRIBUTION_CHAIN.artifact
+Maintains provenance chain for every translated artifact.
+Fields include source, time, passes, laws, and ANIMA hash.

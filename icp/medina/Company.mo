@@ -2,6 +2,14 @@ import Array "mo:base/Array";
 import T "./Types";
 
 module {
+  public func modeText(mode : T.OnboardingMode) : Text {
+    switch (mode) {
+      case (#Connect) "connect";
+      case (#Internalize) "internalize";
+      case (#Hybrid) "hybrid";
+    };
+  };
+
   public func onboard(tenantId : Text, mode : T.OnboardingMode, policyRefs : [Text]) : T.Tenant {
     {
       id = tenantId;

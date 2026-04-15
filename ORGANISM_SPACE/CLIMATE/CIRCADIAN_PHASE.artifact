@@ -1,0 +1,10 @@
+# CIRCADIAN_PHASE.artifact
+Classification: CLIMATE_DOCUMENT
+
+phase_values:
+- dawn
+- day
+- dusk
+- night
+
+Runtime uses phase to weight execution budgets and adaptation velocity.
