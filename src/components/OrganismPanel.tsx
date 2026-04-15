@@ -263,20 +263,24 @@ export default function OrganismPanel() {
         >
           <div className="text-[10px] text-slate-500 mb-3 font-mono">432 Hz HARMONIC LADDER (φ-Scaled)</div>
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {harmonics.slice(0, 8).map((h) => (
-              <div 
-                key={h.rung}
-                className="flex-shrink-0 w-20 rounded-lg p-2 text-center border"
-                style={{ 
-                  background: `${COLORS_432.novaViolet}${Math.floor(10 + h.rung * 5).toString(16)}`,
-                  borderColor: `${COLORS_432.novaViolet}30`
-                }}
-              >
-                <div className="text-lg font-bold text-white">{h.note}</div>
-                <div className="text-[10px] text-slate-400 font-mono">{h.freq.toFixed(1)} Hz</div>
-                <div className="text-[9px] text-slate-500 font-mono">φ^{h.rung}</div>
-              </div>
-            ))}
+            {harmonics.slice(0, 8).map((h) => {
+              // Alpha transparency: clamp to valid hex range (10-25 for subtle effect)
+              const alpha = Math.min(25, 10 + h.rung * 2).toString(16).padStart(2, '0');
+              return (
+                <div 
+                  key={h.rung}
+                  className="flex-shrink-0 w-20 rounded-lg p-2 text-center border"
+                  style={{ 
+                    background: `${COLORS_432.novaViolet}${alpha}`,
+                    borderColor: `${COLORS_432.novaViolet}30`
+                  }}
+                >
+                  <div className="text-lg font-bold text-white">{h.note}</div>
+                  <div className="text-[10px] text-slate-400 font-mono">{h.freq.toFixed(1)} Hz</div>
+                  <div className="text-[9px] text-slate-500 font-mono">φ^{h.rung}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
 

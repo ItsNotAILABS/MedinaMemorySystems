@@ -411,7 +411,7 @@ module {
       case (#AwaitingGate) "awaiting-gate";
       case (#Completed) "completed";
       case (#Failed) "failed";
-      case (#Rolled_Back) "rolled-back";
+      case (#RolledBack) "rolled-back";
     };
   };
 };

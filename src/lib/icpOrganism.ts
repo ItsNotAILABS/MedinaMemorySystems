@@ -6,11 +6,12 @@
 
 // ═══════════════════════════════════════════════════════════════════════════
 // UNIVERSAL CONSTANTS (Mirror of MatalkoICP.mo)
+// Note: JavaScript Number precision is ~15-17 significant digits (IEEE 754)
 // ═══════════════════════════════════════════════════════════════════════════
 
-export const PHI = 1.6180339887498948482;
-export const PHI_INVERSE = 0.6180339887498948482;
-export const PHI_SQUARED = 2.6180339887498948482;
+export const PHI = 1.618033988749895;
+export const PHI_INVERSE = 0.618033988749895;
+export const PHI_SQUARED = 2.618033988749895;
 export const FREQ_432 = 432.0;
 export const PI = Math.PI;
 export const TAU = 2 * Math.PI;

@@ -13,28 +13,26 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Golden ratio (φ) - fundamental to all organism geometry
-  public let PHI : Float = 1.6180339887498948482;
+  /// Note: JavaScript Number precision is ~15-17 significant digits
+  public let PHI : Float = 1.618033988749895;
   
   /// Inverse golden ratio (1/φ = φ-1)
-  public let PHI_INVERSE : Float = 0.6180339887498948482;
+  public let PHI_INVERSE : Float = 0.618033988749895;
   
   /// Phi squared (φ² = φ+1)
-  public let PHI_SQUARED : Float = 2.6180339887498948482;
+  public let PHI_SQUARED : Float = 2.618033988749895;
   
   /// Base harmonic frequency (432 Hz - universal tuning)
   public let FREQ_432 : Float = 432.0;
   
-  /// Planck-scale normalization constant
-  public let PLANCK_NORM : Float = 1.054571817e-34;
-  
   /// Euler's number
-  public let E : Float = 2.7182818284590452354;
+  public let E : Float = 2.718281828459045;
   
   /// Pi
-  public let PI : Float = 3.1415926535897932385;
+  public let PI : Float = 3.141592653589793;
   
   /// Two Pi (full rotation)
-  public let TAU : Float = 6.2831853071795864769;
+  public let TAU : Float = 6.283185307179586;
 
   // ═══════════════════════════════════════════════════════════════════════════
   // ORGANISM STATE TYPES

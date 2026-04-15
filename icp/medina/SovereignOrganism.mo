@@ -342,6 +342,9 @@ module {
     };
   };
 
+    /// Nanoseconds per year (approximate)
+  let NS_PER_YEAR : Int = 365 * 24 * 60 * 60 * 1_000_000_000;
+
   /// Generate sovereign device contract
   public func generateDeviceContract(
     device : DeviceNode,
@@ -365,7 +368,7 @@ module {
       phiGrid = grid;
       permissions = device.permissions;
       createdAtNs = now;
-      expiresAtNs = ?(now + 365 * 24 * 60 * 60 * 1_000_000_000); // 1 year
+      expiresAtNs = ?(now + NS_PER_YEAR);
       blockchainAnchor = "icp:" # Nat.toText(contractAnima);
       signatureValid = true;
     };

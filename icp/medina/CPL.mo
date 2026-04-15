@@ -259,7 +259,6 @@ module {
     let now = Time.now();
     let phiSig = Matalko.phiEncode(Float.fromInt(Text.hash(id)));
     let harmFreq = Matalko.FREQ_432 * (1.0 + phiSig);
-    let tetPos = (Text.hash(id) % 10) + 1;
     
     {
       id = id;
@@ -273,7 +272,7 @@ module {
       payload = payload;
       phiSignature = phiSig;
       harmonicFreq = harmFreq;
-      tetractysPosition = tetPos;
+      tetractysPosition = (Text.hash(id) % TETRACTYS) + 1;
       parentMessageId = parentId;
       recitalRef = "recital:" # id;
       dualReadRequired = switch (intent) {

@@ -202,7 +202,7 @@ module {
     #AwaitingGate;
     #Completed;
     #Failed;
-    #Rolled_Back;
+    #RolledBack;
   };
 
   public type Workflow = {
