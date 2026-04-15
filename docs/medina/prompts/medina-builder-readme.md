@@ -54,7 +54,7 @@ Memory as navigable geometry (helix/ring/coordinates). Retrieval is path-based, 
 One universal chat controls all platform planes. Command + natural language modes. Explicit, revocable, auditable toggles. Operator surfaces: memory, governance, model routing, company operations, replay.
 
 **E) Model Ecology plane**
-Multi-model runtime with role-specialized models: strategist, builder, analyst, governance, memory curator, ops, defense, projection. D1–D10 document organisms active workforce. N1–N12 sovereign macro hierarchy as control topology.
+Multi-model runtime with role-specialized models: strategist, builder, analyst, governance, memory curator, ops, defense, projection. D1–D10 document organisms remain active workforce. N1–N12 sovereign macro hierarchy remains control topology.
 
 **F) Enterprise / Company plane**
 Three onboarding modes: Connect, Internalize, Hybrid. Tenant isolation, policy controls, replay trails. Day-1 real company workflows, not chatbot sessions.
