@@ -697,6 +697,13 @@ actor Medina {
     Array.size(organismDocs);
   };
 
+  public query func ancientArchitectureSynthesis() : async Text {
+    "P1 canon-law pre-execution; P2 initiatory translation; P3 memory geometry; "
+    # "P4 harmonic calibration; P5 dual witness consensus; P6 provenance chain; "
+    # "P7 sovereign core + specialist workforce; P8 pattern sensing mandatory. "
+    # "Mapped to MEDINA laws, sandbox, memory temple, CPL workforce, and consensus runtime.";
+  };
+
   public query func organismDocuments(category : ?Text, limit : Nat) : async [T.DocumentArtifact] {
     let filtered = switch (category) {
       case null organismDocs;
