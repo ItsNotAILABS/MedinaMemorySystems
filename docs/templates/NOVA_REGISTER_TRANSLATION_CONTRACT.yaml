@@ -1,0 +1,27 @@
+# NOVA Register Translation Contract
+schema_version: "1.0.0"
+schema_id: NOVA_REGISTER_TRANSLATION
+
+contract:
+  name: Register Translation Contract
+  purpose: Maps organism register states to operational behaviors
+
+  translations:
+    cognitive:
+      high: [precise_analysis, accurate_routing, detailed_responses]
+      low: [simplified_routing, reduced_detail]
+    affective:
+      high: [resonance_weighting, emotional_context, rich_memory_retrieval]
+      low: [pure_semantic_retrieval]
+    somatic:
+      high: [stable_operation, predictable_latency, grounded_responses]
+      low: [variable_operation, potential_instability]
+    sovereign:
+      high: [gate_authority, broadcast_enabled, doctrine_enforcement]
+      low: [limited_governance, broadcast_restricted]
+
+  phase_behaviors:
+    awake: all_capabilities
+    integrating: reduced_external, increased_internal_processing
+    deep: minimal_external, memory_consolidation_active
+    broadcast: sovereign_state_propagating, external_transmission_active

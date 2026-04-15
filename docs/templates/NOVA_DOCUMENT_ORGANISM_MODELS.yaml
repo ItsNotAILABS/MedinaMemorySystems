@@ -1,0 +1,44 @@
+# NOVA Document Organism Models
+schema_version: "1.0.0"
+schema_id: NOVA_DOCUMENT_ORGANISM_MODELS
+
+models:
+  strategist:
+    capabilities: [planning, vision, doctrine_synthesis, cross_system]
+    ring_affinity: [1, 2, 3, 4]
+    routing_keywords: [strategy, plan, vision, macro, sovereign, decide]
+
+  builder:
+    capabilities: [code_generation, system_design, api_construction, integration]
+    ring_affinity: [5, 6, 7]
+    routing_keywords: [build, create, code, implement, design, construct]
+
+  analyst:
+    capabilities: [data_analysis, pattern_recognition, trend_analysis, quantitative]
+    ring_affinity: [7, 8, 9]
+    routing_keywords: [analyze, data, pattern, trend, insight, measure]
+
+  governance:
+    capabilities: [proposal_drafting, audit_analysis, compliance, doctrine_enforcement]
+    ring_affinity: [2, 3, 4]
+    routing_keywords: [govern, proposal, vote, policy, doctrine, audit]
+
+  memory_curator:
+    capabilities: [memory_retrieval, resonance_scoring, lineage_tracking, coordinates]
+    ring_affinity: [7]
+    routing_keywords: [memory, remember, recall, store, coordinate, lineage]
+
+  operations:
+    capabilities: [task_management, workflow_execution, resource_allocation, scheduling]
+    ring_affinity: [5, 6]
+    routing_keywords: [operate, task, workflow, execute, manage, run]
+
+  risk:
+    capabilities: [risk_assessment, threat_modeling, gate_enforcement, anomaly_detection]
+    ring_affinity: [3, 4, 5]
+    routing_keywords: [risk, threat, danger, secure, gate, protect]
+
+  projection:
+    capabilities: [scenario_modeling, future_projection, resonance_forecasting, trajectory]
+    ring_affinity: [4, 5, 6]
+    routing_keywords: [project, forecast, future, scenario, predict, trajectory]

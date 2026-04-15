@@ -1,0 +1,39 @@
+# NOVA Organism Sovereign Schema
+schema_version: "1.0.0"
+schema_id: NOVA_ORGANISM_SOVEREIGN
+
+organism:
+  registers:
+    cognitive:
+      type: float
+      range: [0, 100]
+      description: Clarity of reasoning and analytical capacity
+    affective:
+      type: float
+      range: [0, 100]
+      description: Emotional coherence and resonance sensitivity
+    somatic:
+      type: float
+      range: [0, 100]
+      description: Grounding and embodiment
+    sovereign:
+      type: float
+      range: [0, 100]
+      description: Authority and decisional integrity
+
+  phases:
+    - awake
+    - integrating
+    - deep
+    - broadcast
+
+  beat:
+    type: integer
+    description: Temporal sequence index, monotonically increasing
+
+  dominant_register:
+    type: enum
+    values: [cognitive, affective, somatic, sovereign]
+    description: Register with highest current value
+
+  recital_coefficient: 0.15
