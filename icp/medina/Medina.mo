@@ -3,6 +3,8 @@ import Nat "mo:base/Nat";
 import Text "mo:base/Text";
 import Float "mo:base/Float";
 import Iter "mo:base/Iter";
+import Int "mo:base/Int";
+import Time "mo:base/Time";
 
 import T "./Types";
 import Law "./LawEngine";
@@ -12,6 +14,18 @@ import ModelRouter "./ModelRouter";
 import Company "./Company";
 import Orchestrators "./Orchestrators";
 import Matalko "./MatalkoICP";
+
+// ═══════════════════════════════════════════════════════════════════════════
+// NEW SIX-LAYER ARCHITECTURE IMPORTS
+// ═══════════════════════════════════════════════════════════════════════════
+import AncientMath "./AncientMathEngine";
+import Physics "./FieldPhysicsEngine";
+import CPL "./CPL";
+import Glyph "./AncientGlyphCodex";
+import DocOrg "./DocumentOrganism";
+import Sovereign "./SovereignOrganism";
+import Reader "./OrganismReader";
+import Doctrine "./DoctrineDocuments";
 
 actor Medina {
   stable var beat : Nat = 0;
@@ -61,6 +75,43 @@ actor Medina {
   stable var authorityCoreA : [Text] = ["core-a"];
   stable var authorityCoreB : [Text] = ["core-b"];
   stable var projectionEvidenceOnly : Bool = true;
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SIX-LAYER ARCHITECTURE STATE
+  // Layer 1: Computational Engines (stateless modules)
+  // Layer 2: Doctrine Documents (living knowledge)
+  // Layer 3: Sovereign Organism (ORO + NOVA)
+  // Layer 4: Organism Reader (document interaction)
+  // Layer 5: Document Organisms (self-mutating documents)
+  // Layer 6: Device Network (already exists above)
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  stable var sovereignState : ?Sovereign.SovereignState = null;
+  stable var documentOrganisms : [DocOrg.DocumentOrganism] = [];
+  stable var readingSessions : [Reader.ReadingSession] = [];
+  stable var glyphBuffer : [Glyph.Glyph] = [];
+  stable var consensusHistory : [Sovereign.DualConsensus] = [];
+
+  // Harmonic frequency state
+  // Note: PHI constant (1.6180339887498948) is inlined here because stable var
+  // initialization must be constant. See AncientMath.PHI for canonical definition.
+  stable var harmonicLadderState : {
+    chrono : Float;     // 0.001 Hz - deep substrate
+    brain : Float;      // 7.83 Hz - Schumann fundamental
+    flux : Float;       // 12.67 Hz - Schumann × PHI
+    resonex : Float;    // 20.5 Hz - Schumann × PHI²
+    qmem : Float;       // 33.1 Hz - Schumann × PHI³
+    axis : Float;       // 40.0 Hz - gamma binding
+    nova : Float;       // 432.0 Hz - ancient concert pitch
+  } = {
+    chrono = 0.001;
+    brain = 7.83;
+    flux = 7.83 * 1.6180339887498948;           // PHI
+    resonex = 7.83 * 2.6180339887498948;        // PHI²
+    qmem = 7.83 * 4.2360679774997897;           // PHI³
+    axis = 40.0;
+    nova = 432.0;
+  };
 
   private func nextId(prefix : Text, n : Nat) : Text {
     prefix # "-" # Nat.toText(n + 1);
@@ -1687,5 +1738,699 @@ actor Medina {
     let stability = Matalko.physicsStability(energy, 0.1);
     let chemistry = Matalko.chemistryPotential(1.0, 0.2);
     { macroField = macro; dualReadEnergy = energy; stability = stability; chemistryPotential = chemistry; atNs = T.nowNs() };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SIX-LAYER ARCHITECTURE ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // LAYER 1: COMPUTATIONAL ENGINES (Pure Mathematics)
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public query func phiConstants() : async {
+    phi : Float;
+    phi_inverse : Float;
+    phi_squared : Float;
+    phi_cubed : Float;
+    phi_fourth : Float;
+    heartbeat_ms : Float;
+  } {
+    {
+      phi = AncientMath.PHI;
+      phi_inverse = AncientMath.PHI_INVERSE;
+      phi_squared = AncientMath.PHI_SQUARED;
+      phi_cubed = AncientMath.PHI_CUBED;
+      phi_fourth = AncientMath.PHI_FOURTH;
+      heartbeat_ms = Physics.phiHeartbeat();
+    }
+  };
+
+  public query func harmonicLadder() : async {
+    chrono : Float;
+    brain : Float;
+    flux : Float;
+    resonex : Float;
+    qmem : Float;
+    axis : Float;
+    nova : Float;
+  } {
+    harmonicLadderState
+  };
+
+  public query func schumannModes(count : Nat) : async [Float] {
+    var modes : [Float] = [];
+    var i = 1;
+    while (i <= count) {
+      modes := Array.append(modes, [Physics.schumannMode(i)]);
+      i += 1;
+    };
+    modes
+  };
+
+  public query func fibonacci(n : Nat) : async Nat {
+    AncientMath.fibonacci(n)
+  };
+
+  public query func goldenRectangle(shortSide : Float) : async (Float, Float) {
+    AncientMath.goldenRectangle(shortSide)
+  };
+
+  public query func pythagorean(a : Float, b : Float) : async Float {
+    AncientMath.pythagorean(a, b)
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // LAYER 2: DOCTRINE DOCUMENTS
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public query func allDoctrines() : async [{
+    id : Text;
+    title : Text;
+    resonanceFrequency : Float;
+    formulaCount : Nat;
+    constantCount : Nat;
+    lawCount : Nat;
+  }] {
+    let docs = Doctrine.allDoctrines();
+    Array.map<Doctrine.DoctrineDocument, {
+      id : Text;
+      title : Text;
+      resonanceFrequency : Float;
+      formulaCount : Nat;
+      constantCount : Nat;
+      lawCount : Nat;
+    }>(docs, func(d) {
+      {
+        id = d.id;
+        title = d.title;
+        resonanceFrequency = d.resonanceFrequency;
+        formulaCount = d.formulas.size();
+        constantCount = d.constants.size();
+        lawCount = d.laws.size();
+      }
+    })
+  };
+
+  public query func doctrineConstants(doctrineId : Text) : async [Doctrine.ConstantDefinition] {
+    let docs = Doctrine.allDoctrines();
+    for (d in docs.vals()) {
+      if (d.id == doctrineId) {
+        return d.constants;
+      };
+    };
+    []
+  };
+
+  public query func doctrineLaws(doctrineId : Text) : async [Doctrine.LawDefinition] {
+    let docs = Doctrine.allDoctrines();
+    for (d in docs.vals()) {
+      if (d.id == doctrineId) {
+        return d.laws;
+      };
+    };
+    []
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // LAYER 3: SOVEREIGN ORGANISM (ORO + NOVA)
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public func initSovereignOrganism() : async {
+    oroId : Text;
+    novaId : Text;
+    beat : Nat;
+    healthIndex : Float;
+  } {
+    let timestamp = Time.now();
+    let newState = Sovereign.initSovereign(timestamp);
+    sovereignState := ?newState;
+    
+    ignore appendReplay("sovereign.init", ?newState.oro.id, null, ["oro", "nova", "dual-consensus"]);
+    
+    {
+      oroId = newState.oro.id;
+      novaId = newState.nova.id;
+      beat = newState.oro.beat;
+      healthIndex = newState.healthIndex;
+    }
+  };
+
+  public func sovereignHeartbeat() : async {
+    beat : Nat;
+    animaHash : Text;
+    phase : Text;
+    gateA : Bool;
+    gateB : Bool;
+    gateC : Bool;
+    healthIndex : Float;
+  } {
+    let timestamp = Time.now();
+    
+    switch (sovereignState) {
+      case (null) {
+        // Initialize if not exists
+        let newState = Sovereign.initSovereign(timestamp);
+        sovereignState := ?newState;
+        {
+          beat = newState.oro.beat;
+          animaHash = newState.oro.animaHash;
+          phase = newState.organismPhase;
+          gateA = newState.gateA;
+          gateB = newState.gateB;
+          gateC = newState.gateC;
+          healthIndex = newState.healthIndex;
+        }
+      };
+      case (?state) {
+        let newState = Sovereign.sovereignHeartbeat(state, timestamp);
+        sovereignState := ?newState;
+        
+        // Sync with main beat
+        beat += 1;
+        
+        ignore appendReplay("sovereign.heartbeat", ?newState.oro.animaHash, ?{
+          a = newState.gateA;
+          b = newState.gateB;
+          c = newState.gateC;
+        }, ["beat:" # Nat.toText(newState.oro.beat)]);
+        
+        {
+          beat = newState.oro.beat;
+          animaHash = newState.oro.animaHash;
+          phase = newState.organismPhase;
+          gateA = newState.gateA;
+          gateB = newState.gateB;
+          gateC = newState.gateC;
+          healthIndex = newState.healthIndex;
+        }
+      };
+    }
+  };
+
+  public query func sovereignStatus() : async ?{
+    oroResonance : Float;
+    oroCoherence : Float;
+    oroPhase : Text;
+    novaDriftScore : Float;
+    novaVigilance : Float;
+    consensusReady : Bool;
+    gatesOpen : Bool;
+    beat : Nat;
+    lawEpoch : Nat;
+  } {
+    switch (sovereignState) {
+      case (null) { null };
+      case (?state) {
+        ?{
+          oroResonance = state.oro.resonanceLevel;
+          oroCoherence = state.oro.coherenceIndex;
+          oroPhase = switch (state.oro.phase) {
+            case (#Awakening) { "Awakening" };
+            case (#Sensing) { "Sensing" };
+            case (#Orienting) { "Orienting" };
+            case (#Deciding) { "Deciding" };
+            case (#Acting) { "Acting" };
+            case (#Evaluating) { "Evaluating" };
+            case (#Integrating) { "Integrating" };
+            case (#Broadcasting) { "Broadcasting" };
+          };
+          novaDriftScore = state.nova.doctrineDriftScore;
+          novaVigilance = state.nova.vigilanceLevel;
+          consensusReady = state.nova.consensusReady;
+          gatesOpen = state.gateA and state.gateB and state.gateC;
+          beat = state.oro.beat;
+          lawEpoch = state.oro.lawEpoch;
+        }
+      };
+    }
+  };
+
+  public func dualConsensusVote(taskRef : Text) : async ?Sovereign.DualConsensus {
+    switch (sovereignState) {
+      case (null) { null };
+      case (?state) {
+        let timestamp = Time.now();
+        let consensusId = "consensus-" # taskRef # "-" # Nat.toText(consensusHistory.size());
+        let consensus = Sovereign.formConsensus(consensusId, taskRef, state.oro, state.nova, timestamp);
+        consensusHistory := Array.append(consensusHistory, [consensus]);
+        
+        // Update sovereign state with new consensus
+        let newState : Sovereign.SovereignState = {
+          oro = state.oro;
+          nova = state.nova;
+          lastConsensus = ?consensus;
+          gateA = state.gateA;
+          gateB = state.gateB;
+          gateC = consensus.finalConsensus;
+          organismPhase = state.organismPhase;
+          healthIndex = state.healthIndex;
+        };
+        sovereignState := ?newState;
+        
+        ignore appendReplay("dual.consensus", ?taskRef, null, [
+          "oro:" # (if (consensus.oroApproves) { "accept" } else { "reject" }),
+          "nova:" # (if (consensus.novaApproves) { "accept" } else { "reject" }),
+          "final:" # (if (consensus.finalConsensus) { "accept" } else { "reject" })
+        ]);
+        
+        ?consensus
+      };
+    }
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // LAYER 4: ORGANISM READER (Document Interaction)
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public func oroReadsDoctrine(doctrineId : Text) : async {
+    resonanceGained : Float;
+    documentsRead : Nat;
+    formulasExecuted : Nat;
+  } {
+    let timestamp = Time.now();
+    
+    // Get or create session
+    let sessionId = "session-" # Nat.toText(readingSessions.size());
+    let session = Reader.newSession(sessionId, "ORO", timestamp);
+    
+    switch (sovereignState) {
+      case (null) { { resonanceGained = 0.0; documentsRead = 0; formulasExecuted = 0 } };
+      case (?state) {
+        let (newOro, newSession) = Reader.oroReadsDoctrine(
+          state.oro,
+          session,
+          #MathematicalCore,
+          doctrineId,
+          timestamp
+        );
+        
+        // Update state
+        let newState : Sovereign.SovereignState = {
+          oro = newOro;
+          nova = state.nova;
+          lastConsensus = state.lastConsensus;
+          gateA = state.gateA;
+          gateB = state.gateB;
+          gateC = state.gateC;
+          organismPhase = state.organismPhase;
+          healthIndex = state.healthIndex;
+        };
+        sovereignState := ?newState;
+        readingSessions := Array.append(readingSessions, [newSession]);
+        
+        ignore appendReplay("oro.reads", ?doctrineId, null, ["resonance"]);
+        
+        {
+          resonanceGained = newSession.resonanceGained;
+          documentsRead = newSession.documentsRead.size();
+          formulasExecuted = newSession.formulasExecuted.size();
+        }
+      };
+    }
+  };
+
+  public func executeFormula(formulaName : Text, inputs : [Float]) : async Reader.FormulaResult {
+    let timestamp = Time.now();
+    
+    let sessionId = "formula-session-" # Nat.toText(readingSessions.size());
+    let session = Reader.newSession(sessionId, "ORO", timestamp);
+    
+    switch (sovereignState) {
+      case (null) { 
+        { formulaId = formulaName; input = inputs; output = 0.0; success = false; error = ?"Sovereign not initialized" }
+      };
+      case (?state) {
+        let (newOro, newSession, result) = Reader.executeFormula(
+          state.oro,
+          session,
+          #MathematicalCore,
+          formulaName,
+          inputs,
+          timestamp
+        );
+        
+        // Update state
+        let newState : Sovereign.SovereignState = {
+          oro = newOro;
+          nova = state.nova;
+          lastConsensus = state.lastConsensus;
+          gateA = state.gateA;
+          gateB = state.gateB;
+          gateC = state.gateC;
+          organismPhase = state.organismPhase;
+          healthIndex = state.healthIndex;
+        };
+        sovereignState := ?newState;
+        
+        ignore appendReplay("formula.execute", ?formulaName, null, [
+          "success:" # (if (result.success) { "true" } else { "false" })
+        ]);
+        
+        result
+      };
+    }
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // LAYER 5: DOCUMENT ORGANISMS (Self-Mutating Documents)
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public func createDocumentOrganism(
+    title : Text,
+    category : Text,
+    path : Text,
+    content : Text,
+    metabolicRate : Float
+  ) : async Text {
+    let timestamp = Time.now();
+    let id = "doc-org-" # Nat.toText(documentOrganisms.size());
+    
+    let doc = DocOrg.createDocument(
+      id,
+      title,
+      category,
+      path,
+      content,
+      "MEDINA",
+      metabolicRate,
+      timestamp
+    );
+    
+    documentOrganisms := Array.append(documentOrganisms, [doc]);
+    
+    ignore appendReplay("document.organism.create", ?id, null, ["category:" # category, "metabolic:" # Float.toText(metabolicRate)]);
+    
+    id
+  };
+
+  public func documentOrganismMetabolicCycle() : async Nat {
+    let timestamp = Time.now();
+    var processed = 0;
+    
+    documentOrganisms := Array.map<DocOrg.DocumentOrganism, DocOrg.DocumentOrganism>(
+      documentOrganisms,
+      func(doc) {
+        processed += 1;
+        DocOrg.metabolicCycle(doc, beat, timestamp)
+      }
+    );
+    
+    processed
+  };
+
+  public query func documentOrganismStatus(docId : Text) : async ?{
+    id : Text;
+    title : Text;
+    phase : Text;
+    energyLevel : Float;
+    resonanceCharge : Float;
+    mutationPotential : Float;
+    readCount : Nat;
+    version : Nat;
+    healthScore : Float;
+  } {
+    for (doc in documentOrganisms.vals()) {
+      if (doc.id == docId) {
+        let phase = switch (doc.phase) {
+          case (#Germinating) { "Germinating" };
+          case (#Growing) { "Growing" };
+          case (#Mature) { "Mature" };
+          case (#Reproducing) { "Reproducing" };
+          case (#Mutating) { "Mutating" };
+          case (#Dormant) { "Dormant" };
+          case (#Transcribing) { "Transcribing" };
+        };
+        
+        return ?{
+          id = doc.id;
+          title = doc.title;
+          phase = phase;
+          energyLevel = doc.energyLevel;
+          resonanceCharge = doc.resonanceCharge;
+          mutationPotential = doc.mutationPotential;
+          readCount = doc.readCount;
+          version = doc.version;
+          healthScore = DocOrg.healthScore(doc);
+        };
+      };
+    };
+    null
+  };
+
+  public query func allDocumentOrganisms() : async [{
+    id : Text;
+    title : Text;
+    category : Text;
+    phase : Text;
+    healthScore : Float;
+  }] {
+    Array.map<DocOrg.DocumentOrganism, {
+      id : Text;
+      title : Text;
+      category : Text;
+      phase : Text;
+      healthScore : Float;
+    }>(documentOrganisms, func(doc) {
+      let phase = switch (doc.phase) {
+        case (#Germinating) { "Germinating" };
+        case (#Growing) { "Growing" };
+        case (#Mature) { "Mature" };
+        case (#Reproducing) { "Reproducing" };
+        case (#Mutating) { "Mutating" };
+        case (#Dormant) { "Dormant" };
+        case (#Transcribing) { "Transcribing" };
+      };
+      {
+        id = doc.id;
+        title = doc.title;
+        category = doc.category;
+        phase = phase;
+        healthScore = DocOrg.healthScore(doc);
+      }
+    })
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // GLYPH PROCESSING
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public func addMayanGlyph(n : Nat) : async Glyph.Glyph {
+    let glyph = Glyph.mayanNumber(n);
+    glyphBuffer := Array.append(glyphBuffer, [glyph]);
+    glyph
+  };
+
+  public func addChineseElement(element : Text) : async Glyph.Glyph {
+    let glyph = Glyph.chineseElement(element);
+    glyphBuffer := Array.append(glyphBuffer, [glyph]);
+    glyph
+  };
+
+  public func addEgyptianSymbol(name : Text) : async Glyph.Glyph {
+    let glyph = Glyph.egyptianSymbol(name);
+    glyphBuffer := Array.append(glyphBuffer, [glyph]);
+    glyph
+  };
+
+  public func addVedicBija(mantra : Text) : async Glyph.Glyph {
+    let glyph = Glyph.vedicBija(mantra);
+    glyphBuffer := Array.append(glyphBuffer, [glyph]);
+    glyph
+  };
+
+  public func addHebrewLetter(index : Nat) : async Glyph.Glyph {
+    let glyph = Glyph.hebrewLetter(index);
+    glyphBuffer := Array.append(glyphBuffer, [glyph]);
+    glyph
+  };
+
+  public func addGreekLetter(name : Text) : async Glyph.Glyph {
+    let glyph = Glyph.greekLetter(name);
+    glyphBuffer := Array.append(glyphBuffer, [glyph]);
+    glyph
+  };
+
+  public func processGlyphBuffer(intent : Text) : async ?Glyph.GlyphPhrase {
+    if (glyphBuffer.size() == 0) {
+      return null;
+    };
+    
+    let timestamp = Time.now();
+    let phrase = Glyph.combineGlyphs(glyphBuffer, intent, timestamp);
+    
+    ignore appendReplay("glyph.phrase", null, null, [
+      "glyphs:" # Nat.toText(glyphBuffer.size()),
+      "resonance:" # Float.toText(phrase.combinedResonance)
+    ]);
+    
+    glyphBuffer := []; // Clear buffer
+    ?phrase
+  };
+
+  public query func glyphBufferStatus() : async {
+    glyphCount : Nat;
+    isSacredCombination : Bool;
+  } {
+    {
+      glyphCount = glyphBuffer.size();
+      isSacredCombination = Glyph.isSacredCombination(glyphBuffer);
+    }
+  };
+
+  public query func mayanLongCount(baktun : Nat, katun : Nat, tun : Nat, uinal : Nat, kin : Nat) : async Nat {
+    Glyph.mayanLongCount(baktun, katun, tun, uinal, kin)
+  };
+
+  public query func gematria(word : Text) : async Nat {
+    Glyph.gematria(word)
+  };
+
+  public query func iChingHexagram(upper : Nat, lower : Nat) : async Glyph.Glyph {
+    Glyph.iChingHexagram(upper, lower)
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // PHYSICS ENGINE QUERIES
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public query func physicsConstants() : async {
+    c : Float;         // Speed of light
+    h : Float;         // Planck constant
+    g : Float;         // Gravitational constant
+    alpha : Float;     // Fine structure constant
+    k_b : Float;       // Boltzmann constant
+  } {
+    {
+      c = Physics.C;
+      h = Physics.H;
+      g = Physics.G;
+      alpha = Physics.ALPHA;
+      k_b = Physics.K_B;
+    }
+  };
+
+  public query func photonEnergy(frequency : Float) : async Float {
+    Physics.photonEnergy(frequency)
+  };
+
+  public query func waveVelocity(frequency : Float, wavelength : Float) : async Float {
+    Physics.waveVelocity(frequency, wavelength)
+  };
+
+  public query func orbitalPeriod(mass : Float, radius : Float) : async Float {
+    Physics.orbitalPeriod(mass, radius)
+  };
+
+  public query func kuramotoOrderParameter(phases : [Float]) : async Float {
+    Physics.kuramotoOrderParameter(phases)
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // CPL PROTOCOL QUERIES
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public query func platonicSolidProperties(solidName : Text) : async ?CPL.SolidProperties {
+    switch (solidName) {
+      case ("tetrahedron") { ?CPL.solidProperties(#Tetrahedron) };
+      case ("cube") { ?CPL.solidProperties(#Hexahedron) };
+      case ("octahedron") { ?CPL.solidProperties(#Octahedron) };
+      case ("dodecahedron") { ?CPL.solidProperties(#Dodecahedron) };
+      case ("icosahedron") { ?CPL.solidProperties(#Icosahedron) };
+      case (_) { null };
+    }
+  };
+
+  public query func hermeticPrinciple(index : Nat) : async CPL.PrincipleProperties {
+    let principles = CPL.allPrinciples();
+    if (index < principles.size()) {
+      CPL.principleProperties(principles[index])
+    } else {
+      CPL.principleProperties(#Mentalism) // Default
+    }
+  };
+
+  public query func sacredRatio(name : Text) : async Float {
+    CPL.sacredRatio(name)
+  };
+
+  public query func sephiroth() : async [CPL.Sephirah] {
+    CPL.sephiroth()
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // COMPLETE ARCHITECTURE STATUS
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  public query func sixLayerArchitectureStatus() : async {
+    layer1_computationalEngines : {
+      ancientMath : Bool;
+      fieldPhysics : Bool;
+      cpl : Bool;
+      glyphCodex : Bool;
+    };
+    layer2_doctrineDocuments : {
+      totalDoctrines : Nat;
+      totalResonance : Float;
+    };
+    layer3_sovereignOrganism : {
+      initialized : Bool;
+      oroActive : Bool;
+      novaActive : Bool;
+    };
+    layer4_organismReader : {
+      activeSessions : Nat;
+      glyphsInBuffer : Nat;
+    };
+    layer5_documentOrganisms : {
+      totalOrganisms : Nat;
+      activeOrganisms : Nat;
+    };
+    layer6_deviceNetwork : {
+      totalDevices : Nat;
+      totalContracts : Nat;
+    };
+  } {
+    let sovInit = switch (sovereignState) {
+      case (null) { false };
+      case (?_) { true };
+    };
+    
+    let activeOrgs = Array.filter<DocOrg.DocumentOrganism>(documentOrganisms, func(d) {
+      switch (d.phase) {
+        case (#Dormant) { false };
+        case (_) { true };
+      }
+    }).size();
+    
+    {
+      layer1_computationalEngines = {
+        ancientMath = true;
+        fieldPhysics = true;
+        cpl = true;
+        glyphCodex = true;
+      };
+      layer2_doctrineDocuments = {
+        totalDoctrines = Doctrine.allDoctrines().size();
+        totalResonance = Doctrine.totalDoctrineResonance();
+      };
+      layer3_sovereignOrganism = {
+        initialized = sovInit;
+        oroActive = sovInit;
+        novaActive = sovInit;
+      };
+      layer4_organismReader = {
+        activeSessions = readingSessions.size();
+        glyphsInBuffer = glyphBuffer.size();
+      };
+      layer5_documentOrganisms = {
+        totalOrganisms = documentOrganisms.size();
+        activeOrganisms = activeOrgs;
+      };
+      layer6_deviceNetwork = {
+        totalDevices = Array.size(deviceNodes);
+        totalContracts = Array.size(sovereignContracts);
+      };
+    }
   };
 };
