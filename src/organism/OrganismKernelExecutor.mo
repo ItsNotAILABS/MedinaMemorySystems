@@ -2,6 +2,7 @@
 // "The kernel is the organism, the organism is everything"
 // "Compress everything into kernels that execute fully"
 // "When called, it expands to full intelligence and runs"
+// "Tighten up the kernels, tighten all of them up"
 
 import Float "mo:base/Float";
 import Int "mo:base/Int";
@@ -14,6 +15,7 @@ import Iter "mo:base/Iter";
 import Constants "Constants";
 import KernelCompression "KernelCompression";
 import CrossOrganismResonance "CrossOrganismResonance";
+import FullStackKernelRegistry "FullStackKernelRegistry";
 
 module OrganismKernelExecutor {
 
@@ -36,6 +38,12 @@ module OrganismKernelExecutor {
         sovereignBeingsKernel : ModuleKernel; // 35 beings, 7 divisions
         workforceKernel : ModuleKernel;       // Client projections
         sandboxKernel : ModuleKernel;         // Translation layer
+        
+        // ═══════════════════════════════════════════════════════════════
+        // FULL STACK INTEGRATION — ALL 90+ DOCUMENTS
+        // "Are all the documents in there?"
+        // ═══════════════════════════════════════════════════════════════
+        fullStackRegistry : FullStackKernelRegistry.FullStackRegistry;
         
         // State
         executionState : ExecutionState;
@@ -186,6 +194,9 @@ module OrganismKernelExecutor {
             sovereignBeingsKernel = createSovereignBeingsKernel(now);
             workforceKernel = createWorkforceKernel(now);
             sandboxKernel = createSandboxKernel(now);
+            
+            // FULL STACK — ALL 90+ documents integrated
+            fullStackRegistry = FullStackKernelRegistry.createFullStackRegistry();
             
             // State
             executionState = #Idle;
