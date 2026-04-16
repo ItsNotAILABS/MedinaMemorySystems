@@ -26,6 +26,9 @@ module {
     #Ethos;            // Character, credibility, ethics
     #Pathos;           // Emotion, feeling, connection
     #Kairos;           // Timing, the right moment (often added)
+    #Telos;            // Purpose, end, intended aim
+    #Mythos;           // Narrative, story, shared meaning
+    #Topos;            // Place, context, common ground
   };
 
   public type RhetoricalElement = {
@@ -394,6 +397,9 @@ module {
       case (#Ethos) "CPL.COMMUNICATE(mode: CREDIBLE, trust: ESTABLISHED, authority: VERIFIED)";
       case (#Pathos) "CPL.COMMUNICATE(mode: EMOTIONAL, connection: CREATED, resonance: TRUE)";
       case (#Kairos) "CPL.COMMUNICATE(mode: TIMELY, moment: RIGHT, context: CONSIDERED)";
+      case (#Telos) "CPL.COMMUNICATE(mode: PURPOSEFUL, aim: DEFINED, goal: DIRECTED)";
+      case (#Mythos) "CPL.COMMUNICATE(mode: NARRATIVE, story: SHARED, meaning: CONVEYED)";
+      case (#Topos) "CPL.COMMUNICATE(mode: CONTEXTUAL, place: GROUNDED, common: ESTABLISHED)";
     };
   };
 
