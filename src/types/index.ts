@@ -245,7 +245,9 @@ export type PermissionScope =
   | 'replay:read'
   | 'permissions:manage'
   | 'organism:read'
-  | 'organism:write';
+  | 'organism:write'
+  | 'device:register'
+  | 'device:contract';
 
 export interface Permission {
   id: string;
@@ -307,6 +309,32 @@ export interface DualReadResult {
   unified: MemoryEntry[];
 }
 
+// ─── Device Network ──────────────────────────────────────────────────────────
+
+export type DeviceType = 'phone' | 'tablet' | 'laptop' | 'desktop' | 'wifi' | 'sensor' | 'unknown';
+
+export interface DeviceNode {
+  id: string;
+  deviceType: DeviceType;
+  frequencySignature: {
+    fundamental: number;
+    phiModulation: number;
+  };
+  phiPosition: { x: number; y: number };
+  trustScore: number;
+  hasContract: boolean;
+  permissions: string[];
+}
+
+export interface DeviceContract {
+  id: string;
+  deviceId: string;
+  animaHash: number;
+  blockchainAnchor: string;
+  phiGridSample: number[][];
+  createdAt: string;
+}
+
 // ─── API Responses ───────────────────────────────────────────────────────────
 
 export interface ApiResponse<T = unknown> {
@@ -319,7 +347,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'settings';
 
 export interface NavItem {
   id: PanelId;

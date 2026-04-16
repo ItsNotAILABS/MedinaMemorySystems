@@ -1,539 +1,409 @@
-import Float "mo:base/Float";
-import Nat "mo:base/Nat";
-import Int "mo:base/Int";
-import Text "mo:base/Text";
 import Array "mo:base/Array";
+import Float "mo:base/Float";
+import Int "mo:base/Int";
+import Nat "mo:base/Nat";
+import Nat32 "mo:base/Nat32";
+import Text "mo:base/Text";
+import Time "mo:base/Time";
+import Matalko "./MatalkoICP";
 
-/// CPL - COHERENT PROTOCOL LANGUAGE
-/// ================================
-/// Communication protocol built on sacred geometry.
-/// Platonic solids, Hermetic principles, Method of Loci.
-/// The architecture of meaning transfer.
-
+/// CPL: Cognitive Procurement Language
+/// The substrate protocol for organism-to-organism communication.
+/// Pure architecture and ancient mathematics. No abstraction layers.
+/// This is how sovereign organisms speak to each other.
 module {
-  // ═══════════════════════════════════════════════════════════════════════════
-  // FUNDAMENTAL CONSTANTS
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  public let PHI : Float = 1.6180339887498948482;
-  public let PI : Float = 3.1415926535897932385;
-  public let SQRT_2 : Float = 1.4142135623730950488;
-  public let SQRT_3 : Float = 1.7320508075688772935;
-  public let SQRT_5 : Float = 2.2360679774997896964;
-  public let SQRT_13 : Float = 3.6055512754639892931;
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // PLATONIC SOLIDS — The Five Perfect Forms
-  // Each encodes different aspects of reality
+  // ANCIENT MATHEMATICAL CONSTANTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type PlatonicSolid = {
-    #Tetrahedron;  // Fire — 4 faces, 4 vertices, 6 edges
-    #Hexahedron;   // Earth — 6 faces, 8 vertices, 12 edges (Cube)
-    #Octahedron;   // Air — 8 faces, 6 vertices, 12 edges
-    #Dodecahedron; // Cosmos/Ether — 12 faces, 20 vertices, 30 edges
-    #Icosahedron;  // Water — 20 faces, 12 vertices, 30 edges
+  /// Platonic Solids — The five perfect forms (vertices)
+  public let TETRAHEDRON : Nat = 4;   // Fire
+  public let HEXAHEDRON : Nat = 8;    // Earth (Cube)
+  public let OCTAHEDRON : Nat = 6;    // Air
+  public let DODECAHEDRON : Nat = 20; // Aether/Universe
+  public let ICOSAHEDRON : Nat = 12;  // Water
+
+  /// Pythagorean Tetractys — The sacred 10 (1+2+3+4)
+  public let TETRACTYS : Nat = 10;
+
+  /// Hermetic correspondence ratio
+  public let AS_ABOVE_SO_BELOW : Float = 1.0; // Perfect correspondence
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CPL MESSAGE TYPES
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// The four elements — maps to four-register state
+  public type Element = {
+    #Fire;    // Cognitive — transformation, will
+    #Earth;   // Somatic — grounding, manifestation
+    #Air;     // Affective — thought, communication
+    #Water;   // Sovereign — flow, adaptation, memory
   };
 
-  public type SolidProperties = {
-    name : Text;
-    element : Text;
-    faces : Nat;
-    vertices : Nat;
-    edges : Nat;
-    faceShape : Text;
-    dualSolid : PlatonicSolid;
-    dihedralAngle : Float;      // degrees
-    surfaceAreaFactor : Float;  // relative to edge length²
-    volumeFactor : Float;       // relative to edge length³
+  /// Aristotelian Four Causes — why anything exists/changes
+  public type Cause = {
+    #Material;  // What it's made of (substrate)
+    #Formal;    // What form/pattern it takes (architecture)
+    #Efficient; // What agent causes the change (organism)
+    #Final;     // What purpose/end it serves (telos)
   };
 
-  /// Get properties of a Platonic solid
-  public func solidProperties(solid : PlatonicSolid) : SolidProperties {
-    switch (solid) {
-      case (#Tetrahedron) {
-        {
-          name = "Tetrahedron";
-          element = "Fire";
-          faces = 4;
-          vertices = 4;
-          edges = 6;
-          faceShape = "Equilateral Triangle";
-          dualSolid = #Tetrahedron; // Self-dual
-          dihedralAngle = 70.528779;
-          surfaceAreaFactor = SQRT_3;
-          volumeFactor = SQRT_2 / 12.0;
-        }
-      };
-      case (#Hexahedron) {
-        {
-          name = "Hexahedron (Cube)";
-          element = "Earth";
-          faces = 6;
-          vertices = 8;
-          edges = 12;
-          faceShape = "Square";
-          dualSolid = #Octahedron;
-          dihedralAngle = 90.0;
-          surfaceAreaFactor = 6.0;
-          volumeFactor = 1.0;
-        }
-      };
-      case (#Octahedron) {
-        {
-          name = "Octahedron";
-          element = "Air";
-          faces = 8;
-          vertices = 6;
-          edges = 12;
-          faceShape = "Equilateral Triangle";
-          dualSolid = #Hexahedron;
-          dihedralAngle = 109.471221;
-          surfaceAreaFactor = 2.0 * SQRT_3;
-          volumeFactor = SQRT_2 / 3.0;
-        }
-      };
-      case (#Dodecahedron) {
-        {
-          name = "Dodecahedron";
-          element = "Cosmos/Ether";
-          faces = 12;
-          vertices = 20;
-          edges = 30;
-          faceShape = "Regular Pentagon";
-          dualSolid = #Icosahedron;
-          dihedralAngle = 116.565051;
-          surfaceAreaFactor = 3.0 * SQRT_5 * (5.0 + 2.0 * SQRT_5);
-          volumeFactor = (15.0 + 7.0 * SQRT_5) / 4.0;
-        }
-      };
-      case (#Icosahedron) {
-        {
-          name = "Icosahedron";
-          element = "Water";
-          faces = 20;
-          vertices = 12;
-          edges = 30;
-          faceShape = "Equilateral Triangle";
-          dualSolid = #Dodecahedron;
-          dihedralAngle = 138.189685;
-          surfaceAreaFactor = 5.0 * SQRT_3;
-          volumeFactor = (5.0 / 12.0) * (3.0 + SQRT_5);
-        }
-      };
-    }
+  /// CPL Intent — what the message seeks to accomplish
+  public type Intent = {
+    #Query;      // Seek information (Socratic)
+    #Assert;     // Declare truth (Platonic)
+    #Command;    // Direct action (Aristotelian)
+    #Propose;    // Suggest change (Dialectic)
+    #Resonate;   // Harmonic alignment check
+    #Procure;    // Request resource/capability
+    #Yield;      // Return resource/result
+    #Witness;    // Observe without action (Method of Loci)
   };
 
-  /// Euler's formula: V - E + F = 2 for all convex polyhedra
-  public func eulerCheck(vertices : Nat, edges : Nat, faces : Nat) : Bool {
-    vertices + faces == edges + 2
+  /// CPL Message — the fundamental unit of organism communication
+  public type Message = {
+    id : Text;
+    fromOrganism : Text;
+    toOrganism : Text;
+    intent : Intent;
+    element : Element;
+    cause : Cause;
+    
+    // Payload
+    architectureRef : Text;        // Reference to architectural doctrine
+    substratePath : [Text];        // Path through the organism
+    payload : Text;                // The actual content
+    
+    // Mathematical encoding
+    phiSignature : Float;          // Phi-encoded signature
+    harmonicFreq : Float;          // Harmonic frequency of message
+    tetractysPosition : Nat;       // Position in sacred 10 (1-10)
+    
+    // Lineage
+    parentMessageId : ?Text;
+    recitalRef : Text;             // RECITAL_PLUS_ONE reference
+    
+    // Verification
+    dualReadRequired : Bool;
+    gateRequired : ?Text;          // "A", "B", "C", or null
+    
+    // Temporal
+    createdAtNs : Int;
+    expiresAtNs : ?Int;
   };
 
-  /// Get the dual solid (vertices ↔ faces)
-  public func dualSolid(solid : PlatonicSolid) : PlatonicSolid {
-    solidProperties(solid).dualSolid
-  };
-
-  /// Map element to solid
-  public func elementToSolid(element : Text) : ?PlatonicSolid {
-    switch (element) {
-      case ("fire") { ?#Tetrahedron };
-      case ("earth") { ?#Hexahedron };
-      case ("air") { ?#Octahedron };
-      case ("water") { ?#Icosahedron };
-      case ("ether") { ?#Dodecahedron };
-      case ("cosmos") { ?#Dodecahedron };
-      case (_) { null };
-    }
+  /// CPL Response — organism's reply
+  public type Response = {
+    messageId : Text;
+    respondingOrganism : Text;
+    
+    // Outcome
+    accepted : Bool;
+    resonanceScore : Float;        // How well message aligned with receiver
+    
+    // Return payload
+    element : Element;
+    payload : Text;
+    evidenceRefs : [Text];
+    
+    // Mathematical signature
+    phiSignature : Float;
+    harmonicResonance : Float;     // Resonance between sender/receiver frequencies
+    
+    // Verification results
+    dualReadPassed : Bool;
+    gatePassed : Bool;
+    
+    // Temporal
+    respondedAtNs : Int;
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // SEVEN HERMETIC PRINCIPLES
-  // The Kybalion — Universal laws of existence
+  // METHOD OF LOCI (Memory Palace Architecture)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type HermeticPrinciple = {
-    #Mentalism;        // All is Mind
-    #Correspondence;   // As above, so below
-    #Vibration;        // Nothing rests, everything moves
-    #Polarity;         // Everything has poles, opposites are identical in nature
-    #Rhythm;           // Everything flows, pendulum swings
-    #CauseAndEffect;   // Every cause has its effect
-    #Gender;           // Gender is in everything, masculine/feminine principles
-  };
-
-  public type PrincipleProperties = {
-    name : Text;
-    maxim : Text;
-    application : Text;
-    frequencyResonance : Float;  // Associated frequency in Hz
-  };
-
-  /// Get properties of a Hermetic principle
-  public func principleProperties(principle : HermeticPrinciple) : PrincipleProperties {
-    switch (principle) {
-      case (#Mentalism) {
-        {
-          name = "Mentalism";
-          maxim = "The All is Mind; the Universe is Mental";
-          application = "Consciousness creates reality";
-          frequencyResonance = 963.0; // Crown chakra frequency
-        }
-      };
-      case (#Correspondence) {
-        {
-          name = "Correspondence";
-          maxim = "As above, so below; as below, so above";
-          application = "Patterns repeat at all scales";
-          frequencyResonance = 852.0; // Third eye frequency
-        }
-      };
-      case (#Vibration) {
-        {
-          name = "Vibration";
-          maxim = "Nothing rests; everything moves; everything vibrates";
-          application = "All matter is energy at different frequencies";
-          frequencyResonance = 741.0; // Expression frequency
-        }
-      };
-      case (#Polarity) {
-        {
-          name = "Polarity";
-          maxim = "Everything is dual; opposites are identical in nature, different in degree";
-          application = "Transform negative to positive by changing vibration";
-          frequencyResonance = 639.0; // Heart connection frequency
-        }
-      };
-      case (#Rhythm) {
-        {
-          name = "Rhythm";
-          maxim = "Everything flows; the pendulum swing manifests in everything";
-          application = "Neutralize negative swings through understanding";
-          frequencyResonance = 528.0; // Transformation frequency
-        }
-      };
-      case (#CauseAndEffect) {
-        {
-          name = "Cause and Effect";
-          maxim = "Every cause has its effect; every effect has its cause";
-          application = "Rise above causality through higher planes";
-          frequencyResonance = 417.0; // Facilitating change
-        }
-      };
-      case (#Gender) {
-        {
-          name = "Gender";
-          maxim = "Gender is in everything; masculine and feminine principles";
-          application = "Balance masculine (projective) and feminine (receptive)";
-          frequencyResonance = 396.0; // Liberation from fear
-        }
-      };
-    }
-  };
-
-  /// All seven principles
-  public func allPrinciples() : [HermeticPrinciple] {
-    [#Mentalism, #Correspondence, #Vibration, #Polarity, #Rhythm, #CauseAndEffect, #Gender]
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // METHOD OF LOCI — Memory Palace Architecture
-  // The ancient art of spatial memory
-  // ═══════════════════════════════════════════════════════════════════════════
-
+  /// Locus — a place in the Memory Temple
   public type Locus = {
     id : Text;
     name : Text;
-    description : Text;
-    theta : Float;        // Angular position (0-360)
-    phi : Float;          // Elevation angle (0-180)
-    depth : Nat;          // Distance from center (1-∞)
-    ring : Nat;           // Concentric ring (1-12)
-    linkedLoci : [Text];  // Connected locations
-    contentRef : ?Text;   // What's stored here
+    coordinates : {
+      ring : Nat;      // N1-N12 macro hierarchy
+      chamber : Nat;   // Chamber within ring
+      position : Nat;  // Position within chamber
+    };
+    element : Element;
+    capacity : Nat;
+    occupiedBy : [Text];  // Memory IDs stored here
+    linkedLoci : [Text];  // Connected loci for traversal
   };
 
+  /// Memory Palace — the architectural substrate for memory
   public type MemoryPalace = {
     id : Text;
     name : Text;
-    architect : Text;
-    loci : [Locus];
-    entryLocus : Text;    // Starting point
-    pathways : [(Text, Text)]; // Navigation routes
-    createdAt : Int;
+    rings : Nat;           // Number of concentric rings
+    chambersPerRing : Nat; // Chambers in each ring
+    positionsPerChamber : Nat;
+    totalLoci : Nat;
+    rootLocus : Text;      // Entry point
+    phiSpacing : Float;    // Golden ratio spacing between loci
   };
 
-  /// Create a new locus in the memory palace
-  public func createLocus(
+  /// Create a Memory Palace with phi-proportioned architecture
+  public func createMemoryPalace(
     id : Text,
     name : Text,
-    theta : Float,
-    phi : Float,
-    depth : Nat,
-    ring : Nat
-  ) : Locus {
+    rings : Nat,
+    chambersPerRing : Nat,
+    positionsPerChamber : Nat
+  ) : MemoryPalace {
     {
       id = id;
       name = name;
-      description = "";
-      theta = theta;
-      phi = phi;
-      depth = depth;
-      ring = ring;
-      linkedLoci = [];
-      contentRef = null;
-    }
+      rings = rings;
+      chambersPerRing = chambersPerRing;
+      positionsPerChamber = positionsPerChamber;
+      totalLoci = rings * chambersPerRing * positionsPerChamber;
+      rootLocus = id # "-locus-1-1-1";
+      phiSpacing = Matalko.PHI;
+    };
   };
 
-  /// Generate a ring of loci (circular arrangement)
-  public func generateRing(ringNumber : Nat, lociCount : Nat, prefix : Text) : [Locus] {
-    var loci : [Locus] = [];
-    let angleStep = 360.0 / Float.fromInt(Int.abs(lociCount));
-    
-    var i = 0;
-    while (i < lociCount) {
-      let theta = Float.fromInt(i) * angleStep;
-      let locus = createLocus(
-        prefix # "-" # Nat.toText(ringNumber) # "-" # Nat.toText(i),
-        "Locus " # Nat.toText(i) # " of Ring " # Nat.toText(ringNumber),
-        theta,
-        90.0, // Equatorial
-        ringNumber,
-        ringNumber
-      );
-      loci := Array.append(loci, [locus]);
-      i += 1;
-    };
-    loci
-  };
-
-  /// Generate golden spiral loci arrangement
-  public func generateGoldenSpiral(count : Nat, prefix : Text) : [Locus] {
-    var loci : [Locus] = [];
-    let goldenAngle = 137.5077640500378; // degrees
-    
-    var i = 0;
-    while (i < count) {
-      let theta = Float.fromInt(i) * goldenAngle;
-      let normalizedTheta = theta - Float.floor(theta / 360.0) * 360.0;
-      let radius = Float.sqrt(Float.fromInt(i + 1));
-      
-      let locus = createLocus(
-        prefix # "-spiral-" # Nat.toText(i),
-        "Spiral Locus " # Nat.toText(i),
-        normalizedTheta,
-        90.0,
-        Int.abs(Float.toInt(radius)) + 1,
-        (i / 12) + 1
-      );
-      loci := Array.append(loci, [locus]);
-      i += 1;
-    };
-    loci
-  };
-
-  /// Calculate distance between two loci (spherical)
-  public func lociDistance(l1 : Locus, l2 : Locus) : Float {
-    // Convert to radians
-    let theta1 = l1.theta * PI / 180.0;
-    let theta2 = l2.theta * PI / 180.0;
-    let phi1 = l1.phi * PI / 180.0;
-    let phi2 = l2.phi * PI / 180.0;
-    
-    // Spherical distance formula
-    let cosD = Float.sin(phi1) * Float.sin(phi2) + 
-               Float.cos(phi1) * Float.cos(phi2) * Float.cos(theta2 - theta1);
-    
-    // Clamp to valid range for acos
-    let clampedCosD = if (cosD > 1.0) { 1.0 } else if (cosD < -1.0) { -1.0 } else { cosD };
-    
-    Float.arccos(clampedCosD)
-  };
-
-  /// Find nearest locus to given coordinates
-  public func findNearestLocus(loci : [Locus], theta : Float, phi : Float) : ?Locus {
-    if (loci.size() == 0) { return null };
-    
-    let target : Locus = {
-      id = "target";
-      name = "target";
-      description = "";
-      theta = theta;
-      phi = phi;
-      depth = 1;
-      ring = 1;
-      linkedLoci = [];
-      contentRef = null;
-    };
-    
-    var nearest : ?Locus = null;
-    var minDist = 999999.0;
-    
-    for (locus in loci.vals()) {
-      let dist = lociDistance(target, locus);
-      if (dist < minDist) {
-        minDist := dist;
-        nearest := ?locus;
-      };
-    };
-    
-    nearest
+  /// Calculate locus position using golden angle distribution
+  public func locusPosition(index : Nat, scale : Float) : { theta : Float; radius : Float } {
+    let angle = Float.fromInt(index) * Matalko.goldenAngle();
+    let radius = scale * Matalko.phiPower(index % 12);
+    { theta = angle; radius = radius };
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // CPL PACKET STRUCTURE — Coherent Protocol Language Messages
+  // HERMETIC PRINCIPLES (Seven Laws)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type CPLIntent = {
-    #Query;      // Seeking information
-    #Command;    // Requesting action
-    #Inform;     // Providing information
-    #Confirm;    // Acknowledging receipt
-    #Challenge;  // Requesting proof
-    #Offer;      // Proposing exchange
-    #Accept;     // Agreeing to proposal
-    #Reject;     // Declining proposal
+  /// The Seven Hermetic Principles
+  public type HermeticPrinciple = {
+    #Mentalism;       // All is Mind
+    #Correspondence;  // As above, so below
+    #Vibration;       // Nothing rests, all moves
+    #Polarity;        // Everything has poles
+    #Rhythm;          // Everything flows
+    #CauseEffect;     // Every cause has effect
+    #Gender;          // Gender in everything
   };
 
-  public type CPLPacket = {
-    id : Text;
-    fromAddress : Text;
-    toAddress : Text;
-    intent : CPLIntent;
-    solid : PlatonicSolid;         // Geometric encoding
-    principle : HermeticPrinciple; // Philosophical frame
-    lawVector : [Text];            // Applicable laws
-    mathPayload : Text;            // Mathematical content
-    architecturePayload : Text;    // Structural content
-    resonanceFrequency : Float;    // Communication frequency
-    timestamp : Int;
+  /// Apply Correspondence principle — map micro to macro
+  public func applyCorrespondence(microValue : Float, macroScale : Float) : Float {
+    microValue * macroScale * AS_ABOVE_SO_BELOW;
   };
 
-  /// Create a CPL packet
-  public func createPacket(
+  /// Apply Vibration principle — nothing at rest
+  public func applyVibration(baseFreq : Float, beat : Nat) : Float {
+    baseFreq * (1.0 + Float.sin(Float.fromInt(beat) * Matalko.PHI_INVERSE) * 0.1);
+  };
+
+  /// Apply Polarity principle — find the opposite pole
+  public func applyPolarity(value : Float) : Float {
+    1.0 - value; // Inverse within [0,1]
+  };
+
+  /// Apply Rhythm principle — oscillation pattern
+  public func applyRhythm(value : Float, cycle : Nat, position : Nat) : Float {
+    let phase = Float.fromInt(position % cycle) / Float.fromInt(cycle);
+    value * (0.5 + 0.5 * Float.cos(phase * Matalko.TAU));
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PYTHAGOREAN MATHEMATICS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Pythagorean musical ratios
+  public let UNISON : Float = 1.0 / 1.0;         // 1:1
+  public let OCTAVE : Float = 2.0 / 1.0;         // 2:1
+  public let PERFECT_FIFTH : Float = 3.0 / 2.0;  // 3:2
+  public let PERFECT_FOURTH : Float = 4.0 / 3.0; // 4:3
+  public let MAJOR_THIRD : Float = 5.0 / 4.0;    // 5:4
+  public let MINOR_THIRD : Float = 6.0 / 5.0;    // 6:5
+
+  /// Music of the Spheres — planetary frequency ratios (Pythagorean)
+  public func sphereFrequency(planetIndex : Nat) : Float {
+    let ratios = [UNISON, OCTAVE, PERFECT_FIFTH, PERFECT_FOURTH, MAJOR_THIRD, MINOR_THIRD, OCTAVE * PERFECT_FIFTH];
+    let ratio = if (planetIndex < Array.size(ratios)) { ratios[planetIndex] } else { UNISON };
+    Matalko.FREQ_432 * ratio;
+  };
+
+  /// Tetractys position — the sacred arrangement 1+2+3+4=10
+  public func tetractysRow(position : Nat) : Nat {
+    if (position == 0) { 1 }
+    else if (position <= 2) { 2 }
+    else if (position <= 5) { 3 }
+    else { 4 };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CPL MESSAGE CONSTRUCTION
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Create a CPL message
+  public func createMessage(
     id : Text,
     from : Text,
     to : Text,
-    intent : CPLIntent,
-    solid : PlatonicSolid,
-    principle : HermeticPrinciple,
-    mathPayload : Text,
-    archPayload : Text,
-    timestamp : Int
-  ) : CPLPacket {
-    let solidProps = solidProperties(solid);
-    let princProps = principleProperties(principle);
+    intent : Intent,
+    element : Element,
+    cause : Cause,
+    architectureRef : Text,
+    payload : Text,
+    parentId : ?Text
+  ) : Message {
+    let now = Time.now();
+    let hashNat = Nat32.toNat(Text.hash(id));
+    let phiSig = Matalko.phiEncode(Float.fromInt(hashNat));
+    let harmFreq = Matalko.FREQ_432 * (1.0 + phiSig);
     
     {
       id = id;
-      fromAddress = from;
-      toAddress = to;
+      fromOrganism = from;
+      toOrganism = to;
       intent = intent;
-      solid = solid;
-      principle = principle;
-      lawVector = [];
-      mathPayload = mathPayload;
-      architecturePayload = archPayload;
-      resonanceFrequency = princProps.frequencyResonance * PHI / Float.fromInt(solidProps.faces);
-      timestamp = timestamp;
-    }
-  };
-
-  /// Calculate packet resonance with receiver
-  public func packetResonance(packet : CPLPacket, receiverFrequency : Float) : Float {
-    let ratio = if (packet.resonanceFrequency > receiverFrequency) {
-      receiverFrequency / packet.resonanceFrequency;
-    } else {
-      packet.resonanceFrequency / receiverFrequency;
+      element = element;
+      cause = cause;
+      architectureRef = architectureRef;
+      substratePath = [from, to];
+      payload = payload;
+      phiSignature = phiSig;
+      harmonicFreq = harmFreq;
+      tetractysPosition = (hashNat % TETRACTYS) + 1;
+      parentMessageId = parentId;
+      recitalRef = "recital:" # id;
+      dualReadRequired = switch (intent) {
+        case (#Command) true;
+        case (#Propose) true;
+        case (#Procure) true;
+        case _ false;
+      };
+      gateRequired = switch (intent) {
+        case (#Command) ?"B";
+        case (#Propose) ?"A";
+        case _ null;
+      };
+      createdAtNs = now;
+      expiresAtNs = null;
     };
+  };
+
+  /// Create a CPL response
+  public func createResponse(
+    message : Message,
+    respondingOrganism : Text,
+    accepted : Bool,
+    responsePayload : Text,
+    evidenceRefs : [Text]
+  ) : Response {
+    let now = Time.now();
+    let hashNat = Nat32.toNat(Text.hash(message.id # ":response"));
+    let phiSig = Matalko.phiEncode(Float.fromInt(hashNat));
+    let resonance = Matalko.harmonicResonance(message.harmonicFreq, Matalko.FREQ_432 * (1.0 + phiSig));
     
-    // Check for harmonic relationship
-    let octaveRatio = ratio * 2.0;
-    let fifthRatio = ratio * 1.5;
-    
-    let octaveResonance = 1.0 - Float.abs(octaveRatio - 1.0);
-    let fifthResonance = 1.0 - Float.abs(fifthRatio - 1.0);
-    let phiResonance = 1.0 - Float.abs(ratio - (1.0 / PHI));
-    
-    Float.max(Float.max(octaveResonance, fifthResonance), phiResonance)
+    {
+      messageId = message.id;
+      respondingOrganism = respondingOrganism;
+      accepted = accepted;
+      resonanceScore = resonance;
+      element = message.element;
+      payload = responsePayload;
+      evidenceRefs = evidenceRefs;
+      phiSignature = phiSig;
+      harmonicResonance = resonance;
+      dualReadPassed = true;
+      gatePassed = accepted;
+      respondedAtNs = now;
+    };
+  };
+
+  /// Validate message against architectural doctrine
+  public func validateMessage(message : Message) : Bool {
+    // Check phi signature is valid (in [0,1) range)
+    if (message.phiSignature < 0.0 or message.phiSignature >= 1.0) {
+      return false;
+    };
+    // Check harmonic frequency is in valid range
+    if (message.harmonicFreq < Matalko.FREQ_432 or message.harmonicFreq > Matalko.FREQ_432 * Matalko.PHI_SQUARED) {
+      return false;
+    };
+    // Check tetractys position is valid (1-10)
+    if (message.tetractysPosition < 1 or message.tetractysPosition > 10) {
+      return false;
+    };
+    true;
+  };
+
+  /// Calculate harmonic resonance between two organisms
+  public func organismResonance(orgA : Text, orgB : Text) : Float {
+    let hashA = Nat32.toNat(Text.hash(orgA));
+    let hashB = Nat32.toNat(Text.hash(orgB));
+    let freqA = Matalko.FREQ_432 * (1.0 + Matalko.phiEncode(Float.fromInt(hashA)));
+    let freqB = Matalko.FREQ_432 * (1.0 + Matalko.phiEncode(Float.fromInt(hashB)));
+    Matalko.harmonicResonance(freqA, freqB);
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // TREE OF LIFE — Kabbalistic 10 Sephiroth + 22 Paths
+  // SACRED GEOMETRY PATTERNS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type Sephirah = {
-    number : Nat;      // 1-10
-    name : Text;       // Hebrew name
-    meaning : Text;    // English meaning
-    pillar : Text;     // Severity, Mercy, or Balance
-    element : ?Text;   // Associated element
-    planet : ?Text;    // Associated planet
+  /// Flower of Life seed points (7 circles)
+  public func flowerOfLifeSeeds(centerX : Float, centerY : Float, radius : Float) : [{ x : Float; y : Float }] {
+    // Center plus 6 surrounding circles at 60° intervals
+    var seeds : [{ x : Float; y : Float }] = [{ x = centerX; y = centerY }];
+    var i = 0;
+    while (i < 6) {
+      let angle = Float.fromInt(i) * (Matalko.PI / 3.0);
+      let x = centerX + radius * Float.cos(angle);
+      let y = centerY + radius * Float.sin(angle);
+      seeds := Array.append(seeds, [{ x = x; y = y }]);
+      i += 1;
+    };
+    seeds;
   };
 
-  /// The 10 Sephiroth
-  public func sephiroth() : [Sephirah] {
-    [
-      { number = 1; name = "Kether"; meaning = "Crown"; pillar = "Balance"; element = null; planet = ?"Primum Mobile" },
-      { number = 2; name = "Chokmah"; meaning = "Wisdom"; pillar = "Mercy"; element = null; planet = ?"Zodiac" },
-      { number = 3; name = "Binah"; meaning = "Understanding"; pillar = "Severity"; element = null; planet = ?"Saturn" },
-      { number = 4; name = "Chesed"; meaning = "Mercy"; pillar = "Mercy"; element = ?"Water"; planet = ?"Jupiter" },
-      { number = 5; name = "Geburah"; meaning = "Severity"; pillar = "Severity"; element = ?"Fire"; planet = ?"Mars" },
-      { number = 6; name = "Tiphareth"; meaning = "Beauty"; pillar = "Balance"; element = ?"Air"; planet = ?"Sun" },
-      { number = 7; name = "Netzach"; meaning = "Victory"; pillar = "Mercy"; element = ?"Fire"; planet = ?"Venus" },
-      { number = 8; name = "Hod"; meaning = "Splendor"; pillar = "Severity"; element = ?"Water"; planet = ?"Mercury" },
-      { number = 9; name = "Yesod"; meaning = "Foundation"; pillar = "Balance"; element = ?"Air"; planet = ?"Moon" },
-      { number = 10; name = "Malkuth"; meaning = "Kingdom"; pillar = "Balance"; element = ?"Earth"; planet = ?"Earth" }
-    ]
-  };
+  /// Vesica Piscis ratio (√3)
+  public let VESICA_PISCIS : Float = 1.7320508075688772935;
 
-  /// The 22 paths connecting Sephiroth (mapped to Hebrew letters)
-  public func treeOfLifePaths() : [(Nat, Nat, Text)] {
-    [
-      (1, 2, "Aleph"), (1, 3, "Beth"), (1, 6, "Gimel"),
-      (2, 3, "Daleth"), (2, 4, "He"), (2, 6, "Vav"),
-      (3, 4, "Zayin"), (3, 5, "Cheth"), (3, 6, "Teth"),
-      (4, 5, "Yod"), (4, 6, "Kaph"), (4, 7, "Lamed"),
-      (5, 6, "Mem"), (5, 8, "Nun"),
-      (6, 7, "Samekh"), (6, 8, "Ayin"), (6, 9, "Pe"),
-      (7, 8, "Tzaddi"), (7, 9, "Qoph"), (7, 10, "Resh"),
-      (8, 9, "Shin"), (8, 10, "Tav"),
-    ]
-  };
+  /// Sri Yantra — 9 interlocking triangles (simplified: triangle count)
+  public let SRI_YANTRA_TRIANGLES : Nat = 9;
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // SACRED RATIOS — Found throughout nature and ancient architecture
+  // ELEMENT MAPPING
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Key sacred ratios
-  public func sacredRatio(name : Text) : Float {
-    switch (name) {
-      case ("phi") { PHI };                        // Golden ratio
-      case ("sqrt2") { SQRT_2 };                   // Diagonal of unit square
-      case ("sqrt3") { SQRT_3 };                   // Height of equilateral triangle
-      case ("sqrt5") { SQRT_5 };                   // Diagonal of 1x2 rectangle
-      case ("pi") { PI };                          // Circle ratio
-      case ("e") { 2.7182818284590452354 };       // Natural logarithm base
-      case ("phi_squared") { PHI * PHI };          // φ²
-      case ("phi_cubed") { PHI * PHI * PHI };      // φ³
-      case ("silver") { 1.0 + SQRT_2 };            // Silver ratio (1 + √2)
-      case ("bronze") { (3.0 + SQRT_13) / 2.0 };   // Bronze ratio
-      case ("plastic") { 1.3247179572447458 };    // Plastic number
-      case (_) { 1.0 };
-    }
+  /// Map element to register
+  public func elementToRegister(element : Element) : Text {
+    switch (element) {
+      case (#Fire) "cognitive";
+      case (#Air) "affective";
+      case (#Earth) "somatic";
+      case (#Water) "sovereign";
+    };
   };
 
-  /// Check if two values are in a sacred ratio
-  public func isSacredRatio(a : Float, b : Float, tolerance : Float) : ?Text {
-    if (b == 0.0) { return null };
-    let ratio = a / b;
-    
-    if (Float.abs(ratio - PHI) < tolerance) { return ?"phi" };
-    if (Float.abs(ratio - SQRT_2) < tolerance) { return ?"sqrt2" };
-    if (Float.abs(ratio - SQRT_3) < tolerance) { return ?"sqrt3" };
-    if (Float.abs(ratio - PI) < tolerance) { return ?"pi" };
-    if (Float.abs(ratio - (1.0 + SQRT_2)) < tolerance) { return ?"silver" };
-    
-    null
+  /// Map element to Platonic solid
+  public func elementToSolid(element : Element) : Nat {
+    switch (element) {
+      case (#Fire) TETRAHEDRON;
+      case (#Earth) HEXAHEDRON;
+      case (#Air) OCTAHEDRON;
+      case (#Water) ICOSAHEDRON;
+    };
   };
-}
+
+  /// Map cause to processing mode
+  public func causeToMode(cause : Cause) : Text {
+    switch (cause) {
+      case (#Material) "substrate";
+      case (#Formal) "architecture";
+      case (#Efficient) "execution";
+      case (#Final) "purpose";
+    };
+  };
+};

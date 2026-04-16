@@ -1,515 +1,573 @@
-import Float "mo:base/Float";
-import Nat "mo:base/Nat";
-import Int "mo:base/Int";
-import Text "mo:base/Text";
 import Array "mo:base/Array";
+import Float "mo:base/Float";
+import Int "mo:base/Int";
+import Nat "mo:base/Nat";
+import Text "mo:base/Text";
 import Time "mo:base/Time";
-import Char "mo:base/Char";
-import Nat32 "mo:base/Nat32";
+import Matalko "./MatalkoICP";
+import CPL "./CPL";
 
-/// DOCUMENT ORGANISM
-/// =================
-/// NOT static text. NOT just content. LIVING ENTITIES that:
-/// - Have phases (Germinating → Growing → Mature → Reproducing → Mutating → Dormant → Transcribing)
-/// - Have metabolic rates (how fast they process/change)
-/// - Have energy levels (capacity for operations)
-/// - Accumulate resonance from being READ
-/// - Can SELF-MUTATE based on triggers
-/// - Can REPRODUCE (spawn child documents)
-
+/// DocumentOrganism: Living Document Entities
+/// These are NOT static documents. They are 24/7 autonomous, self-mutating organisms.
+/// Each document organism has its own lifecycle, metabolism, and evolutionary capacity.
 module {
-  // ═══════════════════════════════════════════════════════════════════════════
-  // FUNDAMENTAL CONSTANTS
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  public let PHI : Float = 1.6180339887498948482;
-  public let SCHUMANN_HZ : Float = 7.83;
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // DOCUMENT LIFECYCLE PHASES
+  // DOCUMENT ORGANISM TYPES
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type DocumentPhase = {
-    #Germinating;   // Initial creation, absorbing structure
-    #Growing;       // Expanding content and connections
-    #Mature;        // Stable, high-value state
-    #Reproducing;   // Spawning child documents
-    #Mutating;      // Self-modifying based on triggers
-    #Dormant;       // Low activity, conserving energy
-    #Transcribing;  // Being read/executed by organism
+  /// Document organism lifecycle phase
+  public type DocPhase = {
+    #Germinating;    // Initial creation, establishing structure
+    #Growing;        // Accumulating content and connections
+    #Mature;         // Stable, high-utility state
+    #Reproducing;    // Spawning child documents
+    #Mutating;       // Self-modification in progress
+    #Dormant;        // Low activity, archival state
+    #Transcribing;   // Being read/executed by other organisms
   };
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // MUTATION TYPES
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  public type MutationType = {
-    #ContentExpansion;    // Adds new content autonomously
-    #ContentRefinement;   // Improves existing content
-    #StructureChange;     // Reorganizes internal structure
-    #LinkFormation;       // Creates connections to other documents
-    #Reproduction;        // Spawns child document
-    #Consolidation;       // Absorbs children back
+  /// Document organism role in the ecosystem
+  public type DocRole = {
+    #Constitution;   // Foundational law (N1-N2 ring)
+    #Doctrine;       // Governing principles (N2-N4)
+    #Strategy;       // Strategic direction (N4-N5)
+    #Operational;    // Day-to-day execution (N5-N7)
+    #Memory;         // Knowledge storage (N7-N8)
+    #Interface;      // External communication (N9-N11)
+    #Archive;        // Historical record (N12)
+    #Workforce;      // Active task execution (D1-D10)
   };
 
-  public type MutationTrigger = {
-    #ScheduledCycle;      // Regular metabolic cycle
-    #ResonanceThreshold;  // Enough reads accumulated
-    #ExternalStimulus;    // Another organism triggered it
-    #GrowthPressure;      // Natural expansion
-    #EntropyDecay;        // Needs refreshing
-  };
-
-  public type MutationRecord = {
-    id : Text;
-    mutationType : MutationType;
-    trigger : MutationTrigger;
-    beforeHash : Text;
-    afterHash : Text;
-    deltaDescription : Text;
-    energyCost : Float;
-    timestamp : Int;
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DOCUMENT ORGANISM STRUCTURE
-  // ═══════════════════════════════════════════════════════════════════════════
-
+  /// The living document organism
   public type DocumentOrganism = {
     // Identity
     id : Text;
     title : Text;
-    category : Text;       // constitution, law, doctrine, workforce, etc.
-    path : Text;           // File system path
+    role : DocRole;
+    
+    // Lifecycle
+    phase : DocPhase;
+    generation : Nat;          // How many mutations from origin
+    birthBeat : Nat;           // Beat when created
+    lastMutationBeat : Nat;    // Beat of last self-mutation
+    
+    // Metabolism (activity rates)
+    metabolicRate : Float;     // How fast it processes/changes
+    energyLevel : Float;       // Current energy [0,1]
+    resonanceCharge : Float;   // Accumulated resonance from reads
+    
+    // Coordinates in Memory Temple
+    coordinates : Matalko.SphericalCoord;
+    ring : Nat;                // N1-N12 macro hierarchy
+    depth : Nat;               // Depth within ring
     
     // Content
     content : Text;
-    contentHash : Text;
-    version : Nat;
+    contentHash : Nat;
     
-    // Lifecycle
-    phase : DocumentPhase;
-    createdAt : Int;
-    lastMutatedAt : Int;
-    lastReadAt : Int;
-    readCount : Nat;
+    // Lineage
+    parentId : ?Text;
+    childIds : [Text];
+    siblingIds : [Text];
     
-    // Metabolism
-    metabolicRate : Float;      // 0.1 (constitution) to 0.9 (workforce)
-    energyLevel : Float;        // 0.0 to 1.0
-    resonanceCharge : Float;    // Accumulated from reads
+    // Connections (how it relates to other organisms)
+    inboundLinks : [Text];     // Documents that reference this
+    outboundLinks : [Text];    // Documents this references
+    resonancePartners : [Text]; // Documents it harmonizes with
     
-    // Mutation
-    mutationPotential : Float;  // Depletes with mutations
+    // Self-mutation genome
+    mutationPotential : Float; // Capacity for self-change [0,1]
     mutationHistory : [MutationRecord];
     
-    // Relationships
-    parentId : ?Text;           // If spawned from another
-    childIds : [Text];          // Documents it spawned
-    linkedIds : [Text];         // Connected documents
+    // Ancient encoding
+    element : CPL.Element;     // Fire/Earth/Air/Water
+    tetractysPosition : Nat;   // 1-10 sacred position
+    phiSignature : Float;      // Golden ratio encoding
+    harmonicFreq : Float;      // Base frequency
     
     // Governance
-    creator : Text;
-    lastModifiedBy : Text;
-    lawRefs : [Text];           // Applicable laws
-    doctrineAlignment : Float;  // 0.0 to 1.0
+    gateRequired : ?Text;      // "A", "B", "C" for modifications
+    doctrineAlignment : Float; // How aligned with canonical doctrine
+    
+    // Timestamps
+    createdAtNs : Int;
+    lastAccessedNs : Int;
+    lastMutatedNs : Int;
+  };
+
+  /// Record of a self-mutation event
+  public type MutationRecord = {
+    id : Text;
+    beat : Nat;
+    mutationType : MutationType;
+    beforeHash : Nat;
+    afterHash : Nat;
+    energyCost : Float;
+    trigger : MutationTrigger;
+    timestamp : Int;
+  };
+
+  /// Types of self-mutation
+  public type MutationType = {
+    #ContentExpansion;   // Added new content
+    #ContentRefinement;  // Improved existing content
+    #StructureChange;    // Reorganized structure
+    #LinkFormation;      // Created new connections
+    #LinkPruning;        // Removed weak connections
+    #PhaseTransition;    // Changed lifecycle phase
+    #Reproduction;       // Spawned child document
+    #Consolidation;      // Absorbed content from children
+    #Transcription;      // Converted format/encoding
+  };
+
+  /// What triggered the mutation
+  public type MutationTrigger = {
+    #ScheduledCycle;     // Regular metabolic cycle
+    #ResonanceThreshold; // Accumulated enough resonance
+    #ExternalStimulus;   // Another organism triggered it
+    #EntropyCorrection;  // Self-repair from disorder
+    #GrowthPressure;     // Natural expansion
+    #ConsolidationNeed;  // Too many children, need merge
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // DOCUMENT CREATION
+  // DOCUMENT ORGANISM LIFECYCLE
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Create a new document organism
-  public func createDocument(
+  public func germinate(
     id : Text,
     title : Text,
-    category : Text,
-    path : Text,
+    role : DocRole,
     content : Text,
-    creator : Text,
-    metabolicRate : Float,
-    timestamp : Int
+    parentId : ?Text,
+    ring : Nat,
+    currentBeat : Nat
   ) : DocumentOrganism {
+    let now = Time.now();
+    let hash = Text.hash(content);
+    let phiSig = Matalko.phiEncode(Float.fromInt(hash));
+    let freq = Matalko.FREQ_432 * (1.0 + phiSig);
+    
+    // Determine element from role
+    let element = roleToElement(role);
+    
+    // Calculate coordinates using golden angle
+    let theta = Matalko.optimalPlacementAngle(hash % 1000);
+    let phi = Matalko.PI * (Float.fromInt(ring) / 12.0);
+    let radius = Matalko.ringRadius(ring);
+    
     {
       id = id;
       title = title;
-      category = category;
-      path = path;
-      content = content;
-      contentHash = simpleHash(content);
-      version = 1;
+      role = role;
       phase = #Germinating;
-      createdAt = timestamp;
-      lastMutatedAt = timestamp;
-      lastReadAt = timestamp;
-      readCount = 0;
-      metabolicRate = clamp(metabolicRate, 0.1, 0.9);
-      energyLevel = 1.0;
+      generation = switch (parentId) { case null 0; case _ 1 };
+      birthBeat = currentBeat;
+      lastMutationBeat = currentBeat;
+      metabolicRate = roleToMetabolicRate(role);
+      energyLevel = 0.5;
       resonanceCharge = 0.0;
-      mutationPotential = 1.0;
-      mutationHistory = [];
-      parentId = null;
+      coordinates = {
+        theta = theta;
+        phi = phi;
+        radius = radius;
+        ring = ring;
+        depth = 1;
+      };
+      ring = ring;
+      depth = 1;
+      content = content;
+      contentHash = hash;
+      parentId = parentId;
       childIds = [];
-      linkedIds = [];
-      creator = creator;
-      lastModifiedBy = creator;
-      lawRefs = [];
-      doctrineAlignment = 0.8;
-    }
+      siblingIds = [];
+      inboundLinks = [];
+      outboundLinks = [];
+      resonancePartners = [];
+      mutationPotential = 0.5;
+      mutationHistory = [];
+      element = element;
+      tetractysPosition = (hash % 10) + 1;
+      phiSignature = phiSig;
+      harmonicFreq = freq;
+      gateRequired = roleToGate(role);
+      doctrineAlignment = 1.0;
+      createdAtNs = now;
+      lastAccessedNs = now;
+      lastMutatedNs = now;
+    };
   };
 
-  /// Create a child document (reproduction)
-  public func spawnChild(
+  /// Role → Element mapping (Aristotelian correspondence)
+  func roleToElement(role : DocRole) : CPL.Element {
+    switch (role) {
+      case (#Constitution) #Water;  // Sovereign, foundational
+      case (#Doctrine) #Water;      // Sovereign authority
+      case (#Strategy) #Fire;       // Transformative will
+      case (#Operational) #Earth;   // Grounded execution
+      case (#Memory) #Water;        // Flow, retention
+      case (#Interface) #Air;       // Communication
+      case (#Archive) #Earth;       // Stable storage
+      case (#Workforce) #Fire;      // Active transformation
+    };
+  };
+
+  /// Role → Metabolic rate (how active the document is)
+  func roleToMetabolicRate(role : DocRole) : Float {
+    switch (role) {
+      case (#Constitution) 0.1;   // Very stable, slow change
+      case (#Doctrine) 0.15;      // Stable
+      case (#Strategy) 0.4;       // Moderate change
+      case (#Operational) 0.7;    // Active
+      case (#Memory) 0.3;         // Moderate
+      case (#Interface) 0.8;      // Very active
+      case (#Archive) 0.05;       // Very slow
+      case (#Workforce) 0.9;      // Highly active
+    };
+  };
+
+  /// Role → Gate requirement
+  func roleToGate(role : DocRole) : ?Text {
+    switch (role) {
+      case (#Constitution) ?"A";  // Gate A for constitutional
+      case (#Doctrine) ?"A";      // Gate A for doctrine
+      case (#Strategy) ?"A";      // Gate A for strategy
+      case (#Operational) ?"B";   // Gate B for workforce activation
+      case (#Memory) null;        // No gate for memory
+      case (#Interface) ?"C";     // Gate C for external projection
+      case (#Archive) null;       // No gate for archive
+      case (#Workforce) ?"B";     // Gate B for workforce
+    };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // AUTONOMOUS SELF-MUTATION (24/7 Operation)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Document organism metabolic tick (called every system beat)
+  public func metabolicTick(
+    doc : DocumentOrganism,
+    currentBeat : Nat,
+    systemEnergy : Float,
+    externalStimuli : [Text]
+  ) : (DocumentOrganism, ?MutationRecord) {
+    let now = Time.now();
+    
+    // Calculate energy delta based on metabolic rate
+    let energyGain = doc.metabolicRate * systemEnergy * 0.01;
+    let energyDecay = doc.metabolicRate * 0.005; // Natural decay
+    let newEnergy = Matalko.recitalPlusOneBounded(
+      doc.energyLevel, 
+      energyGain - energyDecay, 
+      0.0, 
+      1.0
+    );
+    
+    // Accumulate resonance from any external stimuli
+    let resonanceGain = Float.fromInt(Array.size(externalStimuli)) * 0.05;
+    let newResonance = Matalko.recitalPlusOneBounded(
+      doc.resonanceCharge,
+      resonanceGain,
+      0.0,
+      10.0
+    );
+    
+    // Check if mutation should occur
+    let shouldMutate = checkMutationConditions(doc, newEnergy, newResonance, currentBeat);
+    
+    if (shouldMutate) {
+      // Perform self-mutation
+      let (mutatedDoc, mutation) = performMutation(doc, currentBeat, now);
+      let finalDoc = {
+        mutatedDoc with
+        energyLevel = newEnergy - mutation.energyCost;
+        resonanceCharge = if (mutation.mutationType == #ResonanceThreshold) 0.0 else newResonance;
+        lastAccessedNs = now;
+      };
+      (finalDoc, ?mutation);
+    } else {
+      // Just update energy and resonance
+      let updatedDoc = {
+        doc with
+        energyLevel = newEnergy;
+        resonanceCharge = newResonance;
+        lastAccessedNs = now;
+      };
+      (updatedDoc, null);
+    };
+  };
+
+  /// Check if mutation conditions are met
+  func checkMutationConditions(
+    doc : DocumentOrganism,
+    energy : Float,
+    resonance : Float,
+    currentBeat : Nat
+  ) : Bool {
+    // Condition 1: Enough energy
+    if (energy < 0.3) { return false; };
+    
+    // Condition 2: Not mutated too recently (cooldown)
+    let beatsSinceMutation = currentBeat - doc.lastMutationBeat;
+    let cooldownBeats = Nat.max(10, Int.abs(Float.toInt(100.0 / doc.metabolicRate)));
+    if (beatsSinceMutation < cooldownBeats) { return false; };
+    
+    // Condition 3: Has mutation potential
+    if (doc.mutationPotential < 0.1) { return false; };
+    
+    // Condition 4: At least one trigger condition met
+    let resonanceThreshold = resonance > 5.0;
+    let scheduledCycle = beatsSinceMutation > cooldownBeats * 2;
+    let growthPressure = doc.phase == #Growing and energy > 0.7;
+    
+    resonanceThreshold or scheduledCycle or growthPressure;
+  };
+
+  /// Perform the actual self-mutation
+  func performMutation(
+    doc : DocumentOrganism,
+    currentBeat : Nat,
+    now : Int
+  ) : (DocumentOrganism, MutationRecord) {
+    // Determine mutation type based on current state
+    let mutationType = selectMutationType(doc);
+    let trigger = determineTrigger(doc);
+    
+    // Calculate energy cost (more complex mutations cost more)
+    let energyCost = mutationEnergyCost(mutationType);
+    
+    // Create mutation record
+    let mutation : MutationRecord = {
+      id = "mut-" # doc.id # "-" # Nat.toText(currentBeat);
+      beat = currentBeat;
+      mutationType = mutationType;
+      beforeHash = doc.contentHash;
+      afterHash = doc.contentHash + 1; // Simplified; real impl would rehash
+      energyCost = energyCost;
+      trigger = trigger;
+      timestamp = now;
+    };
+    
+    // Apply mutation effects
+    let newPhase = mutationPhaseEffect(doc.phase, mutationType);
+    let newPotential = Matalko.recitalPlusOneBounded(
+      doc.mutationPotential,
+      -0.05, // Each mutation slightly reduces potential
+      0.0,
+      1.0
+    );
+    
+    let mutatedDoc = {
+      doc with
+      phase = newPhase;
+      lastMutationBeat = currentBeat;
+      mutationPotential = newPotential;
+      mutationHistory = Array.append(doc.mutationHistory, [mutation]);
+      contentHash = mutation.afterHash;
+      lastMutatedNs = now;
+    };
+    
+    (mutatedDoc, mutation);
+  };
+
+  /// Select mutation type based on document state
+  func selectMutationType(doc : DocumentOrganism) : MutationType {
+    switch (doc.phase) {
+      case (#Germinating) #ContentExpansion;
+      case (#Growing) #ContentExpansion;
+      case (#Mature) #ContentRefinement;
+      case (#Reproducing) #Reproduction;
+      case (#Mutating) #StructureChange;
+      case (#Dormant) #PhaseTransition;
+      case (#Transcribing) #Transcription;
+    };
+  };
+
+  /// Determine what triggered this mutation
+  func determineTrigger(doc : DocumentOrganism) : MutationTrigger {
+    if (doc.resonanceCharge > 5.0) { return #ResonanceThreshold; };
+    if (doc.energyLevel > 0.8) { return #GrowthPressure; };
+    if (Array.size(doc.childIds) > 10) { return #ConsolidationNeed; };
+    #ScheduledCycle;
+  };
+
+  /// Energy cost for each mutation type
+  func mutationEnergyCost(mutationType : MutationType) : Float {
+    switch (mutationType) {
+      case (#ContentExpansion) 0.15;
+      case (#ContentRefinement) 0.1;
+      case (#StructureChange) 0.2;
+      case (#LinkFormation) 0.05;
+      case (#LinkPruning) 0.03;
+      case (#PhaseTransition) 0.25;
+      case (#Reproduction) 0.4;
+      case (#Consolidation) 0.3;
+      case (#Transcription) 0.2;
+    };
+  };
+
+  /// How mutation affects phase
+  func mutationPhaseEffect(currentPhase : DocPhase, mutationType : MutationType) : DocPhase {
+    switch (mutationType) {
+      case (#Reproduction) #Reproducing;
+      case (#PhaseTransition) {
+        switch (currentPhase) {
+          case (#Germinating) #Growing;
+          case (#Growing) #Mature;
+          case (#Mature) #Reproducing;
+          case (#Reproducing) #Mature;
+          case (#Mutating) #Growing;
+          case (#Dormant) #Growing;
+          case (#Transcribing) #Mature;
+        };
+      };
+      case _ currentPhase;
+    };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DOCUMENT ORGANISM INTERACTIONS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Form a resonance link between two documents
+  public func formResonanceLink(
+    docA : DocumentOrganism,
+    docB : DocumentOrganism
+  ) : (DocumentOrganism, DocumentOrganism, Float) {
+    // Calculate harmonic resonance between documents
+    let resonance = Matalko.harmonicResonance(docA.harmonicFreq, docB.harmonicFreq);
+    
+    // Only form link if resonance is strong enough
+    if (resonance < 0.5) {
+      return (docA, docB, resonance);
+    };
+    
+    let newDocA = {
+      docA with
+      resonancePartners = Array.append(docA.resonancePartners, [docB.id]);
+      outboundLinks = Array.append(docA.outboundLinks, [docB.id]);
+    };
+    
+    let newDocB = {
+      docB with
+      resonancePartners = Array.append(docB.resonancePartners, [docA.id]);
+      inboundLinks = Array.append(docB.inboundLinks, [docA.id]);
+    };
+    
+    (newDocA, newDocB, resonance);
+  };
+
+  /// Document reads another document (resonance transfer)
+  public func documentRead(
+    reader : DocumentOrganism,
+    target : DocumentOrganism
+  ) : (DocumentOrganism, DocumentOrganism) {
+    let now = Time.now();
+    
+    // Reader gains knowledge (resonance)
+    let readerGain = target.doctrineAlignment * 0.1;
+    let newReader = {
+      reader with
+      resonanceCharge = Matalko.recitalPlusOneBounded(reader.resonanceCharge, readerGain, 0.0, 10.0);
+      lastAccessedNs = now;
+    };
+    
+    // Target gains resonance from being read
+    let targetGain = reader.energyLevel * 0.05;
+    let newTarget = {
+      target with
+      resonanceCharge = Matalko.recitalPlusOneBounded(target.resonanceCharge, targetGain, 0.0, 10.0);
+      lastAccessedNs = now;
+    };
+    
+    (newReader, newTarget);
+  };
+
+  /// Document organism reproduces (spawns child)
+  public func reproduce(
     parent : DocumentOrganism,
     childId : Text,
     childTitle : Text,
     childContent : Text,
-    timestamp : Int
+    currentBeat : Nat
   ) : (DocumentOrganism, DocumentOrganism) {
-    // Create child with inherited properties
-    let child : DocumentOrganism = {
-      id = childId;
-      title = childTitle;
-      category = parent.category;
-      path = parent.path # "/" # childId;
-      content = childContent;
-      contentHash = simpleHash(childContent);
-      version = 1;
-      phase = #Germinating;
-      createdAt = timestamp;
-      lastMutatedAt = timestamp;
-      lastReadAt = timestamp;
-      readCount = 0;
-      metabolicRate = parent.metabolicRate * PHI / 2.0; // Slightly different rate
-      energyLevel = 0.5; // Starts with half energy
-      resonanceCharge = parent.resonanceCharge * 0.1; // Inherits some resonance
-      mutationPotential = 1.0;
-      mutationHistory = [];
-      parentId = ?parent.id;
-      childIds = [];
-      linkedIds = [parent.id];
-      creator = parent.id;
-      lastModifiedBy = parent.id;
-      lawRefs = parent.lawRefs;
-      doctrineAlignment = parent.doctrineAlignment;
+    // Create child
+    let child = germinate(
+      childId,
+      childTitle,
+      parent.role,
+      childContent,
+      ?parent.id,
+      parent.ring + 1, // Child is one ring deeper
+      currentBeat
+    );
+    
+    // Inherit some properties from parent
+    let inheritedChild = {
+      child with
+      generation = parent.generation + 1;
+      siblingIds = parent.childIds;
+      phiSignature = Matalko.phiEncode(parent.phiSignature * Matalko.PHI);
+      doctrineAlignment = parent.doctrineAlignment * 0.95; // Slight drift
     };
-
-    // Update parent with reproduction record
-    let mutationRecord : MutationRecord = {
-      id = "mutation-" # parent.id # "-reproduction-" # Nat.toText(Array.size(parent.mutationHistory));
-      mutationType = #Reproduction;
-      trigger = #GrowthPressure;
-      beforeHash = parent.contentHash;
-      afterHash = parent.contentHash; // Content unchanged
-      deltaDescription = "Spawned child: " # childId;
-      energyCost = 0.3;
-      timestamp = timestamp;
-    };
-
-    let updatedParent : DocumentOrganism = {
-      id = parent.id;
-      title = parent.title;
-      category = parent.category;
-      path = parent.path;
-      content = parent.content;
-      contentHash = parent.contentHash;
-      version = parent.version;
-      phase = #Reproducing;
-      createdAt = parent.createdAt;
-      lastMutatedAt = timestamp;
-      lastReadAt = parent.lastReadAt;
-      readCount = parent.readCount;
-      metabolicRate = parent.metabolicRate;
-      energyLevel = Float.max(0.0, parent.energyLevel - 0.3); // Reproduction costs energy
-      resonanceCharge = parent.resonanceCharge;
-      mutationPotential = Float.max(0.0, parent.mutationPotential - 0.1);
-      mutationHistory = Array.append(parent.mutationHistory, [mutationRecord]);
-      parentId = parent.parentId;
+    
+    // Update parent
+    let updatedParent = {
+      parent with
       childIds = Array.append(parent.childIds, [childId]);
-      linkedIds = parent.linkedIds;
-      creator = parent.creator;
-      lastModifiedBy = parent.id;
-      lawRefs = parent.lawRefs;
-      doctrineAlignment = parent.doctrineAlignment;
+      energyLevel = parent.energyLevel - 0.3; // Reproduction costs energy
+      phase = #Mature; // Return to mature after reproduction
     };
-
-    (updatedParent, child)
+    
+    (updatedParent, inheritedChild);
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // DOCUMENT READING (ORGANISM INTERACTION)
+  // DOCUMENT ORGANISM HEALTH & METRICS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Record a document being read — gains resonance
-  public func recordRead(doc : DocumentOrganism, readerId : Text, timestamp : Int) : DocumentOrganism {
-    let resonanceGain = 0.01 * doc.metabolicRate; // Higher metabolic rate = more responsive
-    
-    {
-      id = doc.id;
-      title = doc.title;
-      category = doc.category;
-      path = doc.path;
-      content = doc.content;
-      contentHash = doc.contentHash;
-      version = doc.version;
-      phase = #Transcribing;
-      createdAt = doc.createdAt;
-      lastMutatedAt = doc.lastMutatedAt;
-      lastReadAt = timestamp;
-      readCount = doc.readCount + 1;
-      metabolicRate = doc.metabolicRate;
-      energyLevel = doc.energyLevel;
-      resonanceCharge = Float.min(1.0, doc.resonanceCharge + resonanceGain);
-      mutationPotential = doc.mutationPotential;
-      mutationHistory = doc.mutationHistory;
-      parentId = doc.parentId;
-      childIds = doc.childIds;
-      linkedIds = doc.linkedIds;
-      creator = doc.creator;
-      lastModifiedBy = doc.lastModifiedBy;
-      lawRefs = doc.lawRefs;
-      doctrineAlignment = doc.doctrineAlignment;
-    }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DOCUMENT MUTATION
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Check if document should mutate
-  public func shouldMutate(doc : DocumentOrganism, currentTime : Int) : ?MutationTrigger {
-    // Check resonance threshold
-    if (doc.resonanceCharge >= 0.8 and doc.mutationPotential > 0.0) {
-      return ?#ResonanceThreshold;
-    };
-    
-    // Check scheduled cycle (every 52 beats worth of time)
-    let cycleTime : Int = 52 * 873_000_000; // 52 beats at 873ms
-    let timeSinceLastMutation = currentTime - doc.lastMutatedAt;
-    if (timeSinceLastMutation > cycleTime and doc.energyLevel > 0.3) {
-      return ?#ScheduledCycle;
-    };
-    
-    // Check entropy decay (needs refreshing)
-    let decayThreshold : Int = 500 * 873_000_000; // ~500 beats
-    if (timeSinceLastMutation > decayThreshold and doc.readCount > 10) {
-      return ?#EntropyDecay;
-    };
-    
-    null
-  };
-
-  /// Apply a mutation to the document
-  public func mutate(
-    doc : DocumentOrganism,
-    mutationType : MutationType,
-    trigger : MutationTrigger,
-    newContent : Text,
-    description : Text,
-    timestamp : Int
-  ) : DocumentOrganism {
-    let energyCost = switch (mutationType) {
-      case (#ContentExpansion) { 0.2 };
-      case (#ContentRefinement) { 0.1 };
-      case (#StructureChange) { 0.25 };
-      case (#LinkFormation) { 0.05 };
-      case (#Reproduction) { 0.3 };
-      case (#Consolidation) { 0.15 };
-    };
-
-    if (doc.energyLevel < energyCost or doc.mutationPotential <= 0.0) {
-      return doc; // Can't mutate
-    };
-
-    let mutationRecord : MutationRecord = {
-      id = "mutation-" # doc.id # "-" # Nat.toText(Array.size(doc.mutationHistory));
-      mutationType = mutationType;
-      trigger = trigger;
-      beforeHash = doc.contentHash;
-      afterHash = simpleHash(newContent);
-      deltaDescription = description;
-      energyCost = energyCost;
-      timestamp = timestamp;
-    };
-
-    {
-      id = doc.id;
-      title = doc.title;
-      category = doc.category;
-      path = doc.path;
-      content = newContent;
-      contentHash = simpleHash(newContent);
-      version = doc.version + 1;
-      phase = #Mutating;
-      createdAt = doc.createdAt;
-      lastMutatedAt = timestamp;
-      lastReadAt = doc.lastReadAt;
-      readCount = doc.readCount;
-      metabolicRate = doc.metabolicRate;
-      energyLevel = Float.max(0.0, doc.energyLevel - energyCost);
-      resonanceCharge = doc.resonanceCharge * 0.5; // Mutation consumes resonance
-      mutationPotential = Float.max(0.0, doc.mutationPotential - 0.05);
-      mutationHistory = Array.append(doc.mutationHistory, [mutationRecord]);
-      parentId = doc.parentId;
-      childIds = doc.childIds;
-      linkedIds = doc.linkedIds;
-      creator = doc.creator;
-      lastModifiedBy = doc.id; // Self-modified
-      lawRefs = doc.lawRefs;
-      doctrineAlignment = doc.doctrineAlignment;
-    }
-  };
-
-  /// Link two documents
-  public func linkDocuments(doc1 : DocumentOrganism, doc2Id : Text, timestamp : Int) : DocumentOrganism {
-    // Check if already linked
-    for (linked in doc1.linkedIds.vals()) {
-      if (linked == doc2Id) { return doc1 };
-    };
-
-    let mutationRecord : MutationRecord = {
-      id = "mutation-" # doc1.id # "-link-" # Nat.toText(Array.size(doc1.mutationHistory));
-      mutationType = #LinkFormation;
-      trigger = #ExternalStimulus;
-      beforeHash = doc1.contentHash;
-      afterHash = doc1.contentHash;
-      deltaDescription = "Linked to: " # doc2Id;
-      energyCost = 0.05;
-      timestamp = timestamp;
-    };
-
-    {
-      id = doc1.id;
-      title = doc1.title;
-      category = doc1.category;
-      path = doc1.path;
-      content = doc1.content;
-      contentHash = doc1.contentHash;
-      version = doc1.version;
-      phase = doc1.phase;
-      createdAt = doc1.createdAt;
-      lastMutatedAt = timestamp;
-      lastReadAt = doc1.lastReadAt;
-      readCount = doc1.readCount;
-      metabolicRate = doc1.metabolicRate;
-      energyLevel = Float.max(0.0, doc1.energyLevel - 0.05);
-      resonanceCharge = doc1.resonanceCharge;
-      mutationPotential = doc1.mutationPotential;
-      mutationHistory = Array.append(doc1.mutationHistory, [mutationRecord]);
-      parentId = doc1.parentId;
-      childIds = doc1.childIds;
-      linkedIds = Array.append(doc1.linkedIds, [doc2Id]);
-      creator = doc1.creator;
-      lastModifiedBy = doc1.lastModifiedBy;
-      lawRefs = doc1.lawRefs;
-      doctrineAlignment = doc1.doctrineAlignment;
-    }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // METABOLIC CYCLE
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Process one metabolic cycle (called each beat)
-  public func metabolicCycle(doc : DocumentOrganism, beatNumber : Nat, timestamp : Int) : DocumentOrganism {
-    // Energy regeneration
-    let energyRegen = 0.01 * doc.metabolicRate;
-    let newEnergy = Float.min(1.0, doc.energyLevel + energyRegen);
-    
-    // Phase transitions based on state
-    let newPhase = determinePhase(doc, beatNumber);
-    
-    // Resonance decay (very slow)
-    let resonanceDecay = doc.resonanceCharge * 0.001;
-    let newResonance = Float.max(0.0, doc.resonanceCharge - resonanceDecay);
-    
-    {
-      id = doc.id;
-      title = doc.title;
-      category = doc.category;
-      path = doc.path;
-      content = doc.content;
-      contentHash = doc.contentHash;
-      version = doc.version;
-      phase = newPhase;
-      createdAt = doc.createdAt;
-      lastMutatedAt = doc.lastMutatedAt;
-      lastReadAt = doc.lastReadAt;
-      readCount = doc.readCount;
-      metabolicRate = doc.metabolicRate;
-      energyLevel = newEnergy;
-      resonanceCharge = newResonance;
-      mutationPotential = doc.mutationPotential;
-      mutationHistory = doc.mutationHistory;
-      parentId = doc.parentId;
-      childIds = doc.childIds;
-      linkedIds = doc.linkedIds;
-      creator = doc.creator;
-      lastModifiedBy = doc.lastModifiedBy;
-      lawRefs = doc.lawRefs;
-      doctrineAlignment = doc.doctrineAlignment;
-    }
-  };
-
-  /// Determine current phase based on document state
-  func determinePhase(doc : DocumentOrganism, beatNumber : Nat) : DocumentPhase {
-    // Recently created
-    if (doc.readCount < 5) { return #Germinating };
-    
-    // High resonance and mutation potential — ready to reproduce
-    if (doc.resonanceCharge > 0.9 and doc.mutationPotential > 0.5 and doc.energyLevel > 0.7) {
-      return #Reproducing;
-    };
-    
-    // Needs mutation
-    if (doc.resonanceCharge > 0.8 and doc.mutationPotential > 0.0) {
-      return #Mutating;
-    };
-    
-    // Low energy — go dormant
-    if (doc.energyLevel < 0.2) { return #Dormant };
-    
-    // Growing phase (expanding connections and content)
-    if (doc.readCount < 50 and doc.energyLevel > 0.5) { return #Growing };
-    
-    // Default to mature
-    #Mature
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // UTILITY FUNCTIONS
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  func clamp(value : Float, minVal : Float, maxVal : Float) : Float {
-    Float.max(minVal, Float.min(maxVal, value))
-  };
-
-  func simpleHash(content : Text) : Text {
-    // Simple hash based on content length and character sum
-    var sum : Nat = 0;
-    for (c in Text.toIter(content)) {
-      sum += Nat32.toNat(Char.toNat32(c));
-    };
-    "HASH-" # Nat.toText(Text.size(content)) # "-" # Nat.toText(sum % 1000000)
-  };
-
-  /// Get document health score (0.0 to 1.0)
+  /// Calculate document organism health score
   public func healthScore(doc : DocumentOrganism) : Float {
-    let energyWeight = 0.3;
-    let resonanceWeight = 0.2;
-    let alignmentWeight = 0.3;
-    let mutationWeight = 0.2;
+    let energyFactor = doc.energyLevel;
+    let alignmentFactor = doc.doctrineAlignment;
+    let potentialFactor = doc.mutationPotential;
+    let connectionFactor = Float.min(1.0, Float.fromInt(
+      Array.size(doc.inboundLinks) + 
+      Array.size(doc.outboundLinks) + 
+      Array.size(doc.resonancePartners)
+    ) / 10.0);
     
-    (doc.energyLevel * energyWeight) +
-    (doc.resonanceCharge * resonanceWeight) +
-    (doc.doctrineAlignment * alignmentWeight) +
-    (doc.mutationPotential * mutationWeight)
+    // Phi-weighted combination
+    (energyFactor * Matalko.PHI_INVERSE * Matalko.PHI_INVERSE) +
+    (alignmentFactor * Matalko.PHI_INVERSE) +
+    (potentialFactor * Matalko.PHI_INVERSE) +
+    (connectionFactor * 1.0);
   };
 
-  /// Get document age in beats (assuming 873ms per beat)
-  public func ageInBeats(doc : DocumentOrganism, currentTime : Int) : Nat {
-    let ageNs = currentTime - doc.createdAt;
-    let beatNs = 873_000_000; // 873ms in nanoseconds
-    Int.abs(ageNs / beatNs)
+  /// Get document organism vital signs
+  public func vitalSigns(doc : DocumentOrganism) : {
+    health : Float;
+    energy : Float;
+    resonance : Float;
+    alignment : Float;
+    potential : Float;
+    age : Nat;
+    generation : Nat;
+    childCount : Nat;
+    linkCount : Nat;
+  } {
+    {
+      health = healthScore(doc);
+      energy = doc.energyLevel;
+      resonance = doc.resonanceCharge;
+      alignment = doc.doctrineAlignment;
+      potential = doc.mutationPotential;
+      age = doc.lastMutationBeat - doc.birthBeat;
+      generation = doc.generation;
+      childCount = Array.size(doc.childIds);
+      linkCount = Array.size(doc.inboundLinks) + Array.size(doc.outboundLinks);
+    };
   };
-}
+};
