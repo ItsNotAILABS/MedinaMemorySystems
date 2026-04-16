@@ -249,7 +249,14 @@ CODEX:             4
 ─────────────────────
 CORE TOTAL:       67
 
+FRONTEND (F-MODEL): 115
+─────────────────────
+EXTENDED TOTAL:   182
+
 CLIENT INSTANCES: × N (unlimited scaling)
+
+See: docs/medina/architecture/FRONTEND_TECHNOLOGY_INTELLIGENCE_LAYER.md
+for complete F-MODEL (Frontend Technology Intelligence) registry.
 ```
 
 ---

@@ -11,12 +11,13 @@ It translates constitutional law, runtime organism logic, memory geometry, and e
 2. Orchestrator/model/module index -> `architecture/orchestrator-model-module-index.md`
 3. Backend changes -> `architecture/backend-change-spec.md`
 4. Frontend changes -> `architecture/frontend-change-spec.md`
-5. Command grammar/router contracts -> `contracts/command-grammar-and-router-contract.md`
-6. Memory/govern/company flow contracts -> `contracts/memory-govern-company-flow-contracts.md`
-7. H1..H8 hardening evidence -> `hardening/h1-h8-hardening-evidence.md`
-8. Gate A/B/C evidence -> `evidence/gate-abc-evidence.md`
-9. Replay bundle samples -> `replay/replay-bundle-samples.md`
-10. Launch package artifacts -> `release/launch-package-artifacts.md`
+5. Frontend Technology Intelligence Layer -> `architecture/FRONTEND_TECHNOLOGY_INTELLIGENCE_LAYER.md`
+6. Command grammar/router contracts -> `contracts/command-grammar-and-router-contract.md`
+7. Memory/govern/company flow contracts -> `contracts/memory-govern-company-flow-contracts.md`
+8. H1..H8 hardening evidence -> `hardening/h1-h8-hardening-evidence.md`
+9. Gate A/B/C evidence -> `evidence/gate-abc-evidence.md`
+10. Replay bundle samples -> `replay/replay-bundle-samples.md`
+11. Launch package artifacts -> `release/launch-package-artifacts.md`
 
 ## ICP Motoko Implementation
 
