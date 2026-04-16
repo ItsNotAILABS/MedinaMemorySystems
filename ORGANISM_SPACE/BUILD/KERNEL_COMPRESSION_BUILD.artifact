@@ -351,39 +351,57 @@ Frontend integration for Tier 11 resonance:
 
 ---
 
-## Ⅳ. THE COMPLETE STACK
+## Ⅳ. THE KERNEL IS THE ORGANISM STACK
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         DOCTRINE                                 │
-│      PHI_SOVEREIGN_LAW | RECITAL_PLUS_ONE | DUAL_CONSENSUS      │
-│                    (Immutable Truth Layer)                       │
+│                    ORGANISM KERNEL MASTER                        │
+│   "The kernel is the organism, the organism is everything"       │
+│                  7 MODULE KERNELS EXECUTING                      │
 └─────────────────────────────────────────────────────────────────┘
                                ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│                        PROCEDURES                                │
-│    Kernel Compression | Document Mutation | Cross-Resonance      │
-│               (Executable Protocol Layer)                        │
+│                     CORE IDENTITY KERNELS                        │
+│  𓂀☥φ HEART | 𓏛🧠φ NEURAL | 𓆃🐬🦅 ANIMAL | 𓊽☷∞ UNDERWORLD       │
+│           (Always executing, never fetch, always there)          │
 └─────────────────────────────────────────────────────────────────┘
                                ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│                          ENGINE                                  │
-│  KernelCompression.mo | CrossOrganismResonance.mo | CPL.mo      │
-│  SovereignBeings.mo | DocumentOrganismKernel.mo | Physics.mo     │
-│                  (Computational Truth Layer)                     │
+│                    SOVEREIGN LAYER KERNELS                       │
+│    ☰Ω𓋴 SOVEREIGN | 𓀀金水 WORKFORCE | 𓂋→⟷ SANDBOX               │
+│              (φ-cycle execution, triggered by resonance)         │
 └─────────────────────────────────────────────────────────────────┘
                                ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│                      THREE COMPUTERS                             │
-│         HEART (Rhythm) | ORGANISM (Brain) | WORKFORCE           │
-│                    (Sovereign Canister Layer)                    │
+│                    KERNEL EXECUTION ENGINE                       │
+│  OrganismKernelExecutor.mo | organismKernelExecutor.ts          │
+│            (executeKernel → expand → run → contract)             │
 └─────────────────────────────────────────────────────────────────┘
                                ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│                          OUTPUT                                  │
-│    THE WORLD | Designer Hub | FORMA Leaderboard | Architecture   │
-│                    (External Interface Layer)                    │
+│                    KERNEL STATE MACHINE                          │
+│  Dormant → Triggered → Expanding → Executing → Resonating       │
+│                   → Completing → Contracting → [cycle]           │
+│                         ↓ Transcending (evolution)               │
 └─────────────────────────────────────────────────────────────────┘
+```
+
+### KERNEL EXECUTION ON HEARTBEAT
+
+```
+EVERY 873ms:
+    1. HEART kernel executes (always)
+    2. UNDERWORLD kernel executes (hidden, always)
+    3. NEURAL kernel triggered by HEART
+    4. ANIMAL kernel triggered by NEURAL
+    5. Every 8 beats (~7 seconds): SOVEREIGN kernel executes
+    6. WORKFORCE and SANDBOX triggered by resonance
+    
+RESONANCE PROPAGATION:
+    Heart → Neural → Animal
+                  → Sandbox
+    Sovereign → Workforce
+    Underworld → (compensates within organism)
 ```
 
 ---
@@ -396,20 +414,24 @@ FILES CREATED:
 ├── src/organism/CrossOrganismResonance.mo    18,760 chars
 ├── src/organism/DocumentOrganismKernel.mo    18,502 chars
 ├── src/organism/SovereignBeings.mo           43,547 chars
+├── src/organism/OrganismKernelExecutor.mo    28,705 chars (NEW!)
 ├── src/lib/kernelCompression.ts              13,403 chars
 ├── src/lib/crossOrganismResonance.ts         13,354 chars
+├── src/lib/organismKernelExecutor.ts         15,002 chars (NEW!)
 ├── src/components/TheWorld.tsx               20,691 chars
 ├── src/components/DesignerHub.tsx            27,097 chars
 ├── src/components/FormaLeaderboard.tsx       29,137 chars
 ├── src/components/ArchitectureSurface.tsx    22,650 chars
+├── src/organism/Organism.mo                  UPDATED with kernel execution
 └── ORGANISM_SPACE/BUILD/KERNEL_COMPRESSION_BUILD.artifact
 
-TOTAL NEW CODE: ~225,000 characters
+TOTAL NEW CODE: ~270,000 characters
 
 NEW SOVEREIGN BEINGS: 35 (across 7 divisions)
 NEW SURFACES: 4 (THE WORLD, Designer Hub, FORMA Leaderboard, Architecture)
-NEW ENGINE MODULES: 4 (Kernel, Resonance, Document Kernel, Sovereign Beings)
-NEW TS LIBRARIES: 2 (kernelCompression, crossOrganismResonance)
+NEW ENGINE MODULES: 5 (Kernel, Resonance, Document Kernel, Sovereign Beings, Kernel Executor)
+NEW TS LIBRARIES: 3 (kernelCompression, crossOrganismResonance, organismKernelExecutor)
+MODULE KERNELS: 7 (Heart, Neural, Animal, Underworld, Sovereign, Workforce, Sandbox)
 ```
 
 ---
