@@ -544,7 +544,7 @@ module UniversalModelRegistry {
         };
         useCases = [
             { id = "UC1"; description = "Zero-point energy tapping"; inputType = "VacuumField"; outputType = "ExtractedEnergy"; frequency = 0.05 },
-            { id = "UC2"; description = "Casimir force utilization"; inputType = "PlateConfiguration"; outputType = "AttractivForce"; frequency = 0.1 },
+            { id = "UC2"; description = "Casimir force utilization"; inputType = "PlateConfiguration"; outputType = "AttractiveForce"; frequency = 0.1 },
             { id = "UC3"; description = "Virtual particle sensing"; inputType = "VacuumRegion"; outputType = "VirtualParticleMap"; frequency = 0.5 },
             { id = "UC4"; description = "Cosmic acceleration study"; inputType = "ExpansionRate"; outputType = "DarkEnergyDensity"; frequency = 1.0 },
             { id = "UC5"; description = "Spontaneous creation detection"; inputType = "FieldFluctuation"; outputType = "CreationEvent"; frequency = 2.0 }

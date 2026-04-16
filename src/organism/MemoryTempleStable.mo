@@ -109,7 +109,7 @@ module MemoryTempleStable {
         
         // Compressed function (the kernel)
         functionHash : Text;         // SHA-256 of full function
-        compressedLogic : Blob;      // φ-compressed logic
+        compressedLogic : Text;      // φ-compressed logic (hex string)
         expansionFactor : Float;     // How much it expands to
         
         // Sub-intelligence references
@@ -134,7 +134,7 @@ module MemoryTempleStable {
         
         // The engine logic compressed
         logicHash : Text;
-        compressedEngine : Blob;
+        compressedEngine : Text;     // Compressed engine logic (hex string)
         
         // Models this engine orchestrates
         orchestratedModels : [Text];
@@ -203,13 +203,13 @@ module MemoryTempleStable {
         createdAt : Int;
         
         // The artifact content
-        compressedContent : Blob;
+        compressedContent : Text;    // Compressed content (hex string)
         contentHash : Text;
         compressionRatio : Float;
         
         // What happened this cycle
         patternsRecognized : Nat;
-        decisionsMode : Nat;
+        decisionsMade : Nat;
         memoriesFormed : Nat;
         lessonsLearned : [Text];
         
@@ -970,7 +970,7 @@ module MemoryTempleStable {
             contentHash = "";
             compressionRatio = Constants.PHI;
             patternsRecognized = temple.currentCycle.patternsRecognized;
-            decisionsMode = 0;
+            decisionsMade = 0;
             memoriesFormed = temple.currentCycle.memoriesFormed;
             lessonsLearned = [];
             isIntegrated = false;
