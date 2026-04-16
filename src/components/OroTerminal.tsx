@@ -229,7 +229,7 @@ export default function OroTerminal({ isOpen, onClose, currentTask }: OroTermina
     }
   };
 
-  const simulateDelay = (ms: number) => new Promise(r => setTimeout(r, ms));
+  const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
   const generateOroResponse = (input: string): string => {
     const responses = [

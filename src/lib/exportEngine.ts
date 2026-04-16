@@ -355,18 +355,21 @@ export interface SocialContentOutput {
   mediaRecommendation?: string;
 }
 
+// Platform character limits
+const PLATFORM_MAX_CHARS = {
+  twitter: 280,
+  linkedin: 3000,
+  instagram: 2200,
+  facebook: 63206, // Facebook's maximum post length
+};
+
 export async function generateSocialContent(
   input: SocialContentInput
 ): Promise<SocialContentOutput[]> {
   const outputs: SocialContentOutput[] = [];
 
   for (const platform of input.platforms) {
-    const maxLength = {
-      twitter: 280,
-      linkedin: 3000,
-      instagram: 2200,
-      facebook: 63206,
-    }[platform];
+    const maxLength = PLATFORM_MAX_CHARS[platform];
 
     // Generate platform-specific content
     let content = generatePlatformContent(input.topic, input.tone, platform);

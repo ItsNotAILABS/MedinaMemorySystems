@@ -304,6 +304,7 @@ class SpeechEngine {
 class RecognitionEngine {
   private recognition: SpeechRecognition | null = null;
   private isListening: boolean = false;
+  private shouldContinueListening: boolean = false; // Track intended listening state
   private onResult?: (transcript: string, isFinal: boolean, confidence: number) => void;
   private onStateChange?: (state: ListeningState) => void;
   private currentTranscript: string = '';
@@ -311,9 +312,9 @@ class RecognitionEngine {
 
   constructor() {
     if (typeof window !== 'undefined') {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        this.recognition = new SpeechRecognition();
+      const SpeechRecognitionAPI = (window as Window).SpeechRecognition || (window as Window).webkitSpeechRecognition;
+      if (SpeechRecognitionAPI) {
+        this.recognition = new SpeechRecognitionAPI();
         this.setupRecognition();
       }
     }
@@ -359,7 +360,7 @@ class RecognitionEngine {
       this.updateState();
       
       // Auto-restart if still supposed to be listening
-      if (this.isListening) {
+      if (this.shouldContinueListening) {
         setTimeout(() => this.start(), 100);
       }
     };
@@ -396,17 +397,19 @@ class RecognitionEngine {
 
     this.currentTranscript = '';
     this.interimTranscript = '';
+    this.shouldContinueListening = true;
     
     try {
       this.recognition.start();
       this.isListening = true;
-    } catch (e) {
+    } catch {
       // Already started
       console.warn('Recognition already started');
     }
   }
 
   stop(): void {
+    this.shouldContinueListening = false;
     if (this.recognition && this.isListening) {
       this.recognition.stop();
       this.isListening = false;

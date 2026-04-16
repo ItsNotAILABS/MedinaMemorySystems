@@ -54,7 +54,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   
   // Skip non-GET requests and external requests
-  if (event.request.method !== 'GET' || !url.origin.includes(self.location.origin)) {
+  if (event.request.method !== 'GET' || url.origin !== self.location.origin) {
     return;
   }
   

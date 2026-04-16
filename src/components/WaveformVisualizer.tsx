@@ -248,7 +248,7 @@ export function MicrophoneVisualizer({
           audioContext.close();
         };
       } catch (error) {
-        console.warn('Could not access microphone for visualization');
+        console.warn('Could not access microphone for visualization:', error);
       }
     };
 

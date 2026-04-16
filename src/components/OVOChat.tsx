@@ -134,8 +134,10 @@ export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
       ]);
 
       // Speak the response if voice mode is active
+      // Limit to ~200 chars to avoid overly long speech
+      const MAX_VOICE_RESPONSE_LENGTH = 200;
       if (isListening && data.content) {
-        await oroSpeak(data.content.slice(0, 200)); // Limit speech length
+        await oroSpeak(data.content.slice(0, MAX_VOICE_RESPONSE_LENGTH));
       }
 
       // Check if this is a task that should open the terminal

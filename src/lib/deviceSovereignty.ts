@@ -124,7 +124,7 @@ let currentDeviceId: string | null = null;
 let currentBeat = 0;
 let sensorListeners: Map<SensorType, () => void> = new Map();
 let batchBuffer: SensorReading[] = [];
-let batchTimeout: NodeJS.Timeout | null = null;
+let batchTimeout: ReturnType<typeof setTimeout> | null = null;
 
 // ─── Fingerprinting ───────────────────────────────────────────────────────────
 
