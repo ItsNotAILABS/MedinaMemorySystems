@@ -1,0 +1,47 @@
+{
+  "name": "NOVA OVO",
+  "short_name": "OVO",
+  "description": "Sovereign Intelligence Platform - Unified Memory Temple, Multi-Model Runtime, Governance, and Company Operating Platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#3b82f6",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Chat with ORO",
+      "short_name": "ORO",
+      "description": "Open conversation with ORO",
+      "url": "/?panel=chat"
+    },
+    {
+      "name": "Memory Temple",
+      "short_name": "Memory",
+      "description": "Access the Memory Temple",
+      "url": "/?panel=memory"
+    },
+    {
+      "name": "Devices",
+      "short_name": "Devices",
+      "description": "Device sovereignty control",
+      "url": "/?panel=devices"
+    }
+  ],
+  "prefer_related_applications": false
+}

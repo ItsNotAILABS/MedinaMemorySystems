@@ -319,7 +319,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'devices';
 
 export interface NavItem {
   id: PanelId;
@@ -327,4 +327,143 @@ export interface NavItem {
   icon: string;
   color: string;
   badge?: number;
+}
+
+// ─── Voice System ────────────────────────────────────────────────────────────
+
+export interface VoiceState {
+  isListening: boolean;
+  isSpeaking: boolean;
+  transcript: string;
+  interimTranscript: string;
+  confidence: number;
+  waveform: number[];
+}
+
+// ─── Device Sovereignty ──────────────────────────────────────────────────────
+
+export type SensorType = 
+  | 'motion'
+  | 'orientation'
+  | 'location'
+  | 'battery'
+  | 'network'
+  | 'bluetooth'
+  | 'camera'
+  | 'microphone'
+  | 'storage';
+
+export type DeviceType = 
+  | 'phone'
+  | 'tablet'
+  | 'laptop'
+  | 'desktop'
+  | 'tv'
+  | 'wearable'
+  | 'iot'
+  | 'unknown';
+
+// ─── Export Actions ──────────────────────────────────────────────────────────
+
+export interface ExportConfig {
+  format: 'pdf' | 'excel' | 'json' | 'csv';
+  dataType: string;
+  filters?: Record<string, unknown>;
+}
+
+export interface ExportResult {
+  success: boolean;
+  filename?: string;
+  blobUrl?: string;
+  error?: string;
+}
+
+// ─── Campaign System ─────────────────────────────────────────────────────────
+
+export interface Campaign {
+  id: string;
+  name: string;
+  type: 'email' | 'social' | 'content' | 'advertising';
+  status: 'draft' | 'active' | 'paused' | 'completed';
+  createdAt: string;
+  updatedAt: string;
+  targets: CampaignTarget[];
+  content: CampaignContent[];
+  metrics?: CampaignMetrics;
+}
+
+export interface CampaignTarget {
+  id: string;
+  type: 'audience' | 'segment' | 'individual';
+  criteria: Record<string, unknown>;
+  estimatedReach: number;
+}
+
+export interface CampaignContent {
+  id: string;
+  type: 'text' | 'image' | 'video' | 'link';
+  content: string;
+  platform?: string;
+}
+
+export interface CampaignMetrics {
+  impressions: number;
+  clicks: number;
+  conversions: number;
+  engagement: number;
+}
+
+// ─── Messaging System ────────────────────────────────────────────────────────
+
+export interface MessageDraft {
+  id: string;
+  to: string[];
+  subject?: string;
+  body: string;
+  attachments: MessageAttachment[];
+  channel: 'email' | 'sms' | 'in-app' | 'push';
+  scheduledFor?: string;
+  status: 'draft' | 'pending-approval' | 'approved' | 'sent' | 'failed';
+}
+
+export interface MessageAttachment {
+  id: string;
+  name: string;
+  type: string;
+  size: number;
+  url?: string;
+}
+
+// ─── Approval Workflow ───────────────────────────────────────────────────────
+
+export interface ApprovalRequest {
+  id: string;
+  type: 'action' | 'message' | 'export' | 'campaign' | 'system';
+  title: string;
+  description: string;
+  payload: unknown;
+  requestedAt: string;
+  requestedBy: 'oro' | 'nova' | 'system';
+  status: 'pending' | 'approved' | 'rejected';
+  approvedAt?: string;
+  approvedBy?: string;
+}
+
+// ─── Terminal Types ──────────────────────────────────────────────────────────
+
+export interface TerminalLine {
+  id: string;
+  text: string;
+  type: string;
+  timestamp: string;
+}
+
+export interface TerminalSession {
+  id: string;
+  task: string;
+  startedAt: string;
+  thinkingLines: TerminalLine[];
+  executionLines: TerminalLine[];
+  pendingApprovals: string[];
+  status: 'active' | 'paused' | 'completed';
 }
