@@ -40,16 +40,22 @@ Classification: BUILDER_CONFIDENTIAL
 - Outputs: Versioned intelligence packets
 
 ### ORCH-08 FRONTEND_COMMAND_ORCHESTRATOR
-- Responsibility: Command grammar parse, chat intent routing, UI event parity
-- Inputs: Chat commands, natural language intents
+- Responsibility: Command grammar parse, chat intent routing, UI event parity, F-MODEL coordination
+- Inputs: Chat commands, natural language intents, F-MODEL state
 - Outputs: Executable action plans and operator feedback
+- Controls: All 115 F-MODEL frontend technology intelligence models
+- Integration: Maps F-MODELs to U-MODELs for interface composition
 
 ## 2. Interstitial Model Naming Contracts
 
-- `R-MODEL-*` runtime organism models
-- `U-MODEL-*` interface operation models
-- `D-MODEL-*` document intelligence models
-- `N-MODEL-*` sovereign macro-node models
+- `R-MODEL-*` runtime organism models (23)
+- `U-MODEL-*` interface operation models (12)
+- `D-MODEL-*` document intelligence models (8)
+- `N-MODEL-*` sovereign macro-node models (12)
+- `CODEX-*` autonomous organism models (4)
+- `F-MODEL-*` frontend technology intelligence models (115)
+
+See: `FRONTEND_TECHNOLOGY_INTELLIGENCE_LAYER.md` for complete F-MODEL registry.
 
 ## 3. Minimum R-Model Set (Mandatory)
 
