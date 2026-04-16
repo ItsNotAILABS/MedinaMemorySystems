@@ -57,7 +57,7 @@ These models ARE the organism.
 
 ---
 
-## Ⅱ. ORCHESTRATOR MODELS (8)
+## Ⅱ. ORCHESTRATOR MODELS (10)
 ### These control the FLOW
 
 | ID | Name | Function | Reads Doctrine |
@@ -69,7 +69,9 @@ These models ARE the organism.
 | ORCH-05 | CONSTITUTIONAL_LAW_ORCHESTRATOR | RECITAL_PLUS_ONE enforcement | PRIMAL_GLYPH.glyphdoc |
 | ORCH-06 | NEURAL_CORE_MESH_ORCHESTRATOR | Mesh coherence & topology | CODEX_COMPRESSION.glyphdoc |
 | ORCH-07 | LIVING_DOCUMENT_MACRO_ORCHESTRATOR | D1-D10 lifecycle | CODEX_TRANSLATOR.glyphdoc |
-| ORCH-08 | FRONTEND_COMMAND_ORCHESTRATOR | UI command routing | LINGUA_ORGANISMI.glyphdoc |
+| ORCH-08 | FRONTEND_COMMAND_ORCHESTRATOR | UI command routing, 115+ F-MODELs | LINGUA_ORGANISMI.glyphdoc |
+| ORCH-09 | BACKEND_INTELLIGENCE_ORCHESTRATOR | Backend computation, 250+ B-MODELs | CODEX_COMPRESSION.glyphdoc |
+| ORCH-10 | DOCUMENT_INTELLIGENCE_ORCHESTRATOR | Document organisms, 250+ DOC-MODELs | CODEX_TRANSLATOR.glyphdoc |
 
 ---
 
@@ -240,23 +242,26 @@ WHEN company_connects:
 ## Ⅹ. TOTAL MODEL COUNT
 
 ```
-ORCHESTRATORS:     8
+ORCHESTRATORS:     10 (including ORCH-09, ORCH-10)
 RUNTIME:          23
 INTERFACE:        12
 DOCUMENT:          8
 SOVEREIGN:        12
 CODEX:             4
 ─────────────────────
-CORE TOTAL:       67
+CORE TOTAL:       69
 
-FRONTEND (F-MODEL): 115
-─────────────────────
-EXTENDED TOTAL:   182
+FRONTEND (F-MODEL):   115+   (see FRONTEND_TECHNOLOGY_INTELLIGENCE_LAYER.md)
+BACKEND (B-MODEL):    250+   (see BACKEND_TECHNOLOGY_INTELLIGENCE_LAYER.md)
+DOCUMENT (DOC-MODEL): 250+   (see DOCUMENT_TECHNOLOGY_INTELLIGENCE_LAYER.md)
+─────────────────────────────
+T.I.S.E. TOTAL:      684+
+
+SYNTHESIS ENGINE: T.I.S.E. (Technology Intelligence Synthesis Engine)
+                  Unifies all 684+ models across 12 foundation types
+                  See: TISE_TECHNOLOGY_INTELLIGENCE_SYNTHESIS_ENGINE.md
 
 CLIENT INSTANCES: × N (unlimited scaling)
-
-See: docs/medina/architecture/FRONTEND_TECHNOLOGY_INTELLIGENCE_LAYER.md
-for complete F-MODEL (Frontend Technology Intelligence) registry.
 ```
 
 ---
