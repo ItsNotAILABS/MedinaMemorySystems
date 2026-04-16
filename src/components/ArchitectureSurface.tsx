@@ -349,7 +349,7 @@ export default function ArchitectureSurface() {
                               fill={comp.status === 'active' ? '#2ecc71' : comp.status === 'processing' ? '#f39c12' : '#e74c3c'}
                             />
                             <text x={x + 40} y={compY + 22} fill="white" fontSize="10">
-                              {comp.name.length > 18 ? comp.name.substring(0, 15) + '...' : comp.name}
+                              {comp.name.length > 15 ? comp.name.substring(0, 15) + '...' : comp.name}
                             </text>
                             <text x={x + 40} y={compY + 38} fill="rgba(255,255,255,0.5)" fontSize="9">
                               {comp.health}% health

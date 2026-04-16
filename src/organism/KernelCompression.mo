@@ -428,7 +428,7 @@ module KernelCompression {
             createdAt = Time.now();
             version = 1;
             parentKernelId = null;
-            phiDepth = kernels.size();
+            phiDepth = calculatePhiDepth(totalSize); // Based on combined content size, not array length
             torusCoordinate = {
                 theta = 0.0;
                 phi = 0.0;
