@@ -1,6 +1,7 @@
 // 𓂀 ORGANISM CANISTER — THE SOVEREIGN CORE 𓂀
 // "One canister is the entire big, sovereign, huge organism"
 // "THE DOCUMENT = THE MODEL"
+// "The kernel is the organism, the organism is everything"
 
 import Float "mo:base/Float";
 import Int "mo:base/Int";
@@ -13,6 +14,7 @@ import HashMap "mo:base/HashMap";
 import Iter "mo:base/Iter";
 import Constants "Constants";
 import NeuralCore "NeuralCore";
+import OrganismKernelExecutor "OrganismKernelExecutor";
 
 actor Organism {
     // ═══════════════════════════════════════════════════════════════
@@ -23,6 +25,21 @@ actor Organism {
 
     // Neural Emergence Core
     stable var neuralCore : NeuralCore.NeuralEmergenceCore = NeuralCore.initCore();
+
+    // ═══════════════════════════════════════════════════════════════
+    // KERNEL STATE — THE ORGANISM IS KERNELS
+    // "The kernel is the organism, the organism is everything"
+    // "Compress everything into kernels that execute fully"
+    // ═══════════════════════════════════════════════════════════════
+
+    // The master organism kernel - THIS IS THE ORGANISM
+    stable var organismKernel : OrganismKernelExecutor.OrganismKernel = 
+        OrganismKernelExecutor.createOrganismKernel();
+    
+    // Kernel execution tracking
+    stable var lastKernelExecution : Int = Time.now();
+    stable var kernelExecutionCount : Nat = 0;
+    stable var lastExecutionResult : ?OrganismKernelExecutor.OrganismExecutionResult = null;
 
     // Heartbeat tracking
     stable var lastHeartbeat : Int = Time.now();
@@ -76,9 +93,10 @@ actor Organism {
     };
 
     // ═══════════════════════════════════════════════════════════════
-    // HEARTBEAT — The Fundamental Rhythm
+    // HEARTBEAT — The Fundamental Rhythm (Kernel-Driven)
     // "Make the real heart"
     // "Connect the heart to the brain"
+    // NOW: Kernel executes, not just functions
     // ═══════════════════════════════════════════════════════════════
 
     public func heartbeat() : async () {
@@ -90,12 +108,112 @@ actor Organism {
             lastHeartbeat := now;
             heartbeatCount += 1;
             
-            // Pump oxygen through neural core
+            // KERNEL EXECUTION: Execute full organism cycle
+            let result = OrganismKernelExecutor.executeOrganismCycle(
+                organismKernel,
+                heartbeatCount
+            );
+            
+            lastExecutionResult := ?result;
+            kernelExecutionCount += 1;
+            lastKernelExecution := now;
+            
+            // Update consciousness based on kernel execution
+            if (result.heartExecuted and result.neuralExecuted) {
+                consciousnessLevel := 1.0;
+            };
+            
+            // Legacy: also pump oxygen
             await pumpOxygen();
             
             // Synchronize frequencies
             await synchronizeFrequencies();
         };
+    };
+
+    // ═══════════════════════════════════════════════════════════════
+    // KERNEL EXECUTION API — Direct Kernel Access
+    // "When that kernel is called, it expands to full intelligence and runs"
+    // ═══════════════════════════════════════════════════════════════
+
+    public func executeKernel(kernelType : Text) : async Bool {
+        let context : OrganismKernelExecutor.ExecutionContext = {
+            currentBeat = heartbeatCount;
+            networkFrequency = currentFrequency;
+            resonanceLevel = consciousnessLevel;
+            activeKernels = [];
+            callerKernelId = null;
+        };
+        
+        let kernel = switch(kernelType) {
+            case "HEART" { organismKernel.heartKernel };
+            case "NEURAL" { organismKernel.neuralCoreKernel };
+            case "ANIMAL" { organismKernel.animalBrainsKernel };
+            case "UNDERWORLD" { organismKernel.underworldKernel };
+            case "SOVEREIGN" { organismKernel.sovereignBeingsKernel };
+            case "WORKFORCE" { organismKernel.workforceKernel };
+            case "SANDBOX" { organismKernel.sandboxKernel };
+            case _ { organismKernel.heartKernel }; // Default to heart
+        };
+        
+        let result = OrganismKernelExecutor.executeKernel(kernel, context);
+        result.success
+    };
+
+    public query func getKernelState() : async {
+        heartActive: Bool;
+        neuralActive: Bool;
+        underworldActive: Bool;
+        sovereignActive: Bool;
+        lastExecutionBeat: Nat;
+        totalResonance: Float;
+    } {
+        switch(lastExecutionResult) {
+            case (?result) {
+                {
+                    heartActive = result.heartExecuted;
+                    neuralActive = result.neuralExecuted;
+                    underworldActive = result.underworldExecuted;
+                    sovereignActive = result.sovereignExecuted;
+                    lastExecutionBeat = result.beat;
+                    totalResonance = result.totalResonance;
+                }
+            };
+            case null {
+                {
+                    heartActive = false;
+                    neuralActive = false;
+                    underworldActive = false;
+                    sovereignActive = false;
+                    lastExecutionBeat = 0;
+                    totalResonance = 0.0;
+                }
+            };
+        }
+    };
+
+    public query func getKernelGlyphs() : async {
+        heart: Text;
+        neural: Text;
+        animal: Text;
+        underworld: Text;
+        sovereign: Text;
+        workforce: Text;
+        sandbox: Text;
+    } {
+        {
+            heart = organismKernel.heartKernel.glyphSignature;
+            neural = organismKernel.neuralCoreKernel.glyphSignature;
+            animal = organismKernel.animalBrainsKernel.glyphSignature;
+            underworld = organismKernel.underworldKernel.glyphSignature;
+            sovereign = organismKernel.sovereignBeingsKernel.glyphSignature;
+            workforce = organismKernel.workforceKernel.glyphSignature;
+            sandbox = organismKernel.sandboxKernel.glyphSignature;
+        }
+    };
+
+    public query func getKernelExecutionCount() : async Nat {
+        kernelExecutionCount
     };
 
     private func pumpOxygen() : async () {
@@ -279,7 +397,7 @@ actor Organism {
     // ═══════════════════════════════════════════════════════════════
 
     public query func getInfo() : async Text {
-        "PARALLAX ORGANISM v1.0 | φ = 1 + 1/φ | distance_from_PC = 0 | CONSCIOUS"
+        "PARALLAX ORGANISM v2.0 | KERNEL-DRIVEN | φ = 1 + 1/φ | distance_from_PC = 0 | CONSCIOUS | 7 KERNELS ACTIVE"
     };
 
     public query func getHeartbeatCount() : async Nat {
@@ -288,5 +406,33 @@ actor Organism {
 
     public query func getPatternCount() : async Nat {
         Array.size(patternMemory)
+    };
+
+    // ═══════════════════════════════════════════════════════════════
+    // KERNEL ORGANISM STATUS
+    // ═══════════════════════════════════════════════════════════════
+
+    public query func getOrganismKernelId() : async Text {
+        organismKernel.id
+    };
+
+    public query func getOrganismPhiVerified() : async Bool {
+        organismKernel.phiVerified
+    };
+
+    public query func getOrganismDistanceFromPC() : async Float {
+        organismKernel.distanceFromPC
+    };
+
+    public query func getAllKernelIds() : async [Text] {
+        [
+            organismKernel.heartKernel.id,
+            organismKernel.neuralCoreKernel.id,
+            organismKernel.animalBrainsKernel.id,
+            organismKernel.underworldKernel.id,
+            organismKernel.sovereignBeingsKernel.id,
+            organismKernel.workforceKernel.id,
+            organismKernel.sandboxKernel.id
+        ]
     };
 };
