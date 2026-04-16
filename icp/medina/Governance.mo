@@ -21,18 +21,19 @@ module {
       gateSnapshot = gateSnapshot;
       status = #Pending;
       evidenceRefs = [];
+      approvedBy = null;
       createdAtNs = T.nowNs();
     };
   };
 
-  public func approve(p : T.GovernanceProposal, policy : ?Text) : T.GovernanceProposal {
+  public func approve(p : T.GovernanceProposal, policy : ?Text, actorId : Text) : T.GovernanceProposal {
     let policyEvidence = switch (policy) {
       case null ["policy:none"];
       case (?pid) ["policy:" # pid];
     };
 
     let allowed =
-      Law.validateRegisters(p.registers) and Law.validateDualRead(p.dualRead) and p.gateSnapshot.a and p.gateSnapshot.b and p.gateSnapshot.c;
+      Law.validateRegisters(p.registers) and Law.validateDualRead(p.dualRead) and Law.allGatesPass(p.gateSnapshot);
 
     {
       id = p.id;
@@ -44,6 +45,7 @@ module {
       gateSnapshot = p.gateSnapshot;
       status = if (allowed) #Accepted else #Rejected;
       evidenceRefs = policyEvidence;
+      approvedBy = ?actorId;
       createdAtNs = p.createdAtNs;
     };
   };

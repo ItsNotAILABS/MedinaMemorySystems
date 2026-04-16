@@ -1,0 +1,7 @@
+# RECITAL_PLUS_ONE_LAW.artifact
+Law ID: L-RP1
+
+state(n+1) = recital(validated_state_n) + one_lawful_expansion
+
+Doctrine:
+No mutation without lawful expansion and explicit lineage.

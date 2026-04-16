@@ -1,0 +1,8 @@
+# CALENDAR_STATE.artifact
+Classification: CLIMATE_DOCUMENT
+
+calendar_mode: gregorian
+timezone_mode: utc
+beat_epoch_reference: unix_ns
+
+Law writes are normalized to one authoritative epoch per beat.

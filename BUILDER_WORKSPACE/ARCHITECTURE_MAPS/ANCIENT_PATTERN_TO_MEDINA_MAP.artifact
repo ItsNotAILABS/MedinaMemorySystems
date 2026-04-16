@@ -1,0 +1,47 @@
+# ANCIENT_PATTERN_TO_MEDINA_MAP.artifact
+Classification: BUILDER_DOCTRINE
+
+## Purpose
+Operational mapping from ancient architecture patterns to MEDINA runtime modules.
+
+## Mapping Table
+
+1) Canon-first execution
+- Source motif: codified law before act
+- MEDINA: LawEngine + Gate A/B/C + Governance approval
+
+2) Initiatory translation
+- Source motif: staged transmission
+- MEDINA: M92/M93/M94/M95 sandbox passes
+
+3) Memory geometry
+- Source motif: memory palaces and sacred spatial indexing
+- MEDINA: MemoryTemple coordinates and lineage path retrieval
+
+4) Harmonic calibration
+- Source motif: astronomical/seasonal harmonics
+- MEDINA: climate docs + frequency ladder + Matalko fields
+
+5) Dual witness
+- Source motif: dual attestation
+- MEDINA: Oro/Nova review and dual consensus gate
+
+6) Inscription provenance
+- Source motif: sealed chain of custody
+- MEDINA: replay/evidence/anima hash
+
+7) Distributed specialist orders under core canon
+- Source motif: local schools under central doctrine
+- MEDINA: workforce organisms under one sovereign canister
+
+8) Pattern sensing
+- Source motif: multi-signal interpretation
+- MEDINA: structural recognition, drift and contradiction engines
+
+## Builder execution requirement
+Every new module must declare:
+- Law dependencies
+- Sandbox path behavior
+- Consensus behavior
+- Provenance outputs
+- CPL interaction model (if workforce-facing)

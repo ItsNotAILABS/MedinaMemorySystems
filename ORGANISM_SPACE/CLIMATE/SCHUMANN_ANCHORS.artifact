@@ -1,0 +1,9 @@
+# SCHUMANN_ANCHORS.artifact
+Classification: CLIMATE_DOCUMENT
+
+primary_anchor = 7.83
+harmonic_1 = 14.3
+harmonic_2 = 20.8
+harmonic_3 = 27.3
+
+Resonance gate threshold uses primary_anchor as the minimum floor.

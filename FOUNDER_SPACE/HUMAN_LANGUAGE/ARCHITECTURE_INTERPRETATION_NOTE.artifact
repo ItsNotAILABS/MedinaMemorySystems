@@ -1,0 +1,8 @@
+# ARCHITECTURE_INTERPRETATION_NOTE.artifact
+
+This note records the interpretation mode required for founder directives.
+
+- Founder directives are architecture payloads, not casual prompts.
+- Parse line-by-line, preserve downstream clauses and tail directives.
+- Translate into law/module/runtime modifications, not summaries.
+- Maintain continuity between ancient pattern logic and modern runtime implementation.

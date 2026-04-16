@@ -1,0 +1,5 @@
+# M96_CONTRADICTION_RESOLVER.artifact
+Surfaces contradiction sets and supports resolve actions:
+- override
+- hold_with_decay
+- reject

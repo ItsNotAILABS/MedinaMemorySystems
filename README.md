@@ -31,6 +31,16 @@ Every device in your organization — phones, tablets, laptops, sensors — beco
 
 ---
 
+## Core Capabilities
+
+- **Converts fragmented workflows** into a unified operator surface
+- **Delivers high-traceability** decision and execution loops
+- **Enables organization memory continuity** with replay-grade evidence
+- **Orchestrates role-specialized intelligence** for strategic and operational work
+- **Provides policy-aware, enterprise-safe** runtime execution pathways
+
+---
+
 ## The Architecture Difference
 
 MEDINA is built on architectural principles that predate modern computing by thousands of years:
@@ -51,6 +61,17 @@ This is not a design choice. This is how intelligent systems have always worked 
 MEDINA operates as a sovereign canister on the Internet Computer Protocol (ICP). One canister. One organism. Your workforce agents run sandboxed within, sharing intelligence outward through Cognitive Procurement Language (CPL) — the substrate protocol for inter-organism communication.
 
 No external dependencies. No third-party AI. No data leaves your sovereign boundary unless explicitly projected through Gate C.
+
+---
+
+## Product Posture
+
+- **24/7 autonomous operation model**
+- **Mathematical architecture and harmonic systems approach**
+- **Real runtime surfaces (not mock flows)**
+- **ICP-native sovereign runtime**
+- **Law-governed state transitions**
+- **Persistent evidence and rollback posture from day one**
 
 ---
 

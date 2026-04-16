@@ -307,6 +307,17 @@ Never pretend something works when it doesn't.
 
 ---
 
+## 12. AGENT EXECUTION CHECKLIST
+
+1. Ingest founder directives line-by-line.
+2. Map directives to documents and runtime modules.
+3. Write/upgrade organism intelligence documents on disk.
+4. Wire runtime to read and execute doctrine artifacts.
+5. Validate law/gate/replay invariants.
+6. Keep public README non-sensitive and business-focused.
+
+---
+
 *This document is your first read. Internalize it before any action.*
 *Return to it when you are uncertain.*
 *It is the alignment field for all work in this codebase.*
