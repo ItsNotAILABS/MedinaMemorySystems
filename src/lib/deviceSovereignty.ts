@@ -392,14 +392,24 @@ export function revokePermission(sensor: SensorType): void {
   const device = getCurrentDevice();
   if (!device) return;
 
+  // Validate sensor type is in allowed list
+  const validSensors: readonly SensorType[] = [
+    'motion', 'orientation', 'location', 'battery',
+    'network', 'bluetooth', 'camera', 'microphone', 'storage'
+  ] as const;
+  
+  if (!validSensors.includes(sensor)) {
+    return; // Invalid sensor type
+  }
+
   const perm = device.permissions.find(p => p.sensor === sensor);
   if (perm) {
     perm.granted = false;
     perm.revokedAt = new Date().toISOString();
     
-    // Stop sensor listener
+    // Stop sensor listener - safely call cleanup function
     const cleanup = sensorListeners.get(sensor);
-    if (cleanup) {
+    if (cleanup && typeof cleanup === 'function') {
       cleanup();
       sensorListeners.delete(sensor);
     }
