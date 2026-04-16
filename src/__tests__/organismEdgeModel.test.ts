@@ -317,7 +317,8 @@ describe('organismEdgeModel', () => {
     describe('safeObject', () => {
       it('should return object if valid', () => {
         const obj = { key: 'value' };
-        const result = organismEdgeModel.safeObject(obj, {}, 'test');
+        const fallback = { key: 'fallback' };
+        const result = organismEdgeModel.safeObject(obj, fallback, 'test');
         
         expect(result).toBe(obj);
       });
@@ -331,7 +332,7 @@ describe('organismEdgeModel', () => {
 
       it('should return fallback for non-object', () => {
         const fallback = { default: true };
-        const result = organismEdgeModel.safeObject('string' as any, fallback, 'test');
+        const result = organismEdgeModel.safeObject('string' as unknown as { default: boolean }, fallback, 'test');
         
         expect(result).toBe(fallback);
       });

@@ -313,7 +313,7 @@ describe('permissionsManager', () => {
       const permissions = permissionsManager.listPermissions();
       const scopes = new Set(permissions.map(p => p.scope));
       
-      const expectedScopes = [
+      const expectedScopes: string[] = [
         'memory:read',
         'memory:write',
         'memory:delete',
@@ -332,7 +332,7 @@ describe('permissionsManager', () => {
       ];
       
       for (const scope of expectedScopes) {
-        expect(scopes.has(scope)).toBe(true);
+        expect(scopes.has(scope as any)).toBe(true);
       }
     });
   });
