@@ -267,10 +267,10 @@ export default function FormaLeaderboard() {
 
               {/* Top 3 Podium */}
               <div className="flex justify-center gap-4 mb-8">
-                {sortedLeaders.slice(0, 3).map((leader, index) => {
-                  const positions = [1, 0, 2]; // Order: 2nd, 1st, 3rd
-                  const actualIndex = positions[index];
-                  const l = sortedLeaders[actualIndex];
+                {/* Render in podium order: 2nd place, 1st place, 3rd place */}
+                {[sortedLeaders[1], sortedLeaders[0], sortedLeaders[2]].map((l, displayIndex) => {
+                  if (!l) return null;
+                  const actualRank = displayIndex === 0 ? 2 : displayIndex === 1 ? 1 : 3;
                   const tierInfo = getTierInfo(l.tier);
                   const heights = ['h-32', 'h-40', 'h-28'];
                   
@@ -278,8 +278,8 @@ export default function FormaLeaderboard() {
                     <div key={l.id} className="flex flex-col items-center">
                       <div className="text-5xl mb-2">{l.avatar}</div>
                       <div className="text-white font-semibold">{l.name}</div>
-                      <div className={`w-24 ${heights[index]} rounded-t-xl bg-gradient-to-t from-white/10 to-white/5 flex flex-col items-center justify-end pb-4 mt-2`}>
-                        <div className="text-4xl">{actualIndex === 0 ? '🥇' : actualIndex === 1 ? '🥈' : '🥉'}</div>
+                      <div className={`w-24 ${heights[displayIndex]} rounded-t-xl bg-gradient-to-t from-white/10 to-white/5 flex flex-col items-center justify-end pb-4 mt-2`}>
+                        <div className="text-4xl">{actualRank === 1 ? '🥇' : actualRank === 2 ? '🥈' : '🥉'}</div>
                         <div className="text-white/80 text-sm mt-2">{l.score.toLocaleString()}</div>
                         <div className="text-xs mt-1" style={{ color: tierInfo.color }}>
                           {tierInfo.icon} {l.tier}

@@ -7,6 +7,17 @@ import React, { useState, useEffect } from 'react';
 // "Designer Hub with manufacturer catalog, project intelligence, CEU tracker, and design team presets"
 
 // ═══════════════════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Capitalize first letter of a string
+ */
+function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// ═══════════════════════════════════════════════════════════════
 // TYPES
 // ═══════════════════════════════════════════════════════════════
 
@@ -365,7 +376,7 @@ export default function DesignerHub() {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-semibold text-white">{project.name}</h3>
-                      <p className="text-white/50">{project.client} • {project.type.charAt(0).toUpperCase() + project.type.slice(1)}</p>
+                      <p className="text-white/50">{project.client} • {capitalize(project.type)}</p>
                     </div>
                     <div className="text-right">
                       <span className={`px-3 py-1 rounded-full text-sm ${

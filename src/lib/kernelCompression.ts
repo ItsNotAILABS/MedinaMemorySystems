@@ -417,7 +417,7 @@ export function mergeKernels(kernels: Kernel[], ring: number, beat: number): Ker
     createdAt: new Date().toISOString(),
     version: 1,
     parentKernelId: null,
-    phiDepth: kernels.length,
+    phiDepth: calculatePhiDepth(totalSize), // Based on combined content size, not array length
     torusCoordinate: {
       theta: 0,
       phi: 0,

@@ -16,6 +16,9 @@ const SCHUMANN_FUNDAMENTAL = 7.83;
 const SCHUMANN_HARMONICS = [7.83, 14.1, 20.3, 26.4, 32.4, 39.0, 45.0];
 const HEARTBEAT_MS = 873;
 
+// Default gradient color (solfeggio 528 Hz scaled)
+const DEFAULT_GRADIENT_COLOR = '#528';
+
 // Solfeggio frequencies for lighting
 const SOLFEGGIO = {
   ut: 396,   // Liberation from fear
@@ -285,7 +288,7 @@ export default function TheWorld() {
             {/* Background PHI spiral grid */}
             <defs>
               <radialGradient id="worldGradient" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor={worldState.nodes.length > 0 ? getNodeColor(worldState.nodes[0]) : '#528'} stopOpacity="0.3" />
+                <stop offset="0%" stopColor={worldState.nodes.length > 0 ? getNodeColor(worldState.nodes[0]) : DEFAULT_GRADIENT_COLOR} stopOpacity="0.3" />
                 <stop offset="100%" stopColor="transparent" />
               </radialGradient>
             </defs>
