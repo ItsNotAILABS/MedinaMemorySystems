@@ -4,6 +4,18 @@
     "medina": {
       "type": "motoko",
       "main": "icp/medina/Medina.mo"
+    },
+    "organism": {
+      "type": "motoko",
+      "main": "src/organism/Organism.mo"
+    },
+    "heart": {
+      "type": "motoko",
+      "main": "src/organism/Heart.mo"
+    },
+    "workforce": {
+      "type": "motoko",
+      "main": "src/organism/Workforce.mo"
     }
   },
   "defaults": {
