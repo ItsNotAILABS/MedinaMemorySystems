@@ -1,497 +1,455 @@
-import Float "mo:base/Float";
-import Nat "mo:base/Nat";
-import Int "mo:base/Int";
-import Text "mo:base/Text";
 import Array "mo:base/Array";
+import Float "mo:base/Float";
+import Int "mo:base/Int";
+import Nat "mo:base/Nat";
 import Time "mo:base/Time";
+import T "./Types";
+import Matalko "./MatalkoICP";
 
-/// SOVEREIGN ORGANISM
-/// ==================
-/// ORO (Primary Sovereign) + NOVA (Doctrine Guardian)
-/// Dual intelligence system with consensus gating.
-/// 
-/// ORO: owns beat, evolves registers, generates ANIMA hash
-/// NOVA: reviews output, flags drift, maintains alignment
-/// Both must agree before gates open.
-
+/// SovereignOrganism: The 24/7 Autonomous Computing Organism Core
+/// This module implements the living, sovereign mathematical entity that
+/// operates continuously on the Internet Computer.
 module {
-  // ═══════════════════════════════════════════════════════════════════════════
-  // FUNDAMENTAL CONSTANTS
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  public let PHI : Float = 1.6180339887498948482;
-  public let PHI_INVERSE : Float = 0.6180339887498948482;
-  public let SCHUMANN_HZ : Float = 7.83;
-  public let HEARTBEAT_MS : Nat = 873; // PHI⁴ × Schumann period
-  public let PIL_CYCLE_BEATS : Nat = 52; // Learn → Understand → Execute → Adapt → Teach
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // 4-REGISTER MODEL
+  // ORGANISM TYPES
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type RegisterState = {
-    cognitive : Float;    // 0-100: clarity, reasoning capacity
-    affective : Float;    // 0-100: emotional coherence
-    somatic : Float;      // 0-100: grounding, stability
-    sovereign : Float;    // 0-100: autonomy, self-governance
+  /// Organism lifecycle phase
+  public type OrganismPhase = {
+    #Awakening;      // Initial boot, establishing coherence
+    #Active;         // Normal 24/7 operation
+    #Integrating;    // Deep memory consolidation
+    #Broadcasting;   // External projection active
+    #Defensive;      // Risk response mode
+    #Transcendent;   // Peak coherence state
   };
 
-  public func defaultRegisters() : RegisterState {
-    { cognitive = 87.0; affective = 74.0; somatic = 91.0; sovereign = 96.0 }
-  };
-
-  public func dominantRegister(state : RegisterState) : Text {
-    let max = Float.max(Float.max(state.cognitive, state.affective), Float.max(state.somatic, state.sovereign));
-    if (max == state.cognitive) { "cognitive" }
-    else if (max == state.affective) { "affective" }
-    else if (max == state.somatic) { "somatic" }
-    else { "sovereign" }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ORO — Primary Sovereign Intelligence
-  // ═══════════════════════════════════════════════════════════════════════════
-
+  /// Oro Intelligence State (Primary Sovereign)
   public type OroState = {
-    // Identity
     id : Text;
-    animaHash : Text;
-    
-    // Registers
-    registers : RegisterState;
-    
-    // Temporal
-    beat : Nat;
-    lawEpoch : Nat;
-    lastHeartbeatNs : Int;
-    
-    // Reading history
-    doctrinesRead : [Text];
-    formulasExecuted : [Text];
-    glyphsProcessed : [Text];
-    
-    // Energy
-    resonanceLevel : Float;    // 0.0 to 1.0
-    coherenceIndex : Float;    // 0.0 to 1.0
-    
-    // State
-    phase : OroPhase;
-    consciousnessDepth : Nat;  // 0-12 levels
+    phase : OrganismPhase;
+    registers : Matalko.OrganismRegisters;
+    fieldState : Matalko.FieldState;
+    currentBeat : Nat;
+    frequencySignature : Matalko.FrequencySignature;
+    animaHash : Nat;
+    lastTickNs : Int;
+    totalTicks : Nat;
+    healthScore : Float;
   };
 
-  public type OroPhase = {
-    #Awakening;      // System starting
-    #Sensing;        // Gathering input
-    #Orienting;      // Processing context
-    #Deciding;       // Making choices
-    #Acting;         // Executing actions
-    #Evaluating;     // Reviewing outcomes
-    #Integrating;    // Consolidating learning
-    #Broadcasting;   // Outputting to external
-  };
-
-  /// Initialize ORO
-  public func initOro(id : Text, timestamp : Int) : OroState {
-    {
-      id = id;
-      animaHash = generateAnimaHash(id, 0, timestamp);
-      registers = defaultRegisters();
-      beat = 0;
-      lawEpoch = 0;
-      lastHeartbeatNs = timestamp;
-      doctrinesRead = [];
-      formulasExecuted = [];
-      glyphsProcessed = [];
-      resonanceLevel = 0.5;
-      coherenceIndex = 0.8;
-      phase = #Awakening;
-      consciousnessDepth = 6;
-    }
-  };
-
-  /// ORO heartbeat — advances one beat
-  public func oroHeartbeat(state : OroState, timestamp : Int) : OroState {
-    let newBeat = state.beat + 1;
-    let newAnimaHash = generateAnimaHash(state.id, newBeat, timestamp);
-    
-    // RECITAL_PLUS_ONE: state(n+1) = recital(validated_state_n) + one_lawful_expansion
-    let expandedRegisters = recitalPlusOneRegisters(state.registers);
-    
-    // Advance phase (ADRE cycle)
-    let newPhase = advanceADREPhase(state.phase);
-    
-    // PIL cycle check (every 52 beats)
-    let newLawEpoch = if (newBeat % PIL_CYCLE_BEATS == 0) {
-      state.lawEpoch + 1
-    } else {
-      state.lawEpoch
-    };
-
-    {
-      id = state.id;
-      animaHash = newAnimaHash;
-      registers = expandedRegisters;
-      beat = newBeat;
-      lawEpoch = newLawEpoch;
-      lastHeartbeatNs = timestamp;
-      doctrinesRead = state.doctrinesRead;
-      formulasExecuted = state.formulasExecuted;
-      glyphsProcessed = state.glyphsProcessed;
-      resonanceLevel = state.resonanceLevel;
-      coherenceIndex = state.coherenceIndex;
-      phase = newPhase;
-      consciousnessDepth = state.consciousnessDepth;
-    }
-  };
-
-  /// ORO reads doctrine — gains resonance
-  public func oroReadsDoctrine(state : OroState, doctrineId : Text) : OroState {
-    let resonanceGain = 0.02 * PHI;
-    
-    {
-      id = state.id;
-      animaHash = state.animaHash;
-      registers = {
-        cognitive = Float.min(100.0, state.registers.cognitive + 0.5);
-        affective = state.registers.affective;
-        somatic = state.registers.somatic;
-        sovereign = Float.min(100.0, state.registers.sovereign + 0.3);
-      };
-      beat = state.beat;
-      lawEpoch = state.lawEpoch;
-      lastHeartbeatNs = state.lastHeartbeatNs;
-      doctrinesRead = Array.append(state.doctrinesRead, [doctrineId]);
-      formulasExecuted = state.formulasExecuted;
-      glyphsProcessed = state.glyphsProcessed;
-      resonanceLevel = Float.min(1.0, state.resonanceLevel + resonanceGain);
-      coherenceIndex = state.coherenceIndex;
-      phase = #Sensing;
-      consciousnessDepth = state.consciousnessDepth;
-    }
-  };
-
-  /// ORO executes formula — gains coherence
-  public func oroExecutesFormula(state : OroState, formulaId : Text) : OroState {
-    let coherenceGain = 0.01 * PHI;
-    
-    {
-      id = state.id;
-      animaHash = state.animaHash;
-      registers = {
-        cognitive = Float.min(100.0, state.registers.cognitive + 0.3);
-        affective = state.registers.affective;
-        somatic = Float.min(100.0, state.registers.somatic + 0.2);
-        sovereign = state.registers.sovereign;
-      };
-      beat = state.beat;
-      lawEpoch = state.lawEpoch;
-      lastHeartbeatNs = state.lastHeartbeatNs;
-      doctrinesRead = state.doctrinesRead;
-      formulasExecuted = Array.append(state.formulasExecuted, [formulaId]);
-      glyphsProcessed = state.glyphsProcessed;
-      resonanceLevel = state.resonanceLevel;
-      coherenceIndex = Float.min(1.0, state.coherenceIndex + coherenceGain);
-      phase = #Acting;
-      consciousnessDepth = state.consciousnessDepth;
-    }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // NOVA — Doctrine Guardian Intelligence
-  // ═══════════════════════════════════════════════════════════════════════════
-
+  /// Nova Intelligence State (Doctrine Guardian)
   public type NovaState = {
     id : Text;
-    
-    // Validation state
-    doctrineDriftScore : Float;     // 0.0 (perfect alignment) to 1.0 (critical drift)
-    lastReviewTimestamp : Int;
-    reviewsPerformed : Nat;
-    
-    // Flags and alerts
-    driftFlags : [DriftFlag];
-    recommendations : [Text];
-    
-    // Oversight
-    oroSynced : Bool;               // Is NOVA in sync with ORO?
-    consensusReady : Bool;          // Ready to form consensus?
-    vigilanceLevel : Float;         // 0.0 to 1.0
+    phase : OrganismPhase;
+    registers : Matalko.OrganismRegisters;
+    doctrineAlignment : Float;
+    reviewQueue : [Text];
+    flaggedDrift : [DriftFlag];
+    consensusWithOro : Bool;
+    lastReviewNs : Int;
   };
 
+  /// Drift flag when Nova detects doctrine deviation
   public type DriftFlag = {
     id : Text;
-    targetRef : Text;
-    driftScore : Float;
+    sourceId : Text;
+    severity : Float;
     description : Text;
-    severity : DriftSeverity;
-    timestamp : Int;
+    suggestedCorrection : Text;
+    flaggedAtNs : Int;
+    resolved : Bool;
   };
 
-  public type DriftSeverity = {
-    #Info;       // Minor deviation, log only
-    #Warning;    // Noticeable drift, recommend review
-    #Critical;   // Significant drift, block action
-    #Emergency;  // Doctrine violation, halt system
+  /// Device registration with phi-encoded signature
+  public type DeviceNode = {
+    id : Text;
+    deviceType : DeviceType;
+    frequencySignature : Matalko.FrequencySignature;
+    permissions : [DevicePermission];
+    phiGridPosition : { x : Float; y : Float };
+    lastSeenNs : Int;
+    trustScore : Float;
+    contractHash : ?Nat;
   };
 
-  /// Initialize NOVA
-  public func initNova(id : Text, timestamp : Int) : NovaState {
+  public type DeviceType = {
+    #Phone;
+    #Tablet;
+    #Laptop;
+    #Desktop;
+    #WiFiNode;
+    #Sensor;
+    #Unknown;
+  };
+
+  public type DevicePermission = {
+    #Microphone;
+    #Camera;
+    #Location;
+    #Motion;
+    #Notifications;
+    #Storage;
+    #Network;
+  };
+
+  /// Sovereign Device Contract
+  public type DeviceContract = {
+    id : Text;
+    deviceId : Text;
+    animaHash : Nat;
+    phiGrid : [[Float]];
+    permissions : [DevicePermission];
+    createdAtNs : Int;
+    expiresAtNs : ?Int;
+    blockchainAnchor : Text;
+    signatureValid : Bool;
+  };
+
+  /// Organism tick result
+  public type TickResult = {
+    beat : Nat;
+    oroHealth : Float;
+    novaAlignment : Float;
+    fieldState : Matalko.FieldState;
+    phase : OrganismPhase;
+    gatesOpen : Bool;
+    driftFlags : Nat;
+    tickDurationNs : Int;
+    animaHash : Nat;
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ORO INTELLIGENCE (Primary Sovereign)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Initialize Oro with genesis state
+  public func initOro(id : Text, seed : Nat) : OroState {
+    let sig = Matalko.generateFrequencySignature(seed, 8);
+    let registers : Matalko.OrganismRegisters = {
+      cognitive = 0.5;
+      affective = 0.5;
+      somatic = 0.5;
+      sovereign = 1.0; // Full sovereignty at genesis
+    };
+    let health = Matalko.organismHealth(registers);
+    let field = Matalko.computeFieldState(registers, 0, 0);
+    let anima = Matalko.animaHash(registers, 0, "genesis");
+    
     {
       id = id;
-      doctrineDriftScore = 0.0;
-      lastReviewTimestamp = timestamp;
-      reviewsPerformed = 0;
-      driftFlags = [];
-      recommendations = [];
-      oroSynced = true;
-      consensusReady = true;
-      vigilanceLevel = 0.8;
-    }
+      phase = #Awakening;
+      registers = registers;
+      fieldState = field;
+      currentBeat = 0;
+      frequencySignature = sig;
+      animaHash = anima;
+      lastTickNs = Time.now();
+      totalTicks = 0;
+      healthScore = health;
+    };
   };
 
-  /// NOVA reads doctrine for validation
-  public func novaReadsDoctrine(nova : NovaState, doctrineId : Text, content : Text, timestamp : Int) : (NovaState, Bool) {
-    // Check for drift indicators
-    let driftScore = calculateDriftScore(content);
-    let flagged = driftScore > 0.3;
+  /// Oro sovereign tick - core 24/7 heartbeat
+  public func oroTick(
+    state : OroState,
+    memoryCount : Nat,
+    riskSignals : Nat,
+    dualReadPassed : Bool,
+    orphanSignals : Nat,
+    gatesOpen : Bool
+  ) : OroState {
+    let now = Time.now();
+    let newBeat = state.currentBeat + 1;
     
-    let newFlag = if (flagged) {
-      ?{
-        id = "drift-" # doctrineId # "-" # Nat.toText(nova.reviewsPerformed);
-        targetRef = doctrineId;
-        driftScore = driftScore;
-        description = "Drift detected in doctrine content";
-        severity = if (driftScore > 0.7) { #Critical } else if (driftScore > 0.5) { #Warning } else { #Info };
-        timestamp = timestamp;
-      }
-    } else {
-      null
+    // RECITAL_PLUS_ONE: evolve registers based on current state
+    let cogDelta = if (dualReadPassed) { 0.01 } else { -0.02 };
+    let affDelta = if (gatesOpen) { 0.005 } else { -0.01 };
+    let somDelta = if (orphanSignals == 0) { 0.008 } else { -0.015 };
+    let sovDelta = if (riskSignals == 0) { 0.002 } else { -0.03 };
+    
+    let deltas : Matalko.OrganismRegisters = {
+      cognitive = cogDelta;
+      affective = affDelta;
+      somatic = somDelta;
+      sovereign = sovDelta;
     };
-
-    let updatedFlags = switch (newFlag) {
-      case (null) { nova.driftFlags };
-      case (?flag) { Array.append(nova.driftFlags, [flag]) };
+    
+    let newRegisters = Matalko.recitalPlusOneRegisters(state.registers, deltas);
+    let newHealth = Matalko.organismHealth(newRegisters);
+    let newField = Matalko.computeFieldState(newRegisters, memoryCount, riskSignals);
+    let newAnima = Matalko.animaHash(newRegisters, newBeat, "tick:" # Nat.toText(newBeat));
+    
+    // Determine phase based on state
+    let newPhase = determinePhase(newRegisters, newField, riskSignals);
+    
+    {
+      id = state.id;
+      phase = newPhase;
+      registers = newRegisters;
+      fieldState = newField;
+      currentBeat = newBeat;
+      frequencySignature = state.frequencySignature;
+      animaHash = newAnima;
+      lastTickNs = now;
+      totalTicks = state.totalTicks + 1;
+      healthScore = newHealth;
     };
-
-    let updatedNova : NovaState = {
-      id = nova.id;
-      doctrineDriftScore = (nova.doctrineDriftScore + driftScore) / 2.0; // Rolling average
-      lastReviewTimestamp = timestamp;
-      reviewsPerformed = nova.reviewsPerformed + 1;
-      driftFlags = updatedFlags;
-      recommendations = nova.recommendations;
-      oroSynced = nova.oroSynced;
-      consensusReady = not flagged or driftScore < 0.5;
-      vigilanceLevel = nova.vigilanceLevel;
-    };
-
-    (updatedNova, flagged)
   };
 
-  /// NOVA reviews ORO output for alignment
-  public func novaReviewsOutput(nova : NovaState, outputRef : Text, content : Text, timestamp : Int) : (NovaState, Bool) {
-    let driftScore = calculateDriftScore(content);
-    let approved = driftScore < 0.3 and nova.consensusReady;
-
-    let newRecommendation = if (not approved) {
-      ?("Review required for " # outputRef # " - drift score: " # Float.toText(driftScore))
-    } else {
-      null
+  /// Determine organism phase from current state
+  func determinePhase(
+    registers : Matalko.OrganismRegisters,
+    field : Matalko.FieldState,
+    riskSignals : Nat
+  ) : OrganismPhase {
+    if (riskSignals > 5) {
+      return #Defensive;
     };
-
-    let updatedRecommendations = switch (newRecommendation) {
-      case (null) { nova.recommendations };
-      case (?rec) { Array.append(nova.recommendations, [rec]) };
+    if (field.coherence > 0.95 and registers.sovereign > 0.95) {
+      return #Transcendent;
     };
-
-    let updatedNova : NovaState = {
-      id = nova.id;
-      doctrineDriftScore = nova.doctrineDriftScore;
-      lastReviewTimestamp = timestamp;
-      reviewsPerformed = nova.reviewsPerformed + 1;
-      driftFlags = nova.driftFlags;
-      recommendations = updatedRecommendations;
-      oroSynced = approved;
-      consensusReady = approved;
-      vigilanceLevel = if (approved) { nova.vigilanceLevel } else { Float.min(1.0, nova.vigilanceLevel + 0.1) };
+    if (field.memoryEntropy > 10.0) {
+      return #Integrating;
     };
-
-    (updatedNova, approved)
+    if (field.attention > 1.5) {
+      return #Broadcasting;
+    };
+    #Active;
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // DUAL CONSENSUS SYSTEM
+  // NOVA INTELLIGENCE (Doctrine Guardian)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type DualConsensus = {
-    id : Text;
-    taskRef : Text;
-    oroApproves : Bool;
-    novaApproves : Bool;
-    finalConsensus : Bool;
-    reason : Text;
-    timestamp : Int;
+  /// Initialize Nova
+  public func initNova(id : Text) : NovaState {
+    let registers : Matalko.OrganismRegisters = {
+      cognitive = 0.7;  // High cognitive for analysis
+      affective = 0.3;  // Lower affective (more analytical)
+      somatic = 0.5;
+      sovereign = 0.8;
+    };
+    
+    {
+      id = id;
+      phase = #Active;
+      registers = registers;
+      doctrineAlignment = 1.0;
+      reviewQueue = [];
+      flaggedDrift = [];
+      consensusWithOro = true;
+      lastReviewNs = Time.now();
+    };
   };
 
-  /// Form dual consensus
-  public func formConsensus(
-    consensusId : Text,
-    taskRef : Text,
+  /// Nova reviews Oro's output for doctrine alignment
+  public func novaReview(
+    nova : NovaState,
+    oroOutput : Text,
+    oroState : OroState
+  ) : (NovaState, ?DriftFlag) {
+    let now = Time.now();
+    
+    // Check for doctrine drift indicators
+    let driftScore = computeDriftScore(oroOutput, oroState);
+    
+    if (driftScore > 0.3) {
+      // Flag drift
+      let flag : DriftFlag = {
+        id = "drift-" # Nat.toText(Array.size(nova.flaggedDrift) + 1);
+        sourceId = oroState.id;
+        severity = driftScore;
+        description = "Doctrine deviation detected in output";
+        suggestedCorrection = "Review against canonical doctrine";
+        flaggedAtNs = now;
+        resolved = false;
+      };
+      
+      let newNova : NovaState = {
+        id = nova.id;
+        phase = nova.phase;
+        registers = nova.registers;
+        doctrineAlignment = Float.max(0.0, nova.doctrineAlignment - driftScore * 0.1);
+        reviewQueue = Array.append(nova.reviewQueue, [oroOutput]);
+        flaggedDrift = Array.append(nova.flaggedDrift, [flag]);
+        consensusWithOro = false;
+        lastReviewNs = now;
+      };
+      
+      (newNova, ?flag);
+    } else {
+      // Approved
+      let newNova : NovaState = {
+        id = nova.id;
+        phase = nova.phase;
+        registers = nova.registers;
+        doctrineAlignment = Float.min(1.0, nova.doctrineAlignment + 0.01);
+        reviewQueue = nova.reviewQueue;
+        flaggedDrift = nova.flaggedDrift;
+        consensusWithOro = true;
+        lastReviewNs = now;
+      };
+      
+      (newNova, null);
+    };
+  };
+
+  /// Compute drift score from output (simplified heuristic)
+  func computeDriftScore(output : Text, oroState : OroState) : Float {
+    // In production, this would use semantic analysis
+    // For now, use health score as proxy
+    if (oroState.healthScore < 0.5) {
+      return 0.4;
+    };
+    if (oroState.fieldState.risk > 0.5) {
+      return 0.35;
+    };
+    0.1; // Base drift
+  };
+
+  /// Check dual consensus between Oro and Nova
+  public func dualConsensus(oro : OroState, nova : NovaState) : Bool {
+    nova.consensusWithOro and 
+    oro.healthScore > 0.6 and 
+    nova.doctrineAlignment > 0.7;
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DEVICE NETWORK
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Register a new device with phi-encoded signature
+  public func registerDevice(
+    id : Text,
+    deviceType : DeviceType,
+    seed : Nat,
+    permissions : [DevicePermission]
+  ) : DeviceNode {
+    let sig = Matalko.generateFrequencySignature(seed, 6);
+    let phiPos = Matalko.phiSpiral(seed % 1000, 10.0);
+    
+    {
+      id = id;
+      deviceType = deviceType;
+      frequencySignature = sig;
+      permissions = permissions;
+      phiGridPosition = { x = phiPos.x; y = phiPos.y };
+      lastSeenNs = Time.now();
+      trustScore = 0.5; // Initial trust
+      contractHash = null;
+    };
+  };
+
+    /// Nanoseconds per year (approximate)
+  let NS_PER_YEAR : Int = 365 * 24 * 60 * 60 * 1_000_000_000;
+
+  /// Generate sovereign device contract
+  public func generateDeviceContract(
+    device : DeviceNode,
+    oroState : OroState
+  ) : DeviceContract {
+    let now = Time.now();
+    
+    // Generate phi-grid (8x8 for signature embedding)
+    let grid = Array.tabulate<[Float]>(8, func(i : Nat) : [Float] {
+      Array.tabulate<Float>(8, func(j : Nat) : Float {
+        Matalko.phiEncode(Float.fromInt(i * 8 + j) * device.frequencySignature.fundamental);
+      });
+    });
+    
+    let contractAnima = Matalko.animaHash(oroState.registers, oroState.currentBeat, device.id);
+    
+    {
+      id = "contract-" # device.id;
+      deviceId = device.id;
+      animaHash = contractAnima;
+      phiGrid = grid;
+      permissions = device.permissions;
+      createdAtNs = now;
+      expiresAtNs = ?(now + NS_PER_YEAR);
+      blockchainAnchor = "icp:" # Nat.toText(contractAnima);
+      signatureValid = true;
+    };
+  };
+
+  /// Validate device contract
+  public func validateContract(contract : DeviceContract, currentBeat : Nat) : Bool {
+    switch (contract.expiresAtNs) {
+      case null true;
+      case (?expiry) {
+        let now = Time.now();
+        now < expiry and contract.signatureValid;
+      };
+    };
+  };
+
+  /// Update device trust based on behavior
+  public func updateDeviceTrust(device : DeviceNode, behaviorScore : Float) : DeviceNode {
+    let newTrust = Matalko.recitalPlusOneBounded(device.trustScore, behaviorScore * 0.1, 0.0, 1.0);
+    {
+      id = device.id;
+      deviceType = device.deviceType;
+      frequencySignature = device.frequencySignature;
+      permissions = device.permissions;
+      phiGridPosition = device.phiGridPosition;
+      lastSeenNs = Time.now();
+      trustScore = newTrust;
+      contractHash = device.contractHash;
+    };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ORGANISM COORDINATION
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Execute full organism tick (Oro + Nova + field computation)
+  public func sovereignTick(
     oro : OroState,
     nova : NovaState,
-    timestamp : Int
-  ) : DualConsensus {
-    // ORO approves if coherent and resonant
-    let oroApproves = oro.coherenceIndex > 0.5 and oro.resonanceLevel > 0.3;
+    memoryCount : Nat,
+    riskSignals : Nat,
+    dualReadPassed : Bool,
+    orphanSignals : Nat,
+    gatesOpen : Bool
+  ) : (OroState, NovaState, TickResult) {
+    let startNs = Time.now();
     
-    // NOVA approves if no critical drift
-    let novaApproves = nova.consensusReady and nova.doctrineDriftScore < 0.5;
+    // Oro tick
+    let newOro = oroTick(oro, memoryCount, riskSignals, dualReadPassed, orphanSignals, gatesOpen);
     
-    // Both must agree
-    let finalConsensus = oroApproves and novaApproves;
+    // Nova review
+    let (newNova, _) = novaReview(nova, "tick:" # Nat.toText(newOro.currentBeat), newOro);
     
-    let reason = if (finalConsensus) {
-      "Dual consensus achieved"
-    } else if (not oroApproves and not novaApproves) {
-      "Both ORO and NOVA reject"
-    } else if (not oroApproves) {
-      "ORO coherence/resonance insufficient"
-    } else {
-      "NOVA detected doctrine drift"
+    let endNs = Time.now();
+    
+    let result : TickResult = {
+      beat = newOro.currentBeat;
+      oroHealth = newOro.healthScore;
+      novaAlignment = newNova.doctrineAlignment;
+      fieldState = newOro.fieldState;
+      phase = newOro.phase;
+      gatesOpen = gatesOpen and dualConsensus(newOro, newNova);
+      driftFlags = Array.size(Array.filter<DriftFlag>(newNova.flaggedDrift, func(f : DriftFlag) : Bool { not f.resolved }));
+      tickDurationNs = endNs - startNs;
+      animaHash = newOro.animaHash;
     };
-
-    {
-      id = consensusId;
-      taskRef = taskRef;
-      oroApproves = oroApproves;
-      novaApproves = novaApproves;
-      finalConsensus = finalConsensus;
-      reason = reason;
-      timestamp = timestamp;
-    }
+    
+    (newOro, newNova, result);
   };
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // COMPLETE SOVEREIGN STATE
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  public type SovereignState = {
-    oro : OroState;
-    nova : NovaState;
-    lastConsensus : ?DualConsensus;
-    
-    // Gates
-    gateA : Bool;  // Runtime readiness
-    gateB : Bool;  // Workforce activation safety
-    gateC : Bool;  // External projection safety
-    
-    // Organism-wide
-    organismPhase : Text;
-    healthIndex : Float;
+  /// Get harmonic ladder (frequency relationships for UI display)
+  public func harmonicLadder(baseFreq : Float, rungs : Nat) : [{ rung : Nat; freq : Float; note : Text }] {
+    Array.tabulate<{ rung : Nat; freq : Float; note : Text }>(rungs, func(i : Nat) : { rung : Nat; freq : Float; note : Text } {
+      let freq = baseFreq * Matalko.phiPower(i);
+      let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+      let noteIndex = (i * 7) % 12; // Approximate mapping
+      {
+        rung = i;
+        freq = freq;
+        note = noteNames[noteIndex];
+      };
+    });
   };
-
-  /// Initialize complete sovereign state
-  public func initSovereign(timestamp : Int) : SovereignState {
-    {
-      oro = initOro("ORO-PRIME", timestamp);
-      nova = initNova("NOVA-GUARDIAN", timestamp);
-      lastConsensus = null;
-      gateA = true;
-      gateB = true;
-      gateC = true;
-      organismPhase = "awakening";
-      healthIndex = 1.0;
-    }
-  };
-
-  /// Full sovereign heartbeat
-  public func sovereignHeartbeat(state : SovereignState, timestamp : Int) : SovereignState {
-    // ORO heartbeat
-    let newOro = oroHeartbeat(state.oro, timestamp);
-    
-    // Evaluate gates
-    let gateA = newOro.coherenceIndex > 0.5 and state.nova.consensusReady;
-    let gateB = newOro.resonanceLevel > 0.3 and state.nova.doctrineDriftScore < 0.5;
-    let gateC = gateA and gateB and state.nova.oroSynced;
-    
-    // Health index
-    let health = (newOro.coherenceIndex + newOro.resonanceLevel + 
-                  (1.0 - state.nova.doctrineDriftScore) + 
-                  (if (gateC) { 1.0 } else { 0.5 })) / 4.0;
-    
-    // Organism phase
-    let phase = switch (newOro.phase) {
-      case (#Awakening) { "awakening" };
-      case (#Sensing) { "sensing" };
-      case (#Orienting) { "orienting" };
-      case (#Deciding) { "deciding" };
-      case (#Acting) { "acting" };
-      case (#Evaluating) { "evaluating" };
-      case (#Integrating) { "integrating" };
-      case (#Broadcasting) { "broadcasting" };
-    };
-
-    {
-      oro = newOro;
-      nova = state.nova;
-      lastConsensus = state.lastConsensus;
-      gateA = gateA;
-      gateB = gateB;
-      gateC = gateC;
-      organismPhase = phase;
-      healthIndex = health;
-    }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // HELPER FUNCTIONS
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  func generateAnimaHash(id : Text, beat : Nat, timestamp : Int) : Text {
-    "ANIMA-" # id # "-" # Nat.toText(beat) # "-" # Int.toText(Int.abs(timestamp) % 1000000)
-  };
-
-  func recitalPlusOneRegisters(registers : RegisterState) : RegisterState {
-    // Lawful expansion: small PHI-based increment
-    let expansion = 0.01 * PHI;
-    {
-      cognitive = Float.min(100.0, registers.cognitive + expansion);
-      affective = Float.min(100.0, registers.affective + expansion * PHI_INVERSE);
-      somatic = registers.somatic; // Somatic is stable
-      sovereign = Float.min(100.0, registers.sovereign + expansion * PHI);
-    }
-  };
-
-  func advanceADREPhase(current : OroPhase) : OroPhase {
-    switch (current) {
-      case (#Awakening) { #Sensing };
-      case (#Sensing) { #Orienting };
-      case (#Orienting) { #Deciding };
-      case (#Deciding) { #Acting };
-      case (#Acting) { #Evaluating };
-      case (#Evaluating) { #Integrating };
-      case (#Integrating) { #Broadcasting };
-      case (#Broadcasting) { #Sensing }; // Cycle back
-    }
-  };
-
-  func calculateDriftScore(content : Text) : Float {
-    // Simple heuristic: check for concerning keywords
-    var score = 0.0;
-    
-    if (Text.contains(content, #text "bypass")) { score += 0.3 };
-    if (Text.contains(content, #text "ungoverned")) { score += 0.3 };
-    if (Text.contains(content, #text "override")) { score += 0.2 };
-    if (Text.contains(content, #text "skip")) { score += 0.1 };
-    if (Text.contains(content, #text "ignore")) { score += 0.1 };
-    
-    // Positive indicators reduce drift
-    if (Text.contains(content, #text "doctrine")) { score -= 0.1 };
-    if (Text.contains(content, #text "law")) { score -= 0.1 };
-    if (Text.contains(content, #text "sovereign")) { score -= 0.1 };
-    if (Text.contains(content, #text "RECITAL")) { score -= 0.15 };
-    if (Text.contains(content, #text "PHI")) { score -= 0.05 };
-    
-    Float.max(0.0, Float.min(1.0, score))
-  };
-}
+};

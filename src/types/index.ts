@@ -245,7 +245,9 @@ export type PermissionScope =
   | 'replay:read'
   | 'permissions:manage'
   | 'organism:read'
-  | 'organism:write';
+  | 'organism:write'
+  | 'device:register'
+  | 'device:contract';
 
 export interface Permission {
   id: string;
@@ -307,6 +309,30 @@ export interface DualReadResult {
   unified: MemoryEntry[];
 }
 
+// ─── Device Network ──────────────────────────────────────────────────────────
+
+export interface DeviceNode {
+  id: string;
+  deviceType: DeviceType;
+  frequencySignature: {
+    fundamental: number;
+    phiModulation: number;
+  };
+  phiPosition: { x: number; y: number };
+  trustScore: number;
+  hasContract: boolean;
+  permissions: string[];
+}
+
+export interface DeviceContract {
+  id: string;
+  deviceId: string;
+  animaHash: number;
+  blockchainAnchor: string;
+  phiGridSample: number[][];
+  createdAt: string;
+}
+
 // ─── API Responses ───────────────────────────────────────────────────────────
 
 export interface ApiResponse<T = unknown> {
@@ -319,7 +345,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'devices' | 'messages' | 'campaigns' | 'export';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings';
 
 export interface NavItem {
   id: PanelId;
@@ -361,6 +387,8 @@ export type DeviceType =
   | 'tv'
   | 'wearable'
   | 'iot'
+  | 'wifi'
+  | 'sensor'
   | 'unknown';
 
 // ─── Export Actions ──────────────────────────────────────────────────────────

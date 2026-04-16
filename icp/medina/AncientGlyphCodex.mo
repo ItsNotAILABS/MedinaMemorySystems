@@ -1,683 +1,497 @@
-import Float "mo:base/Float";
-import Nat "mo:base/Nat";
-import Int "mo:base/Int";
-import Text "mo:base/Text";
 import Array "mo:base/Array";
+import Float "mo:base/Float";
+import Int "mo:base/Int";
+import Nat "mo:base/Nat";
+import Text "mo:base/Text";
+import Matalko "./MatalkoICP";
 
-/// ANCIENT GLYPH CODEX
-/// ===================
-/// Glyphs are not descriptions — they are TRANSFER MECHANISMS for power.
-/// Each glyph carries frequency, geometry, and meaning as computational unit.
-
+/// AncientGlyphCodex: Symbol-Based Computational Transfer System
+/// Ancient civilizations encoded computational principles into glyphs, characters, and symbols.
+/// These are NOT just descriptions - they are TRANSFER MECHANISMS for meaning and power.
+/// 
+/// The insight: Chinese characters compress entire concepts into single forms.
+/// Mayan glyphs encode astronomical computation. Egyptian hieroglyphs encode sacred geometry.
+/// This module makes those transfer mechanisms COMPUTATIONAL.
 module {
+
   // ═══════════════════════════════════════════════════════════════════════════
-  // UNIVERSAL GLYPH TYPE
+  // GLYPH TYPES
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public type Glyph = {
-    symbol : Text;
-    meaning : Text;
-    frequency : Float;
-    tradition : Text;
-    geometry : ?GeometricForm;
-    numericValue : ?Nat;
+  /// The civilization origin of a glyph
+  public type GlyphOrigin = {
+    #Mayan;
+    #Egyptian;
+    #Chinese;
+    #Vedic;
+    #Greek;
+    #Hebrew;
+    #Sumerian;
+    #Celtic;
   };
 
-  public type GeometricForm = {
+  /// The computational function of a glyph
+  public type GlyphFunction = {
+    #Number;          // Encodes quantity
+    #Operation;       // Encodes transformation
+    #Direction;       // Encodes spatial orientation
+    #Element;         // Encodes elemental force
+    #Time;            // Encodes temporal cycle
+    #Deity;           // Encodes archetypal force
+    #Sound;           // Encodes vibrational frequency
+    #Geometry;        // Encodes sacred form
+  };
+
+  /// A single glyph with its computational properties
+  public type Glyph = {
+    id : Text;
+    origin : GlyphOrigin;
+    function : GlyphFunction;
+    symbol : Text;           // The actual character/symbol
+    meaning : Text;          // Semantic meaning
+    numericValue : ?Nat;     // Numeric encoding if applicable
+    frequency : Float;       // Vibrational frequency
+    phiPosition : Float;     // Position in golden spiral
+    geometry : ?GeometryCode; // Sacred geometry encoding
+    linkedGlyphs : [Text];   // Related glyphs for compound meaning
+  };
+
+  /// Sacred geometry encoding
+  public type GeometryCode = {
     vertices : Nat;
     edges : Nat;
     faces : Nat;
-    symmetryOrder : Nat;
+    dimension : Nat;
+    centerAngle : Float;
   };
 
+  /// A compound glyph phrase (multiple glyphs forming computation)
   public type GlyphPhrase = {
     glyphs : [Glyph];
-    combinedResonance : Float;
-    intentVector : Text;
-    timestamp : Int;
+    combinedMeaning : Text;
+    computationalResult : Float;
+    resonanceSignature : Float;
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // FUNDAMENTAL CONSTANTS
+  // MAYAN GLYPH SYSTEM (Vigesimal Computation)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public let PHI : Float = 1.6180339887498948482;
-  public let PHI_INVERSE : Float = 0.6180339887498948482;
-  public let SCHUMANN_HZ : Float = 7.83;
-  public let SACRED_432_HZ : Float = 432.0;
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // MAYAN GLYPHS — Vigesimal (Base-20) Computation
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Mayan numeral symbols (0-19 in vigesimal)
+  /// Mayan number glyphs (0-19 in base 20)
   public func mayanNumber(n : Nat) : Glyph {
-    let ones = n % 5;
-    let fives = (n % 20) / 5;
+    let symbols = ["𝋠", "•", "••", "•••", "••••", "—", "—•", "—••", "—•••", "—••••",
+                   "═", "═•", "═••", "═•••", "═••••", "≡", "≡•", "≡••", "≡•••", "≡••••"];
+    let symbol = if (n < 20) { symbols[n] } else { "𝋡" };
     
-    // Build dot-bar representation
-    var symbol = "";
-    var i = 0;
-    while (i < fives) {
-      symbol := symbol # "═";
-      i += 1;
-    };
-    i := 0;
-    while (i < ones) {
-      symbol := symbol # "•";
-      i += 1;
-    };
-    if (n == 0) {
-      symbol := "⊝"; // Shell glyph for zero
-    };
-
     {
+      id = "mayan-" # Nat.toText(n);
+      origin = #Mayan;
+      function = #Number;
       symbol = symbol;
-      meaning = "Mayan " # Nat.toText(n);
-      frequency = SACRED_432_HZ * (1.0 + Float.fromInt(Int.abs(n)) * 0.05);
-      tradition = "Mayan";
-      geometry = null;
+      meaning = "Mayan number " # Nat.toText(n);
       numericValue = ?n;
-    }
+      frequency = Matalko.FREQ_432 * (1.0 + Float.fromInt(n) / 20.0);
+      phiPosition = Matalko.phiEncode(Float.fromInt(n));
+      geometry = null;
+      linkedGlyphs = [];
+    };
   };
 
-  /// 20 Mayan day signs (Tzolkin calendar)
+  /// Mayan day glyphs (Tzolkin 20 day signs)
   public func mayanDaySign(index : Nat) : Glyph {
-    let signs = [
-      ("Imix", "Crocodile/Water Lily", 1),
-      ("Ik", "Wind/Breath", 2),
-      ("Akbal", "Night/House", 3),
-      ("Kan", "Seed/Lizard", 4),
-      ("Chicchan", "Serpent", 5),
-      ("Cimi", "Death/Transformation", 6),
-      ("Manik", "Deer/Hand", 7),
-      ("Lamat", "Rabbit/Star", 8),
-      ("Muluc", "Water/Jade", 9),
-      ("Oc", "Dog", 10),
-      ("Chuen", "Monkey/Artisan", 11),
-      ("Eb", "Road/Grass", 12),
-      ("Ben", "Reed/Corn", 13),
-      ("Ix", "Jaguar/Wizard", 14),
-      ("Men", "Eagle", 15),
-      ("Cib", "Vulture/Owl", 16),
-      ("Caban", "Earth/Movement", 17),
-      ("Etznab", "Flint/Mirror", 18),
-      ("Cauac", "Storm/Rain", 19),
-      ("Ahau", "Sun/Lord", 20)
-    ];
-
-    let idx = index % 20;
-    let (name, meaning, vertices) = signs[idx];
-
-    {
-      symbol = name;
-      meaning = meaning;
-      frequency = SCHUMANN_HZ * Float.fromInt(vertices);
-      tradition = "Mayan";
-      geometry = ?{
-        vertices = vertices;
-        edges = vertices;
-        faces = 1;
-        symmetryOrder = vertices;
-      };
-      numericValue = ?idx;
-    }
-  };
-
-  /// Mayan Long Count calculation
-  /// Computes days from creation (August 11, 3114 BCE)
-  public func mayanLongCount(baktun : Nat, katun : Nat, tun : Nat, uinal : Nat, kin : Nat) : Nat {
-    // 1 kin = 1 day
-    // 1 uinal = 20 kin
-    // 1 tun = 360 kin
-    // 1 katun = 7,200 kin
-    // 1 baktun = 144,000 kin
-    (baktun * 144000) + (katun * 7200) + (tun * 360) + (uinal * 20) + kin
-  };
-
-  /// Tzolkin day number (1-260)
-  public func tzolkinDay(dayNumber : Nat, daySign : Nat) : Glyph {
-    let num = (dayNumber % 13) + 1;
-    let sign = mayanDaySign(daySign);
+    let names = ["Imix", "Ik", "Akbal", "Kan", "Chicchan", "Cimi", "Manik", "Lamat",
+                 "Muluc", "Oc", "Chuen", "Eb", "Ben", "Ix", "Men", "Cib", "Caban", 
+                 "Etznab", "Cauac", "Ahau"];
+    let meanings = ["Crocodile/Water", "Wind/Breath", "Night/House", "Seed/Lizard",
+                   "Serpent", "Death", "Deer/Hand", "Rabbit/Star", "Water/Moon", "Dog",
+                   "Monkey", "Grass/Road", "Reed", "Jaguar", "Eagle", "Vulture/Owl",
+                   "Earth", "Flint/Mirror", "Storm", "Sun/Lord"];
+    
+    let i = index % 20;
+    let name = names[i];
+    let meaning = meanings[i];
     
     {
-      symbol = Nat.toText(num) # " " # sign.symbol;
-      meaning = "Tzolkin: " # Nat.toText(num) # " " # sign.meaning;
-      frequency = SACRED_432_HZ * PHI * Float.fromInt(num) / 13.0;
-      tradition = "Mayan";
-      geometry = sign.geometry;
-      numericValue = ?((num - 1) * 20 + daySign);
-    }
+      id = "mayan-day-" # name;
+      origin = #Mayan;
+      function = #Time;
+      symbol = name;
+      meaning = meaning;
+      numericValue = ?(i + 1);
+      frequency = Matalko.FREQ_432 * Matalko.phiPower(i % 8);
+      phiPosition = Float.fromInt(i) / 20.0;
+      geometry = ?{ vertices = 4; edges = 4; faces = 1; dimension = 2; centerAngle = Float.fromInt(i) * 18.0 };
+      linkedGlyphs = [];
+    };
+  };
+
+  /// Mayan Long Count computation
+  public func mayanLongCount(baktun : Nat, katun : Nat, tun : Nat, uinal : Nat, kin : Nat) : GlyphPhrase {
+    let totalDays = baktun * 144000 + katun * 7200 + tun * 360 + uinal * 20 + kin;
+    
+    {
+      glyphs = [
+        mayanNumber(baktun % 20),
+        mayanNumber(katun % 20),
+        mayanNumber(tun % 20),
+        mayanNumber(uinal % 20),
+        mayanNumber(kin % 20)
+      ];
+      combinedMeaning = "Long Count: " # Nat.toText(totalDays) # " days from creation";
+      computationalResult = Float.fromInt(totalDays);
+      resonanceSignature = Matalko.phiEncode(Float.fromInt(totalDays));
+    };
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // CHINESE GLYPHS — Compressed Meaning Transfer
+  // CHINESE CHARACTER SYSTEM (Compressed Meaning Transfer)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Five Elements (Wu Xing)
+  /// Chinese elemental characters (Wu Xing)
   public func chineseElement(element : Text) : Glyph {
-    switch (element) {
-      case ("wood") {
-        symbol = "木";
-        meaning = "Growth/Spring/East";
-        frequency = 396.0;
-        tradition = "Chinese";
-        geometry = ?{ vertices = 4; edges = 4; faces = 1; symmetryOrder = 4 };
-        numericValue = ?1;
-      };
-      case ("fire") {
-        symbol = "火";
-        meaning = "Transformation/Summer/South";
-        frequency = 417.0;
-        tradition = "Chinese";
-        geometry = ?{ vertices = 3; edges = 3; faces = 1; symmetryOrder = 3 };
-        numericValue = ?2;
-      };
-      case ("earth") {
-        symbol = "土";
-        meaning = "Stability/Center";
-        frequency = 528.0;
-        tradition = "Chinese";
-        geometry = ?{ vertices = 4; edges = 4; faces = 1; symmetryOrder = 4 };
-        numericValue = ?3;
-      };
-      case ("metal") {
-        symbol = "金";
-        meaning = "Contraction/Autumn/West";
-        frequency = 639.0;
-        tradition = "Chinese";
-        geometry = ?{ vertices = 6; edges = 6; faces = 1; symmetryOrder = 6 };
-        numericValue = ?4;
-      };
-      case ("water") {
-        symbol = "水";
-        meaning = "Flowing/Winter/North";
-        frequency = 741.0;
-        tradition = "Chinese";
-        geometry = ?{ vertices = 5; edges = 5; faces = 1; symmetryOrder = 5 };
-        numericValue = ?5;
-      };
-      case (_) {
-        symbol = "道";
-        meaning = "The Way/Tao";
-        frequency = 852.0;
-        tradition = "Chinese";
-        geometry = null;
-        numericValue = ?0;
-      };
-    }
-  };
-
-  /// Eight Trigrams (Ba Gua)
-  public func chineseTrigram(index : Nat) : Glyph {
-    let trigrams = [
-      ("☰", "Qian/Heaven/Creative", 111),    // ≡≡≡
-      ("☱", "Dui/Lake/Joyous", 110),         // ≡≡  
-      ("☲", "Li/Fire/Clinging", 101),        // ≡ ≡
-      ("☳", "Zhen/Thunder/Arousing", 100),   // ≡  
-      ("☴", "Xun/Wind/Gentle", 011),         //  ≡≡
-      ("☵", "Kan/Water/Abysmal", 010),       //  ≡ 
-      ("☶", "Gen/Mountain/Stillness", 001),  //   ≡
-      ("☷", "Kun/Earth/Receptive", 000)      //    
-    ];
-
-    let idx = index % 8;
-    let (symbol, meaning, binary) = trigrams[idx];
-
+    let (symbol, meaning, freq) = switch (element) {
+      case "wood" ("木", "Wood - Growth, Expansion", 297.0);
+      case "fire" ("火", "Fire - Transformation, Action", 396.0);
+      case "earth" ("土", "Earth - Stability, Center", 264.0);
+      case "metal" ("金", "Metal - Contraction, Refinement", 528.0);
+      case "water" ("水", "Water - Flow, Adaptability", 174.0);
+      case _ ("氣", "Qi - Life Force", 432.0);
+    };
+    
     {
+      id = "chinese-element-" # element;
+      origin = #Chinese;
+      function = #Element;
       symbol = symbol;
       meaning = meaning;
-      frequency = SCHUMANN_HZ * Float.fromInt(idx + 1) * PHI;
-      tradition = "Chinese";
-      geometry = ?{ vertices = 3; edges = 3; faces = 1; symmetryOrder = 2 };
-      numericValue = ?binary;
-    }
-  };
-
-  /// I Ching Hexagram (64 combinations)
-  public func iChingHexagram(upper : Nat, lower : Nat) : Glyph {
-    let upperTrigram = chineseTrigram(upper % 8);
-    let lowerTrigram = chineseTrigram(lower % 8);
-    let hexNumber = (upper % 8) * 8 + (lower % 8) + 1;
-
-    {
-      symbol = upperTrigram.symbol # lowerTrigram.symbol;
-      meaning = "Hexagram " # Nat.toText(hexNumber) # ": " # upperTrigram.meaning # " over " # lowerTrigram.meaning;
-      frequency = (upperTrigram.frequency + lowerTrigram.frequency) / 2.0 * PHI;
-      tradition = "Chinese";
-      geometry = ?{ vertices = 6; edges = 6; faces = 1; symmetryOrder = 2 };
-      numericValue = ?hexNumber;
-    }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // EGYPTIAN HIEROGLYPHS — Sacred Geometry
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Key Egyptian symbols
-  public func egyptianSymbol(name : Text) : Glyph {
-    switch (name) {
-      case ("ankh") {
-        symbol = "☥";
-        meaning = "Life/Eternal/Key of Life";
-        frequency = SACRED_432_HZ;
-        tradition = "Egyptian";
-        geometry = ?{ vertices = 5; edges = 5; faces = 1; symmetryOrder = 1 };
-        numericValue = ?1;
-      };
-      case ("eye") {
-        symbol = "𓂀";
-        meaning = "Eye of Horus/Protection/Royal Power";
-        frequency = SACRED_432_HZ * PHI;
-        tradition = "Egyptian";
-        geometry = ?{ vertices = 6; edges = 9; faces = 1; symmetryOrder = 1 };
-        numericValue = ?64; // 1/2 + 1/4 + 1/8 + 1/16 + 1/32 + 1/64
-      };
-      case ("scarab") {
-        symbol = "𓆣";
-        meaning = "Khepri/Transformation/Rebirth";
-        frequency = SCHUMANN_HZ * SACRED_432_HZ / 100.0;
-        tradition = "Egyptian";
-        geometry = ?{ vertices = 8; edges = 12; faces = 6; symmetryOrder = 2 };
-        numericValue = ?3;
-      };
-      case ("pyramid") {
-        symbol = "△";
-        meaning = "Sacred Mountain/Ascension/Immortality";
-        frequency = SACRED_432_HZ / PHI;
-        tradition = "Egyptian";
-        geometry = ?{ vertices = 4; edges = 6; faces = 4; symmetryOrder = 4 };
-        numericValue = ?4;
-      };
-      case ("djed") {
-        symbol = "𓊽";
-        meaning = "Stability/Osiris Spine/Endurance";
-        frequency = SCHUMANN_HZ * 4.0;
-        tradition = "Egyptian";
-        geometry = ?{ vertices = 4; edges = 4; faces = 1; symmetryOrder = 1 };
-        numericValue = ?5;
-      };
-      case ("was") {
-        symbol = "𓌀";
-        meaning = "Power/Dominion/Set Scepter";
-        frequency = 528.0;
-        tradition = "Egyptian";
-        geometry = ?{ vertices = 3; edges = 2; faces = 1; symmetryOrder = 1 };
-        numericValue = ?6;
-      };
-      case (_) {
-        symbol = "𓆇";
-        meaning = "Ma'at/Truth/Justice/Cosmic Order";
-        frequency = SACRED_432_HZ * 2.0;
-        tradition = "Egyptian";
-        geometry = ?{ vertices = 7; edges = 7; faces = 1; symmetryOrder = 1 };
-        numericValue = ?42; // Ma'at's 42 laws
-      };
-    }
-  };
-
-  /// Egyptian unit fraction decomposition
-  /// Egyptians expressed fractions as sums of unit fractions (1/n)
-  public func egyptianFraction(numerator : Nat, denominator : Nat) : [Nat] {
-    // Greedy algorithm for Egyptian fraction decomposition
-    var num = numerator;
-    var den = denominator;
-    var result : [Nat] = [];
-    
-    while (num > 0 and Array.size(result) < 10) {
-      // Find smallest unit fraction ≤ num/den
-      let unitDen = (den / num) + (if (den % num == 0) { 0 } else { 1 });
-      result := Array.append(result, [unitDen]);
-      
-      // num/den - 1/unitDen = (num*unitDen - den) / (den*unitDen)
-      num := num * unitDen - den;
-      den := den * unitDen;
-      
-      // Reduce fraction
-      if (num > 0) {
-        var gcd = num;
-        var b = den;
-        while (b != 0) {
-          let temp = b;
-          b := gcd % b;
-          gcd := temp;
-        };
-        num := num / gcd;
-        den := den / gcd;
-      };
-    };
-    
-    result
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // VEDIC SANSKRIT — Frequency Encoding
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Bija (seed) mantras
-  public func vedicBija(mantra : Text) : Glyph {
-    switch (mantra) {
-      case ("om") {
-        symbol = "ॐ";
-        meaning = "Primordial/Universal/A-U-M";
-        frequency = 136.1; // Om resonance frequency
-        tradition = "Vedic";
-        geometry = ?{ vertices = 3; edges = 3; faces = 1; symmetryOrder = 3 };
-        numericValue = ?1;
-      };
-      case ("lam") {
-        symbol = "लं";
-        meaning = "Earth/Root Chakra/Muladhara";
-        frequency = 194.18; // C note
-        tradition = "Vedic";
-        geometry = ?{ vertices = 4; edges = 4; faces = 1; symmetryOrder = 4 };
-        numericValue = ?1;
-      };
-      case ("vam") {
-        symbol = "वं";
-        meaning = "Water/Sacral Chakra/Svadhisthana";
-        frequency = 210.42; // D note
-        tradition = "Vedic";
-        geometry = ?{ vertices = 6; edges = 6; faces = 1; symmetryOrder = 6 };
-        numericValue = ?2;
-      };
-      case ("ram") {
-        symbol = "रं";
-        meaning = "Fire/Solar Plexus/Manipura";
-        frequency = 126.22; // B note
-        tradition = "Vedic";
-        geometry = ?{ vertices = 10; edges = 10; faces = 1; symmetryOrder = 10 };
-        numericValue = ?3;
-      };
-      case ("yam") {
-        symbol = "यं";
-        meaning = "Air/Heart Chakra/Anahata";
-        frequency = 136.1; // Om frequency
-        tradition = "Vedic";
-        geometry = ?{ vertices = 12; edges = 12; faces = 1; symmetryOrder = 12 };
-        numericValue = ?4;
-      };
-      case ("ham") {
-        symbol = "हं";
-        meaning = "Ether/Throat Chakra/Vishuddha";
-        frequency = 141.27; // F# note
-        tradition = "Vedic";
-        geometry = ?{ vertices = 16; edges = 16; faces = 1; symmetryOrder = 16 };
-        numericValue = ?5;
-      };
-      case ("aum") {
-        symbol = "ॐ";
-        meaning = "Third Eye/Ajna";
-        frequency = 221.23; // A note
-        tradition = "Vedic";
-        geometry = ?{ vertices = 2; edges = 2; faces = 1; symmetryOrder = 2 };
-        numericValue = ?6;
-      };
-      case (_) {
-        symbol = "ॐ";
-        meaning = "Crown/Sahasrara/Silence";
-        frequency = 172.06; // F note
-        tradition = "Vedic";
-        geometry = ?{ vertices = 1000; edges = 1000; faces = 1; symmetryOrder = 1000 };
-        numericValue = ?7;
-      };
-    }
-  };
-
-  /// Seven Chakra glyphs
-  public func chakraGlyph(chakraNumber : Nat) : Glyph {
-    let chakras = [
-      ("Muladhara", "Root", 194.18, "Red", 4),
-      ("Svadhisthana", "Sacral", 210.42, "Orange", 6),
-      ("Manipura", "Solar Plexus", 126.22, "Yellow", 10),
-      ("Anahata", "Heart", 136.1, "Green", 12),
-      ("Vishuddha", "Throat", 141.27, "Blue", 16),
-      ("Ajna", "Third Eye", 221.23, "Indigo", 2),
-      ("Sahasrara", "Crown", 172.06, "Violet", 1000)
-    ];
-
-    let idx = chakraNumber % 7;
-    let (name, meaning, freq, _color, petals) = chakras[idx];
-
-    {
-      symbol = name;
-      meaning = meaning # " Chakra";
+      numericValue = null;
       frequency = freq;
-      tradition = "Vedic";
-      geometry = ?{ vertices = petals; edges = petals; faces = 1; symmetryOrder = petals };
-      numericValue = ?(idx + 1);
-    }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // HEBREW LETTERS — Gematria & Tree of Life
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// 22 Hebrew letters with gematria values
-  public func hebrewLetter(index : Nat) : Glyph {
-    let letters = [
-      ("א", "Aleph", 1, "Breath/Ox"),
-      ("ב", "Bet", 2, "House"),
-      ("ג", "Gimel", 3, "Camel"),
-      ("ד", "Dalet", 4, "Door"),
-      ("ה", "He", 5, "Window"),
-      ("ו", "Vav", 6, "Hook/Nail"),
-      ("ז", "Zayin", 7, "Sword"),
-      ("ח", "Chet", 8, "Fence"),
-      ("ט", "Tet", 9, "Serpent"),
-      ("י", "Yod", 10, "Hand"),
-      ("כ", "Kaf", 20, "Palm"),
-      ("ל", "Lamed", 30, "Goad"),
-      ("מ", "Mem", 40, "Water"),
-      ("נ", "Nun", 50, "Fish"),
-      ("ס", "Samekh", 60, "Support"),
-      ("ע", "Ayin", 70, "Eye"),
-      ("פ", "Pe", 80, "Mouth"),
-      ("צ", "Tsade", 90, "Hook"),
-      ("ק", "Qof", 100, "Needle Eye"),
-      ("ר", "Resh", 200, "Head"),
-      ("ש", "Shin", 300, "Tooth/Fire"),
-      ("ת", "Tav", 400, "Cross/Mark")
-    ];
-
-    let idx = index % 22;
-    let (symbol, name, value, meaning) = letters[idx];
-
-    {
-      symbol = symbol;
-      meaning = name # " - " # meaning # " (Path " # Nat.toText(idx + 1) # " on Tree of Life)";
-      frequency = SCHUMANN_HZ * Float.fromInt(value) / 10.0;
-      tradition = "Hebrew";
-      geometry = ?{ vertices = idx + 1; edges = idx + 1; faces = 1; symmetryOrder = 1 };
-      numericValue = ?value;
-    }
-  };
-
-  /// Calculate gematria value of a word
-  public func gematria(word : Text) : Nat {
-    // Simple mapping for demonstration
-    var total = 0;
-    for (c in Text.toIter(word)) {
-      let value = switch (c) {
-        case ('a') { 1 }; case ('b') { 2 }; case ('c') { 3 }; case ('d') { 4 };
-        case ('e') { 5 }; case ('f') { 6 }; case ('g') { 7 }; case ('h') { 8 };
-        case ('i') { 9 }; case ('j') { 10 }; case ('k') { 20 }; case ('l') { 30 };
-        case ('m') { 40 }; case ('n') { 50 }; case ('o') { 60 }; case ('p') { 70 };
-        case ('q') { 80 }; case ('r') { 90 }; case ('s') { 100 }; case ('t') { 200 };
-        case ('u') { 300 }; case ('v') { 400 }; case ('w') { 500 }; case ('x') { 600 };
-        case ('y') { 700 }; case ('z') { 800 }; case (_) { 0 };
-      };
-      total += value;
+      phiPosition = Matalko.phiEncode(freq);
+      geometry = null;
+      linkedGlyphs = [];
     };
-    total
   };
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // GREEK LETTERS — Mathematical Constants
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Greek mathematical symbols
-  public func greekLetter(name : Text) : Glyph {
-    switch (name) {
-      case ("alpha") {
-        symbol = "α";
-        meaning = "First/Beginning/Fine structure constant";
-        frequency = 7.297e-3 * 1e6; // Fine structure constant scaled
-        tradition = "Greek";
-        geometry = null;
-        numericValue = ?1;
-      };
-      case ("phi") {
-        symbol = "φ";
-        meaning = "Golden Ratio";
-        frequency = PHI * 100.0;
-        tradition = "Greek";
-        geometry = ?{ vertices = 5; edges = 5; faces = 1; symmetryOrder = 5 };
-        numericValue = null;
-      };
-      case ("pi") {
-        symbol = "π";
-        meaning = "Circle Ratio";
-        frequency = 3.14159265358979 * 100.0;
-        tradition = "Greek";
-        geometry = ?{ vertices = 0; edges = 1; faces = 2; symmetryOrder = 1000 }; // Circle
-        numericValue = null;
-      };
-      case ("omega") {
-        symbol = "Ω";
-        meaning = "Last/End/Ohm/Resistance";
-        frequency = SACRED_432_HZ * 2.0;
-        tradition = "Greek";
-        geometry = null;
-        numericValue = ?800;
-      };
-      case ("delta") {
-        symbol = "Δ";
-        meaning = "Change/Triangle/Fourth";
-        frequency = SCHUMANN_HZ * 4.0;
-        tradition = "Greek";
-        geometry = ?{ vertices = 3; edges = 3; faces = 1; symmetryOrder = 3 };
-        numericValue = ?4;
-      };
-      case ("theta") {
-        symbol = "θ";
-        meaning = "Angle/Soul/Divine";
-        frequency = 360.0;
-        tradition = "Greek";
-        geometry = null;
-        numericValue = ?9;
-      };
-      case ("lambda") {
-        symbol = "λ";
-        meaning = "Wavelength/Half-life";
-        frequency = 299792458.0 / 1e9; // Speed of light in GHz
-        tradition = "Greek";
-        geometry = null;
-        numericValue = ?30;
-      };
-      case (_) {
-        symbol = "∞";
-        meaning = "Infinity/Apeiron";
-        frequency = 0.0;
-        tradition = "Greek";
-        geometry = null;
-        numericValue = null;
-      };
-    }
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // GLYPH COMBINATION & RESONANCE
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Combine glyphs into a phrase with unified resonance
-  public func combineGlyphs(glyphs : [Glyph], intent : Text, timestamp : Int) : GlyphPhrase {
-    var totalFreq : Float = 0.0;
-    var count : Float = 0.0;
-
-    for (g in glyphs.vals()) {
-      totalFreq += g.frequency;
-      count += 1.0;
-    };
-
-    let avgFreq = if (count > 0.0) { totalFreq / count } else { SCHUMANN_HZ };
+  /// Chinese trigram (Bagua)
+  public func chineseTrigram(index : Nat) : Glyph {
+    let names = ["☰ Qian", "☱ Dui", "☲ Li", "☳ Zhen", "☴ Xun", "☵ Kan", "☶ Gen", "☷ Kun"];
+    let meanings = ["Heaven/Creative", "Lake/Joyous", "Fire/Clinging", "Thunder/Arousing",
+                   "Wind/Gentle", "Water/Abysmal", "Mountain/Stillness", "Earth/Receptive"];
+    let symbols = ["☰", "☱", "☲", "☳", "☴", "☵", "☶", "☷"];
     
-    // Apply golden ratio modulation for harmonic resonance
-    let resonance = avgFreq * PHI / (PHI + 1.0);
+    let i = index % 8;
+    
+    {
+      id = "trigram-" # Nat.toText(i);
+      origin = #Chinese;
+      function = #Geometry;
+      symbol = symbols[i];
+      meaning = meanings[i];
+      numericValue = ?(i + 1);
+      frequency = Matalko.FREQ_432 * (Float.fromInt(i + 1) / 8.0 + 1.0);
+      phiPosition = Float.fromInt(i) / 8.0;
+      geometry = ?{ vertices = 3; edges = 3; faces = 1; dimension = 2; centerAngle = Float.fromInt(i) * 45.0 };
+      linkedGlyphs = [];
+    };
+  };
 
+  /// I Ching hexagram computation
+  public func iChingHexagram(lower : Nat, upper : Nat) : GlyphPhrase {
+    let hexNum = (upper % 8) * 8 + (lower % 8) + 1;
+    
+    {
+      glyphs = [chineseTrigram(lower), chineseTrigram(upper)];
+      combinedMeaning = "Hexagram " # Nat.toText(hexNum) # ": " # hexagramName(hexNum);
+      computationalResult = Float.fromInt(hexNum);
+      resonanceSignature = Matalko.harmonicResonance(
+        Matalko.FREQ_432 * Float.fromInt(lower + 1),
+        Matalko.FREQ_432 * Float.fromInt(upper + 1)
+      );
+    };
+  };
+
+  func hexagramName(n : Nat) : Text {
+    let names = ["The Creative", "The Receptive", "Difficulty at the Beginning", "Youthful Folly",
+                "Waiting", "Conflict", "The Army", "Holding Together", "Small Taming", "Treading",
+                "Peace", "Standstill", "Fellowship", "Great Possession", "Modesty", "Enthusiasm"];
+    if (n <= 16) { names[n - 1] } else { "Hexagram " # Nat.toText(n) };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // EGYPTIAN HIEROGLYPHIC SYSTEM (Sacred Geometry Encoding)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Egyptian sacred symbols
+  public func egyptianSymbol(name : Text) : Glyph {
+    let (symbol, meaning, geom) : (Text, Text, GeometryCode) = switch (name) {
+      case "ankh" ("☥", "Life/Eternal", { vertices = 5; edges = 5; faces = 2; dimension = 2; centerAngle = 0.0 });
+      case "eye" ("𓂀", "Eye of Horus/Protection", { vertices = 6; edges = 6; faces = 1; dimension = 2; centerAngle = 0.0 });
+      case "djed" ("𓊽", "Stability/Spine of Osiris", { vertices = 8; edges = 12; faces = 4; dimension = 3; centerAngle = 90.0 });
+      case "was" ("𓌀", "Power/Dominion", { vertices = 4; edges = 4; faces = 1; dimension = 2; centerAngle = 45.0 });
+      case "scarab" ("𓆣", "Transformation/Rebirth", { vertices = 6; edges = 6; faces = 1; dimension = 2; centerAngle = 60.0 });
+      case "pyramid" ("△", "Ascension/Eternity", { vertices = 4; edges = 6; faces = 4; dimension = 3; centerAngle = 51.5 });
+      case _ ("☉", "Ra/Sun/Source", { vertices = 1; edges = 0; faces = 1; dimension = 2; centerAngle = 360.0 });
+    };
+    
+    {
+      id = "egyptian-" # name;
+      origin = #Egyptian;
+      function = #Geometry;
+      symbol = symbol;
+      meaning = meaning;
+      numericValue = null;
+      frequency = Matalko.FREQ_432 * Matalko.PHI;
+      phiPosition = Matalko.phiEncode(Float.fromInt(Text.hash(name)));
+      geometry = ?geom;
+      linkedGlyphs = [];
+    };
+  };
+
+  /// Egyptian fraction computation (unit fractions)
+  public func egyptianFraction(numerator : Nat, denominator : Nat) : GlyphPhrase {
+    // Egyptians used only unit fractions (1/n)
+    // Decompose any fraction into sum of unit fractions
+    var remaining = numerator;
+    var denom = denominator;
+    var glyphs : [Glyph] = [];
+    var value : Float = 0.0;
+    
+    while (remaining > 0 and Array.size(glyphs) < 10) {
+      let unitDenom = (denom + remaining - 1) / remaining; // Ceiling division
+      glyphs := Array.append(glyphs, [{
+        id = "unit-frac-" # Nat.toText(unitDenom);
+        origin = #Egyptian;
+        function = #Number;
+        symbol = "1/" # Nat.toText(unitDenom);
+        meaning = "Unit fraction 1/" # Nat.toText(unitDenom);
+        numericValue = ?unitDenom;
+        frequency = Matalko.FREQ_432 / Float.fromInt(unitDenom);
+        phiPosition = 1.0 / Float.fromInt(unitDenom);
+        geometry = null;
+        linkedGlyphs = [];
+      }]);
+      value += 1.0 / Float.fromInt(unitDenom);
+      remaining := remaining * unitDenom - denom;
+      denom := denom * unitDenom;
+    };
+    
     {
       glyphs = glyphs;
-      combinedResonance = resonance;
-      intentVector = intent;
-      timestamp = timestamp;
-    }
-  };
-
-  /// Calculate resonance between two glyphs (0.0 to 1.0)
-  public func glyphResonance(g1 : Glyph, g2 : Glyph) : Float {
-    let freqRatio = if (g1.frequency > g2.frequency) {
-      g2.frequency / g1.frequency;
-    } else {
-      g1.frequency / g2.frequency;
+      combinedMeaning = "Egyptian fraction decomposition of " # Nat.toText(numerator) # "/" # Nat.toText(denominator);
+      computationalResult = value;
+      resonanceSignature = Matalko.phiEncode(value);
     };
-    
-    // Check for PHI relationship
-    let phiDiff = Float.abs(freqRatio - PHI_INVERSE);
-    let phiResonance = 1.0 - (phiDiff * 2.0);
-    
-    // Check for harmonic relationship (octave, fifth, fourth)
-    let octaveRes = Float.abs(freqRatio - 0.5);
-    let fifthRes = Float.abs(freqRatio - 0.666666);
-    let fourthRes = Float.abs(freqRatio - 0.75);
-    
-    let harmonicRes = 1.0 - Float.min(Float.min(octaveRes, fifthRes), fourthRes) * 2.0;
-    
-    Float.max(0.0, Float.max(phiResonance, harmonicRes))
-  };
-
-  /// Check if glyphs form a sacred pattern
-  public func isSacredCombination(glyphs : [Glyph]) : Bool {
-    let size = Array.size(glyphs);
-    
-    // Fibonacci numbers are sacred
-    let fibs = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
-    var isFib = false;
-    for (f in fibs.vals()) {
-      if (size == f) { isFib := true };
-    };
-    
-    // Powers of 2 (octave doubling)
-    let isPowerOf2 = size == 1 or size == 2 or size == 4 or size == 8 or size == 16 or size == 32;
-    
-    // Sacred numbers: 3, 7, 12, 22, 108
-    let isSacredNum = size == 3 or size == 7 or size == 12 or size == 22 or size == 108;
-    
-    isFib or isPowerOf2 or isSacredNum
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // CROSS-TRADITION MAPPINGS
+  // VEDIC SYSTEM (Mantra/Frequency Encoding)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Map chakra to element
-  public func chakraToElement(chakra : Nat) : Glyph {
-    switch (chakra % 7) {
-      case (0) { chineseElement("earth") };
-      case (1) { chineseElement("water") };
-      case (2) { chineseElement("fire") };
-      case (3) { chineseElement("wood") }; // Air ~ Wood (growth/expansion)
-      case (4) { chineseElement("metal") }; // Ether ~ Metal (refinement)
-      case (5) { greekLetter("theta") }; // Third eye ~ Pure consciousness
-      case (_) { greekLetter("omega") }; // Crown ~ Infinity
-    }
+  /// Vedic seed syllables (Bija mantras)
+  public func vedicBija(syllable : Text) : Glyph {
+    let (meaning, freq) : (Text, Float) = switch (syllable) {
+      case "om" ("Primordial/Universal", 136.1);        // Om frequency
+      case "lam" ("Root/Earth", 194.18);                 // C note
+      case "vam" ("Sacral/Water", 210.42);               // D note  
+      case "ram" ("Solar Plexus/Fire", 126.22);          // B note
+      case "yam" ("Heart/Air", 136.1);                   // C# note
+      case "ham" ("Throat/Ether", 141.27);               // C# note
+      case "aum" ("Third Eye/Light", 221.23);            // A note
+      case "silence" ("Crown/Consciousness", 172.06);    // F note
+      case _ ("Shakti/Power", 432.0);
+    };
+    
+    {
+      id = "vedic-bija-" # syllable;
+      origin = #Vedic;
+      function = #Sound;
+      symbol = syllable;
+      meaning = meaning;
+      numericValue = null;
+      frequency = freq;
+      phiPosition = Matalko.phiEncode(freq);
+      geometry = null;
+      linkedGlyphs = [];
+    };
   };
 
-  /// Map number to multi-tradition glyphs
-  public func numberToGlyphs(n : Nat) : [Glyph] {
+  /// Vedic number encoding (Sanskrit numerals)
+  public func vedicNumber(n : Nat) : Glyph {
+    let names = ["shunya", "eka", "dvi", "tri", "chatur", "pancha", "shat", "sapta", "ashta", "nava"];
+    let name = if (n < 10) { names[n] } else { "dasha" };
+    
+    {
+      id = "vedic-num-" # Nat.toText(n);
+      origin = #Vedic;
+      function = #Number;
+      symbol = name;
+      meaning = "Sanskrit " # Nat.toText(n);
+      numericValue = ?n;
+      frequency = Matalko.FREQ_432 * (1.0 + Float.fromInt(n) / 10.0);
+      phiPosition = Float.fromInt(n) / 10.0;
+      geometry = null;
+      linkedGlyphs = [];
+    };
+  };
+
+  /// Chakra computation
+  public func chakraGlyph(level : Nat) : Glyph {
+    let names = ["Muladhara", "Svadhisthana", "Manipura", "Anahata", "Vishuddha", "Ajna", "Sahasrara"];
+    let colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"];
+    let frequencies = [256.0, 288.0, 320.0, 341.3, 384.0, 426.7, 480.0];
+    
+    let i = level % 7;
+    
+    {
+      id = "chakra-" # Nat.toText(i + 1);
+      origin = #Vedic;
+      function = #Sound;
+      symbol = names[i];
+      meaning = names[i] # " (" # colors[i] # ")";
+      numericValue = ?(i + 1);
+      frequency = frequencies[i];
+      phiPosition = Float.fromInt(i) / 7.0;
+      geometry = ?{ 
+        vertices = 4 + i * 2; // Increasing petals
+        edges = 4 + i * 2;
+        faces = 1;
+        dimension = 2;
+        centerAngle = 360.0 / Float.fromInt(4 + i * 2);
+      };
+      linkedGlyphs = [];
+    };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // HEBREW SYSTEM (Gematria Computation)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Hebrew letter with gematria value
+  public func hebrewLetter(index : Nat) : Glyph {
+    let letters = ["א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט", "י",
+                  "כ", "ל", "מ", "נ", "ס", "ע", "פ", "צ", "ק", "ר", "ש", "ת"];
+    let names = ["Aleph", "Bet", "Gimel", "Dalet", "He", "Vav", "Zayin", "Chet", "Tet", "Yod",
+                "Kaf", "Lamed", "Mem", "Nun", "Samekh", "Ayin", "Pe", "Tsade", "Qof", "Resh", "Shin", "Tav"];
+    let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400];
+    
+    let i = index % 22;
+    
+    {
+      id = "hebrew-" # names[i];
+      origin = #Hebrew;
+      function = #Number;
+      symbol = letters[i];
+      meaning = names[i] # " (Path " # Nat.toText(i + 1) # " on Tree of Life)";
+      numericValue = ?values[i];
+      frequency = Matalko.FREQ_432 * Float.fromInt(values[i]) / 400.0;
+      phiPosition = Float.fromInt(i) / 22.0;
+      geometry = null;
+      linkedGlyphs = [];
+    };
+  };
+
+  /// Gematria computation (word to number)
+  public func gematria(word : Text) : GlyphPhrase {
+    // Simplified: map ASCII to Hebrew positions
+    var total : Nat = 0;
+    var glyphs : [Glyph] = [];
+    
+    for (char in Text.toIter(word)) {
+      let code = switch (char) {
+        case 'a' 1; case 'b' 2; case 'c' 3; case 'd' 4; case 'e' 5;
+        case 'f' 6; case 'g' 7; case 'h' 8; case 'i' 9; case 'j' 10;
+        case 'k' 20; case 'l' 30; case 'm' 40; case 'n' 50; case 'o' 60;
+        case 'p' 70; case 'q' 80; case 'r' 90; case 's' 100; case 't' 200;
+        case 'u' 300; case 'v' 400; case 'w' 500; case 'x' 600; case 'y' 700;
+        case 'z' 800;
+        case _ 0;
+      };
+      total += code;
+    };
+    
+    {
+      glyphs = glyphs;
+      combinedMeaning = "Gematria of \"" # word # "\" = " # Nat.toText(total);
+      computationalResult = Float.fromInt(total);
+      resonanceSignature = Matalko.phiEncode(Float.fromInt(total));
+    };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // GREEK SYSTEM (Mathematical Symbols)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Greek letter with mathematical meaning
+  public func greekLetter(name : Text) : Glyph {
+    let (symbol, meaning, value) : (Text, Text, Float) = switch (name) {
+      case "phi" ("φ", "Golden Ratio", Matalko.PHI);
+      case "pi" ("π", "Circle Ratio", Matalko.PI);
+      case "tau" ("τ", "Full Rotation", Matalko.TAU);
+      case "e" ("ε", "Euler's Number", Matalko.E);
+      case "alpha" ("α", "Beginning/First", 1.0);
+      case "omega" ("ω", "End/Last", 24.0);
+      case "delta" ("Δ", "Change/Difference", 0.0);
+      case "sigma" ("Σ", "Sum/Total", 0.0);
+      case "theta" ("θ", "Angle", 0.0);
+      case "lambda" ("λ", "Wavelength", 0.0);
+      case _ ("γ", "Ratio", 0.0);
+    };
+    
+    {
+      id = "greek-" # name;
+      origin = #Greek;
+      function = #Operation;
+      symbol = symbol;
+      meaning = meaning;
+      numericValue = null;
+      frequency = Matalko.FREQ_432 * (if (value > 0.0) { value } else { 1.0 });
+      phiPosition = if (value > 0.0) { Matalko.phiEncode(value) } else { 0.5 };
+      geometry = null;
+      linkedGlyphs = [];
+    };
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // GLYPH PHRASE COMPUTATION
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Combine multiple glyphs into computational phrase
+  public func combineGlyphs(glyphs : [Glyph]) : GlyphPhrase {
+    var totalFreq : Float = 0.0;
+    var combinedMeaning = "";
+    var computedValue : Float = 0.0;
+    
+    for (glyph in glyphs.vals()) {
+      totalFreq += glyph.frequency;
+      combinedMeaning #= glyph.symbol # " ";
+      switch (glyph.numericValue) {
+        case (?n) { computedValue += Float.fromInt(n); };
+        case null {};
+      };
+    };
+    
+    let avgFreq = totalFreq / Float.fromInt(Array.size(glyphs));
+    
+    {
+      glyphs = glyphs;
+      combinedMeaning = combinedMeaning;
+      computationalResult = computedValue;
+      resonanceSignature = Matalko.phiEncode(avgFreq);
+    };
+  };
+
+  /// Calculate resonance between two glyphs
+  public func glyphResonance(a : Glyph, b : Glyph) : Float {
+    Matalko.harmonicResonance(a.frequency, b.frequency);
+  };
+
+  /// Translate number through multiple glyph systems
+  public func multiSystemEncode(n : Nat) : [Glyph] {
     [
       mayanNumber(n % 20),
+      vedicNumber(n % 10),
       hebrewLetter(n % 22),
-      chakraGlyph(n % 7)
-    ]
+      chineseTrigram(n % 8)
+    ];
   };
-}
+};

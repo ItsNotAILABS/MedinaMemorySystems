@@ -1,6 +1,9 @@
 import T "./Types";
 
+/// ModelRouter provides model family routing and RUDN role determination.
+/// Routes tasks to appropriate model families based on task type and policy.
 module {
+  /// D1-D10 document organisms remain active workforce.
   public let dWorkforce : [Text] = [
     "D1",
     "D2",
@@ -14,6 +17,7 @@ module {
     "D10",
   ];
 
+  /// N1-N12 sovereign macro hierarchy remains control topology.
   public let nHierarchy : [Text] = [
     "N1",
     "N2",
@@ -29,106 +33,166 @@ module {
     "N12",
   ];
 
-  public func familyName(f : T.ModelFamily) : Text {
-    switch (f) {
-      case (#Strategist) "strategist";
-      case (#Builder) "builder";
-      case (#Analyst) "analyst";
-      case (#Governance) "governance";
-      case (#MemoryCurator) "memory-curator";
-      case (#Operations) "operations";
-      case (#Defense) "defense";
-      case (#Projection) "projection";
-    };
+  /// Task categories for routing decisions.
+  public type TaskCategory = {
+    #Governance;     // Law, proposal, approval tasks
+    #Memory;         // Memory retrieval, mutation, consolidation
+    #Projection;     // External output, projection
+    #Analysis;       // Analysis, evaluation, assessment
+    #Strategy;       // Planning, strategy, roadmap
+    #Build;          // Implementation, construction
+    #Operations;     // Coordination, orchestration
+    #Defense;        // Risk, security, validation
   };
 
-  public func modelFamilyNames() : [Text] {
-    [
-      "strategist",
-      "builder",
-      "analyst",
-      "governance",
-      "memory-curator",
-      "operations",
-      "defense",
-      "projection",
-    ];
-  };
-
-  public func parseFamily(name : Text) : ?T.ModelFamily {
-    if (name == "strategist") {
-      ?#Strategist;
-    } else if (name == "builder") {
-      ?#Builder;
-    } else if (name == "analyst") {
-      ?#Analyst;
-    } else if (name == "governance") {
-      ?#Governance;
-    } else if (name == "memory-curator" or name == "memory_curator" or name == "memory") {
-      ?#MemoryCurator;
-    } else if (name == "operations" or name == "ops") {
-      ?#Operations;
-    } else if (name == "defense" or name == "risk" or name == "defense-risk") {
-      ?#Defense;
-    } else if (name == "projection") {
-      ?#Projection;
+  /// Categorize a task reference.
+  public func categorizeTask(taskRef : Text) : TaskCategory {
+    if (taskRef == "governance" or taskRef == "law" or taskRef == "proposal" or taskRef == "approve") {
+      #Governance;
+    } else if (taskRef == "memory" or taskRef == "retrieve" or taskRef == "consolidate" or taskRef == "promote") {
+      #Memory;
+    } else if (taskRef == "projection" or taskRef == "external" or taskRef == "output") {
+      #Projection;
+    } else if (taskRef == "strategy" or taskRef == "plan" or taskRef == "roadmap") {
+      #Strategy;
+    } else if (taskRef == "build" or taskRef == "implement" or taskRef == "construct") {
+      #Build;
+    } else if (taskRef == "operations" or taskRef == "coordinate" or taskRef == "orchestrate") {
+      #Operations;
+    } else if (taskRef == "defense" or taskRef == "risk" or taskRef == "security" or taskRef == "validate") {
+      #Defense;
     } else {
-      null;
+      #Analysis;
     };
   };
 
+  /// Route task to appropriate model family.
   public func routeForTask(taskRef : Text, policy : ?Text) : T.ModelRoute {
-    if (taskRef == "governance" or taskRef == "law") {
-      {
-        family = #Governance;
-        label = "governance";
-        rationale = "Governance-sensitive workflow requires governance model.";
-        fallbackSource = null;
-        incidentRef = null;
-      };
-    } else if (taskRef == "memory") {
-      {
-        family = #MemoryCurator;
-        label = "memory-curator";
-        rationale = "Memory mutation/retrieval requires memory curator model.";
-        fallbackSource = null;
-        incidentRef = null;
-      };
-    } else if (taskRef == "projection") {
-      {
-        family = #Projection;
-        label = "projection";
-        rationale = "External projection requires bounded projection model.";
-        fallbackSource = null;
-        incidentRef = null;
-      };
-    } else if (taskRef == "build") {
-      {
-        family = #Builder;
-        label = "builder";
-        rationale = "Build tasks require builder model.";
-        fallbackSource = null;
-        incidentRef = null;
-      };
-    } else if (taskRef == "strategy") {
-      {
-        family = #Strategist;
-        label = "strategist";
-        rationale = "Strategic planning routes to strategist model.";
-        fallbackSource = null;
-        incidentRef = null;
-      };
-    } else {
-      {
-        family = #Analyst;
-        label = "analyst";
-        rationale = switch (policy) {
-          case null "Default analytical route.";
-          case (?p) "Policy-guided analytical route: " # p;
+    let category = categorizeTask(taskRef);
+    
+    switch (category) {
+      case (#Governance) {
+        {
+          family = #Governance;
+          rationale = "Governance-sensitive workflow requires governance model with strong gate validation.";
+          fallbackSource = ?("Analyst fallback available");
+          incidentRef = null;
         };
-        fallbackSource = null;
-        incidentRef = null;
       };
+      case (#Memory) {
+        {
+          family = #MemoryCurator;
+          rationale = "Memory mutation/retrieval requires memory curator model with lineage tracking.";
+          fallbackSource = ?("Analyst fallback available");
+          incidentRef = null;
+        };
+      };
+      case (#Projection) {
+        {
+          family = #Projection;
+          rationale = "External projection requires bounded projection model with Gate C validation.";
+          fallbackSource = null;
+          incidentRef = null;
+        };
+      };
+      case (#Strategy) {
+        {
+          family = #Strategist;
+          rationale = "Strategic planning requires strategist model with navigation capability.";
+          fallbackSource = ?("Analyst fallback available");
+          incidentRef = null;
+        };
+      };
+      case (#Build) {
+        {
+          family = #Builder;
+          rationale = "Implementation tasks require builder model with update capability.";
+          fallbackSource = ?("Operations fallback available");
+          incidentRef = null;
+        };
+      };
+      case (#Operations) {
+        {
+          family = #Operations;
+          rationale = "Coordination tasks require operations model with routing capability.";
+          fallbackSource = ?("Analyst fallback available");
+          incidentRef = null;
+        };
+      };
+      case (#Defense) {
+        {
+          family = #Defense;
+          rationale = "Security/risk assessment requires defense model with validation capability.";
+          fallbackSource = null;
+          incidentRef = null;
+        };
+      };
+      case (#Analysis) {
+        {
+          family = #Analyst;
+          rationale = switch (policy) {
+            case null "Default analytical route for general tasks.";
+            case (?p) "Policy-guided analytical route: " # p;
+          };
+          fallbackSource = null;
+          incidentRef = null;
+        };
+      };
+    };
+  };
+
+  /// Get fallback model family for a primary family.
+  public func fallbackFamily(primary : T.ModelFamily) : ?T.ModelFamily {
+    switch (primary) {
+      case (#Strategist) ?#Analyst;
+      case (#Builder) ?#Operations;
+      case (#Analyst) null;
+      case (#Governance) ?#Analyst;
+      case (#MemoryCurator) ?#Analyst;
+      case (#Operations) ?#Analyst;
+      case (#Defense) null;
+      case (#Projection) null;
+    };
+  };
+
+  /// Check if a task requires gate validation before execution.
+  public func requiresGate(taskRef : Text) : Bool {
+    let category = categorizeTask(taskRef);
+    switch (category) {
+      case (#Governance) true;
+      case (#Memory) true;
+      case (#Projection) true;
+      case (#Defense) true;
+      case _ false;
+    };
+  };
+
+  /// Determine if task should be handled by D workforce or N hierarchy.
+  public func workforceOrHierarchy(taskRef : Text) : { #Workforce; #Hierarchy } {
+    let category = categorizeTask(taskRef);
+    switch (category) {
+      case (#Governance) #Hierarchy;
+      case (#Strategy) #Hierarchy;
+      case (#Build) #Workforce;
+      case (#Operations) #Workforce;
+      case (#Analysis) #Workforce;
+      case (#Memory) #Hierarchy;
+      case (#Projection) #Hierarchy;
+      case (#Defense) #Hierarchy;
+    };
+  };
+
+  /// Get model family name as text.
+  public func familyName(family : T.ModelFamily) : Text {
+    switch (family) {
+      case (#Strategist) "Strategist";
+      case (#Builder) "Builder";
+      case (#Analyst) "Analyst";
+      case (#Governance) "Governance";
+      case (#MemoryCurator) "MemoryCurator";
+      case (#Operations) "Operations";
+      case (#Defense) "Defense";
+      case (#Projection) "Projection";
     };
   };
 };

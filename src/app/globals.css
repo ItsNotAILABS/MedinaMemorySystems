@@ -2,26 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   MEDINA SOVEREIGN DESIGN SYSTEM
+   432 Hz Color Palette + Phi-derived Spacing
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 :root {
-  --bg-main: #0a0a0f;
-  --bg-panel: #12121a;
-  --bg-panel-hover: #1a1a26;
-  --border: #1e1e2e;
-  --border-bright: #2d2d42;
-  --accent: #3b82f6;
-  --accent-light: #60a5fa;
-  --memory: #8b5cf6;
-  --governance: #10b981;
-  --gold: #f59e0b;
-  --danger: #ef4444;
-  --muted: #6b7280;
-  --text: #e2e8f0;
-  --text-dim: #94a3b8;
+  /* ─── PHI-DERIVED SPACING (Golden Ratio: 1.618) ─────────────────────────── */
+  --phi: 1.618033988749895;
+  --space-1: 4px;
+  --space-2: 6px;   /* 4 × 1.618 ≈ 6 */
+  --space-3: 10px;  /* 6 × 1.618 ≈ 10 */
+  --space-4: 16px;  /* 10 × 1.618 ≈ 16 */
+  --space-5: 26px;  /* 16 × 1.618 ≈ 26 */
+  --space-6: 42px;  /* 26 × 1.618 ≈ 42 */
+  --space-7: 68px;  /* 42 × 1.618 ≈ 68 */
+  --space-8: 110px; /* 68 × 1.618 ≈ 110 */
   
-  /* Glass effect variables */
-  --glass-bg: rgba(18, 18, 26, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  /* ─── 432 Hz HARMONIC COLOR PALETTE ─────────────────────────────────────── */
+  /* Base frequencies mapped to color wavelengths */
+  --hz-432-root: #0a0a12;        /* Deep void - grounding */
+  --hz-432-panel: #10101a;       /* Panel base */
+  --hz-432-surface: #161624;     /* Elevated surface */
+  --hz-432-hover: #1c1c2e;       /* Hover state */
+  
+  /* Harmonic series colors (432 Hz overtones) */
+  --oro-gold: #d4a574;           /* Oro's signature - warm gold */
+  --oro-amber: #e6b17a;          /* Oro highlight */
+  --nova-violet: #9b7ed9;        /* Nova's signature - ethereal violet */
+  --nova-lavender: #b794f6;      /* Nova highlight */
+  
+  /* Frequency spectrum */
+  --freq-low: #1a3a5c;           /* Bass - deep blue */
+  --freq-mid: #2d5a4a;           /* Mid - forest green */
+  --freq-high: #5c3a5c;          /* High - purple */
+  
+  /* Sovereign colors */
+  --sovereign-blue: #4a9eff;     /* Primary action */
+  --sovereign-cyan: #00d4ff;     /* Secondary action */
+  --memory-purple: #9b7ed9;      /* Memory operations */
+  --governance-green: #4ade80;   /* Governance / approval */
+  --danger-red: #f87171;         /* Alerts / blocks */
+  --warning-amber: #fbbf24;      /* Warnings */
+  
+  /* Glass effect colors */
+  --glass-bg: rgba(16, 16, 26, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  
+  /* Text hierarchy */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+  
+  /* Legacy compatibility */
+  --bg-main: var(--hz-432-root);
+  --bg-panel: var(--hz-432-panel);
+  --bg-panel-hover: var(--hz-432-hover);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-bright: rgba(255, 255, 255, 0.12);
+  --accent: var(--sovereign-blue);
+  --accent-light: var(--sovereign-cyan);
+  --memory: var(--memory-purple);
+  --governance: var(--governance-green);
+  --gold: var(--oro-gold);
+  --danger: var(--danger-red);
+  --muted: var(--text-muted);
+  --text: var(--text-primary);
 }
 
 * {

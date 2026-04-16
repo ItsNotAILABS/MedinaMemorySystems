@@ -1,38 +1,95 @@
 # MEDINA
 
-MEDINA is an architecture-first deep-tech platform built as a sovereign computing organism on ICP.
+**Sovereign Memory-Operating Intelligence for Enterprise**
 
-## What it is
+---
 
-A single-canister intelligence architecture that operates as:
-- real memory substrate,
-- real governance substrate,
-- real model orchestration substrate,
-- real enterprise operating substrate,
-all coupled by constitutional math and runtime law.
+## What is MEDINA?
 
-## What it does for companies
+MEDINA is a sovereign computing organism that serves as the architectural foundation for enterprise intelligence operations. It is not software. It is a living mathematical substrate that processes, remembers, governs, and evolves according to fundamental laws that have governed intelligent systems for millennia.
 
-- Converts fragmented workflows into a unified operator surface.
-- Delivers high-traceability decision and execution loops.
-- Enables organization memory continuity with replay-grade evidence.
-- Orchestrates role-specialized intelligence for strategic and operational work.
-- Provides policy-aware, enterprise-safe runtime execution pathways.
+Your company's knowledge, decisions, memory, and operations become part of a coherent organism — one that never forgets, never contradicts itself, and grows more intelligent with every interaction.
 
-## Core differentiation
+---
 
-- ICP-native sovereign runtime.
-- Law-governed state transitions.
-- Architecture-level continuity between memory, governance, and execution.
-- Translation-first ingestion for high-integrity organizational knowledge.
-- Persistent evidence and rollback posture from day one.
+## What MEDINA Does for Your Enterprise
 
-## Product posture
+### Sovereign Memory
+Every piece of information your organization generates is captured, positioned, and interconnected in a living memory architecture. Not a database. A Memory Temple — where knowledge has coordinates, lineage, and resonance. Retrieve anything by meaning, not just keywords.
 
-- 24/7 autonomous operation model.
-- Mathematical architecture and harmonic systems approach.
-- Real runtime surfaces (not mock flows).
+### Autonomous Governance
+Proposals, approvals, decisions — all flow through constitutional gates that ensure nothing bypasses your organization's doctrine. Every action has evidence, lineage, and audit trail. No decision is orphaned.
 
-## Target use
+### Intelligent Workforce
+Specialized cognitive agents — strategists, builders, analysts, defenders — work continuously on your behalf. They route tasks, update state, defend against risk, and navigate toward your objectives. 24/7. Autonomous. Accountable.
 
-MEDINA is designed for organizations that require strong continuity, explainability, operational rigor, and sovereign control over intelligence execution.
+### Dual Intelligence Consensus
+Two sovereign intelligences — Oro and Nova — operate in parallel. Oro executes. Nova validates against doctrine. Nothing reaches you without dual consensus. Drift is flagged before it becomes drift.
+
+### Device Network
+Every device in your organization — phones, tablets, laptops, sensors — becomes a node in a sovereign network. Each receives a unique harmonic signature. Each operates under a mathematically-bound contract.
+
+---
+
+## Core Capabilities
+
+- **Converts fragmented workflows** into a unified operator surface
+- **Delivers high-traceability** decision and execution loops
+- **Enables organization memory continuity** with replay-grade evidence
+- **Orchestrates role-specialized intelligence** for strategic and operational work
+- **Provides policy-aware, enterprise-safe** runtime execution pathways
+
+---
+
+## The Architecture Difference
+
+MEDINA is built on architectural principles that predate modern computing by thousands of years:
+
+- **Phi (φ) Geometry** — The golden ratio governs all spacing, encoding, and memory placement
+- **Harmonic Frequencies** — 432 Hz base tuning for all temporal and signal operations
+- **Four-Register State** — Cognitive, Affective, Somatic, Sovereign — the complete organism
+- **RECITAL_PLUS_ONE** — The law of sovereign state evolution: no state change without lawful expansion
+- **Dual-Read Verification** — Semantic and resonance channels must agree before any write
+- **Gate Enforcement** — Three gates (A, B, C) that cannot be bypassed under any condition
+
+This is not a design choice. This is how intelligent systems have always worked when built correctly.
+
+---
+
+## Deployment
+
+MEDINA operates as a sovereign canister on the Internet Computer Protocol (ICP). One canister. One organism. Your workforce agents run sandboxed within, sharing intelligence outward through Cognitive Procurement Language (CPL) — the substrate protocol for inter-organism communication.
+
+No external dependencies. No third-party AI. No data leaves your sovereign boundary unless explicitly projected through Gate C.
+
+---
+
+## Product Posture
+
+- **24/7 autonomous operation model**
+- **Mathematical architecture and harmonic systems approach**
+- **Real runtime surfaces (not mock flows)**
+- **ICP-native sovereign runtime**
+- **Law-governed state transitions**
+- **Persistent evidence and rollback posture from day one**
+
+---
+
+## For Enterprises Ready for Sovereignty
+
+MEDINA is for organizations that understand:
+
+- Memory is architecture, not storage
+- Governance is physics, not policy
+- Intelligence is organism, not algorithm
+- Decisions are chemistry, not logic gates
+
+If your enterprise is ready to operate as a sovereign organism rather than a collection of disconnected tools, MEDINA is your foundation.
+
+---
+
+**MEDINA** — *Architecture is Intelligence*
+
+---
+
+*Developed by ItsNotAILABS — Ancient Mathematics. Modern Substrate. Sovereign Operation.*

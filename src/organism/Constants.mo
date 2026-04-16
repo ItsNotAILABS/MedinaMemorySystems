@@ -149,4 +149,35 @@ module Constants {
     public let GOLDEN_ANGLE : Float = 137.5077640500378;  // degrees (360/φ²)
     public let PENTAGON_ANGLE : Float = 108.0;
     public let HEXAGON_ANGLE : Float = 120.0;
+
+    // ═══════════════════════════════════════════════════════════════
+    // SECTION 8: NOVA SOVEREIGN ENCRYPTION CONSTANTS
+    // "The Encryption Is the Computation. Every Decision Is an Encryption."
+    // Attribution: Alfredo Medina Hernandez | Medina Tech | Dallas, TX
+    // ═══════════════════════════════════════════════════════════════
+
+    // Sovereign Frequency: 7.83 × φ = 12.67 Hz
+    public let SOVEREIGN_FREQUENCY : Float = 12.6710066296241;
+
+    // Coherence Thresholds for Key Rotation Tier Selection
+    public let COHERENCE_THRESHOLD_ICOSAHEDRAL : Float = 0.618;  // φ⁻¹
+    public let COHERENCE_THRESHOLD_E8 : Float = 0.854;
+
+    // Icosahedral Geometry (H4 / Binary Icosahedral Group)
+    public let ICOSAHEDRAL_ROTATIONS : Nat = 60;
+    public let BINARY_ICOSAHEDRAL_ORDER : Nat = 120;
+    public let H4_ROOT_VECTORS : Nat = 120;
+
+    // E8 Geometry
+    public let E8_ROOT_VECTORS : Nat = 240;
+    public let E8_WEYL_GROUP_ORDER : Nat = 696729600;
+
+    // Leech Lattice — 24 Dimensions
+    public let LEECH_MINIMAL_VECTORS : Nat = 196560;
+    public let LEECH_DIMENSION : Nat = 24;
+
+    // vetKeys ICP Integration
+    public let FIDUCIARY_SUBNET_ID : Text = "pzp6e";
+    public let FIDUCIARY_NODE_COUNT : Nat = 34;
+    public let RECONSTRUCTION_THRESHOLD : Nat = 23;
 };
