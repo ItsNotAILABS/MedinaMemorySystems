@@ -2,6 +2,7 @@ import Array "mo:base/Array";
 import Float "mo:base/Float";
 import Int "mo:base/Int";
 import Nat "mo:base/Nat";
+import Nat32 "mo:base/Nat32";
 import Text "mo:base/Text";
 import Time "mo:base/Time";
 import Matalko "./MatalkoICP";
@@ -257,7 +258,8 @@ module {
     parentId : ?Text
   ) : Message {
     let now = Time.now();
-    let phiSig = Matalko.phiEncode(Float.fromInt(Text.hash(id)));
+    let hashNat = Nat32.toNat(Text.hash(id));
+    let phiSig = Matalko.phiEncode(Float.fromInt(hashNat));
     let harmFreq = Matalko.FREQ_432 * (1.0 + phiSig);
     
     {
@@ -272,7 +274,7 @@ module {
       payload = payload;
       phiSignature = phiSig;
       harmonicFreq = harmFreq;
-      tetractysPosition = (Text.hash(id) % TETRACTYS) + 1;
+      tetractysPosition = (hashNat % TETRACTYS) + 1;
       parentMessageId = parentId;
       recitalRef = "recital:" # id;
       dualReadRequired = switch (intent) {
@@ -300,7 +302,8 @@ module {
     evidenceRefs : [Text]
   ) : Response {
     let now = Time.now();
-    let phiSig = Matalko.phiEncode(Float.fromInt(Text.hash(message.id # ":response")));
+    let hashNat = Nat32.toNat(Text.hash(message.id # ":response"));
+    let phiSig = Matalko.phiEncode(Float.fromInt(hashNat));
     let resonance = Matalko.harmonicResonance(message.harmonicFreq, Matalko.FREQ_432 * (1.0 + phiSig));
     
     {
@@ -338,8 +341,10 @@ module {
 
   /// Calculate harmonic resonance between two organisms
   public func organismResonance(orgA : Text, orgB : Text) : Float {
-    let freqA = Matalko.FREQ_432 * (1.0 + Matalko.phiEncode(Float.fromInt(Text.hash(orgA))));
-    let freqB = Matalko.FREQ_432 * (1.0 + Matalko.phiEncode(Float.fromInt(Text.hash(orgB))));
+    let hashA = Nat32.toNat(Text.hash(orgA));
+    let hashB = Nat32.toNat(Text.hash(orgB));
+    let freqA = Matalko.FREQ_432 * (1.0 + Matalko.phiEncode(Float.fromInt(hashA)));
+    let freqB = Matalko.FREQ_432 * (1.0 + Matalko.phiEncode(Float.fromInt(hashB)));
     Matalko.harmonicResonance(freqA, freqB);
   };
 
