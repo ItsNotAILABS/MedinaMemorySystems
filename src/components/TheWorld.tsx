@@ -285,7 +285,7 @@ export default function TheWorld() {
             {/* Background PHI spiral grid */}
             <defs>
               <radialGradient id="worldGradient" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor={getNodeColor(worldState.nodes[0] || { frequency: 528 } as WorldNode)} stopOpacity="0.3" />
+                <stop offset="0%" stopColor={worldState.nodes.length > 0 ? getNodeColor(worldState.nodes[0]) : '#528'} stopOpacity="0.3" />
                 <stop offset="100%" stopColor="transparent" />
               </radialGradient>
             </defs>

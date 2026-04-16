@@ -149,9 +149,10 @@ export function generateGlyphSignature(content: string): string {
   let signature = '';
   
   // Generate 6-glyph signature (optimal φ compression)
+  // Use modulo arithmetic to ensure different indices for each position
   for (let i = 0; i < 6; i++) {
-    const glyphIndex = Math.floor(hash / Math.pow(256, i)) % GLYPH_TABLE.length;
-    signature += GLYPH_TABLE[glyphIndex].glyph;
+    const glyphIndex = (hash * (i + 1) * 31) % GLYPH_TABLE.length;
+    signature += GLYPH_TABLE[Math.abs(glyphIndex)].glyph;
   }
   
   return signature;

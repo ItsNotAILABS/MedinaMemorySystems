@@ -6,6 +6,17 @@ import type { Kernel } from './kernelCompression';
 import { PHI, PHI_INVERSE, PHI_SQUARED, PHI_CUBED, SCHUMANN_FUNDAMENTAL, SOLFEGGIO_528, HEARTBEAT_MS } from './kernelCompression';
 
 // ═══════════════════════════════════════════════════════════════
+// UTILITY FUNCTIONS
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Clamp a value between min and max
+ */
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
+}
+
+// ═══════════════════════════════════════════════════════════════
 // TYPES
 // ═══════════════════════════════════════════════════════════════
 
@@ -135,8 +146,7 @@ export function updateShellState(
   // Coherence increases with aligned influence, decreases with misaligned
   const frequencyAlignment = 1.0 - Math.abs(frequencyDelta) / shell.frequency;
   const coherenceDelta = (frequencyAlignment - 0.5) * 0.1;
-  let newCoherence = shell.coherence + coherenceDelta;
-  newCoherence = Math.max(0.0, Math.min(1.0, newCoherence));
+  const newCoherence = clamp(shell.coherence + coherenceDelta, 0.0, 1.0);
   
   return {
     ...shell,

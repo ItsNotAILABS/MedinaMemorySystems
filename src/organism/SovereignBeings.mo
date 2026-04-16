@@ -1,5 +1,5 @@
-// 𓂀 SOVEREIGN BEINGS — 30+ New Divisions 𓂀
-// "30+ new sovereign beings added across 7 new divisions"
+// 𓂀 SOVEREIGN BEINGS — 35 Beings across 7 Divisions 𓂀
+// "35 new sovereign beings added across 7 new divisions"
 // "What can be grouped gets unified into the engine. What needs to stand alone stays sovereign."
 
 import Float "mo:base/Float";
