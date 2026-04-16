@@ -34,7 +34,7 @@ module {
     cplPrefix : Text;
   };
 
-  public func getHuginn() : BrainSystem {
+  public func obtinere_huginn() : BrainSystem {
     {
       name = "FAST_BRAIN";
       mythName = "HUGINN (Thought)";
@@ -63,7 +63,7 @@ module {
     };
   };
 
-  public func getMuninn() : BrainSystem {
+  public func obtinere_muninn() : BrainSystem {
     {
       name = "SLOW_BRAIN";
       mythName = "MUNINN (Memory)";
@@ -106,7 +106,7 @@ module {
     cplInteraction : Text;
   };
 
-  public func getInteractionPatterns() : [InteractionPattern] {
+  public func obtinere_interactionpatterns() : [InteractionPattern] {
     [
       {
         pattern = "FAST_FIRST";
@@ -179,7 +179,7 @@ module {
     organismApplication : Text;
   };
 
-  public func getDualProcessModels() : [DualProcessModel] {
+  public func obtinere_dualprocessmodels() : [DualProcessModel] {
     [
       {
         name = "SYSTEM 1 / SYSTEM 2";
@@ -290,7 +290,7 @@ module {
     whenToUse : Text;
   };
 
-  public func getDualSystemConfigurations() : [DualSystemConfiguration] {
+  public func obtinere_dualsystemconfigurations() : [DualSystemConfiguration] {
     [
       {
         mode = "REACTIVE";
@@ -341,7 +341,7 @@ module {
   // CPL OPERATIONS FOR DUAL SYSTEM
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getCPLOperations() : [Text] {
+  public func obtinere_cploperations() : [Text] {
     [
       // Huginn (Fast Brain) operations
       "CPL.HUGINN.PERCEIVE(input: STREAM, mode: REAL_TIME)",
@@ -375,7 +375,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "FAST/SLOW BRAIN ENGINE - HUGINN & MUNINN:\n\n" #
     "BOTH ARE ALWAYS ON. PARALLEL. NOT ALTERNATING.\n\n" #
     "HUGINN (FAST BRAIN):\n" #

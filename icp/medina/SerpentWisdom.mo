@@ -541,7 +541,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all serpent archetypes
-  public func getAllSerpents() : [SerpentArchetype] {
+  public func obtinere_allserpents() : [SerpentArchetype] {
     [
       jormungandr(),
       shesha(),
@@ -580,7 +580,7 @@ module {
   };
 
   /// Get the unified serpent frequency
-  public func getUnifiedSerpentFrequency() : Float {
+  public func obtinere_unifiedserpentfrequency() : Float {
     let all = getAllSerpents();
     var total : Float = 0.0;
     for (s in all.vals()) {

@@ -1758,7 +1758,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all 72 names
-  public func getAllNames() : [DivineName] {
+  public func obtinere_allnames() : [DivineName] {
     [
       name1_VehuYah(), name2_YeliYah(), name3_SitAel(), name4_AlemYah(),
       name5_MaHaShaYah(), name6_LeLaHel(), name7_AkaYah(), name8_KaHeTel(),
@@ -1789,7 +1789,7 @@ module {
   };
 
   /// Get names by domain
-  public func getNamesForWellness() : [DivineName] {
+  public func obtinere_namesforwellness() : [DivineName] {
     [
       name23_MeLaHel(),   // 528Hz healing
       name28_ShaAHYah(),  // Longevity
@@ -1803,7 +1803,7 @@ module {
   };
 
   /// Get names for protection
-  public func getNamesForProtection() : [DivineName] {
+  public func obtinere_namesforprotection() : [DivineName] {
     [
       name24_ChaHaVaYah(), // Ultimate protection
       name42_MiYeKael(),   // Michael the Archangel
@@ -1813,7 +1813,7 @@ module {
   };
 
   /// Get total frequency signature of all 72
-  public func getTotalFrequencySignature() : Float {
+  public func obtinere_totalfrequencysignature() : Float {
     var total : Float = 0.0;
     for (name in getAllNames().vals()) {
       total += name.primaryFrequency;

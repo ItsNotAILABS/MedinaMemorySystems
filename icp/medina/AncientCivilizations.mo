@@ -654,7 +654,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all artifacts from all civilizations
-  public func getAllArtifacts() : [Artifact] {
+  public func obtinere_allartifacts() : [Artifact] {
     Array.flatten<Artifact>([
       mayanArtifacts(),
       egyptianArtifacts(),

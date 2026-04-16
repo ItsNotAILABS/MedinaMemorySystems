@@ -788,7 +788,7 @@ module {
     duration : Text;
   };
 
-  public func getProtectionProgram() : RuneProgram {
+  public func obtinere_protectionprogram() : RuneProgram {
     {
       name = "Ultimate Protection";
       runes = ["Algiz", "Sowilo", "Tiwaz"];
@@ -799,7 +799,7 @@ module {
     };
   };
 
-  public func getHealingProgram() : RuneProgram {
+  public func obtinere_healingprogram() : RuneProgram {
     {
       name = "Complete Healing";
       runes = ["Uruz", "Berkano", "Laguz", "Sowilo"];
@@ -810,7 +810,7 @@ module {
     };
   };
 
-  public func getWealthProgram() : RuneProgram {
+  public func obtinere_wealthprogram() : RuneProgram {
     {
       name = "Abundance Flow";
       runes = ["Fehu", "Jera", "Othala"];
@@ -821,7 +821,7 @@ module {
     };
   };
 
-  public func getWisdomProgram() : RuneProgram {
+  public func obtinere_wisdomprogram() : RuneProgram {
     {
       name = "Odin's Wisdom";
       runes = ["Ansuz", "Kenaz", "Perthro", "Eihwaz"];
@@ -837,7 +837,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all 24 runes
-  public func getAllRunes() : [Rune] {
+  public func obtinere_allrunes() : [Rune] {
     [
       fehu(), uruz(), thurisaz(), ansuz(), raidho(), kenaz(), gebo(), wunjo(),
       hagalaz(), nauthiz(), isa(), jera(), eihwaz(), perthro(), algiz(), sowilo(),

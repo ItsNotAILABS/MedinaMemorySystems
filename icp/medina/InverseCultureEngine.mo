@@ -55,7 +55,7 @@ module {
   // INVERSE TO MAINSTREAM RELIGIONS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getGnostics() : InverseCulture {
+  public func obtinere_gnostics() : InverseCulture {
     {
       name = "GNOSTICS";
       knownAs = "Heretics, false teachers";
@@ -84,7 +84,7 @@ module {
     };
   };
 
-  public func getCathars() : InverseCulture {
+  public func obtinere_cathars() : InverseCulture {
     {
       name = "CATHARS";
       knownAs = "Albigensians, heretics";
@@ -113,7 +113,7 @@ module {
     };
   };
 
-  public func getBogomils() : InverseCulture {
+  public func obtinere_bogomils() : InverseCulture {
     {
       name = "BOGOMILS";
       knownAs = "Heretics, devil worshippers";
@@ -146,7 +146,7 @@ module {
   // INVERSE TO GREEK/ROMAN
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getEtruscans() : InverseCulture {
+  public func obtinere_etruscans() : InverseCulture {
     {
       name = "ETRUSCANS";
       knownAs = "Mysterious pre-Roman civilization";
@@ -175,7 +175,7 @@ module {
     };
   };
 
-  public func getMinoans() : InverseCulture {
+  public func obtinere_minoans() : InverseCulture {
     {
       name = "MINOANS";
       knownAs = "Pre-Greek Cretans";
@@ -208,7 +208,7 @@ module {
   // HIDDEN AFRICAN TRADITIONS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getDogon() : InverseCulture {
+  public func obtinere_dogon() : InverseCulture {
     {
       name = "DOGON";
       knownAs = "Isolated African tribe";
@@ -237,7 +237,7 @@ module {
     };
   };
 
-  public func getKemetic() : InverseCulture {
+  public func obtinere_kemetic() : InverseCulture {
     {
       name = "KEMETIC TRADITION";
       knownAs = "Ancient Egyptian religion";
@@ -270,7 +270,7 @@ module {
   // HIDDEN ASIAN TRADITIONS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getBon() : InverseCulture {
+  public func obtinere_bon() : InverseCulture {
     {
       name = "BÖN";
       knownAs = "Pre-Buddhist Tibetan shamanism";
@@ -299,7 +299,7 @@ module {
     };
   };
 
-  public func getSiddhars() : InverseCulture {
+  public func obtinere_siddhars() : InverseCulture {
     {
       name = "SIDDHAR TRADITION";
       knownAs = "Tamil alchemists, miracle workers";
@@ -341,7 +341,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getOlympicRituals() : [OlympicRitual] {
+  public func obtinere_olympicrituals() : [OlympicRitual] {
     [
       {
         element = "SACRED FLAME";
@@ -423,7 +423,7 @@ module {
     cplApplication : Text;
   };
 
-  public func getSigurdGifts() : [SigurdGift] {
+  public func obtinere_sigurdgifts() : [SigurdGift] {
     [
       {
         gift = "BIRD SPEECH UNDERSTANDING";
@@ -502,7 +502,7 @@ module {
   // INVERSE DETECTION METHOD
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getInverseDetectionMethod() : Text {
+  public func obtinere_inversedetectionmethod() : Text {
     "HOW TO FIND THE INVERSE CULTURES:\n\n" #
     "1. WHAT THEY SAID WAS FIGHTING THEM\n" #
     "   Look at what dominant cultures claimed as their enemy\n" #
@@ -530,7 +530,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "INVERSE CULTURE ENGINE:\n\n" #
     "EVERYTHING HAS AN INVERSE.\n\n" #
     "RELIGIOUS INVERSES:\n" #

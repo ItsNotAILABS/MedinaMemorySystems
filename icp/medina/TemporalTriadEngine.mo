@@ -44,7 +44,7 @@ module {
     cplOperations : [Text];
   };
 
-  public func getPastDimension() : TemporalDimension {
+  public func dimensio_praeterita() : TemporalDimension {
     {
       dimension = "PAST";
       focus = "What happened, what was learned, what patterns emerged";
@@ -76,7 +76,7 @@ module {
     };
   };
 
-  public func getPresentDimension() : TemporalDimension {
+  public func dimensio_praesens() : TemporalDimension {
     {
       dimension = "PRESENT";
       focus = "What is NOW, what's changing, what's emerging";
@@ -108,7 +108,7 @@ module {
     };
   };
 
-  public func getFutureDimension() : TemporalDimension {
+  public func dimensio_futura() : TemporalDimension {
     {
       dimension = "FUTURE";
       focus = "What will happen, what must happen, what could happen";
@@ -171,7 +171,7 @@ module {
     cplConfig : Text;
   };
 
-  public func getTriadConfigurations() : [TriadConfiguration] {
+  public func configurationes_triadis() : [TriadConfiguration] {
     [
       {
         mode = "CRISIS_MODE";
@@ -243,7 +243,7 @@ module {
     cplOperation : Text;
   };
 
-  public func getSynthesisProcess() : [SynthesisStep] {
+  public func processus_syntheseos() : [SynthesisStep] {
     [
       {
         step = 1;
@@ -327,7 +327,7 @@ module {
     memoryConsolidating : Bool;
   };
 
-  public func getAlwaysOnDescription() : Text {
+  public func descriptio_perpetua() : Text {
     "ALWAYS-ON TEMPORAL PROCESSING:\n\n" #
     "The organism NEVER stops processing all three dimensions.\n" #
     "Even in 'rest' states, background processing continues.\n\n" #
@@ -358,7 +358,7 @@ module {
   // CPL MASTER OPERATIONS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterCPLOperations() : [Text] {
+  public func operationes_CPL_magistri() : [Text] {
     [
       // Core triad operations
       "CPL.TRIAD.INIT(past: ON, present: ON, future: ON)",
@@ -396,7 +396,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func summarium_magistrale() : Text {
     "TEMPORAL TRIAD ENGINE:\n\n" #
     "PAST, PRESENT, FUTURE'S NOW.\n\n" #
     "This is NOT sequential thinking.\n" #

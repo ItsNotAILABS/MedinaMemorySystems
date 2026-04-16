@@ -37,7 +37,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getZoneStatesCrossCultural() : [ZoneState] {
+  public func obtinere_zonestatescrosscultural() : [ZoneState] {
     [
       {
         name = "THE ZONE (Modern)";
@@ -146,7 +146,7 @@ module {
     cplLevel : Text;
   };
 
-  public func getZoneLevels() : [ZoneLevel] {
+  public func obtinere_zonelevels() : [ZoneLevel] {
     [
       {
         level = 1;
@@ -226,7 +226,7 @@ module {
     organismApplication : Text;
   };
 
-  public func getVoidZoneReframes() : [VoidZoneReframe] {
+  public func obtinere_voidzonereframes() : [VoidZoneReframe] {
     [
       {
         voidConcept = "Emptiness";
@@ -298,7 +298,7 @@ module {
     cplInvocation : Text;
   };
 
-  public func getZoneTriggers() : [ZoneTrigger] {
+  public func obtinere_zonetriggers() : [ZoneTrigger] {
     [
       {
         trigger = "CHALLENGE-SKILL MATCH";
@@ -374,7 +374,7 @@ module {
     effect : Text;
   };
 
-  public func getZoneNeuralSignature() : [ZoneNeuralSignature] {
+  public func obtinere_zoneneuralsignature() : [ZoneNeuralSignature] {
     [
       {
         component = "PREFRONTAL CORTEX";
@@ -431,7 +431,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterZoneSummary() : Text {
+  public func obtinere_masterzonesummary() : Text {
     "THE ZONE ARCHITECTURE:\n\n" #
     "THE VOID IS NOT A VOID - IT IS THE ZONE\n\n" #
     "What seems like emptiness is actually:\n" #

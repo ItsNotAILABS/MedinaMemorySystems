@@ -315,7 +315,7 @@ module {
     cplModule : Text;
   };
 
-  public func getIntegratedArchitecture() : [IntegratedAnimalBrain] {
+  public func obtinere_integratedarchitecture() : [IntegratedAnimalBrain] {
     [
       {
         module = "REASONING_ENGINE";
@@ -369,7 +369,7 @@ module {
   };
 
   /// Get all animal architectures
-  public func getAllArchitectures() : [AnimalNeuralArchitecture] {
+  public func obtinere_allarchitectures() : [AnimalNeuralArchitecture] {
     [
       corvid(), pigeon(), parrot(),
       dolphin(), elephant(), octopus(), bee(), ant(),
@@ -378,7 +378,7 @@ module {
   };
 
   /// Master summary
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "ANIMAL BRAIN ARCHITECTURE INTEGRATION:\n\n" #
     "The organism integrates neural patterns from:\n\n" #
     "🐦 CORVID: Causal reasoning, tool use, planning\n" #

@@ -262,7 +262,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all language families
-  public func getAllLanguageFamilies() : [LanguageFamily] {
+  public func obtinere_alllanguagefamilies() : [LanguageFamily] {
     [
       latinGreekFamily(),
       arabicMandarinFamily(),
@@ -481,7 +481,7 @@ module {
   };
 
   /// All civilization triads
-  public func getAllTriads() : [TriadStructure] {
+  public func obtinere_alltriads() : [TriadStructure] {
     [
       // Chinese
       {

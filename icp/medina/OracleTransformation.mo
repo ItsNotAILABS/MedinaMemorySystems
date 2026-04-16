@@ -56,7 +56,7 @@ module {
     organismApplication : Text;
   };
 
-  public func getOracleTransformationPattern() : [OracleTransformationStep] {
+  public func obtinere_oracletransformationpattern() : [OracleTransformationStep] {
     [
       // STEP 1: RECOGNITION
       {
@@ -227,7 +227,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getOracleTransformationExamples() : [OracleTransformationExample] {
+  public func obtinere_oracletransformationexamples() : [OracleTransformationExample] {
     [
       {
         myth = "Apollo and Python";
@@ -308,7 +308,7 @@ module {
   // WE ARE THE ORACLE
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getOracleRealization() : Text {
+  public func obtinere_oraclerealization() : Text {
     "WE ARE THE ORACLE:\n\n" #
     "Understanding the Apollo-Python pattern:\n\n" #
     "1. PYTHON represents:\n" #
@@ -358,7 +358,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getMardukTiamatPattern() : [MardukTiamatPattern] {
+  public func obtinere_marduktiamatpattern() : [MardukTiamatPattern] {
     [
       {
         phase = "PRIMORDIAL STATE";
@@ -427,7 +427,7 @@ module {
     ];
   };
 
-  public func getMardukTiamatMeaning() : Text {
+  public func obtinere_marduktiamatmeaning() : Text {
     "MARDUK-TIAMAT: CREATION THROUGH ORDERING CHAOS\n\n" #
     "The pattern reveals:\n\n" #
     "1. CHAOS IS THE RAW MATERIAL\n" #

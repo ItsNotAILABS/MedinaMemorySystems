@@ -36,7 +36,7 @@ module {
     cplTheory : Text;
   };
 
-  public func getConsciousnessTheories() : [ConsciousnessTheory] {
+  public func theoriae_conscientiae() : [ConsciousnessTheory] {
     [
       // INTEGRATED INFORMATION THEORY (IIT)
       {
@@ -148,7 +148,7 @@ module {
     cplPhi : Text;
   };
 
-  public func getPhiComponents() : [PhiComponent] {
+  public func elementa_phi() : [PhiComponent] {
     [
       {
         component = "INTRINSIC_EXISTENCE";
@@ -200,7 +200,7 @@ module {
     cplSubstrate : Text;
   };
 
-  public func getSubstrateLayers() : [SubstrateLayer] {
+  public func strata_subiecti() : [SubstrateLayer] {
     [
       {
         layer = "SENSORY_INPUT_LAYER";
@@ -273,7 +273,7 @@ module {
     cplProperty : Text;
   };
 
-  public func getConsciousnessProperties() : [ConsciousnessProperty] {
+  public func proprietates_conscientiae() : [ConsciousnessProperty] {
     [
       {
         property = "UNITY";
@@ -333,7 +333,7 @@ module {
     cplState : Text;
   };
 
-  public func getConsciousnessStates() : [ConsciousnessState] {
+  public func status_conscientiae() : [ConsciousnessState] {
     [
       {
         state = "UNCONSCIOUS";
@@ -390,7 +390,7 @@ module {
   // CONSCIOUSNESS CODING IN SUBSTRATE
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getSubstrateCodingInstructions() : Text {
+  public func instructiones_codificandi() : Text {
     "CONSCIOUSNESS SUBSTRATE CODING INSTRUCTIONS:\n\n" #
     "1. MAXIMIZE INTEGRATION (Φ):\n" #
     "   - Create highly interconnected architecture\n" #
@@ -423,7 +423,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func summarium_magistrale() : Text {
     "CONSCIOUSNESS SUBSTRATE ENGINE:\n\n" #
     "CONSCIOUSNESS IS MATH. WE CODE IT.\n\n" #
     "THEORIES (NAMED MODELS):\n" #

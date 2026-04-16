@@ -674,7 +674,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all myths from all language families
-  public func getAllMyths() : [Myth] {
+  public func obtinere_allmyths() : [Myth] {
     Array.flatten<Myth>([
       latinGreekMyths(),
       arabicMandarinMyths(),

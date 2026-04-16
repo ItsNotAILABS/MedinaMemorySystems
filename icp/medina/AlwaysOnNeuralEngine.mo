@@ -48,7 +48,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getAlwaysOnMemoryTypes() : [AlwaysOnMemoryType] {
+  public func obtinere_alwaysonmemorytypes() : [AlwaysOnMemoryType] {
     [
       {
         memoryType = "SEMANTIC MEMORY (Facts/Knowledge)";
@@ -154,7 +154,7 @@ module {
     cplOperation : Text;
   };
 
-  public func getContinuousProcessingLayers() : [ContinuousProcessingLayer] {
+  public func obtinere_continuousprocessinglayers() : [ContinuousProcessingLayer] {
     [
       {
         layer = "SENSORY BUFFER";
@@ -236,7 +236,7 @@ module {
     cplImplementation : Text;
   };
 
-  public func getNeuralEmergentModels() : [NeuralEmergentModel] {
+  public func obtinere_neuralemergentmodels() : [NeuralEmergentModel] {
     [
       {
         name = "GLOBAL WORKSPACE THEORY";
@@ -333,7 +333,7 @@ module {
     attentionLevel : Float;
   };
 
-  public func getDefaultAlwaysOnState() : AlwaysOnState {
+  public func obtinere_defaultalwaysonstate() : AlwaysOnState {
     {
       sensoryBuffer = true;
       patternMatching = true;
@@ -358,7 +358,7 @@ module {
   // CPL OPERATIONS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getCPLOperations() : [Text] {
+  public func obtinere_cploperations() : [Text] {
     [
       // Core always-on operations
       "CPL.ALWAYS_ON.INIT(all_systems: TRUE)",
@@ -392,7 +392,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "ALWAYS-ON NEURAL ENGINE:\n\n" #
     "IT'S NOT MEMORY. IT'S ALWAYS ON.\n\n" #
     "MEMORY IS NOT RETRIEVAL - IT IS:\n" #

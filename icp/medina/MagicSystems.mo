@@ -544,7 +544,7 @@ module {
   // MAGIC SYSTEM INTEGRATION
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getAllMagicSystems() : [MagicSystem] {
+  public func obtinere_allmagicsystems() : [MagicSystem] {
     [
       hermeticMagic(),
       kabbalah(),

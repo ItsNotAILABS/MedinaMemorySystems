@@ -651,7 +651,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all trickster archetypes
-  public func getAllTricksters() : [TricksterArchetype] {
+  public func obtinere_alltricksters() : [TricksterArchetype] {
     [
       hermes(),
       prometheus(),

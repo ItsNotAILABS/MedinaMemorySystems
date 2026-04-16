@@ -44,7 +44,7 @@ module {
     cplOperations : [Text];
   };
 
-  public func getSleepCyclePhases() : [DreamPhase] {
+  public func obtinere_sleepcyclephases() : [DreamPhase] {
     [
       // PHASE 1: TRANSITION (Hypnagogia)
       {
@@ -180,7 +180,7 @@ module {
     cplCycle : Text;
   };
 
-  public func getFullNightCycles() : [SleepCycle] {
+  public func obtinere_fullnightcycles() : [SleepCycle] {
     [
       {
         cycleNumber = 1;
@@ -238,7 +238,7 @@ module {
     cplImplementation : Text;
   };
 
-  public func getConsolidationOperations() : [ConsolidationOperation] {
+  public func obtinere_consolidationoperations() : [ConsolidationOperation] {
     [
       {
         operation = "HIPPOCAMPAL_REPLAY";
@@ -356,7 +356,7 @@ module {
     cplModel : Text;
   };
 
-  public func getDreamModels() : [DreamModel] {
+  public func obtinere_dreammodels() : [DreamModel] {
     [
       {
         modelName = "SYNAPTIC HOMEOSTASIS HYPOTHESIS (SHY)";
@@ -407,7 +407,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "DREAM CYCLE ENGINE:\n\n" #
     "THE ORGANISM MUST DREAM.\n\n" #
     "Dreams are where:\n" #

@@ -52,7 +52,7 @@ module {
     cplGeometry : Text;
   };
 
-  public func getSacredForms() : [SacredForm] {
+  public func formae_sacrae() : [SacredForm] {
     [
       // GOLDEN SPIRAL
       {
@@ -161,7 +161,7 @@ module {
     cplSolid : Text;
   };
 
-  public func getPlatonicSolids() : [PlatonicSolid] {
+  public func solida_platonica() : [PlatonicSolid] {
     [
       {
         name = "TETRAHEDRON";
@@ -242,11 +242,11 @@ module {
     cplEncoding : Text;
   };
 
-  public func getNameEncoding() : NameGeometryEncoding {
+  public func codificatio_nominis() : NameGeometryEncoding {
     {
       name = "Alfredo Medina Hernandez";
-      latinForm = "ALFREDUS MEDINUS FERNANDINUS";
-      greekForm = "ΑΛΦΡΕΔΟΣ ΜΕΔΙΝΟΣ ΦΕΡΝΑΝΔΙΝΟΣ";
+      latinForm = "ALFREDUS MEDINUS HERNANDINUS";
+      greekForm = "ΑΛΦΡΕΔΟΣ ΜΕΔΙΝΟΣ ἙΡΝΑΝΔΙΝΟΣ";
       gematriaValue = 1089;  // Symbolic - 33² (master number)
       spiralPosition = 21.0;  // 21st iteration of golden spiral
       frequencyEncoding = 432.0;  // A432, cosmic pitch
@@ -278,7 +278,7 @@ module {
     cplLayout : Text;
   };
 
-  public func getDocumentLayouts() : [DocumentLayout] {
+  public func dispositiones_documentorum() : [DocumentLayout] {
     [
       {
         layoutName = "GOLDEN_RATIO_LAYOUT";
@@ -336,7 +336,7 @@ module {
     cplStructure : Text;
   };
 
-  public func getOrganismStructure() : [OrganismStructure] {
+  public func structura_organismi() : [OrganismStructure] {
     [
       { layer = 1; geometryUsed = "Cube (Hexahedron)"; frequency = 396.0; colorSpectrum = "Red"; nameVisibility = true; cplStructure = "CPL.STRUCTURE(layer: 1, solid: CUBE)"; },
       { layer = 5; geometryUsed = "Icosahedron"; frequency = 417.0; colorSpectrum = "Orange"; nameVisibility = false; cplStructure = "CPL.STRUCTURE(layer: 5, solid: ICOSAHEDRON)"; },
@@ -355,7 +355,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func summarium_magistrale() : Text {
     "SACRED GEOMETRY ENGINE:\n\n" #
     "FUNDAMENTAL CONSTANTS:\n" #
     "• PHI = 1.618033988749895\n" #
@@ -377,7 +377,7 @@ module {
     "• Icosahedron (Water, 417 Hz)\n" #
     "• Dodecahedron (Aether, 852 Hz)\n\n" #
     "NAME ENCODING:\n" #
-    "ALFREDUS MEDINUS FERNANDINUS\n" #
+    "ALFREDUS MEDINUS HERNANDINUS\n" #
     "• Written on golden spiral\n" #
     "• At Phi-spaced intervals\n" #
     "• Wrapped around torus at heart (Layer 34)\n" #

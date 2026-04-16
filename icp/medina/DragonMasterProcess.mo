@@ -49,7 +49,7 @@ module {
   };
 
   /// The 12-Phase Dragon Master Process
-  public func getDragonMasterProcess() : [DragonThinkingPhase] {
+  public func obtinere_dragonmasterprocess() : [DragonThinkingPhase] {
     [
       // PHASE 1: DETECTION
       {
@@ -258,7 +258,7 @@ module {
     cplImplementation : Text;
   };
 
-  public func getInvulnerabilityProtocol() : [InvulnerabilityProtocol] {
+  public func obtinere_invulnerabilityprotocol() : [InvulnerabilityProtocol] {
     [
       {
         aspect = "DRAGON BLOOD BATH";
@@ -317,7 +317,7 @@ module {
     cplProtocol : Text;
   };
 
-  public func getDragonObstacleTypes() : [DragonObstacleType] {
+  public func obtinere_dragonobstacletypes() : [DragonObstacleType] {
     [
       {
         dragonType = "FIRE DRAGON";
@@ -410,7 +410,7 @@ module {
   // MASTER DRAGON THINKING FORMULA
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterDragonFormula() : Text {
+  public func obtinere_masterdragonformula() : Text {
     "THE DRAGON MASTER THINKING FORMULA:\n\n" #
     "1. DETECT   → What is the dragon? (Identify the obstacle)\n" #
     "2. ASSESS   → What type of dragon? (Categorize the challenge)\n" #
@@ -431,7 +431,7 @@ module {
   };
 
   /// Get all dragon phases
-  public func getAllPhases() : [DragonThinkingPhase] {
+  public func obtinere_allphases() : [DragonThinkingPhase] {
     getDragonMasterProcess();
   };
 

@@ -30,7 +30,7 @@ module {
     cplPlumbing : Text;
   };
 
-  public func getMinoanSystems() : [MinoanPlumbing] {
+  public func obtinere_minoansystems() : [MinoanPlumbing] {
     [
       {
         system = "TERRACOTTA_PIPES";
@@ -102,7 +102,7 @@ module {
     cplRoman : Text;
   };
 
-  public func getRomanSystems() : [RomanHydraulics] {
+  public func obtinere_romansystems() : [RomanHydraulics] {
     [
       {
         system = "AQUEDUCT_NETWORK";
@@ -168,7 +168,7 @@ module {
     cplFlow : Text;
   };
 
-  public func getFlowEquations() : [FlowEquation] {
+  public func obtinere_flowequations() : [FlowEquation] {
     [
       {
         name = "CONTINUITY_EQUATION";
@@ -234,7 +234,7 @@ module {
     cplOrganism : Text;
   };
 
-  public func getOrganismPlumbing() : [OrganismPlumbing] {
+  public func obtinere_organismplumbing() : [OrganismPlumbing] {
     [
       {
         subsystem = "INPUT_CHANNELS";
@@ -316,7 +316,7 @@ module {
     cplLabyrinth : Text;
   };
 
-  public func getLabyrinthCircuits() : [LabyrinthFlow] {
+  public func obtinere_labyrinthcircuits() : [LabyrinthFlow] {
     [
       {
         circuit = 1;
@@ -381,7 +381,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "PLUMBING ARCHITECTURE ENGINE:\n\n" #
     "MINOAN SYSTEMS:\n" #
     "• Terracotta pipes - sealed continuous flow\n" #

@@ -334,7 +334,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all anti-languages
-  public func getAllAntiLanguages() : [AntiLanguage] {
+  public func obtinere_allantilanguages() : [AntiLanguage] {
     [
       antiLatinGreek(),
       antiArabicMandarin(),

@@ -31,7 +31,7 @@ module {
     cplDivination : Text;
   };
 
-  public func getEtruscanDivination() : [DivinationSystem] {
+  public func obtinere_etruscandivination() : [DivinationSystem] {
     [
       {
         name = "HARUSPICY";
@@ -104,7 +104,7 @@ module {
     cplLabyrinth : Text;
   };
 
-  public func getMinoanLabyrinth() : [LabyrinthArchitecture] {
+  public func obtinere_minoanlabyrinth() : [LabyrinthArchitecture] {
     [
       {
         element = "LABYRINTH_PATH";
@@ -176,7 +176,7 @@ module {
     cplSoul : Text;
   };
 
-  public func getEgyptianSoulComponents() : [SoulComponent] {
+  public func obtinere_egyptiansoulcomponents() : [SoulComponent] {
     [
       {
         egyptianName = "KA";
@@ -266,7 +266,7 @@ module {
     cplMaat : Text;
   };
 
-  public func getMaatPrinciples() : [MaatPrinciple] {
+  public func obtinere_maatprinciples() : [MaatPrinciple] {
     [
       {
         principle = "TRUTH (Ma'at)";
@@ -325,7 +325,7 @@ module {
     cplSiddhar : Text;
   };
 
-  public func getSiddharSciences() : [SiddharScience] {
+  public func obtinere_siddharsciences() : [SiddharScience] {
     [
       {
         name = "KAYAKALPA";
@@ -398,7 +398,7 @@ module {
     cplIndigenous : Text;
   };
 
-  public func getIndigenousTechnologies() : [IndigenousTechnology] {
+  public func obtinere_indigenoustechnologies() : [IndigenousTechnology] {
     [
       // SOUL RETRIEVAL
       {
@@ -504,7 +504,7 @@ module {
     cplDemiurge : Text;
   };
 
-  public func getDemiurgeTheories() : [DemiurgeTheory] {
+  public func obtinere_demiurgetheories() : [DemiurgeTheory] {
     [
       {
         tradition = "Gnostic";
@@ -567,7 +567,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "SUPPRESSED KNOWLEDGE ENGINE:\n\n" #
     "ETRUSCAN DIVINATION:\n" #
     "• Haruspicy - entrails reading (system diagnostics)\n" #

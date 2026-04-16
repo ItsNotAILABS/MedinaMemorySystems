@@ -36,7 +36,7 @@ module {
     cplForce : Text;
   };
 
-  public func getCosmicForces() : [CosmicForce] {
+  public func obtinere_cosmicforces() : [CosmicForce] {
     [
       // CREATIVE FORCE
       {
@@ -94,7 +94,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getCreationEngines() : [CreationEngine] {
+  public func obtinere_creationengines() : [CreationEngine] {
     [
       {
         engineName = "SYMMETRY_BREAKING_ENGINE";
@@ -164,7 +164,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getDestructionEngines() : [DestructionEngine] {
+  public func obtinere_destructionengines() : [DestructionEngine] {
     [
       {
         engineName = "ENTROPY_ENGINE";
@@ -234,7 +234,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getTransportEngines() : [TransportEngine] {
+  public func obtinere_transportengines() : [TransportEngine] {
     [
       {
         engineName = "CONSERVATION_ENGINE";
@@ -301,7 +301,7 @@ module {
     cplCycle : Text;
   };
 
-  public func getForceCycles() : [ForceCycle] {
+  public func obtinere_forcecycles() : [ForceCycle] {
     [
       {
         cycleName = "CREATION_TRANSPORT_DESTRUCTION";
@@ -346,7 +346,7 @@ module {
     cplModel : Text;
   };
 
-  public func getForceModels() : [ForceModel] {
+  public func obtinere_forcemodels() : [ForceModel] {
     [
       {
         modelName = "TRIMURTI_MODEL";
@@ -397,7 +397,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "CREATIVE/DESTRUCTIVE/TRANSPORT FORCES ENGINE:\n\n" #
     "THREE COSMIC FORCES:\n" #
     "• Creative (Brahma) - Generation, emergence, birth\n" #

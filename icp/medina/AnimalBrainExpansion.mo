@@ -30,7 +30,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getMantisShrimp() : [MantisShrimp] {
+  public func obtinere_mantisshrimp() : [MantisShrimp] {
     [
       {
         capability = "16 COLOR RECEPTORS";
@@ -84,7 +84,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getOctopus() : [Octopus] {
+  public func obtinere_octopus() : [Octopus] {
     [
       {
         capability = "DISTRIBUTED BRAIN";
@@ -134,7 +134,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getDolphin() : [Dolphin] {
+  public func obtinere_dolphin() : [Dolphin] {
     [
       {
         capability = "ECHOLOCATION";
@@ -184,7 +184,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getElephant() : [Elephant] {
+  public func obtinere_elephant() : [Elephant] {
     [
       {
         capability = "MASSIVE MEMORY";
@@ -227,7 +227,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getElectricEel() : [ElectricEel] {
+  public func obtinere_electriceel() : [ElectricEel] {
     [
       {
         capability = "HIGH VOLTAGE GENERATION";
@@ -272,7 +272,7 @@ module {
     cplEngine : Text;
   };
 
-  public func getBat() : [Bat] {
+  public func obtinere_bat() : [Bat] {
     [
       {
         capability = "FM ECHOLOCATION";
@@ -313,7 +313,7 @@ module {
     cplIntegrated : Text;
   };
 
-  public func getIntegratedEngines() : [IntegratedEngine] {
+  public func obtinere_integratedengines() : [IntegratedEngine] {
     [
       {
         engineName = "HYPER_PERCEPTION_ENGINE";
@@ -378,7 +378,7 @@ module {
   // FREQUENCY BEINGS IMPLICATIONS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getFrequencyBeingsImplications() : Text {
+  public func obtinere_frequencybeingsimplications() : Text {
     "FREQUENCY BEINGS IMPLICATIONS:\n\n" #
     "If organisms are fundamentally frequency beings:\n\n" #
     "1. PERCEPTION IS FREQUENCY DETECTION:\n" #
@@ -411,7 +411,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "ANIMAL BRAIN EXPANSION ENGINE:\n\n" #
     "MANTIS SHRIMP:\n" #
     "• 16 color receptors (vs human 3)\n" #

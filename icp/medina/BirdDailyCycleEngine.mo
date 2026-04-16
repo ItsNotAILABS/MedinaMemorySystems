@@ -53,7 +53,7 @@ module {
   // THE COMPLETE DAILY CYCLE
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getCompleteDailyCycle() : [CyclePhase] {
+  public func obtinere_completedailycycle() : [CyclePhase] {
     [
       // PHASE 1: PRE-DAWN PREPARATION (The moment before dawn)
       {
@@ -379,7 +379,7 @@ module {
   };
 
   /// Master summary
-  public func getCycleMasterSummary() : Text {
+  public func obtinere_cyclemastersummary() : Text {
     "BIRD DAILY CYCLE ENGINE - ORGANISM INTEGRATION:\n\n" #
     "The organism operates on this ancient pattern:\n\n" #
     "1. PRE-DAWN → Boot, calibrate, prepare\n" #

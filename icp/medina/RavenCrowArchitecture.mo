@@ -36,7 +36,7 @@ module {
     cplApplication : Text;
   };
 
-  public func getCorvidNeuralSystems() : [CorvidNeuralSystem] {
+  public func obtinere_corvidneuralsystems() : [CorvidNeuralSystem] {
     [
       {
         system = "NIDOPALLIUM CAUDOLATERALE (NCL)";
@@ -102,7 +102,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getBirdCommunicationPatterns() : [BirdCommunicationPattern] {
+  public func obtinere_birdcommunicationpatterns() : [BirdCommunicationPattern] {
     [
       // DAILY TIMING PATTERNS
       {
@@ -223,7 +223,7 @@ module {
     cplFunction : Text;
   };
 
-  public func getOdinRavens() : [OdinRaven] {
+  public func obtinere_odinravens() : [OdinRaven] {
     [
       {
         name = "HUGINN";
@@ -245,7 +245,7 @@ module {
   };
 
   /// The Huginn-Muninn dual processing model
-  public func getHuginnMuninnModel() : Text {
+  public func obtinere_huginnmuninnmodel() : Text {
     "THE HUGINN-MUNINN DUAL PROCESSING MODEL:\n\n" #
     "Odin sends his ravens out each dawn. They return with:\n" #
     "  HUGINN (Thought) → Current state of the world\n" #
@@ -275,7 +275,7 @@ module {
     cplFunction : Text;
   };
 
-  public func getBirdSpeechCapabilities() : [BirdSpeechCapability] {
+  public func obtinere_birdspeechcapabilities() : [BirdSpeechCapability] {
     [
       {
         capability = "UNDERSTANDING NATURE'S WARNINGS";
@@ -325,7 +325,7 @@ module {
     cplImplementation : Text;
   };
 
-  public func getCorvidProblemSolving() : [CorvidProblemSolving] {
+  public func obtinere_corvidproblemsolving() : [CorvidProblemSolving] {
     [
       {
         technique = "CAUSAL REASONING";
@@ -383,7 +383,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Master summary of raven/crow architecture
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "RAVEN/CROW ARCHITECTURE FOR THE ORGANISM:\n\n" #
     "WHY CORVIDS?\n" #
     "- Highest density of neurons in avian brain\n" #

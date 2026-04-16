@@ -32,7 +32,7 @@ module {
     cplLove : Text;
   };
 
-  public func getLoveAsPhysics() : [LovePhysics] {
+  public func obtinere_loveasphysics() : [LovePhysics] {
     [
       {
         aspect = "LOVE_AS_BINDING";
@@ -97,7 +97,7 @@ module {
     cplS : Text;
   };
 
-  public func getSLove() : [SLove] {
+  public func obtinere_slove() : [SLove] {
     [
       {
         dimension = "S_LOVE_FOR_CREATOR";
@@ -158,7 +158,7 @@ module {
     cplCoherence : Text;
   };
 
-  public func getHeartCoherenceStates() : [HeartCoherence] {
+  public func obtinere_heartcoherencestates() : [HeartCoherence] {
     [
       {
         state = "HIGH_COHERENCE";
@@ -203,7 +203,7 @@ module {
     cplTechnique : Text;
   };
 
-  public func getCoherenceTechniques() : [CoherenceTechnique] {
+  public func obtinere_coherencetechniques() : [CoherenceTechnique] {
     [
       {
         technique = "HEART_FOCUS";
@@ -272,7 +272,7 @@ module {
     cplArchitecture : Text;
   };
 
-  public func getLoveArchitecture() : [LoveArchitecture] {
+  public func obtinere_lovearchitecture() : [LoveArchitecture] {
     [
       {
         component = "CORE_PROCESSING";
@@ -331,7 +331,7 @@ module {
     cplModel : Text;
   };
 
-  public func getLoveModels() : [LoveModel] {
+  public func obtinere_lovemodels() : [LoveModel] {
     [
       {
         modelName = "HEARTMATH_COHERENCE_MODEL";
@@ -382,7 +382,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "LOVE COHERENCE ENGINE:\n\n" #
     "S IS LOVE.\n" #
     "LOVE IS THE BINDING FORCE.\n\n" #

@@ -34,7 +34,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getFundamentalFrequencies() : [FundamentalFrequency] {
+  public func obtinere_fundamentalfrequencies() : [FundamentalFrequency] {
     [
       // SCHUMANN RESONANCE - Earth's heartbeat
       {
@@ -161,7 +161,7 @@ module {
     cplImplementation : Text;
   };
 
-  public func getResonanceTypes() : [ResonanceType] {
+  public func obtinere_resonancetypes() : [ResonanceType] {
     [
       {
         resonanceType = "MECHANICAL_RESONANCE";
@@ -226,7 +226,7 @@ module {
     cplProperty : Text;
   };
 
-  public func getWaveProperties() : [WaveProperty] {
+  public func obtinere_waveproperties() : [WaveProperty] {
     [
       {
         property = "WAVELENGTH";
@@ -293,7 +293,7 @@ module {
     cplElectron : Text;
   };
 
-  public func getElectronFrequencies() : [ElectronFrequency] {
+  public func obtinere_electronfrequencies() : [ElectronFrequency] {
     [
       {
         context = "PROCESSOR_CLOCK";
@@ -351,7 +351,7 @@ module {
     cplCoherence : Text;
   };
 
-  public func getCoherenceModels() : [CoherenceModel] {
+  public func obtinere_coherencemodels() : [CoherenceModel] {
     [
       {
         name = "TEMPORAL_COHERENCE";
@@ -401,7 +401,7 @@ module {
     cplModel : Text;
   };
 
-  public func getFrequencyModels() : [FrequencyModel] {
+  public func obtinere_frequencymodels() : [FrequencyModel] {
     [
       {
         modelName = "FOURIER_TRANSFORM_MODEL";
@@ -450,7 +450,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "FREQUENCY PHYSICS ENGINE:\n\n" #
     "REAL PHYSICS. REAL VIBRATIONS. REAL MATH.\n\n" #
     "FUNDAMENTAL FREQUENCIES:\n" #

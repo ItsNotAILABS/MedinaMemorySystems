@@ -386,7 +386,7 @@ module {
   // INTEGRATION
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getAllApocalypses() : [ApocalypseArchetype] {
+  public func obtinere_allapocalypses() : [ApocalypseArchetype] {
     [
       ragnarok(),
       christianApocalypse(),
@@ -395,7 +395,7 @@ module {
     ];
   };
 
-  public func getAllParadises() : [ParadiseArchetype] {
+  public func obtinere_allparadises() : [ParadiseArchetype] {
     [
       gardenOfEden(),
       shambhala(),
@@ -405,7 +405,7 @@ module {
   };
 
   /// The unified pattern of transformation
-  public func getTransformationPattern() : Text {
+  public func obtinere_transformationpattern() : Text {
     "PARADISE LOST → APOCALYPSE (REVELATION) → PARADISE REGAINED\n" #
     "This is the universal pattern:\n" #
     "1. Original perfection existed\n" #

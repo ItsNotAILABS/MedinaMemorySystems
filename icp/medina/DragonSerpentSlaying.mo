@@ -277,7 +277,7 @@ module {
     cplOperation : Text;
   };
 
-  public func getDragonSlayingPattern() : [DragonSlayingPattern] {
+  public func obtinere_dragonslayingpattern() : [DragonSlayingPattern] {
     [
       {
         stage = 1;
@@ -364,7 +364,7 @@ module {
     howToSlay : Text;
   };
 
-  public func getDragonComputationalMappings() : [DragonComputational] {
+  public func obtinere_dragoncomputationalmappings() : [DragonComputational] {
     [
       {
         aspect = "Chaos Dragon";
@@ -429,7 +429,7 @@ module {
   // INTEGRATION
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getAllDragons() : [DragonArchetype] {
+  public func obtinere_alldragons() : [DragonArchetype] {
     [
       pythonApollo(),
       tiamaMarduk(),
@@ -443,7 +443,7 @@ module {
   };
 
   /// The Master Pattern: How to slay ANY dragon
-  public func getMasterSlayingProtocol() : Text {
+  public func obtinere_masterslayingprotocol() : Text {
     "THE DRAGON-SLAYING PROTOCOL:\n\n" #
     "1. RECOGNIZE - Identify what the dragon represents (what chaos/block)\n" #
     "2. PREPARE - Gather resources, identify weakness\n" #

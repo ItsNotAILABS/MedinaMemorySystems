@@ -16,378 +16,369 @@ import WorkPacket "./WorkPacket";
 import Matalko "./MatalkoICP";
 import Organism "./SovereignOrganism";
 
-/// MEDINA: Sovereign Memory-Operating Intelligence Platform
-/// A 24/7 autonomous computing organism on the Internet Computer.
-/// All operations governed by real mathematical formulas (phi, harmonics, field equations).
+/// ΜΕΔΙΝΑ: Κυρίαρχον Μνήμης-Λειτουργικόν Νοητικόν Σύστημα
+/// (MEDINA: Sovereign Memory-Operating Intelligence System)
+/// Perpetuum Mobile Computationis in Rete Interretiali
+/// ALFREDUS MEDINUS HERNANDINUS
 actor Medina {
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // SOVEREIGN ORGANISM STATE (Stable Storage)
+  // ARCANA INTERIORA (Internal State - Never Exposed)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  // Core organism state
-  stable var oroState : Organism.OroState = Organism.initOro("ORO-PRIME", 432);
-  stable var novaState : Organism.NovaState = Organism.initNova("NOVA-GUARDIAN");
+  stable var _aurum : Organism.OroState = Organism.initOro("ORO-PRIME", 432);
+  stable var _nova : Organism.NovaState = Organism.initNova("NOVA-GUARDIAN");
   
-  // Tick and epoch tracking
-  stable var beat : Nat = 0;
-  stable var lawEpoch : Nat = 0;
-  stable var totalTicks : Nat = 0;
-  stable var genesisNs : Int = Time.now();
+  stable var _pulsus : Nat = 0;
+  stable var _aeon : Nat = 0;
+  stable var _ictus_totalis : Nat = 0;
+  stable var _genesis_ns : Int = Time.now();
   
-  // Counters
-  stable var invocationCounter : Nat = 0;
-  stable var packetCounter : Nat = 0;
-  stable var workflowCounter : Nat = 0;
-  stable var deviceCounter : Nat = 0;
-  stable var contractCounter : Nat = 0;
+  stable var _numerus_invocationum : Nat = 0;
+  stable var _numerus_fasciculorum : Nat = 0;
+  stable var _numerus_fluxuum : Nat = 0;
+  stable var _numerus_mechanicorum : Nat = 0;
+  stable var _numerus_pactorum : Nat = 0;
 
-  // Core data structures
-  stable var memoryNodes : [T.MemoryNode] = [];
-  stable var proposals : [T.GovernanceProposal] = [];
-  stable var tenants : [T.Tenant] = [];
-  stable var replayRefs : [Text] = [];
-  stable var engineInvocations : [T.EngineInvocation] = [];
-  stable var engineResults : [T.EngineResult] = [];
-  stable var workPackets : [T.WorkPacket] = [];
-  stable var workflows : [T.Workflow] = [];
+  stable var _nodi_memoriae : [T.MemoryNode] = [];
+  stable var _propositiones : [T.GovernanceProposal] = [];
+  stable var _coloni : [T.Tenant] = [];
+  stable var _vestigia : [Text] = [];
+  stable var _invocationes : [T.EngineInvocation] = [];
+  stable var _effectus : [T.EngineResult] = [];
+  stable var _fasciculi : [T.WorkPacket] = [];
+  stable var _fluxus : [T.Workflow] = [];
   
-  // Device network
-  stable var devices : [Organism.DeviceNode] = [];
-  stable var deviceContracts : [Organism.DeviceContract] = [];
+  stable var _mechanica : [Organism.DeviceNode] = [];
+  stable var _pacta : [Organism.DeviceContract] = [];
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // UTILITY FUNCTIONS
+  // FUNCTIONES OCCULTAE (Private Helper Functions)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  private func nextId(prefix : Text, n : Nat) : Text {
-    prefix # "-" # Nat.toText(n + 1);
+  private func _generareId(praefixum : Text, n : Nat) : Text {
+    praefixum # "-" # Nat.toText(n + 1);
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // SOVEREIGN ORGANISM API
+  // ΧΡΥΣΟΣ ΚΑΙ ΝΟΒΑ - AURUM ET NOVA (Gold and Guardian Public API)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Get current Oro state (primary intelligence)
-  public query func getOroState() : async {
+  /// χρυσός - aurum (gold state query)
+  public query func aurum() : async {
     id : Text;
-    phase : Text;
-    beat : Nat;
-    healthScore : Float;
-    animaHash : Nat;
-    registers : { cognitive : Float; affective : Float; somatic : Float; sovereign : Float };
-    fieldState : { attention : Float; coherence : Float; risk : Float; phiResonance : Float };
+    phasis : Text;
+    pulsus : Nat;
+    valetudo : Float;
+    anima : Nat;
+    tabulae : { cognitio : Float; affectio : Float; soma : Float; supremum : Float };
+    campus : { attentio : Float; cohaerentia : Float; periculum : Float; resonantia_phi : Float };
   } {
-    let phaseText = switch (oroState.phase) {
-      case (#Awakening) "awakening";
-      case (#Active) "active";
-      case (#Integrating) "integrating";
-      case (#Broadcasting) "broadcasting";
-      case (#Defensive) "defensive";
-      case (#Transcendent) "transcendent";
+    let phasisTextus = switch (_aurum.phase) {
+      case (#Awakening) "ἀνέγερσις";
+      case (#Active) "ἐνέργεια";
+      case (#Integrating) "σύνθεσις";
+      case (#Broadcasting) "διάδοσις";
+      case (#Defensive) "ἀμύνη";
+      case (#Transcendent) "ὑπερβατικός";
     };
     {
-      id = oroState.id;
-      phase = phaseText;
-      beat = oroState.currentBeat;
-      healthScore = oroState.healthScore;
-      animaHash = oroState.animaHash;
-      registers = {
-        cognitive = oroState.registers.cognitive;
-        affective = oroState.registers.affective;
-        somatic = oroState.registers.somatic;
-        sovereign = oroState.registers.sovereign;
+      id = _aurum.id;
+      phasis = phasisTextus;
+      pulsus = _aurum.currentBeat;
+      valetudo = _aurum.healthScore;
+      anima = _aurum.animaHash;
+      tabulae = {
+        cognitio = _aurum.registers.cognitive;
+        affectio = _aurum.registers.affective;
+        soma = _aurum.registers.somatic;
+        supremum = _aurum.registers.sovereign;
       };
-      fieldState = {
-        attention = oroState.fieldState.attention;
-        coherence = oroState.fieldState.coherence;
-        risk = oroState.fieldState.risk;
-        phiResonance = oroState.fieldState.phiResonance;
+      campus = {
+        attentio = _aurum.fieldState.attention;
+        cohaerentia = _aurum.fieldState.coherence;
+        periculum = _aurum.fieldState.risk;
+        resonantia_phi = _aurum.fieldState.phiResonance;
       };
     };
   };
 
-  /// Get current Nova state (doctrine guardian)
-  public query func getNovaState() : async {
+  /// νόβα κύστος - nova custos (guardian state query)
+  public query func nova_custos() : async {
     id : Text;
-    doctrineAlignment : Float;
-    consensusWithOro : Bool;
-    unresolvedDrifts : Nat;
-    registers : { cognitive : Float; affective : Float; somatic : Float; sovereign : Float };
+    conformitas_doctrinae : Float;
+    consensus_aurei : Bool;
+    derivationes_irresolutae : Nat;
+    tabulae : { cognitio : Float; affectio : Float; soma : Float; supremum : Float };
   } {
-    let unresolvedCount = Array.size(Array.filter<Organism.DriftFlag>(novaState.flaggedDrift, func(f : Organism.DriftFlag) : Bool { not f.resolved }));
+    let numerus_irresolutarum = Array.size(Array.filter<Organism.DriftFlag>(_nova.flaggedDrift, func(f : Organism.DriftFlag) : Bool { not f.resolved }));
     {
-      id = novaState.id;
-      doctrineAlignment = novaState.doctrineAlignment;
-      consensusWithOro = novaState.consensusWithOro;
-      unresolvedDrifts = unresolvedCount;
-      registers = {
-        cognitive = novaState.registers.cognitive;
-        affective = novaState.registers.affective;
-        somatic = novaState.registers.somatic;
-        sovereign = novaState.registers.sovereign;
+      id = _nova.id;
+      conformitas_doctrinae = _nova.doctrineAlignment;
+      consensus_aurei = _nova.consensusWithOro;
+      derivationes_irresolutae = numerus_irresolutarum;
+      tabulae = {
+        cognitio = _nova.registers.cognitive;
+        affectio = _nova.registers.affective;
+        soma = _nova.registers.somatic;
+        supremum = _nova.registers.sovereign;
       };
     };
   };
 
-  /// Execute sovereign tick (autonomous heartbeat)
-  public func sovereignTick() : async Organism.TickResult {
-    // Compute current system state
-    let memCount = Array.size(memoryNodes);
-    let riskSignals = Array.size(Array.filter<Organism.DriftFlag>(novaState.flaggedDrift, func(f : Organism.DriftFlag) : Bool { not f.resolved }));
-    let dualReadPassed = true; // From last dual read
-    let orphanSignals = 0; // Macro absorbs all micro
-    let gatesOpen = Law.gateA({ semantic = true; resonance = true }, orphanSignals);
+  /// πάλσυς κόρδις - pulsus cordis (heartbeat execution)
+  public func pulsus_cordis() : async Organism.TickResult {
+    let numerus_memoriarum = Array.size(_nodi_memoriae);
+    let signales_periculi = Array.size(Array.filter<Organism.DriftFlag>(_nova.flaggedDrift, func(f : Organism.DriftFlag) : Bool { not f.resolved }));
+    let duplex_lectio_transivit = true;
+    let signales_orphani = 0;
+    let portae_apertae = Law.gateA({ semantic = true; resonance = true }, signales_orphani);
     
-    // Execute organism tick
-    let (newOro, newNova, result) = Organism.sovereignTick(
-      oroState, novaState, memCount, riskSignals, dualReadPassed, orphanSignals, gatesOpen
+    let (novum_aurum, nova_nova, effectus) = Organism.sovereignTick(
+      _aurum, _nova, numerus_memoriarum, signales_periculi, duplex_lectio_transivit, signales_orphani, portae_apertae
     );
     
-    // Update state
-    oroState := newOro;
-    novaState := newNova;
-    beat := result.beat;
-    totalTicks += 1;
-    lawEpoch += 1;
+    _aurum := novum_aurum;
+    _nova := nova_nova;
+    _pulsus := effectus.beat;
+    _ictus_totalis += 1;
+    _aeon += 1;
     
-    // Record replay
-    replayRefs := Array.append(replayRefs, ["tick:" # Nat.toText(beat) # ":anima:" # Nat.toText(result.animaHash)]);
+    _vestigia := Array.append(_vestigia, ["ictus:" # Nat.toText(_pulsus) # ":anima:" # Nat.toText(effectus.animaHash)]);
     
-    result;
+    effectus;
   };
 
-  /// Get organism vital signs
-  public query func vitalSigns() : async {
-    totalTicks : Nat;
-    uptimeNs : Int;
-    oroHealth : Float;
-    novaAlignment : Float;
-    consensusActive : Bool;
-    memoryCount : Nat;
-    deviceCount : Nat;
+  /// σίγνα βίταε - signa vitae (vital signs)
+  public query func signa_vitae() : async {
+    ictus_totalis : Nat;
+    tempus_vitae_ns : Int;
+    valetudo_aurei : Float;
+    conformitas_novae : Float;
+    consensus_activus : Bool;
+    numerus_memoriarum : Nat;
+    numerus_mechanicorum : Nat;
     phi : Float;
-    freq432 : Float;
+    frequentia_432 : Float;
   } {
-    let now = Time.now();
+    let nunc = Time.now();
     {
-      totalTicks = totalTicks;
-      uptimeNs = now - genesisNs;
-      oroHealth = oroState.healthScore;
-      novaAlignment = novaState.doctrineAlignment;
-      consensusActive = Organism.dualConsensus(oroState, novaState);
-      memoryCount = Array.size(memoryNodes);
-      deviceCount = Array.size(devices);
+      ictus_totalis = _ictus_totalis;
+      tempus_vitae_ns = nunc - _genesis_ns;
+      valetudo_aurei = _aurum.healthScore;
+      conformitas_novae = _nova.doctrineAlignment;
+      consensus_activus = Organism.dualConsensus(_aurum, _nova);
+      numerus_memoriarum = Array.size(_nodi_memoriae);
+      numerus_mechanicorum = Array.size(_mechanica);
       phi = Matalko.PHI;
-      freq432 = Matalko.FREQ_432;
+      frequentia_432 = Matalko.FREQ_432;
     };
   };
 
-  /// Get harmonic ladder for UI display
-  public query func harmonicLadder(rungs : Nat) : async [{ rung : Nat; freq : Float; note : Text }] {
-    Organism.harmonicLadder(Matalko.FREQ_432, rungs);
+  /// σκάλα ἁρμονική - scala harmonica (harmonic ladder)
+  public query func scala_harmonica(gradus : Nat) : async [{ gradus : Nat; frequentia : Float; nota : Text }] {
+    Organism.harmonicLadder(Matalko.FREQ_432, gradus);
   };
 
-  /// Get phi spacing ladder for UI
-  public query func phiSpacingLadder(baseUnit : Float, levels : Nat) : async [{ level : Int; spacing : Float }] {
-    Array.tabulate<{ level : Int; spacing : Float }>(levels, func(i : Nat) : { level : Int; spacing : Float } {
-      let level = Int.abs(i) - (levels / 2);
-      { level = level; spacing = Matalko.phiSpacing(baseUnit, level) };
+  /// σκάλα φί - scala phi (phi spacing ladder)
+  public query func scala_phi(unitas_basis : Float, gradus : Nat) : async [{ gradus : Int; spatium : Float }] {
+    Array.tabulate<{ gradus : Int; spatium : Float }>(gradus, func(i : Nat) : { gradus : Int; spatium : Float } {
+      let g = Int.abs(i) - (gradus / 2);
+      { gradus = g; spatium = Matalko.phiSpacing(unitas_basis, g) };
     });
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // DEVICE NETWORK API
+  // ΜΗΧΑΝΙΚΑ - MECHANICA (Device Network API)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Register a new device in the sovereign network
-  public func registerDevice(
-    deviceType : Text,
-    permissions : [Text]
+  /// ἰνσκρίβερε μηχανικόν - inscribere mechanicum (register device)
+  public func inscribere_mechanicum(
+    genus : Text,
+    permissiones : [Text]
   ) : async {
     id : Text;
-    frequencySignature : { fundamental : Float; phiModulation : Float };
-    phiGridPosition : { x : Float; y : Float };
-    trustScore : Float;
+    signatura_frequentiae : { fundamentalis : Float; modulatio_phi : Float };
+    positio_phi : { x : Float; y : Float };
+    fides : Float;
   } {
-    deviceCounter += 1;
-    let id = "device-" # Nat.toText(deviceCounter);
-    let seed = deviceCounter * 137 + beat; // Unique seed
+    _numerus_mechanicorum += 1;
+    let id = "mechanicum-" # Nat.toText(_numerus_mechanicorum);
+    let semen = _numerus_mechanicorum * 137 + _pulsus;
     
-    let devType : Organism.DeviceType = switch (deviceType) {
-      case "phone" #Phone;
-      case "tablet" #Tablet;
-      case "laptop" #Laptop;
-      case "desktop" #Desktop;
-      case "wifi" #WiFiNode;
+    let genus_mechanici : Organism.DeviceType = switch (genus) {
+      case "telephonium" #Phone;
+      case "tabula" #Tablet;
+      case "computatrum_portabile" #Laptop;
+      case "computatrum" #Desktop;
+      case "nodus_retis" #WiFiNode;
       case "sensor" #Sensor;
       case _ #Unknown;
     };
     
-    let perms = Array.mapFilter<Text, Organism.DevicePermission>(permissions, func(p : Text) : ?Organism.DevicePermission {
+    let perms = Array.mapFilter<Text, Organism.DevicePermission>(permissiones, func(p : Text) : ?Organism.DevicePermission {
       switch (p) {
-        case "microphone" ?#Microphone;
+        case "microphonum" ?#Microphone;
         case "camera" ?#Camera;
-        case "location" ?#Location;
-        case "motion" ?#Motion;
-        case "notifications" ?#Notifications;
-        case "storage" ?#Storage;
-        case "network" ?#Network;
+        case "locus" ?#Location;
+        case "motus" ?#Motion;
+        case "nuntii" ?#Notifications;
+        case "repositorium" ?#Storage;
+        case "rete" ?#Network;
         case _ null;
       };
     });
     
-    let device = Organism.registerDevice(id, devType, seed, perms);
-    devices := Array.append(devices, [device]);
+    let mechanicum = Organism.registerDevice(id, genus_mechanici, semen, perms);
+    _mechanica := Array.append(_mechanica, [mechanicum]);
     
     {
-      id = device.id;
-      frequencySignature = { 
-        fundamental = device.frequencySignature.fundamental; 
-        phiModulation = device.frequencySignature.phiModulation;
+      id = mechanicum.id;
+      signatura_frequentiae = { 
+        fundamentalis = mechanicum.frequencySignature.fundamental; 
+        modulatio_phi = mechanicum.frequencySignature.phiModulation;
       };
-      phiGridPosition = device.phiGridPosition;
-      trustScore = device.trustScore;
+      positio_phi = mechanicum.phiGridPosition;
+      fides = mechanicum.trustScore;
     };
   };
 
-  /// Generate sovereign device contract
-  public func generateDeviceContract(deviceId : Text) : async ?{
+  /// γενεράρε πάκτυμ - generare pactum (generate device contract)
+  public func generare_pactum(id_mechanici : Text) : async ?{
     id : Text;
-    animaHash : Nat;
-    blockchainAnchor : Text;
-    phiGridSample : [[Float]];
+    anima : Nat;
+    ancora_catena : Text;
+    exemplum_phi : [[Float]];
   } {
-    var targetDevice : ?Organism.DeviceNode = null;
-    for (d in devices.vals()) {
-      if (d.id == deviceId) {
-        targetDevice := ?d;
+    var mechanicum_destinatum : ?Organism.DeviceNode = null;
+    for (m in _mechanica.vals()) {
+      if (m.id == id_mechanici) {
+        mechanicum_destinatum := ?m;
       };
     };
     
-    switch (targetDevice) {
+    switch (mechanicum_destinatum) {
       case null null;
-      case (?device) {
-        contractCounter += 1;
-        let contract = Organism.generateDeviceContract(device, oroState);
-        deviceContracts := Array.append(deviceContracts, [contract]);
+      case (?mechanicum) {
+        _numerus_pactorum += 1;
+        let pactum = Organism.generateDeviceContract(mechanicum, _aurum);
+        _pacta := Array.append(_pacta, [pactum]);
         
-        // Return first 4 rows of phi grid as sample
-        let gridSample = Array.tabulate<[Float]>(4, func(i : Nat) : [Float] {
-          if (i < Array.size(contract.phiGrid)) { contract.phiGrid[i] } else { [] };
+        let exemplum = Array.tabulate<[Float]>(4, func(i : Nat) : [Float] {
+          if (i < Array.size(pactum.phiGrid)) { pactum.phiGrid[i] } else { [] };
         });
         
         ?{
-          id = contract.id;
-          animaHash = contract.animaHash;
-          blockchainAnchor = contract.blockchainAnchor;
-          phiGridSample = gridSample;
+          id = pactum.id;
+          anima = pactum.animaHash;
+          ancora_catena = pactum.blockchainAnchor;
+          exemplum_phi = exemplum;
         };
       };
     };
   };
 
-  /// List all registered devices
-  public query func listDevices() : async [{
+  /// ἐνυμεράρε μηχανικά - enumerare mechanica (list devices)
+  public query func enumerare_mechanica() : async [{
     id : Text;
-    deviceType : Text;
-    trustScore : Float;
-    phiPosition : { x : Float; y : Float };
-    hasContract : Bool;
+    genus : Text;
+    fides : Float;
+    positio : { x : Float; y : Float };
+    habet_pactum : Bool;
   }] {
     Array.map<Organism.DeviceNode, {
       id : Text;
-      deviceType : Text;
-      trustScore : Float;
-      phiPosition : { x : Float; y : Float };
-      hasContract : Bool;
-    }>(devices, func(d : Organism.DeviceNode) : {
+      genus : Text;
+      fides : Float;
+      positio : { x : Float; y : Float };
+      habet_pactum : Bool;
+    }>(_mechanica, func(m : Organism.DeviceNode) : {
       id : Text;
-      deviceType : Text;
-      trustScore : Float;
-      phiPosition : { x : Float; y : Float };
-      hasContract : Bool;
+      genus : Text;
+      fides : Float;
+      positio : { x : Float; y : Float };
+      habet_pactum : Bool;
     } {
-      let typeText = switch (d.deviceType) {
-        case (#Phone) "phone";
-        case (#Tablet) "tablet";
-        case (#Laptop) "laptop";
-        case (#Desktop) "desktop";
-        case (#WiFiNode) "wifi";
+      let textus_generis = switch (m.deviceType) {
+        case (#Phone) "telephonium";
+        case (#Tablet) "tabula";
+        case (#Laptop) "computatrum_portabile";
+        case (#Desktop) "computatrum";
+        case (#WiFiNode) "nodus_retis";
         case (#Sensor) "sensor";
-        case (#Unknown) "unknown";
+        case (#Unknown) "ignotum";
       };
-      let hasC = switch (d.contractHash) { case null false; case _ true; };
+      let habet = switch (m.contractHash) { case null false; case _ true; };
       {
-        id = d.id;
-        deviceType = typeText;
-        trustScore = d.trustScore;
-        phiPosition = d.phiGridPosition;
-        hasContract = hasC;
+        id = m.id;
+        genus = textus_generis;
+        fides = m.trustScore;
+        positio = m.phiGridPosition;
+        habet_pactum = habet;
       };
     });
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // MATHEMATICAL COMPUTATION API
+  // ΑΡΙΘΜΗΤΙΚΑ - ARITHMETICA (Mathematical Computation API)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Compute phi-encoded value
-  public query func phiEncode(value : Float) : async Float {
-    Matalko.phiEncode(value);
+  /// κωδιφικάρε φί - codificare phi (phi encode)
+  public query func codificare_phi(valor : Float) : async Float {
+    Matalko.phiEncode(valor);
   };
 
-  /// Generate phi-spiral coordinates
-  public query func phiSpiral(count : Nat, scale : Float) : async [{ x : Float; y : Float }] {
-    Array.tabulate<{ x : Float; y : Float }>(count, func(i : Nat) : { x : Float; y : Float } {
-      Matalko.phiSpiral(i, scale);
+  /// σπίρα αὐρέα - spira aurea (golden spiral)
+  public query func spira_aurea(numerus : Nat, scala : Float) : async [{ x : Float; y : Float }] {
+    Array.tabulate<{ x : Float; y : Float }>(numerus, func(i : Nat) : { x : Float; y : Float } {
+      Matalko.phiSpiral(i, scala);
     });
   };
 
-  /// Compute harmonic resonance between frequencies
-  public query func harmonicResonance(f1 : Float, f2 : Float) : async Float {
+  /// ρεσονάντια ἁρμονική - resonantia harmonica (harmonic resonance)
+  public query func resonantia_harmonica(f1 : Float, f2 : Float) : async Float {
     Matalko.harmonicResonance(f1, f2);
   };
 
-  /// Generate frequency signature
-  public query func generateFrequencySignature(seed : Nat) : async {
-    fundamental : Float;
-    harmonics : [Float];
-    phiModulation : Float;
+  /// σιγνατύρα φρεκυεντίαε - signatura frequentiae (frequency signature)
+  public query func signatura_frequentiae(semen : Nat) : async {
+    fundamentalis : Float;
+    harmonici : [Float];
+    modulatio_phi : Float;
   } {
-    let sig = Matalko.generateFrequencySignature(seed, 8);
+    let sig = Matalko.generateFrequencySignature(semen, 8);
     {
-      fundamental = sig.fundamental;
-      harmonics = sig.harmonics;
-      phiModulation = sig.phiModulation;
+      fundamentalis = sig.fundamental;
+      harmonici = sig.harmonics;
+      modulatio_phi = sig.phiModulation;
     };
   };
 
-  /// Compute field state from current organism
-  public query func computeFieldState() : async Matalko.FieldState {
-    oroState.fieldState;
+  /// στάτυς κάμπι - status campi (field state)
+  public query func status_campi() : async Matalko.FieldState {
+    _aurum.fieldState;
   };
 
-  /// Get Fibonacci sequence
-  public query func fibonacci(n : Nat) : async Nat {
+  /// σεκυέντια φιβονάτσι - sequentia fibonacci (fibonacci sequence)
+  public query func sequentia_fibonacci(n : Nat) : async Nat {
     Matalko.fibonacci(n);
   };
 
-  /// Get universal constants
-  public query func constants() : async {
+  /// κωνστάντες - constantes (universal constants)
+  public query func constantes() : async {
     phi : Float;
-    phiInverse : Float;
-    phiSquared : Float;
-    freq432 : Float;
+    phi_inversus : Float;
+    phi_quadratus : Float;
+    frequentia_432 : Float;
     pi : Float;
     tau : Float;
     e : Float;
   } {
     {
       phi = Matalko.PHI;
-      phiInverse = Matalko.PHI_INVERSE;
-      phiSquared = Matalko.PHI_SQUARED;
-      freq432 = Matalko.FREQ_432;
+      phi_inversus = Matalko.PHI_INVERSE;
+      phi_quadratus = Matalko.PHI_SQUARED;
+      frequentia_432 = Matalko.FREQ_432;
       pi = Matalko.PI;
       tau = Matalko.TAU;
       e = Matalko.E;
@@ -395,147 +386,165 @@ actor Medina {
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // LEGACY API (Backward Compatible)
+  // ΑΡΧΑΙΑ - ANTIQUA (Legacy API with Latin names)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public query func ontology() : async [Text] {
+  /// ὀντολογία - ontologia
+  public query func ontologia() : async [Text] {
     Law.nonCollapseOntologyInvariant();
   };
 
-  public query func orchestratorRegistry() : async [Orchestrators.Orchestrator] {
+  /// ρεγίστρυμ ὀρχηστρατόρυμ - registrum orchestratorum
+  public query func registrum_orchestratorum() : async [Orchestrators.Orchestrator] {
     Orchestrators.registry;
   };
 
-  public func sovereignBeat(
-    dualRead : T.DualReadStatus,
-    orphanMicroSignals : Nat,
-    workforceReady : Bool,
-    projectionSafe : Bool,
+  /// πάλσυς σύπρεμυς - pulsus supremus (sovereign beat)
+  public func pulsus_supremus(
+    duplex_lectio : T.DualReadStatus,
+    signales_orphani : Nat,
+    turba_parata : Bool,
+    proiectio_tuta : Bool,
   ) : async T.BeatSummary {
-    beat += 1;
-    lawEpoch += 1;
+    _pulsus += 1;
+    _aeon += 1;
 
-    let gates = Orchestrators.evaluateBeat(dualRead, orphanMicroSignals, workforceReady, projectionSafe, true);
-    let replayRef = "replay:beat:" # Nat.toText(beat);
-    replayRefs := Array.append(replayRefs, [replayRef]);
+    let portae = Orchestrators.evaluateBeat(duplex_lectio, signales_orphani, turba_parata, proiectio_tuta, true);
+    let vestigium = "vestigium:pulsus:" # Nat.toText(_pulsus);
+    _vestigia := Array.append(_vestigia, [vestigium]);
 
     {
-      beat = beat;
-      macroAbsorbed = orphanMicroSignals == 0;
-      orphanMicroSignals = orphanMicroSignals;
-      dualRead = dualRead;
-      lawEpoch = lawEpoch;
-      gates = gates;
-      replayRef = replayRef;
+      beat = _pulsus;
+      macroAbsorbed = signales_orphani == 0;
+      orphanMicroSignals = signales_orphani;
+      dualRead = duplex_lectio;
+      lawEpoch = _aeon;
+      gates = portae;
+      replayRef = vestigium;
       atNs = T.nowNs();
     };
   };
 
-  public func memoryAdd(
-    payload : Text,
-    coords : T.Coordinates,
-    recital : Text,
-    lawfulExpansion : Text,
-    salience : Nat,
-    doctrineTags : [Text],
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΜΝΗΜΗ - MEMORIA (Memory Temple API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// ἀδδερε μνήμην - addere mneme (add memory)
+  public func addere_mneme(
+    onus : Text,
+    coordinatae : T.Coordinates,
+    recitatio : Text,
+    expansio_legitima : Text,
+    saliens : Nat,
+    notae_doctrinae : [Text],
   ) : async T.MemoryNode {
-    let id = nextId("mem", Array.size(memoryNodes));
-    let lineage = Law.recitalPlusOne(recital, lawfulExpansion);
-    let node : T.MemoryNode = {
+    let id = _generareId("mneme", Array.size(_nodi_memoriae));
+    let linea = Law.recitalPlusOne(recitatio, expansio_legitima);
+    let nodus : T.MemoryNode = {
       id = id;
-      payload = payload;
-      coords = coords;
-      lineage = lineage;
-      salience = salience;
-      doctrineTags = doctrineTags;
+      payload = onus;
+      coords = coordinatae;
+      lineage = linea;
+      salience = saliens;
+      doctrineTags = notae_doctrinae;
       promoted = false;
       consolidatedFrom = [];
       createdAtNs = T.nowNs();
     };
 
-    memoryNodes := Array.append(memoryNodes, [node]);
-    node;
+    _nodi_memoriae := Array.append(_nodi_memoriae, [nodus]);
+    nodus;
   };
 
-  public query func memoryFind(query : Text, ring : ?Nat, depth : ?Nat, lineage : ?Text) : async [T.MemoryNode] {
-    MemoryTemple.find(memoryNodes, query, ring, depth, lineage);
+  /// κυαέρερε μνήμην - quaerere mneme (search memory)
+  public query func quaerere_mneme(interrogatio : Text, anulus : ?Nat, profunditas : ?Nat, linea : ?Text) : async [T.MemoryNode] {
+    MemoryTemple.find(_nodi_memoriae, interrogatio, anulus, profunditas, linea);
   };
 
-  public func memoryPromote(memoryId : Text) : async Bool {
-    var found = false;
-    memoryNodes := Array.map<T.MemoryNode, T.MemoryNode>(
-      memoryNodes,
+  /// προμοβέρε μνήμην - promovere mneme (promote memory)
+  public func promovere_mneme(id_memoriae : Text) : async Bool {
+    var inventum = false;
+    _nodi_memoriae := Array.map<T.MemoryNode, T.MemoryNode>(
+      _nodi_memoriae,
       func(n : T.MemoryNode) : T.MemoryNode {
-        if (n.id == memoryId) {
-          found := true;
+        if (n.id == id_memoriae) {
+          inventum := true;
           MemoryTemple.promote(n);
         } else {
           n;
         };
       },
     );
-    found;
+    inventum;
   };
 
-  public func memoryConsolidate(targetId : Text, sourceIds : [Text], fromId : Text) : async ?T.MemoryNode {
-    var source : ?T.MemoryNode = null;
-    for (n in memoryNodes.vals()) {
-      if (n.id == fromId) {
-        source := ?n;
+  /// κονσολιδάρε μνήμην - consolidare mneme (consolidate memory)
+  public func consolidare_mneme(id_destinati : Text, ids_fontium : [Text], id_fontis : Text) : async ?T.MemoryNode {
+    var fons : ?T.MemoryNode = null;
+    for (n in _nodi_memoriae.vals()) {
+      if (n.id == id_fontis) {
+        fons := ?n;
       };
     };
 
-    switch (source) {
+    switch (fons) {
       case null null;
       case (?s) {
-        let merged = MemoryTemple.consolidate(targetId, sourceIds, s);
-        memoryNodes := Array.append(memoryNodes, [merged]);
-        ?merged;
+        let consolidatus = MemoryTemple.consolidate(id_destinati, ids_fontium, s);
+        _nodi_memoriae := Array.append(_nodi_memoriae, [consolidatus]);
+        ?consolidatus;
       };
     };
   };
 
-  public func governPropose(
-    proposalType : Text,
-    payloadRef : Text,
-    registers : T.Register,
-    recital : Text,
-    lawfulExpansion : Text,
-    dualRead : T.DualReadStatus,
-    gateSnapshot : T.GateStatus,
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΚΥΒΕΡΝΗΣΙΣ - GUBERNATIO (Governance API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// κυβέρνησις προπόνερε - kybernesis proponere (governance propose)
+  public func kybernesis_proponere(
+    genus_propositi : Text,
+    referentia_oneris : Text,
+    tabulae : T.Register,
+    recitatio : Text,
+    expansio_legitima : Text,
+    duplex_lectio : T.DualReadStatus,
+    status_portarum : T.GateStatus,
   ) : async T.GovernanceProposal {
-    let id = nextId("proposal", Array.size(proposals));
-    let lineage = Law.recitalPlusOne(recital, lawfulExpansion);
-    let p = Governance.newProposal(id, proposalType, payloadRef, registers, lineage, dualRead, gateSnapshot);
-    proposals := Array.append(proposals, [p]);
+    let id = _generareId("propositum", Array.size(_propositiones));
+    let linea = Law.recitalPlusOne(recitatio, expansio_legitima);
+    let p = Governance.newProposal(id, genus_propositi, referentia_oneris, tabulae, linea, duplex_lectio, status_portarum);
+    _propositiones := Array.append(_propositiones, [p]);
     p;
   };
 
-  public func governApprove(proposalId : Text, policy : ?Text) : async ?T.GovernanceProposal {
-    var approved : ?T.GovernanceProposal = null;
-    proposals := Array.map<T.GovernanceProposal, T.GovernanceProposal>(
-      proposals,
+  /// κυβέρνησις ἀππροβάρε - kybernesis approbare (governance approve)
+  public func kybernesis_approbare(id_propositi : Text, politica : ?Text) : async ?T.GovernanceProposal {
+    var approbatum : ?T.GovernanceProposal = null;
+    _propositiones := Array.map<T.GovernanceProposal, T.GovernanceProposal>(
+      _propositiones,
       func(p : T.GovernanceProposal) : T.GovernanceProposal {
-        if (p.id == proposalId) {
-          let a = Governance.approve(p, policy);
-          approved := ?a;
+        if (p.id == id_propositi) {
+          let a = Governance.approve(p, politica);
+          approbatum := ?a;
           a;
         } else {
           p;
         };
       },
     );
-    approved;
+    approbatum;
   };
 
-  public query func governStatus(proposalId : ?Text) : async Text {
-    switch (proposalId) {
+  /// κυβέρνησις στάτυς - kybernesis status (governance status)
+  public query func kybernesis_status(id_propositi : ?Text) : async Text {
+    switch (id_propositi) {
       case null {
-        "proposals=" # Nat.toText(Array.size(proposals));
+        "propositiones=" # Nat.toText(Array.size(_propositiones));
       };
       case (?pid) {
-        var status : Text = "not-found";
-        for (p in proposals.vals()) {
+        var status : Text = "non-inventum";
+        for (p in _propositiones.vals()) {
           if (p.id == pid) {
             status := Governance.statusText(p);
           };
@@ -545,283 +554,287 @@ actor Medina {
     };
   };
 
-  public func companyOnboard(tenantId : Text, mode : T.OnboardingMode, policyRefs : [Text]) : async T.Tenant {
-    let t = Company.onboard(tenantId, mode, policyRefs);
-    tenants := Array.append(tenants, [t]);
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SOCIETAS - SOCIETAS (Company/Tenant API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// ἀδμιττερε σοκιετάτεμ - admittere societatem (onboard company)
+  public func admittere_societatem(id_coloni : Text, modus : T.OnboardingMode, referentiae_politicae : [Text]) : async T.Tenant {
+    let t = Company.onboard(id_coloni, modus, referentiae_politicae);
+    _coloni := Array.append(_coloni, [t]);
     t;
   };
 
-  public query func modelRoute(taskRef : Text, policy : ?Text) : async T.ModelRoute {
-    ModelRouter.routeForTask(taskRef, policy);
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΔΑΙΜΩΝ - DAEMON (Model Engine API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// βία ἐξεμπλάρις - via exemplaris (model route)
+  public query func via_exemplaris(referentia_operis : Text, politica : ?Text) : async T.ModelRoute {
+    ModelRouter.routeForTask(referentia_operis, politica);
   };
 
-  public query func replayShow(id : Text) : async [Text] {
-    Array.filter<Text>(replayRefs, func(r : Text) : Bool { r == id });
+  /// ὀστένδερε βεστίγια - ostendere vestigia (show replay)
+  public query func ostendere_vestigia(id : Text) : async [Text] {
+    Array.filter<Text>(_vestigia, func(r : Text) : Bool { r == id });
   };
 
-  // ========== Model Engine Execution API ==========
-
-  /// Invoke a model engine with full RUDN execution.
-  public func modelInvoke(
-    family : T.ModelFamily,
-    taskRef : Text,
-    contextMemoryId : ?Text,
-    inputPayload : Text,
+  /// ἰνβοκάρε δαίμονα - invocare daemona (invoke model engine)
+  public func invocare_daemona(
+    familia : T.ModelFamily,
+    referentia_operis : Text,
+    id_contextus_memoriae : ?Text,
+    onus_initialis : Text,
   ) : async T.EngineResult {
-    invocationCounter += 1;
-    let invocationId = nextId("inv", invocationCounter);
+    _numerus_invocationum += 1;
+    let id_invocationis = _generareId("invocatio", _numerus_invocationum);
     
-    // Create the invocation record
-    let invocation = ModelEngine.createInvocation(
-      invocationId,
-      family,
-      taskRef,
-      contextMemoryId,
-      inputPayload
+    let invocatio = ModelEngine.createInvocation(
+      id_invocationis,
+      familia,
+      referentia_operis,
+      id_contextus_memoriae,
+      onus_initialis
     );
-    engineInvocations := Array.append(engineInvocations, [invocation]);
+    _invocationes := Array.append(_invocationes, [invocatio]);
     
-    // Get relevant memory context
-    let contextNodes = switch (contextMemoryId) {
-      case null memoryNodes;
+    let nodi_contextus = switch (id_contextus_memoriae) {
+      case null _nodi_memoriae;
       case (?mid) {
-        Array.filter<T.MemoryNode>(memoryNodes, func(n : T.MemoryNode) : Bool { 
+        Array.filter<T.MemoryNode>(_nodi_memoriae, func(n : T.MemoryNode) : Bool { 
           n.id == mid or n.lineage.parent == ?mid 
         });
       };
     };
     
-    // Execute the engine with current system state
-    let dualRead : T.DualReadStatus = { semantic = true; resonance = true };
-    let workforceReady = true;
-    let projectionSafe = true;
+    let duplex_lectio : T.DualReadStatus = { semantic = true; resonance = true };
+    let turba_parata = true;
+    let proiectio_tuta = true;
     
-    let result = ModelEngine.execute(
-      invocation,
-      contextNodes,
-      dualRead,
-      workforceReady,
-      projectionSafe
+    let effectus = ModelEngine.execute(
+      invocatio,
+      nodi_contextus,
+      duplex_lectio,
+      turba_parata,
+      proiectio_tuta
     );
     
-    engineResults := Array.append(engineResults, [result]);
-    replayRefs := Array.append(replayRefs, ["replay:invoke:" # invocationId]);
+    _effectus := Array.append(_effectus, [effectus]);
+    _vestigia := Array.append(_vestigia, ["vestigium:invocatio:" # id_invocationis]);
     
-    result;
+    effectus;
   };
 
-  /// Get engine invocation history.
-  public query func engineHistory() : async [T.EngineInvocation] {
-    engineInvocations;
+  /// ἱστορία μαχινάρυμ - historia machinarum (engine history)
+  public query func historia_machinarum() : async [T.EngineInvocation] {
+    _invocationes;
   };
 
-  /// Get engine results history.
-  public query func engineResultHistory() : async [T.EngineResult] {
-    engineResults;
+  /// ἱστορία ἐφφεκτύυμ - historia effectuum (results history)
+  public query func historia_effectuum() : async [T.EngineResult] {
+    _effectus;
   };
 
-  // ========== Work Packet API ==========
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΕΡΓΑΣΤΗΡΙΟΝ - ERGASTERION (Workspace/Packet API)
+  // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Create and open a new work packet.
-  public func workspaceCreate(
-    title : Text,
-    taskRef : Text,
-    inputPayload : Text,
-    registers : T.Register,
+  /// κρεάρε ἐργαστήριον - creare ergasterion (create workspace)
+  public func creare_ergasterion(
+    titulus : Text,
+    referentia_operis : Text,
+    onus_initialis : Text,
+    tabulae : T.Register,
   ) : async T.WorkPacket {
-    packetCounter += 1;
-    let packetId = nextId("packet", packetCounter);
+    _numerus_fasciculorum += 1;
+    let id_fasciculi = _generareId("fasciculus", _numerus_fasciculorum);
     
-    let packet = WorkPacket.createPacket(
-      packetId,
-      title,
-      taskRef,
-      inputPayload,
-      registers,
+    let fasciculus = WorkPacket.createPacket(
+      id_fasciculi,
+      titulus,
+      referentia_operis,
+      onus_initialis,
+      tabulae,
       null
     );
     
-    let openedPacket = WorkPacket.openPacket(packet);
-    workPackets := Array.append(workPackets, [openedPacket]);
-    replayRefs := Array.append(replayRefs, ["replay:packet:" # packetId]);
+    let fasciculus_apertus = WorkPacket.openPacket(fasciculus);
+    _fasciculi := Array.append(_fasciculi, [fasciculus_apertus]);
+    _vestigia := Array.append(_vestigia, ["vestigium:fasciculus:" # id_fasciculi]);
     
-    openedPacket;
+    fasciculus_apertus;
   };
 
-  /// Open an existing packet by ID (transition from Draft to Open).
-  public func workspaceOpen(packetId : Text) : async ?T.WorkPacket {
-    var found : ?T.WorkPacket = null;
-    workPackets := Array.map<T.WorkPacket, T.WorkPacket>(
-      workPackets,
+  /// ἀπερίρε ἐργαστήριον - aperire ergasterion (open workspace)
+  public func aperire_ergasterion(id_fasciculi : Text) : async ?T.WorkPacket {
+    var inventum : ?T.WorkPacket = null;
+    _fasciculi := Array.map<T.WorkPacket, T.WorkPacket>(
+      _fasciculi,
       func(p : T.WorkPacket) : T.WorkPacket {
-        if (p.id == packetId and p.status == #Draft) {
-          let opened = WorkPacket.openPacket(p);
-          found := ?opened;
-          opened;
-        } else if (p.id == packetId) {
-          found := ?p;
+        if (p.id == id_fasciculi and p.status == #Draft) {
+          let apertus = WorkPacket.openPacket(p);
+          inventum := ?apertus;
+          apertus;
+        } else if (p.id == id_fasciculi) {
+          inventum := ?p;
           p;
         } else {
           p;
         };
       },
     );
-    found;
+    inventum;
   };
 
-  /// Assign an engine to a packet and begin work.
-  public func workspaceAssign(
-    packetId : Text,
-    family : T.ModelFamily,
+  /// ἀσσιγνάρε ἐργαστήριον - assignare ergasterion (assign workspace)
+  public func assignare_ergasterion(
+    id_fasciculi : Text,
+    familia : T.ModelFamily,
   ) : async ?T.WorkPacket {
-    let role = ModelEngine.determineRole(family, "");
-    var found : ?T.WorkPacket = null;
+    let munus = ModelEngine.determineRole(familia, "");
+    var inventum : ?T.WorkPacket = null;
     
-    workPackets := Array.map<T.WorkPacket, T.WorkPacket>(
-      workPackets,
+    _fasciculi := Array.map<T.WorkPacket, T.WorkPacket>(
+      _fasciculi,
       func(p : T.WorkPacket) : T.WorkPacket {
-        if (p.id == packetId) {
-          let assigned = WorkPacket.assignEngine(p, role, family);
-          found := ?assigned;
-          assigned;
+        if (p.id == id_fasciculi) {
+          let assignatus = WorkPacket.assignEngine(p, munus, familia);
+          inventum := ?assignatus;
+          assignatus;
         } else {
           p;
         };
       },
     );
-    found;
+    inventum;
   };
 
-  /// Complete a packet with execution result.
-  public func workspaceComplete(
-    packetId : Text,
-    outputPayload : Text,
+  /// κομπλέρε ἐργαστήριον - complere ergasterion (complete workspace)
+  public func complere_ergasterion(
+    id_fasciculi : Text,
+    onus_finalis : Text,
   ) : async ?T.WorkPacket {
-    var found : ?T.WorkPacket = null;
+    var inventum : ?T.WorkPacket = null;
     
-    workPackets := Array.map<T.WorkPacket, T.WorkPacket>(
-      workPackets,
+    _fasciculi := Array.map<T.WorkPacket, T.WorkPacket>(
+      _fasciculi,
       func(p : T.WorkPacket) : T.WorkPacket {
-        if (p.id == packetId) {
-          let completed = WorkPacket.completePacket(p, outputPayload, "evidence:completed:" # packetId);
-          found := ?completed;
-          completed;
+        if (p.id == id_fasciculi) {
+          let completus = WorkPacket.completePacket(p, onus_finalis, "evidentia:completus:" # id_fasciculi);
+          inventum := ?completus;
+          completus;
         } else {
           p;
         };
       },
     );
-    found;
+    inventum;
   };
 
-  /// Get all work packets.
-  public query func workspaceList() : async [T.WorkPacket] {
-    workPackets;
+  /// ἐνυμεράρε ἐργαστήρια - enumerare ergasteria (list workspaces)
+  public query func enumerare_ergasteria() : async [T.WorkPacket] {
+    _fasciculi;
   };
 
-  /// Get a specific packet by ID.
-  public query func workspaceGet(packetId : Text) : async ?T.WorkPacket {
-    var found : ?T.WorkPacket = null;
-    for (p in workPackets.vals()) {
-      if (p.id == packetId) {
-        found := ?p;
+  /// ὀβτινέρε ἐργαστήριον - obtinere ergasterion (get workspace)
+  public query func obtinere_ergasterion(id_fasciculi : Text) : async ?T.WorkPacket {
+    var inventum : ?T.WorkPacket = null;
+    for (p in _fasciculi.vals()) {
+      if (p.id == id_fasciculi) {
+        inventum := ?p;
       };
     };
-    found;
+    inventum;
   };
 
-  // ========== Workflow API ==========
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΡΟΗ - FLUXUS (Workflow API)
+  // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Create and start a new workflow.
-  public func workflowCreate(
-    name : Text,
-    taskRefs : [Text],
+  /// κρεάρε ῥοήν - creare rhoen (create workflow)
+  public func creare_rhoen(
+    nomen : Text,
+    referentiae_operum : [Text],
   ) : async T.Workflow {
-    workflowCounter += 1;
-    let workflowId = nextId("workflow", workflowCounter);
+    _numerus_fluxuum += 1;
+    let id_fluxus = _generareId("fluxus", _numerus_fluxuum);
     
-    // Create steps from task refs
-    var stepCounter = 0;
-    let steps = Array.map<Text, T.WorkflowStep>(
-      taskRefs,
-      func(taskRef : Text) : T.WorkflowStep {
-        stepCounter += 1;
-        let stepId = workflowId # "-step-" # Nat.toText(stepCounter);
+    var numerator_graduum = 0;
+    let gradus = Array.map<Text, T.WorkflowStep>(
+      referentiae_operum,
+      func(referentia_operis : Text) : T.WorkflowStep {
+        numerator_graduum += 1;
+        let id_gradus = id_fluxus # "-gradus-" # Nat.toText(numerator_graduum);
         
-        // Determine step type and engine based on task
-        let route = ModelRouter.routeForTask(taskRef, null);
-        let engineRole = ?ModelEngine.determineRole(route.family, taskRef);
-        let stepType : T.WorkflowStepType = if (stepCounter == 1) #Route 
-                                            else if (stepCounter == Array.size(taskRefs)) #Complete 
-                                            else #Execute;
+        let via = ModelRouter.routeForTask(referentia_operis, null);
+        let munus_machinae = ?ModelEngine.determineRole(via.family, referentia_operis);
+        let genus_gradus : T.WorkflowStepType = if (numerator_graduum == 1) #Route 
+                                                else if (numerator_graduum == Array.size(referentiae_operum)) #Complete 
+                                                else #Execute;
         
-        WorkPacket.createStep(stepId, stepType, engineRole, taskRef, true);
+        WorkPacket.createStep(id_gradus, genus_gradus, munus_machinae, referentia_operis, true);
       }
     );
     
-    let workflow = WorkPacket.createWorkflow(workflowId, name, steps);
-    let started = WorkPacket.startWorkflow(workflow);
+    let fluxus = WorkPacket.createWorkflow(id_fluxus, nomen, gradus);
+    let fluxus_inceptus = WorkPacket.startWorkflow(fluxus);
     
-    workflows := Array.append(workflows, [started]);
-    replayRefs := Array.append(replayRefs, ["replay:workflow:" # workflowId]);
+    _fluxus := Array.append(_fluxus, [fluxus_inceptus]);
+    _vestigia := Array.append(_vestigia, ["vestigium:fluxus:" # id_fluxus]);
     
-    started;
+    fluxus_inceptus;
   };
 
-  /// Execute the current step of a workflow.
-  public func workflowStep(workflowId : Text) : async ?T.WorkflowResult {
-    var result : ?T.WorkflowResult = null;
+  /// γράδυς ῥοῆς - gradus rhoes (workflow step)
+  public func gradus_rhoes(id_fluxus : Text) : async ?T.WorkflowResult {
+    var effectus : ?T.WorkflowResult = null;
     
-    workflows := Array.map<T.Workflow, T.Workflow>(
-      workflows,
+    _fluxus := Array.map<T.Workflow, T.Workflow>(
+      _fluxus,
       func(w : T.Workflow) : T.Workflow {
-        if (w.id == workflowId and w.status == #Running) {
-          let currentIdx = w.currentStepIndex;
-          if (currentIdx < Array.size(w.steps)) {
-            let step = w.steps[currentIdx];
+        if (w.id == id_fluxus and w.status == #Running) {
+          let index_currentis = w.currentStepIndex;
+          if (index_currentis < Array.size(w.steps)) {
+            let gradus = w.steps[index_currentis];
             
-            // Execute step based on engine role
-            let stepOutput = switch (step.engineRole) {
-              case null "Step " # Nat.toText(currentIdx) # " executed (no engine)";
-              case (?role) {
-                "Step " # Nat.toText(currentIdx) # " executed by " # 
-                ModelEngine.roleName(role) # " engine for task: " # step.taskRef;
+            let exitus_gradus = switch (gradus.engineRole) {
+              case null "Gradus " # Nat.toText(index_currentis) # " executus (sine machina)";
+              case (?munus) {
+                "Gradus " # Nat.toText(index_currentis) # " executus per " # 
+                ModelEngine.roleName(munus) # " machinam pro opere: " # gradus.taskRef;
               };
             };
             
-            // Create packet for this step
-            packetCounter += 1;
-            let packetId = nextId("packet", packetCounter);
-            let registers : T.Register = {
-              founder = "workflow:" # workflowId;
-              builder = "step:" # step.id;
+            _numerus_fasciculorum += 1;
+            let id_fasciculi = _generareId("fasciculus", _numerus_fasciculorum);
+            let tabulae : T.Register = {
+              founder = "fluxus:" # id_fluxus;
+              builder = "gradus:" # gradus.id;
               organism = "medina";
               external = "";
             };
-            let stepPacket = WorkPacket.createPacket(
-              packetId,
-              "Workflow step: " # step.taskRef,
-              step.taskRef,
-              stepOutput,
-              registers,
+            let fasciculus_gradus = WorkPacket.createPacket(
+              id_fasciculi,
+              "Gradus fluxus: " # gradus.taskRef,
+              gradus.taskRef,
+              exitus_gradus,
+              tabulae,
               null
             );
-            let completedPacket = WorkPacket.completePacket(
-              WorkPacket.openPacket(stepPacket),
-              stepOutput,
-              "workflow:" # workflowId # ":step:" # Nat.toText(currentIdx)
+            let fasciculus_completus = WorkPacket.completePacket(
+              WorkPacket.openPacket(fasciculus_gradus),
+              exitus_gradus,
+              "fluxus:" # id_fluxus # ":gradus:" # Nat.toText(index_currentis)
             );
-            workPackets := Array.append(workPackets, [completedPacket]);
+            _fasciculi := Array.append(_fasciculi, [fasciculus_completus]);
             
-            // Advance workflow
-            let advanced = WorkPacket.advanceStep(w, stepOutput, ?packetId);
+            let progressus = WorkPacket.advanceStep(w, exitus_gradus, ?id_fasciculi);
             
-            // Build result
-            let gates : T.GateStatus = { a = true; b = true; c = true };
-            let r = WorkPacket.buildResult(advanced, ?stepOutput, gates);
-            result := ?r;
+            let portae : T.GateStatus = { a = true; b = true; c = true };
+            let r = WorkPacket.buildResult(progressus, ?exitus_gradus, portae);
+            effectus := ?r;
             
-            advanced;
+            progressus;
           } else {
             w;
           };
@@ -830,143 +843,140 @@ actor Medina {
         };
       },
     );
-    result;
+    effectus;
   };
 
-  /// Execute an entire workflow to completion.
-  public func workflowRun(workflowId : Text) : async ?T.WorkflowResult {
-    var finalResult : ?T.WorkflowResult = null;
-    var continueRunning = true;
+  /// κύρρερε ῥοήν - currere rhoen (run workflow)
+  public func currere_rhoen(id_fluxus : Text) : async ?T.WorkflowResult {
+    var effectus_finalis : ?T.WorkflowResult = null;
+    var continuare = true;
     
-    // Find the workflow
-    var targetWorkflow : ?T.Workflow = null;
-    for (w in workflows.vals()) {
-      if (w.id == workflowId) {
-        targetWorkflow := ?w;
+    var fluxus_destinatus : ?T.Workflow = null;
+    for (w in _fluxus.vals()) {
+      if (w.id == id_fluxus) {
+        fluxus_destinatus := ?w;
       };
     };
     
-    switch (targetWorkflow) {
+    switch (fluxus_destinatus) {
       case null null;
-      case (?wf) {
-        // Run all steps
-        let numSteps = Array.size(wf.steps);
-        var stepIdx = 0;
-        while (stepIdx < numSteps and continueRunning) {
-          let stepResult = await workflowStep(workflowId);
-          switch (stepResult) {
-            case null { continueRunning := false; };
+      case (?fl) {
+        let numerus_graduum = Array.size(fl.steps);
+        var index_gradus = 0;
+        while (index_gradus < numerus_graduum and continuare) {
+          let effectus_gradus = await gradus_rhoes(id_fluxus);
+          switch (effectus_gradus) {
+            case null { continuare := false; };
             case (?r) {
-              finalResult := ?r;
+              effectus_finalis := ?r;
               if (r.status == #Completed or r.status == #Failed) {
-                continueRunning := false;
+                continuare := false;
               };
             };
           };
-          stepIdx += 1;
+          index_gradus += 1;
         };
-        finalResult;
+        effectus_finalis;
       };
     };
   };
 
-  /// Get workflow status.
-  public query func workflowStatus(workflowId : Text) : async ?T.Workflow {
-    var found : ?T.Workflow = null;
-    for (w in workflows.vals()) {
-      if (w.id == workflowId) {
-        found := ?w;
+  /// στάτυς ῥοῆς - status rhoes (workflow status)
+  public query func status_rhoes(id_fluxus : Text) : async ?T.Workflow {
+    var inventum : ?T.Workflow = null;
+    for (w in _fluxus.vals()) {
+      if (w.id == id_fluxus) {
+        inventum := ?w;
       };
     };
-    found;
+    inventum;
   };
 
-  /// List all workflows.
-  public query func workflowList() : async [T.Workflow] {
-    workflows;
+  /// ἐνυμεράρε ῥοάς - enumerare rhoas (list workflows)
+  public query func enumerare_rhoas() : async [T.Workflow] {
+    _fluxus;
   };
 
-  // ========== Universal Command Executor ==========
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΙΜΠΕΡΙΥΜ - IMPERIUM (Universal Command API)
+  // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Universal control-plane command executor (typed command AST form).
-  public func runCommand(cmd : T.Command) : async T.CommandResult {
-    switch (cmd) {
+  /// ἰμπεράρε - imperare (execute command)
+  public func imperare(mandatum : T.Command) : async T.CommandResult {
+    switch (mandatum) {
       case (#MemoryFind c) {
-        let results = MemoryTemple.find(memoryNodes, c.query, c.ring, c.depth, c.lineage);
+        let effectus = MemoryTemple.find(_nodi_memoriae, c.query, c.ring, c.depth, c.lineage);
         {
           status = #Ok;
-          message = "memory.find: " # Nat.toText(Array.size(results)) # " results for query '" # c.query # "'";
+          message = "mneme.quaerere: " # Nat.toText(Array.size(effectus)) # " effectus pro '" # c.query # "'";
           lineageId = null;
           gates = null;
-          evidenceRefs = Array.map<T.MemoryNode, Text>(results, func(n : T.MemoryNode) : Text { n.id });
+          evidenceRefs = Array.map<T.MemoryNode, Text>(effectus, func(n : T.MemoryNode) : Text { n.id });
         };
       };
       case (#MemoryPin c) {
-        // Pin a memory node (mark as promoted)
-        let promoted = await memoryPromote(c.memoryId);
+        let promotus = await promovere_mneme(c.memoryId);
         {
-          status = if (promoted) #Ok else #Error;
-          message = if (promoted) "memory.pin: pinned " # c.memoryId else "memory.pin: not found " # c.memoryId;
+          status = if (promotus) #Ok else #Error;
+          message = if (promotus) "mneme.promovere: " # c.memoryId else "mneme.promovere: non inventum " # c.memoryId;
           lineageId = ?c.memoryId;
           gates = null;
-          evidenceRefs = ["pin:" # c.memoryId];
+          evidenceRefs = ["promovere:" # c.memoryId];
         };
       };
       case (#MemoryMap c) {
-        // Map memory node relationships
-        let related = MemoryTemple.find(memoryNodes, "", null, null, ?c.memoryId);
+        let relati = MemoryTemple.find(_nodi_memoriae, "", null, null, ?c.memoryId);
         {
           status = #Ok;
-          message = "memory.map: " # c.memoryId # " mode=" # c.mode # " related=" # Nat.toText(Array.size(related));
+          message = "mneme.mappa: " # c.memoryId # " modus=" # c.mode # " relati=" # Nat.toText(Array.size(relati));
           lineageId = ?c.memoryId;
           gates = null;
-          evidenceRefs = Array.map<T.MemoryNode, Text>(related, func(n : T.MemoryNode) : Text { n.id });
+          evidenceRefs = Array.map<T.MemoryNode, Text>(relati, func(n : T.MemoryNode) : Text { n.id });
         };
       };
       case (#GovernStatus c) {
-        let status = await governStatus(c.proposalId);
+        let status = await kybernesis_status(c.proposalId);
         {
           status = #Ok;
-          message = "govern.status: " # status;
+          message = "kybernesis.status: " # status;
           lineageId = c.proposalId;
           gates = null;
           evidenceRefs = [];
         };
       };
       case (#GovernPropose c) {
-        // Create a governance proposal with default registers
-        let defaultRegisters : T.Register = {
-          founder = "cmd";
-          builder = "cmd";
+        let tabulae_defectivae : T.Register = {
+          founder = "mandatum";
+          builder = "mandatum";
           organism = "medina";
           external = "";
         };
-        let dualRead : T.DualReadStatus = { semantic = true; resonance = true };
-        let gates : T.GateStatus = { a = true; b = true; c = true };
-        let proposal = await governPropose(
+        let duplex_lectio : T.DualReadStatus = { semantic = true; resonance = true };
+        let portae : T.GateStatus = { a = true; b = true; c = true };
+        let propositum = await kybernesis_proponere(
           c.proposalType,
           c.payloadRef,
-          defaultRegisters,
-          "cmd:propose",
+          tabulae_defectivae,
+          "mandatum:proponere",
           c.proposalType,
-          dualRead,
-          gates
+          duplex_lectio,
+          portae
         );
         {
           status = #Ok;
-          message = "govern.propose: created " # proposal.id # " type=" # c.proposalType;
-          lineageId = ?proposal.id;
-          gates = ?gates;
-          evidenceRefs = ["proposal:" # proposal.id];
+          message = "kybernesis.proponere: " # propositum.id # " genus=" # c.proposalType;
+          lineageId = ?propositum.id;
+          gates = ?portae;
+          evidenceRefs = ["propositum:" # propositum.id];
         };
       };
       case (#GovernApprove c) {
-        let approved = await governApprove(c.proposalId, c.policy);
-        switch (approved) {
+        let approbatum = await kybernesis_approbare(c.proposalId, c.policy);
+        switch (approbatum) {
           case null {
             {
               status = #Error;
-              message = "govern.approve: proposal not found " # c.proposalId;
+              message = "kybernesis.approbare: propositum non inventum " # c.proposalId;
               lineageId = ?c.proposalId;
               gates = null;
               evidenceRefs = [];
@@ -975,7 +985,7 @@ actor Medina {
           case (?p) {
             {
               status = if (p.status == #Accepted) #Ok else #Blocked;
-              message = "govern.approve: " # c.proposalId # " -> " # Governance.statusText(p);
+              message = "kybernesis.approbare: " # c.proposalId # " -> " # Governance.statusText(p);
               lineageId = ?c.proposalId;
               gates = ?p.gateSnapshot;
               evidenceRefs = p.evidenceRefs;
@@ -984,97 +994,93 @@ actor Medina {
         };
       };
       case (#ModelInvoke c) {
-        // Execute model engine invocation
-        let result = await modelInvoke(c.family, c.taskRef, c.contextMemory, "cmd:invoke:" # c.taskRef);
-        let cmdStatus = switch (result.status) {
+        let effectus = await invocare_daemona(c.family, c.taskRef, c.contextMemory, "mandatum:invocare:" # c.taskRef);
+        let status_mandati = switch (effectus.status) {
           case (#Completed) #Ok;
           case (#Blocked) #Blocked;
           case (#Fallback) #Ok;
           case (#Error) #Error;
         };
         {
-          status = cmdStatus;
-          message = "model.invoke: " # ModelEngine.roleName(
+          status = status_mandati;
+          message = "daemon.invocare: " # ModelEngine.roleName(
             ModelEngine.determineRole(c.family, c.taskRef)
-          ) # " engine -> " # result.outputPayload;
-          lineageId = ?result.invocationId;
-          gates = ?result.gates;
-          evidenceRefs = result.evidenceRefs;
+          ) # " machina -> " # effectus.outputPayload;
+          lineageId = ?effectus.invocationId;
+          gates = ?effectus.gates;
+          evidenceRefs = effectus.evidenceRefs;
         };
       };
       case (#ModelRoute c) {
-        let route = ModelRouter.routeForTask(c.taskRef, c.policy);
-        let role = ModelEngine.determineRole(route.family, c.taskRef);
+        let via = ModelRouter.routeForTask(c.taskRef, c.policy);
+        let munus = ModelEngine.determineRole(via.family, c.taskRef);
         {
           status = #Ok;
-          message = "model.route: task=" # c.taskRef # " -> " # 
-                    ModelEngine.roleName(role) # " engine. " # route.rationale;
+          message = "daemon.via: opus=" # c.taskRef # " -> " # 
+                    ModelEngine.roleName(munus) # " machina. " # via.rationale;
           lineageId = null;
           gates = null;
-          evidenceRefs = ["route:" # c.taskRef];
+          evidenceRefs = ["via:" # c.taskRef];
         };
       };
       case (#WorkspaceOpen c) {
-        // Open or create a workspace packet
-        let existingPacket = await workspaceGet(c.packetId);
-        switch (existingPacket) {
+        let fasciculus_existens = await obtinere_ergasterion(c.packetId);
+        switch (fasciculus_existens) {
           case (?p) {
-            let opened = await workspaceOpen(c.packetId);
+            let apertus = await aperire_ergasterion(c.packetId);
             {
               status = #Ok;
-              message = "workspace.open: opened existing packet " # c.packetId # " status=" # WorkPacket.packetStatusName(p.status);
+              message = "ergasterion.aperire: " # c.packetId # " status=" # WorkPacket.packetStatusName(p.status);
               lineageId = ?c.packetId;
               gates = ?p.gates;
               evidenceRefs = p.evidenceRefs;
             };
           };
           case null {
-            // Create new packet
-            let defaultRegisters : T.Register = {
-              founder = "cmd";
-              builder = "cmd";
+            let tabulae_defectivae : T.Register = {
+              founder = "mandatum";
+              builder = "mandatum";
               organism = "medina";
               external = "";
             };
-            let newPacket = await workspaceCreate(
-              "Workspace: " # c.packetId,
+            let novus_fasciculus = await creare_ergasterion(
+              "Ergasterion: " # c.packetId,
               c.packetId,
-              "cmd:workspace:open",
-              defaultRegisters
+              "mandatum:ergasterion:aperire",
+              tabulae_defectivae
             );
             {
               status = #Ok;
-              message = "workspace.open: created new packet " # newPacket.id;
-              lineageId = ?newPacket.id;
-              gates = ?newPacket.gates;
-              evidenceRefs = newPacket.evidenceRefs;
+              message = "ergasterion.creare: " # novus_fasciculus.id;
+              lineageId = ?novus_fasciculus.id;
+              gates = ?novus_fasciculus.gates;
+              evidenceRefs = novus_fasciculus.evidenceRefs;
             };
           };
         };
       };
       case (#CompanyOnboard c) {
-        let tenant = await companyOnboard(c.tenantId, c.mode, []);
-        let modeName = switch (c.mode) {
-          case (#Connect) "connect";
-          case (#Internalize) "internalize";
-          case (#Hybrid) "hybrid";
+        let colonus = await admittere_societatem(c.tenantId, c.mode, []);
+        let nomen_modi = switch (c.mode) {
+          case (#Connect) "connectere";
+          case (#Internalize) "internalizare";
+          case (#Hybrid) "hybridum";
         };
         {
           status = #Ok;
-          message = "company.onboard: tenant=" # c.tenantId # " mode=" # modeName;
+          message = "societas.admittere: colonus=" # c.tenantId # " modus=" # nomen_modi;
           lineageId = ?c.tenantId;
           gates = null;
-          evidenceRefs = ["tenant:" # c.tenantId];
+          evidenceRefs = ["colonus:" # c.tenantId];
         };
       };
       case (#CompanyConnect c) {
-        // Find and update tenant with connector
-        var found = false;
-        tenants := Array.map<T.Tenant, T.Tenant>(
-          tenants,
+        var inventum = false;
+        _coloni := Array.map<T.Tenant, T.Tenant>(
+          _coloni,
           func(t : T.Tenant) : T.Tenant {
             if (t.id == c.tenantId) {
-              found := true;
+              inventum := true;
               Company.connectRecord(t, c.connectorRef);
             } else {
               t;
@@ -1082,21 +1088,20 @@ actor Medina {
           },
         );
         {
-          status = if (found) #Ok else #Error;
-          message = if (found) "company.connect: " # c.tenantId # " -> " # c.connectorRef else "company.connect: tenant not found";
+          status = if (inventum) #Ok else #Error;
+          message = if (inventum) "societas.connectere: " # c.tenantId # " -> " # c.connectorRef else "societas.connectere: colonus non inventum";
           lineageId = ?c.tenantId;
           gates = null;
-          evidenceRefs = ["connect:" # c.connectorRef];
+          evidenceRefs = ["connectere:" # c.connectorRef];
         };
       };
       case (#CompanyInternalize c) {
-        // Find and update tenant with domain internalization
-        var found = false;
-        tenants := Array.map<T.Tenant, T.Tenant>(
-          tenants,
+        var inventum = false;
+        _coloni := Array.map<T.Tenant, T.Tenant>(
+          _coloni,
           func(t : T.Tenant) : T.Tenant {
             if (t.id == c.tenantId) {
-              found := true;
+              inventum := true;
               Company.internalizeRecord(t, c.domainRef);
             } else {
               t;
@@ -1104,21 +1109,20 @@ actor Medina {
           },
         );
         {
-          status = if (found) #Ok else #Error;
-          message = if (found) "company.internalize: " # c.tenantId # " domain=" # c.domainRef else "company.internalize: tenant not found";
+          status = if (inventum) #Ok else #Error;
+          message = if (inventum) "societas.internalizare: " # c.tenantId # " dominium=" # c.domainRef else "societas.internalizare: colonus non inventum";
           lineageId = ?c.tenantId;
           gates = null;
-          evidenceRefs = ["internalize:" # c.domainRef];
+          evidenceRefs = ["internalizare:" # c.domainRef];
         };
       };
       case (#CompanyHybrid c) {
-        // Find and update tenant with hybrid plan
-        var found = false;
-        tenants := Array.map<T.Tenant, T.Tenant>(
-          tenants,
+        var inventum = false;
+        _coloni := Array.map<T.Tenant, T.Tenant>(
+          _coloni,
           func(t : T.Tenant) : T.Tenant {
             if (t.id == c.tenantId) {
-              found := true;
+              inventum := true;
               Company.hybridRecord(t, c.planRef);
             } else {
               t;
@@ -1126,59 +1130,55 @@ actor Medina {
           },
         );
         {
-          status = if (found) #Ok else #Error;
-          message = if (found) "company.hybrid: " # c.tenantId # " plan=" # c.planRef else "company.hybrid: tenant not found";
+          status = if (inventum) #Ok else #Error;
+          message = if (inventum) "societas.hybridum: " # c.tenantId # " consilium=" # c.planRef else "societas.hybridum: colonus non inventum";
           lineageId = ?c.tenantId;
           gates = null;
-          evidenceRefs = ["hybrid:" # c.planRef];
+          evidenceRefs = ["hybridum:" # c.planRef];
         };
       };
       case (#ReplayShow c) {
-        // Show replay evidence for a workflow or bundle
-        let refs = Array.filter<Text>(replayRefs, func(r : Text) : Bool { 
+        let refs = Array.filter<Text>(_vestigia, func(r : Text) : Bool { 
           r == c.workflowOrBundleId or 
-          (r == "replay:workflow:" # c.workflowOrBundleId) or
-          (r == "replay:beat:" # c.workflowOrBundleId) or
-          (r == "replay:packet:" # c.workflowOrBundleId) or
-          (r == "replay:invoke:" # c.workflowOrBundleId)
+          (r == "vestigium:fluxus:" # c.workflowOrBundleId) or
+          (r == "vestigium:pulsus:" # c.workflowOrBundleId) or
+          (r == "vestigium:fasciculus:" # c.workflowOrBundleId) or
+          (r == "vestigium:invocatio:" # c.workflowOrBundleId)
         });
         {
           status = #Ok;
-          message = "replay.show: " # c.workflowOrBundleId # " -> " # Nat.toText(Array.size(refs)) # " replay refs";
+          message = "vestigia.ostendere: " # c.workflowOrBundleId # " -> " # Nat.toText(Array.size(refs)) # " vestigia";
           lineageId = ?c.workflowOrBundleId;
           gates = null;
           evidenceRefs = refs;
         };
       };
       case (#Run c) {
-        // Run a workflow by reference
-        // First try to find existing workflow
-        var existingWorkflow : ?T.Workflow = null;
-        for (w in workflows.vals()) {
+        var fluxus_existens : ?T.Workflow = null;
+        for (w in _fluxus.vals()) {
           if (w.id == c.workflowRef or w.name == c.workflowRef) {
-            existingWorkflow := ?w;
+            fluxus_existens := ?w;
           };
         };
         
-        switch (existingWorkflow) {
-          case (?wf) {
-            // Run existing workflow
-            let result = await workflowRun(wf.id);
-            switch (result) {
+        switch (fluxus_existens) {
+          case (?fl) {
+            let effectus = await currere_rhoen(fl.id);
+            switch (effectus) {
               case null {
                 {
                   status = #Error;
-                  message = "run: workflow execution failed for " # wf.id;
-                  lineageId = ?wf.id;
+                  message = "currere: executio fluxus fallit pro " # fl.id;
+                  lineageId = ?fl.id;
                   gates = null;
-                  evidenceRefs = wf.evidenceRefs;
+                  evidenceRefs = fl.evidenceRefs;
                 };
               };
               case (?r) {
                 {
                   status = if (r.status == #Completed) #Ok else #Blocked;
-                  message = "run: " # c.workflowRef # " -> " # WorkPacket.workflowStatusName(r.status) # 
-                            " (" # Nat.toText(r.completedSteps) # "/" # Nat.toText(r.totalSteps) # " steps)";
+                  message = "currere: " # c.workflowRef # " -> " # WorkPacket.workflowStatusName(r.status) # 
+                            " (" # Nat.toText(r.completedSteps) # "/" # Nat.toText(r.totalSteps) # " gradus)";
                   lineageId = ?r.workflowId;
                   gates = ?r.gates;
                   evidenceRefs = r.evidenceRefs;
@@ -1187,23 +1187,22 @@ actor Medina {
             };
           };
           case null {
-            // Create new workflow from reference
-            let newWorkflow = await workflowCreate(c.workflowRef, [c.workflowRef]);
-            let result = await workflowRun(newWorkflow.id);
-            switch (result) {
+            let novus_fluxus = await creare_rhoen(c.workflowRef, [c.workflowRef]);
+            let effectus = await currere_rhoen(novus_fluxus.id);
+            switch (effectus) {
               case null {
                 {
                   status = #Error;
-                  message = "run: created and ran workflow " # newWorkflow.id # " but execution failed";
-                  lineageId = ?newWorkflow.id;
+                  message = "currere: creatus et currit fluxus " # novus_fluxus.id # " sed executio fallit";
+                  lineageId = ?novus_fluxus.id;
                   gates = null;
-                  evidenceRefs = newWorkflow.evidenceRefs;
+                  evidenceRefs = novus_fluxus.evidenceRefs;
                 };
               };
               case (?r) {
                 {
                   status = if (r.status == #Completed) #Ok else #Blocked;
-                  message = "run: created " # newWorkflow.id # " -> " # WorkPacket.workflowStatusName(r.status);
+                  message = "currere: creatus " # novus_fluxus.id # " -> " # WorkPacket.workflowStatusName(r.status);
                   lineageId = ?r.workflowId;
                   gates = ?r.gates;
                   evidenceRefs = r.evidenceRefs;

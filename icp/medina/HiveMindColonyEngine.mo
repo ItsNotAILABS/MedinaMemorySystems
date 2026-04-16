@@ -32,7 +32,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getBeeColonyRoles() : [ColonyRole] {
+  public func obtinere_beecolonyroles() : [ColonyRole] {
     [
       {
         role = "QUEEN";
@@ -114,7 +114,7 @@ module {
     cplImplementation : Text;
   };
 
-  public func getSwarmDecisionMechanisms() : [SwarmDecisionMechanism] {
+  public func obtinere_swarmdecisionmechanisms() : [SwarmDecisionMechanism] {
     [
       {
         mechanism = "WAGGLE DANCE DEMOCRACY";
@@ -180,7 +180,7 @@ module {
     organismIntegration : Text;
   };
 
-  public func getAntColonyPatterns() : [AntColonyPattern] {
+  public func obtinere_antcolonypatterns() : [AntColonyPattern] {
     [
       {
         pattern = "SUPERCOLONY";
@@ -246,7 +246,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getHiveMindProcessingLayers() : [HiveMindProcessingLayer] {
+  public func obtinere_hivemindprocessinglayers() : [HiveMindProcessingLayer] {
     [
       {
         layer = "SENSING LAYER";
@@ -311,7 +311,7 @@ module {
     cplCombined : Text;
   };
 
-  public func getBirdHiveIntegration() : [BirdHiveIntegration] {
+  public func obtinere_birdhiveintegration() : [BirdHiveIntegration] {
     [
       {
         birdPattern = "Dawn Chorus (Status broadcast)";
@@ -362,7 +362,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "HIVE MIND COLONY ENGINE - ORGANISM INTEGRATION:\n\n" #
     "CORE PRINCIPLES:\n" #
     "• No central controller needed\n" #

@@ -676,7 +676,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all 20 layers
-  public func getAllLayers() : [UnderworldLayer] {
+  public func obtinere_alllayers() : [UnderworldLayer] {
     [
       layer1_ThresholdOfDescent(),
       layer2_TheRiverCrossing(),
@@ -732,7 +732,7 @@ module {
     organismProcess : Text;
   };
 
-  public func getComputationalMappings() : [UnderworldComputation] {
+  public func obtinere_computationalmappings() : [UnderworldComputation] {
     [
       { layer = 1; computationalEquivalent = "Function Call"; programmingConcept = "Entry Point"; organismProcess = "Intention Setting" },
       { layer = 2; computationalEquivalent = "Authentication"; programmingConcept = "Auth/Permission"; organismProcess = "Value Exchange" },

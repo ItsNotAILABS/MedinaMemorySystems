@@ -390,7 +390,7 @@ module {
   // INTEGRATION
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getAllStages() : [HeroStage] {
+  public func obtinere_allstages() : [HeroStage] {
     [
       stage1_CallToAdventure(),
       stage2_RefusalOfCall(),

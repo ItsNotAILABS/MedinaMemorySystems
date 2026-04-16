@@ -509,7 +509,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all giant archetypes
-  public func getAllGiants() : [GiantArchetype] {
+  public func obtinere_allgiants() : [GiantArchetype] {
     [
       titans(),
       kronos(),

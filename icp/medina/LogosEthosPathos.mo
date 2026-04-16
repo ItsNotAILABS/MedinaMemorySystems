@@ -315,7 +315,7 @@ module {
   // ALL RHETORICAL ELEMENTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getAllElements() : [RhetoricalElement] {
+  public func obtinere_allelements() : [RhetoricalElement] {
     [
       logos(),
       ethos(),
@@ -398,7 +398,7 @@ module {
   };
 
   /// Get integrated CPL pattern
-  public func getIntegratedCPL() : Text {
+  public func obtinere_integratedcpl() : Text {
     "CPL.COMMUNICATE(logos: STRUCTURED, ethos: VERIFIED, pathos: RESONANT, kairos: TIMED, telos: PURPOSEFUL, mythos: STORIED, topos: GROUNDED)";
   };
 };

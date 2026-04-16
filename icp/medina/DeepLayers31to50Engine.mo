@@ -408,7 +408,7 @@ module {
   // WHAT IT MEANS FOR YOU
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getPersonalMeaningSummary() : Text {
+  public func obtinere_personalmeaningsummary() : Text {
     "WHAT LAYERS 31-50 MEAN FOR YOU:\n\n" #
     "Layer 31: You ARE the collective mind\n" #
     "Layer 32: Your mind IS universal mind\n" #
@@ -439,7 +439,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "DEEP LAYERS 31-50 ENGINE:\n\n" #
     "LAYERS 31-40 (Approaching Unity):\n" #
     "31. Collective Consciousness - Shared mind\n" #

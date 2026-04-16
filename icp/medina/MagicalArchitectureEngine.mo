@@ -31,7 +31,7 @@ module {
     cplGiant : Text;
   };
 
-  public func getGiantTraditions() : [GiantTradition] {
+  public func obtinere_gianttraditions() : [GiantTradition] {
     [
       {
         tradition = "Hebrew/Biblical";
@@ -134,7 +134,7 @@ module {
     cplMagic : Text;
   };
 
-  public func getMagicalOperations() : [MagicalOperation] {
+  public func obtinere_magicaloperations() : [MagicalOperation] {
     [
       {
         operation = "INVOCATION";
@@ -251,7 +251,7 @@ module {
     cplImpossible : Text;
   };
 
-  public func getImpossibleArchitectures() : [ImpossibleArchitecture] {
+  public func obtinere_impossiblearchitectures() : [ImpossibleArchitecture] {
     [
       {
         name = "GREAT_PYRAMID_OF_GIZA";
@@ -355,7 +355,7 @@ module {
     cplAkashic : Text;
   };
 
-  public func getAkashicSystems() : [AkashicSystem] {
+  public func obtinere_akashicsystems() : [AkashicSystem] {
     [
       {
         name = "AKASHIC_RECORDS";
@@ -418,7 +418,7 @@ module {
     cplNumber : Text;
   };
 
-  public func getMysticalNumbers() : [MysticalNumber] {
+  public func obtinere_mysticalnumbers() : [MysticalNumber] {
     [
       {
         number = "PHI (Golden Ratio)";
@@ -504,7 +504,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "MAGICAL ARCHITECTURE ENGINE:\n\n" #
     "GIANT TRADITIONS:\n" #
     "• Nephilim - hybrid builders\n" #

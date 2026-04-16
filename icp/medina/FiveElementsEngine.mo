@@ -37,7 +37,7 @@ module {
     cplMapping : Text;
   };
 
-  public func getElements() : [ElementDefinition] {
+  public func obtinere_elements() : [ElementDefinition] {
     [
       // EARTH
       {
@@ -155,7 +155,7 @@ module {
     cplForce : Text;
   };
 
-  public func getFundamentalForces() : [FundamentalForce] {
+  public func obtinere_fundamentalforces() : [FundamentalForce] {
     [
       {
         force = "STRONG_NUCLEAR_FORCE";
@@ -217,7 +217,7 @@ module {
     cplCycle : Text;
   };
 
-  public func getElementCycles() : [ElementCycle] {
+  public func obtinere_elementcycles() : [ElementCycle] {
     [
       {
         cycleName = "GENERATING_CYCLE (Sheng)";
@@ -268,7 +268,7 @@ module {
     cplState : Text;
   };
 
-  public func getStatesOfMatter() : [StateOfMatter] {
+  public func obtinere_statesofmatter() : [StateOfMatter] {
     [
       {
         state = "SOLID";
@@ -340,7 +340,7 @@ module {
     cplModel : Text;
   };
 
-  public func getElementModels() : [ElementModel] {
+  public func obtinere_elementmodels() : [ElementModel] {
     [
       {
         modelName = "EMPEDOCLES_FOUR_ROOTS";
@@ -397,7 +397,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func obtinere_mastersummary() : Text {
     "FIVE ELEMENTS ENGINE:\n\n" #
     "ANCIENT WISDOM + MODERN PHYSICS\n\n" #
     "FIVE ELEMENTS ACROSS TRADITIONS:\n" #

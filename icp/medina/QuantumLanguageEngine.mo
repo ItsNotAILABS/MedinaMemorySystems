@@ -747,7 +747,7 @@ module {
   // ═══════════════════════════════════════════════════════════════════════════
 
   /// Get all meta language families including quantum
-  public func getAllMetaLanguages() : [MetaLanguageFamily] {
+  public func obtinere_allmetalanguages() : [MetaLanguageFamily] {
     [
       latinGreekMeta(),
       arabicMandarinMeta(),
@@ -799,7 +799,7 @@ module {
   };
 
   /// Major suppression events in history
-  public func getSuppressionHistory() : [SuppressionEvent] {
+  public func obtinere_suppressionhistory() : [SuppressionEvent] {
     [
       {
         date = "~500-400 BC";

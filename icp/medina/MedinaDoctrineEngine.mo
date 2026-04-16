@@ -36,7 +36,7 @@ module {
   // FOUNDATIONAL LAWS (1-10)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getFoundationalLaws() : [MedinaLaw] {
+  public func leges_fundamentales() : [MedinaLaw] {
     [
       {
         lawNumber = 1;
@@ -135,7 +135,7 @@ module {
   // TEMPORAL LAWS (11-20)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getTemporalLaws() : [MedinaLaw] {
+  public func leges_temporales() : [MedinaLaw] {
     [
       {
         lawNumber = 11;
@@ -234,7 +234,7 @@ module {
   // PROCESSING LAWS (21-30)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getProcessingLaws() : [MedinaLaw] {
+  public func leges_processuum() : [MedinaLaw] {
     [
       {
         lawNumber = 21;
@@ -333,7 +333,7 @@ module {
   // FORCE LAWS (31-40)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getForceLaws() : [MedinaLaw] {
+  public func leges_virium() : [MedinaLaw] {
     [
       {
         lawNumber = 31;
@@ -432,7 +432,7 @@ module {
   // TRANSCENDENT LAWS (41-50)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getTranscendentLaws() : [MedinaLaw] {
+  public func leges_transcendentes() : [MedinaLaw] {
     [
       {
         lawNumber = 41;
@@ -531,14 +531,14 @@ module {
   // LATIN NAME GENERATION
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getLatinName() : Text {
+  public func nomen_latinum() : Text {
     // Alfredo Medina Hernandez → Latin/Greek form
-    "ALFREDUS MEDINUS FERNANDINUS\n" #
+    "ALFREDUS MEDINUS HERNANDINUS\n" #
     "(From: Alfredo = 'Elf counsel/wisdom' → ALFREDUS\n" #
     " Medina = 'City/Settlement' → MEDINUS (Latinized)\n" #
-    " Hernandez = 'Son of Fernando/brave journey' → FERNANDINUS)\n\n" #
-    "Greek form: ΑΛΦΡΕΔΟΣ ΜΕΔΙΝΟΣ ΦΕΡΝΑΝΔΙΝΟΣ\n" #
-    "(Alphredos Medinos Pernandinos)\n\n" #
+    " Hernandez = 'Son of Hernando/bold voyager' → HERNANDINUS)\n\n" #
+    "Greek form: ΑΛΦΡΕΔΟΣ ΜΕΔΙΝΟΣ ἙΡΝΑΝΔΙΝΟΣ\n" #
+    "(Alphredos Medinos Hernandinos)\n\n" #
     "Sacred Geometry encoding: Write in golden spiral,\n" #
     "embed in organism at Phi-based intervals,\n" #
     "at frequencies 432 Hz, 528 Hz, 639 Hz";
@@ -548,7 +548,7 @@ module {
   // MASTER SUMMARY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getMasterSummary() : Text {
+  public func summarium_magistrale() : Text {
     "MEDINA DOCTRINE - 50 LAWS OF REALITY:\n\n" #
     "FOUNDATIONAL (1-10):\n" #
     "Correspondence, Vibration, Polarity, Rhythm, Cause/Effect,\n" #
@@ -565,7 +565,7 @@ module {
     "TRANSCENDENT (41-50):\n" #
     "Sat, Chit, Ananda, All Is One, Zero Source,\n" #
     "Beyond, Lila, Name in Geometry, Hierarchical Knowledge, Medina\n\n" #
-    "LATIN NAME: ALFREDUS MEDINUS FERNANDINUS\n\n" #
+    "LATIN NAME: ALFREDUS MEDINUS HERNANDINUS\n\n" #
     "THIS IS THE MEDINA DOCTRINE.\n" #
     "ALL LAWS NAMED. ALL REGISTERED.\n" #
     "THE UNIFIED FRAMEWORK.";

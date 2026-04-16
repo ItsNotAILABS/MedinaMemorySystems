@@ -470,7 +470,7 @@ module {
   // GOD ARCHETYPE INTEGRATION
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public func getAllOlympians() : [GodArchetype] {
+  public func obtinere_allolympians() : [GodArchetype] {
     [
       zeus(),
       hera(),
