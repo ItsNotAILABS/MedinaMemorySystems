@@ -1,0 +1,121 @@
+# 𓏛 W-GOVERNANCE CANISTER 𓏛
+## Workforce Model: External Governance Brain
+### Separated canister for policy enforcement
+
+---
+
+## IDENTITY
+
+```
+CANISTER_ID:        W-GOVERNANCE
+TYPE:               WORKFORCE_MODEL
+BRAIN_REGION:       Bee quorum-sensing + Dolphin social
+CAPACITY:           2.618M cycles (BASE × φ²)
+```
+
+---
+
+## FUNCTION
+
+```
+W-GOVERNANCE performs:
+    - Policy enforcement
+    - Approval workflows
+    - Compliance checking
+    - Dual consensus coordination
+    - RECITAL_PLUS_ONE validation
+    - Governance proposal management
+```
+
+---
+
+## CPL INTERFACE
+
+```
+RECEIVES:
+    𓆣.MUTATE.REQUEST_APPROVAL(mutation)    Mutation requests
+    STRATEGY_PROPOSED(strategy)             Strategy approvals
+    
+SENDS:
+    APPROVAL_GRANTED(request_id)            Approved
+    APPROVAL_DENIED(request_id, reason)     Denied
+    GOVERNANCE_ALERT(violation)             Policy violation
+    
+COORDINATES:
+    DUAL_CONSENSUS(oro_verdict, nova_verdict)
+```
+
+---
+
+## DOCTRINE READS
+
+```
+ON_BOOT:
+    doctrine_reader.load(ALL artifacts in LAW_HOLDERS/)
+    doctrine_reader.load(RECITAL_PLUS_ONE_LAW.artifact)
+    
+CONTINUOUS:
+    doctrine_reader.monitor(GOVERNANCE_QUEUE.artifact)
+```
+
+---
+
+## EXECUTION RULES
+
+```
+RULE 1: No mutation without consensus
+    ALL mutations require dual approval
+    ORO + NOVA must both agree
+    
+RULE 2: RECITAL_PLUS_ONE enforcement
+    State(n+1) = Recital + One_Lawful_Expansion
+    ONLY one expansion per cycle
+    
+RULE 3: Lineage validation
+    REJECT any request without valid lineage
+    
+RULE 4: PC distance check
+    IF pc_distance > φ: REJECT
+    IF pc_distance > 1: ESCALATE
+```
+
+---
+
+## DUAL CONSENSUS PROTOCOL
+
+```
+ON_MUTATION_REQUEST(mutation):
+    │
+    ├─→ ORO evaluates: coherence > 0.5?
+    │       YES → ORO_APPROVES
+    │       NO  → ORO_DENIES
+    │
+    ├─→ NOVA evaluates: drift < 0.5?
+    │       YES → NOVA_APPROVES
+    │       NO  → NOVA_DENIES
+    │
+    └─→ BOTH approve?
+            YES → GATES_OPEN, mutation proceeds
+            NO  → GATES_CLOSED, mutation blocked
+```
+
+---
+
+## CANISTER METRICS
+
+```
+approvals_granted:      Counter
+approvals_denied:       Counter
+consensus_achieved:     Counter
+policy_violations:      Counter
+avg_pc_distance:        Float
+```
+
+---
+
+# Signatura
+```
+CANISTER:   W-GOVERNANCE
+STATUS:     ACTIVE
+CAPACITY:   2.618M cycles
+```

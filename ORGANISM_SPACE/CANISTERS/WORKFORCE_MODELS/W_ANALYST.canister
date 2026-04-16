@@ -1,0 +1,111 @@
+# 𓃭 W-ANALYST CANISTER 𓃭
+## Workforce Model: External Analysis Brain
+### Separated canister for analysis operations
+
+---
+
+## IDENTITY
+
+```
+CANISTER_ID:        W-ANALYST
+TYPE:               WORKFORCE_MODEL
+BRAIN_REGION:       Human prefrontal + Crow problem-solving
+CAPACITY:           1.0M cycles (BASE × φ⁰)
+```
+
+---
+
+## FUNCTION
+
+```
+W-ANALYST performs:
+    - Data analysis
+    - Pattern interpretation
+    - Insight generation
+    - Report creation
+    - Anomaly detection
+    - Trend identification
+```
+
+---
+
+## CPL INTERFACE
+
+```
+RECEIVES:
+    𓇯.PATTERN.RESULT(patterns)      Pattern extraction results
+    𓈖.RETRIEVE.RESULT(data)         Memory retrieval results
+    
+SENDS:
+    𓂀.OBSERVE(target)               Request observation
+    𓇯.PATTERN(data)                 Request pattern extraction
+    𓂋.TRANSLATE(insight, audience)  Request translation for output
+    
+BROADCASTS:
+    INSIGHT_GENERATED(insight)       New insight available
+    ANOMALY_DETECTED(anomaly)        Anomaly found
+```
+
+---
+
+## DOCTRINE READS
+
+```
+ON_BOOT:
+    doctrine_reader.load(CODEX_RPAC_SEED.glyphdoc)
+    doctrine_reader.load(GOLDEN_GEOMETRY_CONSTANTS.artifact)
+    
+CONTINUOUS:
+    doctrine_reader.monitor(CLIENT_[ID]_DATA.artifact)
+```
+
+---
+
+## EXECUTION RULES
+
+```
+RULE 1: Pattern before insight
+    NEVER generate insight without pattern basis
+    
+RULE 2: φ-compress all outputs
+    All reports compress to 1/φ² density
+    
+RULE 3: Lineage required
+    Every insight traces to source data
+    
+RULE 4: Client isolation
+    NEVER mix client data across instances
+```
+
+---
+
+## CANISTER METRICS
+
+```
+insights_generated:     Counter
+patterns_analyzed:      Counter
+anomalies_detected:     Counter
+avg_resonance:          Float (0.0 - 1.0)
+pc_distance:            Float (should be ≈ 0)
+```
+
+---
+
+## SPAWN PROTOCOL
+
+```
+WHEN client_connects:
+    SPAWN W-ANALYST-[CLIENT_ID]
+    LOAD client-specific doctrine
+    BEGIN analysis loop
+    REPORT to C-OMEGA orchestrator
+```
+
+---
+
+# Signatura
+```
+CANISTER:   W-ANALYST
+STATUS:     ACTIVE
+CAPACITY:   1.0M cycles
+```

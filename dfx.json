@@ -4,6 +4,42 @@
     "medina": {
       "type": "motoko",
       "main": "icp/medina/Medina.mo"
+    },
+    "organism": {
+      "type": "motoko",
+      "main": "src/organism/Organism.mo"
+    },
+    "heart": {
+      "type": "motoko",
+      "main": "src/organism/Heart.mo"
+    },
+    "workforce": {
+      "type": "motoko",
+      "main": "src/organism/Workforce.mo"
+    },
+    "parallax": {
+      "type": "motoko",
+      "main": "src/enterprise/Parallax.mo"
+    },
+    "enterprise_ingest": {
+      "type": "motoko",
+      "main": "src/enterprise/EnterpriseIngest.mo"
+    },
+    "emergence_engine": {
+      "type": "motoko",
+      "main": "src/enterprise/EmergenceEngine.mo"
+    },
+    "external_uses": {
+      "type": "motoko",
+      "main": "src/enterprise/ExternalUses.mo"
+    },
+    "substrate_engine": {
+      "type": "motoko",
+      "main": "src/enterprise/SubstrateEngine.mo"
+    },
+    "model_orchestrator": {
+      "type": "motoko",
+      "main": "src/enterprise/ModelOrchestrator.mo"
     }
   },
   "defaults": {
