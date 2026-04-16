@@ -11,6 +11,9 @@ import ReplayPanel from '@/components/ReplayPanel';
 import PermissionsPanel from '@/components/PermissionsPanel';
 import OrganismField from '@/components/OrganismField';
 import DevicesPanel from '@/components/DevicesPanel';
+import MessagesPanel from '@/components/MessagesPanel';
+import CampaignsPanel from '@/components/CampaignsPanel';
+import ExportPanel from '@/components/ExportPanel';
 import OroTerminal from '@/components/OroTerminal';
 import type { PanelId } from '@/types';
 
@@ -34,6 +37,9 @@ export default function HomePage() {
       case 'replay': return <ReplayPanel />;
       case 'permissions': return <PermissionsPanel />;
       case 'devices': return <DevicesPanel />;
+      case 'messages': return <MessagesPanel />;
+      case 'campaigns': return <CampaignsPanel />;
+      case 'export': return <ExportPanel />;
       default: return <OVOChat onTaskSubmit={handleTaskSubmit} />;
     }
   };
