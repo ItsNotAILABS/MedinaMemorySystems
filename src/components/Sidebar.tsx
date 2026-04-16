@@ -13,7 +13,11 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'models', label: 'Models', icon: '⚡', color: '#6366f1' },
   { id: 'devices', label: 'Devices', icon: '📱', color: '#00d4ff' },
   { id: 'company', label: 'Company', icon: '🏢', color: '#ec4899' },
+  { id: 'messages', label: 'Messages', icon: '✉️', color: '#0ea5e9' },
+  { id: 'campaigns', label: 'Campaigns', icon: '📢', color: '#f97316' },
+  { id: 'export', label: 'Export', icon: '📤', color: '#22c55e' },
   { id: 'replay', label: 'Replay', icon: '⏮️', color: '#06b6d4' },
+  { id: 'permissions', label: 'Perms', icon: '🔐', color: '#f59e0b' },
   { id: 'settings', label: 'Settings', icon: '⚙️', color: '#94a3b8' },
 ];
 
@@ -56,7 +60,7 @@ export default function Sidebar({ activePanel, onNavigate }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-3 space-y-0.5 px-2">
+      <nav className="flex-1 py-3 space-y-0.5 px-2 overflow-y-auto">
         {NAV_ITEMS.map((item) => (
           <button
             key={item.id}

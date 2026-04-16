@@ -4,6 +4,20 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
 import type { ChatMessage, ModelFamily, StructuredResponse } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
+import WaveformVisualizer, { MicrophoneVisualizer } from './WaveformVisualizer';
+import {
+  oroSpeak,
+  startListening,
+  stopListening,
+  setWaveformCallback,
+  setRecognitionResultCallback,
+  setListeningStateCallback,
+  type ListeningState,
+} from '@/lib/voiceEngine';
+
+interface OVOChatProps {
+  onTaskSubmit?: (task: string) => void;
+}
 
 const MODEL_COLORS: Record<string, string> = {
   strategist: '#3b82f6',
@@ -19,36 +33,61 @@ const MODEL_COLORS: Record<string, string> = {
 const WELCOME_MESSAGE: ChatMessage = {
   id: 'welcome',
   role: 'system',
-  content: `Welcome to **NOVA OVO** — Sovereign Intelligence Platform.
+  content: `𓂀 Welcome to **NOVA OVO** — Sovereign Intelligence Platform.
 
-Type a message to converse naturally, or use commands:
+I am **ORO**, your Primary Sovereign Intelligence. Speak to me using your microphone, or type commands:
+
 • \`/memory find <query>\` — Search memory
-• \`/memory store <content>\` — Store memory
 • \`/govern list\` — List proposals
-• \`/govern propose <title>\` — Create proposal
-• \`/model list\` — List model families
 • \`/model invoke <model> <prompt>\` — Invoke model
 • \`/organism status\` — View organism state
 • \`/help\` — Full command reference
 
-The platform routes your messages to the best model automatically.`,
+Press the **🎤 Mic** button to start voice conversation.`,
   timestamp: new Date().toISOString(),
 };
 
 const QUICK_COMMANDS = [
-  { label: 'Memory Status', cmd: '/memory list' },
-  { label: 'Gate Status', cmd: '/govern gates' },
-  { label: 'List Models', cmd: '/model list' },
+  { label: 'Memory', cmd: '/memory list' },
+  { label: 'Gates', cmd: '/govern gates' },
+  { label: 'Models', cmd: '/model list' },
   { label: 'Organism', cmd: '/organism status' },
 ];
 
-export default function OVOChat() {
+export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  
+  // Voice state
+  const [isListening, setIsListening] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [waveform, setWaveform] = useState<number[]>(new Array(64).fill(0));
+  const [interimTranscript, setInterimTranscript] = useState('');
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Initialize voice callbacks
+  useEffect(() => {
+    setWaveformCallback((wf) => {
+      setWaveform(wf);
+      setIsSpeaking(wf.some(v => v > 0.1));
+    });
+
+    setRecognitionResultCallback((text, isFinal, confidence) => {
+      if (isFinal && text.trim()) {
+        setInterimTranscript('');
+        void handleSend(text);
+      } else {
+        setInterimTranscript(text);
+      }
+    });
+
+    setListeningStateCallback((state: ListeningState) => {
+      setIsListening(state.isListening);
+    });
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -75,7 +114,6 @@ export default function OVOChat() {
 
     setMessages((prev) => [...prev, userMsg, loadingMsg]);
     setInput('');
-    setSuggestions([]);
     setLoading(true);
 
     try {
@@ -94,6 +132,21 @@ export default function OVOChat() {
           processing: false,
         },
       ]);
+
+      // Speak the response if voice mode is active
+      // Limit to ~200 chars to avoid overly long speech
+      const MAX_VOICE_RESPONSE_LENGTH = 200;
+      if (isListening && data.content) {
+        await oroSpeak(data.content.slice(0, MAX_VOICE_RESPONSE_LENGTH));
+      }
+
+      // Check if this is a task that should open the terminal
+      if (content.toLowerCase().includes('task:') || 
+          content.toLowerCase().startsWith('build ') ||
+          content.toLowerCase().startsWith('create ') ||
+          content.toLowerCase().startsWith('generate ')) {
+        onTaskSubmit?.(content);
+      }
     } catch {
       setMessages((prev) => [
         ...prev.slice(0, -1),
@@ -107,7 +160,7 @@ export default function OVOChat() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading]);
+  }, [input, loading, isListening, onTaskSubmit]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -116,16 +169,41 @@ export default function OVOChat() {
     }
   };
 
+  const toggleListening = () => {
+    if (isListening) {
+      stopListening();
+      setIsListening(false);
+    } else {
+      startListening();
+      setIsListening(true);
+    }
+  };
+
   return (
     <div className="flex flex-col h-full bg-[#0a0a0f]">
-      {/* Header */}
+      {/* Header with Voice Controls */}
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#1e1e2e] bg-[#0d0d15] shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-blue-400 text-lg">💬</span>
-          <h1 className="text-sm font-semibold text-slate-200">OVO Chat</h1>
-          <span className="text-xs text-slate-500 ml-1">Universal Command Interface</span>
+          <span className="text-blue-400 text-lg">𓂀</span>
+          <h1 className="text-sm font-semibold text-slate-200">ORO</h1>
+          <span className="text-xs text-slate-500 ml-1">Sovereign Intelligence</span>
         </div>
-        <div className="flex gap-1">
+        <div className="flex items-center gap-2">
+          {/* Voice Toggle */}
+          <button
+            onClick={toggleListening}
+            className={clsx(
+              'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
+              isListening
+                ? 'bg-green-600/20 border border-green-500/50 text-green-400 animate-pulse'
+                : 'bg-[#1e1e2e] border border-[#2d2d42] text-slate-400 hover:text-slate-200'
+            )}
+          >
+            <span>{isListening ? '🎤' : '🎤'}</span>
+            {isListening ? 'Listening...' : 'Voice'}
+          </button>
+          
+          {/* Quick Commands */}
           {QUICK_COMMANDS.map((qc) => (
             <button
               key={qc.cmd}
@@ -137,6 +215,32 @@ export default function OVOChat() {
           ))}
         </div>
       </div>
+
+      {/* Voice Visualizers */}
+      {(isListening || isSpeaking) && (
+        <div className="flex border-b border-[#1e1e2e] bg-[#0d0d15]">
+          <div className="flex-1 px-4 py-2 border-r border-[#1e1e2e]">
+            <MicrophoneVisualizer 
+              isListening={isListening} 
+              color="#10b981"
+              height={32}
+            />
+            {interimTranscript && (
+              <div className="mt-1 text-xs text-slate-500 font-mono truncate">
+                {interimTranscript}
+              </div>
+            )}
+          </div>
+          <div className="flex-1 px-4 py-2">
+            <WaveformVisualizer 
+              waveform={waveform} 
+              isActive={isSpeaking}
+              color="#3b82f6"
+              height={32}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
@@ -154,7 +258,7 @@ export default function OVOChat() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type a message or /command…"
+            placeholder={isListening ? "Listening for voice input..." : "Type a message or /command…"}
             rows={1}
             className={clsx(
               'w-full cmd-input rounded-lg px-4 py-3 pr-24 text-sm resize-none',
@@ -188,6 +292,10 @@ export default function OVOChat() {
           <span>Shift+Enter for newline</span>
           <span>•</span>
           <span>Type / for commands</span>
+          <span>•</span>
+          <span className={isListening ? 'text-green-400' : ''}>
+            {isListening ? '🎤 Voice active' : 'Voice off'}
+          </span>
         </div>
       </div>
     </div>
