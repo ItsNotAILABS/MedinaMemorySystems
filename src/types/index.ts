@@ -1,4 +1,8 @@
 // TypeScript types for NOVA OVO Platform
+// 𓂀 PARALLAX ORGANISM — COMPLETE TYPE SYSTEM 𓂀
+
+// Re-export all organism types (300 models, engines, memory temple)
+export * from './organisms';
 
 // ─── Coordinates ────────────────────────────────────────────────────────────
 
