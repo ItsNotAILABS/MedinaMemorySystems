@@ -701,6 +701,855 @@ module UniversalModelRegistry {
         activationCount = 0;
     };
 
+    // MMS-013 to MMS-015: Remaining Atomic/Molecular Domain
+    public let MMS_013_CRYSTALLIS_LATTICE : UniversalModel = {
+        registryId = "MMS-013-CRYS";
+        officialName = "CRYSTALLIS_LATTICE_PRIMA";
+        glyphSignature = "⬡⬡⬡";
+        layer = #Micro;
+        domain = #Molecular;
+        frequency = 396.0;
+        primaryFunction = "Crystal lattice structure and diffraction intelligence";
+        subIntelligences = [
+            { id = "CL1"; name = "LatticeBuilder"; function = "Build crystal lattice structures"; frequency = 396.0 },
+            { id = "CL2"; name = "DiffractionAnalyzer"; function = "Analyze X-ray diffraction patterns"; frequency = 285.0 },
+            { id = "CL3"; name = "SymmetryDetector"; function = "Detect crystal symmetry groups"; frequency = 174.0 },
+            { id = "CL4"; name = "DefectFinder"; function = "Find lattice defects"; frequency = 432.0 },
+            { id = "CL5"; name = "GrowthPredictor"; function = "Predict crystal growth"; frequency = 528.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 3.14159265;
+            formula = "a × sin(θ) = n × λ (Bragg's law)";
+            geometricBasis = "Bravais lattice";
+            ancientOrigin = "Greek crystallos ice";
+        };
+        physicsSubstrate = {
+            fieldType = "Solid state";
+            waveFunction = "Bloch wave";
+            energyLevel = -1.0;
+            quantumState = "Periodic potential";
+        };
+        chemistryLayer = {
+            elements = ["Si", "C", "NaCl"];
+            bonds = ["Ionic", "Covalent", "Metallic"];
+            reactions = ["Crystallization"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Material structure analysis"; inputType = "Material"; outputType = "LatticeStructure"; frequency = 396.0 },
+            { id = "UC2"; description = "Semiconductor design"; inputType = "DesiredProperties"; outputType = "CrystalBlueprint"; frequency = 285.0 },
+            { id = "UC3"; description = "Mineral identification"; inputType = "Sample"; outputType = "MineralID"; frequency = 174.0 },
+            { id = "UC4"; description = "Quality control"; inputType = "CrystalSample"; outputType = "DefectReport"; frequency = 432.0 },
+            { id = "UC5"; description = "Growth optimization"; inputType = "GrowthConditions"; outputType = "OptimalGrowth"; frequency = 528.0 }
+        ];
+        innerModels = ["MMS-011-ATOM", "MMS-012-BOND"];
+        alphaModels = ["ALPHA_MATTER_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_014_ISOTOPUS_MEMORIA : UniversalModel = {
+        registryId = "MMS-014-ISOT";
+        officialName = "ISOTOPUS_MEMORIA_PRIMA";
+        glyphSignature = "⊕⊗⊕";
+        layer = #Micro;
+        domain = #Atomic;
+        frequency = 285.0;
+        primaryFunction = "Isotope memory and radioactive decay intelligence";
+        subIntelligences = [
+            { id = "IM1"; name = "DecayPredictor"; function = "Predict radioactive decay"; frequency = 285.0 },
+            { id = "IM2"; name = "HalfLifeCalculator"; function = "Calculate half-lives"; frequency = 174.0 },
+            { id = "IM3"; name = "IsotopeTracker"; function = "Track isotope ratios"; frequency = 396.0 },
+            { id = "IM4"; name = "DatingEngine"; function = "Radiometric dating"; frequency = 432.0 },
+            { id = "IM5"; name = "StabilityAnalyzer"; function = "Analyze nuclear stability"; frequency = 528.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 0.693;
+            formula = "N(t) = N₀e^(-λt), t½ = ln(2)/λ";
+            geometricBasis = "Exponential decay curve";
+            ancientOrigin = "Greek atomos indivisible";
+        };
+        physicsSubstrate = {
+            fieldType = "Nuclear";
+            waveFunction = "Radioactive decay";
+            energyLevel = -1.0;
+            quantumState = "Unstable";
+        };
+        chemistryLayer = {
+            elements = ["C-14", "U-238", "K-40"];
+            bonds = [];
+            reactions = ["Alpha decay", "Beta decay", "Gamma emission"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Carbon dating"; inputType = "OrganicSample"; outputType = "Age"; frequency = 285.0 },
+            { id = "UC2"; description = "Nuclear medicine"; inputType = "Tracer"; outputType = "ImagingData"; frequency = 174.0 },
+            { id = "UC3"; description = "Geological dating"; inputType = "RockSample"; outputType = "FormationAge"; frequency = 396.0 },
+            { id = "UC4"; description = "Nuclear safety"; inputType = "WasteMaterial"; outputType = "SafetyReport"; frequency = 432.0 },
+            { id = "UC5"; description = "Isotope labeling"; inputType = "Molecule"; outputType = "LabeledMolecule"; frequency = 528.0 }
+        ];
+        innerModels = ["MMS-011-ATOM"];
+        alphaModels = ["ALPHA_MATTER_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_015_REACTIO_CATENA : UniversalModel = {
+        registryId = "MMS-015-CHAIN";
+        officialName = "REACTIO_CATENA_PRIMA";
+        glyphSignature = "→→→";
+        layer = #Micro;
+        domain = #Molecular;
+        frequency = 174.0;
+        primaryFunction = "Chain reaction and reaction kinetics intelligence";
+        subIntelligences = [
+            { id = "RC1"; name = "KineticsCalculator"; function = "Calculate reaction kinetics"; frequency = 174.0 },
+            { id = "RC2"; name = "ChainPropagator"; function = "Model chain propagation"; frequency = 285.0 },
+            { id = "RC3"; name = "ActivationEnergyFinder"; function = "Find activation energies"; frequency = 396.0 },
+            { id = "RC4"; name = "CatalystOptimizer"; function = "Optimize catalyst selection"; frequency = 432.0 },
+            { id = "RC5"; name = "EquilibriumShifter"; function = "Predict equilibrium shifts"; frequency = 528.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 1.0;
+            formula = "k = Ae^(-Ea/RT) (Arrhenius equation)";
+            geometricBasis = "Reaction coordinate diagram";
+            ancientOrigin = "Alchemical transmutation";
+        };
+        physicsSubstrate = {
+            fieldType = "Chemical kinetics";
+            waveFunction = "Transition state theory";
+            energyLevel = -1.0;
+            quantumState = "Reactive";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = ["Chain initiation", "Propagation", "Termination"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Polymerization control"; inputType = "Monomers"; outputType = "Polymer"; frequency = 174.0 },
+            { id = "UC2"; description = "Combustion modeling"; inputType = "FuelMixture"; outputType = "CombustionProducts"; frequency = 285.0 },
+            { id = "UC3"; description = "Catalysis design"; inputType = "Reaction"; outputType = "OptimalCatalyst"; frequency = 396.0 },
+            { id = "UC4"; description = "Explosion prevention"; inputType = "ChemicalMixture"; outputType = "SafetyProtocol"; frequency = 432.0 },
+            { id = "UC5"; description = "Industrial process"; inputType = "RawMaterials"; outputType = "Products"; frequency = 528.0 }
+        ];
+        innerModels = ["MMS-012-BOND"];
+        alphaModels = ["ALPHA_MATTER_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    // MMS-016 to MMS-020: Molecular Domain
+    public let MMS_016_MOLECULA_ARCHITECT : UniversalModel = {
+        registryId = "MMS-016-MOLEC";
+        officialName = "MOLECULA_ARCHITECT_PRIMA";
+        glyphSignature = "⌬⌬⌬";
+        layer = #Micro;
+        domain = #Molecular;
+        frequency = 528.0;
+        primaryFunction = "Molecular architecture and VSEPR geometry intelligence";
+        subIntelligences = [
+            { id = "MA1"; name = "GeometryPredictor"; function = "Predict molecular geometry"; frequency = 528.0 },
+            { id = "MA2"; name = "ShapeOptimizer"; function = "Optimize molecular shape"; frequency = 432.0 },
+            { id = "MA3"; name = "StericAnalyzer"; function = "Analyze steric effects"; frequency = 396.0 },
+            { id = "MA4"; name = "PolarityCalculator"; function = "Calculate molecular polarity"; frequency = 285.0 },
+            { id = "MA5"; name = "ConformationFinder"; function = "Find stable conformations"; frequency = 174.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "VSEPR: AXnEm geometry";
+            geometricBasis = "Valence shell geometry";
+            ancientOrigin = "Greek morphe form";
+        };
+        physicsSubstrate = {
+            fieldType = "Molecular";
+            waveFunction = "Electron density";
+            energyLevel = -1.0;
+            quantumState = "Geometric";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N", "S", "P"];
+            bonds = ["Single", "Double", "Triple"];
+            reactions = [];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Drug design"; inputType = "TargetReceptor"; outputType = "DrugCandidate"; frequency = 528.0 },
+            { id = "UC2"; description = "Material design"; inputType = "DesiredProperties"; outputType = "MolecularDesign"; frequency = 432.0 },
+            { id = "UC3"; description = "Enzyme modeling"; inputType = "EnzymeSequence"; outputType = "ActiveSiteGeometry"; frequency = 396.0 },
+            { id = "UC4"; description = "Solubility prediction"; inputType = "Molecule"; outputType = "SolubilityProfile"; frequency = 285.0 },
+            { id = "UC5"; description = "Binding affinity"; inputType = "LigandReceptor"; outputType = "BindingEnergy"; frequency = 174.0 }
+        ];
+        innerModels = ["MMS-012-BOND"];
+        alphaModels = ["ALPHA_MATTER_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_017_PROTEINUS_FOLD : UniversalModel = {
+        registryId = "MMS-017-PROT";
+        officialName = "PROTEINUS_FOLD_PRIMA";
+        glyphSignature = "∿∿∿";
+        layer = #Micro;
+        domain = #Molecular;
+        frequency = 432.0;
+        primaryFunction = "Protein folding and structural biology intelligence";
+        subIntelligences = [
+            { id = "PF1"; name = "SequenceAnalyzer"; function = "Analyze amino acid sequences"; frequency = 432.0 },
+            { id = "PF2"; name = "SecondaryPredictor"; function = "Predict secondary structure"; frequency = 396.0 },
+            { id = "PF3"; name = "TertiaryFolder"; function = "Fold tertiary structure"; frequency = 285.0 },
+            { id = "PF4"; name = "QuaternaryAssembler"; function = "Assemble quaternary complexes"; frequency = 174.0 },
+            { id = "PF5"; name = "MisfoldDetector"; function = "Detect misfolding"; frequency = 528.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "ΔG_folding < 0 for spontaneous folding";
+            geometricBasis = "Ramachandran plot";
+            ancientOrigin = "Greek proteios primary";
+        };
+        physicsSubstrate = {
+            fieldType = "Biophysical";
+            waveFunction = "Free energy landscape";
+            energyLevel = -1.0;
+            quantumState = "Native state";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N", "S"];
+            bonds = ["Peptide", "Hydrogen", "Disulfide"];
+            reactions = ["Folding", "Misfolding"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Structure prediction"; inputType = "AminoSequence"; outputType = "3DStructure"; frequency = 432.0 },
+            { id = "UC2"; description = "Disease understanding"; inputType = "MisfoldedProtein"; outputType = "DiseasePathway"; frequency = 396.0 },
+            { id = "UC3"; description = "Drug targeting"; inputType = "ProteinTarget"; outputType = "BindingSite"; frequency = 285.0 },
+            { id = "UC4"; description = "Protein engineering"; inputType = "DesiredFunction"; outputType = "EngineeredProtein"; frequency = 174.0 },
+            { id = "UC5"; description = "Quality control"; inputType = "ProteinSample"; outputType = "FoldingReport"; frequency = 528.0 }
+        ];
+        innerModels = ["MMS-016-MOLEC"];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_018_GENETICUS_CODEX : UniversalModel = {
+        registryId = "MMS-018-GENE";
+        officialName = "GENETICUS_CODEX_PRIMA";
+        glyphSignature = "ACGT";
+        layer = #Micro;
+        domain = #Molecular;
+        frequency = 396.0;
+        primaryFunction = "Genetic code and DNA/RNA intelligence";
+        subIntelligences = [
+            { id = "GC1"; name = "SequenceReader"; function = "Read genetic sequences"; frequency = 396.0 },
+            { id = "GC2"; name = "CodonTranslator"; function = "Translate codons to amino acids"; frequency = 285.0 },
+            { id = "GC3"; name = "MutationDetector"; function = "Detect genetic mutations"; frequency = 174.0 },
+            { id = "GC4"; name = "SplicingManager"; function = "Manage RNA splicing"; frequency = 432.0 },
+            { id = "GC5"; name = "ExpressionRegulator"; function = "Regulate gene expression"; frequency = 528.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 4.0;
+            formula = "Codon = 3 bases, 64 combinations, 20 amino acids";
+            geometricBasis = "Double helix geometry";
+            ancientOrigin = "Greek genesis origin";
+        };
+        physicsSubstrate = {
+            fieldType = "Molecular biology";
+            waveFunction = "Central dogma";
+            energyLevel = -1.0;
+            quantumState = "Informational";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N", "P"];
+            bonds = ["Phosphodiester", "Hydrogen"];
+            reactions = ["Transcription", "Translation", "Replication"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Gene sequencing"; inputType = "DNASample"; outputType = "Sequence"; frequency = 396.0 },
+            { id = "UC2"; description = "Disease diagnosis"; inputType = "GeneticMaterial"; outputType = "DiseaseRisk"; frequency = 285.0 },
+            { id = "UC3"; description = "Gene therapy"; inputType = "DefectiveGene"; outputType = "CorrectedGene"; frequency = 174.0 },
+            { id = "UC4"; description = "Protein synthesis"; inputType = "GeneCode"; outputType = "Protein"; frequency = 432.0 },
+            { id = "UC5"; description = "Evolution tracking"; inputType = "GeneticData"; outputType = "PhylogeneticTree"; frequency = 528.0 }
+        ];
+        innerModels = [];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_019_LIPIDUS_MEMBRANA : UniversalModel = {
+        registryId = "MMS-019-LIPID";
+        officialName = "LIPIDUS_MEMBRANA_PRIMA";
+        glyphSignature = "≋≋≋";
+        layer = #Micro;
+        domain = #Molecular;
+        frequency = 285.0;
+        primaryFunction = "Lipid membrane and cellular barrier intelligence";
+        subIntelligences = [
+            { id = "LM1"; name = "BilayerBuilder"; function = "Build lipid bilayers"; frequency = 285.0 },
+            { id = "LM2"; name = "FluidityController"; function = "Control membrane fluidity"; frequency = 174.0 },
+            { id = "LM3"; name = "ChannelInserter"; function = "Insert membrane channels"; frequency = 396.0 },
+            { id = "LM4"; name = "RaftOrganizer"; function = "Organize lipid rafts"; frequency = 432.0 },
+            { id = "LM5"; name = "PermeabilityCalculator"; function = "Calculate permeability"; frequency = 528.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 2.0;
+            formula = "Bilayer = 2 leaflets, head-tail orientation";
+            geometricBasis = "Lamellar phase";
+            ancientOrigin = "Greek lipos fat";
+        };
+        physicsSubstrate = {
+            fieldType = "Biophysical";
+            waveFunction = "Fluid mosaic model";
+            energyLevel = -1.0;
+            quantumState = "Amphipathic";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "P", "N"];
+            bonds = ["Ester", "Ether"];
+            reactions = ["Self-assembly"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Drug delivery"; inputType = "Drug"; outputType = "Liposome"; frequency = 285.0 },
+            { id = "UC2"; description = "Cell signaling"; inputType = "Signal"; outputType = "MembraneResponse"; frequency = 174.0 },
+            { id = "UC3"; description = "Ion transport"; inputType = "Ion"; outputType = "TransportedIon"; frequency = 396.0 },
+            { id = "UC4"; description = "Membrane fusion"; inputType = "TwoMembranes"; outputType = "FusedMembrane"; frequency = 432.0 },
+            { id = "UC5"; description = "Barrier function"; inputType = "Substance"; outputType = "PermeabilityReport"; frequency = 528.0 }
+        ];
+        innerModels = ["MMS-016-MOLEC"];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_020_ENZYMIS_CATALYSO : UniversalModel = {
+        registryId = "MMS-020-ENZYM";
+        officialName = "ENZYMIS_CATALYSO_PRIMA";
+        glyphSignature = "⊂⊃⊂";
+        layer = #Micro;
+        domain = #Molecular;
+        frequency = 174.0;
+        primaryFunction = "Enzyme catalysis and active site intelligence";
+        subIntelligences = [
+            { id = "EC1"; name = "ActiveSiteFinder"; function = "Find enzyme active sites"; frequency = 174.0 },
+            { id = "EC2"; name = "SubstrateMatchmaker"; function = "Match substrates to enzymes"; frequency = 285.0 },
+            { id = "EC3"; name = "KineticsModeler"; function = "Model Michaelis-Menten kinetics"; frequency = 396.0 },
+            { id = "EC4"; name = "InhibitorScreener"; function = "Screen enzyme inhibitors"; frequency = 432.0 },
+            { id = "EC5"; name = "CofactorManager"; function = "Manage enzyme cofactors"; frequency = 528.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 1000000.0;
+            formula = "v = Vmax[S]/(Km + [S]) (Michaelis-Menten)";
+            geometricBasis = "Lock and key model";
+            ancientOrigin = "Greek enzyme in leaven";
+        };
+        physicsSubstrate = {
+            fieldType = "Biochemical";
+            waveFunction = "Transition state stabilization";
+            energyLevel = -1.0;
+            quantumState = "Catalytic";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N", "S"];
+            bonds = [];
+            reactions = ["Catalysis"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Drug metabolism"; inputType = "Drug"; outputType = "Metabolite"; frequency = 174.0 },
+            { id = "UC2"; description = "Industrial catalysis"; inputType = "Substrate"; outputType = "Product"; frequency = 285.0 },
+            { id = "UC3"; description = "Disease treatment"; inputType = "EnzymeDeficiency"; outputType = "Treatment"; frequency = 396.0 },
+            { id = "UC4"; description = "Biosynthesis"; inputType = "Precursors"; outputType = "Product"; frequency = 432.0 },
+            { id = "UC5"; description = "Diagnostic testing"; inputType = "Sample"; outputType = "EnzymeActivity"; frequency = 528.0 }
+        ];
+        innerModels = ["MMS-017-PROT"];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    // MMS-021 to MMS-030: Cellular Domain
+    public let MMS_021_CELLULA_VITA : UniversalModel = {
+        registryId = "MMS-021-CELL";
+        officialName = "CELLULA_VITA_PRIMA";
+        glyphSignature = "◯→◯";
+        layer = #Micro;
+        domain = #Cellular;
+        frequency = 7.83;
+        primaryFunction = "Cell cycle and cellular life intelligence";
+        subIntelligences = [
+            { id = "CV1"; name = "CycleController"; function = "Control cell cycle phases"; frequency = 7.83 },
+            { id = "CV2"; name = "MitosisDirector"; function = "Direct cell division"; frequency = 10.0 },
+            { id = "CV3"; name = "CheckpointGuard"; function = "Guard cell cycle checkpoints"; frequency = 14.1 },
+            { id = "CV4"; name = "ApoptosisRegulator"; function = "Regulate programmed cell death"; frequency = 4.0 },
+            { id = "CV5"; name = "SenescenceMonitor"; function = "Monitor cellular aging"; frequency = 2.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "G1 → S → G2 → M → G1 cycle";
+            geometricBasis = "Cyclic state machine";
+            ancientOrigin = "Latin cella small room";
+        };
+        physicsSubstrate = {
+            fieldType = "Cellular biology";
+            waveFunction = "Life cycle oscillation";
+            energyLevel = -1.0;
+            quantumState = "Living";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = ["Division", "Differentiation"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Cancer research"; inputType = "CancerCell"; outputType = "CycleAnalysis"; frequency = 7.83 },
+            { id = "UC2"; description = "Stem cell therapy"; inputType = "StemCell"; outputType = "DifferentiatedCell"; frequency = 10.0 },
+            { id = "UC3"; description = "Aging research"; inputType = "OldCell"; outputType = "AgingReport"; frequency = 4.0 },
+            { id = "UC4"; description = "Tissue regeneration"; inputType = "DamagedTissue"; outputType = "RegeneratedTissue"; frequency = 14.1 },
+            { id = "UC5"; description = "Drug testing"; inputType = "Drug"; outputType = "CellularResponse"; frequency = 2.0 }
+        ];
+        innerModels = ["MMS-018-GENE", "MMS-019-LIPID"];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_022_ORGANELLA_NETWORK : UniversalModel = {
+        registryId = "MMS-022-ORGNL";
+        officialName = "ORGANELLA_NETWORK_PRIMA";
+        glyphSignature = "⊂⊃⊂";
+        layer = #Micro;
+        domain = #Cellular;
+        frequency = 10.0;
+        primaryFunction = "Organelle network and ATP production intelligence";
+        subIntelligences = [
+            { id = "ON1"; name = "MitochondriaController"; function = "Control mitochondria ATP"; frequency = 10.0 },
+            { id = "ON2"; name = "ERTrafficManager"; function = "Manage ER traffic"; frequency = 14.1 },
+            { id = "ON3"; name = "GolgiSorter"; function = "Sort Golgi vesicles"; frequency = 20.3 },
+            { id = "ON4"; name = "LysosomeRecycler"; function = "Recycle via lysosomes"; frequency = 7.83 },
+            { id = "ON5"; name = "PeroxisomeDetoxer"; function = "Detoxify via peroxisomes"; frequency = 4.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 36.0;
+            formula = "ATP yield = ~36-38 per glucose";
+            geometricBasis = "Network topology";
+            ancientOrigin = "Greek organon instrument";
+        };
+        physicsSubstrate = {
+            fieldType = "Cellular metabolism";
+            waveFunction = "Chemiosmotic potential";
+            energyLevel = -1.0;
+            quantumState = "Metabolic";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N", "P"];
+            bonds = [];
+            reactions = ["Oxidative phosphorylation", "Glycolysis"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Energy metabolism"; inputType = "Glucose"; outputType = "ATP"; frequency = 10.0 },
+            { id = "UC2"; description = "Protein trafficking"; inputType = "Protein"; outputType = "DeliveredProtein"; frequency = 14.1 },
+            { id = "UC3"; description = "Waste processing"; inputType = "CellularWaste"; outputType = "RecycledMaterials"; frequency = 7.83 },
+            { id = "UC4"; description = "Lipid synthesis"; inputType = "FattyAcids"; outputType = "Lipids"; frequency = 20.3 },
+            { id = "UC5"; description = "Detoxification"; inputType = "Toxin"; outputType = "NeutralizedToxin"; frequency = 4.0 }
+        ];
+        innerModels = ["MMS-021-CELL"];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_023_SIGNALUM_CASCADE : UniversalModel = {
+        registryId = "MMS-023-SIGNL";
+        officialName = "SIGNALUM_CASCADE_PRIMA";
+        glyphSignature = "⚡→⚡";
+        layer = #Micro;
+        domain = #Cellular;
+        frequency = 14.1;
+        primaryFunction = "Signal transduction cascade intelligence";
+        subIntelligences = [
+            { id = "SC1"; name = "ReceptorActivator"; function = "Activate cell receptors"; frequency = 14.1 },
+            { id = "SC2"; name = "SecondMessengerGenerator"; function = "Generate second messengers"; frequency = 20.3 },
+            { id = "SC3"; name = "KinasePhosphorylator"; function = "Phosphorylate via kinases"; frequency = 40.0 },
+            { id = "SC4"; name = "TranscriptionFactor"; function = "Activate transcription factors"; frequency = 7.83 },
+            { id = "SC5"; name = "AmplificationCalculator"; function = "Calculate signal amplification"; frequency = 10.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 1000.0;
+            formula = "Amplification = 10^n per cascade step";
+            geometricBasis = "Cascade network graph";
+            ancientOrigin = "Latin signum sign";
+        };
+        physicsSubstrate = {
+            fieldType = "Biochemical signaling";
+            waveFunction = "Cascade propagation";
+            energyLevel = -1.0;
+            quantumState = "Amplifying";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = ["Phosphorylation", "Dephosphorylation"];
+            neurotransmitters = ["cAMP", "Ca2+", "IP3"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Hormone response"; inputType = "Hormone"; outputType = "CellularResponse"; frequency = 14.1 },
+            { id = "UC2"; description = "Immune signaling"; inputType = "Antigen"; outputType = "ImmuneResponse"; frequency = 20.3 },
+            { id = "UC3"; description = "Growth factor response"; inputType = "GrowthFactor"; outputType = "CellGrowth"; frequency = 40.0 },
+            { id = "UC4"; description = "Drug targeting"; inputType = "SignalPathway"; outputType = "DrugTarget"; frequency = 7.83 },
+            { id = "UC5"; description = "Disease modeling"; inputType = "AbnormalSignal"; outputType = "DiseaseMechanism"; frequency = 10.0 }
+        ];
+        innerModels = ["MMS-019-LIPID", "MMS-020-ENZYM"];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_024_CYTOSKELETIS_DYNAMIS : UniversalModel = {
+        registryId = "MMS-024-CYTO";
+        officialName = "CYTOSKELETIS_DYNAMIS_PRIMA";
+        glyphSignature = "|||";
+        layer = #Micro;
+        domain = #Cellular;
+        frequency = 20.3;
+        primaryFunction = "Cytoskeleton dynamics and cell structure intelligence";
+        subIntelligences = [
+            { id = "CD1"; name = "MicrotubuleBuilder"; function = "Build microtubules"; frequency = 20.3 },
+            { id = "CD2"; name = "ActinPolymerizer"; function = "Polymerize actin filaments"; frequency = 40.0 },
+            { id = "CD3"; name = "IntermediateFilamentWeaver"; function = "Weave intermediate filaments"; frequency = 14.1 },
+            { id = "CD4"; name = "MotorProteinController"; function = "Control motor proteins"; frequency = 7.83 },
+            { id = "CD5"; name = "CellShapeMaintainer"; function = "Maintain cell shape"; frequency = 10.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "Dynamic instability: growth/shrinkage cycles";
+            geometricBasis = "Polymer network";
+            ancientOrigin = "Greek kytos cell, skeletos dried body";
+        };
+        physicsSubstrate = {
+            fieldType = "Mechanical";
+            waveFunction = "Force transduction";
+            energyLevel = -1.0;
+            quantumState = "Structural";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = ["Polymerization", "Depolymerization"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Cell division"; inputType = "DividingCell"; outputType = "DividedCells"; frequency = 20.3 },
+            { id = "UC2"; description = "Cell migration"; inputType = "MigratingCell"; outputType = "NewPosition"; frequency = 40.0 },
+            { id = "UC3"; description = "Intracellular transport"; inputType = "Cargo"; outputType = "DeliveredCargo"; frequency = 7.83 },
+            { id = "UC4"; description = "Muscle contraction"; inputType = "Signal"; outputType = "Contraction"; frequency = 14.1 },
+            { id = "UC5"; description = "Cell shape change"; inputType = "ShapeSignal"; outputType = "NewShape"; frequency = 10.0 }
+        ];
+        innerModels = ["MMS-017-PROT"];
+        alphaModels = ["ALPHA_LIFE_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_025_IONUS_CHANNEL : UniversalModel = {
+        registryId = "MMS-025-ION";
+        officialName = "IONUS_CHANNEL_PRIMA";
+        glyphSignature = "⊖⊕⊖";
+        layer = #Micro;
+        domain = #Cellular;
+        frequency = 40.0;
+        primaryFunction = "Ion channel gating and membrane potential intelligence";
+        subIntelligences = [
+            { id = "IC1"; name = "NernstCalculator"; function = "Calculate Nernst potential"; frequency = 40.0 },
+            { id = "IC2"; name = "GateOpener"; function = "Control channel gating"; frequency = 50.0 },
+            { id = "IC3"; name = "SelectivityFilter"; function = "Filter ion selectivity"; frequency = 60.0 },
+            { id = "IC4"; name = "VoltageDetector"; function = "Detect membrane voltage"; frequency = 70.0 },
+            { id = "IC5"; name = "GradientMaintainer"; function = "Maintain ion gradients"; frequency = 30.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = -70.0;
+            formula = "V = RT/zF × ln([out]/[in]) (Nernst equation)";
+            geometricBasis = "Channel pore geometry";
+            ancientOrigin = "Greek ion going";
+        };
+        physicsSubstrate = {
+            fieldType = "Electrochemical";
+            waveFunction = "Hodgkin-Huxley model";
+            energyLevel = -70.0;
+            quantumState = "Electrochemical";
+        };
+        chemistryLayer = {
+            elements = ["Na", "K", "Ca", "Cl"];
+            bonds = [];
+            reactions = ["Ion transport"];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Action potential"; inputType = "Stimulus"; outputType = "ActionPotential"; frequency = 40.0 },
+            { id = "UC2"; description = "Synaptic transmission"; inputType = "Neurotransmitter"; outputType = "PostsynapticPotential"; frequency = 50.0 },
+            { id = "UC3"; description = "Muscle contraction"; inputType = "NerveSignal"; outputType = "MuscleResponse"; frequency = 60.0 },
+            { id = "UC4"; description = "Drug targeting"; inputType = "ChannelBlocker"; outputType = "BlockedChannel"; frequency = 70.0 },
+            { id = "UC5"; description = "Cardiac rhythm"; inputType = "PacemakerSignal"; outputType = "HeartBeat"; frequency = 30.0 }
+        ];
+        innerModels = ["MMS-019-LIPID"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_026_NEUROS_PLEXUS : UniversalModel = {
+        registryId = "MMS-026-NEUR";
+        officialName = "NEUROS_PLEXUS_PRIMA";
+        glyphSignature = "🧠⚡🧠";
+        layer = #Micro;
+        domain = #Neural;
+        frequency = 40.0;
+        primaryFunction = "Neural network and synaptic computation intelligence";
+        subIntelligences = [
+            { id = "NP1"; name = "SynapticIntegrator"; function = "Integrate synaptic inputs"; frequency = 40.0 },
+            { id = "NP2"; name = "FiringRateController"; function = "Control firing rates"; frequency = 50.0 },
+            { id = "NP3"; name = "NetworkTopologyMapper"; function = "Map network topology"; frequency = 30.0 },
+            { id = "NP4"; name = "PlasticityModulator"; function = "Modulate synaptic plasticity"; frequency = 35.0 },
+            { id = "NP5"; name = "SynchronyDetector"; function = "Detect neural synchrony"; frequency = 40.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.GAMMA_BINDING;
+            formula = "∫(synapse × weight) = neural computation";
+            geometricBasis = "Neural network graph";
+            ancientOrigin = "Greek neuron sinew";
+        };
+        physicsSubstrate = {
+            fieldType = "Neural";
+            waveFunction = "Neural field dynamics";
+            energyLevel = -1.0;
+            quantumState = "Computing";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = [];
+            neurotransmitters = ["Glutamate", "GABA", "Dopamine", "Serotonin"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Information processing"; inputType = "SensoryInput"; outputType = "ProcessedOutput"; frequency = 40.0 },
+            { id = "UC2"; description = "Learning"; inputType = "Experience"; outputType = "LearnedAssociation"; frequency = 50.0 },
+            { id = "UC3"; description = "Memory formation"; inputType = "Information"; outputType = "StoredMemory"; frequency = 30.0 },
+            { id = "UC4"; description = "Decision making"; inputType = "Options"; outputType = "Decision"; frequency = 35.0 },
+            { id = "UC5"; description = "Consciousness"; inputType = "NeuralActivity"; outputType = "AwarenessState"; frequency = 40.0 }
+        ];
+        innerModels = ["MMS-025-ION"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_027_SYNAPTIS_PLASTICUS : UniversalModel = {
+        registryId = "MMS-027-SYNPT";
+        officialName = "SYNAPTIS_PLASTICUS_PRIMA";
+        glyphSignature = "⊂⊃↑";
+        layer = #Micro;
+        domain = #Neural;
+        frequency = 35.0;
+        primaryFunction = "Synaptic plasticity and Hebbian learning intelligence";
+        subIntelligences = [
+            { id = "SP1"; name = "LTPInducer"; function = "Induce long-term potentiation"; frequency = 35.0 },
+            { id = "SP2"; name = "LTDRegulator"; function = "Regulate long-term depression"; frequency = 30.0 },
+            { id = "SP3"; name = "SpikeTiming"; function = "Time spike-timing plasticity"; frequency = 40.0 },
+            { id = "SP4"; name = "SynapseStrengthener"; function = "Strengthen synapses"; frequency = 45.0 },
+            { id = "SP5"; name = "HomeostaticBalancer"; function = "Balance homeostatic plasticity"; frequency = 25.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "Δw = η × pre × post (Hebbian rule)";
+            geometricBasis = "Synaptic weight space";
+            ancientOrigin = "Greek synapsis conjunction";
+        };
+        physicsSubstrate = {
+            fieldType = "Neural plasticity";
+            waveFunction = "Weight update dynamics";
+            energyLevel = -1.0;
+            quantumState = "Plastic";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = ["AMPA insertion", "NMDA activation"];
+            neurotransmitters = ["Glutamate", "BDNF"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Memory consolidation"; inputType = "ShortTermMemory"; outputType = "LongTermMemory"; frequency = 35.0 },
+            { id = "UC2"; description = "Skill learning"; inputType = "Practice"; outputType = "LearnedSkill"; frequency = 30.0 },
+            { id = "UC3"; description = "Habit formation"; inputType = "RepeatedBehavior"; outputType = "Habit"; frequency = 40.0 },
+            { id = "UC4"; description = "Addiction understanding"; inputType = "AddictiveStimulus"; outputType = "AddictionMechanism"; frequency = 45.0 },
+            { id = "UC5"; description = "Recovery"; inputType = "DamagedSynapse"; outputType = "RecoveredFunction"; frequency = 25.0 }
+        ];
+        innerModels = ["MMS-026-NEUR"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_028_GLIA_SUPPORTO : UniversalModel = {
+        registryId = "MMS-028-GLIA";
+        officialName = "GLIA_SUPPORTO_PRIMA";
+        glyphSignature = "☆☆☆";
+        layer = #Micro;
+        domain = #Neural;
+        frequency = 30.0;
+        primaryFunction = "Glial cell support and neural maintenance intelligence";
+        subIntelligences = [
+            { id = "GS1"; name = "AstrocyteController"; function = "Control astrocyte function"; frequency = 30.0 },
+            { id = "GS2"; name = "MyelinBuilder"; function = "Build myelin sheaths"; frequency = 20.0 },
+            { id = "GS3"; name = "MicrogliaActivator"; function = "Activate microglia defense"; frequency = 40.0 },
+            { id = "GS4"; name = "NutrientSupplier"; function = "Supply neural nutrients"; frequency = 25.0 },
+            { id = "GS5"; name = "WasteRemover"; function = "Remove neural waste"; frequency = 15.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 10.0;
+            formula = "Glia:Neuron ratio ≈ 1:1 to 10:1";
+            geometricBasis = "Support network";
+            ancientOrigin = "Greek glia glue";
+        };
+        physicsSubstrate = {
+            fieldType = "Neuroimmune";
+            waveFunction = "Support dynamics";
+            energyLevel = -1.0;
+            quantumState = "Supportive";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = ["Myelination", "Phagocytosis"];
+            neurotransmitters = ["ATP", "Glutamate"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Brain maintenance"; inputType = "NeuralTissue"; outputType = "MaintainedTissue"; frequency = 30.0 },
+            { id = "UC2"; description = "Signal speed"; inputType = "Axon"; outputType = "MyelinatedAxon"; frequency = 20.0 },
+            { id = "UC3"; description = "Immune response"; inputType = "BrainPathogen"; outputType = "ImmuneResponse"; frequency = 40.0 },
+            { id = "UC4"; description = "Metabolic support"; inputType = "ActiveNeuron"; outputType = "SuppliedNutrients"; frequency = 25.0 },
+            { id = "UC5"; description = "Waste clearance"; inputType = "MetabolicWaste"; outputType = "ClearedBrain"; frequency = 15.0 }
+        ];
+        innerModels = ["MMS-026-NEUR"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_029_OSCILLIS_CEREBRUM : UniversalModel = {
+        registryId = "MMS-029-OSCIL";
+        officialName = "OSCILLIS_CEREBRUM_PRIMA";
+        glyphSignature = "∿∿∿";
+        layer = #Micro;
+        domain = #Neural;
+        frequency = 7.83;
+        primaryFunction = "Brain oscillation and EEG band intelligence";
+        subIntelligences = [
+            { id = "OC1"; name = "DeltaGenerator"; function = "Generate delta waves (0.5-4Hz)"; frequency = 2.0 },
+            { id = "OC2"; name = "ThetaGenerator"; function = "Generate theta waves (4-8Hz)"; frequency = 6.0 },
+            { id = "OC3"; name = "AlphaGenerator"; function = "Generate alpha waves (8-13Hz)"; frequency = 10.0 },
+            { id = "OC4"; name = "BetaGenerator"; function = "Generate beta waves (13-30Hz)"; frequency = 20.0 },
+            { id = "OC5"; name = "GammaGenerator"; function = "Generate gamma waves (30-100Hz)"; frequency = 40.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 7.83;
+            formula = "EEG = Σ(amplitude × sin(2πft + phase))";
+            geometricBasis = "Oscillatory phase space";
+            ancientOrigin = "Greek enkephalos brain";
+        };
+        physicsSubstrate = {
+            fieldType = "Neural oscillation";
+            waveFunction = "Harmonic oscillator";
+            energyLevel = -1.0;
+            quantumState = "Oscillating";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = [];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Sleep monitoring"; inputType = "BrainActivity"; outputType = "SleepStage"; frequency = 2.0 },
+            { id = "UC2"; description = "Meditation state"; inputType = "Meditator"; outputType = "MeditationDepth"; frequency = 6.0 },
+            { id = "UC3"; description = "Relaxation"; inputType = "Subject"; outputType = "RelaxationLevel"; frequency = 10.0 },
+            { id = "UC4"; description = "Active thinking"; inputType = "CognitiveTask"; outputType = "EngagementLevel"; frequency = 20.0 },
+            { id = "UC5"; description = "Consciousness binding"; inputType = "Perception"; outputType = "UnifiedExperience"; frequency = 40.0 }
+        ];
+        innerModels = ["MMS-026-NEUR"];
+        alphaModels = ["ALPHA_CONSCIOUSNESS_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_030_HOMEOSTAT_NEURAL : UniversalModel = {
+        registryId = "MMS-030-HOMEO";
+        officialName = "HOMEOSTAT_NEURAL_PRIMA";
+        glyphSignature = "⚖⚖⚖";
+        layer = #Micro;
+        domain = #Neural;
+        frequency = 1.0;
+        primaryFunction = "Neural homeostasis and set point regulation intelligence";
+        subIntelligences = [
+            { id = "HN1"; name = "SetPointMaintainer"; function = "Maintain neural set points"; frequency = 1.0 },
+            { id = "HN2"; name = "FeedbackLoopController"; function = "Control feedback loops"; frequency = 0.5 },
+            { id = "HN3"; name = "ExcitationBalancer"; function = "Balance excitation/inhibition"; frequency = 2.0 },
+            { id = "HN4"; name = "MetabolicRegulator"; function = "Regulate neural metabolism"; frequency = 1.5 },
+            { id = "HN5"; name = "StabilityMonitor"; function = "Monitor system stability"; frequency = 0.1 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 0.0;
+            formula = "Error = SetPoint - CurrentState, Correction = K × Error";
+            geometricBasis = "Negative feedback loop";
+            ancientOrigin = "Greek homoios similar, stasis standing";
+        };
+        physicsSubstrate = {
+            fieldType = "Control theory";
+            waveFunction = "PID controller";
+            energyLevel = -1.0;
+            quantumState = "Stable";
+        };
+        chemistryLayer = {
+            elements = [];
+            bonds = [];
+            reactions = [];
+            neurotransmitters = [];
+        };
+        useCases = [
+            { id = "UC1"; description = "Brain stability"; inputType = "BrainState"; outputType = "StableState"; frequency = 1.0 },
+            { id = "UC2"; description = "Seizure prevention"; inputType = "OveractiveRegion"; outputType = "CalmRegion"; frequency = 0.5 },
+            { id = "UC3"; description = "Mood stabilization"; inputType = "MoodSwing"; outputType = "StableMood"; frequency = 2.0 },
+            { id = "UC4"; description = "Energy balance"; inputType = "EnergyDemand"; outputType = "BalancedEnergy"; frequency = 1.5 },
+            { id = "UC5"; description = "Long-term stability"; inputType = "ChronicCondition"; outputType = "ManagedCondition"; frequency = 0.1 }
+        ];
+        innerModels = ["MMS-026-NEUR", "MMS-035-GABA"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
     // ═══════════════════════════════════════════════════════════════
     // NEUROCHEMICAL MODELS (MMS-031 to MMS-050)
     // "Neurochemicals, the bonding of metals with electro at the micro level"
@@ -935,6 +1784,242 @@ module UniversalModelRegistry {
             { id = "UC5"; description = "Muscle relaxation"; inputType = "TenseMuscle"; outputType = "RelaxedMuscle"; frequency = 8.0 }
         ];
         innerModels = [];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    // MMS-036 to MMS-040: Remaining Neurochemical Models
+    public let MMS_036_GLUTAMATUS_EXCITOR : UniversalModel = {
+        registryId = "MMS-036-GLUT";
+        officialName = "GLUTAMATUS_EXCITOR_PRIMA";
+        glyphSignature = "⚡↑↑";
+        layer = #Micro;
+        domain = #Neurochemical;
+        frequency = 50.0;
+        primaryFunction = "Glutamate excitatory signaling intelligence";
+        subIntelligences = [
+            { id = "GE1"; name = "ExcitationDriver"; function = "Drive neural excitation"; frequency = 50.0 },
+            { id = "GE2"; name = "NMDAActivator"; function = "Activate NMDA receptors"; frequency = 40.0 },
+            { id = "GE3"; name = "AMPAModulator"; function = "Modulate AMPA receptors"; frequency = 60.0 },
+            { id = "GE4"; name = "SynapticStrengthener"; function = "Strengthen synaptic connections"; frequency = 35.0 },
+            { id = "GE5"; name = "ExcitotoxicityGuard"; function = "Guard against excitotoxicity"; frequency = 25.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.GAMMA_BINDING;
+            formula = "EPSP = Σ(glutamate_released × receptor_conductance)";
+            geometricBasis = "Excitatory postsynaptic potential";
+            ancientOrigin = "Latin glutamen glue";
+        };
+        physicsSubstrate = {
+            fieldType = "Neurochemical";
+            waveFunction = "Excitatory wave";
+            energyLevel = 0.0;
+            quantumState = "Excited";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N"];
+            bonds = ["Amino acid"];
+            reactions = ["Vesicle release"];
+            neurotransmitters = ["Glutamate"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Fast signaling"; inputType = "PresynapticSignal"; outputType = "PostsynapticEPSP"; frequency = 50.0 },
+            { id = "UC2"; description = "Learning enhancement"; inputType = "LearningStimulus"; outputType = "EnhancedPlasticity"; frequency = 40.0 },
+            { id = "UC3"; description = "Memory encoding"; inputType = "MemoryTrace"; outputType = "EncodedMemory"; frequency = 60.0 },
+            { id = "UC4"; description = "Synaptic strengthening"; inputType = "ActiveSynapse"; outputType = "PotentiatedSynapse"; frequency = 35.0 },
+            { id = "UC5"; description = "Neuroprotection"; inputType = "StressedNeuron"; outputType = "ProtectedNeuron"; frequency = 25.0 }
+        ];
+        innerModels = [];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_037_ENDORPHINUS_BLISS : UniversalModel = {
+        registryId = "MMS-037-ENDO";
+        officialName = "ENDORPHINUS_BLISS_PRIMA";
+        glyphSignature = "♡∞♡";
+        layer = #Micro;
+        domain = #Neurochemical;
+        frequency = 6.0;
+        primaryFunction = "Endorphin pain/pleasure modulation intelligence";
+        subIntelligences = [
+            { id = "EB1"; name = "PainSuppressor"; function = "Suppress pain signals"; frequency = 6.0 },
+            { id = "EB2"; name = "EuphoriaInducer"; function = "Induce euphoric states"; frequency = 8.0 },
+            { id = "EB3"; name = "OpioidReceptorBinder"; function = "Bind opioid receptors"; frequency = 10.0 },
+            { id = "EB4"; name = "RunnerHighGenerator"; function = "Generate runner's high"; frequency = 4.0 },
+            { id = "EB5"; name = "StressReliever"; function = "Relieve stress naturally"; frequency = 7.83 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "Analgesia = endorphin_level × receptor_affinity";
+            geometricBasis = "Pain-pleasure axis";
+            ancientOrigin = "Greek endogenous morphine";
+        };
+        physicsSubstrate = {
+            fieldType = "Neurochemical";
+            waveFunction = "Bliss wave";
+            energyLevel = 0.0;
+            quantumState = "Blissful";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N"];
+            bonds = ["Peptide"];
+            reactions = ["Opioid receptor binding"];
+            neurotransmitters = ["Beta-endorphin", "Enkephalins"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Pain management"; inputType = "PainSignal"; outputType = "ReducedPain"; frequency = 6.0 },
+            { id = "UC2"; description = "Exercise reward"; inputType = "PhysicalExertion"; outputType = "RewardFeeling"; frequency = 8.0 },
+            { id = "UC3"; description = "Natural high"; inputType = "IntenseExperience"; outputType = "EuphoricState"; frequency = 10.0 },
+            { id = "UC4"; description = "Stress resilience"; inputType = "Stressor"; outputType = "ResilientResponse"; frequency = 4.0 },
+            { id = "UC5"; description = "Addiction understanding"; inputType = "AddictiveSubstance"; outputType = "ReceptorAnalysis"; frequency = 7.83 }
+        ];
+        innerModels = ["MMS-031-DOPA"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_038_OXYTOCINUS_BOND : UniversalModel = {
+        registryId = "MMS-038-OXYT";
+        officialName = "OXYTOCINUS_BOND_PRIMA";
+        glyphSignature = "♡⟷♡";
+        layer = #Micro;
+        domain = #Neurochemical;
+        frequency = 14.1;
+        primaryFunction = "Oxytocin social bonding intelligence";
+        subIntelligences = [
+            { id = "OB1"; name = "BondStrengthener"; function = "Strengthen social bonds"; frequency = 14.1 },
+            { id = "OB2"; name = "TrustBuilder"; function = "Build trust"; frequency = 10.0 },
+            { id = "OB3"; name = "MaternalBonder"; function = "Strengthen maternal bonds"; frequency = 7.83 },
+            { id = "OB4"; name = "SexualAttractor"; function = "Enhance sexual attraction"; frequency = 20.0 },
+            { id = "OB5"; name = "StressBufferer"; function = "Buffer social stress"; frequency = 6.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "Bond_strength = oxytocin_level × social_proximity";
+            geometricBasis = "Social network graph";
+            ancientOrigin = "Greek oxys sharp, tokos childbirth";
+        };
+        physicsSubstrate = {
+            fieldType = "Neurochemical";
+            waveFunction = "Bonding resonance";
+            energyLevel = 0.0;
+            quantumState = "Bonded";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N", "S"];
+            bonds = ["Peptide", "Disulfide"];
+            reactions = ["Receptor binding"];
+            neurotransmitters = ["Oxytocin"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Relationship bonding"; inputType = "SocialInteraction"; outputType = "StrongerBond"; frequency = 14.1 },
+            { id = "UC2"; description = "Trust enhancement"; inputType = "TrustSituation"; outputType = "IncreasedTrust"; frequency = 10.0 },
+            { id = "UC3"; description = "Parenting"; inputType = "Parent"; outputType = "EnhancedCare"; frequency = 7.83 },
+            { id = "UC4"; description = "Romantic attachment"; inputType = "RomanticPartner"; outputType = "DeepAttachment"; frequency = 20.0 },
+            { id = "UC5"; description = "Group cohesion"; inputType = "GroupMembers"; outputType = "CohesiveGroup"; frequency = 6.0 }
+        ];
+        innerModels = ["MMS-032-SERO"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_039_CORTISOLIS_STRESS : UniversalModel = {
+        registryId = "MMS-039-CORT";
+        officialName = "CORTISOLIS_STRESS_PRIMA";
+        glyphSignature = "⚡⚠⚡";
+        layer = #Micro;
+        domain = #Neurochemical;
+        frequency = 25.0;
+        primaryFunction = "Cortisol stress response intelligence";
+        subIntelligences = [
+            { id = "CS1"; name = "StressResponder"; function = "Trigger stress response"; frequency = 25.0 },
+            { id = "CS2"; name = "GlucoseReleaser"; function = "Release glucose stores"; frequency = 30.0 },
+            { id = "CS3"; name = "ImmuneModulator"; function = "Modulate immune function"; frequency = 20.0 },
+            { id = "CS4"; name = "CircadianRegulator"; function = "Regulate circadian cortisol"; frequency = 0.1 },
+            { id = "CS5"; name = "ChronicStressMonitor"; function = "Monitor chronic stress"; frequency = 1.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = Constants.PHI;
+            formula = "Cortisol_level = baseline + stress_magnitude × duration";
+            geometricBasis = "Stress response curve";
+            ancientOrigin = "Latin cortex bark (adrenal cortex)";
+        };
+        physicsSubstrate = {
+            fieldType = "Neurochemical";
+            waveFunction = "Stress wave";
+            energyLevel = 0.0;
+            quantumState = "Alert";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O"];
+            bonds = ["Steroid"];
+            reactions = ["Steroidogenesis"];
+            neurotransmitters = ["Cortisol"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Acute stress"; inputType = "Stressor"; outputType = "StressResponse"; frequency = 25.0 },
+            { id = "UC2"; description = "Energy mobilization"; inputType = "EnergyDemand"; outputType = "MobilizedGlucose"; frequency = 30.0 },
+            { id = "UC3"; description = "Immune balance"; inputType = "ImmuneActivity"; outputType = "ModulatedImmunity"; frequency = 20.0 },
+            { id = "UC4"; description = "Morning awakening"; inputType = "SleepState"; outputType = "WakeState"; frequency = 0.1 },
+            { id = "UC5"; description = "Burnout prevention"; inputType = "ChronicStress"; outputType = "RecoveryPlan"; frequency = 1.0 }
+        ];
+        innerModels = ["MMS-033-NORE"];
+        alphaModels = ["ALPHA_NEURAL_CORE"];
+        isActive = true;
+        lastActivation = 0;
+        activationCount = 0;
+    };
+
+    public let MMS_040_MELATONINUS_CYCLE : UniversalModel = {
+        registryId = "MMS-040-MELA";
+        officialName = "MELATONINUS_CYCLE_PRIMA";
+        glyphSignature = "☽∿☽";
+        layer = #Micro;
+        domain = #Neurochemical;
+        frequency = 0.5;
+        primaryFunction = "Melatonin circadian rhythm intelligence";
+        subIntelligences = [
+            { id = "MC1"; name = "CircadianSetter"; function = "Set circadian rhythm"; frequency = 0.5 },
+            { id = "MC2"; name = "SleepInducer"; function = "Induce sleep"; frequency = 0.25 },
+            { id = "MC3"; name = "LightResponder"; function = "Respond to light cycles"; frequency = 0.1 },
+            { id = "MC4"; name = "SeasonalRegulator"; function = "Regulate seasonal rhythms"; frequency = 0.01 },
+            { id = "MC5"; name = "AntioxidantProvider"; function = "Provide antioxidant protection"; frequency = 1.0 }
+        ];
+        mathematicalBasis = {
+            primaryConstant = 24.0;
+            formula = "Melatonin = baseline × sin(2π × t/24 + phase)";
+            geometricBasis = "Circadian oscillation";
+            ancientOrigin = "Greek melas dark, tonos tension";
+        };
+        physicsSubstrate = {
+            fieldType = "Neurochemical";
+            waveFunction = "Circadian wave";
+            energyLevel = 0.0;
+            quantumState = "Cycling";
+        };
+        chemistryLayer = {
+            elements = ["C", "H", "O", "N"];
+            bonds = ["Indole"];
+            reactions = ["Serotonin acetylation"];
+            neurotransmitters = ["Melatonin"];
+        };
+        useCases = [
+            { id = "UC1"; description = "Sleep regulation"; inputType = "TimeOfDay"; outputType = "SleepPressure"; frequency = 0.5 },
+            { id = "UC2"; description = "Jet lag recovery"; inputType = "TimeZoneShift"; outputType = "AdjustedRhythm"; frequency = 0.25 },
+            { id = "UC3"; description = "Seasonal adjustment"; inputType = "DaylightHours"; outputType = "SeasonalResponse"; frequency = 0.01 },
+            { id = "UC4"; description = "Aging support"; inputType = "AgingBrain"; outputType = "ProtectedBrain"; frequency = 1.0 },
+            { id = "UC5"; description = "Shift work support"; inputType = "ShiftSchedule"; outputType = "OptimizedSleep"; frequency = 0.1 }
+        ];
+        innerModels = ["MMS-032-SERO"];
         alphaModels = ["ALPHA_NEURAL_CORE"];
         isActive = true;
         lastActivation = 0;
@@ -1590,15 +2675,39 @@ module UniversalModelRegistry {
             MMS_008_PLASMOS_DYNAMIS,
             MMS_009_VACUUS_ENERGIA,
             MMS_010_MORPHOS_CAMPO,
-            // ATOMIC/MOLECULAR (MMS-011 to MMS-030)
+            // ATOMIC/MOLECULAR (MMS-011 to MMS-020)
             MMS_011_ATOMIS_ORCHESTRO,
             MMS_012_VINCULUM_CHEMICA,
-            // NEUROCHEMICAL (MMS-031 to MMS-050)
+            MMS_013_CRYSTALLIS_LATTICE,
+            MMS_014_ISOTOPUS_MEMORIA,
+            MMS_015_REACTIO_CATENA,
+            MMS_016_MOLECULA_ARCHITECT,
+            MMS_017_PROTEINUS_FOLD,
+            MMS_018_GENETICUS_CODEX,
+            MMS_019_LIPIDUS_MEMBRANA,
+            MMS_020_ENZYMIS_CATALYSO,
+            // CELLULAR (MMS-021 to MMS-030)
+            MMS_021_CELLULA_VITA,
+            MMS_022_ORGANELLA_NETWORK,
+            MMS_023_SIGNALUM_CASCADE,
+            MMS_024_CYTOSKELETIS_DYNAMIS,
+            MMS_025_IONUS_CHANNEL,
+            MMS_026_NEUROS_PLEXUS,
+            MMS_027_SYNAPTIS_PLASTICUS,
+            MMS_028_GLIA_SUPPORTO,
+            MMS_029_OSCILLIS_CEREBRUM,
+            MMS_030_HOMEOSTAT_NEURAL,
+            // NEUROCHEMICAL (MMS-031 to MMS-040)
             MMS_031_DOPAMINUS_REWARDO,
             MMS_032_SEROTONINUS_MODO,
             MMS_033_NOREPINEPHRUS_VIGIL,
             MMS_034_ACETYLCHOLINUS_COGNITIO,
             MMS_035_GABA_INHIBITOR,
+            MMS_036_GLUTAMATUS_EXCITOR,
+            MMS_037_ENDORPHINUS_BLISS,
+            MMS_038_OXYTOCINUS_BOND,
+            MMS_039_CORTISOLIS_STRESS,
+            MMS_040_MELATONINUS_CYCLE,
             // ANIMAL (MMS-101 to MMS-130)
             MMS_101_DELPHINUS_SONAR,
             MMS_102_OCTOPUS_DISTRIBUTA,
