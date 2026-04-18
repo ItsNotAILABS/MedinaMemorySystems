@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import type { ModelDefinition, ModelFamily, ModelInvocation } from '@/types';
 
 const STATUS_COLORS: Record<string, string> = {
@@ -155,7 +155,7 @@ function ModelCard({
   return (
     <button
       onClick={onSelect}
-      className={clsx(
+      className={cls(
         'rounded-lg border p-4 text-left transition-all',
         selected
           ? 'border-indigo-500/50 bg-[#12121e]'

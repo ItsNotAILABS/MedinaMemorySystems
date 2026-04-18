@@ -10,7 +10,7 @@ import { dualRead } from '@/lib/dualRead';
 import { checkAllGates } from '@/lib/gateEnforcement';
 import { ulriRoute, ulriConsensus } from '@/lib/ulriEngine';
 import type { StructuredResponse, ModelFamily, ParsedCommand } from '@/types';
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from '@/lib/sovereign-id';
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       const parsed = parseCommand(message);
       const response = await handleCommand(parsed);
       return NextResponse.json({
-        id: uuidv4(),
+        id: sovereignId(),
         role: 'assistant',
         content: response.title,
         commandParsed: parsed,
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     const ulriResult = useConsensus ? ulriConsensus(message, 3) : ulriRoute(message);
 
     return NextResponse.json({
-      id: uuidv4(),
+      id: sovereignId(),
       role: 'assistant',
       content: ulriResult.consensus?.synthesized ?? ulriResult.invocation.response,
       modelUsed: ulriResult.primary,

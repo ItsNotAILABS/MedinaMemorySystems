@@ -1,7 +1,21 @@
+/**
+ * ULRI — Unified Layered Routing Intelligence (MEDINA Sovereign)
+ *
+ * The MEDINA sovereign multi-model routing and consensus engine.
+ * Routes prompts across 8 model families using a 3-layer scoring formula:
+ *
+ *   CompositeScore = (KeywordAffinity × 0.45) + (OrganismResonance × 0.30) + (GateWeight × 0.25)
+ *
+ * Consensus mode invokes top-N models and synthesizes a unified response.
+ * No external dependencies — pure sovereign math.
+ */
+
 import type { ModelFamily, ModelInvocation } from '@/types';
 import { routeToModel, invokeModel, getModels } from './modelRouter';
 import { getOrganismState } from './organismSovereign';
 import { checkAllGates } from './gateEnforcement';
+
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 export interface UlriScore {
   modelId: ModelFamily;
@@ -26,6 +40,21 @@ export interface UlriConsensus {
   synthesized: string;
 }
 
+// ─── Sovereign Keyword Map ───────────────────────────────────────────────────
+
+const SOVEREIGN_KEYWORDS: Record<ModelFamily, string[]> = {
+  strategist: ['strategy', 'plan', 'vision', 'macro', 'sovereign', 'decide', 'direction', 'goal', 'future', 'long-term'],
+  builder: ['build', 'create', 'code', 'implement', 'design', 'construct', 'generate', 'develop', 'architecture', 'system'],
+  analyst: ['analyze', 'analysis', 'data', 'pattern', 'trend', 'insight', 'measure', 'metric', 'quantify', 'evaluate'],
+  governance: ['govern', 'proposal', 'vote', 'policy', 'doctrine', 'audit', 'compliance', 'enact', 'law', 'rule'],
+  'memory-curator': ['memory', 'remember', 'recall', 'store', 'find', 'coordinate', 'lineage', 'resonance', 'search', 'knowledge'],
+  operations: ['operate', 'task', 'workflow', 'execute', 'manage', 'run', 'process', 'schedule', 'deploy', 'pipeline'],
+  risk: ['risk', 'threat', 'danger', 'secure', 'gate', 'protect', 'vulnerability', 'anomaly', 'safety', 'warn'],
+  projection: ['project', 'forecast', 'future', 'scenario', 'predict', 'trajectory', 'simulate', 'timeline', 'model', 'expect'],
+};
+
+// ─── Organism-Model Affinity Map ─────────────────────────────────────────────
+
 const ORGANISM_AFFINITY: Record<string, ModelFamily[]> = {
   cognitive: ['strategist', 'analyst', 'projection'],
   affective: ['memory-curator', 'governance', 'operations'],
@@ -33,30 +62,23 @@ const ORGANISM_AFFINITY: Record<string, ModelFamily[]> = {
   sovereign: ['strategist', 'governance', 'risk'],
 };
 
+// ─── Gate-Model Weight Map ───────────────────────────────────────────────────
+
 const GATE_MODEL_WEIGHTS: Record<string, ModelFamily[]> = {
   A: ['governance', 'strategist'],
   B: ['memory-curator', 'analyst'],
   C: ['strategist', 'projection', 'risk'],
 };
 
+// ─── Layer 1: Keyword Affinity ───────────────────────────────────────────────
+
 function computeKeywordScores(prompt: string): Record<ModelFamily, number> {
   const lower = prompt.toLowerCase();
-  const KEYWORDS: Record<ModelFamily, string[]> = {
-    strategist: ['strategy', 'plan', 'vision', 'macro', 'sovereign', 'decide', 'direction', 'goal', 'future', 'long-term'],
-    builder: ['build', 'create', 'code', 'implement', 'design', 'construct', 'generate', 'develop', 'architecture', 'system'],
-    analyst: ['analyze', 'analysis', 'data', 'pattern', 'trend', 'insight', 'measure', 'metric', 'quantify', 'evaluate'],
-    governance: ['govern', 'proposal', 'vote', 'policy', 'doctrine', 'audit', 'compliance', 'enact', 'law', 'rule'],
-    'memory-curator': ['memory', 'remember', 'recall', 'store', 'find', 'coordinate', 'lineage', 'resonance', 'search', 'knowledge'],
-    operations: ['operate', 'task', 'workflow', 'execute', 'manage', 'run', 'process', 'schedule', 'deploy', 'pipeline'],
-    risk: ['risk', 'threat', 'danger', 'secure', 'gate', 'protect', 'vulnerability', 'anomaly', 'safety', 'warn'],
-    projection: ['project', 'forecast', 'future', 'scenario', 'predict', 'trajectory', 'simulate', 'timeline', 'model', 'expect'],
-  };
-
-  const scores: Record<string, number> = {};
   const words = lower.split(/\s+/);
   const totalWords = Math.max(words.length, 1);
+  const scores: Record<string, number> = {};
 
-  for (const [family, keywords] of Object.entries(KEYWORDS)) {
+  for (const [family, keywords] of Object.entries(SOVEREIGN_KEYWORDS)) {
     let hits = 0;
     for (const kw of keywords) {
       if (lower.includes(kw)) hits++;
@@ -66,6 +88,8 @@ function computeKeywordScores(prompt: string): Record<ModelFamily, number> {
 
   return scores as Record<ModelFamily, number>;
 }
+
+// ─── Layer 2: Organism Resonance ─────────────────────────────────────────────
 
 function computeOrganismAffinity(modelId: ModelFamily): number {
   const organism = getOrganismState();
@@ -84,6 +108,8 @@ function computeOrganismAffinity(modelId: ModelFamily): number {
   return count > 0 ? totalAffinity / count : 0.5;
 }
 
+// ─── Layer 3: Gate Weight ────────────────────────────────────────────────────
+
 function computeGateWeight(modelId: ModelFamily): number {
   const gateChecks = checkAllGates();
   let weight = 1.0;
@@ -100,8 +126,10 @@ function computeGateWeight(modelId: ModelFamily): number {
   return Math.min(1.5, weight);
 }
 
-export function ulriRoute(prompt: string): UlriRoutingResult {
-  const start = Date.now();
+// ─── ULRI Composite Formula ──────────────────────────────────────────────────
+// CompositeScore = (Keyword × 0.45) + (Organism × 0.30) + (Gate × 0.25)
+
+function computeScores(prompt: string): UlriScore[] {
   const keywordScores = computeKeywordScores(prompt);
   const models = getModels();
 
@@ -109,7 +137,7 @@ export function ulriRoute(prompt: string): UlriRoutingResult {
     const kw = keywordScores[m.id] ?? 0;
     const oa = computeOrganismAffinity(m.id);
     const gw = computeGateWeight(m.id);
-    const composite = (kw * 0.45 + oa * 0.30 + gw * 0.25);
+    const composite = (kw * 0.45) + (oa * 0.30) + (gw * 0.25);
     return {
       modelId: m.id,
       keywordScore: kw,
@@ -120,35 +148,31 @@ export function ulriRoute(prompt: string): UlriRoutingResult {
   });
 
   scores.sort((a, b) => b.compositeScore - a.compositeScore);
+  return scores;
+}
 
+// ─── Single-Model Route ──────────────────────────────────────────────────────
+
+export function ulriRoute(prompt: string): UlriRoutingResult {
+  const start = Date.now();
+  const scores = computeScores(prompt);
   const primary = scores[0]?.modelId ?? routeToModel(prompt);
   const invocation = invokeModel(primary, prompt);
-  const routingLatency = Date.now() - start;
 
-  return { primary, scores, consensus: null, invocation, routingLatency };
+  return {
+    primary,
+    scores,
+    consensus: null,
+    invocation,
+    routingLatency: Date.now() - start,
+  };
 }
+
+// ─── Multi-Model Consensus ───────────────────────────────────────────────────
 
 export function ulriConsensus(prompt: string, topN = 3): UlriRoutingResult {
   const start = Date.now();
-  const keywordScores = computeKeywordScores(prompt);
-  const models = getModels();
-
-  const scores: UlriScore[] = models.map((m) => {
-    const kw = keywordScores[m.id] ?? 0;
-    const oa = computeOrganismAffinity(m.id);
-    const gw = computeGateWeight(m.id);
-    const composite = (kw * 0.45 + oa * 0.30 + gw * 0.25);
-    return {
-      modelId: m.id,
-      keywordScore: kw,
-      organismAffinity: oa,
-      gateWeight: gw,
-      compositeScore: composite,
-    };
-  });
-
-  scores.sort((a, b) => b.compositeScore - a.compositeScore);
-
+  const scores = computeScores(prompt);
   const topModels = scores.slice(0, topN).filter((s) => s.compositeScore > 0);
   const invocations = topModels.map((s) => invokeModel(s.modelId, prompt));
   const primary = topModels[0]?.modelId ?? routeToModel(prompt);
@@ -168,7 +192,11 @@ export function ulriConsensus(prompt: string, topN = 3): UlriRoutingResult {
     synthesized,
   };
 
-  const routingLatency = Date.now() - start;
-
-  return { primary, scores, consensus, invocation: invocations[0], routingLatency };
+  return {
+    primary,
+    scores,
+    consensus,
+    invocation: invocations[0],
+    routingLatency: Date.now() - start,
+  };
 }

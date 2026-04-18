@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import type { ChatMessage, ModelFamily, StructuredResponse, UlriScore, UlriConsensusInfo } from '@/types';
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from '@/lib/sovereign-id';
 
 interface EnhancedChatMessage extends ChatMessage {
   ulriScores?: UlriScore[];
@@ -27,7 +27,7 @@ const WELCOME_MESSAGE: EnhancedChatMessage = {
   role: 'system',
   content: `Welcome to **NOVA OVO** — Sovereign Intelligence Platform.
 
-Powered by **ULRI** (Unified Layered Routing Intelligence). Your messages are analyzed across keyword matching, organism affinity, and gate weight to route to the optimal model.
+Powered by **ULRI** — Unified Layered Routing Intelligence (MEDINA Sovereign). Your messages are scored across three sovereign layers: keyword affinity, organism resonance, and gate weight — then routed to the optimal model.
 
 **Commands:**
 • \`/memory find <query>\` — Search memory
@@ -65,14 +65,14 @@ export default function OVOChat() {
     if (!content || loading) return;
 
     const userMsg: EnhancedChatMessage = {
-      id: uuidv4(),
+      id: sovereignId(),
       role: 'user',
       content,
       timestamp: new Date().toISOString(),
     };
 
     const loadingMsg: EnhancedChatMessage = {
-      id: uuidv4(),
+      id: sovereignId(),
       role: 'assistant',
       content: '',
       timestamp: new Date().toISOString(),
@@ -95,7 +95,7 @@ export default function OVOChat() {
         ...prev.slice(0, -1),
         {
           ...data,
-          id: data.id ?? uuidv4(),
+          id: data.id ?? sovereignId(),
           processing: false,
         },
       ]);
@@ -103,7 +103,7 @@ export default function OVOChat() {
       setMessages((prev) => [
         ...prev.slice(0, -1),
         {
-          id: uuidv4(),
+          id: sovereignId(),
           role: 'assistant',
           content: 'Error: Failed to connect to NOVA OVO API.',
           timestamp: new Date().toISOString(),
@@ -128,20 +128,20 @@ export default function OVOChat() {
         <div className="flex items-center gap-2">
           <span className="text-blue-400 text-lg">💬</span>
           <h1 className="text-sm font-semibold text-slate-200">OVO Chat</h1>
-          <span className="text-[10px] text-slate-500 font-mono ml-1">ULRI-Powered</span>
+          <span className="text-[10px] text-slate-500 font-mono ml-1">ULRI (MEDINA Sovereign)</span>
         </div>
         <div className="flex items-center gap-2">
           {/* Consensus toggle */}
           <button
             onClick={() => setConsensusMode(!consensusMode)}
-            className={clsx(
+            className={cls(
               'flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono transition-all',
               consensusMode
                 ? 'bg-blue-600/20 text-blue-400 border border-blue-500/40'
                 : 'bg-[#1e1e2e] text-slate-500 border border-transparent hover:text-slate-300',
             )}
           >
-            <span className={clsx('w-1.5 h-1.5 rounded-full transition-colors', consensusMode ? 'bg-blue-400' : 'bg-slate-600')} />
+            <span className={cls('w-1.5 h-1.5 rounded-full transition-colors', consensusMode ? 'bg-blue-400' : 'bg-slate-600')} />
             Consensus {consensusMode ? 'ON' : 'OFF'}
           </button>
           {/* Quick commands */}
@@ -181,7 +181,7 @@ export default function OVOChat() {
             onKeyDown={handleKeyDown}
             placeholder={consensusMode ? 'Multi-model consensus mode… Type a message or /command' : 'Type a message or /command…'}
             rows={1}
-            className={clsx(
+            className={cls(
               'w-full cmd-input rounded-lg px-4 py-3 pr-28 text-sm resize-none',
               'bg-[#12121a] border focus:ring-1 outline-none font-mono',
               'text-slate-200 placeholder-slate-600',
@@ -200,7 +200,7 @@ export default function OVOChat() {
             <button
               onClick={() => void handleSend()}
               disabled={!input.trim() || loading}
-              className={clsx(
+              className={cls(
                 'px-3 py-1.5 rounded text-sm font-medium transition-all',
                 input.trim() && !loading
                   ? 'bg-blue-600 hover:bg-blue-500 text-white'
@@ -250,7 +250,7 @@ function MessageBubble({
         </div>
         <div className="bg-[#12121a] border border-[#1e1e2e] rounded-lg px-4 py-3">
           <span className="text-blue-400 font-mono text-sm">
-            ULRI routing<span className="cursor-blink">▋</span>
+            ULRI sovereign routing<span className="cursor-blink">▋</span>
           </span>
         </div>
       </div>
@@ -337,7 +337,7 @@ function MessageBubble({
         {/* ULRI Routing visualization */}
         {showRouting && hasUlri && (
           <div className="mb-2 bg-[#0a0a12] border border-[#1e1e2e] rounded-lg p-3 space-y-1.5">
-            <div className="text-[10px] text-slate-500 font-mono mb-2">ULRI Routing Scores</div>
+            <div className="text-[10px] text-slate-500 font-mono mb-2">ULRI Sovereign Routing — (Kw×0.45 + Org×0.30 + Gate×0.25)</div>
             {message.ulriScores!.map((score) => {
               const color = MODEL_COLORS[score.modelId] ?? '#6b7280';
               const pct = Math.min(100, score.compositeScore * 500);

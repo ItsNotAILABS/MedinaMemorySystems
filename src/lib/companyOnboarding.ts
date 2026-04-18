@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type { Company, Connector, ConnectorStatus, ConnectorType, OnboardingMode } from '@/types';
 
 // ─── Store ─────────────────────────────────────────────────────────────────────
@@ -20,7 +20,7 @@ const connectorTemplates: { name: string; type: ConnectorType; icon: string }[] 
 (function seed() {
   const now = new Date().toISOString();
   const connectors: Connector[] = connectorTemplates.map((t, i) => ({
-    id: uuidv4(),
+    id: sovereignId(),
     name: t.name,
     type: t.type,
     status: (i < 3 ? 'connected' : i < 5 ? 'pending' : 'disconnected') as ConnectorStatus,
@@ -31,7 +31,7 @@ const connectorTemplates: { name: string; type: ConnectorType; icon: string }[] 
   }));
 
   const company: Company = {
-    id: uuidv4(),
+    id: sovereignId(),
     name: 'NOVA OVO Demo Corp',
     mode: 'hybrid',
     connectors,
@@ -60,7 +60,7 @@ export function getDefaultCompany(): Company | undefined {
 export function createCompany(name: string, mode: OnboardingMode): Company {
   const now = new Date().toISOString();
   const connectors: Connector[] = connectorTemplates.map((t) => ({
-    id: uuidv4(),
+    id: sovereignId(),
     name: t.name,
     type: t.type,
     status: 'disconnected' as ConnectorStatus,
@@ -69,7 +69,7 @@ export function createCompany(name: string, mode: OnboardingMode): Company {
   }));
 
   const company: Company = {
-    id: uuidv4(),
+    id: sovereignId(),
     name,
     mode,
     connectors,

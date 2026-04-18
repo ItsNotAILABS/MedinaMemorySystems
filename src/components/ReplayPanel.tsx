@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import type { ReplaySession, ReplayEvent } from '@/types';
 
 const EVENT_COLORS: Record<string, string> = {
@@ -103,7 +103,7 @@ export default function ReplayPanel() {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sessions list */}
-        <div className={clsx('overflow-y-auto p-4 space-y-2', selected ? 'w-64 border-r border-[#1e1e2e]' : 'flex-1')}>
+        <div className={cls('overflow-y-auto p-4 space-y-2', selected ? 'w-64 border-r border-[#1e1e2e]' : 'flex-1')}>
           {loading ? (
             <div className="text-slate-500 text-sm text-center py-8 font-mono">Loading sessions…</div>
           ) : sessions.length === 0 ? (
@@ -162,7 +162,7 @@ function SessionCard({
   return (
     <button
       onClick={onSelect}
-      className={clsx(
+      className={cls(
         'w-full rounded-lg border p-3 text-left transition-all text-xs',
         selected
           ? 'border-cyan-500/50 bg-[#0d1a1e]'
@@ -172,7 +172,7 @@ function SessionCard({
       <div className="flex items-center justify-between mb-1">
         <span className="text-slate-200 font-medium truncate">{session.name}</span>
         <span
-          className={clsx(
+          className={cls(
             'text-[10px] font-mono px-1.5 py-0.5 rounded ml-2 shrink-0',
             isRecording ? 'text-red-400 bg-red-400/10 border border-red-400/30' : 'text-cyan-400 bg-cyan-400/10 border border-cyan-400/30',
           )}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import { usePlatformSync } from '@/hooks/usePlatformSync';
 import type { PanelId, NavItem } from '@/types';
 
@@ -36,7 +36,7 @@ export default function Sidebar({ activePanel, onNavigate }: SidebarProps) {
 
   return (
     <aside
-      className={clsx(
+      className={cls(
         'flex flex-col bg-[#12121a] border-r border-[#1e1e2e] transition-all duration-300 z-10',
         collapsed ? 'w-14' : 'w-52',
       )}
@@ -51,7 +51,7 @@ export default function Sidebar({ activePanel, onNavigate }: SidebarProps) {
           <div className="overflow-hidden">
             <div className="text-sm font-bold gradient-text-blue truncate">NOVA OVO</div>
             <div className="text-[10px] text-slate-500 truncate font-mono">
-              ULRI v1 · Beat {sync.beat}
+              ULRI (Sovereign) · Beat {sync.beat}
             </div>
           </div>
         )}
@@ -67,7 +67,7 @@ export default function Sidebar({ activePanel, onNavigate }: SidebarProps) {
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className={clsx(
+              className={cls(
                 'w-full flex items-center gap-3 px-2 py-2.5 rounded-lg text-left transition-all duration-150 text-sm group relative',
                 isActive
                   ? 'bg-[#1a1a2e] text-white'
