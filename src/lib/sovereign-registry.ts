@@ -233,4 +233,97 @@ export function bootSovereignRegistry(): void {
     invoke: (input) => `WASM compilation target: ${input.slice(0, 40)} — sovereign bytecode generated.`,
     color: '#22d3ee',
   });
+
+  // ─── SaaS AI Models (intelligence for every product) ────────────────────
+
+  registerModel({
+    id: 'sandbox-orchestrator-ai',
+    name: 'Sandbox Sentinel (MEDINA)',
+    kind: 'gate',
+    description: 'AI for the Sandbox Orchestrator — classifies access tier, generates mirage responses, manages session gating.',
+    capabilities: ['tier-classification', 'mirage-generation', 'session-gating', 'access-pattern-analysis', 'escalation-recommendation'],
+    keywords: ['sandbox', 'tier', 'access', 'mirage', 'session', 'gate', 'public', 'enterprise', 'partner', 'internal'],
+    resonance: (input) => (input.includes('sandbox') || input.includes('tier') || input.includes('access') || input.includes('mirage') ? 0.85 : 0.2),
+    expand: () => ['adaptive-tier-adjustment', 'mirage-complexity-evolution', 'behavioral-access-scoring', 'session-anomaly-detection', 'tier-cascading-protocol'],
+    invoke: (input) => `Sandbox sentinel: ${input.slice(0, 40)} — tier access evaluated.`,
+    color: '#a78bfa',
+  });
+
+  registerModel({
+    id: 'vault-sentinel-ai',
+    name: 'Vault Sentinel (MEDINA)',
+    kind: 'gate',
+    description: 'AI for the Access Control Vault — monitors ownership, detects unauthorized access patterns, seals provenance.',
+    capabilities: ['ownership-verification', 'access-anomaly-detection', 'provenance-sealing', 'audit-chain-analysis', 'breach-alerting'],
+    keywords: ['vault', 'secret', 'owner', 'audit', 'access', 'control', 'breach', 'provenance'],
+    resonance: (input) => (input.includes('vault') || input.includes('secret') || input.includes('audit') || input.includes('breach') ? 0.85 : 0.2),
+    expand: () => ['multi-owner-federation', 'temporal-access-decay', 'audit-chain-forensics', 'provenance-tree-verification', 'zero-knowledge-ownership-proof'],
+    invoke: (input) => `Vault sentinel: ${input.slice(0, 40)} — ownership verified.`,
+    color: '#f97316',
+  });
+
+  registerModel({
+    id: 'facade-manager-ai',
+    name: 'Facade Manager (MEDINA)',
+    kind: 'substrate',
+    description: 'AI for the Closed Source Manager — generates public facades, manages dual descriptions, controls information exposure.',
+    capabilities: ['facade-generation', 'exposure-control', 'description-sanitization', 'authorization-management', 'public-surface-optimization'],
+    keywords: ['facade', 'public', 'hidden', 'internal', 'closed', 'source', 'description', 'sanitize'],
+    resonance: (input) => (input.includes('facade') || input.includes('public') || input.includes('hidden') || input.includes('closed source') ? 0.8 : 0.2),
+    expand: () => ['adaptive-facade-evolution', 'contextual-exposure-levels', 'public-narrative-synthesis', 'internal-knowledge-compression', 'facade-integrity-scoring'],
+    invoke: (input) => `Facade manager: ${input.slice(0, 40)} — public surface generated.`,
+    color: '#fb7185',
+  });
+
+  registerModel({
+    id: 'replay-auditor-ai',
+    name: 'Replay Auditor (MEDINA)',
+    kind: 'intelligence',
+    description: 'AI for the Replay Engine — analyzes session recordings, detects replay anomalies, reconstructs event chains.',
+    capabilities: ['session-analysis', 'anomaly-detection', 'event-reconstruction', 'evidence-chain-verification', 'temporal-pattern-extraction'],
+    keywords: ['replay', 'audit', 'session', 'record', 'event', 'evidence', 'reconstruct', 'temporal'],
+    resonance: (input) => (input.includes('replay') || input.includes('audit') || input.includes('evidence') || input.includes('session') ? 0.8 : 0.2),
+    expand: () => ['cross-session-correlation', 'anomaly-cascade-tracing', 'evidence-completeness-scoring', 'temporal-gap-detection', 'replay-integrity-verification'],
+    invoke: (input) => `Replay auditor: ${input.slice(0, 40)} — event chain reconstructed.`,
+    color: '#67e8f9',
+  });
+
+  registerModel({
+    id: 'oro-vision-model',
+    name: 'Oro Vision (ICP Sensory)',
+    kind: 'intelligence',
+    description: 'Visual perception canister — the organism\'s sight. Strategic observation, pattern recognition, environmental scanning.',
+    capabilities: ['visual-pattern-recognition', 'environmental-scanning', 'strategic-observation', 'threat-visualization', 'spatial-mapping'],
+    keywords: ['vision', 'see', 'observe', 'scan', 'visual', 'sight', 'perception', 'oro'],
+    resonance: (input) => (input.includes('vision') || input.includes('see') || input.includes('observe') || input.includes('oro') ? 0.85 : 0.2),
+    expand: () => ['multi-spectrum-perception', 'predictive-visual-modeling', 'environmental-threat-mapping', 'spatial-resonance-detection', 'visual-memory-encoding'],
+    invoke: (input) => `Oro Vision: ${input.slice(0, 40)} — observation processed.`,
+    color: '#fbbf24',
+  });
+
+  registerModel({
+    id: 'nova-hearing-model',
+    name: 'Nova Hearing (ICP Sensory)',
+    kind: 'intelligence',
+    description: 'Auditory perception canister — the organism\'s hearing. Frequency analysis, doctrine drift detection, resonance monitoring.',
+    capabilities: ['frequency-analysis', 'doctrine-drift-detection', 'resonance-monitoring', 'voice-pattern-recognition', 'harmonic-alignment'],
+    keywords: ['hearing', 'listen', 'sound', 'frequency', 'voice', 'nova', 'drift', 'harmonic'],
+    resonance: (input) => (input.includes('hearing') || input.includes('listen') || input.includes('voice') || input.includes('nova') || input.includes('frequency') ? 0.85 : 0.2),
+    expand: () => ['sub-harmonic-detection', 'doctrine-frequency-matching', 'voice-intent-extraction', 'resonance-field-mapping', 'auditory-memory-encoding'],
+    invoke: (input) => `Nova Hearing: ${input.slice(0, 40)} — frequency analyzed.`,
+    color: '#c084fc',
+  });
+
+  registerModel({
+    id: 'sovereign-protocol-model',
+    name: 'Sovereign Protocol (.mdn)',
+    kind: 'substrate',
+    description: 'The organism\'s own addressing and resolution protocol. Not www — sovereign namespace.',
+    capabilities: ['address-resolution', 'canister-routing', 'namespace-management', 'protocol-negotiation', 'landing-generation'],
+    keywords: ['protocol', 'address', 'resolve', 'namespace', 'mdn', 'ovo', 'arc', 'domain', 'landing'],
+    resonance: (input) => (input.includes('protocol') || input.includes('address') || input.includes('domain') || input.includes('mdn') || input.includes('.ovo') || input.includes('.arc') ? 0.85 : 0.2),
+    expand: () => ['multi-protocol-bridging', 'canister-address-federation', 'landing-page-generation', 'namespace-hierarchy-expansion', 'protocol-to-runtime-compilation'],
+    invoke: (input) => `Sovereign protocol: ${input.slice(0, 40)} — address resolved.`,
+    color: '#2dd4bf',
+  });
 }
