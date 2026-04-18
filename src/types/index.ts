@@ -307,6 +307,49 @@ export interface DualReadResult {
   unified: MemoryEntry[];
 }
 
+// ─── ULRI (Unified Layered Routing Intelligence) ─────────────────────────────
+
+export interface UlriScore {
+  modelId: ModelFamily;
+  keywordScore: number;
+  organismAffinity: number;
+  gateWeight: number;
+  compositeScore: number;
+}
+
+export interface UlriConsensusInfo {
+  models: ModelFamily[];
+  agreementScore: number;
+}
+
+// ─── Platform Sync ───────────────────────────────────────────────────────────
+
+export interface PlatformSyncState {
+  organism: OrganismState;
+  gates: Gate[];
+  governance: {
+    totalProposals: number;
+    open: number;
+    enacted: number;
+    approved: number;
+    gateStatuses: Record<GateId, GateStatus>;
+  };
+  memory: {
+    total: number;
+    pinned: number;
+    byType: Record<string, number>;
+    avgSalience: number;
+  };
+  models: {
+    families: ModelDefinition[];
+    stats: { totalInvocations: number; activeModels: number; avgLatency: number };
+  };
+  replay: { totalSessions: number; totalEvents: number; currentlyRecording: boolean };
+  recentMemories: MemoryEntry[];
+  timestamp: string;
+  beat: number;
+}
+
 // ─── API Responses ───────────────────────────────────────────────────────────
 
 export interface ApiResponse<T = unknown> {

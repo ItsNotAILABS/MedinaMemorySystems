@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { PlatformSyncContext, usePlatformSyncProvider } from '@/hooks/usePlatformSync';
 import Sidebar from '@/components/Sidebar';
 import OVOChat from '@/components/OVOChat';
 import MemoryTemple from '@/components/MemoryTemple';
@@ -14,6 +15,7 @@ import type { PanelId } from '@/types';
 
 export default function HomePage() {
   const [activePanel, setActivePanel] = useState<PanelId>('chat');
+  const syncState = usePlatformSyncProvider();
 
   const renderPanel = () => {
     switch (activePanel) {
@@ -29,14 +31,16 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#0a0a0f]">
-      <Sidebar activePanel={activePanel} onNavigate={setActivePanel} />
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <OrganismField />
-        <main className="flex-1 overflow-hidden">
-          {renderPanel()}
-        </main>
+    <PlatformSyncContext.Provider value={syncState}>
+      <div className="flex h-screen overflow-hidden bg-[#0a0a0f]">
+        <Sidebar activePanel={activePanel} onNavigate={setActivePanel} />
+        <div className="flex flex-col flex-1 overflow-hidden">
+          <OrganismField />
+          <main className="flex-1 overflow-hidden">
+            {renderPanel()}
+          </main>
+        </div>
       </div>
-    </div>
+    </PlatformSyncContext.Provider>
   );
 }

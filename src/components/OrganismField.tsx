@@ -1,7 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import type { OrganismState, Gate } from '@/types';
+import { usePlatformSync } from '@/hooks/usePlatformSync';
+import type { OrganismRegister } from '@/types';
+
+const REGISTER_CONFIG: Record<OrganismRegister, { label: string; abbr: string; color: string; glow: string }> = {
+  cognitive: { label: 'Cognitive', abbr: 'COG', color: '#3b82f6', glow: 'rgba(59,130,246,0.3)' },
+  affective: { label: 'Affective', abbr: 'AFF', color: '#8b5cf6', glow: 'rgba(139,92,246,0.3)' },
+  somatic: { label: 'Somatic', abbr: 'SOM', color: '#10b981', glow: 'rgba(16,185,129,0.3)' },
+  sovereign: { label: 'Sovereign', abbr: 'SOV', color: '#f59e0b', glow: 'rgba(245,158,11,0.3)' },
+};
 
 const GATE_COLOR: Record<string, string> = {
   green: '#10b981',
@@ -9,98 +16,117 @@ const GATE_COLOR: Record<string, string> = {
   red: '#ef4444',
 };
 
+const PHASE_CONFIG: Record<string, { color: string; icon: string }> = {
+  awake: { color: '#3b82f6', icon: '◉' },
+  integrating: { color: '#8b5cf6', icon: '◎' },
+  deep: { color: '#10b981', icon: '●' },
+  broadcast: { color: '#f59e0b', icon: '◈' },
+};
+
 export default function OrganismField() {
-  const [organism, setOrganism] = useState<OrganismState>({
-    cognitive: 87,
-    affective: 74,
-    somatic: 91,
-    sovereign: 96,
-    phase: 'awake',
-    lastBeat: 1,
-    dominantRegister: 'sovereign',
-  });
-  const [gates, setGates] = useState<Gate[]>([
-    { id: 'A', name: 'Governance', status: 'green', description: '', lastChecked: new Date().toISOString() },
-    { id: 'B', name: 'Memory', status: 'green', description: '', lastChecked: new Date().toISOString() },
-    { id: 'C', name: 'Sovereign', status: 'amber', description: '', lastChecked: new Date().toISOString() },
-  ]);
-
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      try {
-        const res = await fetch('/api/govern?action=gates');
-        if (res.ok) {
-          const data = await res.json() as { data: Gate[] };
-          if (data.data) setGates(data.data);
-        }
-      } catch {
-        // ignore
-      }
-
-      // Simulate organism pulse
-      setOrganism((prev) => ({
-        ...prev,
-        cognitive: clamp(prev.cognitive + (Math.random() * 4 - 2)),
-        affective: clamp(prev.affective + (Math.random() * 4 - 2)),
-        somatic: clamp(prev.somatic + (Math.random() * 2 - 1)),
-        lastBeat: prev.lastBeat + 1,
-      }));
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  function clamp(v: number) {
-    return Math.max(0, Math.min(100, Math.round(v)));
-  }
+  const sync = usePlatformSync();
+  const { organism, gates } = sync;
+  const phaseConfig = PHASE_CONFIG[organism.phase] ?? PHASE_CONFIG.awake;
+  const registers: OrganismRegister[] = ['cognitive', 'affective', 'somatic', 'sovereign'];
 
   return (
-    <div className="flex items-center gap-4 px-4 py-2 bg-[#0d0d15] border-b border-[#1e1e2e] text-xs overflow-x-auto shrink-0">
+    <div className="flex items-center gap-3 px-4 py-2 bg-[#0d0d15] border-b border-[#1e1e2e] text-xs overflow-x-auto shrink-0">
+      {/* Phase indicator */}
+      <div className="flex items-center gap-1.5 shrink-0">
+        <span
+          className="text-sm"
+          style={{ color: phaseConfig.color, textShadow: `0 0 6px ${phaseConfig.color}40` }}
+        >
+          {phaseConfig.icon}
+        </span>
+        <span className="font-mono font-bold" style={{ color: phaseConfig.color }}>
+          {organism.phase.toUpperCase()}
+        </span>
+      </div>
+
+      <div className="w-px h-4 bg-[#1e1e2e] shrink-0" />
+
       {/* Gates */}
-      <div className="flex items-center gap-2 shrink-0">
-        <span className="text-slate-500 mr-1">Gates:</span>
-        {gates.map((gate) => (
-          <span
-            key={gate.id}
-            className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold"
-            style={{
-              color: GATE_COLOR[gate.status],
-              background: `${GATE_COLOR[gate.status]}18`,
-              border: `1px solid ${GATE_COLOR[gate.status]}40`,
-            }}
-          >
-            {gate.id}:{gate.status.toUpperCase()}
-          </span>
-        ))}
+      <div className="flex items-center gap-1.5 shrink-0">
+        {gates.map((gate) => {
+          const color = GATE_COLOR[gate.status] ?? '#6b7280';
+          return (
+            <div
+              key={gate.id}
+              className="flex items-center gap-1 px-2 py-0.5 rounded-full"
+              style={{
+                background: `${color}15`,
+                border: `1px solid ${color}40`,
+              }}
+            >
+              <span
+                className="w-1.5 h-1.5 rounded-full"
+                style={{
+                  background: color,
+                  boxShadow: gate.status === 'green' ? `0 0 4px ${color}` : 'none',
+                }}
+              />
+              <span className="font-mono font-bold text-[10px]" style={{ color }}>
+                {gate.id}
+              </span>
+            </div>
+          );
+        })}
       </div>
 
       <div className="w-px h-4 bg-[#1e1e2e] shrink-0" />
 
-      {/* Organism registers */}
-      <div className="flex items-center gap-3 shrink-0 font-mono">
-        <span className="text-slate-500">Organism:</span>
-        <RegisterBar label="COG" value={organism.cognitive} color="#3b82f6" />
-        <RegisterBar label="AFF" value={organism.affective} color="#8b5cf6" />
-        <RegisterBar label="SOM" value={organism.somatic} color="#10b981" />
-        <RegisterBar label="SOV" value={organism.sovereign} color="#f59e0b" />
+      {/* Organism register bars */}
+      <div className="flex items-center gap-3 shrink-0">
+        {registers.map((reg) => {
+          const config = REGISTER_CONFIG[reg];
+          const value = organism[reg];
+          const isDominant = organism.dominantRegister === reg;
+          return (
+            <div key={reg} className="flex items-center gap-1.5">
+              <span className="text-slate-500 font-mono text-[10px] w-6">{config.abbr}</span>
+              <div className="w-16 h-2 bg-[#1a1a2e] rounded-full overflow-hidden relative">
+                <div
+                  className="h-full rounded-full transition-all duration-700 ease-out"
+                  style={{
+                    width: `${value}%`,
+                    background: `linear-gradient(90deg, ${config.color}80, ${config.color})`,
+                    boxShadow: isDominant ? `0 0 8px ${config.glow}` : 'none',
+                  }}
+                />
+              </div>
+              <span
+                className="font-mono font-bold text-[10px] w-6 text-right"
+                style={{ color: config.color }}
+              >
+                {Math.round(value)}
+              </span>
+            </div>
+          );
+        })}
       </div>
 
       <div className="w-px h-4 bg-[#1e1e2e] shrink-0" />
 
-      <div className="flex items-center gap-2 shrink-0">
-        <span className="text-slate-500">Phase:</span>
-        <span className="text-blue-400 font-mono">{organism.phase.toUpperCase()}</span>
-        <span className="text-slate-500">Beat:</span>
-        <span className="text-slate-300 font-mono">{organism.lastBeat}</span>
+      {/* Beat */}
+      <div className="flex items-center gap-1.5 shrink-0">
+        <span className="text-slate-500 font-mono text-[10px]">Beat</span>
+        <span className="text-slate-300 font-mono font-bold text-[10px]">{organism.lastBeat}</span>
+      </div>
+
+      {/* Models active */}
+      <div className="w-px h-4 bg-[#1e1e2e] shrink-0" />
+      <div className="flex items-center gap-1.5 shrink-0">
+        <span className="text-slate-500 font-mono text-[10px]">Models</span>
+        <span className="text-blue-400 font-mono font-bold text-[10px]">{sync.models.stats.activeModels}/{sync.models.families.length}</span>
+      </div>
+
+      {/* Memory */}
+      <div className="w-px h-4 bg-[#1e1e2e] shrink-0" />
+      <div className="flex items-center gap-1.5 shrink-0">
+        <span className="text-slate-500 font-mono text-[10px]">Mem</span>
+        <span className="text-purple-400 font-mono font-bold text-[10px]">{sync.memory.total}</span>
       </div>
     </div>
-  );
-}
-
-function RegisterBar({ label, value, color }: { label: string; value: number; color: string }) {
-  return (
-    <span className="flex items-center gap-1">
-      <span className="text-slate-500">{label}:</span>
-      <span style={{ color }} className="font-bold">{Math.round(value)}</span>
-    </span>
   );
 }

@@ -2,8 +2,14 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
-import type { ChatMessage, ModelFamily, StructuredResponse } from '@/types';
+import type { ChatMessage, ModelFamily, StructuredResponse, UlriScore, UlriConsensusInfo } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
+
+interface EnhancedChatMessage extends ChatMessage {
+  ulriScores?: UlriScore[];
+  consensus?: UlriConsensusInfo;
+  routingLatency?: number;
+}
 
 const MODEL_COLORS: Record<string, string> = {
   strategist: '#3b82f6',
@@ -16,37 +22,37 @@ const MODEL_COLORS: Record<string, string> = {
   projection: '#06b6d4',
 };
 
-const WELCOME_MESSAGE: ChatMessage = {
+const WELCOME_MESSAGE: EnhancedChatMessage = {
   id: 'welcome',
   role: 'system',
   content: `Welcome to **NOVA OVO** — Sovereign Intelligence Platform.
 
-Type a message to converse naturally, or use commands:
+Powered by **ULRI** (Unified Layered Routing Intelligence). Your messages are analyzed across keyword matching, organism affinity, and gate weight to route to the optimal model.
+
+**Commands:**
 • \`/memory find <query>\` — Search memory
-• \`/memory store <content>\` — Store memory
 • \`/govern list\` — List proposals
-• \`/govern propose <title>\` — Create proposal
 • \`/model list\` — List model families
-• \`/model invoke <model> <prompt>\` — Invoke model
 • \`/organism status\` — View organism state
 • \`/help\` — Full command reference
 
-The platform routes your messages to the best model automatically.`,
+Toggle **Consensus Mode** for multi-model intelligence synthesis.`,
   timestamp: new Date().toISOString(),
 };
 
 const QUICK_COMMANDS = [
-  { label: 'Memory Status', cmd: '/memory list' },
-  { label: 'Gate Status', cmd: '/govern gates' },
-  { label: 'List Models', cmd: '/model list' },
-  { label: 'Organism', cmd: '/organism status' },
+  { label: 'Memory', cmd: '/memory list', icon: '🧠' },
+  { label: 'Gates', cmd: '/govern gates', icon: '⚖️' },
+  { label: 'Models', cmd: '/model list', icon: '⚡' },
+  { label: 'Organism', cmd: '/organism status', icon: '◉' },
 ];
 
 export default function OVOChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE]);
+  const [messages, setMessages] = useState<EnhancedChatMessage[]>([WELCOME_MESSAGE]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [consensusMode, setConsensusMode] = useState(false);
+  const [showRouting, setShowRouting] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -58,14 +64,14 @@ export default function OVOChat() {
     const content = (text ?? input).trim();
     if (!content || loading) return;
 
-    const userMsg: ChatMessage = {
+    const userMsg: EnhancedChatMessage = {
       id: uuidv4(),
       role: 'user',
       content,
       timestamp: new Date().toISOString(),
     };
 
-    const loadingMsg: ChatMessage = {
+    const loadingMsg: EnhancedChatMessage = {
       id: uuidv4(),
       role: 'assistant',
       content: '',
@@ -75,16 +81,15 @@ export default function OVOChat() {
 
     setMessages((prev) => [...prev, userMsg, loadingMsg]);
     setInput('');
-    setSuggestions([]);
     setLoading(true);
 
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content }),
+        body: JSON.stringify({ message: content, useConsensus: consensusMode }),
       });
-      const data = await res.json() as ChatMessage & { processingTime?: number };
+      const data = await res.json() as EnhancedChatMessage & { processingTime?: number };
 
       setMessages((prev) => [
         ...prev.slice(0, -1),
@@ -107,7 +112,7 @@ export default function OVOChat() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading]);
+  }, [input, loading, consensusMode]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -123,15 +128,30 @@ export default function OVOChat() {
         <div className="flex items-center gap-2">
           <span className="text-blue-400 text-lg">💬</span>
           <h1 className="text-sm font-semibold text-slate-200">OVO Chat</h1>
-          <span className="text-xs text-slate-500 ml-1">Universal Command Interface</span>
+          <span className="text-[10px] text-slate-500 font-mono ml-1">ULRI-Powered</span>
         </div>
-        <div className="flex gap-1">
+        <div className="flex items-center gap-2">
+          {/* Consensus toggle */}
+          <button
+            onClick={() => setConsensusMode(!consensusMode)}
+            className={clsx(
+              'flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono transition-all',
+              consensusMode
+                ? 'bg-blue-600/20 text-blue-400 border border-blue-500/40'
+                : 'bg-[#1e1e2e] text-slate-500 border border-transparent hover:text-slate-300',
+            )}
+          >
+            <span className={clsx('w-1.5 h-1.5 rounded-full transition-colors', consensusMode ? 'bg-blue-400' : 'bg-slate-600')} />
+            Consensus {consensusMode ? 'ON' : 'OFF'}
+          </button>
+          {/* Quick commands */}
           {QUICK_COMMANDS.map((qc) => (
             <button
               key={qc.cmd}
               onClick={() => void handleSend(qc.cmd)}
-              className="px-2 py-1 text-[10px] rounded bg-[#1e1e2e] text-slate-400 hover:bg-[#2a2a3e] hover:text-slate-200 transition-colors font-mono"
+              className="px-2 py-1 text-[10px] rounded bg-[#1e1e2e] text-slate-400 hover:bg-[#2a2a3e] hover:text-slate-200 transition-colors font-mono flex items-center gap-1"
             >
+              <span>{qc.icon}</span>
               {qc.label}
             </button>
           ))}
@@ -141,7 +161,12 @@ export default function OVOChat() {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
         {messages.map((msg) => (
-          <MessageBubble key={msg.id} message={msg} />
+          <MessageBubble
+            key={msg.id}
+            message={msg}
+            showRoutingId={showRouting}
+            onToggleRouting={(id) => setShowRouting(showRouting === id ? null : id)}
+          />
         ))}
         <div ref={messagesEndRef} />
       </div>
@@ -154,19 +179,23 @@ export default function OVOChat() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type a message or /command…"
+            placeholder={consensusMode ? 'Multi-model consensus mode… Type a message or /command' : 'Type a message or /command…'}
             rows={1}
             className={clsx(
-              'w-full cmd-input rounded-lg px-4 py-3 pr-24 text-sm resize-none',
-              'bg-[#12121a] border border-[#1e1e2e] focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20',
-              'text-slate-200 placeholder-slate-600 outline-none',
-              'font-mono',
+              'w-full cmd-input rounded-lg px-4 py-3 pr-28 text-sm resize-none',
+              'bg-[#12121a] border focus:ring-1 outline-none font-mono',
+              'text-slate-200 placeholder-slate-600',
+              consensusMode
+                ? 'border-blue-500/30 focus:border-blue-500 focus:ring-blue-500/20'
+                : 'border-[#1e1e2e] focus:border-blue-500 focus:ring-blue-500/20',
             )}
             style={{ minHeight: 48, maxHeight: 120 }}
           />
-          <div className="absolute right-2 bottom-2 flex items-center gap-1">
-            {input.trim() && (
-              <span className="text-[10px] text-slate-600 font-mono">⏎</span>
+          <div className="absolute right-2 bottom-2 flex items-center gap-1.5">
+            {consensusMode && (
+              <span className="text-[9px] text-blue-400 font-mono px-1.5 py-0.5 rounded bg-blue-500/10">
+                3x
+              </span>
             )}
             <button
               onClick={() => void handleSend()}
@@ -183,30 +212,45 @@ export default function OVOChat() {
           </div>
         </div>
         <div className="flex items-center gap-2 mt-1.5 text-[10px] text-slate-600">
-          <span>⌘ Enter to send</span>
+          <span>Enter to send</span>
           <span>•</span>
           <span>Shift+Enter for newline</span>
           <span>•</span>
           <span>Type / for commands</span>
+          {consensusMode && (
+            <>
+              <span>•</span>
+              <span className="text-blue-400">Consensus: top 3 models synthesized</span>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-function MessageBubble({ message }: { message: ChatMessage }) {
+function MessageBubble({
+  message,
+  showRoutingId,
+  onToggleRouting,
+}: {
+  message: EnhancedChatMessage;
+  showRoutingId: string | null;
+  onToggleRouting: (id: string) => void;
+}) {
   const isUser = message.role === 'user';
   const isSystem = message.role === 'system';
+  const showRouting = showRoutingId === message.id;
 
   if (message.processing) {
     return (
       <div className="flex items-start gap-3 animate-fade-in">
-        <div className="w-6 h-6 rounded bg-[#1e1e2e] flex items-center justify-center text-xs shrink-0 mt-0.5">
-          ⚡
+        <div className="w-7 h-7 rounded-lg bg-[#1e1e2e] flex items-center justify-center text-xs shrink-0 mt-0.5">
+          <span className="animate-pulse">⚡</span>
         </div>
         <div className="bg-[#12121a] border border-[#1e1e2e] rounded-lg px-4 py-3">
           <span className="text-blue-400 font-mono text-sm">
-            Processing<span className="cursor-blink">▋</span>
+            ULRI routing<span className="cursor-blink">▋</span>
           </span>
         </div>
       </div>
@@ -216,7 +260,9 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   if (isSystem) {
     return (
       <div className="bg-[#0f0f1a] border border-[#1e1e2e] rounded-lg px-4 py-3 animate-fade-in">
-        <div className="text-xs text-slate-500 mb-1.5 font-mono">SYSTEM</div>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-[10px] text-blue-400 font-mono px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/30">SYSTEM</span>
+        </div>
         <div className="text-sm text-slate-300 whitespace-pre-wrap leading-relaxed font-mono">
           {formatContent(message.content)}
         </div>
@@ -227,7 +273,7 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   if (isUser) {
     return (
       <div className="flex justify-end animate-fade-in">
-        <div className="max-w-2xl bg-blue-600/20 border border-blue-500/30 rounded-lg px-4 py-2.5">
+        <div className="max-w-2xl bg-blue-600/15 border border-blue-500/25 rounded-lg px-4 py-2.5">
           <div className="text-sm text-slate-200 font-mono whitespace-pre-wrap">{message.content}</div>
           <div className="text-[10px] text-slate-500 mt-1 text-right">{formatTime(message.timestamp)}</div>
         </div>
@@ -236,17 +282,19 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   }
 
   const modelColor = message.modelUsed ? (MODEL_COLORS[message.modelUsed] ?? '#6b7280') : '#6b7280';
+  const hasUlri = message.ulriScores && message.ulriScores.length > 0;
 
   return (
     <div className="flex items-start gap-3 animate-fade-in">
       <div
-        className="w-6 h-6 rounded shrink-0 mt-0.5 flex items-center justify-center text-[10px] font-bold text-white"
-        style={{ background: modelColor }}
+        className="w-7 h-7 rounded-lg shrink-0 mt-0.5 flex items-center justify-center text-[11px] font-bold text-white"
+        style={{ background: modelColor, boxShadow: `0 0 8px ${modelColor}40` }}
       >
         {message.modelUsed ? message.modelUsed[0].toUpperCase() : 'N'}
       </div>
       <div className="flex-1 max-w-3xl">
-        <div className="flex items-center gap-2 mb-1.5">
+        {/* Model label and routing info */}
+        <div className="flex items-center gap-2 mb-1.5 flex-wrap">
           {message.modelUsed && (
             <span
               className="text-[10px] font-mono px-1.5 py-0.5 rounded"
@@ -259,6 +307,25 @@ function MessageBubble({ message }: { message: ChatMessage }) {
               {message.modelUsed}
             </span>
           )}
+          {message.consensus && (
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30">
+              consensus {(message.consensus.agreementScore * 100).toFixed(0)}%
+              <span className="text-blue-300 ml-1">
+                [{message.consensus.models.map((m) => m[0].toUpperCase()).join('+')}]
+              </span>
+            </span>
+          )}
+          {message.routingLatency !== undefined && (
+            <span className="text-[10px] text-slate-600 font-mono">{message.routingLatency}ms</span>
+          )}
+          {hasUlri && (
+            <button
+              onClick={() => onToggleRouting(message.id)}
+              className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#1e1e2e] text-slate-500 hover:text-slate-300 transition-colors"
+            >
+              {showRouting ? '▾ ULRI' : '▸ ULRI'}
+            </button>
+          )}
           {message.commandParsed?.valid && (
             <span className="text-[10px] font-mono text-slate-500">
               {message.commandParsed.raw}
@@ -267,6 +334,35 @@ function MessageBubble({ message }: { message: ChatMessage }) {
           <span className="text-[10px] text-slate-600">{formatTime(message.timestamp)}</span>
         </div>
 
+        {/* ULRI Routing visualization */}
+        {showRouting && hasUlri && (
+          <div className="mb-2 bg-[#0a0a12] border border-[#1e1e2e] rounded-lg p-3 space-y-1.5">
+            <div className="text-[10px] text-slate-500 font-mono mb-2">ULRI Routing Scores</div>
+            {message.ulriScores!.map((score) => {
+              const color = MODEL_COLORS[score.modelId] ?? '#6b7280';
+              const pct = Math.min(100, score.compositeScore * 500);
+              return (
+                <div key={score.modelId} className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono w-20 shrink-0" style={{ color }}>{score.modelId}</span>
+                  <div className="flex-1 h-1.5 bg-[#1a1a2e] rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{
+                        width: `${pct}%`,
+                        background: `linear-gradient(90deg, ${color}80, ${color})`,
+                      }}
+                    />
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-500 w-10 text-right">
+                    {(score.compositeScore * 100).toFixed(0)}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Response content */}
         <div className="bg-[#12121a] border border-[#1e1e2e] rounded-lg px-4 py-3">
           {message.structuredResponse ? (
             <StructuredResponseView response={message.structuredResponse} />
@@ -320,7 +416,7 @@ function DataPreview({ data }: { data: unknown }) {
   return (
     <pre className="text-[11px] text-slate-400 bg-[#0a0a0f] rounded p-2 overflow-x-auto max-h-48 overflow-y-auto font-mono leading-relaxed">
       {preview}
-      {truncated && <span className="text-slate-600">\n… ({lines.length - 12} more lines)</span>}
+      {truncated && <span className="text-slate-600">{'\n'}… ({lines.length - 12} more lines)</span>}
     </pre>
   );
 }
