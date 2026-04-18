@@ -5,10 +5,25 @@ import { cls } from '@/lib/sovereign-cls';
 import type { ChatMessage, ModelFamily, StructuredResponse, UlriScore, UlriConsensusInfo } from '@/types';
 import { sovereignId } from '@/lib/sovereign-id';
 
+interface SovereignScoreEntry {
+  id: string;
+  name: string;
+  kind: string;
+  score: number;
+  color: string;
+}
+
+interface FieldOfPossibility {
+  source: string;
+  possibilities: string[];
+}
+
 interface EnhancedChatMessage extends ChatMessage {
   ulriScores?: UlriScore[];
+  sovereignScores?: SovereignScoreEntry[];
   consensus?: UlriConsensusInfo;
   routingLatency?: number;
+  fieldsOfPossibility?: FieldOfPossibility[];
 }
 
 const MODEL_COLORS: Record<string, string> = {
@@ -336,29 +351,68 @@ function MessageBubble({
 
         {/* ULRI Routing visualization */}
         {showRouting && hasUlri && (
-          <div className="mb-2 bg-[#0a0a12] border border-[#1e1e2e] rounded-lg p-3 space-y-1.5">
-            <div className="text-[10px] text-slate-500 font-mono mb-2">ULRI Sovereign Routing — (Kw×0.45 + Org×0.30 + Gate×0.25)</div>
-            {message.ulriScores!.map((score) => {
-              const color = MODEL_COLORS[score.modelId] ?? '#6b7280';
-              const pct = Math.min(100, score.compositeScore * 500);
-              return (
-                <div key={score.modelId} className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono w-20 shrink-0" style={{ color }}>{score.modelId}</span>
-                  <div className="flex-1 h-1.5 bg-[#1a1a2e] rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full transition-all duration-500"
-                      style={{
-                        width: `${pct}%`,
-                        background: `linear-gradient(90deg, ${color}80, ${color})`,
-                      }}
-                    />
+          <div className="mb-2 bg-[#0a0a12] border border-[#1e1e2e] rounded-lg p-3 space-y-3">
+            <div className="text-[10px] text-slate-500 font-mono">ULRI Sovereign Routing — (Res×0.40 + Org×0.30 + Gate×0.20 + Pattern×0.10)</div>
+            <div className="space-y-1">
+              {message.ulriScores!.map((score) => {
+                const color = MODEL_COLORS[score.modelId] ?? '#6b7280';
+                const pct = Math.min(100, score.compositeScore * 500);
+                return (
+                  <div key={score.modelId} className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono w-20 shrink-0" style={{ color }}>{score.modelId}</span>
+                    <div className="flex-1 h-1.5 bg-[#1a1a2e] rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${pct}%`,
+                          background: `linear-gradient(90deg, ${color}80, ${color})`,
+                        }}
+                      />
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 w-10 text-right">
+                      {(score.compositeScore * 100).toFixed(0)}
+                    </span>
                   </div>
-                  <span className="text-[10px] font-mono text-slate-500 w-10 text-right">
-                    {(score.compositeScore * 100).toFixed(0)}
-                  </span>
+                );
+              })}
+            </div>
+            {/* Sovereign model landscape */}
+            {message.sovereignScores && message.sovereignScores.length > 0 && (
+              <div>
+                <div className="text-[10px] text-slate-600 font-mono mb-1.5">Sovereign Model Landscape</div>
+                <div className="flex flex-wrap gap-1">
+                  {message.sovereignScores.map((s) => (
+                    <span
+                      key={s.id}
+                      className="text-[9px] font-mono px-1.5 py-0.5 rounded"
+                      style={{
+                        color: s.color,
+                        background: `${s.color}12`,
+                        border: `1px solid ${s.color}30`,
+                        opacity: 0.4 + s.score * 0.6,
+                      }}
+                    >
+                      {s.name.split(' ')[0]} {(s.score * 100).toFixed(0)}
+                    </span>
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            )}
+            {/* Fields of possibility */}
+            {message.fieldsOfPossibility && message.fieldsOfPossibility.length > 0 && (
+              <div>
+                <div className="text-[10px] text-slate-600 font-mono mb-1.5">Fields of Possibility</div>
+                <div className="space-y-1">
+                  {message.fieldsOfPossibility.map((f) => (
+                    <div key={f.source} className="text-[9px] font-mono">
+                      <span className="text-blue-400">{f.source}</span>
+                      <span className="text-slate-600"> → </span>
+                      <span className="text-slate-400">{f.possibilities.join(' · ')}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 

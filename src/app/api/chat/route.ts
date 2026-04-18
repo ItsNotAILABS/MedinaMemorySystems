@@ -46,11 +46,13 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
       processingTime: Date.now() - startTime,
       ulriScores: ulriResult.scores.slice(0, 5),
+      sovereignScores: ulriResult.sovereignScores,
       consensus: ulriResult.consensus ? {
         models: ulriResult.consensus.models,
         agreementScore: ulriResult.consensus.agreementScore,
       } : undefined,
       routingLatency: ulriResult.routingLatency,
+      fieldsOfPossibility: ulriResult.fieldsOfPossibility,
     });
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });
