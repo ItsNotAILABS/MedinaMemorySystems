@@ -15,7 +15,7 @@ import React from 'react';
 // LANDING PAGE CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export const LANDING_CONFIG = {
+const LANDING_CONFIG = {
   brand: {
     name: 'Medina Memory Systems',
     tagline: 'Deep Tech Memory Infrastructure',

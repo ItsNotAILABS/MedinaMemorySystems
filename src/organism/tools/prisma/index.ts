@@ -63,10 +63,6 @@
  * @frequency 698.7 Hz (φ × 432)
  */
 
-import { MetadataEngine } from './metadata';
-import { FrequencyProcessor } from './frequency';
-import { GeometryEngine } from './geometry';
-
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS: SACRED FREQUENCIES AND RATIOS
 // ═══════════════════════════════════════════════════════════════════════════════

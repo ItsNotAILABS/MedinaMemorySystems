@@ -697,7 +697,7 @@ export const SENTENCE_10 = {
       ],
       CLIENT_FACING: [],
       ENTERPRISE: [],
-    ],
+    },
     
     USES: [
       'High-capacity storage',

@@ -18,7 +18,7 @@ import React from 'react';
 // BLOG CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export interface ResearchPaper {
+interface ResearchPaper {
   id: string;
   title: string;
   latinTitle: string;
@@ -32,7 +32,7 @@ export interface ResearchPaper {
   content: string;
 }
 
-export const RESEARCH_PAPERS: ResearchPaper[] = [
+const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     id: 'memoria-toroidalis',
     title: 'Toroidal Memory Architecture for Distributed Cognitive Systems',
@@ -340,7 +340,7 @@ export default function BlogPage() {
       <footer className="border-t border-gold-500/20 py-8 px-6 mt-12">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-400 italic mb-2">
-            "Scientia potentia est. Memoria fundamentum scientiae."
+            &ldquo;Scientia potentia est. Memoria fundamentum scientiae.&rdquo;
           </p>
           <p className="text-gray-500 text-sm">
             Knowledge is power. Memory is the foundation of knowledge.

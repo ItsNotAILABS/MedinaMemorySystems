@@ -108,7 +108,7 @@ export const SUBSTRATE_CONSTANTS = {
     'אהבה': 13,    // Love
     'אור': 207,    // Light
     'חיים': 68,    // Life
-  },
+  } as Record<string, number>,
   
   // Memory Torus Configuration
   TORUS: {
@@ -668,7 +668,7 @@ export function sacredCompute(operation: SacredOperation): SacredResult {
       );
       break;
     case 'GOLDEN_MEAN':
-      result = (operation.a || 0 + operation.b || 0) / 2 * SUBSTRATE_CONSTANTS.PHI;
+      result = ((operation.a || 0) + (operation.b || 0)) / 2 * SUBSTRATE_CONSTANTS.PHI;
       break;
     case 'VESICA_RATIO':
       result = Math.sqrt(3) * (operation.a || 1);

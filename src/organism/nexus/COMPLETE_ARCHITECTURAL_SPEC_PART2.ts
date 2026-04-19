@@ -662,7 +662,7 @@ export const SENTENCE_20 = {
     
     ENGINES: [
       { id: 'eng_ui_1', name: 'UniversalIntelligenceEngine', type: 'ORCHESTRATOR', scope: 'all' },
-      { id: 'eng_ui_2', name: 'EncryptionDecisionEngine', type: 'DECIDER', type: 'encryption' },
+      { id: 'eng_ui_2', name: 'EncryptionDecisionEngine', type: 'DECIDER', scope: 'encryption' },
       { id: 'eng_ui_3', name: 'PropagationEngine', type: 'PROPAGATOR', mode: 'full' },
     ],
     

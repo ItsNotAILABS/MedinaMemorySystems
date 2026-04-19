@@ -226,7 +226,10 @@ export class OroVision {
     // Fallback for non-browser
     return {
       timestamp,
-      dimensions: VISION_CONSTANTS.FIELD,
+      dimensions: { 
+        width: VISION_CONSTANTS.FIELD.WIDTH, 
+        height: VISION_CONSTANTS.FIELD.HEIGHT 
+      },
       elements: [],
       metadata: {
         title: 'Unknown',

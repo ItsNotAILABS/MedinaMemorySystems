@@ -6,6 +6,9 @@
 
 import { KeyRotationTier, AnimaHash } from './novaSovereignEncryption';
 
+// Re-export AnimaHash for external consumers
+export type { AnimaHash, KeyRotationTier };
+
 // ═══════════════════════════════════════════════════════════════════════════
 // SECTION I: ENCRYPTION METHOD TYPES
 // ═══════════════════════════════════════════════════════════════════════════
