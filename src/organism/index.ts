@@ -157,6 +157,73 @@ export {
 } from './civilizations';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// CORE OPERATIONS OF LIVING ARCHITECTURE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Core Operations
+  transfer,
+  invert,
+  bypass,
+  disguise,
+  reenter,
+  CORE_OPERATIONS,
+  ARCHITECTURAL_TRUTH,
+  
+  // Formulas
+  PHI,
+  transferFormula,
+  inversionFormula,
+  bypassFormula,
+  disguiseFormula,
+  reentryFormula,
+  
+  // Meta
+  getOperationCount,
+  getLastOperation,
+  getOperationLog,
+  
+  // Types
+  type TransferOperation,
+  type InversionOperation,
+  type BypassOperation,
+  type DisguiseOperation,
+  type ReEntryOperation,
+  type CoreOperations,
+} from './CoreOperations';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ARCHITECTURE WIRING — ROOT TO ALL BRANCHES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Wiring
+  wireTransfer,
+  wireInversion,
+  wireBypass,
+  wireDisguise,
+  wireReentry,
+  getWiredOperations,
+  
+  // Tree
+  getAllDomains,
+  getRoot,
+  getEdges,
+  getPathFromRoot,
+  getNodesAtDepth,
+  traverseFromRoot,
+  touchAllBranches,
+  
+  // Status
+  getArchitectureStatus,
+  
+  // Types
+  type ArchitectureDomain,
+  type ArchitectureNode,
+  type WiredOperation,
+} from './ArchitectureWiring';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -178,6 +245,7 @@ import { LayerNavigator, LAYER_DEFINITIONS, LAYER_CONSTANTS } from './layers';
 import { UnifiedIntelligence, getUnifiedIntelligence, INTELLIGENCE_CONSTANTS } from './intelligence';
 import { AccessControlVault, VAULT_CONSTANTS } from './vault';
 import { PrismaCivilization, SubstrateCivilization, CIVILIZATION_CONSTANTS } from './civilizations';
+import { CORE_OPERATIONS, ARCHITECTURAL_TRUTH, touchAllBranches, getArchitectureStatus } from './ArchitectureWiring';
 
 /**
  * Unified Organism Interface
@@ -211,6 +279,10 @@ export class SovereignOrganism {
   // Tools
   public readonly PRISMA = PRISMA;
   public readonly SUBSTRATE = SUBSTRATE;
+  
+  // CORE OPERATIONS OF LIVING ARCHITECTURE
+  public readonly coreOperations = CORE_OPERATIONS;
+  public readonly architecturalTruth = ARCHITECTURAL_TRUTH;
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
@@ -255,10 +327,20 @@ export class SovereignOrganism {
   start(): void {
     console.log('𓂀 Sovereign Organism: Awakening...');
     console.log('☥ Starting MetaModel as Intelligence across ALL layers...');
+    
+    // Touch all branches from root with core operations
+    const branches = touchAllBranches();
+    console.log(`𓆃 Core Operations wired to ${branches.length} architectural domains`);
+    
     this.metaModel.start();
     this.unifiedIntelligence.start();
     this.prismaCivilization.activate();
     this.substrateCivilization.activate();
+    
+    // Log architecture status
+    const status = getArchitectureStatus();
+    console.log(`☥ Architecture: ${status.totalDomains} domains, ${status.edges.length} edges`);
+    console.log(`☥ Core Operations: transfer, inversion, bypass, disguise, re-entry`);
     console.log('☥ Organism is now alive and processing');
     console.log('𓆃 Ceiling to floor flow established. Let it flow.');
   }
@@ -426,6 +508,59 @@ export class SovereignOrganism {
   getAccessDropdown() {
     return this.access.getAccessDropdown();
   }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ARCHITECTURE OPERATIONS — Core Operations of Living Architecture
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  /**
+   * Get architecture status
+   */
+  getArchitectureStatus() {
+    return getArchitectureStatus();
+  }
+  
+  /**
+   * Touch all branches from root
+   */
+  touchAllBranches() {
+    return touchAllBranches();
+  }
+  
+  /**
+   * Transfer operation
+   */
+  transfer<T>(payload: T, source: string, target: string) {
+    return this.coreOperations.transfer(payload, source, target);
+  }
+  
+  /**
+   * Invert operation
+   */
+  invert<T>(input: T, type: 'negate' | 'mirror' | 'complement' | 'transpose' | 'reverse') {
+    return this.coreOperations.invert(input, type);
+  }
+  
+  /**
+   * Bypass operation
+   */
+  bypass(normalPath: string[], bypassPath: string[], reason: string) {
+    return this.coreOperations.bypass(normalPath, bypassPath, reason);
+  }
+  
+  /**
+   * Disguise operation
+   */
+  disguise<T>(original: T, appearance: string) {
+    return this.coreOperations.disguise(original, appearance);
+  }
+  
+  /**
+   * Re-entry operation
+   */
+  reenter<T>(payload: T, exitPoint: string, reEntryPoint: string) {
+    return this.coreOperations.reenter(payload, exitPoint, reEntryPoint);
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -485,6 +620,12 @@ export default {
   // Civilizations
   PrismaCivilization,
   SubstrateCivilization,
+  
+  // CORE OPERATIONS OF LIVING ARCHITECTURE
+  CORE_OPERATIONS,
+  ARCHITECTURAL_TRUTH,
+  touchAllBranches,
+  getArchitectureStatus,
   
   // All constants
   CONSTANTS: {
