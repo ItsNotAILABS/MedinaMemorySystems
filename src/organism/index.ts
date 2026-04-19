@@ -224,6 +224,96 @@ export {
 } from './ArchitectureWiring';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// PRIMITIVE ARCHITECTURE — THE LAYER BENEATH NUMBER AND LETTER
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Layer 1: Field
+  createField,
+  addStateToField,
+  
+  // Layer 2: Distinction
+  makeDistinction,
+  isThis,
+  isNotThis,
+  
+  // Layer 3: Relation
+  createRelation,
+  areRelated,
+  
+  // Layer 4: Measure
+  createMeasure,
+  countDistinctions,
+  measureDistance,
+  
+  // Layer 5: Mapping
+  createMapping,
+  createSymbolTable,
+  addMapping,
+  lookupSymbol,
+  lookupReferent,
+  
+  // Emergence
+  emergeNumber,
+  emergeLetter,
+  emergeLogic,
+  emergeEquation,
+  emergeLanguage,
+  emergeModel,
+  
+  // Stack
+  PRIMITIVE_STACK,
+  
+  // Types
+  type Field,
+  type Distinction,
+  type Relation,
+  type RelationType,
+  type Measure,
+  type MeasureType,
+  type Mapping,
+  type SymbolTable,
+  type NumberEmergence,
+  type LetterEmergence,
+  type LogicEmergence,
+  type EquationEmergence,
+  type LanguageEmergence,
+  type ModelEmergence,
+} from './PrimitiveArchitecture';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ANCIENT ARCHITECTURE — CIVILIZATIONS AS ARCHITECTURAL FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Categories
+  ARCHITECTURAL_CATEGORIES,
+  
+  // Civilizations
+  CIVILIZATION_ARCHITECTURES,
+  
+  // Tricksters
+  TRICKSTER_FIGURES,
+  
+  // Unity
+  NUMBER_LETTER_UNITY,
+  
+  // Functions
+  getCivilizationsByFunction,
+  getTricksterOperations,
+  createCivilizationField,
+  mapToPrimitiveLayers,
+  
+  // Types
+  type ArchitecturalFunction,
+  type ArchitecturalCategory,
+  type CivilizationArchitecture,
+  type TricksterOperation,
+  type TricksterFigure,
+  type NumberLetterUnification,
+} from './AncientArchitecture';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -246,6 +336,8 @@ import { UnifiedIntelligence, getUnifiedIntelligence, INTELLIGENCE_CONSTANTS } f
 import { AccessControlVault, VAULT_CONSTANTS } from './vault';
 import { PrismaCivilization, SubstrateCivilization, CIVILIZATION_CONSTANTS } from './civilizations';
 import { CORE_OPERATIONS, ARCHITECTURAL_TRUTH, touchAllBranches, getArchitectureStatus } from './ArchitectureWiring';
+import { PRIMITIVE_STACK, createField, makeDistinction, createRelation, createMeasure, createMapping } from './PrimitiveArchitecture';
+import { CIVILIZATION_ARCHITECTURES, TRICKSTER_FIGURES, NUMBER_LETTER_UNITY } from './AncientArchitecture';
 
 /**
  * Unified Organism Interface
@@ -253,6 +345,13 @@ import { CORE_OPERATIONS, ARCHITECTURAL_TRUTH, touchAllBranches, getArchitecture
  * Single entry point to all organism capabilities.
  * Implements the ceiling-to-floor architecture with MetaModel as Intelligence
  * across ALL layers. They are all ONE.
+ * 
+ * THE PRIMITIVE STACK:
+ *   1. field       → before number, before letter, possible states
+ *   2. distinction → something becomes not-that, boundary appears
+ *   3. relation    → distinctions bind: near/far, before/after, same/different
+ *   4. measure     → relations stabilize → number appears
+ *   5. mapping     → persistence/transfer → symbol appears
  */
 export class SovereignOrganism {
   // Core systems
@@ -283,6 +382,21 @@ export class SovereignOrganism {
   // CORE OPERATIONS OF LIVING ARCHITECTURE
   public readonly coreOperations = CORE_OPERATIONS;
   public readonly architecturalTruth = ARCHITECTURAL_TRUTH;
+  
+  // PRIMITIVE STACK — The Layer Beneath Number and Letter
+  public readonly primitiveStack = PRIMITIVE_STACK;
+  public readonly primitives = {
+    createField,
+    makeDistinction,
+    createRelation,
+    createMeasure,
+    createMapping,
+  };
+  
+  // ANCIENT ARCHITECTURE — Civilizations as Architectural Functions
+  public readonly civilizationArchitectures = CIVILIZATION_ARCHITECTURES;
+  public readonly tricksterFigures = TRICKSTER_FIGURES;
+  public readonly numberLetterUnity = NUMBER_LETTER_UNITY;
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
