@@ -314,6 +314,51 @@ export {
 } from './AncientArchitecture';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// DEPLOYMENT AGENT SYSTEM — 5-AGENT TEAMS FROM ROOT TO ALL BRANCHES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Agent creation
+  createAgent,
+  createDeploymentTeam,
+  createTestNode,
+  
+  // Agent operations
+  moveAgent,
+  fillBranch,
+  probeEdge,
+  runTestNode,
+  returnToVein,
+  mergeBranch,
+  
+  // Deployment execution
+  deployFromRoot,
+  deployMultiDimensional,
+  
+  // Research pipeline
+  sendToResearch,
+  processResearchQueue,
+  getFutureExtensions,
+  
+  // Reporting
+  generateDeploymentReport,
+  
+  // Types
+  type AgentRole,
+  type AgentStatus,
+  type Agent,
+  type Discovery,
+  type TestResult,
+  type DeploymentTeam,
+  type TestNode,
+  type DeploymentResult,
+  type DimensionalDeployment,
+  type ResearchItem,
+  type ResearchPipeline,
+  type DeploymentReport,
+} from './DeploymentAgentSystem';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -338,6 +383,7 @@ import { PrismaCivilization, SubstrateCivilization, CIVILIZATION_CONSTANTS } fro
 import { CORE_OPERATIONS, ARCHITECTURAL_TRUTH, touchAllBranches, getArchitectureStatus } from './ArchitectureWiring';
 import { PRIMITIVE_STACK, createField, makeDistinction, createRelation, createMeasure, createMapping } from './PrimitiveArchitecture';
 import { CIVILIZATION_ARCHITECTURES, TRICKSTER_FIGURES, NUMBER_LETTER_UNITY } from './AncientArchitecture';
+import { deployFromRoot, deployMultiDimensional, generateDeploymentReport } from './DeploymentAgentSystem';
 
 /**
  * Unified Organism Interface
@@ -397,6 +443,13 @@ export class SovereignOrganism {
   public readonly civilizationArchitectures = CIVILIZATION_ARCHITECTURES;
   public readonly tricksterFigures = TRICKSTER_FIGURES;
   public readonly numberLetterUnity = NUMBER_LETTER_UNITY;
+  
+  // DEPLOYMENT AGENT SYSTEM — 5-Agent Teams from Root to All Branches
+  public readonly deployment = {
+    deployFromRoot,
+    deployMultiDimensional,
+    generateDeploymentReport,
+  };
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
