@@ -23,6 +23,9 @@
  * FORMULAS:
  * Primary and secondary formulas for each metal with 7+ uses
  * 
+ * ENGINES:
+ * - PlatinumCatalystEngine: Full AI model with Michaelis-Menten kinetics
+ * 
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
@@ -48,6 +51,51 @@ export {
   type AlphaModel,
   type ArchitectureLayer,
 } from './metals';
+
+// Engine exports
+export {
+  // Constants
+  V_MAX,
+  K_M,
+  DELTA_E_A,
+  PHI_CATALYST,
+  
+  // Primitive formulas (encoded math)
+  michaelisMenten,
+  arrhenius,
+  turnoverNumber,
+  catalyticEfficiency,
+  selectivity,
+  transformationEfficiency,
+  phiScaledCatalyst,
+  
+  // Engines
+  CatalystEngine,
+  TransformerEngine,
+  SynthesisEngine,
+  
+  // Submodels
+  IntakeSubmodel,
+  ProcessSubmodel,
+  OutputSubmodel,
+  FeedbackSubmodel,
+  
+  // Intelligence
+  IntelligenceDistributor,
+  
+  // Complete Model
+  PlatinumCatalystModel,
+  getPlatinumCatalystModel,
+  
+  // Types
+  type CatalystInput,
+  type CatalystOutput,
+  type AttentionWeights,
+  type SynthesisInput,
+  type FeedbackSignal,
+  type IntelligenceNode,
+  type PlatinumModelConfig,
+} from './engines';
 
 // Re-export default
 import MetalsModule from './metals';
