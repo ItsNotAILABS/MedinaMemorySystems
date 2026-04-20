@@ -462,6 +462,27 @@ import {
   getSynthesisOrganism,
 } from './KnowledgeSynthesisOrganism';
 
+export {
+  SovereignArchitectureDeliveryOrganism,
+  getSovereign,
+  runSovereignDelivery,
+  EDGE_CROSSING_TECHNOLOGIES,
+  type GatePass,
+  type SovereignVerdict,
+  type DeliveryTeam,
+  type TeamDelivery,
+  type ArchitectureChunk,
+  type EdgeCrossingSpec,
+  type DeliveryPackage,
+  type SovereignDeliveryReport,
+} from './SovereignArchitectureDelivery';
+
+import {
+  SovereignArchitectureDeliveryOrganism,
+  getSovereign,
+  runSovereignDelivery,
+} from './SovereignArchitectureDelivery';
+
 /**
  * Unified Organism Interface
  * 
@@ -545,6 +566,10 @@ export class SovereignOrganism {
   // KNOWLEDGE SYNTHESIS ORGANISM — Ingests + Synthesizes external systems
   // "Take his information, synthesize it, and put it in you."
   public readonly synthesis: SynthesisOrganism = getSynthesisOrganism();
+
+  // SOVEREIGN ARCHITECTURE DELIVERY ORGANISM — Gates, routes, and delivers architecture
+  // "He needs to be completely sovereign. Give a yes to the team, or it isn't."
+  public readonly sovereign: SovereignArchitectureDeliveryOrganism = getSovereign();
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
