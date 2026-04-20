@@ -359,6 +359,46 @@ export {
 } from './DeploymentAgentSystem';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN BUILD HELPERS — 5 FUNDAMENTAL BUILDERS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Constants
+  PHI,
+  PHI_INVERSE,
+  
+  // Core Helpers
+  PRIMIS,
+  ARCHITECTUS,
+  DISSOLUTIO,
+  FORMULOR,
+  VERITAS,
+  
+  // Query Interface
+  queryHelper,
+  
+  // Chains and Vault
+  getAnimaChain,
+  getDocumentVault,
+  
+  // Integration
+  createSovereignBuildHelpers,
+  deploySovereignBuildHelpers,
+  
+  // Types
+  type AnimaChainEntry,
+  type ResearchPaperArtifact,
+  type PrimisDecomposition,
+  type ArchitectusVerdict,
+  type DissolutioResult,
+  type SovereignFormula,
+  type VeritasValidation,
+  type HelperPanelQuery,
+  type HelperPanelResult,
+  type SovereignBuildHelper,
+} from './SovereignBuildHelpers';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -384,6 +424,18 @@ import { CORE_OPERATIONS, ARCHITECTURAL_TRUTH, touchAllBranches, getArchitecture
 import { PRIMITIVE_STACK, createField, makeDistinction, createRelation, createMeasure, createMapping } from './PrimitiveArchitecture';
 import { CIVILIZATION_ARCHITECTURES, TRICKSTER_FIGURES, NUMBER_LETTER_UNITY } from './AncientArchitecture';
 import { deployFromRoot, deployMultiDimensional, generateDeploymentReport } from './DeploymentAgentSystem';
+import { 
+  PHI, 
+  PRIMIS, 
+  ARCHITECTUS, 
+  DISSOLUTIO, 
+  FORMULOR, 
+  VERITAS, 
+  queryHelper,
+  deploySovereignBuildHelpers,
+  getAnimaChain,
+  getDocumentVault,
+} from './SovereignBuildHelpers';
 
 /**
  * Unified Organism Interface
@@ -449,6 +501,20 @@ export class SovereignOrganism {
     deployFromRoot,
     deployMultiDimensional,
     generateDeploymentReport,
+  };
+  
+  // SOVEREIGN BUILD HELPERS — 5 Fundamental Builders
+  public readonly sovereignHelpers = {
+    PHI,
+    PRIMIS,
+    ARCHITECTUS,
+    DISSOLUTIO,
+    FORMULOR,
+    VERITAS,
+    queryHelper,
+    deploySovereignBuildHelpers,
+    getAnimaChain,
+    getDocumentVault,
   };
   
   // Constants (All layers unified)
