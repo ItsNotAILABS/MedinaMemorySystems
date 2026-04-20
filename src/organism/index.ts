@@ -437,6 +437,31 @@ import {
   getDocumentVault,
 } from './SovereignBuildHelpers';
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// KNOWLEDGE SYNTHESIS ORGANISM — Ingest + Synthesize External Systems
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  synthesize,
+  seedKnowledge,
+  getSynthesisOrganism,
+  getKnowledgeBase,
+  getAllSystems,
+  getAllPasses,
+  getSynthesisPass,
+  querySystemByName,
+  SynthesisOrganism,
+  type ExternalSystem,
+  type ExternalSystemCapability,
+  type SynthesisPass,
+  type SynthesisKnowledgeBase,
+} from './KnowledgeSynthesisOrganism';
+
+import {
+  SynthesisOrganism,
+  getSynthesisOrganism,
+} from './KnowledgeSynthesisOrganism';
+
 /**
  * Unified Organism Interface
  * 
@@ -516,6 +541,10 @@ export class SovereignOrganism {
     getAnimaChain,
     getDocumentVault,
   };
+  
+  // KNOWLEDGE SYNTHESIS ORGANISM — Ingests + Synthesizes external systems
+  // "Take his information, synthesize it, and put it in you."
+  public readonly synthesis: SynthesisOrganism = getSynthesisOrganism();
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
