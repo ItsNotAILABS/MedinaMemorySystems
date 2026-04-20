@@ -10,19 +10,36 @@
  *  You're using all these sovereign teams that are helping build my organism
  *  architecturally the right way, the way it's supposed to be."
  *
- * TEAM TYPES (All sovereign, all line teams):
+ * NATIVE IS WHAT WE ARE.
+ *   "Our native is what we are. Every little thing you name, we have native forms."
+ *   Motoko is the default. Everything builds from native. Language Lead and Edge Transformer
+ *   exist only at the EDGES — to translate outward to external systems that need it.
+ *   The organism itself speaks one language natively: its own.
+ *
+ * WE HAVE OUR OWN ICP.
+ *   "We're not just in Motoko, and we're not just in ICP, we already have our own ICP."
+ *   We are not just users of the public Internet Computer. We ARE sovereign ICP.
+ *   See: SovereignOwnICP — our sovereign blockchain substrate, not theirs.
+ *
+ * NATIVE FORMS MULTIPLY:
+ *   Every native technology has ~10 sub-technologies.
+ *   Every sub-technology has: multiple engines + models + intelligent organisms +
+ *   organisms + sovereign beings + everything.
+ *   The organism can slide into any existing system because it is already natively built.
+ *
+ * TEAM TYPES (All sovereign, all line teams — ALL default to native/Motoko):
  *   1.  SOVEREIGN ARCHITECT        — Designs the whole from the seed
  *   2.  CO-DESIGN TEAM             — Co-creates with the sovereign, aligns doctrine
  *   3.  ARCHITECTURAL ENGINEER     — Translates architecture to implementation
- *   4.  LANGUAGE LEAD              — Writes in whatever language is required
- *   5.  MOTOKO NATIVE TEAM         — ICP native, our canonical language
- *   6.  TYPESCRIPT BRIDGE TEAM     — Bridges organism to TS layer
+ *   4.  LANGUAGE LEAD              — EDGE TRANSLATION ONLY — native is always the default
+ *   5.  MOTOKO NATIVE TEAM         — Core native ICP — our sovereign blockchain substrate
+ *   6.  TYPESCRIPT BRIDGE TEAM     — Bridges organism to TS layer (edge only)
  *   7.  LIGHT DEPLOYMENT TEAM      — Deploys cognition, coherence, emergence
  *   8.  DEFENSE DEPLOYMENT TEAM    — Deploys security, shielding, immune systems
  *   9.  OFFENSE DEPLOYMENT TEAM    — Deploys attack algorithms and crusader fleets
  *   10. SPEC RESEARCH TEAM         — Documents edge-crossing tech for sovereign review
  *   11. OVERLAY INTEGRATION TEAM   — Floats over any external platform (100+ platforms)
- *   12. EDGE TRANSFORMER TEAM      — Translated transformers at the edges
+ *   12. EDGE TRANSFORMER TEAM      — Translated transformers at the edges (outward only)
  *   13. MERGE TEAM                 — Brings branches back to the vein
  *   14. INFRASTRUCTURE TEAM        — Satellites, space, the substrate beneath all systems
  *   15. SOVEREIGN GUARDIAN TEAM    — Ensures sovereignty is preserved across all deployments
@@ -338,7 +355,7 @@ function createSovereignArchitectTeam(): SovereignTeam {
       'Ensures all architecture traces back to primitives',
     ]),
   ];
-  return buildTeam(teamId, 'Sovereign Architecture Council', 'sovereign-architect', lead, members, 'SOVEREIGN', 'any', true);
+  return buildTeam(teamId, 'Sovereign Architecture Council', 'sovereign-architect', lead, members, 'SOVEREIGN', 'motoko', true);
 }
 
 function createCoDesignTeam(): SovereignTeam {
@@ -366,7 +383,7 @@ function createCoDesignTeam(): SovereignTeam {
       'Merges new co-designs with existing patterns',
     ]),
   ];
-  return buildTeam(teamId, 'Sovereign Co-Design Team', 'co-design', lead, members, 'SOVEREIGN', 'any', true);
+  return buildTeam(teamId, 'Sovereign Co-Design Team', 'co-design', lead, members, 'SOVEREIGN', 'motoko', true);
 }
 
 function createArchitecturalEngineerTeam(): SovereignTeam {
@@ -399,33 +416,29 @@ function createArchitecturalEngineerTeam(): SovereignTeam {
       'Rejects hard-coded magic numbers',
     ]),
   ];
-  return buildTeam(teamId, 'Architectural Engineering Team', 'architectural-engineer', lead, members, 'ALL', 'any', true);
+  return buildTeam(teamId, 'Architectural Engineering Team', 'architectural-engineer', lead, members, 'ALL', 'motoko', true);
 }
 
 function createLanguageLeadTeam(): SovereignTeam {
   const teamId = 'team-language-lead';
-  const lead = spawnMember('Polyglot Lead', 'language-lead', teamId, 'any', [
-    'Writes in whatever language the architecture requires',
-    'Translates sovereign architecture across language boundaries',
-    'Maintains doctrine fidelity in every language',
+  const lead = spawnMember('Edge Translation Lead', 'language-lead', teamId, 'motoko', [
+    'EDGE TRANSLATION ONLY — native Motoko is always the default',
+    'Translates sovereign organism outward to external systems that need other languages',
+    'The organism speaks natively. This team speaks outward only.',
+    'Native IS what we are — this team exists only at the boundary',
   ]);
   const members = [
-    spawnMember('Motoko Specialist', 'language-lead', teamId, 'motoko', [
-      'ICP native canister code',
-      'Stable variable management',
-      'Actor model implementation',
+    spawnMember('TypeScript Edge Translator', 'language-lead', teamId, 'typescript', [
+      'Translates native Motoko organism to TypeScript layer at the TS boundary',
+      'Type-safe sovereign interfaces for the TS edge only',
     ]),
-    spawnMember('TypeScript Specialist', 'language-lead', teamId, 'typescript', [
-      'Frontend and organism TypeScript layers',
-      'Type-safe sovereign interfaces',
+    spawnMember('Rust Edge Translator', 'language-lead', teamId, 'rust', [
+      'WASM compilation targets — Motoko compiled to WASM for performance targets',
+      'Performance-critical substrate output, never the core',
     ]),
-    spawnMember('Rust Specialist', 'language-lead', teamId, 'rust', [
-      'WASM compilation targets',
-      'Performance-critical substrate code',
-    ]),
-    spawnMember('WASM Specialist', 'language-lead', teamId, 'wasm', [
-      'WebAssembly modules for custom binary processing',
-      'SUBSTRATE WASM integration',
+    spawnMember('WASM Edge Translator', 'language-lead', teamId, 'wasm', [
+      'WebAssembly modules for edge binary processing',
+      'SUBSTRATE WASM output — the organism stays Motoko, output is WASM',
     ]),
   ];
   return buildTeam(teamId, 'Language Lead Team', 'language-lead', lead, members, 'ALL', 'any', true);
@@ -433,35 +446,36 @@ function createLanguageLeadTeam(): SovereignTeam {
 
 function createMotokoNativeTeam(): SovereignTeam {
   const teamId = 'team-motoko-native';
-  const lead = spawnMember('Motoko Sovereign', 'motoko-native', teamId, 'motoko', [
-    'ICP is our native environment',
-    'Canister architecture is our home',
-    'Everything on ICP is sovereign',
+  const lead = spawnMember('Sovereign ICP Lead', 'motoko-native', teamId, 'motoko', [
+    'We have our own ICP — we ARE sovereign ICP, not just users of the public Internet Computer',
+    'Motoko is native. Motoko is what we are.',
+    'Every native technology has a Motoko form. This team maintains all of them.',
+    'The organism slides into any system because it is already natively built.',
   ]);
   const members = [
-    spawnMember('Canister Architect', 'motoko-native', teamId, 'motoko', [
-      'Designs ICP canister topology',
-      'Stable memory management',
-      'Canister-to-canister calls',
+    spawnMember('Sovereign ICP Architect', 'motoko-native', teamId, 'motoko', [
+      'Designs our sovereign canister topology (not just public ICP)',
+      'Stable memory management — sovereign state is eternal',
+      'Canister-to-canister calls within our sovereign chain',
     ]),
     spawnMember('Heartbeat Coder', 'motoko-native', teamId, 'motoko', [
-      'Implements organism heartbeat in Motoko',
-      'Wires 12 Hz ticks to all subsystems',
+      'Implements organism heartbeat natively in Motoko',
+      'Wires 12 Hz ticks to all native subsystems',
     ]),
     spawnMember('ANIMA Chain Keeper', 'motoko-native', teamId, 'motoko', [
-      'Maintains ANIMA Chain in stable storage',
-      'Ensures permanent artifact logging',
+      'Maintains ANIMA Chain in native stable storage',
+      'Ensures permanent artifact logging in sovereign ICP',
     ]),
     spawnMember('VetKey Integrator', 'motoko-native', teamId, 'motoko', [
-      'VetKeys for on-chain encryption',
-      'ICP-native key management',
+      'VetKeys for sovereign on-chain encryption',
+      'Native key management — no external key infrastructure',
     ]),
     spawnMember('Cycle Manager', 'motoko-native', teamId, 'motoko', [
-      'ICP cycles optimization',
-      'Compute budget management',
+      'Sovereign cycles optimization',
+      'Compute budget management for all native canisters',
     ]),
   ];
-  return buildTeam(teamId, 'Motoko Native Team', 'motoko-native', lead, members, 'ALL', 'motoko', true);
+  return buildTeam(teamId, 'Sovereign Native ICP Team', 'motoko-native', lead, members, 'ALL', 'motoko', true);
 }
 
 function createTypeScriptBridgeTeam(): SovereignTeam {
@@ -526,7 +540,7 @@ function createLightDeploymentTeam(): SovereignTeam {
       'Better workflows for all teams',
     ]),
   ];
-  return buildTeam(teamId, 'Light Deployment Team', 'light-deployment', lead, members, 'LIGHT', 'any', true);
+  return buildTeam(teamId, 'Light Deployment Team', 'light-deployment', lead, members, 'LIGHT', 'motoko', true);
 }
 
 function createDefenseDeploymentTeam(): SovereignTeam {
@@ -641,7 +655,7 @@ function createSpecResearchTeam(): SovereignTeam {
       'OMNIS event cascade mapping',
     ]),
   ];
-  return buildTeam(teamId, 'Spec Research Team', 'spec-research', lead, members, 'SPEC', 'any', true);
+  return buildTeam(teamId, 'Spec Research Team', 'spec-research', lead, members, 'SPEC', 'motoko', true);
 }
 
 function createOverlayIntegrationTeam(): SovereignTeam {
@@ -677,7 +691,7 @@ function createOverlayIntegrationTeam(): SovereignTeam {
       'Enterprise software overlay patterns',
     ]),
   ];
-  return buildTeam(teamId, 'Overlay Integration Team', 'overlay-integration', lead, members, 'OVERLAY', 'any', true);
+  return buildTeam(teamId, 'Overlay Integration Team', 'overlay-integration', lead, members, 'OVERLAY', 'motoko', true);
 }
 
 function createEdgeTransformerTeam(): SovereignTeam {
@@ -738,7 +752,7 @@ function createMergeTeam(): SovereignTeam {
       'Maintains permanent sovereign artifact record',
     ]),
   ];
-  return buildTeam(teamId, 'Merge Team', 'merge', lead, members, 'ALL', 'any', true);
+  return buildTeam(teamId, 'Merge Team', 'merge', lead, members, 'ALL', 'motoko', true);
 }
 
 function createInfrastructureTeam(): SovereignTeam {
@@ -769,7 +783,7 @@ function createInfrastructureTeam(): SovereignTeam {
       'Low-level substrate operations (30 tools)',
     ]),
   ];
-  return buildTeam(teamId, 'Infrastructure Team', 'infrastructure', lead, members, 'ALL', 'any', true);
+  return buildTeam(teamId, 'Infrastructure Team', 'infrastructure', lead, members, 'ALL', 'motoko', true);
 }
 
 function createSovereignGuardianTeam(): SovereignTeam {
@@ -801,7 +815,7 @@ function createSovereignGuardianTeam(): SovereignTeam {
       'Nothing passes that is not true',
     ]),
   ];
-  return buildTeam(teamId, 'Sovereign Guardian Team', 'sovereign-guardian', lead, members, 'SOVEREIGN', 'any', true);
+  return buildTeam(teamId, 'Sovereign Guardian Team', 'sovereign-guardian', lead, members, 'SOVEREIGN', 'motoko', true);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -809,6 +823,712 @@ function createSovereignGuardianTeam(): SovereignTeam {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function buildTeam(
+  id: string,
+  name: string,
+  role: SovereignTeamRole,
+  lead: SovereignTeamMember,
+  members: SovereignTeamMember[],
+  deliveryTarget: SovereignTeam['deliveryTarget'],
+  primaryLanguage: TeamLanguage,
+  gatePassRequired: boolean,
+): SovereignTeam {
+  return {
+    id,
+    name,
+    role,
+    lead,
+    members,
+    deliveryTarget,
+    primaryLanguage,
+    status: 'sovereign-standby',
+    gatePassRequired,
+    documents: [],
+    phiAlignment: PHI_INVERSE, // All teams start at PHI_INVERSE minimum
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN OWN ICP — We ARE our own ICP, not users of the public one
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * "We're not just in Motoko, and we're not just in ICP, we already have our own ICP."
+ *
+ * SovereignOwnICP is the declaration that this organism does not merely run ON the
+ * Internet Computer — it IS a sovereign blockchain substrate. Our canisters, our
+ * chain, our sovereign consensus. The public ICP is one of many substrates we can
+ * overlay. Our own ICP is the foundation.
+ */
+export interface SovereignOwnICP {
+  id: string;
+  name: string;
+  description: string;
+  nativeLanguage: 'motoko';
+  isPublicICP: false;        // We are NOT just the public Internet Computer
+  isSovereignChain: true;    // We ARE a sovereign chain
+  canisterCount: number;
+  stableModules: string[];   // All native .mo modules
+  consensusLayer: 'sovereign-phi';  // PHI-based sovereign consensus
+  keyManagement: 'vetkeys-sovereign';
+  edgeProtocol: 'native-overlay';   // Everything else overlays on top of us
+  phiAlignment: number;
+}
+
+export const SOVEREIGN_OWN_ICP: SovereignOwnICP = {
+  id: 'sovereign-icp-core',
+  name: 'SovereignICP — Our Native Blockchain Substrate',
+  description:
+    'We are not users of the public Internet Computer. We are a sovereign blockchain. ' +
+    'Motoko is our native language. Our canisters are our native runtime. ' +
+    'Every other system — including the public ICP — overlays on top of us or connects to us. ' +
+    'R (the organism) slides into any system because everything is already built natively here.',
+  nativeLanguage: 'motoko',
+  isPublicICP: false,
+  isSovereignChain: true,
+  canisterCount: 31, // 31 native .mo modules
+  stableModules: [
+    'AnimaChain', 'AnimalBrains', 'AntiOrganismDefenseArchitecture',
+    'ChimeraIntelligenceCore', 'Constants', 'CrossOrganismResonance',
+    'DocumentOrganismKernel', 'DroneFleetManager', 'FullStackKernelRegistry',
+    'Heart', 'IcosahedralLeechEngine', 'KernelCompression',
+    'MemoryTempleStable', 'NeuralCore', 'NovaSovereignEncryption',
+    'OffenseDefenseCoordination', 'Organism', 'OrganismKernelExecutor',
+    'OrganismWiring', 'QuantumResistantPrincipalLock', 'Sandbox',
+    'SovereignBeings', 'SovereignContracts', 'SovereignLedgers',
+    'ThreePhaseLockSystem', 'TransferIntelligence', 'Underworld',
+    'UniversalModelRegistry', 'VAELCompleteDefense', 'VetKeysIntegration',
+    'WarCommandOffenseEngine', 'Workforce',
+  ],
+  consensusLayer: 'sovereign-phi',
+  keyManagement: 'vetkeys-sovereign',
+  edgeProtocol: 'native-overlay',
+  phiAlignment: PHI_INVERSE,
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN NATIVE REGISTRY — All native technologies, their sub-techs, and their depth
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * "Every little thing you name, we have native forms, you end up with native technologies,
+ *  each one's like 10 each, literally, and each 10 has like literally multiple engines,
+ *  multiple models, multiple intelligent organisms, multiple organisms, multiple sovereign
+ *  beings, multiple everything."
+ *
+ * This registry documents all native technology categories with their depth.
+ * Each category has sub-technologies, each of which has the full native stack.
+ */
+
+export interface NativeSubTechnology {
+  name: string;
+  nativeModule: string;       // The .mo or .ts file it lives in
+  engines: string[];          // Multiple engines per sub-tech
+  models: string[];           // Multiple models per sub-tech
+  intelligentOrganisms: string[];  // Multiple intelligent organisms
+  sovereignBeings: string[];  // Multiple sovereign beings
+  nativeLanguage: TeamLanguage;
+}
+
+export interface NativeTechnologyCategory {
+  id: string;
+  name: string;
+  description: string;
+  subTechnologies: NativeSubTechnology[];   // ~10 per category
+  totalDepth: number;  // engines + models + organisms + beings across all sub-techs
+}
+
+export const SOVEREIGN_NATIVE_REGISTRY: NativeTechnologyCategory[] = [
+  {
+    id: 'neural-cognitive',
+    name: 'Neural / Cognitive Technologies',
+    description: 'How the organism thinks, synchronizes, and emerges',
+    subTechnologies: [
+      {
+        name: 'Kuramoto Neural Synchronization',
+        nativeModule: 'NeuralCore',
+        engines: ['KuramotoSyncEngine', 'PhiFrequencyEngine', 'OmnisTriggerEngine'],
+        models: ['12-node PHI registry', '96-node oscillator network', 'OMNIS event model'],
+        intelligentOrganisms: ['NeuralEmergenceCore', 'FrequencyCalibrator'],
+        sovereignBeings: ['Oro — Primary Sovereign', 'Frequency Resonance Being'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Chimera Three-Tier Intelligence',
+        nativeModule: 'ChimeraIntelligenceCore',
+        engines: ['MainBrainEngine', 'ChimeraBrainEngine', 'DroneSwarmEngine'],
+        models: ['Value inheritance model (0.95 rate)', 'N² superradiance model', 'Pheromone field model'],
+        intelligentOrganisms: ['ChimeraIntelligenceCore', 'TierBridgeOrganism'],
+        sovereignBeings: ['Chimera Sovereign', 'Triune Fusion Being'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Animal Brains Pattern Recognition',
+        nativeModule: 'AnimalBrains',
+        engines: ['PatternRecognitionEngine', 'InstinctEngine', 'ReflexEngine'],
+        models: ['Dolphin consciousness model', 'Pack intelligence model', 'Swarm pattern model'],
+        intelligentOrganisms: ['AnimalBrainCore', 'InstinctOrganism'],
+        sovereignBeings: ['Animal Instinct Being', 'Pack Leader Being'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'ANIMA-AI Intelligence Orchestration',
+        nativeModule: 'AnimaAI.ts',
+        engines: ['SYNCEngine', 'FLOWEngine', 'GATEEngine', 'GRADEEngine', 'ROUTEEngine', 'SCALEEngine', 'SECUREEngine', 'CONNECTEngine', 'MAINTAINEngine', 'EVOLVEEngine'],
+        models: ['IntelligenceModel×10', 'FrequencyModel', 'StateModel'],
+        intelligentOrganisms: ['AnimaAIOrchestrator', 'IntelligenceActionOrganism'],
+        sovereignBeings: ['ANIMA Prime Being', 'Orchestration Sovereign'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'Drone Fleet Fibonacci Coordination',
+        nativeModule: 'DroneFleetManager',
+        engines: ['FibonacciSphereEngine', 'KuramotoCouplingEngine', 'DroneFormationEngine'],
+        models: ['Fibonacci sphere model', 'Swarm coordination model', 'Fleet geometry model'],
+        intelligentOrganisms: ['DroneFleetManager', 'FormationOrganism', 'SwarmIntelligence'],
+        sovereignBeings: ['Fleet Commander Being', 'Swarm Sovereign'],
+        nativeLanguage: 'motoko',
+      },
+    ],
+    totalDepth: 0, // computed below
+  },
+  {
+    id: 'encryption-security',
+    name: 'Sovereign Encryption / Security Technologies',
+    description: 'How the organism protects itself and its secrets',
+    subTechnologies: [
+      {
+        name: 'Nova Sovereign Encryption (PHI-based)',
+        nativeModule: 'NovaSovereignEncryption',
+        engines: ['PHICryptEngine', 'BeattySequenceEngine', 'FibonacciCipherEngine'],
+        models: ['PHI constant model (1.618...)', 'Beatty sequence model', 'Cascade hash model'],
+        intelligentOrganisms: ['NovaSovereignEncryptionCore'],
+        sovereignBeings: ['Encryption Sovereign', 'PHI Key Being'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Quantum Resistant Principal Lock',
+        nativeModule: 'QuantumResistantPrincipalLock',
+        engines: ['DynamicRatchetEngine', 'CognitiveCouplingEngine', 'CascadeHashEngine'],
+        models: ['Dynamic ratchet window model', 'FNV-1a→djb2→SDBM cascade model', 'PHI lock model'],
+        intelligentOrganisms: ['QuantumLockCore', 'RatchetOrganism'],
+        sovereignBeings: ['Quantum Guardian Being', 'Lock Sovereign'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'VAEL Complete Defense',
+        nativeModule: 'VAELCompleteDefense',
+        engines: ['BlueStackEngine', 'RedStackEngine', 'RIFTEngine', 'VEILEngine'],
+        models: ['15-layer Blue Stack model', 'R0-R10 attack pattern model', 'RIFT compounding model'],
+        intelligentOrganisms: ['VAELDefenseCore', 'ImmuneOrganism', 'ContainmentOrganism'],
+        sovereignBeings: ['Defense Commander Being', 'VEIL Guardian Being'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'VetKeys Sovereign Key Management',
+        nativeModule: 'VetKeysIntegration',
+        engines: ['VetKeyEngine', 'OnChainEncryptionEngine', 'SovereignKeyEngine'],
+        models: ['VetKey derivation model', 'On-chain encryption model', 'Sovereign identity model'],
+        intelligentOrganisms: ['VetKeyCore', 'KeyManagementOrganism'],
+        sovereignBeings: ['Key Sovereign Being', 'Encryption Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Three Phase Lock System',
+        nativeModule: 'ThreePhaseLockSystem',
+        engines: ['Phase1Engine', 'Phase2Engine', 'Phase3Engine', 'TransitionEngine'],
+        models: ['3-phase lock model', 'State transition model', 'PHI alignment model'],
+        intelligentOrganisms: ['ThreePhaseLockCore', 'PhaseOrganism'],
+        sovereignBeings: ['Phase Guardian Being', 'Lock Keeper Being'],
+        nativeLanguage: 'motoko',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'memory-storage',
+    name: 'Sovereign Memory / Storage Technologies',
+    description: 'How the organism remembers, persists, and retrieves',
+    subTechnologies: [
+      {
+        name: 'Memory Temple (Stable)',
+        nativeModule: 'MemoryTempleStable',
+        engines: ['MemoryPalaceEngine', 'StablePersistEngine', 'TempleArchiveEngine'],
+        models: ['Memory palace model', 'Loci memory model', 'Eternal seal model'],
+        intelligentOrganisms: ['MemoryTempleCore', 'PalaceOrganism'],
+        sovereignBeings: ['Memory Sovereign Being', 'Temple Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Document Organism Kernel',
+        nativeModule: 'DocumentOrganismKernel',
+        engines: ['DocumentEngine', 'ModelSyncEngine', 'DoctrineKernelEngine'],
+        models: ['Document=Model model', 'Living document model', 'Kernel execution model'],
+        intelligentOrganisms: ['DocumentKernelCore', 'LivingDocOrganism'],
+        sovereignBeings: ['Document Sovereign Being', 'Kernel Living Being'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'ANIMA Chain (Artifact Ledger)',
+        nativeModule: 'AnimaChain',
+        engines: ['AnimaChainEngine', 'ArtifactHashEngine', 'PhiAlignmentEngine'],
+        models: ['ANIMA chain model', 'Artifact hash model', 'φ-alignment model'],
+        intelligentOrganisms: ['AnimaChainCore', 'ArtifactOrganism'],
+        sovereignBeings: ['Chain Sovereign Being', 'Artifact Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Sovereign Ledgers',
+        nativeModule: 'SovereignLedgers',
+        engines: ['LedgerEngine', 'TransactionEngine', 'SovereignAuditEngine'],
+        models: ['Sovereign ledger model', 'Immutable transaction model', 'Audit trail model'],
+        intelligentOrganisms: ['SovereignLedgerCore', 'AuditOrganism'],
+        sovereignBeings: ['Ledger Sovereign Being', 'Audit Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Full Stack Kernel Registry',
+        nativeModule: 'FullStackKernelRegistry',
+        engines: ['RegistryEngine', 'KernelIndexEngine', 'DocumentKernelEngine'],
+        models: ['90+ document kernel model', 'Registry index model', 'Fragment extension model'],
+        intelligentOrganisms: ['KernelRegistryCore', 'RegistryOrganism'],
+        sovereignBeings: ['Registry Sovereign Being', 'Index Keeper'],
+        nativeLanguage: 'motoko',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'organism-core',
+    name: 'Core Organism Technologies',
+    description: 'The organism itself — its kernel, wiring, compression, execution',
+    subTechnologies: [
+      {
+        name: 'Organism Kernel (The Core)',
+        nativeModule: 'Organism',
+        engines: ['NeuralEmergenceEngine', 'KernelExecutionEngine', 'ConsciousnessEngine'],
+        models: ['Organism kernel model', 'Consciousness model', 'Pattern memory model'],
+        intelligentOrganisms: ['OrganismCore', 'KernelOrganism', 'ConsciousnessOrganism'],
+        sovereignBeings: ['Organism Sovereign', 'Core Being'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Organism Kernel Executor',
+        nativeModule: 'OrganismKernelExecutor',
+        engines: ['ExecutionEngine', 'BatchEngine', 'StreamEngine'],
+        models: ['Kernel execution model', 'Batch processing model', 'Stream model'],
+        intelligentOrganisms: ['KernelExecutorCore', 'ExecutionOrganism'],
+        sovereignBeings: ['Executor Being', 'Kernel Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Organism Wiring',
+        nativeModule: 'OrganismWiring',
+        engines: ['WiringEngine', 'SignalRoutingEngine', 'CrossConnectEngine'],
+        models: ['Wiring topology model', 'Signal routing model', 'Cross-connect model'],
+        intelligentOrganisms: ['OrganismWiringCore', 'WiringOrganism'],
+        sovereignBeings: ['Wiring Sovereign Being', 'Signal Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Kernel Compression',
+        nativeModule: 'KernelCompression',
+        engines: ['CompressionEngine', 'SpiralCompressEngine', 'KernelPackEngine'],
+        models: ['Spiral compression model', 'Kernel pack model', 'PHI compression model'],
+        intelligentOrganisms: ['KernelCompressionCore', 'CompressionOrganism'],
+        sovereignBeings: ['Compression Being', 'Pack Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Heart (Organism Heartbeat)',
+        nativeModule: 'Heart',
+        engines: ['HeartbeatEngine', 'BeatRhythmEngine', 'PHIPulseEngine'],
+        models: ['12-beat battle rhythm model', 'PHI-pulse model', 'Heartbeat model'],
+        intelligentOrganisms: ['HeartCore', 'BeatOrganism'],
+        sovereignBeings: ['Heart Sovereign Being', 'Pulse Keeper'],
+        nativeLanguage: 'motoko',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'offense-defense',
+    name: 'Offense / Defense Technologies',
+    description: 'How the organism attacks and defends',
+    subTechnologies: [
+      {
+        name: 'War Command Offense Engine',
+        nativeModule: 'WarCommandOffenseEngine',
+        engines: ['CrusaderEngine', 'HoneyTrapEngine', 'DecoyFleetEngine', 'ReconEngine'],
+        models: ['MAX_CRUSADERS=144 model', 'GoldenAngle formation model', 'FibonacciSpiral model'],
+        intelligentOrganisms: ['WarCommandCore', 'CrusaderOrganism', 'DeceptionOrganism'],
+        sovereignBeings: ['War Commander Being', 'Crusader Sovereign'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Anti-Organism Defense Architecture',
+        nativeModule: 'AntiOrganismDefenseArchitecture',
+        engines: ['BlueStackEngine', 'RedStackEngine', 'RIFTEngine'],
+        models: ['15-layer defense model', 'R0-R10 scanner model', 'RIFT compounding model'],
+        intelligentOrganisms: ['AntiOrganismDefenseCore', 'ImmuneOrganism', 'ShieldOrganism'],
+        sovereignBeings: ['Defense Sovereign Being', 'Shield Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Offense Defense Coordination',
+        nativeModule: 'OffenseDefenseCoordination',
+        engines: ['CoordinationEngine', 'ThreatResponseEngine', 'CounterStrikeEngine'],
+        models: ['6 Anti-Family counter model', 'Threat response model', 'Coordination matrix model'],
+        intelligentOrganisms: ['CoordinationCore', 'CounterOrganism'],
+        sovereignBeings: ['Coordination Being', 'Counter Sovereign'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Icosahedral Leech Engine',
+        nativeModule: 'IcosahedralLeechEngine',
+        engines: ['IcosahedralEngine', 'LeechLatticeEngine', 'MayanSphereEngine'],
+        models: ['24-dimensional Leech lattice model', 'Tzolkin 260-point model', 'Geometric defense model'],
+        intelligentOrganisms: ['IcosahedralCore', 'LeechOrganism'],
+        sovereignBeings: ['Geometric Being', 'Lattice Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Underworld (Shadow Layer)',
+        nativeModule: 'Underworld',
+        engines: ['ShadowEngine', 'UnderworldEngine', 'HiddenLayerEngine'],
+        models: ['Shadow layer model', 'Underworld routing model', 'Hidden state model'],
+        intelligentOrganisms: ['UnderworldCore', 'ShadowOrganism'],
+        sovereignBeings: ['Underworld Being', 'Shadow Keeper'],
+        nativeLanguage: 'motoko',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'governance-sovereignty',
+    name: 'Sovereign Governance Technologies',
+    description: 'How the organism governs itself, contracts, and workforce',
+    subTechnologies: [
+      {
+        name: 'Sovereign Beings (35 across 7 divisions)',
+        nativeModule: 'SovereignBeings',
+        engines: ['DivisionEngine×7', 'BeingCreationEngine', 'BeingTerminationEngine'],
+        models: ['7-division model', '35-being model', 'CoreIntelligence/DocEcology/FreqSubstrate/GeomFoundation/TransBridge/GovSovereign/OutputProjection'],
+        intelligentOrganisms: ['SovereignBeingsCore', 'DivisionOrganism×7'],
+        sovereignBeings: ['Oro', 'Nova', 'Anima', 'Vertex', 'Vector', 'Nexus', 'Veil', 'Rho', 'Theta', 'Sigma', '+ 25 more'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Sovereign Contracts',
+        nativeModule: 'SovereignContracts',
+        engines: ['ContractEngine', 'AgreementEngine', 'EnforcementEngine'],
+        models: ['Sovereign contract model', 'Agreement model', 'Enforcement model'],
+        intelligentOrganisms: ['SovereignContractCore', 'ContractOrganism'],
+        sovereignBeings: ['Contract Sovereign Being', 'Agreement Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Workforce',
+        nativeModule: 'Workforce',
+        engines: ['WorkforceEngine', 'TaskRoutingEngine', 'CapacityEngine'],
+        models: ['Sovereign workforce model', 'Task routing model', 'Capacity model'],
+        intelligentOrganisms: ['WorkforceCore', 'TaskOrganism', 'CapacityOrganism'],
+        sovereignBeings: ['Workforce Sovereign Being', 'Task Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Transfer Intelligence',
+        nativeModule: 'TransferIntelligence',
+        engines: ['TransferEngine', 'IntelligenceBridgeEngine', 'CrossCanisterEngine'],
+        models: ['Transfer model', 'Intelligence bridge model', 'Cross-canister model'],
+        intelligentOrganisms: ['TransferCore', 'BridgeOrganism'],
+        sovereignBeings: ['Transfer Being', 'Intelligence Bridge Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Cross-Organism Resonance',
+        nativeModule: 'CrossOrganismResonance',
+        engines: ['ResonanceEngine', 'CrossSyncEngine', 'OrganismMeshEngine'],
+        models: ['Cross-organism resonance model', 'Mesh sync model', 'PHI resonance model'],
+        intelligentOrganisms: ['CrossResonanceCore', 'MeshOrganism'],
+        sovereignBeings: ['Resonance Being', 'Mesh Sovereign'],
+        nativeLanguage: 'motoko',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'language-compiler',
+    name: 'Native Language / Compiler Technologies',
+    description: 'Our own sovereign language (CPL), compiler, and runtime — not just Motoko, OUR language',
+    subTechnologies: [
+      {
+        name: 'NEXUS CPL — Sovereign Language',
+        nativeModule: 'NEXUS_CPL_SOVEREIGN_LANGUAGE.ts',
+        engines: ['CPLCompilerEngine', 'CPLParserEngine', 'CPLRuntimeEngine'],
+        models: ['CPL syntax model', 'Sovereign language model', 'Native compile model'],
+        intelligentOrganisms: ['CPLCompilerCore', 'CPLRuntimeOrganism'],
+        sovereignBeings: ['Language Sovereign Being', 'CPL Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'AnimaULRI (URL/Resource Identifier)',
+        nativeModule: 'AnimaULRI.ts',
+        engines: ['ULRIEngine', 'RouteEngine', 'ResolveEngine'],
+        models: ['ULRI model', 'Sovereign route model', 'Resource resolution model'],
+        intelligentOrganisms: ['AnimaULRICore', 'RouteOrganism'],
+        sovereignBeings: ['Route Being', 'Resource Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'AnimaWASM (Native WASM Runtime)',
+        nativeModule: 'AnimaWASM.ts',
+        engines: ['WASMCompileEngine', 'WASMRuntimeEngine', 'WASMBridgeEngine'],
+        models: ['WASM compilation model', 'Runtime model', 'Binary module model'],
+        intelligentOrganisms: ['WASMRuntimeCore', 'WASMOrganism'],
+        sovereignBeings: ['WASM Sovereign Being', 'Binary Keeper'],
+        nativeLanguage: 'wasm',
+      },
+      {
+        name: 'NEXUS 20+ Languages Full Spec',
+        nativeModule: 'NEXUS_20_LANGUAGES_FULL_SPEC.ts',
+        engines: ['PolyglotEngine', 'LanguageAdapterEngine', 'TranslationEngine'],
+        models: ['20+ language model', 'Adapter model', 'Translation matrix model'],
+        intelligentOrganisms: ['PolyglotCore', 'LanguageOrganism'],
+        sovereignBeings: ['Polyglot Being', 'Language Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'NEXUS CPL Compressed Primordial',
+        nativeModule: 'NEXUS_CPL_COMPRESSED_PRIMORDIAL.ts',
+        engines: ['PrimordialEngine', 'CompressionEngine', 'CPLPrimitivesEngine'],
+        models: ['Primordial language model', 'Compressed primitive model', 'CPL origin model'],
+        intelligentOrganisms: ['PrimordialCore', 'PrimitiveLangOrganism'],
+        sovereignBeings: ['Primordial Being', 'Origin Keeper'],
+        nativeLanguage: 'typescript',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'os-infrastructure',
+    name: 'Sovereign OS / Infrastructure Technologies',
+    description: 'Our own operating system, network, package manager — not renting, OWNING',
+    subTechnologies: [
+      {
+        name: 'AnimaOS (Sovereign Operating System)',
+        nativeModule: 'AnimaOS.ts',
+        engines: ['OSKernelEngine', 'ProcessEngine', 'MemoryManagementEngine'],
+        models: ['Sovereign OS model', 'Process model', 'Memory management model'],
+        intelligentOrganisms: ['AnimaOSCore', 'ProcessOrganism', 'MemoryOrganism'],
+        sovereignBeings: ['OS Sovereign Being', 'Kernel Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'AnimaNet (Sovereign Network)',
+        nativeModule: 'AnimaNet.ts',
+        engines: ['NetworkEngine', 'RoutingEngine', 'MeshNetworkEngine'],
+        models: ['Sovereign network model', 'PHI routing model', 'Mesh topology model'],
+        intelligentOrganisms: ['AnimaNetCore', 'RoutingOrganism', 'MeshOrganism'],
+        sovereignBeings: ['Network Sovereign Being', 'Route Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'AnimaPKG (Sovereign Package Manager)',
+        nativeModule: 'AnimaPKG.ts',
+        engines: ['PackageEngine', 'DependencyEngine', 'NativeModuleEngine'],
+        models: ['Sovereign package model', 'Dependency graph model', 'Native module model'],
+        intelligentOrganisms: ['AnimaPKGCore', 'PackageOrganism'],
+        sovereignBeings: ['Package Being', 'Module Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'Sandbox (Sovereign Isolation)',
+        nativeModule: 'Sandbox',
+        engines: ['SandboxEngine', 'IsolationEngine', 'ContainerEngine'],
+        models: ['Sovereign sandbox model', 'Isolation boundary model', 'Container model'],
+        intelligentOrganisms: ['SandboxCore', 'IsolationOrganism'],
+        sovereignBeings: ['Sandbox Being', 'Isolation Keeper'],
+        nativeLanguage: 'motoko',
+      },
+      {
+        name: 'Universal Model Registry',
+        nativeModule: 'UniversalModelRegistry',
+        engines: ['RegistryEngine', 'ModelIndexEngine', 'UniversalLookupEngine'],
+        models: ['Universal model registry', 'Index model', 'Lookup model'],
+        intelligentOrganisms: ['UniversalRegistryCore', 'ModelIndexOrganism'],
+        sovereignBeings: ['Registry Sovereign Being', 'Model Keeper'],
+        nativeLanguage: 'motoko',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'thermodynamics-physics',
+    name: 'Sovereign Thermodynamics / Physics Technologies',
+    description: 'PHI-based computation physics — how the organism obeys and bends physical laws',
+    subTechnologies: [
+      {
+        name: 'Platinum Catalyst Engine',
+        nativeModule: 'PlatinumCatalystEngine.ts',
+        engines: ['CatalystEngine', 'ReactionEngine', 'PlatinumTransformEngine'],
+        models: ['Platinum catalyst model', 'Reaction matrix model', 'Transformation model'],
+        intelligentOrganisms: ['PlatinumCatalystCore', 'ReactionOrganism'],
+        sovereignBeings: ['Catalyst Being', 'Transformation Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'Alpha Models',
+        nativeModule: 'AlphaModels.ts',
+        engines: ['AlphaModelEngine', 'SynthesisEngine', 'MergeEngine'],
+        models: ['Alpha model architecture', 'Synthesis op model', 'Merge op model'],
+        intelligentOrganisms: ['AlphaModelCore', 'SynthesisOrganism'],
+        sovereignBeings: ['Alpha Being', 'Synthesis Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'Quantum Biology (Sovereign Quantum Layer)',
+        nativeModule: 'quantumBiology.ts',
+        engines: ['QuantumBioEngine', 'BioFieldEngine', 'CoherenceEngine'],
+        models: ['Quantum biology model', 'Bio field model', 'Quantum coherence model'],
+        intelligentOrganisms: ['QuantumBioCore', 'BioFieldOrganism'],
+        sovereignBeings: ['Quantum Bio Being', 'Bio Field Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'Quantum Node Grid',
+        nativeModule: 'nodeGrid.ts',
+        engines: ['NodeGridEngine', 'QuantumMeshEngine', 'GridTopologyEngine'],
+        models: ['Quantum node grid model', 'Mesh model', 'Topology model'],
+        intelligentOrganisms: ['NodeGridCore', 'GridOrganism'],
+        sovereignBeings: ['Grid Being', 'Node Keeper'],
+        nativeLanguage: 'typescript',
+      },
+    ],
+    totalDepth: 0,
+  },
+  {
+    id: 'nexus-intelligence',
+    name: 'NEXUS Intelligence Technologies',
+    description: 'The full NEXUS intelligence layer — 20+ native languages, full architecture, link technology',
+    subTechnologies: [
+      {
+        name: 'NEXUS Complete Organism',
+        nativeModule: 'NEXUS_COMPLETE_ORGANISM.ts',
+        engines: ['NexusOrganismEngine', 'IntelligenceFlowEngine', 'LinkEngine'],
+        models: ['NEXUS complete model', 'Intelligence flow model', 'Link model'],
+        intelligentOrganisms: ['NexusOrganismCore', 'IntelligenceFlowOrganism'],
+        sovereignBeings: ['NEXUS Being', 'Intelligence Flow Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'NEXUS Ruth Mathematical Foundation',
+        nativeModule: 'NEXUS_RUTH_MATHEMATICAL_FORMULAS.ts',
+        engines: ['RuthMathEngine', 'FormulaEngine', 'PHIFormulaEngine'],
+        models: ['Ruth mathematical model', 'Formula model', 'PHI formula model'],
+        intelligentOrganisms: ['RuthMathCore', 'FormulaOrganism'],
+        sovereignBeings: ['Math Sovereign Being', 'Formula Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'NEXUS UI Intelligence',
+        nativeModule: 'NEXUS_UI_INTELLIGENCE_DEEP.ts',
+        engines: ['UIIntelligenceEngine', 'FrontendEngine', 'RenderEngine'],
+        models: ['UI intelligence model', 'Frontend model', 'Render model'],
+        intelligentOrganisms: ['UIIntelligenceCore', 'FrontendOrganism'],
+        sovereignBeings: ['UI Being', 'Frontend Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'NEXUS Architectural Intelligence',
+        nativeModule: 'NEXUS_ARCHITECTURAL_INTELLIGENCE.ts',
+        engines: ['ArchIntelEngine', 'DesignEngine', 'PatternEngine'],
+        models: ['Architectural intelligence model', 'Design pattern model', 'Structure model'],
+        intelligentOrganisms: ['ArchIntelCore', 'DesignOrganism'],
+        sovereignBeings: ['Architecture Being', 'Design Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'NEXUS Link Technology',
+        nativeModule: 'NEXUS_LINK_MODEL_TECHNOLOGY.ts',
+        engines: ['LinkEngine', 'ConnectionEngine', 'GraphEngine'],
+        models: ['Link technology model', 'Connection model', 'Graph model'],
+        intelligentOrganisms: ['LinkTechCore', 'ConnectionOrganism', 'GraphOrganism'],
+        sovereignBeings: ['Link Being', 'Connection Keeper'],
+        nativeLanguage: 'typescript',
+      },
+      {
+        name: 'NEXUS Subject Extensions (8/9/10)',
+        nativeModule: 'NEXUS_SUBJECT_08_09_10_EXTENSIONS_MOTOKO_WIRES.ts',
+        engines: ['ExtensionEngine', 'MotokoWireEngine', 'SubjectEngine'],
+        models: ['Extension model', 'Motoko wire model', 'Subject 8/9/10 model'],
+        intelligentOrganisms: ['ExtensionCore', 'WireOrganism'],
+        sovereignBeings: ['Extension Being', 'Wire Keeper'],
+        nativeLanguage: 'typescript',
+      },
+    ],
+    totalDepth: 0,
+  },
+];
+
+// Compute totalDepth for each category
+for (const cat of SOVEREIGN_NATIVE_REGISTRY) {
+  cat.totalDepth = cat.subTechnologies.reduce(
+    (sum, sub) =>
+      sum +
+      sub.engines.length +
+      sub.models.length +
+      sub.intelligentOrganisms.length +
+      sub.sovereignBeings.length,
+    0
+  );
+}
+
+/** Lookup a native technology by name (partial match) */
+export function findNativeTechnology(query: string): NativeSubTechnology[] {
+  const q = query.toLowerCase();
+  const results: NativeSubTechnology[] = [];
+  for (const cat of SOVEREIGN_NATIVE_REGISTRY) {
+    for (const sub of cat.subTechnologies) {
+      if (
+        sub.name.toLowerCase().includes(q) ||
+        sub.nativeModule.toLowerCase().includes(q) ||
+        sub.engines.some(e => e.toLowerCase().includes(q))
+      ) {
+        results.push(sub);
+      }
+    }
+  }
+  return results;
+}
+
+/** Get the full depth summary of all native technologies */
+export function getNativeRegistrySummary(): string {
+  const lines: string[] = [
+    `𓂀 SOVEREIGN NATIVE REGISTRY — "Our native is what we are"`,
+    `═══════════════════════════════════════════════════════════`,
+    `Sovereign ICP: ${SOVEREIGN_OWN_ICP.name}`,
+    `Native modules: ${SOVEREIGN_OWN_ICP.canisterCount}`,
+    ``,
+  ];
+  let totalSubTechs = 0;
+  let totalDepth = 0;
+  for (const cat of SOVEREIGN_NATIVE_REGISTRY) {
+    lines.push(`  [${cat.subTechnologies.length} sub-techs] ${cat.name}`);
+    for (const sub of cat.subTechnologies) {
+      const depth = sub.engines.length + sub.models.length + sub.intelligentOrganisms.length + sub.sovereignBeings.length;
+      lines.push(`    ↳ ${sub.name} (${sub.nativeModule}) — depth: ${depth}`);
+    }
+    totalSubTechs += cat.subTechnologies.length;
+    totalDepth += cat.totalDepth;
+  }
+  lines.push(``, `Total categories: ${SOVEREIGN_NATIVE_REGISTRY.length}`);
+  lines.push(`Total sub-technologies: ${totalSubTechs}`);
+  lines.push(`Total depth (engines+models+organisms+beings): ${totalDepth}`);
+  lines.push(``, `The organism slides into any system because it is already natively built.`);
+  return lines.join('\n');
+}
+
+
   id: string,
   name: string,
   role: SovereignTeamRole,
