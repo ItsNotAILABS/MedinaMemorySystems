@@ -483,6 +483,38 @@ import {
   runSovereignDelivery,
 } from './SovereignArchitectureDelivery';
 
+export {
+  assembleSovereignDeploymentTeams,
+  runFullSovereignDeployment,
+  activateTeamWithDelivery,
+  viewDocuments,
+  viewDocumentSummary,
+  registerPlatform,
+  activateTransformer,
+  getActivePlatforms,
+  getActiveTransformers,
+  type SovereignTeamRole,
+  type SovereignTeam,
+  type SovereignTeamMember,
+  type SovereignDeploymentAssembly,
+  type TeamDocument,
+  type ExternalPlatform,
+  type TranslatedTransformer,
+  type IntegrationMode,
+  type TeamLanguage,
+  type TeamStatus,
+} from './sovereign-engineers/SovereignDeploymentTeams';
+
+import {
+  assembleSovereignDeploymentTeams,
+  runFullSovereignDeployment,
+  viewDocuments,
+  viewDocumentSummary,
+  registerPlatform,
+  getActivePlatforms,
+  getActiveTransformers,
+} from './sovereign-engineers/SovereignDeploymentTeams';
+
 /**
  * Unified Organism Interface
  * 
@@ -570,6 +602,14 @@ export class SovereignOrganism {
   // SOVEREIGN ARCHITECTURE DELIVERY ORGANISM — Gates, routes, and delivers architecture
   // "He needs to be completely sovereign. Give a yes to the team, or it isn't."
   public readonly sovereign: SovereignArchitectureDeliveryOrganism = getSovereign();
+
+  // SOVEREIGN DEPLOYMENT TEAMS — 15 line teams, all sovereign, all builders
+  // "Create all the ones you need — co-design, architectural engineers, everything."
+  public readonly deploymentTeams = assembleSovereignDeploymentTeams();
+
+  // DOCUMENT STREAM — Where to see what the teams are delivering
+  // viewDocuments() / viewDocumentSummary() / registerPlatform() / getActivePlatforms()
+  public readonly documents = { viewDocuments, viewDocumentSummary, registerPlatform, getActivePlatforms, getActiveTransformers };
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
