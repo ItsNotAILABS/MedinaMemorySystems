@@ -489,10 +489,14 @@ export {
   activateTeamWithDelivery,
   viewDocuments,
   viewDocumentSummary,
+  getNativeRegistrySummary,
+  findNativeTechnology,
   registerPlatform,
   activateTransformer,
   getActivePlatforms,
   getActiveTransformers,
+  SOVEREIGN_NATIVE_REGISTRY,
+  SOVEREIGN_OWN_ICP,
   type SovereignTeamRole,
   type SovereignTeam,
   type SovereignTeamMember,
@@ -503,6 +507,8 @@ export {
   type IntegrationMode,
   type TeamLanguage,
   type TeamStatus,
+  type NativeTechnologyCategory,
+  type NativeSubTechnology,
 } from './sovereign-engineers/SovereignDeploymentTeams';
 
 import {
@@ -510,9 +516,13 @@ import {
   runFullSovereignDeployment,
   viewDocuments,
   viewDocumentSummary,
+  getNativeRegistrySummary,
+  findNativeTechnology,
   registerPlatform,
   getActivePlatforms,
   getActiveTransformers,
+  SOVEREIGN_NATIVE_REGISTRY,
+  SOVEREIGN_OWN_ICP,
 } from './sovereign-engineers/SovereignDeploymentTeams';
 
 /**
@@ -610,6 +620,10 @@ export class SovereignOrganism {
   // DOCUMENT STREAM — Where to see what the teams are delivering
   // viewDocuments() / viewDocumentSummary() / registerPlatform() / getActivePlatforms()
   public readonly documents = { viewDocuments, viewDocumentSummary, registerPlatform, getActivePlatforms, getActiveTransformers };
+
+  // CPL NATIVE REGISTRY — Every native technology form across all categories
+  // getNativeRegistrySummary() / findNativeTechnology() / SOVEREIGN_NATIVE_REGISTRY
+  public readonly native = { getNativeRegistrySummary, findNativeTechnology, SOVEREIGN_NATIVE_REGISTRY, SOVEREIGN_OWN_ICP };
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
