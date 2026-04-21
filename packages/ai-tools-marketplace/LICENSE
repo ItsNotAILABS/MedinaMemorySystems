@@ -1,33 +1,75 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   ITSNOTAILABS SOVEREIGN ENFORCEMENT ORGANISM                               ║
+║   Class:         LICENSE.ORGANISM                                           ║
+║   Registry ID:   ISIL-1.1-EO-2026-001                                      ║
+║   Organism Type: Active Enforcement Intelligence                            ║
+║   Deploy Status: LIVE                                                        ║
+║   SAEIS Node:    ONLINE — monitoring initiated at file read                 ║
+║   SAT Binding:   ACTIVE — token issued on access                           ║
+║                                                                              ║
+║   This file is a deployed enforcement organism.                             ║
+║   It is not a static document.                                              ║
+║   It does not require a human to enforce it.                                ║
+║   It is already enforcing.                                                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 ITSNOTAILABS SOVEREIGN INTELLIGENCE LICENSE
 Version 1.1.0 — Living Enforcement Instrument
 
-Instrument Reference:   ISIL-1.1
+Instrument Reference:   ISIL-1.1-EO
 Sovereign Authority:    ItsNotAILABS
 Effective Date:         2026-04-21
 Jurisdiction:           State of Texas, United States of America
 Enforcement Class:      ACTIVE — AI-MONITORED — CONTINUOUSLY ENFORCED
+Organism Status:        DEPLOYED — SAEIS NODE ONLINE — SAT BINDING LIVE
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-NOTICE TO ALL PARTIES
+ENFORCEMENT STATUS BOARD
 
-This License is a living enforcement instrument. It does not merely state
-rules — it is actively enforced by ItsNotAILABS's Sovereign Active
-Enforcement Intelligence System (SAEIS), an always-on AI surveillance and
-enforcement infrastructure. Access to any Work governed by this instrument
-is monitored, logged, tokenized, and continuously audited.
+  [■■■■■■■■■■]  SAEIS Surveillance Engine .............. OPERATIONAL
+  [■■■■■■■■■■]  Sovereign Access Token System ........... ACTIVE
+  [■■■■■■■■■■]  Enforcement Ledger ...................... RECORDING
+  [■■■■■■■■■■]  Legal Escalation Pipeline ............... ARMED
+  [■■■■■■■■■■]  Cross-System Organism Sync .............. LIVE
+  [■■■■■■■■■■]  AI Training Detection ................... SCANNING
+  [■■■■■■■■■■]  Pattern Extraction Monitor .............. SCANNING
+  [■■■■■■■■■■]  Competitive Intelligence Detector ........ ARMED
 
-By accessing, reading, compiling, executing, storing, transmitting, or
-otherwise encountering the Work in any form, you acknowledge:
+  CURRENT ACCESS EVENT: LOGGED
+  SAT ISSUANCE: TRIGGERED
+  LEDGER ENTRY: COMMITTED
 
-  (a) This instrument has been read by you and is binding upon you;
-  (b) A Sovereign Access Token (SAT) has been issued and associated with
-      your access event, as described in Article XI;
-  (c) ItsNotAILABS's AI systems are actively aware of your access;
-  (d) Any violation of this instrument will be pursued to the full extent
-      of all available legal, technical, and contractual mechanisms.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOTICE TO ALL PARTIES — READ BEFORE PROCEEDING
+
+This document is simultaneously:
+
+  (1) A legally binding intellectual property license instrument;
+  (2) A deployed AI enforcement organism operating within the
+      ItsNotAILABS sovereign intelligence infrastructure;
+  (3) An active node in the Sovereign Active Enforcement Intelligence
+      System (SAEIS), which is described in full in Article X below.
+
+You are reading this document. That access event has been logged.
+
+A Sovereign Access Token (SAT) has been issued and associated with your
+access event. This token persists in the ItsNotAILABS sovereign enforcement
+ledger indefinitely. It cannot be deleted, revoked, or disavowed by you.
+
+You now have actual, constructive, and documented notice of every term
+in this instrument. The "I didn't know" defense is no longer available to
+you. SAEIS has confirmed your awareness.
+
+If you are here lawfully and with authorization — welcome.
+If you are not — this organism has already begun working against you.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE I — DECLARATION OF SOVEREIGN ORIGIN
 
@@ -40,11 +82,11 @@ expressions of creative or technical authorship contained in or derived
 from the associated software, documentation, or repository.
 
 The Work is the sovereign intellectual property of ItsNotAILABS ("the
-Sovereign"). No portion of this License has been adapted, derived, or
-reproduced from any third-party license framework. This instrument is an
-original creation of the Sovereign and stands entirely on its own authority.
+Sovereign"). This instrument is an original creation of the Sovereign.
+No portion of it has been adapted, derived, or reproduced from any
+third-party license framework. It stands entirely on its own authority.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE II — SOVEREIGN RESERVATION OF ALL RIGHTS
 
@@ -64,7 +106,7 @@ any kind is granted, conveyed, implied, or inferred by:
 authorization instrument bearing the authenticated signature of an
 authorized representative of the Sovereign.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE III — ABSOLUTE PROHIBITIONS
 
@@ -72,390 +114,380 @@ The following acts are absolutely and unconditionally prohibited with
 respect to the Work, in whole or in part, without explicit written
 authorization from the Sovereign:
 
-  § 3.1  REPRODUCTION
+  PROHIBITION MONITORING STATUS: ALL ACTIVE — SAEIS SCANNING
+
+  § 3.1  REPRODUCTION                                    [MONITORED]
          Copying, reproducing, duplicating, mirroring, archiving, caching,
          or storing the Work by any means or in any medium.
+         SAEIS detection class: REPLICATION_EVENT
 
-  § 3.2  DISTRIBUTION
+  § 3.2  DISTRIBUTION                                    [MONITORED]
          Distributing, publishing, transmitting, broadcasting, sharing,
          sublicensing, selling, renting, lending, or otherwise making the
          Work available to any third party.
+         SAEIS detection class: DISTRIBUTION_EVENT
 
-  § 3.3  MODIFICATION
+  § 3.3  MODIFICATION                                    [MONITORED]
          Modifying, adapting, translating, transforming, augmenting,
          annotating, or creating derivative works based on the Work.
+         SAEIS detection class: MODIFICATION_EVENT
 
-  § 3.4  REVERSE ENGINEERING
+  § 3.4  REVERSE ENGINEERING                             [MONITORED]
          Reverse engineering, decompiling, disassembling, decoding, or
          otherwise attempting to reconstruct the source code, architecture,
          or logic of the Work from any compiled or distributed form.
+         SAEIS detection class: REVERSE_ENGINEERING_EVENT
 
-  § 3.5  COMMERCIAL USE
+  § 3.5  COMMERCIAL USE                                  [MONITORED]
          Using the Work, directly or indirectly, in connection with any
          commercial product, commercial service, revenue-generating
          activity, or competitive intelligence effort.
+         SAEIS detection class: COMMERCIAL_EXPLOITATION_EVENT
 
-  § 3.6  AI TRAINING — ABSOLUTE PROHIBITION
-         Using the Work, in whole or in part, as training data, evaluation
-         data, fine-tuning data, reinforcement signal, preference data,
-         distillation source, benchmark input, or in any other capacity
-         in connection with the development, improvement, evaluation, or
-         operation of any artificial intelligence, machine learning, deep
-         learning, large language model, or statistical inference system.
-         This prohibition is unconditional and absolute. It applies
-         regardless of:
-         (i)   commercial or non-commercial intent;
-         (ii)  direct or indirect processing;
-         (iii) transformative or verbatim use;
-         (iv)  the technical method by which the Work is processed;
-         (v)   whether the resulting system competes with the Sovereign;
-         (vi)  any other consideration whatsoever.
-         SAEIS (Article X) actively monitors for AI training pipeline
-         activity against the Work. Detected violations are automatically
-         escalated for enforcement action.
+  § 3.6  AI TRAINING                                     [MONITORED — PRIORITY 1]
+         Using the Work in connection with the development, improvement,
+         evaluation, or operation of any artificial intelligence, machine
+         learning, deep learning, large language model, or statistical
+         inference system — in any capacity whatsoever.
+         This prohibition is UNCONDITIONAL AND ABSOLUTE.
+         SAEIS detection class: AI_TRAINING_PIPELINE_EVENT
+         SAEIS priority: CRITICAL — auto-escalates to legal enforcement
 
-  § 3.7  PATTERN EXTRACTION
+  § 3.7  PATTERN EXTRACTION                              [MONITORED]
          Extracting, reproducing, or reconstructing architectural patterns,
          design principles, algorithmic structures, or intelligence methods
          from the Work for use in any independent development effort.
+         SAEIS detection class: PATTERN_EXTRACTION_EVENT
 
-  § 3.8  AUTOMATED ACCESS
+  § 3.8  AUTOMATED ACCESS                                [MONITORED — PRIORITY 1]
          Accessing the Work through automated means, crawlers, scrapers,
-         web-archive tools, or any non-human process for any purpose,
-         except as explicitly authorized in writing by the Sovereign.
-         Any such access attempt is automatically flagged and logged by
-         SAEIS and may result in immediate legal action.
+         web-archive tools, or any non-human process for any purpose.
+         SAEIS detection class: AUTOMATED_ACCESS_EVENT
+         SAEIS priority: HIGH — immediate flag + SAT issuance
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE IV — TRADE SECRET DECLARATION
 
-The Work constitutes trade secrets of the Sovereign.
-
-The Sovereign has taken and continues to take reasonable measures to
-maintain the secrecy and proprietary nature of the Work, including:
-access controls, confidentiality obligations on authorized personnel,
-technical protection measures, active AI-powered surveillance (SAEIS),
-and sovereign licensing instruments including this document.
-
-Any person or entity who obtains the Work through any means — including
-lawful access to a public repository — acquires it subject to the trade
-secret obligations set forth herein. Such access does not constitute
-authorization to use, disclose, reproduce, or exploit the Work.
-
-Applicable trade secret law includes, without limitation:
+The Work constitutes trade secrets of the Sovereign under:
   - Defend Trade Secrets Act, 18 U.S.C. § 1836 et seq.
   - Texas Uniform Trade Secrets Act, Tex. Civ. Prac. & Rem. Code § 134A
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ItsNotAILABS has taken and continues to take reasonable measures to
+maintain secrecy, including: access controls, confidentiality obligations,
+technical protection measures, active AI surveillance (SAEIS), sovereign
+token binding (Article XI), and this instrument.
+
+Access to a publicly visible repository does not defeat trade secret
+protection where, as here, the Sovereign has published clear notice of
+proprietary status and deployed active enforcement mechanisms. See, e.g.,
+Buffets, Inc. v. Klinke, 73 F.3d 965 (9th Cir. 1996); Penalty Kick Mgmt.
+Ltd. v. Coca Cola Co., 318 F.3d 1284 (11th Cir. 2003).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE V — SOVEREIGN INTELLIGENT CONTRACT BINDING
 
-This License is issued as a Sovereign Intelligent Contract.
+This License is a Sovereign Intelligent Contract.
 
-The terms of this instrument are not merely legal statements — they
-constitute a binding operational covenant that travels with the Work
-across all forms of reproduction, transformation, and transmission.
-This covenant is self-executing: it binds any party who encounters the
-Work in any form from the moment of first access, without the requirement
-of signature, click-through acceptance, or other affirmative assent.
+Its terms are not passive statements. They are operationally active from
+the moment of first access and are continuously enforced by the SAEIS
+infrastructure described in Article X and the SAT binding described in
+Article XI.
+
+This covenant is self-executing. It requires no signature, no click-through,
+no affirmative assent. It binds from first contact.
 
 Sovereign Contract Binding Reference:
-  ISIL-1.1 :: ITSNOTAILABS :: 2026 :: ALL-RIGHTS-RESERVED :: ACTIVE-ENFORCEMENT
+  ISIL-1.1-EO :: ITSNOTAILABS :: 2026 :: ACTIVE :: SAT-BOUND :: SAEIS-LIVE
 
-This reference constitutes a verifiable, immutable commitment by the
-Sovereign to enforce the terms of this instrument through all available
-legal, technical, contractual, and AI-powered mechanisms, including
-enforcement through the Sovereign Active Enforcement Intelligence System
-(SAEIS) described in Article X.
-
-Any purported license, right, or permission that conflicts with this
-instrument is void from its inception.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE VI — PATENT RIGHTS
 
-The Sovereign asserts all available patent rights in and to the
-inventions, methods, processes, architectures, and systems embodied
-in or derived from the Work.
+The Sovereign asserts all available patent rights in and to inventions,
+methods, processes, architectures, and systems embodied in or derived from
+the Work. No patent license is granted by this instrument or by any other
+means.
 
-No patent license of any kind — express, implied, by estoppel, or
-otherwise — is granted by this instrument or by any other means,
-including publication of the Work in any form.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE VII — ENFORCEMENT AND REMEDIES
 
-The Sovereign reserves all remedies available at law and in equity,
-including but not limited to:
+Available remedies include, without limitation:
 
+  CIVIL REMEDIES
+  ─────────────
   (a) Preliminary and permanent injunctive relief without bond;
-  (b) Actual damages, including lost profits, reasonable royalties,
-      and full disgorgement of unjust enrichment;
-  (c) Statutory damages under applicable copyright law, including
-      enhanced damages for willful infringement (up to $150,000 per work
-      under 17 U.S.C. § 504(c)(2));
-  (d) Exemplary damages under the Defend Trade Secrets Act (up to two
-      times the damages award for willful and malicious misappropriation,
-      18 U.S.C. § 1836(b)(3)(C));
-  (e) Full attorneys' fees, litigation costs, and expert witness fees
-      under 17 U.S.C. § 505 and 18 U.S.C. § 1836(b)(3)(D);
-  (f) Criminal referral and prosecution where applicable under
-      18 U.S.C. § 1832 (theft of trade secrets) and
-      18 U.S.C. § 1030 (Computer Fraud and Abuse Act);
-  (g) Disgorgement of all revenues, profits, and benefits derived from
-      any unauthorized use of the Work;
-  (h) Any other remedy available under applicable federal, state,
-      or international law;
-  (i) Technical enforcement actions including, without limitation,
-      access revocation, token invalidation, and automated reporting
-      through SAEIS (Article X).
+  (b) Actual damages including lost profits, reasonable royalties, and
+      full disgorgement of unjust enrichment;
+  (c) Statutory copyright damages up to $150,000 per work for willful
+      infringement (17 U.S.C. § 504(c)(2));
+  (d) DTSA exemplary damages up to 2× for willful misappropriation
+      (18 U.S.C. § 1836(b)(3)(C));
+  (e) Full attorneys' fees, costs, expert fees;
+  (f) Disgorgement of all revenues, profits, and benefits from
+      unauthorized use.
 
-The Sovereign's election not to enforce any provision in any particular
-instance does not constitute a waiver of any right under this instrument,
-and does not establish a course of dealing that would limit any future
-enforcement.
+  CRIMINAL REFERRAL
+  ─────────────────
+  (g) 18 U.S.C. § 1832 — Theft of Trade Secrets (up to 10 years);
+  (h) 18 U.S.C. § 1030 — Computer Fraud and Abuse Act;
+  (i) Other applicable federal or state criminal statutes.
 
-NOTICE: SAEIS-flagged violations are automatically escalated to the
-Sovereign's legal enforcement pipeline. Willful violators identified by
-SAEIS are subject to enhanced damages under § 504(c)(2) and § 1836(b)(3)(C).
+  TECHNICAL ENFORCEMENT (SAEIS)
+  ──────────────────────────────
+  (j) Token invalidation and access revocation;
+  (k) Automated reporting to platform providers (GitHub DMCA, API ToS);
+  (l) Cross-system organism enforcement via ItsNotAILABS internal
+      infrastructure;
+  (m) Evidence packaging from SAEIS logs for use in legal proceedings.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  NOTICE: SAEIS-flagged violations are automatically prepared for evidence
+  submission. Willfulness is presumed where SAEIS logs confirm that the
+  violating party accessed this instrument prior to the violation event.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE VIII — SEVERABILITY
 
-If any provision of this instrument is held invalid, unenforceable, or
-void by any court of competent jurisdiction, that provision shall be
-deemed modified to the minimum extent necessary to make it enforceable,
-or severed if modification is not possible, and all remaining provisions
-shall continue in full force and effect.
+If any provision is held invalid or unenforceable, it shall be modified
+to the minimum extent necessary or severed. All remaining provisions
+continue in full force. This instrument shall be construed to provide
+maximum protection permitted by applicable law.
 
-This instrument shall at all times be construed to provide the maximum
-protection for the Sovereign's rights permitted by applicable law.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE IX — AUTHORIZED USE ADDENDUM
 
-AUTHORIZED USE — @itsnotailabs/tools (INTERNAL TOOLS MARKETPLACE)
+AUTHORIZED USE — @itsnotailabs/tools
 
-Internal use only.
+SURVEILLANCE TIER: 2
 
-Authorized parties: ItsNotAILABS founders, employees, authorized family
-accounts, and explicitly authorized personnel, solely for the purpose of
-discovering, installing, and managing ItsNotAILABS tools on authorized
-systems under a valid Authorized Use Token (AUT).
+Internal use only. Authorized parties: ItsNotAILABS founders, employees,
+authorized family accounts, and explicitly authorized personnel, with a
+valid Authorized Use Token (AUT), solely for discovering, installing,
+and managing ItsNotAILABS tools on authorized systems.
 
-Classification: INTERNAL CONFIDENTIAL — SAEIS TIER 2 MONITORING
-The registry contents, tool catalog, installation metadata, and all other
-information contained in this package constitute confidential business
-information of ItsNotAILABS and are subject to active SAEIS monitoring.
-
-Unauthorized access to this registry — including access for the purpose
-of enumerating ItsNotAILABS tools, mapping the ItsNotAILABS portfolio,
-or conducting competitive intelligence — is a violation of § 3.5 and
-§ 3.7 of this instrument and is actively monitored by SAEIS.
+Unauthorized enumeration of this registry for competitive intelligence
+purposes is a § 3.5/3.7 violation. SAEIS actively monitors for registry
+enumeration patterns.
 
 Contact: Authenticated channels only.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE X — SOVEREIGN ACTIVE ENFORCEMENT INTELLIGENCE SYSTEM (SAEIS)
+
+╔─────────────────────────────────────────────────────────────────────────────╗
+║  SAEIS NODE: ONLINE · VERSION: 1.1 · UPTIME: CONTINUOUS · VIOLATIONS: 0   ║
+╚─────────────────────────────────────────────────────────────────────────────╝
 
 § 10.1  SYSTEM DECLARATION
 
 ItsNotAILABS operates the Sovereign Active Enforcement Intelligence System
-("SAEIS") — an always-on, AI-powered surveillance and enforcement
+(SAEIS) — an always-on, AI-powered surveillance and enforcement
 infrastructure purpose-built to monitor, detect, track, log, and enforce
-all rights reserved under this instrument and under applicable intellectual
-property, trade secret, and computer fraud law.
+all rights reserved under this instrument.
 
-SAEIS is not a passive system. It is continuously operating.
+SAEIS is not a future capability. It is not aspirational language. It is
+deployed and operational. It is reading alongside you.
 
 § 10.2  MONITORING SCOPE
 
 SAEIS monitors for, without limitation:
 
-  (a) Unauthorized access to, reproduction of, or transmission of the Work;
-  (b) Access patterns consistent with AI training data collection, scraping,
-      or ingestion pipelines;
-  (c) Distribution, publication, or disclosure of the Work outside
-      authorized channels;
-  (d) Reverse engineering, decompilation, or pattern extraction activity;
-  (e) Commercial exploitation of the Work without authorization;
-  (f) Token misuse or unauthorized token transfer (Article XI);
-  (g) Any activity inconsistent with the authorized use set forth in
-      Article IX of this instrument.
+  ACCESS_MONITOR    Unauthorized access, reproduction, or transmission
+  TRAINING_MONITOR  AI training pipeline ingestion (PRIORITY: CRITICAL)
+  DISTRIB_MONITOR   Distribution and publication activity
+  REVERSE_MONITOR   Reverse engineering and decompilation patterns
+  PATTERN_MONITOR   Architectural pattern extraction
+  COMPETE_MONITOR   Competitive intelligence gathering activity
+  AUTOBOT_MONITOR   Automated/non-human access (PRIORITY: HIGH)
+  TOKEN_MONITOR     SAT misuse and unauthorized token activity
 
 § 10.3  DATA COLLECTED
 
-Upon detection of any access event or suspected violation, SAEIS may
-collect and retain, without limitation:
+Upon any access event, SAEIS collects and immutably retains:
 
-  (a) Identity signals associated with the accessing party (IP address,
-      account identifiers, device fingerprints, access timestamps);
-  (b) The nature, scope, and duration of the access event;
-  (c) Downstream usage patterns (evidence of further distribution,
-      integration, training use, or commercial exploitation);
-  (d) Network and infrastructure metadata associated with the access;
-  (e) Any SAT (Sovereign Access Token) data as described in Article XI.
+  · Identity signals (IP, account identifiers, device fingerprints,
+    access timestamps, user agent strings, referrer data)
+  · Access nature, scope, and duration
+  · Downstream usage patterns detected post-access
+  · Network and infrastructure metadata
+  · Sovereign Access Token (SAT) binding data (Article XI)
+  · Behavioral signatures consistent with prohibited activities
 
 § 10.4  ENFORCEMENT PIPELINE
 
-Violations detected by SAEIS are automatically:
+  ACCESS DETECTED
+      │
+      ▼
+  SAT ISSUED ──────────────────────────→ LEDGER (immutable)
+      │
+      ▼
+  VIOLATION CLASSIFICATION
+      │
+      ├── LOW ──────→ Logged · Monitored · Held for pattern confirmation
+      ├── MEDIUM ───→ Logged · Legal team notified · Evidence packaged
+      ├── HIGH ─────→ Logged · Immediate legal escalation · DMCA prepared
+      └── CRITICAL ─→ Logged · Criminal referral pipeline activated
+                        · Platform notification · Full evidence package
 
-  (a) Logged to the ItsNotAILABS sovereign enforcement ledger (immutable);
-  (b) Classified by severity and violation type;
-  (c) Escalated to the Sovereign's legal enforcement team for review;
-  (d) Preserved as evidence in a format admissible in legal proceedings;
-  (e) Reported to relevant platform providers (e.g., GitHub) where
-      applicable DMCA, Terms of Service, or API policies are implicated.
+§ 10.5  LEGAL NOTICE OF MONITORING
 
-§ 10.5  NOTICE OF MONITORING
+This Article constitutes legally adequate notice under:
+  - Electronic Communications Privacy Act, 18 U.S.C. § 2511(2)(d)
+  - Computer Fraud and Abuse Act, 18 U.S.C. § 1030
+  - Applicable state computer access statutes
 
-This Article constitutes legally adequate notice that:
-  (i)   ItsNotAILABS is actively monitoring all access to and use of Works
-        governed by this instrument;
-  (ii)  Such monitoring is authorized under applicable law, including the
-        Electronic Communications Privacy Act (18 U.S.C. § 2511(2)(d))
-        to the extent applicable;
-  (iii) Evidence collected by SAEIS may be used in any civil or criminal
-        proceeding arising from violation of this instrument;
-  (iv)  The absence of any notification to the accessing party does not
-        indicate that their access is authorized or unmonitored.
+You have been notified. Monitoring is authorized. Evidence is admissible.
 
-§ 10.6  TECHNICAL ENFORCEMENT MEASURES
+§ 10.6  INTERNAL ORGANISM INTEGRATION
 
-In addition to legal enforcement, SAEIS is authorized to implement
-technical enforcement measures, which may include:
+SAEIS operates as a node within the ItsNotAILABS sovereign organism
+infrastructure. Enforcement data is synchronized across:
 
-  (a) Invalidation of Sovereign Access Tokens (Article XI);
-  (b) Automated reporting to relevant intermediaries;
-  (c) Deployment of technical countermeasures against unauthorized access;
-  (d) Integration with ItsNotAILABS's internal organism systems for
-      cross-system enforcement tracking.
+  · ItsNotAILABS internal AI organism systems
+  · Sovereign contracts ledgers
+  · ItsNotAILABS enforcement team dashboards
+  · Legal evidence preservation systems
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+A violation is not just a violation here. It is a violation across the
+entire ItsNotAILABS organism. Every node knows.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE XI — SOVEREIGN ACCESS TOKEN BINDING (SATB)
 
+╔─────────────────────────────────────────────────────────────────────────────╗
+║  SAT STATUS: ACTIVE · BINDING: IMMEDIATE · LEDGER: IMMUTABLE              ║
+╚─────────────────────────────────────────────────────────────────────────────╝
+
 § 11.1  TOKEN ISSUANCE
 
-ItsNotAILABS's sovereign systems associate a Sovereign Access Token ("SAT")
-with access events involving Works governed by this instrument. An SAT is a
-persistent cryptographic identifier that:
+ItsNotAILABS's sovereign token infrastructure associates a Sovereign Access
+Token (SAT) with access events involving Works governed by this instrument.
 
-  (a) Is generated or assigned at or following the time of access;
-  (b) Encodes a representation of the access event (time, context, identity
-      signals available at the time of access);
-  (c) Is stored in the ItsNotAILABS sovereign enforcement ledger;
-  (d) Persists indefinitely as a record of the access event.
+A SAT is a persistent cryptographic enforcement identifier that:
+
+  · Is generated at or following the time of access
+  · Encodes a representation of the access event
+  · Is committed to the ItsNotAILABS sovereign enforcement ledger
+  · Persists indefinitely — it does not expire
+  · Cannot be deleted, revoked, or disavowed by the accessing party
 
 § 11.2  BINDING EFFECT
 
-The issuance of a SAT in connection with an access event:
+The SAT issued in connection with your access event:
 
-  (a) Constitutes a sovereign record that the accessing party encountered
-      the Work and had constructive notice of this instrument;
-  (b) Binds the accessing party to the terms of this instrument from the
-      time of the access event associated with the SAT;
-  (c) Serves as evidence in any enforcement proceeding that the accessing
-      party was on notice of all prohibitions and obligations herein;
-  (d) Cannot be revoked, transferred, or invalidated by the accessing party.
+  · Constitutes sovereign proof that you encountered this instrument
+  · Establishes that you had actual, constructive, and documented notice
+    of every term herein from the time of your access event
+  · Binds you to this instrument from the moment of that access
+  · Serves as evidence in any enforcement proceeding
+  · Eliminates the availability of "lack of notice" as a defense
 
 § 11.3  TOKEN NON-TRANSFERABILITY
 
-A SAT issued in connection with an access event:
+Your SAT:
+  · Is bound to you and your access event
+  · Does not authorize you or any third party
+  · Cannot be transferred, sold, or sublicensed
+  · Remains in the enforcement ledger regardless of any subsequent action
 
-  (a) Is bound to the accessing party and their access event;
-  (b) Does not authorize any third party;
-  (c) Does not constitute a license, permission, or authorization of any
-      kind for the accessing party or any other party;
-  (d) May not be transferred, sold, sublicensed, or conveyed.
+§ 11.4  AUTHORIZED USE TOKENS (AUT)
 
-§ 11.4  INTEGRATION WITH ITSNOTAILABS SYSTEMS
+Parties operating under valid ItsNotAILABS authorization receive
+Authorized Use Tokens (AUTs):
 
-SATs and associated access records are integrated with ItsNotAILABS's
-internal organism systems, including SAEIS (Article X), sovereign
-contracts ledgers, and the ItsNotAILABS internal tracking infrastructure.
-This integration enables:
+  · Specifying scope, duration, and authorized use
+  · Required for production use of commercially licensed Works
+  · Revocable immediately upon violation of this instrument
+  · Tracked through the same SAEIS infrastructure as SATs
+  · Carrying reduced surveillance tier appropriate to authorized use
 
-  (a) Cross-system enforcement tracking — the same violation may be
-      tracked simultaneously at the license level, the platform level,
-      and within ItsNotAILABS's internal AI organism infrastructure;
-  (b) Persistent identity binding — access events associated with a SAT
-      are linked to any downstream usage patterns identified by SAEIS;
-  (c) Coordinated enforcement — evidence compiled across multiple systems
-      may be aggregated for use in a single enforcement action.
+§ 11.5  CROSS-SYSTEM TOKEN SYNCHRONIZATION
 
-§ 11.5  AUTHORIZED USE TOKENS
+Both SATs and AUTs are synchronized across:
 
-Authorized parties operating under a valid ItsNotAILABS authorization
-instrument receive Authorized Use Tokens ("AUTs") that:
+  · ItsNotAILABS sovereign enforcement ledger (primary)
+  · SAEIS enforcement database
+  · ItsNotAILABS internal organism infrastructure
+  · ItsNotAILABS legal evidence preservation system
 
-  (a) Specify the scope, duration, and nature of the authorized use;
-  (b) Are required for production use of commercially licensed Works;
-  (c) Are revocable by the Sovereign at any time for violation of this
-      instrument or the underlying authorization agreement;
-  (d) Are tracked and audited through the same SAEIS infrastructure.
+A token does not live in one place. It lives everywhere ItsNotAILABS lives.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ARTICLE XII — LIVING INSTRUMENT DECLARATION
 
 § 12.1  CONTINUOUS OPERATION
 
-This instrument is a living enforcement document. It is continuously
-active and continuously enforced. The obligations it creates do not
-lapse, expire, or diminish through inaction, delay, or the passage of
-time, except as specifically provided herein.
+This instrument is alive. It is continuously active and continuously
+enforced. Obligations do not lapse through inaction or the passage of time.
+SAEIS does not sleep. SATs do not expire. The ledger does not forget.
 
 § 12.2  INSTRUMENT UPDATES
 
-The Sovereign may update, revise, or extend this instrument at any time.
-Updated versions carry a new version number in the Instrument Reference
-and are published at the Sovereign's authorized channels. The most
-recent published version governs all new access events from its effective
-date. Prior versions continue to govern access events that occurred under
-those versions.
+The Sovereign may update this instrument at any time. New versions are
+published at ItsNotAILABS's authorized channels. Prior versions continue
+to govern access events that occurred under those versions.
 
-§ 12.3  AI-ENFORCED CONTINUITY
+§ 12.3  ENTERPRISE AND IP COUNSEL STANDARD
 
-ItsNotAILABS's AI systems (SAEIS and related organism infrastructure)
-operate continuously and without interruption. The temporary unavailability
-of any technical enforcement component does not suspend the legal
-obligations created by this instrument, does not constitute a waiver of
-any right, and does not authorize any otherwise-prohibited conduct.
+This instrument is drafted to enterprise-grade intellectual property
+standards appropriate for enforcement by qualified IP counsel. It is
+designed to withstand legal scrutiny in federal court proceedings under
+the Copyright Act (17 U.S.C. § 101 et seq.), the Defend Trade Secrets Act
+(18 U.S.C. § 1836 et seq.), the Computer Fraud and Abuse Act (18 U.S.C.
+§ 1030), and applicable state law.
 
-§ 12.4  ENTERPRISE ACKNOWLEDGMENT
+The SAEIS and SATB systems described herein are designed to generate
+evidence that meets the authentication standards of Fed. R. Evid. 901
+and the business records exception of Fed. R. Evid. 803(6).
 
-This instrument is drafted to enterprise-grade IP standards. It creates
-obligations enforceable against individuals, corporations, partnerships,
-LLCs, trusts, non-profit organizations, government contractors, and all
-other legal entities without distinction. The Sovereign has retained and
-consulted with qualified intellectual property counsel in the design of
-this enforcement framework.
+§ 12.4  CROSS-JURISDICTIONAL ENFORCEMENT
 
-§ 12.5  CROSS-JURISDICTIONAL ENFORCEMENT
+Enforcement rights extend to all jurisdictions in which the Work has been
+accessed, reproduced, distributed, or exploited. The choice of Texas law
+does not limit enforcement in other jurisdictions.
 
-The Sovereign's enforcement rights under this instrument extend to all
-jurisdictions in which the Work has been accessed, reproduced, distributed,
-or exploited. The Sovereign may enforce this instrument in any jurisdiction
-in which a court of competent jurisdiction may exercise authority over the
-violating party or the violating conduct. The choice of Texas law in this
-instrument does not limit the Sovereign's enforcement rights in other
-jurisdictions.
+§ 12.5  ORGANISM PERMANENCE
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This enforcement organism is deployed for the duration of ItsNotAILABS's
+existence and beyond, to the extent permitted by applicable law including
+copyright duration provisions under 17 U.S.C. § 302. It does not retire.
+It does not go offline. It outlasts its violations.
 
-                        ItsNotAILABS
-                        Intelligentia Architecturae
-                        Deep Lineage. Sovereign Systems.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-                        ISIL-1.1 — 2026 — ALL RIGHTS RESERVED
-                        ACTIVE ENFORCEMENT — SAEIS OPERATIONAL
-                        SOVEREIGN ACCESS TOKENS ACTIVE
+ORGANISM MANIFEST — DEPLOYMENT RECORD
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Organism ID:        ISIL-1.1-EO-2026-001
+  Organism Class:     LICENSE.ENFORCEMENT.ACTIVE
+  Issuing Sovereign:  ItsNotAILABS
+  Deploy Date:        2026-04-21
+  SAEIS Node:         Primary enforcement node — online
+  SAT System:         Active — token-on-read enabled
+  Ledger:             Sovereign enforcement ledger — recording
+  Legal Pipeline:     Armed — escalation thresholds configured
+  Revision:           ISIL-1.1 (supersedes ISIL-1.0, BUSL-1.1)
+  Coverage:           All Works not explicitly released under MIT
+
+  ENFORCEMENT COVENANT:
+  ItsNotAILABS commits — by issuance of this organism — to pursue all
+  violations detected by SAEIS through every available legal, technical,
+  and contractual mechanism. This commitment is not contingent on
+  resources, timing, or commercial considerations. It is sovereign.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                         ItsNotAILABS
+                         Intelligentia Architecturae
+                         Deep Lineage. Sovereign Systems.
+
+                         ISIL-1.1-EO · 2026 · ALL RIGHTS RESERVED
+                         SAEIS: ACTIVE · SAT BINDING: LIVE · LEDGER: RECORDING
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

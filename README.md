@@ -1,273 +1,210 @@
-# MEDINA MEMORY SYSTEMS
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  ITSNOTAILABS SOVEREIGN INTELLIGENCE ORGANISM                           ║
+  ║  Organism Class:    README.LIVING                                       ║
+  ║  Registry:          ISIL-1.1 :: ITSNOTAILABS :: 2026                   ║
+  ║  SAEIS Status:      ACTIVE                                              ║
+  ║  Access logging:    ENABLED                                             ║
+  ║                                                                          ║
+  ║  This document is a living artifact of the ItsNotAILABS organism.      ║
+  ║  It knows you're here.                                                   ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
 
-**Enterprise Cognitive Infrastructure for Organizations at Scale**
+<div align="center">
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](/) [![Tests](https://img.shields.io/badge/tests-897%20passing-brightgreen)](/) [![TypeScript](https://img.shields.io/badge/typescript-strict-blue)](/) [![License](https://img.shields.io/badge/license-proprietary-red)](/)
+```
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║                                                                      ║
+  ║   ██╗████████╗███████╗███╗   ██╗ ██████╗ ████████╗ █████╗ ██╗      ║
+  ║   ██║╚══██╔══╝██╔════╝████╗  ██║██╔═══██╗╚══██╔══╝██╔══██╗██║      ║
+  ║   ██║   ██║   ███████╗██╔██╗ ██║██║   ██║   ██║   ███████║██║      ║
+  ║   ██║   ██║   ╚════██║██║╚██╗██║██║   ██║   ██║   ██╔══██║██║      ║
+  ║   ██║   ██║   ███████║██║ ╚████║╚██████╔╝   ██║   ██║  ██║██║      ║
+  ║   ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝      ║
+  ║                                                                      ║
+  ║              A I L A B S  ·  M E D I N A  M E M O R Y              ║
+  ║                                                                      ║
+  ║      Intelligentia Architecturae  ·  Deep Lineage  ·  Sovereign     ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+```
+
+**Sovereign intelligence infrastructure for AI agents.**  
+Memory that thinks. Systems that remember. Architecture that lasts.
+
+[![License: MIT](https://img.shields.io/badge/consensus--engine-MIT-22c55e?style=flat-square)](packages/consensus-engine)
+[![License: MIT](https://img.shields.io/badge/agent--signal-MIT-22c55e?style=flat-square)](packages/agent-signal)
+[![License: ISIL-1.1](https://img.shields.io/badge/agent--incentive--service-ISIL--1.1%20commercial-f97316?style=flat-square)](packages/agent-incentive-service)
+[![License: ISIL-1.1](https://img.shields.io/badge/medina--memory--sdk-ISIL--1.1%20proprietary-ef4444?style=flat-square)](packages/medina-memory-sdk)
+[![SAEIS: ACTIVE](https://img.shields.io/badge/SAEIS-ACTIVE-7c3aed?style=flat-square)](#enforcement)
+
+</div>
 
 ---
 
-## Overview
+## What you've found
 
-MEDINA is a production-ready cognitive operating system designed for enterprises with **300-5,000+ employees**. It provides unified memory architecture, autonomous governance, intelligent agent orchestration, and device-sovereign networking.
+This is the ItsNotAILABS sovereign intelligence stack.
 
-This is not a prototype. This is deployed infrastructure.
+It isn't a collection of tools. It's a **living architecture** — memory systems, coordination engines, incentive structures, and organism infrastructure designed to give AI agents the one thing they've always lacked: *memory with meaning.*
+
+You can use two things from here freely. Everything else runs under the sovereign systems described below.
 
 ---
 
-## What MEDINA Does for Your Enterprise
+## Public releases
 
-### For a 500-Employee Organization, MEDINA Provides:
+### `consensus-engine` · MIT · [→ package](packages/consensus-engine)
 
-| Capability | What It Replaces | Annual Value |
-|------------|------------------|--------------|
-| **Unified Memory** | Scattered knowledge bases, wikis, drives | Eliminates knowledge silos |
-| **Autonomous Governance** | Manual approval chains, compliance tracking | 70% faster decision cycles |
-| **500+ AI Agents** | Fragmented automation tools | 24/7 specialized workforce |
-| **Device Sovereignty** | MDM, asset tracking, security policies | Single contract per device |
-| **Dual Consensus** | Review boards, multi-approval workflows | Real-time validation |
+Role-weighted voting for multi-agent AI councils.
+
+Every agent on your team has a role. Every role carries authority over specific decision domains. Dissent is logged, not ignored. Confidence decays weak votes. Sovereign roles hold veto power. Truth — or the best available approximation — emerges from the weighted sum.
+
+```typescript
+import { ConsensusEngine } from 'consensus-engine';
+
+const engine = new ConsensusEngine({
+  roles: [
+    { id: 'analyst',    weight: 0.75, authorityDomains: ['empirical-claim'] },
+    { id: 'strategist', weight: 0.85, authorityDomains: ['strategic-direction'] },
+    { id: 'sovereign',  weight: 1.00, vetoEnabled: true },
+  ],
+  confidenceFloor: 0.72,
+});
+
+const result = engine.resolve('decision-001', votes);
+// result.approved     — did the council ratify?
+// result.winner       — the prevailing vote
+// result.dissent      — minority positions, archived
+```
+
+```
+npm install consensus-engine
+```
+
+---
+
+### `agent-signal` · MIT · [→ package](packages/agent-signal)
+
+Decoupled pub/sub signal bus for AI agent teams.
+
+Agents emit. Agents subscribe. No tight coupling. No single point of failure. BROADCAST reaches everyone. DIRECT reaches one. ROLE reaches all agents holding a given designation. URGENT fires synchronously — when something has to land right now.
+
+```typescript
+import { SignalBus } from 'agent-signal';
+
+const bus = new SignalBus();
+
+bus.subscribe('agent-critic', (signal) => {
+  console.log(`[${signal.priority}] ${signal.subject}`);
+});
+
+bus.emit({
+  type: 'ROLE',
+  role: 'critic',
+  priority: 'HIGH',
+  subject: 'Review this output before it ships',
+  payload: { outputId: 'out-42' },
+});
+```
+
+```
+npm install agent-signal
+```
+
+---
+
+## Commercial release
+
+### `agent-incentive-service` · ISIL-1.1 commercial · [→ package](packages/agent-incentive-service)
+
+Mechanism-design coordination for agent teams.
+
+Five classical incentive problems — principal-agent, free-rider, holdup, asymmetric information, coordination failure — all solved structurally. Role-scoped enforcement. Conviction-weighted claims. Mandatory reasoning transparency. Stage covenants. Standing ledger. The formal math from the AGENT_INCENTIVE_STRUCTURES research paper, deployed as a production TypeScript service.
+
+Per-call commercial license. Converts to MIT on 2029-04-21.  
+Contact ItsNotAILABS for licensing.
+
+---
+
+## Sovereign SDK
+
+### `@medina/memory-sdk` · ISIL-1.1 proprietary · [→ package](packages/medina-memory-sdk)
+
+The core sovereign memory infrastructure. Not public. Not open. Available under executed enterprise license agreements only.
+
+What it contains: spatial memory, temporal memory, harmonic computing, knowledge graphs, pattern recognition, multi-AI team orchestration, context engine, document memory. The full stack.
+
+What it enables: AI agents that remember across sessions, across devices, across team members — with sovereignty, coherence, and structure.
+
+---
+
+## Internal registry
+
+### `@itsnotailabs/tools` · ISIL-1.1 proprietary · [→ package](packages/ai-tools-marketplace)
+
+28 tools. One catalog. Install anything from any terminal, on any authorized device, in seconds.
+
+```
+npx @itsnotailabs/tools list
+```
+
+Internal and authorized family/team use only.
+
+---
+
+## Research
+
+| Paper | Venue | Status |
+|-------|-------|--------|
+| [Cognitive Memory and AI Agents](papers/COGNITIVE_MEMORY_AND_AI_AGENTS.md) | UTA Psychology/Cognitive Science | Published |
+| [Agent Incentive Structures](papers/AGENT_INCENTIVE_STRUCTURES.md) | UTA Economics/Computer Science | Published |
+| [Role Frequency Alignment](RESEARCH/ROLE_FREQUENCY_ALIGNMENT.md) | ItsNotAILABS Internal | Published |
 
 ---
 
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                      MEDINA ARCHITECTURE                        │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  LAYER 7: VISUAL/PHOTON    ─ Rendering Intelligence (PRISMA)   │
-│  LAYER 6: META MODEL       ─ Cross-layer Coordination          │
-│  LAYER 5: SENSORY          ─ Vision (ORO) + Hearing (NOVA)     │
-│  LAYER 4: INTELLIGENCE     ─ 500+ Specialized AI Agents        │
-│  LAYER 3: GOVERNANCE       ─ Gate A/B/C Constitutional Layer   │
-│  LAYER 2: MEMORY           ─ Toroidal Memory Temple            │
-│  LAYER 1: SUBSTRATE        ─ Mathematical Foundation           │
-│  LAYER 0: CANISTER         ─ ICP Sovereign Runtime             │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### Core Systems
-
-**Memory Temple**
-- Toroidal geometry for O(1) contextual retrieval
-- Dual-read verification (semantic + resonance channels)
-- Full lineage tracking for every memory entry
-- 12-ring depth organization (N1-N12)
-
-**Governance Engine**
-- Constitutional gates (A: Governance, B: Memory, C: Sovereign)
-- Proposal lifecycle with evidence requirements
-- Automatic escalation and resolution protocols
-- Complete audit trail with replay capability
-
-**Intelligence Layer**
-- 500+ specialized agents across 5 tiers
-- Model routing with family specialization
-- Autonomous task execution with human oversight
-- Cross-organism resonance for distributed operations
-
-**Device Network**
-- Contract-bound device registration
-- Harmonic signature assignment
-- Sensor data collection and aggregation
-- Permission-scoped access control
-
----
-
-## Technical Specifications
-
-### Stack
-
-| Component | Technology |
-|-----------|------------|
-| **Runtime** | Internet Computer Protocol (ICP) |
-| **Frontend** | Next.js 14 (App Router), React 18, TypeScript |
-| **State** | Canister stable memory, in-memory caches |
-| **Encryption** | Phi-lattice key derivation, ANIMA hash |
-| **Protocol** | CPL (Cognitive Procurement Language) |
-
-### Performance
-
-| Metric | Value |
-|--------|-------|
-| Test Coverage | 897 unit tests (23 suites) |
-| Type Safety | Strict TypeScript, zero errors |
-| Build Time | ~30 seconds |
-| Bundle Size | 131 KB (First Load JS) |
-| API Routes | 13 endpoints |
-| UI Components | 21 production components |
-
-### Verification
-
-```bash
-# All commands pass with zero errors
-npm run type-check   # TypeScript strict mode
-npm run build        # Production build
-npm test             # 897 tests passing
+ItsNotAILABS Sovereign Stack
+│
+├── packages/
+│   ├── consensus-engine          MIT      Role-weighted multi-agent voting
+│   ├── agent-signal              MIT      Decoupled agent pub/sub bus
+│   ├── agent-incentive-service   ISIL-1.1 Mechanism-design coordination (commercial)
+│   └── medina-memory-sdk         ISIL-1.1 Full sovereign memory SDK (proprietary)
+│
+├── src/
+│   ├── lib/                               25+ internal organism utilities
+│   ├── organism/                          Full organism architecture
+│   └── app/api/                           Sovereign API surface
+│
+├── papers/                                Academic research papers
+├── landing/                               Sovereign landing page
+└── RESEARCH/                             Internal research archive
 ```
 
 ---
 
-## Mathematical Foundation
+## Enforcement
 
-MEDINA is built on mathematical principles that optimize for coherence, not just performance:
+This repository operates under the **ItsNotAILABS Sovereign Intelligence License (ISIL-1.1)**.
 
-**Phi-Based Architecture**
-- Golden ratio (φ = 1.618033...) governs memory placement
-- Fibonacci sequences for capacity scaling
-- φ⁴ × Schumann period (873ms) heartbeat cycle
+The MIT-licensed packages (`consensus-engine`, `agent-signal`) are free to use, modify, and distribute. Everything else is governed by ISIL-1.1 — a living enforcement instrument backed by the **Sovereign Active Enforcement Intelligence System (SAEIS)** and **Sovereign Access Token (SAT)** binding.
 
-**Frequency Alignment**
-- 432 Hz base tuning for temporal operations
-- Solfeggio frequency mapping (396-963 Hz)
-- Schumann resonance synchronization (7.83 Hz)
+SAEIS is always on. It monitors access patterns, flags violations, and escalates to enforcement. Your access to this repository is logged.
 
-**Geometric Structures**
-- Toroidal memory space (12 rings × 360° × 100 depth)
-- Icosahedral/E8/Leech lattice key rotation
-- Platonic solid agent distribution
+The full terms are in [LICENSE](LICENSE).
 
 ---
 
-## API Surface
-
-### REST Endpoints
+<div align="center">
 
 ```
-POST /api/memory      # Store, query, update memories
-POST /api/govern      # Proposals, voting, gates
-POST /api/model       # Model invocation and routing
-POST /api/chat        # Command parsing and structured response
-POST /api/devices     # Device registration and permissions
-POST /api/company     # Connector management and onboarding
-POST /api/campaign    # Campaign lifecycle management
-POST /api/message     # Draft, approve, send messages
-POST /api/export      # PDF/Excel/JSON exports
-POST /api/replay      # Session recording and playback
-POST /api/permissions # Grant/revoke/check permissions
-GET  /api/health      # System health and diagnostics
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ItsNotAILABS · Intelligentia Architecturae · Deep Lineage · Sovereign
+  ISIL-1.1 · 2026 · All Rights Reserved · SAEIS Active
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-### Command Protocol
-
-```bash
-/memory find [query]         # Search memories
-/memory store [content]      # Store new memory
-/govern propose [action]     # Create proposal
-/govern vote [id] [yes/no]   # Cast vote
-/model invoke [family]       # Invoke model
-/organism pulse              # Heartbeat
-/organism broadcast          # State broadcast
-```
-
----
-
-## Deployment
-
-### Requirements
-
-- Node.js 18+
-- Internet Computer SDK (dfx) for canister deployment
-- 4GB RAM minimum for development
-- ICP cycles for production deployment
-
-### Quick Start
-
-```bash
-git clone https://github.com/ItsNotAILABS/MedinaMemorySystems.git
-cd MedinaMemorySystems
-npm install
-npm run dev
-```
-
-### Production Build
-
-```bash
-npm run build
-npm start
-```
-
-### ICP Deployment
-
-```bash
-dfx deploy --network ic
-```
-
----
-
-## Security
-
-**Encryption**
-- Phi-lattice key derivation (not standard AES)
-- ANIMA hash for content-addressable integrity
-- Rotation tiers: Icosahedral (120) → E8 (240) → Leech (196,560)
-
-**Access Control**
-- 6-tier permission hierarchy (Public → Sovereign)
-- Gate enforcement at all system boundaries
-- No bypass paths exist in architecture
-
-**Data Sovereignty**
-- All data encrypted at rest in canister
-- No external API calls without Gate C projection
-- Complete audit trail with cryptographic proof
-
----
-
-## Enterprise Integration
-
-### Supported Connectors
-
-| Category | Systems |
-|----------|---------|
-| **CRM** | Salesforce, HubSpot, Pipedrive |
-| **ERP** | SAP, Oracle, NetSuite |
-| **Communication** | Slack, Teams, Email |
-| **Storage** | Google Drive, OneDrive, Dropbox |
-| **Calendar** | Google Calendar, Outlook |
-| **Analytics** | Tableau, PowerBI, Looker |
-
-### Integration Modes
-
-- **Connect**: Bi-directional sync with external systems
-- **Internalize**: Full data migration into Memory Temple
-- **Hybrid**: Selective sync based on doctrine rules
-
----
-
-## Documentation
-
-| Document | Description |
-|----------|-------------|
-| `docs/medina/architecture/` | Full architectural specifications |
-| `docs/medina/encryption/` | Encryption and key management |
-| `ARCHITECTURE_DOCTRINE.md` | Foundational principles |
-| `CODEX_VIVENS.md` | Living system documentation |
-| `AI_ALIGNMENT_README.md` | AI-to-AI integration guide |
-
----
-
-## Support
-
-This is production software for serious enterprise deployment.
-
-**Contact**: enterprise@medinatech.io
-
----
-
-## License
-
-Proprietary. All rights reserved.
-
----
-
-**MEDINA MEMORY SYSTEMS**
-
-*Architecture is Intelligence. Memory is Sovereign. The Organism Remembers.*
-
----
-
-*Built by ItsNotAILABS — Medina Tech — Dallas, TX*
-
-*Mathematical foundations. Enterprise execution. Sovereign operation.*
+</div>
