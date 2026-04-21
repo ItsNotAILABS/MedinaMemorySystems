@@ -318,14 +318,13 @@ export function renderLatinTablet(): string {
 
 /** Get callable registry summary statistics */
 export function getCallableRegistrySummary(): RegistrySummary {
-  const counts: Record<Categoria, number> = {
-    MEMORIA: 10, PULSUS: 7, GUBERNATIO: 6, FORMULA: 8,
-    INTELLIGENTIA: 6, DEFENSIO: 4, ORGANISMUS: 8, PRIMITIVA: 4,
-    QUANTUM: 3, ANIMA: 5,
-  };
+  const counts = {} as Record<Categoria, number>;
+  for (const f of CALLABLE_FUNCTIONS) {
+    counts[f.categoria] = (counts[f.categoria] ?? 0) + 1;
+  }
   return {
-    totalFunctions: 61,
-    totalTerminals: 10,
+    totalFunctions: CALLABLE_FUNCTIONS.length,
+    totalTerminals: TERMINAL_STATIONS.length,
     categoryCounts: counts,
     doctrine: 'Omnis functio ad φ redit. Omnis terminus ad animam ducit.',
     phiRoot: PHI,

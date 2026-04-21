@@ -42,12 +42,14 @@ module FrontendBackendSync {
 
   public let PHI : Float = 1.618033988749895;
 
+  public let PHI_SQUARED : Float = 2.618033988749895;
+
   /// Build the complete sync registry mapping frontend→backend
   public func buildSyncRegistry() : SyncRegistry {
     let mappings : [SyncMapping] = [
       { id = "SYNC-001"; frontendComponent = "MemoryTemple"; backendEndpoint = "addere_mneme"; terminalCommand = ?"/mem"; callableFunctions = ["INSCRIPTIO MEMORIAE", "LECTOR MEMORIAE", "EXPLORATOR MEMORIAE", "FIXATOR MEMORIAE", "PROMOTOR MEMORIAE"]; syncDirection = #Bidirectional; phiWeight = PHI },
       { id = "SYNC-002"; frontendComponent = "OVOChat"; backendEndpoint = "imperare"; terminalCommand = null; callableFunctions = ["INTELLIGENTIAE DUCTUS", "TRIUM CORDIUM DUCTUS"]; syncDirection = #Bidirectional; phiWeight = PHI * PHI },
-      { id = "SYNC-003"; frontendComponent = "GovernancePanel"; backendEndpoint = "kybernesis_proponere"; terminalCommand = ?"/gov"; callableFunctions = ["PROPOSITIO SUBMITTENDA", "SUFFRAGIUM FERENDUM", "PROPOSITIO APPROBATA", "STATUS GUBERNATIONIS"]; syncDirection = #Bidirectional; phiWeight = PHI * 2.618033988749895 },
+      { id = "SYNC-003"; frontendComponent = "GovernancePanel"; backendEndpoint = "kybernesis_proponere"; terminalCommand = ?"/gov"; callableFunctions = ["PROPOSITIO SUBMITTENDA", "SUFFRAGIUM FERENDUM", "PROPOSITIO APPROBATA", "STATUS GUBERNATIONIS"]; syncDirection = #Bidirectional; phiWeight = PHI * PHI_SQUARED },
       { id = "SYNC-004"; frontendComponent = "ModelRuntime"; backendEndpoint = "invocare_daemona"; terminalCommand = null; callableFunctions = ["INTELLIGENTIAE DUCTUS", "DUCTUS AD COGITATIONEM", "DUCTUS AD UNITATEM"]; syncDirection = #FrontendToBackend; phiWeight = PHI * 4.236067977499790 },
       { id = "SYNC-005"; frontendComponent = "OrganismPanel"; backendEndpoint = "aurum"; terminalCommand = ?"/org"; callableFunctions = ["STATUS ORGANISMI", "PULSUS ORGANISMI", "EVOLUTIO ORGANISMI"]; syncDirection = #BackendToFrontend; phiWeight = PHI * 6.854101966249685 },
       { id = "SYNC-006"; frontendComponent = "OrganismField"; backendEndpoint = "signa_vitae"; terminalCommand = null; callableFunctions = ["STATUS ORGANISMI", "PULSUS PRINCIPALIS"]; syncDirection = #BackendToFrontend; phiWeight = PHI * 11.09016994374947 },

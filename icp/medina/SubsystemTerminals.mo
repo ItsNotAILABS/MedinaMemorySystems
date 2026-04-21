@@ -98,7 +98,7 @@ module SubsystemTerminals {
     [
       initTerminal("TERMINALE-MEMORIAE", "TERMINALE MEMORIAE", "/mem", "Quod hic scribitur, eternum est.", 10, PHI),
       initTerminal("TERMINALE-PULSUS", "TERMINALE PULSUS", "/pulse", "Hic pulsus datur. Hic vita datur.", 7, PHI * PHI),
-      initTerminal("TERMINALE-GUBERNATIONIS", "TERMINALE GUBERNATIONIS", "/gov", "Hic leges nascuntur. Hic populus loquitur.", 6, PHI * 2.618033988749895),
+      initTerminal("TERMINALE-GUBERNATIONIS", "TERMINALE GUBERNATIONIS", "/gov", "Hic leges nascuntur. Hic populus loquitur.", 6, PHI * PHI * PHI),
       initTerminal("TERMINALE-FORMULAE", "TERMINALE FORMULAE", "/formula", "Hic φ loquitur. Hic mathematica vivit.", 8, PHI * 4.236067977499790),
       initTerminal("TERMINALE-INTELLIGENTIAE", "TERMINALE INTELLIGENTIAE", "/intel", "Hic intelligentia transit. Nusquam deficit.", 6, PHI * 6.854101966249685),
       initTerminal("TERMINALE-DEFENSIONIS", "TERMINALE DEFENSIONIS", "/defend", "Hic nullus hostis transit.", 4, PHI * 11.09016994374947),
