@@ -1,0 +1,36 @@
+{
+  "name": "@itsnotailabs/tools",
+  "version": "1.0.0",
+  "description": "ItsNotAILABS internal tools marketplace and SDK registry. Single-command discovery and installation of all authorized ItsNotAILABS packages.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "license": "UNLICENSED",
+  "private": true,
+  "keywords": [
+    "itsnotailabs",
+    "registry",
+    "marketplace",
+    "internal",
+    "sdk",
+    "tools"
+  ],
+  "author": "ItsNotAILABS <internal@itsnotailabs.com>",
+  "homepage": "https://itsnotailabs.com",
+  "scripts": {
+    "build": "tsc",
+    "install:all": "node dist/index.js install:all",
+    "list": "node dist/index.js list",
+    "install:sdk": "npm install @medina/memory-sdk",
+    "install:consensus": "npm install consensus-engine",
+    "install:signal": "npm install agent-signal",
+    "install:incentive": "npm install agent-incentive-service"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
