@@ -1,0 +1,15 @@
+{
+  "name": "agent-signal",
+  "version": "1.0.0",
+  "description": "Pub/sub signal bus for AI agents and multi-agent teams. BROADCAST, DIRECT, ROLE-targeted, and URGENT signals. Agents subscribe, emit, and read inboxes.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "license": "MIT",
+  "keywords": ["ai", "agents", "pubsub", "signals", "multi-agent", "messaging", "llm", "orchestration"],
+  "author": "ItsNotAILABS",
+  "repository": { "type": "git", "url": "https://github.com/ItsNotAILABS/agent-signal" },
+  "scripts": { "build": "tsc" },
+  "devDependencies": { "typescript": "^5.0.0" },
+  "engines": { "node": ">=18.0.0" }
+}

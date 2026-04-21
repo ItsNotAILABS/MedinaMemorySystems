@@ -1,0 +1,15 @@
+{
+  "name": "team-vault",
+  "version": "1.0.0",
+  "description": "Tiered memory store for AI agent teams. Four access tiers: PUBLIC, SHARED, PRIVATE, SOVEREIGN. TTL expiry, owner-gated reads, and automatic eviction.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "license": "MIT",
+  "keywords": ["ai", "memory", "agents", "multi-agent", "storage", "tiered", "access-control", "llm"],
+  "author": "ItsNotAILABS",
+  "repository": { "type": "git", "url": "https://github.com/ItsNotAILABS/team-vault" },
+  "scripts": { "build": "tsc" },
+  "devDependencies": { "typescript": "^5.0.0" },
+  "engines": { "node": ">=18.0.0" }
+}
