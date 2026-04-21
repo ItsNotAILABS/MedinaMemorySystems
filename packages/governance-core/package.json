@@ -1,0 +1,35 @@
+{
+  "name": "governance-core",
+  "version": "1.0.0",
+  "description": "Multi-agent governance framework. Proposal lifecycle, voting periods, quorum enforcement, veto resolution, and sovereign override chains.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "SEE-LICENSE",
+  "keywords": [
+    "ai",
+    "governance",
+    "voting",
+    "proposals",
+    "agents",
+    "sovereign",
+    "itsnotailabs"
+  ],
+  "author": "ItsNotAILABS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/governance-core"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

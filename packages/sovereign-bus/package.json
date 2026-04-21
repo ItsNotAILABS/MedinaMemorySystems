@@ -1,0 +1,35 @@
+{
+  "name": "sovereign-bus",
+  "version": "1.0.0",
+  "description": "Sovereign event transport layer for ItsNotAILABS organism systems. Typed event channels, priority queues, dead-letter routing, and cross-system bus federation.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "agents",
+    "event-bus",
+    "transport",
+    "sovereign",
+    "pub-sub",
+    "messaging"
+  ],
+  "author": "ItsNotAILABS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/sovereign-bus"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

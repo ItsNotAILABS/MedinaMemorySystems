@@ -1,0 +1,38 @@
+{
+  "name": "medina-translate",
+  "version": "1.0.0",
+  "description": "Cross-ecosystem translation engine. Translates ItsNotAILABS packages and protocols to Maven/NuGet/.NET/NPM/RubyGems/Docker/JVM targets automatically.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "translation",
+    "maven",
+    "nuget",
+    "npm",
+    "docker",
+    "ruby",
+    "jvm",
+    "cross-platform",
+    "packaging"
+  ],
+  "author": "ItsNotAILABS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/medina-translate"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

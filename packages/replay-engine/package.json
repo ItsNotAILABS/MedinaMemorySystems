@@ -1,0 +1,35 @@
+{
+  "name": "replay-engine",
+  "version": "1.0.0",
+  "description": "Session replay and memory capture for AI agent systems. Records decisions, state changes, signals, and organism events for full replay and analysis.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "SEE-LICENSE",
+  "keywords": [
+    "ai",
+    "replay",
+    "memory",
+    "sessions",
+    "agents",
+    "sovereign",
+    "itsnotailabs"
+  ],
+  "author": "ItsNotAILABS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/replay-engine"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
