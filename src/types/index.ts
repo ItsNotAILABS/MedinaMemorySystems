@@ -1,4 +1,8 @@
 // TypeScript types for NOVA OVO Platform
+// 𓂀 PARALLAX ORGANISM — COMPLETE TYPE SYSTEM 𓂀
+
+// Re-export all organism types (300 models, engines, memory temple)
+export * from './organisms';
 
 // ─── Coordinates ────────────────────────────────────────────────────────────
 
@@ -245,7 +249,9 @@ export type PermissionScope =
   | 'replay:read'
   | 'permissions:manage'
   | 'organism:read'
-  | 'organism:write';
+  | 'organism:write'
+  | 'device:register'
+  | 'device:contract';
 
 export interface Permission {
   id: string;
@@ -350,6 +356,30 @@ export interface PlatformSyncState {
   beat: number;
 }
 
+// ─── Device Network ──────────────────────────────────────────────────────────
+
+export interface DeviceNode {
+  id: string;
+  deviceType: DeviceType;
+  frequencySignature: {
+    fundamental: number;
+    phiModulation: number;
+  };
+  phiPosition: { x: number; y: number };
+  trustScore: number;
+  hasContract: boolean;
+  permissions: string[];
+}
+
+export interface DeviceContract {
+  id: string;
+  deviceId: string;
+  animaHash: number;
+  blockchainAnchor: string;
+  phiGridSample: number[][];
+  createdAt: string;
+}
+
 // ─── API Responses ───────────────────────────────────────────────────────────
 
 export interface ApiResponse<T = unknown> {
@@ -362,7 +392,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings';
 
 export interface NavItem {
   id: PanelId;
@@ -371,3 +401,200 @@ export interface NavItem {
   color: string;
   badge?: number;
 }
+
+// ─── Voice System ────────────────────────────────────────────────────────────
+
+export interface VoiceState {
+  isListening: boolean;
+  isSpeaking: boolean;
+  transcript: string;
+  interimTranscript: string;
+  confidence: number;
+  waveform: number[];
+}
+
+// ─── Device Sovereignty ──────────────────────────────────────────────────────
+
+export type SensorType = 
+  | 'motion'
+  | 'orientation'
+  | 'location'
+  | 'battery'
+  | 'network'
+  | 'bluetooth'
+  | 'camera'
+  | 'microphone'
+  | 'storage';
+
+export type DeviceType = 
+  | 'phone'
+  | 'tablet'
+  | 'laptop'
+  | 'desktop'
+  | 'tv'
+  | 'wearable'
+  | 'iot'
+  | 'wifi'
+  | 'sensor'
+  | 'unknown';
+
+// ─── Export Actions ──────────────────────────────────────────────────────────
+
+export interface ExportConfig {
+  format: 'pdf' | 'excel' | 'json' | 'csv';
+  dataType: string;
+  filters?: Record<string, unknown>;
+}
+
+export interface ExportResult {
+  success: boolean;
+  filename?: string;
+  blobUrl?: string;
+  error?: string;
+}
+
+// ─── Campaign System ─────────────────────────────────────────────────────────
+
+export interface Campaign {
+  id: string;
+  name: string;
+  type: 'email' | 'social' | 'content' | 'advertising';
+  status: 'draft' | 'active' | 'paused' | 'completed';
+  createdAt: string;
+  updatedAt: string;
+  targets: CampaignTarget[];
+  content: CampaignContent[];
+  metrics?: CampaignMetrics;
+}
+
+export interface CampaignTarget {
+  id: string;
+  type: 'audience' | 'segment' | 'individual';
+  criteria: Record<string, unknown>;
+  estimatedReach: number;
+}
+
+export interface CampaignContent {
+  id: string;
+  type: 'text' | 'image' | 'video' | 'link';
+  content: string;
+  platform?: string;
+}
+
+export interface CampaignMetrics {
+  impressions: number;
+  clicks: number;
+  conversions: number;
+  engagement: number;
+}
+
+// ─── Messaging System ────────────────────────────────────────────────────────
+
+export interface MessageDraft {
+  id: string;
+  to: string[];
+  subject?: string;
+  body: string;
+  attachments: MessageAttachment[];
+  channel: 'email' | 'sms' | 'in-app' | 'push';
+  scheduledFor?: string;
+  status: 'draft' | 'pending-approval' | 'approved' | 'sent' | 'failed';
+}
+
+export interface MessageAttachment {
+  id: string;
+  name: string;
+  type: string;
+  size: number;
+  url?: string;
+}
+
+// ─── Approval Workflow ───────────────────────────────────────────────────────
+
+export interface ApprovalRequest {
+  id: string;
+  type: 'action' | 'message' | 'export' | 'campaign' | 'system';
+  title: string;
+  description: string;
+  payload: unknown;
+  requestedAt: string;
+  requestedBy: 'oro' | 'nova' | 'system';
+  status: 'pending' | 'approved' | 'rejected';
+  approvedAt?: string;
+  approvedBy?: string;
+}
+
+// ─── Terminal Types ──────────────────────────────────────────────────────────
+
+export interface TerminalLine {
+  id: string;
+  text: string;
+  type: string;
+  timestamp: string;
+}
+
+export interface TerminalSession {
+  id: string;
+  task: string;
+  startedAt: string;
+  thinkingLines: TerminalLine[];
+  executionLines: TerminalLine[];
+  pendingApprovals: string[];
+  status: 'active' | 'paused' | 'completed';
+}
+
+// ─── Frontend Technology Intelligence Models (F-MODEL) ──────────────────────
+
+export type FModelCategory =
+  | 'markup'
+  | 'styling'
+  | 'framework'
+  | 'state-management'
+  | 'build-tools'
+  | 'testing'
+  | 'graphics'
+  | 'communication'
+  | 'storage'
+  | 'web-api'
+  | 'web3';
+
+export interface FrontendIntelligenceModel {
+  id: string;                    // F-MODEL-001..F-MODEL-115
+  technology: string;            // HTML5, React, etc.
+  naturalLanguage: string;       // What it "speaks"
+  intelligenceType: string;      // Document Structure Intelligence, etc.
+  category: FModelCategory;
+  ringAffinity: number[];        // [N1..N12]
+  integrationCoefficient: number;// φ-based coefficient
+  status: 'active' | 'idle' | 'loading' | 'offline';
+}
+
+export interface FModelRegistry {
+  models: FrontendIntelligenceModel[];
+  totalCount: number;
+  categories: Record<FModelCategory, number>;
+  ringDistribution: Record<number, string[]>; // Ring -> Model IDs
+}
+
+// F-MODEL Categories with counts
+export const F_MODEL_CATEGORIES: Record<FModelCategory, { count: number; range: string }> = {
+  'markup': { count: 8, range: 'F-MODEL-001..F-MODEL-008' },
+  'styling': { count: 15, range: 'F-MODEL-009..F-MODEL-023' },
+  'framework': { count: 15, range: 'F-MODEL-024..F-MODEL-038' },
+  'state-management': { count: 12, range: 'F-MODEL-039..F-MODEL-050' },
+  'build-tools': { count: 10, range: 'F-MODEL-051..F-MODEL-060' },
+  'testing': { count: 8, range: 'F-MODEL-061..F-MODEL-068' },
+  'graphics': { count: 12, range: 'F-MODEL-069..F-MODEL-080' },
+  'communication': { count: 9, range: 'F-MODEL-081..F-MODEL-089' },
+  'storage': { count: 5, range: 'F-MODEL-090..F-MODEL-094' },
+  'web-api': { count: 12, range: 'F-MODEL-095..F-MODEL-106' },
+  'web3': { count: 9, range: 'F-MODEL-107..F-MODEL-115' },
+};
+
+// ICP-specific F-MODELs (Sovereign Connection)
+export const ICP_INTELLIGENCE_MODELS = [
+  'F-MODEL-111', // @dfinity/agent - ICP INTELLIGENCE
+  'F-MODEL-112', // @dfinity/auth-client - ICP AUTH INTELLIGENCE
+  'F-MODEL-113', // @dfinity/identity - ICP IDENTITY INTELLIGENCE
+  'F-MODEL-114', // @dfinity/candid - ICP INTERFACE INTELLIGENCE
+] as const;

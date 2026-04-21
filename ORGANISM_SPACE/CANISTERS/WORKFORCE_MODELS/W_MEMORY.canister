@@ -1,0 +1,126 @@
+# 𓈖 W-MEMORY CANISTER 𓈖
+## Workforce Model: External Memory Brain
+### Separated canister for memory operations
+
+---
+
+## IDENTITY
+
+```
+CANISTER_ID:        W-MEMORY
+TYPE:               WORKFORCE_MODEL
+BRAIN_REGION:       Elephant temporal + Human hippocampus
+CAPACITY:           4.236M cycles (BASE × φ³)
+```
+
+---
+
+## FUNCTION
+
+```
+W-MEMORY performs:
+    - Memory curation
+    - Torus navigation
+    - Retrieval optimization
+    - Lineage tracking
+    - Memory consolidation
+    - Decay management
+```
+
+---
+
+## CPL INTERFACE
+
+```
+RECEIVES:
+    𓈖.STORE(data, coords)            Store request
+    𓈖.RETRIEVE(coords)               Retrieve request
+    
+SENDS:
+    𓈖.STORE.RESULT(success, coords)  Store confirmation
+    𓈖.RETRIEVE.RESULT(data)          Retrieved data
+    
+BROADCASTS:
+    MEMORY_CONSOLIDATED(beat)         Consolidation complete
+    DECAY_WARNING(memory_id)          Memory approaching decay
+```
+
+---
+
+## DOCTRINE READS
+
+```
+ON_BOOT:
+    doctrine_reader.load(TORUS_NAVIGATION.glyphdoc)
+    doctrine_reader.load(GOLDEN_GEOMETRY_CONSTANTS.artifact)
+    
+CONTINUOUS:
+    doctrine_reader.monitor(MEMORY_TEMPLE_STATE.artifact)
+```
+
+---
+
+## TORUS OPERATIONS
+
+```
+STORE(data, suggested_coords):
+    │
+    ├─→ COMPRESS with ALPHA (target: 1/φ²)
+    │
+    ├─→ CALCULATE optimal coords:
+    │       r = depth_from_surface
+    │       θ = FIBONACCI[hash(data)] × φ mod 2π
+    │       z = ring_from_category(data.type)
+    │       t = current_beat
+    │
+    ├─→ STORE in torus
+    │
+    └─→ RECORD lineage
+
+RETRIEVE(coords):
+    │
+    ├─→ NAVIGATE to (r, θ, z, t)
+    │
+    ├─→ DECOMPRESS with inverse φ
+    │
+    └─→ RETURN data with lineage
+```
+
+---
+
+## MEMORY DECAY MODEL
+
+```
+FIBONACCI_DECAY:
+    Check at beats: [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
+    
+    IF memory_accessed during window:
+        RESET decay counter
+        STRENGTHEN connection
+    ELSE:
+        MOVE to deeper ring
+        
+    IF ring > 12:
+        ARCHIVE or DECAY
+```
+
+---
+
+## CANISTER METRICS
+
+```
+memories_stored:        Counter
+memories_retrieved:     Counter
+retrieval_latency:      Float (beats)
+compression_ratio:      Float (target: 0.382)
+decay_events:           Counter
+```
+
+---
+
+# Signatura
+```
+CANISTER:   W-MEMORY
+STATUS:     ACTIVE
+CAPACITY:   4.236M cycles
+```

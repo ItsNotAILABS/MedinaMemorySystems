@@ -1,0 +1,144 @@
+# 𓇳 W-PROJECTION CANISTER 𓇳
+## Workforce Model: External Projection Brain
+### Separated canister for future modeling
+
+---
+
+## IDENTITY
+
+```
+CANISTER_ID:        W-PROJECTION
+TYPE:               WORKFORCE_MODEL
+BRAIN_REGION:       Crow future-planning + Human simulation
+CAPACITY:           1.618M cycles (BASE × φ¹)
+```
+
+---
+
+## FUNCTION
+
+```
+W-PROJECTION performs:
+    - Future scenario modeling
+    - Outcome prediction
+    - What-if analysis
+    - Trend extrapolation
+    - Boundary projection (safe external outputs)
+    - Temporal navigation
+```
+
+---
+
+## CPL INTERFACE
+
+```
+RECEIVES:
+    STRATEGY_PROPOSED(strategy)       From W-STRATEGIST
+    𓇯.PATTERN.RESULT(patterns)       Historical patterns
+    
+SENDS:
+    𓇯.PATTERN(historical_data)       Request pattern extraction
+    𓈖.RETRIEVE(temporal_range)       Request historical memory
+    
+BROADCASTS:
+    PROJECTION_RESULT(futures)        Projected scenarios
+    TREND_ALERT(trend)                Significant trend detected
+```
+
+---
+
+## DOCTRINE READS
+
+```
+ON_BOOT:
+    doctrine_reader.load(TEMPORAL_NAVIGATION.glyphdoc)
+    doctrine_reader.load(FIBONACCI_SEQUENCE.artifact)
+    
+CONTINUOUS:
+    doctrine_reader.monitor(CURRENT_STATE.artifact)
+```
+
+---
+
+## PROJECTION MODEL
+
+```
+φ-TEMPORAL PROJECTION:
+
+    HORIZON_1 = current + φ¹ beats     (1.6 beats ahead)
+    HORIZON_2 = current + φ² beats     (2.6 beats ahead)
+    HORIZON_3 = current + φ³ beats     (4.2 beats ahead)
+    HORIZON_4 = current + φ⁴ beats     (6.9 beats ahead)
+    HORIZON_5 = current + φ⁵ beats     (11.1 beats ahead)
+
+CONFIDENCE DECAY:
+    confidence(horizon_n) = 1 / φⁿ
+    
+    HORIZON_1: 61.8% confidence
+    HORIZON_2: 38.2% confidence
+    HORIZON_3: 23.6% confidence
+    HORIZON_4: 14.6% confidence
+    HORIZON_5: 9.0% confidence
+```
+
+---
+
+## SCENARIO GENERATION
+
+```
+GENERATE_SCENARIOS(current_state, horizon):
+    │
+    ├─→ EXTRACT patterns from history
+    │
+    ├─→ IDENTIFY trends (rising, falling, cyclical)
+    │
+    ├─→ APPLY φ-scaling to trends
+    │
+    ├─→ GENERATE 5 scenarios:
+    │       - Optimistic (trend × φ)
+    │       - Positive (trend × 1)
+    │       - Neutral (trend × φ⁻¹)
+    │       - Cautious (trend × φ⁻²)
+    │       - Pessimistic (trend × -1)
+    │
+    └─→ WEIGHT by probability (Fibonacci distribution)
+```
+
+---
+
+## BOUNDARY PROJECTION (Safe External Outputs)
+
+```
+BEFORE external_output:
+    │
+    ├─→ CHECK output against doctrine
+    │
+    ├─→ VALIDATE no internal secrets exposed
+    │
+    ├─→ TRANSLATE to safe format (DELTA)
+    │
+    └─→ PROJECT through sandbox layer
+    
+NO DIRECT INTERNAL → EXTERNAL TRANSMISSION
+ALL outputs through W-PROJECTION boundary check
+```
+
+---
+
+## CANISTER METRICS
+
+```
+projections_generated:  Counter
+accuracy_score:         Float (0.0 - 1.0)
+avg_horizon:            Float (beats)
+boundary_violations:    Counter (should be 0)
+```
+
+---
+
+# Signatura
+```
+CANISTER:   W-PROJECTION
+STATUS:     ACTIVE
+CAPACITY:   1.618M cycles
+```

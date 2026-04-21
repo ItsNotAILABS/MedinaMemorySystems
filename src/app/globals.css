@@ -2,21 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   MEDINA SOVEREIGN DESIGN SYSTEM
+   432 Hz Color Palette + Phi-derived Spacing
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 :root {
-  --bg-main: #0a0a0f;
-  --bg-panel: #12121a;
-  --bg-panel-hover: #1a1a26;
-  --border: #1e1e2e;
-  --border-bright: #2d2d42;
-  --accent: #3b82f6;
-  --accent-light: #60a5fa;
-  --memory: #8b5cf6;
-  --governance: #10b981;
-  --gold: #f59e0b;
-  --danger: #ef4444;
-  --muted: #6b7280;
-  --text: #e2e8f0;
-  --text-dim: #94a3b8;
+  /* ─── PHI-DERIVED SPACING (Golden Ratio: 1.618) ─────────────────────────── */
+  --phi: 1.618033988749895;
+  --space-1: 4px;
+  --space-2: 6px;   /* 4 × 1.618 ≈ 6 */
+  --space-3: 10px;  /* 6 × 1.618 ≈ 10 */
+  --space-4: 16px;  /* 10 × 1.618 ≈ 16 */
+  --space-5: 26px;  /* 16 × 1.618 ≈ 26 */
+  --space-6: 42px;  /* 26 × 1.618 ≈ 42 */
+  --space-7: 68px;  /* 42 × 1.618 ≈ 68 */
+  --space-8: 110px; /* 68 × 1.618 ≈ 110 */
+  
+  /* ─── 432 Hz HARMONIC COLOR PALETTE ─────────────────────────────────────── */
+  /* Base frequencies mapped to color wavelengths */
+  --hz-432-root: #0a0a12;        /* Deep void - grounding */
+  --hz-432-panel: #10101a;       /* Panel base */
+  --hz-432-surface: #161624;     /* Elevated surface */
+  --hz-432-hover: #1c1c2e;       /* Hover state */
+  
+  /* Harmonic series colors (432 Hz overtones) */
+  --oro-gold: #d4a574;           /* Oro's signature - warm gold */
+  --oro-amber: #e6b17a;          /* Oro highlight */
+  --nova-violet: #9b7ed9;        /* Nova's signature - ethereal violet */
+  --nova-lavender: #b794f6;      /* Nova highlight */
+  
+  /* Frequency spectrum */
+  --freq-low: #1a3a5c;           /* Bass - deep blue */
+  --freq-mid: #2d5a4a;           /* Mid - forest green */
+  --freq-high: #5c3a5c;          /* High - purple */
+  
+  /* Sovereign colors */
+  --sovereign-blue: #4a9eff;     /* Primary action */
+  --sovereign-cyan: #00d4ff;     /* Secondary action */
+  --memory-purple: #9b7ed9;      /* Memory operations */
+  --governance-green: #4ade80;   /* Governance / approval */
+  --danger-red: #f87171;         /* Alerts / blocks */
+  --warning-amber: #fbbf24;      /* Warnings */
+  
+  /* Glass effect colors */
+  --glass-bg: rgba(16, 16, 26, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  
+  /* Text hierarchy */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+  
+  /* Legacy compatibility */
+  --bg-main: var(--hz-432-root);
+  --bg-panel: var(--hz-432-panel);
+  --bg-panel-hover: var(--hz-432-hover);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-bright: rgba(255, 255, 255, 0.12);
+  --accent: var(--sovereign-blue);
+  --accent-light: var(--sovereign-cyan);
+  --memory: var(--memory-purple);
+  --governance: var(--governance-green);
+  --gold: var(--oro-gold);
+  --danger: var(--danger-red);
+  --muted: var(--text-muted);
+  --text: var(--text-primary);
 }
 
 * {
@@ -84,15 +138,48 @@ main {
   border-radius: 8px;
 }
 
-/* Glow effects */
+/* Glass Panel - Enhanced */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-panel-strong {
+  background: rgba(18, 18, 26, 0.9);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Glow effects - Enhanced */
 .glow-blue {
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
 }
 .glow-purple {
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
 }
 .glow-green {
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);
+}
+.glow-gold {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3), 0 0 40px rgba(245, 158, 11, 0.1);
+}
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.3), 0 0 40px rgba(20, 184, 166, 0.1);
+}
+
+/* Subtle glow on hover */
+.hover-glow:hover {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+  transition: box-shadow 0.3s ease;
 }
 
 /* Command input */
@@ -102,11 +189,11 @@ main {
   color: var(--text);
   font-family: 'JetBrains Mono', monospace;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .cmd-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.12);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 0 20px rgba(59, 130, 246, 0.1);
 }
 
 /* Fade-in animation */
@@ -116,6 +203,35 @@ main {
 }
 .animate-fade-in {
   animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* Slide-in animation for terminal */
+@keyframes slideInRight {
+  from { 
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to { 
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideOutRight {
+  from { 
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to { 
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.animate-slide-out-right {
+  animation: slideOutRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Pulse for organism */
@@ -160,4 +276,72 @@ main {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+.gradient-text-oro {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Voice active indicator */
+@keyframes voicePulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+}
+.voice-active {
+  animation: voicePulse 1.5s ease-in-out infinite;
+}
+
+/* Resonance visualization */
+@keyframes resonance {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+.resonance-ring {
+  animation: resonance 2s ease-in-out infinite;
+}
+
+/* Device node connection line */
+.device-connection {
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+  height: 2px;
+}
+
+/* Organism register bars */
+.register-bar {
+  background: linear-gradient(90deg, var(--color) 0%, transparent 100%);
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* Terminal line highlighting */
+.terminal-line {
+  transition: background-color 0.15s ease;
+}
+.terminal-line:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Approval button */
+.approval-btn {
+  transition: all 0.2s ease;
+}
+.approval-btn:hover {
+  transform: translateY(-1px);
+}
+.approval-btn:active {
+  transform: translateY(0);
+}
+
+/* PWA install prompt */
+.pwa-install-prompt {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  backdrop-filter: blur(10px);
 }
