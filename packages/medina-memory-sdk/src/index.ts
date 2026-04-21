@@ -1,14 +1,16 @@
 /**
  * @medina/memory-sdk
  * ─────────────────────────────────────────────────────────────────────────────
- * Enterprise memory infrastructure SDK by Medina Memory Systems.
+ * PROPRIETARY — ALL RIGHTS RESERVED
+ * Copyright (c) 2026 ItsNotAILABS. See LICENSE for full terms.
  *
- * WHAT YOU SEE:
- *   A clean, professional enterprise SDK for 10 memory and intelligence products.
+ * This software and its architecture are the exclusive trade secrets of
+ * ItsNotAILABS. Unauthorized use, reproduction, distribution, or disclosure
+ * of any portion of this codebase is strictly prohibited and will be
+ * prosecuted to the maximum extent permitted by law.
  *
- * WHAT POWERS IT:
- *   A sovereign computing organism. But that's not your concern.
- *
+ * INTERNAL USE ONLY. Not licensed for public distribution.
+ * Intelligentia Architecturae — Deep Lineage. Sovereign Systems.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 

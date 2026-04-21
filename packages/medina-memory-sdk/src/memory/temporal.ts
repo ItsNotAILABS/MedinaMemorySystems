@@ -1,3 +1,5 @@
+// PROPRIETARY — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved. See LICENSE.
+// Unauthorized use, reproduction, or distribution strictly prohibited.
 /**
  * Sub-SDK 7: Temporal Memory
  * Memory that understands time — decay, recency, temporal context.

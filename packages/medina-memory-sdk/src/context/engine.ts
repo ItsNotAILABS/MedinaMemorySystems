@@ -1,3 +1,5 @@
+// PROPRIETARY — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved. See LICENSE.
+// Unauthorized use, reproduction, or distribution strictly prohibited.
 /**
  * Sub-SDK 5: Context Engine
  * Build applications that truly understand context.

@@ -1,3 +1,5 @@
+// PROPRIETARY — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved. See LICENSE.
+// Unauthorized use, reproduction, or distribution strictly prohibited.
 /**
  * Sub-SDK 1: Spatial Memory
  * Memory entries located in spherical coordinate space.

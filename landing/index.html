@@ -708,7 +708,7 @@
   <div class="hero-glow"></div>
   <div class="container">
     <div style="position:relative; max-width: 660px;">
-      <div class="hero-tag">ItsNotAILABS — v1.1.0</div>
+      <div class="hero-tag">ItsNotAILABS — v1.0.0</div>
       <h1>
         Sovereign<br/>
         <em>Memory Systems</em><br/>
@@ -811,15 +811,15 @@
     <div class="release-grid reveal">
       <div class="release-card">
         <div class="card-tag"><span class="dot"></span> v1.0.0 — Stable</div>
-        <h3>Memory Core</h3>
-        <p>The foundational memory SDK. Spatial memory, document intelligence, knowledge graphs, semantic search, temporal memory, harmonic computing. Ten sub-SDKs. One coherent system.</p>
-        <div class="card-meta">10 sub-SDKs &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; TypeScript</div>
+        <h3>Multi-Agent Teams</h3>
+        <p>Sovereign multi-AI team engine. Ten roles, frequency-weighted consensus, tiered memory, pub/sub signal bus, structured debate, sequential pipelines, full orchestration. Production-ready TypeScript.</p>
+        <div class="card-meta">1,302 lines &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; TypeScript</div>
       </div>
       <div class="release-card">
-        <div class="card-tag"><span class="dot"></span> v1.1.0 — Latest</div>
-        <h3>Multi-Agent Teams</h3>
-        <p>Sovereign multi-AI team engine. Ten roles, frequency-weighted consensus, tiered memory vault, pub/sub signal bus, structured debate, sequential pipelines, full orchestration.</p>
-        <div class="card-meta">1,302 lines &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; TypeScript</div>
+        <div class="card-tag"><span class="dot"></span> Packages — Standalone</div>
+        <h3>MIT Packages</h3>
+        <p>Two extracted, standalone packages from the multi-agent engine. Drop them into any project, any stack. No lock-in. <code>consensus-engine</code> + <code>agent-signal</code>. Use one or both.</p>
+        <div class="card-meta">2 packages &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; Zero dependencies</div>
       </div>
     </div>
   </div>
@@ -832,43 +832,22 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">MIT Packages</div>
-      <h2>Standalone. Drop-in. Free.</h2>
-      <p class="section-intro">Each package is extracted from the core system and released independently. Use one. Use all. No lock-in.</p>
+      <h2>Two packages. Both drop-in.</h2>
+      <p class="section-intro">Extracted from the multi-agent team engine. Use one or both. No dependencies on anything proprietary. No lock-in.</p>
     </div>
 
-    <div class="pkg-list reveal">
-      <a class="pkg-row" href="packages/medina-memory-sdk" target="_blank">
-        <div>
-          <div class="pkg-name">@medina/memory-sdk</div>
-          <div class="pkg-desc">Full sovereign memory + multi-agent team engine. The complete system.</div>
-        </div>
-        <span class="pkg-badge badge-new">FLAGSHIP</span>
-      </a>
+      <div class="pkg-list reveal">
       <a class="pkg-row" href="packages/consensus-engine" target="_blank">
         <div>
           <div class="pkg-name">consensus-engine</div>
-          <div class="pkg-desc">Weighted role-based voting for multi-agent systems. Veto, confidence floors, dissent tracking.</div>
+          <div class="pkg-desc">Weighted role-based voting for multi-agent systems. Veto, confidence floors, dissent tracking. Typed authority domains per decision type.</div>
         </div>
-        <span class="pkg-badge badge-mit">MIT</span>
+        <span class="pkg-badge badge-new">NEW</span>
       </a>
       <a class="pkg-row" href="packages/agent-signal" target="_blank">
         <div>
           <div class="pkg-name">agent-signal</div>
-          <div class="pkg-desc">Pub/sub signal bus for AI agents. BROADCAST, DIRECT, ROLE, and URGENT signal types.</div>
-        </div>
-        <span class="pkg-badge badge-mit">MIT</span>
-      </a>
-      <a class="pkg-row" href="packages/team-vault" target="_blank">
-        <div>
-          <div class="pkg-name">team-vault</div>
-          <div class="pkg-desc">Tiered memory store. PUBLIC → SHARED → PRIVATE → SOVEREIGN. TTL expiry, scoped accessors.</div>
-        </div>
-        <span class="pkg-badge badge-mit">MIT</span>
-      </a>
-      <a class="pkg-row" href="packages/ai-tools-marketplace" target="_blank">
-        <div>
-          <div class="pkg-name">ai-tools-marketplace</div>
-          <div class="pkg-desc">Callable tools and agents marketplace. Register, discover, invoke, and compose AI workflows.</div>
+          <div class="pkg-desc">Pub/sub signal bus for AI agents. BROADCAST, DIRECT, ROLE, and URGENT signal types. Decoupled coordination for any agent team.</div>
         </div>
         <span class="pkg-badge badge-mit">MIT</span>
       </a>
@@ -889,23 +868,21 @@
         <span style="font-family:var(--mono); font-size:0.7rem; color:var(--muted); margin-left:0.5rem;">quick-start.ts</span>
       </div>
       <div class="terminal-body">
-        <div><span class="t-muted">// Install</span></div>
-        <div><span class="t-cmd">npm install</span> consensus-engine agent-signal team-vault</div>
+        <div><span class="t-muted">// Install the two MIT packages</span></div>
+        <div><span class="t-cmd">npm install</span> consensus-engine agent-signal</div>
         <br/>
-        <div><span class="t-muted">// Or use the full SDK</span></div>
-        <div><span class="t-cmd">npm install</span> @medina/memory-sdk</div>
+        <div><span class="t-muted">// Build a consensus-driven agent team</span></div>
+        <div><span class="t-cmd">import</span> <span class="t-out">{ ConsensusEngine }</span> <span class="t-cmd">from</span> <span class="t-out">'consensus-engine'</span>;</div>
+        <div><span class="t-cmd">import</span> <span class="t-out">{ SignalBus }</span> <span class="t-cmd">from</span> <span class="t-out">'agent-signal'</span>;</div>
         <br/>
-        <div><span class="t-muted">// Build a team</span></div>
-        <div><span class="t-cmd">import</span> <span class="t-out">{ createResearchTeam }</span> <span class="t-cmd">from</span> <span class="t-out">'@medina/memory-sdk'</span>;</div>
+        <div><span class="t-dim">const</span> consensus = <span class="t-out">new ConsensusEngine</span>({ roles, confidenceFloor: <span class="t-cmd">0.72</span> });</div>
+        <div><span class="t-dim">const</span> bus = <span class="t-out">new SignalBus</span>();</div>
         <br/>
-        <div><span class="t-dim">const</span> team = <span class="t-out">createResearchTeam</span>(<span class="t-cmd">'r-001'</span>, <span class="t-cmd">'Market Analysis'</span>);</div>
-        <div><span class="t-dim">const</span> session = team.<span class="t-out">openSession</span>(<span class="t-cmd">'Analyze Q3 position'</span>);</div>
+        <div><span class="t-muted">// Each agent submits output as your AI calls return</span></div>
+        <div>bus.<span class="t-out">emit</span>({ type: <span class="t-cmd">'BROADCAST'</span>, payload: result, from: <span class="t-cmd">'analyst'</span> });</div>
+        <div><span class="t-dim">const</span> decision = consensus.<span class="t-out">resolve</span>(<span class="t-cmd">'task-001'</span>, outputs);</div>
         <br/>
-        <div><span class="t-muted">// Agents submit outputs as your AI calls return</span></div>
-        <div>team.<span class="t-out">submitOutput</span>(<span class="t-cmd">'analyst'</span>, session.id, <span class="t-cmd">'task-001'</span>, result, reasoning, <span class="t-cmd">0.88</span>);</div>
-        <br/>
-        <div><span class="t-dim">const</span> consensus = team.consensus.<span class="t-out">resolve</span>(<span class="t-cmd">'task-001'</span>, team.<span class="t-out">getOutputs</span>(session.id));</div>
-        <div><span class="t-ok">// ✓ consensus.approved — consensus.winner — consensus.dissent</span></div>
+        <div><span class="t-ok">// ✓ decision.approved — decision.winner — decision.dissent</span></div>
       </div>
     </div>
   </div>
@@ -918,25 +895,37 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">Public Papers</div>
-      <h2>Research, released free.</h2>
-      <p class="section-intro">We write what we build. Plain language. No paywalls. Take it, cite it, build on it.</p>
+      <h2>Five papers. MIT. No paywalls.</h2>
+      <p class="section-intro">We write what we build. Two academic papers (cognitive science + economics). Three practical guides. Cite them, build on them, send them to your department.</p>
     </div>
 
     <div class="papers-grid reveal">
-      <a class="paper-card" href="papers/WHY_AI_TEAMS_BEAT_SINGLE_MODELS.md" target="_blank">
+      <a class="paper-card" href="papers/COGNITIVE_MEMORY_AND_AI_AGENTS.md" target="_blank">
         <div class="paper-number">01 / MIT</div>
+        <h3>Cognitive Memory Architecture in AI Agents</h3>
+        <p>Episodic, semantic, procedural, working memory mapped to AI design. Forgetting curves, tiered access control, transactive team memory. Three testable hypotheses for UTA cognitive science programs.</p>
+        <span class="paper-read">Read</span>
+      </a>
+      <a class="paper-card" href="papers/AGENT_INCENTIVE_STRUCTURES.md" target="_blank">
+        <div class="paper-number">02 / MIT</div>
+        <h3>Incentive Structures for Multi-Agent AI Systems</h3>
+        <p>Principal-agent problem, free-rider problem, holdup problem — applied to AI agent teams. Role-weighted consensus with typed authority. Token economics and reputation staking for agent networks.</p>
+        <span class="paper-read">Read</span>
+      </a>
+      <a class="paper-card" href="papers/WHY_AI_TEAMS_BEAT_SINGLE_MODELS.md" target="_blank">
+        <div class="paper-number">03 / MIT</div>
         <h3>Why AI Teams Beat Single Models</h3>
         <p>Why self-critique fails, what roles actually fix it, five patterns that make teams work, and when to use a team vs. a single model.</p>
         <span class="paper-read">Read</span>
       </a>
       <a class="paper-card" href="papers/MEMORY_IN_AI_SYSTEMS.md" target="_blank">
-        <div class="paper-number">02 / MIT</div>
+        <div class="paper-number">04 / MIT</div>
         <h3>Memory in AI Systems</h3>
         <p>The four types of AI agent memory. Tiered access control. TTL expiry. The most common memory mistake and how to avoid it.</p>
         <span class="paper-read">Read</span>
       </a>
       <a class="paper-card" href="papers/HOW_TO_BUILD_AI_WORKFLOWS_THAT_DONT_BREAK.md" target="_blank">
-        <div class="paper-number">03 / MIT</div>
+        <div class="paper-number">05 / MIT</div>
         <h3>How to Build AI Workflows That Don't Break</h3>
         <p>Output gates, confidence tracking, fault isolation, visible disagreement, audit trails. A checklist before you ship.</p>
         <span class="paper-read">Read</span>
@@ -1065,7 +1054,7 @@
       <li><a href="packages/medina-memory-sdk" target="_blank">SDK</a></li>
       <li><a href="RESEARCH/README.md" target="_blank">Research</a></li>
     </ul>
-    <div class="footer-copy">© 2026 ItsNotAILABS · MIT License · Medina Memory Systems v1.1.0</div>
+    <div class="footer-copy">© 2026 ItsNotAILABS · MIT License (packages + papers) · Proprietary (core systems)</div>
   </div>
 </footer>
 

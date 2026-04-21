@@ -1,3 +1,19 @@
+<!--
+RESTRICTED RESEARCH DOCUMENT
+Copyright (c) 2026 ItsNotAILABS. All Rights Reserved.
+
+Licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
+International (CC BY-NC-ND 4.0).
+
+You may share this document with attribution.
+You may NOT use it commercially.
+You may NOT create derivative works or adaptations.
+You may NOT use it to train, fine-tune, or distill any AI or ML model.
+
+Full license: https://creativecommons.org/licenses/by-nc-nd/4.0/
+ItsNotAILABS — Intelligentia Architecturae
+-->
+
 # Signal-Driven Coordination in Multi-Agent AI Teams
 
 **Pub/Sub Communication Patterns for Decoupled Agent Architectures**
