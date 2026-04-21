@@ -2,7 +2,7 @@
 
 > Mechanism-design incentive structures for multi-agent AI coordination.
 
-**Commercial License — BUSL-1.1 — ItsNotAILABS**
+**Commercial License — ISIL-1.0 — ItsNotAILABS**
 
 Production use requires a commercial license. See LICENSE for terms.
 Contact ItsNotAILABS via authenticated channels.
@@ -144,18 +144,23 @@ Consensus winner: `argmax W_i(d)`, subject to `W_winner ≥ τ` (confidence floo
 ## API
 
 ```typescript
-// Core service
-new IncentiveService(options)
-service.resolve(decisionId, decisionType, outputs)     → ConsensusResult
-service.enforceStageGate(stage, output)                → { passed, violations }
-service.updateReputation(roleId, agentId, accurate)    → ReputationRecord
-service.getReputation(roleId, agentId)                 → ReputationRecord | undefined
-service.getAllReputations()                             → ReputationRecord[]
-service.getAuditLog()                                  → AuditEntry[]
+// Core coordinator
+new SovereignCoordinator(options)
+coordinator.resolve(sessionId, domain, claims)        → ResolutionRecord
+coordinator.enforceCovenant(stageName, claim)         → { passed, violations }
+coordinator.updateStanding(roleToken, instanceId, v)  → StandingRecord
+coordinator.lookupStanding(roleToken, instanceId)     → StandingRecord | undefined
+coordinator.allStandings()                            → StandingRecord[]
+coordinator.sovereignAuditLog()                       → AuditEntry[]
 
 // Factory
-createStandardService(overrides?)                      → IncentiveService
-STANDARD_FIVE_ROLES                                    → AgentRole[]
+createCouncilCoordinator(overrides?)                  → SovereignCoordinator
+SOVEREIGN_COUNCIL_FIVE                                → SovereignRole[]
+
+// Legacy compatibility aliases (deprecated, still work)
+IncentiveService = SovereignCoordinator
+createStandardService = createCouncilCoordinator
+STANDARD_FIVE_ROLES = SOVEREIGN_COUNCIL_FIVE
 ```
 
 ---
@@ -172,4 +177,4 @@ ItsNotAILABS, 2026
 
 *Commercial license required for production use.*
 *Contact ItsNotAILABS via authenticated channels.*
-*BUSL-1.1 → converts to MIT on 2029-04-21.*
+*ISIL-1.0 commercial → authorized MIT use commences 2029-04-21.*

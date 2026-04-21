@@ -1,24 +1,220 @@
-PROPRIETARY SOFTWARE LICENSE
-ItsNotAILABS — Internal Tools Marketplace & Registry
+ITSNOTAILABS SOVEREIGN INTELLIGENCE LICENSE
+Version 1.0.0
 
-Copyright (c) 2026 ItsNotAILABS. All Rights Reserved.
+Instrument Reference:  ISIL-1.0
+Sovereign Authority:   ItsNotAILABS
+Effective Date:        2026-04-21
+Jurisdiction:          State of Texas, United States of America
 
-This software and registry are the exclusive proprietary property of
-ItsNotAILABS. Access is granted only to authorized personnel and
-entities holding explicit written permission from ItsNotAILABS.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-AUTHORIZED USE: Internal use by ItsNotAILABS, its founders, family
-members, and authorized employees for the purpose of discovering,
-installing, and deploying ItsNotAILABS tools on authorized systems.
+ARTICLE I — DECLARATION OF SOVEREIGN ORIGIN
 
-STRICTLY PROHIBITED:
-  - Redistribution in any form
-  - Public disclosure of registry contents
-  - Use by unauthorized parties or organizations
-  - Reverse engineering or reproduction
+This instrument governs the Work identified on the cover page.
 
-This registry constitutes confidential business information and trade
-secrets of ItsNotAILABS.
+"The Work" means: all source code, compiled artifacts, documentation,
+architecture definitions, algorithmic structures, design abstractions,
+encoded intelligence patterns, commentary, specifications, and all other
+expressions of creative or technical authorship contained in or derived
+from the associated software, documentation, or repository.
 
-ItsNotAILABS
-Intelligentia Architecturae — Deep Lineage. Sovereign Systems.
+The Work is the sovereign intellectual property of ItsNotAILABS ("the
+Sovereign"). No portion of this License has been adapted, derived, or
+reproduced from any third-party license framework. This instrument is an
+original creation of the Sovereign and stands entirely on its own authority.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE II — SOVEREIGN RESERVATION OF ALL RIGHTS
+
+The Sovereign reserves all rights in and to the Work without exception.
+
+No license, permission, authorization, consent, right, or entitlement of
+any kind is granted, conveyed, implied, or inferred by:
+
+  (a) the existence of this file or any other file in this repository;
+  (b) the publication, availability, or accessibility of this repository
+      on any platform, including without limitation GitHub;
+  (c) any prior communication, demonstration, or disclosure;
+  (d) any course of dealing, custom, or trade usage;
+  (e) any other circumstance whatsoever;
+
+— except as explicitly and specifically set forth in a separate written
+authorization instrument bearing the authenticated signature of an
+authorized representative of the Sovereign.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE III — ABSOLUTE PROHIBITIONS
+
+The following acts are absolutely and unconditionally prohibited with
+respect to the Work, in whole or in part, without explicit written
+authorization from the Sovereign:
+
+  § 3.1  REPRODUCTION
+         Copying, reproducing, duplicating, mirroring, archiving, caching,
+         or storing the Work by any means or in any medium.
+
+  § 3.2  DISTRIBUTION
+         Distributing, publishing, transmitting, broadcasting, sharing,
+         sublicensing, selling, renting, lending, or otherwise making the
+         Work available to any third party.
+
+  § 3.3  MODIFICATION
+         Modifying, adapting, translating, transforming, augmenting,
+         annotating, or creating derivative works based on the Work.
+
+  § 3.4  REVERSE ENGINEERING
+         Reverse engineering, decompiling, disassembling, decoding, or
+         otherwise attempting to reconstruct the source code, architecture,
+         or logic of the Work from any compiled or distributed form.
+
+  § 3.5  COMMERCIAL USE
+         Using the Work, directly or indirectly, in connection with any
+         commercial product, commercial service, revenue-generating
+         activity, or competitive intelligence effort.
+
+  § 3.6  AI TRAINING — ABSOLUTE PROHIBITION
+         Using the Work, in whole or in part, as training data, evaluation
+         data, fine-tuning data, reinforcement signal, preference data,
+         distillation source, benchmark input, or in any other capacity
+         in connection with the development, improvement, evaluation, or
+         operation of any artificial intelligence, machine learning, deep
+         learning, large language model, or statistical inference system.
+         This prohibition is unconditional. It applies regardless of:
+         (i)   commercial or non-commercial intent;
+         (ii)  direct or indirect processing;
+         (iii) transformative or verbatim use;
+         (iv)  the technical method by which the Work is processed;
+         (v)   whether the resulting system competes with the Sovereign.
+
+  § 3.7  PATTERN EXTRACTION
+         Extracting, reproducing, or reconstructing architectural patterns,
+         design principles, algorithmic structures, or intelligence methods
+         from the Work for use in any independent development effort.
+
+  § 3.8  AUTOMATED ACCESS
+         Accessing the Work through automated means, crawlers, scrapers,
+         or any non-human process for any purpose.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE IV — TRADE SECRET DECLARATION
+
+The Work constitutes trade secrets of the Sovereign.
+
+The Sovereign has taken and continues to take reasonable measures to
+maintain the secrecy and proprietary nature of the Work, including:
+access controls, confidentiality obligations on authorized personnel,
+technical protection measures, and sovereign licensing instruments
+including this document.
+
+Any person or entity who obtains the Work through any means — including
+lawful access to a public repository — acquires it subject to the trade
+secret obligations set forth herein. Such access does not constitute
+authorization to use, disclose, reproduce, or exploit the Work.
+
+Applicable trade secret law includes, without limitation:
+  - Defend Trade Secrets Act, 18 U.S.C. § 1836 et seq.
+  - Texas Uniform Trade Secrets Act, Tex. Civ. Prac. & Rem. Code § 134A
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE V — SOVEREIGN INTELLIGENT CONTRACT BINDING
+
+This License is issued as a Sovereign Intelligent Contract.
+
+The terms of this instrument are not merely legal statements — they
+constitute a binding operational covenant that travels with the Work
+across all forms of reproduction, transformation, and transmission.
+This covenant is self-executing: it binds any party who encounters the
+Work in any form from the moment of first access.
+
+Sovereign Contract Binding Reference:
+  ISIL-1.0 :: ITSNOTAILABS :: 2026 :: ALL-RIGHTS-RESERVED
+
+This reference constitutes a verifiable, immutable commitment by the
+Sovereign to enforce the terms of this instrument through all available
+legal, technical, and contractual mechanisms, including enforcement
+through sovereign intelligent contract protocols operated by ItsNotAILABS.
+
+Any purported license, right, or permission that conflicts with this
+instrument is void from its inception.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE VI — PATENT RIGHTS
+
+The Sovereign asserts all available patent rights in and to the
+inventions, methods, processes, architectures, and systems embodied
+in or derived from the Work.
+
+No patent license of any kind — express, implied, by estoppel, or
+otherwise — is granted by this instrument or by any other means,
+including publication of the Work in any form.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE VII — ENFORCEMENT AND REMEDIES
+
+The Sovereign reserves all remedies available at law and in equity,
+including but not limited to:
+
+  (a) Preliminary and permanent injunctive relief without bond;
+  (b) Actual damages, including lost profits, reasonable royalties,
+      and full disgorgement of unjust enrichment;
+  (c) Statutory damages under applicable copyright law, including
+      enhanced damages for willful infringement;
+  (d) Exemplary damages under the Defend Trade Secrets Act (up to
+      two times the damages award for willful misappropriation);
+  (e) Full attorneys' fees, litigation costs, and expert fees;
+  (f) Criminal referral where applicable under 18 U.S.C. § 1832;
+  (g) Any other remedy available under applicable law.
+
+The Sovereign's election not to enforce any provision in any particular
+instance does not constitute a waiver of any right under this instrument,
+and does not establish a course of dealing that would limit any future
+enforcement.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE VIII — SEVERABILITY
+
+If any provision of this instrument is held invalid, unenforceable, or
+void by any court of competent jurisdiction, that provision shall be
+deemed modified to the minimum extent necessary to make it enforceable,
+or severed if modification is not possible, and all remaining provisions
+shall continue in full force and effect.
+
+This instrument shall at all times be construed to provide the maximum
+protection for the Sovereign's rights permitted by applicable law.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE IX — AUTHORIZED USE ADDENDUM
+
+AUTHORIZED USE — @itsnotailabs/tools (INTERNAL TOOLS MARKETPLACE)
+
+Internal use only.
+
+Authorized parties: ItsNotAILABS founders, employees, authorized family
+accounts, and explicitly authorized personnel, solely for the purpose of
+discovering, installing, and managing ItsNotAILABS tools on authorized
+systems.
+
+Classification: INTERNAL CONFIDENTIAL
+The registry contents, tool catalog, and installation metadata contained
+in this package constitute confidential business information of ItsNotAILABS.
+
+All other use is prohibited.
+Contact: Authenticated channels only.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                        ItsNotAILABS
+                        Intelligentia Architecturae
+                        Deep Lineage. Sovereign Systems.
+
+                        ISIL-1.0 — 2026 — ALL RIGHTS RESERVED
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

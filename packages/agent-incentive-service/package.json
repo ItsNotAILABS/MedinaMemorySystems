@@ -6,7 +6,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": ["dist", "src"],
-  "license": "BUSL-1.1",
+  "license": "SEE LICENSE IN LICENSE",
   "keywords": [
     "ai-agents",
     "multi-agent",

@@ -1,4 +1,4 @@
-// PROPRIETARY — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved. See LICENSE.
+// ISIL-1.0 — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved. See LICENSE in packages/medina-memory-sdk/LICENSE.
 // Unauthorized use, reproduction, or distribution strictly prohibited.
 /**
  * Sub-SDK 9: Frequency Alignment

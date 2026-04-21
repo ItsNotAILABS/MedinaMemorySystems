@@ -1,421 +1,447 @@
 /**
  * agent-incentive-service
  * ─────────────────────────────────────────────────────────────────────────────
- * Mechanism-design incentive structures for multi-agent AI coordination.
+ * ItsNotAILABS Sovereign Coordination Engine.
  *
- * Implements the formal framework from:
- *   "Incentive Structures for Multi-Agent AI Systems"
- *   ItsNotAILABS, 2026 — papers/AGENT_INCENTIVE_STRUCTURES.md
+ * Implements mechanism-design incentive structures for multi-agent AI teams.
+ * Foundation: papers/AGENT_INCENTIVE_STRUCTURES.md (ItsNotAILABS, 2026)
  *
- * Five classical incentive problems solved structurally:
- *   1. Principal-Agent → Role-scope enforcement
- *   2. Free-Rider      → Confidence-weighted voting
- *   3. Holdup          → Stage gates with output specs
- *   4. Asymmetric Info → Mandatory reasoning transparency
- *   5. Coordination    → Role-authority focal point selection
+ * Five structural solutions to the five coordination problems:
  *
- * Commercial license — BUSL-1.1 — ItsNotAILABS
- * Production use requires a commercial license. Contact ItsNotAILABS.
+ *   I.   Scope Boundary       → each sovereign role operates within declared
+ *                               output domains; cross-domain claims are voided
+ *   II.  Weighted Signal      → confidence-proportional vote weight prevents
+ *                               low-effort claims from carrying equal standing
+ *   III. Stage Covenant       → pipeline stage contracts enforce downstream
+ *                               utility over upstream self-optimization
+ *   IV.  Transparent Witness  → every claim requires a reasoning chain; absent
+ *                               reasoning halves the claim's standing weight
+ *   V.   Authority Resolution → domain-specific authority roles break deadlock
+ *                               by standing as designated focal arbiters
+ *
+ * ISIL-1.0 — ItsNotAILABS Sovereign Intelligence License
+ * Production use requires a commercial license.
+ * Contact ItsNotAILABS via authenticated channels.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-// ─── Core Types ───────────────────────────────────────────────────────────────
+// ─── Sovereign Role Definition ────────────────────────────────────────────────
 
 /**
- * A registered agent role with authority domains and weight.
+ * A sovereign role within a coordination council.
+ * Each role carries declared authority over specific resolution domains
+ * and a base standing weight that governs cross-domain participation.
  */
-export interface AgentRole {
-  /** Unique role identifier */
-  id: string;
-  /** Human-readable name */
-  name: string;
-  /** Decision domains where this role has elevated authority */
+export interface SovereignRole {
+  /** Unique role token — stable identifier across sessions */
+  roleToken: string;
+  /** Human-readable designation */
+  designation: string;
+  /** Resolution domains where this role holds primary authority */
   authorityDomains: string[];
-  /** Base weight [0, 1] for cross-domain decisions */
-  baseWeight: number;
-  /** Output types this role is permitted to produce */
-  scope: string[];
+  /** Base standing weight in cross-domain resolutions [0, 1] */
+  standingWeight: number;
+  /** Declared output domains — empty array means unrestricted */
+  declaredScope: string[];
 }
 
 /**
- * A structured output from an agent.
- * All fields are required — missing fields reduce effective weight.
+ * A structured claim submitted by a council member for resolution.
+ * All fields are required fields of record. Missing fields reduce standing.
  */
-export interface AgentOutput {
-  /** The producing agent's role ID */
-  roleId: string;
-  /** Unique agent instance ID */
-  agentId: string;
-  /** The decision being addressed */
-  decisionId: string;
-  /** The type of decision (maps to authority domains) */
-  decisionType: string;
-  /** The substantive output */
-  content: string;
-  /** Stated confidence [0, 1] */
-  confidence: number;
-  /** Chain of reasoning (required for full weight) */
-  reasoning: string;
-  /** ISO timestamp */
-  timestamp: string;
-  /** Optional structured metadata */
-  metadata?: Record<string, unknown>;
+export interface ClaimRecord {
+  /** Role token of the issuing council member */
+  roleToken: string;
+  /** Instance identifier of the issuing agent */
+  instanceId: string;
+  /** Resolution session identifier */
+  sessionId: string;
+  /** The domain being addressed */
+  domain: string;
+  /** The substantive claim */
+  claim: string;
+  /** Stated conviction level [0, 1] */
+  conviction: number;
+  /** Witness chain — the chain of reasoning that supports the claim */
+  witnessChain: string;
+  /** ISO 8601 timestamp */
+  issuedAt: string;
+  /** Optional structured annotations */
+  annotations?: Record<string, unknown>;
 }
 
 /**
- * Result of resolving a set of agent outputs.
+ * The outcome of a sovereign resolution process.
  */
-export interface ConsensusResult {
-  /** Decision ID */
-  decisionId: string;
-  /** Whether consensus was reached above the threshold */
-  approved: boolean;
-  /** The winning output (highest effective weight) */
-  winner: AgentOutput | null;
-  /** The winning agent's effective weight */
-  winnerWeight: number;
-  /** All outputs with their computed weights */
-  weighted: Array<{ output: AgentOutput; effectiveWeight: number }>;
-  /** Outputs that did not win — archived for audit */
-  dissent: AgentOutput[];
-  /** Outputs rejected because they were outside the agent's declared scope */
-  rejected: Array<{ output: AgentOutput; reason: string }>;
-  /** Whether the result was escalated (below threshold) */
-  escalated: boolean;
+export interface ResolutionRecord {
+  /** Session identifier */
+  sessionId: string;
+  /** Whether the council reached threshold standing */
+  ratified: boolean;
+  /** The prevailing claim (highest standing weight) */
+  prevailingClaim: ClaimRecord | null;
+  /** The prevailing claim's computed standing weight */
+  prevailingStanding: number;
+  /** All claims with their computed standing weights */
+  standings: Array<{ claim: ClaimRecord; standingWeight: number }>;
+  /** Minority claims — archived in the dissent ledger */
+  dissentLedger: ClaimRecord[];
+  /** Claims voided for scope violation */
+  voidedClaims: Array<{ claim: ClaimRecord; voidReason: string }>;
+  /** True if no claim reached the standing threshold — escalated to sovereign */
+  escalatedToSovereign: boolean;
 }
 
 /**
- * Reputation record for an agent role over time.
+ * Reputation record maintained across resolutions.
  */
-export interface ReputationRecord {
-  roleId: string;
-  agentId: string;
-  /** Number of decisions participated in */
-  participations: number;
-  /** Number of decisions where this agent's output matched the final consensus */
-  accurateOutcomes: number;
-  /** Current calibration score — accuracy / participations */
-  calibrationScore: number;
-  /** Current effective weight multiplier (derived from calibration) */
-  weightMultiplier: number;
-  /** ISO timestamp of last update */
-  lastUpdated: string;
+export interface StandingRecord {
+  roleToken: string;
+  instanceId: string;
+  /** Total resolutions participated in */
+  participationCount: number;
+  /** Resolutions where this instance's claim matched the final ratified outcome */
+  validatedOutcomes: number;
+  /** Calibration index — validated / participated */
+  calibrationIndex: number;
+  /** Standing multiplier applied to future weights [0.25, 2.0] */
+  standingMultiplier: number;
+  /** ISO 8601 timestamp of last update */
+  updatedAt: string;
 }
 
 /**
- * Stage gate specification for a pipeline step.
+ * Covenant specification for a pipeline stage.
+ * Enforces the Stage Covenant solution (Problem III: Holdup).
  */
-export interface StageGate {
-  /** Stage name */
-  stage: string;
-  /** Required output fields */
+export interface StageCovenant {
+  /** Stage name in the pipeline */
+  stageName: string;
+  /** Required fields of record */
   requiredFields: string[];
-  /** Maximum word count for stage output (enforces downstream utility) */
-  maxLength?: number;
-  /** Minimum confidence required to pass the gate */
-  minConfidence: number;
+  /** Maximum claim length in characters (enforces downstream utility) */
+  maxClaimLength?: number;
+  /** Minimum conviction required to pass the covenant gate */
+  minimumConviction: number;
 }
 
-// ─── IncentiveService ─────────────────────────────────────────────────────────
+// ─── SovereignCoordinator ─────────────────────────────────────────────────────
 
-export interface IncentiveServiceOptions {
-  /** Registered roles */
-  roles: AgentRole[];
-  /** Minimum weighted confidence required for consensus approval */
-  confidenceFloor?: number;
-  /** Authority weight multiplier (applied when role has domain authority) */
-  authorityMultiplier?: number;
-  /** Stage gates for pipeline enforcement */
-  stageGates?: StageGate[];
-  /** Enable reputation tracking */
-  enableReputation?: boolean;
+export interface CoordinatorOptions {
+  /** The council of sovereign roles */
+  council: SovereignRole[];
+  /** Minimum standing weight required for ratification */
+  ratificationThreshold?: number;
+  /** Authority standing multiplier when a role holds domain authority */
+  authorityAmplifier?: number;
+  /** Stage covenants for pipeline enforcement */
+  stageCovenants?: StageCovenant[];
+  /** Enable standing ledger (reputation tracking) */
+  enableStandingLedger?: boolean;
 }
 
 /**
- * IncentiveService — the core coordination engine.
+ * SovereignCoordinator — the ItsNotAILABS coordination engine.
  *
- * Implements role-weighted consensus with typed authority,
- * reputation staking, stage gate enforcement, and full audit logging.
+ * Resolves competing claims from council members using the formal
+ * standing-weight mechanism:
  *
- * Usage:
+ *   S_i(d) = w_i × A(d, r_i) × k_i × τ_i × rep_i
+ *
+ * Where:
+ *   w_i    = base standing weight of role r_i
+ *   A(d,r) = authority amplifier if role r has domain authority over d
+ *   k_i    = conviction level of claim i [0, 1]
+ *   τ_i    = transparency factor (1.0 with witness chain; 0.5 without)
+ *   rep_i  = standing multiplier from ledger [0.25, 2.0]
+ *
+ * Prevailing claim: argmax S_i(d), subject to S_i ≥ ratificationThreshold
+ * Below threshold: escalated to sovereign authority.
+ *
+ * @example
  * ```typescript
- * const service = new IncentiveService({ roles, confidenceFloor: 0.72 });
- * const result = service.resolve('decision-001', 'empirical-claim', outputs);
+ * const coordinator = createCouncilCoordinator();
+ * const resolution = coordinator.resolve('session-001', 'empirical-claim', claims);
+ * console.log(resolution.ratified);
+ * console.log(resolution.prevailingClaim?.claim);
  * ```
  */
-export class IncentiveService {
-  private roles: Map<string, AgentRole>;
-  private confidenceFloor: number;
-  private authorityMultiplier: number;
-  private stageGates: Map<string, StageGate>;
-  private reputationStore: Map<string, ReputationRecord>;
-  private enableReputation: boolean;
-  private auditLog: Array<{ timestamp: string; event: string; data: unknown }>;
+export class SovereignCoordinator {
+  private council: Map<string, SovereignRole>;
+  private ratificationThreshold: number;
+  private authorityAmplifier: number;
+  private covenants: Map<string, StageCovenant>;
+  private standingLedger: Map<string, StandingRecord>;
+  private enableStandingLedger: boolean;
+  private sovereignLog: Array<{ timestamp: string; event: string; record: unknown }>;
 
-  constructor(options: IncentiveServiceOptions) {
-    this.roles = new Map(options.roles.map(r => [r.id, r]));
-    this.confidenceFloor = options.confidenceFloor ?? 0.70;
-    this.authorityMultiplier = options.authorityMultiplier ?? 2.0;
-    this.stageGates = new Map((options.stageGates ?? []).map(g => [g.stage, g]));
-    this.reputationStore = new Map();
-    this.enableReputation = options.enableReputation ?? true;
-    this.auditLog = [];
+  constructor(options: CoordinatorOptions) {
+    this.council = new Map(options.council.map(r => [r.roleToken, r]));
+    this.ratificationThreshold = options.ratificationThreshold ?? 0.70;
+    this.authorityAmplifier = options.authorityAmplifier ?? 2.0;
+    this.covenants = new Map((options.stageCovenants ?? []).map(c => [c.stageName, c]));
+    this.standingLedger = new Map();
+    this.enableStandingLedger = options.enableStandingLedger ?? true;
+    this.sovereignLog = [];
   }
 
   /**
-   * Resolve a set of agent outputs into a consensus decision.
+   * Resolve a set of claims to a ratified outcome.
    *
-   * Implements the formal specification:
-   *   W_i(d) = w_i × (1 + α(d, a_i)) × c_i × reputation_i
-   *   winner = argmax W_i(d)  subject to W_winner ≥ τ
+   * Implements the formal standing-weight resolution mechanism.
    */
-  resolve(decisionId: string, decisionType: string, outputs: AgentOutput[]): ConsensusResult {
-    const rejected: Array<{ output: AgentOutput; reason: string }> = [];
-    const validOutputs: AgentOutput[] = [];
+  resolve(sessionId: string, domain: string, claims: ClaimRecord[]): ResolutionRecord {
+    const voidedClaims: Array<{ claim: ClaimRecord; voidReason: string }> = [];
+    const validClaims: ClaimRecord[] = [];
 
-    // Step 1: Scope enforcement (Principal-Agent problem solution)
-    for (const output of outputs) {
-      const role = this.roles.get(output.roleId);
+    // I. Scope Boundary Enforcement (Principal-Agent solution)
+    for (const claim of claims) {
+      const role = this.council.get(claim.roleToken);
       if (!role) {
-        rejected.push({ output, reason: `Unknown role: ${output.roleId}` });
-        this.log('SCOPE_REJECT', { reason: 'unknown_role', output });
+        voidedClaims.push({ claim, voidReason: `Unrecognized role token: ${claim.roleToken}` });
+        this.record('VOID_UNKNOWN_ROLE', { roleToken: claim.roleToken, sessionId });
         continue;
       }
-      if (role.scope.length > 0 && !role.scope.includes(decisionType)) {
-        rejected.push({ output, reason: `Role ${output.roleId} not scoped for ${decisionType}` });
-        this.log('SCOPE_REJECT', { reason: 'out_of_scope', roleId: output.roleId, decisionType });
+      if (role.declaredScope.length > 0 && !role.declaredScope.includes(domain)) {
+        voidedClaims.push({ claim, voidReason: `Role ${claim.roleToken} scope excludes domain: ${domain}` });
+        this.record('VOID_SCOPE_BREACH', { roleToken: claim.roleToken, domain });
         continue;
       }
-      validOutputs.push(output);
+      validClaims.push(claim);
     }
 
-    if (validOutputs.length === 0) {
+    if (validClaims.length === 0) {
       return {
-        decisionId, approved: false, winner: null, winnerWeight: 0,
-        weighted: [], dissent: [], rejected, escalated: true,
+        sessionId, ratified: false, prevailingClaim: null,
+        prevailingStanding: 0, standings: [], dissentLedger: [],
+        voidedClaims, escalatedToSovereign: true,
       };
     }
 
-    // Step 2: Compute effective weights
-    const weighted = validOutputs.map(output => {
-      const role = this.roles.get(output.roleId)!;
-      const baseWeight = role.baseWeight;
+    // II–V: Compute standing weights
+    const standings = validClaims.map(claim => {
+      const role = this.council.get(claim.roleToken)!;
 
-      // Authority multiplier — α(d, a_i)
-      const hasAuthority = role.authorityDomains.includes(decisionType) ? 1 : 0;
-      const authorityFactor = 1 + hasAuthority * (this.authorityMultiplier - 1);
+      // Base standing
+      const base = role.standingWeight;
 
-      // Confidence weight
-      const confidence = Math.max(0, Math.min(1, output.confidence));
+      // Authority amplifier — A(d, r_i)
+      const hasAuthority = role.authorityDomains.includes(domain);
+      const authorityFactor = hasAuthority ? this.authorityAmplifier : 1.0;
 
-      // Reasoning transparency factor — partial weight penalty for missing reasoning
-      const reasoningFactor = output.reasoning && output.reasoning.trim().length > 10 ? 1.0 : 0.5;
+      // Conviction weight (II: Weighted Signal)
+      const conviction = Math.max(0, Math.min(1, claim.conviction));
 
-      // Reputation multiplier
-      const reputationMultiplier = this.enableReputation
-        ? (this.getReputation(output.roleId, output.agentId)?.weightMultiplier ?? 1.0)
+      // Transparent witness factor (IV: Transparent Witness)
+      const witnessPresent = claim.witnessChain && claim.witnessChain.trim().length > 10;
+      const transparencyFactor = witnessPresent ? 1.0 : 0.5;
+
+      // Standing multiplier from ledger
+      const ledgerMultiplier = this.enableStandingLedger
+        ? (this.lookupStanding(claim.roleToken, claim.instanceId)?.standingMultiplier ?? 1.0)
         : 1.0;
 
-      const effectiveWeight = baseWeight * authorityFactor * confidence * reasoningFactor * reputationMultiplier;
-      return { output, effectiveWeight };
+      const standingWeight = base * authorityFactor * conviction * transparencyFactor * ledgerMultiplier;
+      return { claim, standingWeight };
     });
 
-    // Step 3: Sort by effective weight
-    weighted.sort((a, b) => b.effectiveWeight - a.effectiveWeight);
+    // Sort descending by standing weight
+    standings.sort((a, b) => b.standingWeight - a.standingWeight);
 
-    const winner = weighted[0];
-    const dissent = weighted.slice(1).map(w => w.output);
+    const prevailing = standings[0];
+    const dissentLedger = standings.slice(1).map(s => s.claim);
+    const ratified = prevailing.standingWeight >= this.ratificationThreshold;
 
-    // Step 4: Threshold check — escalate if below floor
-    const approved = winner.effectiveWeight >= this.confidenceFloor;
-    const escalated = !approved;
-
-    this.log('RESOLVE', {
-      decisionId,
-      decisionType,
-      approved,
-      winnerRole: winner.output.roleId,
-      winnerWeight: winner.effectiveWeight,
-      escalated,
+    this.record('RESOLUTION', {
+      sessionId, domain, ratified,
+      prevailingRole: prevailing.claim.roleToken,
+      prevailingStanding: prevailing.standingWeight,
+      escalated: !ratified,
     });
 
     return {
-      decisionId,
-      approved,
-      winner: winner.output,
-      winnerWeight: winner.effectiveWeight,
-      weighted,
-      dissent,
-      rejected,
-      escalated,
+      sessionId, ratified,
+      prevailingClaim: prevailing.claim,
+      prevailingStanding: prevailing.standingWeight,
+      standings,
+      dissentLedger,
+      voidedClaims,
+      escalatedToSovereign: !ratified,
     };
   }
 
   /**
-   * Enforce a stage gate for a pipeline step.
-   * Returns pass/fail with specific violation details.
+   * Enforce a stage covenant for a pipeline step.
+   * Returns pass/fail with specific covenant violations.
    */
-  enforceStageGate(stage: string, output: AgentOutput): { passed: boolean; violations: string[] } {
-    const gate = this.stageGates.get(stage);
-    if (!gate) {
-      return { passed: true, violations: [] }; // No gate defined — pass through
-    }
+  enforceCovenant(stageName: string, claim: ClaimRecord): { passed: boolean; violations: string[] } {
+    const covenant = this.covenants.get(stageName);
+    if (!covenant) return { passed: true, violations: [] };
 
     const violations: string[] = [];
+    const claimMap = claim as unknown as Record<string, unknown>;
 
-    // Check required fields
-    for (const field of gate.requiredFields) {
-      const value = (output as unknown as Record<string, unknown>)[field];
-      if (!value || (typeof value === 'string' && value.trim().length === 0)) {
-        violations.push(`Missing required field: ${field}`);
+    for (const field of covenant.requiredFields) {
+      const v = claimMap[field];
+      if (!v || (typeof v === 'string' && v.trim().length === 0)) {
+        violations.push(`Covenant violation: missing required field '${field}'`);
       }
     }
 
-    // Check confidence
-    if (output.confidence < gate.minConfidence) {
-      violations.push(`Confidence ${output.confidence.toFixed(2)} below gate minimum ${gate.minConfidence}`);
+    if (claim.conviction < covenant.minimumConviction) {
+      violations.push(
+        `Conviction ${claim.conviction.toFixed(3)} below covenant minimum ${covenant.minimumConviction}`
+      );
     }
 
-    // Check length
-    if (gate.maxLength && output.content.length > gate.maxLength) {
-      violations.push(`Output length ${output.content.length} exceeds stage maximum ${gate.maxLength}`);
+    if (covenant.maxClaimLength && claim.claim.length > covenant.maxClaimLength) {
+      violations.push(
+        `Claim length ${claim.claim.length} exceeds covenant maximum ${covenant.maxClaimLength}`
+      );
     }
 
     const passed = violations.length === 0;
-    this.log('STAGE_GATE', { stage, passed, violations, agentId: output.agentId });
-
+    this.record('COVENANT_CHECK', { stageName, passed, violations, instanceId: claim.instanceId });
     return { passed, violations };
   }
 
   /**
-   * Update reputation after a decision is confirmed.
-   * Pass `accurate: true` if this agent's output matched the final accepted decision.
+   * Update the standing ledger after a resolution outcome is confirmed.
+   * Pass `validated: true` if this instance's claim matched the ratified outcome.
    */
-  updateReputation(roleId: string, agentId: string, accurate: boolean): ReputationRecord {
-    const key = `${roleId}:${agentId}`;
-    const existing = this.reputationStore.get(key) ?? {
-      roleId, agentId,
-      participations: 0,
-      accurateOutcomes: 0,
-      calibrationScore: 0.5,
-      weightMultiplier: 1.0,
-      lastUpdated: new Date().toISOString(),
+  updateStanding(roleToken: string, instanceId: string, validated: boolean): StandingRecord {
+    const key = `${roleToken}::${instanceId}`;
+    const current = this.standingLedger.get(key) ?? {
+      roleToken, instanceId,
+      participationCount: 0,
+      validatedOutcomes: 0,
+      calibrationIndex: 0.5,
+      standingMultiplier: 1.0,
+      updatedAt: new Date().toISOString(),
     };
 
-    const updated: ReputationRecord = {
-      ...existing,
-      participations: existing.participations + 1,
-      accurateOutcomes: existing.accurateOutcomes + (accurate ? 1 : 0),
-      lastUpdated: new Date().toISOString(),
+    const updated: StandingRecord = {
+      ...current,
+      participationCount: current.participationCount + 1,
+      validatedOutcomes: current.validatedOutcomes + (validated ? 1 : 0),
+      updatedAt: new Date().toISOString(),
     };
 
-    // Calibration score = smoothed accuracy
-    updated.calibrationScore = updated.accurateOutcomes / updated.participations;
-
-    // Weight multiplier: accurate agents gain weight, inaccurate agents lose it
-    // Clamped to [0.25, 2.0] to prevent complete exclusion or dominance
-    updated.weightMultiplier = Math.max(0.25, Math.min(2.0,
-      0.5 + updated.calibrationScore * 1.5
+    updated.calibrationIndex = updated.validatedOutcomes / updated.participationCount;
+    // Standing multiplier: calibrated instances gain authority, uncalibrated lose it
+    updated.standingMultiplier = Math.max(0.25, Math.min(2.0,
+      0.5 + updated.calibrationIndex * 1.5
     ));
 
-    this.reputationStore.set(key, updated);
-    this.log('REPUTATION_UPDATE', { roleId, agentId, calibrationScore: updated.calibrationScore, weightMultiplier: updated.weightMultiplier });
-
+    this.standingLedger.set(key, updated);
+    this.record('STANDING_UPDATE', {
+      roleToken, instanceId,
+      calibrationIndex: updated.calibrationIndex,
+      standingMultiplier: updated.standingMultiplier,
+    });
     return updated;
   }
 
-  /**
-   * Get reputation record for an agent.
-   */
-  getReputation(roleId: string, agentId: string): ReputationRecord | undefined {
-    return this.reputationStore.get(`${roleId}:${agentId}`);
+  /** Look up the standing record for a specific instance */
+  lookupStanding(roleToken: string, instanceId: string): StandingRecord | undefined {
+    return this.standingLedger.get(`${roleToken}::${instanceId}`);
   }
 
-  /**
-   * Get all reputation records (sorted by calibration score).
-   */
-  getAllReputations(): ReputationRecord[] {
-    return Array.from(this.reputationStore.values())
-      .sort((a, b) => b.calibrationScore - a.calibrationScore);
+  /** Return all standing records, sorted by calibration index descending */
+  allStandings(): StandingRecord[] {
+    return Array.from(this.standingLedger.values())
+      .sort((a, b) => b.calibrationIndex - a.calibrationIndex);
   }
 
-  /**
-   * Get the full audit log.
-   * All decisions, resolutions, gate enforcements, and reputation updates.
-   */
-  getAuditLog(): Array<{ timestamp: string; event: string; data: unknown }> {
-    return [...this.auditLog];
+  /** Return the full sovereign log for audit */
+  sovereignAuditLog(): Array<{ timestamp: string; event: string; record: unknown }> {
+    return [...this.sovereignLog];
   }
 
-  /**
-   * Get all registered roles.
-   */
-  getRoles(): AgentRole[] {
-    return Array.from(this.roles.values());
+  /** Return all registered council roles */
+  councilRoles(): SovereignRole[] {
+    return Array.from(this.council.values());
   }
 
-  private log(event: string, data: unknown): void {
-    this.auditLog.push({
-      timestamp: new Date().toISOString(),
-      event,
-      data,
-    });
+  private record(event: string, record: unknown): void {
+    this.sovereignLog.push({ timestamp: new Date().toISOString(), event, record });
   }
 }
 
-// ─── Convenience Factories ────────────────────────────────────────────────────
+// ─── Standard Council Configuration ──────────────────────────────────────────
 
 /**
- * Default role set for a 5-role analytical team.
- * Covers analysis, strategy, critique, execution, and synthesis.
+ * Default five-role sovereign council.
+ * Covers empirical analysis, strategic direction, adversarial review,
+ * construction authority, and integrative synthesis.
  */
-export const STANDARD_FIVE_ROLES: AgentRole[] = [
+export const SOVEREIGN_COUNCIL_FIVE: SovereignRole[] = [
   {
-    id: 'analyst',
-    name: 'Analyst',
-    authorityDomains: ['empirical-claim', 'data-interpretation', 'fact-check'],
-    baseWeight: 0.75,
-    scope: [], // No scope restriction — can address any decision type
+    roleToken: 'ISS-ANALYST',
+    designation: 'Sovereign Analyst',
+    authorityDomains: ['empirical-claim', 'data-interpretation', 'verification'],
+    standingWeight: 0.75,
+    declaredScope: [],
   },
   {
-    id: 'strategist',
-    name: 'Strategist',
-    authorityDomains: ['strategic-recommendation', 'goal-setting', 'priority'],
-    baseWeight: 0.80,
-    scope: [],
+    roleToken: 'ISS-STRATEGIST',
+    designation: 'Sovereign Strategist',
+    authorityDomains: ['strategic-direction', 'objective-setting', 'priority-order'],
+    standingWeight: 0.80,
+    declaredScope: [],
   },
   {
-    id: 'critic',
-    name: 'Critic',
-    authorityDomains: ['risk-assessment', 'flaw-detection', 'adversarial-review'],
-    baseWeight: 0.75,
-    scope: ['risk-assessment', 'flaw-detection', 'adversarial-review', 'quality-check'],
+    roleToken: 'ISS-CRITIC',
+    designation: 'Sovereign Critic',
+    authorityDomains: ['risk-evaluation', 'flaw-detection', 'adversarial-challenge'],
+    standingWeight: 0.75,
+    declaredScope: ['risk-evaluation', 'flaw-detection', 'adversarial-challenge', 'quality-verdict'],
   },
   {
-    id: 'builder',
-    name: 'Builder',
-    authorityDomains: ['implementation-spec', 'technical-design', 'code-structure'],
-    baseWeight: 0.75,
-    scope: [],
+    roleToken: 'ISS-BUILDER',
+    designation: 'Sovereign Builder',
+    authorityDomains: ['construction-spec', 'technical-design', 'implementation-plan'],
+    standingWeight: 0.75,
+    declaredScope: [],
   },
   {
-    id: 'synthesizer',
-    name: 'Synthesizer',
-    authorityDomains: ['final-summary', 'cross-domain-integration', 'consensus-formation'],
-    baseWeight: 0.90,
-    scope: [],
+    roleToken: 'ISS-SYNTHESIZER',
+    designation: 'Sovereign Synthesizer',
+    authorityDomains: ['final-synthesis', 'cross-domain-integration', 'council-formation'],
+    standingWeight: 0.90,
+    declaredScope: [],
   },
 ];
 
 /**
- * Create a standard 5-role IncentiveService with sensible defaults.
+ * Create a SovereignCoordinator with the standard five-role council.
  */
-export function createStandardService(options?: Partial<IncentiveServiceOptions>): IncentiveService {
-  return new IncentiveService({
-    roles: STANDARD_FIVE_ROLES,
-    confidenceFloor: 0.72,
-    authorityMultiplier: 2.0,
-    enableReputation: true,
-    ...options,
+export function createCouncilCoordinator(overrides?: Partial<CoordinatorOptions>): SovereignCoordinator {
+  return new SovereignCoordinator({
+    council: SOVEREIGN_COUNCIL_FIVE,
+    ratificationThreshold: 0.72,
+    authorityAmplifier: 2.0,
+    enableStandingLedger: true,
+    ...overrides,
   });
 }
+
+// ─── Legacy Compatibility Aliases ─────────────────────────────────────────────
+// These aliases allow callers using the previous API names to continue working.
+
+/** @deprecated Use SovereignRole */
+export type AgentRole = SovereignRole;
+/** @deprecated Use ClaimRecord */
+export type AgentOutput = ClaimRecord;
+/** @deprecated Use ResolutionRecord */
+export type ConsensusResult = ResolutionRecord;
+/** @deprecated Use StandingRecord */
+export type ReputationRecord = StandingRecord;
+/** @deprecated Use StageCovenant */
+export type StageGate = StageCovenant;
+/** @deprecated Use SovereignCoordinator */
+export const IncentiveService = SovereignCoordinator;
+/** @deprecated Use SOVEREIGN_COUNCIL_FIVE */
+export const STANDARD_FIVE_ROLES = SOVEREIGN_COUNCIL_FIVE;
+/** @deprecated Use createCouncilCoordinator */
+export const createStandardService = createCouncilCoordinator;

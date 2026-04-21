@@ -1,450 +1,475 @@
-// PROPRIETARY — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved. See LICENSE.
+// ISIL-1.0 — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved. See LICENSE.
 // Internal use only. Authorized personnel and family accounts only.
 
 /**
- * @itsnotailabs/tools — Internal SDK Registry & Marketplace
+ * @itsnotailabs/tools — Sovereign Tool Catalog & Organism Registry
  * ─────────────────────────────────────────────────────────────────────────────
- * Single source of truth for all ItsNotAILABS tools.
- * Install anything. Find anything. Spin up any agent from any terminal.
+ * The ItsNotAILABS sovereign catalog. Every tool, SDK, and utility
+ * built under this lineage — registered, described, and installable
+ * from a single source of truth.
  *
- * Quick start on a new machine:
- *   npx @itsnotailabs/tools list          — see everything
- *   npx @itsnotailabs/tools install:sdk   — install the memory SDK
- *   npx @itsnotailabs/tools install:all   — install all public packages
+ * Use from any terminal, any new machine, any authorized device:
+ *   npx @itsnotailabs/tools catalog          — see everything
+ *   npx @itsnotailabs/tools locate <id>      — get install command
  *
- * PROPRIETARY — ItsNotAILABS internal use only.
+ * ISIL-1.0 — ItsNotAILABS internal use only.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-// ─── Registry Entry ───────────────────────────────────────────────────────────
+// ─── Catalog Entry Types ──────────────────────────────────────────────────────
 
-export interface ToolEntry {
-  /** Package name as it appears on npm or your private registry */
-  name: string;
-  /** Short identifier for quick CLI reference */
-  id: string;
-  /** One-line description */
+export type CatalogTier = 'sovereign-public' | 'sovereign-commercial' | 'organism-internal';
+export type InstrumentClass = 'memory' | 'coordination' | 'communication' | 'economics' | 'governance' | 'organism' | 'sdk' | 'infrastructure';
+export type ReleaseStatus = 'stable' | 'beta' | 'internal-only';
+
+export interface CatalogEntry {
+  /** Stable catalog identifier */
+  catalogId: string;
+  /** Package name on registry */
+  packageName: string;
+  /** One-line sovereign description */
   description: string;
-  /** Semver version */
+  /** Current version */
   version: string;
-  /** License type */
-  license: 'MIT' | 'PROPRIETARY' | 'BUSL-1.1' | 'CC-BY-NC-ND-4.0';
-  /** Access level */
-  access: 'internal' | 'public' | 'commercial';
-  /** npm install command */
-  install: string;
-  /** Quick-start import */
+  /** Governing license instrument */
+  licenseInstrument: string;
+  /** Access tier */
+  tier: CatalogTier;
+  /** Install invocation */
+  installInvocation: string;
+  /** Quick import statement */
   quickImport: string;
-  /** What this tool is for */
-  category: ToolCategory;
-  /** Status */
-  status: 'stable' | 'beta' | 'internal-only';
+  /** Instrument class */
+  instrumentClass: InstrumentClass;
+  /** Release status */
+  status: ReleaseStatus;
 }
 
-export type ToolCategory =
-  | 'memory'
-  | 'coordination'
-  | 'communication'
-  | 'economics'
-  | 'utility'
-  | 'organism'
-  | 'sdk';
-
-// ─── The Registry ─────────────────────────────────────────────────────────────
+// ─── The Sovereign Catalog ────────────────────────────────────────────────────
 
 /**
- * Complete ItsNotAILABS tool registry.
- * Add entries here as new tools are released or approved for internal use.
+ * ITSNOTAILABS SOVEREIGN TOOL CATALOG
+ *
+ * Complete registry of all tools operating under the ItsNotAILABS lineage.
+ * Add entries as new instruments are commissioned and approved.
+ *
+ * Catalog Reference: ISIL-1.0::CATALOG::2026
  */
-export const REGISTRY: ToolEntry[] = [
+export const SOVEREIGN_CATALOG: CatalogEntry[] = [
 
-  // ── Public MIT Packages ────────────────────────────────────────────────────
+  // ── Sovereign Public — MIT ─────────────────────────────────────────────────
+
   {
-    id: 'consensus-engine',
-    name: 'consensus-engine',
-    description: 'Role-weighted voting for multi-agent AI systems. Typed authority, confidence decay, dissent logging.',
+    catalogId: 'consensus-engine',
+    packageName: 'consensus-engine',
+    description: 'Role-weighted resolution engine for multi-agent councils. Typed domain authority, conviction decay, dissent ledger.',
     version: '1.0.0',
-    license: 'MIT',
-    access: 'public',
-    install: 'npm install consensus-engine',
+    licenseInstrument: 'MIT',
+    tier: 'sovereign-public',
+    installInvocation: 'npm install consensus-engine',
     quickImport: "import { ConsensusEngine } from 'consensus-engine';",
-    category: 'coordination',
+    instrumentClass: 'coordination',
     status: 'stable',
   },
   {
-    id: 'agent-signal',
-    name: 'agent-signal',
-    description: 'Pub/sub signal bus for AI agents. BROADCAST, DIRECT, ROLE, URGENT signal types.',
+    catalogId: 'agent-signal',
+    packageName: 'agent-signal',
+    description: 'Sovereign signal bus for agent councils. BROADCAST, DIRECT, ROLE, URGENT transmission types. Fully decoupled.',
     version: '1.0.0',
-    license: 'MIT',
-    access: 'public',
-    install: 'npm install agent-signal',
+    licenseInstrument: 'MIT',
+    tier: 'sovereign-public',
+    installInvocation: 'npm install agent-signal',
     quickImport: "import { SignalBus } from 'agent-signal';",
-    category: 'communication',
+    instrumentClass: 'communication',
     status: 'stable',
   },
 
-  // ── Commercial / Per-Call ──────────────────────────────────────────────────
+  // ── Sovereign Commercial — ISIL-1.0 per-call ──────────────────────────────
+
   {
-    id: 'agent-incentive-service',
-    name: 'agent-incentive-service',
-    description: 'Mechanism-design incentive structures for agent teams. Role authority, reputation staking, per-call consensus resolution.',
+    catalogId: 'agent-incentive-service',
+    packageName: 'agent-incentive-service',
+    description: 'Sovereign coordination engine. Mechanism-design incentive structures: scope enforcement, conviction weighting, stage covenants, standing ledger.',
     version: '1.0.0',
-    license: 'BUSL-1.1',
-    access: 'commercial',
-    install: 'npm install agent-incentive-service  # commercial license required',
-    quickImport: "import { IncentiveService } from 'agent-incentive-service';",
-    category: 'economics',
+    licenseInstrument: 'ISIL-1.0 (commercial)',
+    tier: 'sovereign-commercial',
+    installInvocation: 'npm install agent-incentive-service  # commercial license required',
+    quickImport: "import { SovereignCoordinator } from 'agent-incentive-service';",
+    instrumentClass: 'economics',
     status: 'stable',
   },
 
-  // ── Proprietary SDK (ItsNotAILABS internal + licensed enterprise) ──────────
+  // ── Organism Internal — ISIL-1.0 proprietary ──────────────────────────────
+
   {
-    id: 'medina-memory-sdk',
-    name: '@medina/memory-sdk',
-    description: 'Sovereign memory infrastructure SDK. Spatial memory, knowledge graphs, temporal memory, harmonic computing, context engine, multi-AI teams.',
+    catalogId: 'medina-memory-sdk',
+    packageName: '@medina/memory-sdk',
+    description: 'Core sovereign memory infrastructure. Spatial, temporal, harmonic, document, knowledge graph, pattern recognition, context, multi-AI team.',
     version: '1.0.0',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: 'npm install @medina/memory-sdk  # internal / licensed use only',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: 'npm install @medina/memory-sdk  # internal / licensed use only',
     quickImport: "import { SpatialMemory, TemporalMemory, MultiAITeam } from '@medina/memory-sdk';",
-    category: 'sdk',
+    instrumentClass: 'sdk',
     status: 'stable',
   },
 
-  // ── Internal Utilities (src/lib — not published, internal organism use) ────
+  // ── Internal Organism Utilities — src/lib ──────────────────────────────────
+
   {
-    id: 'campaign-engine',
-    name: 'campaignEngine',
-    description: 'Campaign lifecycle engine. Build, run, and score outreach campaigns across agent-driven workflows.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { campaignEngine } from '@/lib/campaignEngine'",
+    catalogId: 'campaign-engine',
+    packageName: 'campaignEngine (internal)',
+    description: 'Campaign lifecycle engine. Commission, execute, and score outreach campaigns across sovereign agent workflows.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { campaignEngine } from '@/lib/campaignEngine'",
     quickImport: "import { campaignEngine } from '@/lib/campaignEngine';",
-    category: 'utility',
+    instrumentClass: 'infrastructure',
     status: 'internal-only',
   },
   {
-    id: 'command-parser',
-    name: 'commandParser',
-    description: 'CPL command parsing. Translate compressed primordial language commands into executable organism instructions.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { parseCommand } from '@/lib/commandParser'",
+    catalogId: 'command-parser',
+    packageName: 'commandParser (internal)',
+    description: 'CPL command parsing. Translate Compressed Primordial Language commands into sovereign organism instructions.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { parseCommand } from '@/lib/commandParser'",
     quickImport: "import { parseCommand } from '@/lib/commandParser';",
-    category: 'utility',
+    instrumentClass: 'infrastructure',
     status: 'internal-only',
   },
   {
-    id: 'company-onboarding',
-    name: 'companyOnboarding',
-    description: 'Company instance onboarding. Provision a new client organism instance with identity, memory, and access configuration.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { onboardCompany } from '@/lib/companyOnboarding'",
+    catalogId: 'company-onboarding',
+    packageName: 'companyOnboarding (internal)',
+    description: 'Company instance commissioning. Provision a new client organism with sovereign identity, memory architecture, and access covenants.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { onboardCompany } from '@/lib/companyOnboarding'",
     quickImport: "import { onboardCompany } from '@/lib/companyOnboarding';",
-    category: 'organism',
+    instrumentClass: 'organism',
     status: 'internal-only',
   },
   {
-    id: 'cross-organism-resonance',
-    name: 'crossOrganismResonance',
-    description: 'Cross-organism signal coherence. Maintain harmonic alignment between multiple running organism instances.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { crossOrganismResonance } from '@/lib/crossOrganismResonance'",
+    catalogId: 'cross-organism-resonance',
+    packageName: 'crossOrganismResonance (internal)',
+    description: 'Cross-organism harmonic coherence. Maintain frequency alignment between multiple running sovereign organism instances.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { crossOrganismResonance } from '@/lib/crossOrganismResonance'",
     quickImport: "import { crossOrganismResonance } from '@/lib/crossOrganismResonance';",
-    category: 'organism',
+    instrumentClass: 'organism',
     status: 'internal-only',
   },
   {
-    id: 'device-sovereignty',
-    name: 'deviceSovereignty',
-    description: 'Device ownership and access control. Bind organism access to authorized hardware. Sovereign device registry.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { deviceSovereignty } from '@/lib/deviceSovereignty'",
+    catalogId: 'device-sovereignty',
+    packageName: 'deviceSovereignty (internal)',
+    description: 'Device sovereignty binding. Register authorized hardware, bind organism access to sovereign devices, enforce device identity.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { deviceSovereignty } from '@/lib/deviceSovereignty'",
     quickImport: "import { deviceSovereignty } from '@/lib/deviceSovereignty';",
-    category: 'utility',
+    instrumentClass: 'governance',
     status: 'internal-only',
   },
   {
-    id: 'dual-read',
-    name: 'dualRead',
-    description: 'Dual-read memory layer. Simultaneous read from two memory tiers with coherence reconciliation.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { dualRead } from '@/lib/dualRead'",
+    catalogId: 'dual-read',
+    packageName: 'dualRead (internal)',
+    description: 'Dual-tier memory read. Simultaneous read across two memory tiers with coherence reconciliation at the seam.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { dualRead } from '@/lib/dualRead'",
     quickImport: "import { dualRead } from '@/lib/dualRead';",
-    category: 'memory',
+    instrumentClass: 'memory',
     status: 'internal-only',
   },
   {
-    id: 'export-engine',
-    name: 'exportEngine',
-    description: 'Export formatted organism outputs. Generate structured documents, reports, and data extracts from organism state.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { exportEngine } from '@/lib/exportEngine'",
+    catalogId: 'export-engine',
+    packageName: 'exportEngine (internal)',
+    description: 'Sovereign export engine. Generate structured documents, sovereign reports, and data extracts from organism state on demand.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { exportEngine } from '@/lib/exportEngine'",
     quickImport: "import { exportEngine } from '@/lib/exportEngine';",
-    category: 'utility',
+    instrumentClass: 'infrastructure',
     status: 'internal-only',
   },
   {
-    id: 'full-stack-kernel-registry',
-    name: 'fullStackKernelRegistry',
-    description: 'Full-stack kernel registration. Register, discover, and version organism kernels across the full ItsNotAILABS stack.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { fullStackKernelRegistry } from '@/lib/fullStackKernelRegistry'",
+    catalogId: 'full-stack-kernel-registry',
+    packageName: 'fullStackKernelRegistry (internal)',
+    description: 'Full-stack kernel commissioning. Register, discover, and version organism kernels across the complete ItsNotAILABS architectural stack.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { fullStackKernelRegistry } from '@/lib/fullStackKernelRegistry'",
     quickImport: "import { fullStackKernelRegistry } from '@/lib/fullStackKernelRegistry';",
-    category: 'organism',
+    instrumentClass: 'organism',
     status: 'internal-only',
   },
   {
-    id: 'gate-enforcement',
-    name: 'gateEnforcement',
-    description: 'Output gate enforcement. Block low-confidence or out-of-scope agent outputs before they propagate.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { enforceGate } from '@/lib/gateEnforcement'",
+    catalogId: 'gate-enforcement',
+    packageName: 'gateEnforcement (internal)',
+    description: 'Sovereign output gate. Block underthreshold or out-of-scope organism outputs before they propagate downstream.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { enforceGate } from '@/lib/gateEnforcement'",
     quickImport: "import { enforceGate } from '@/lib/gateEnforcement';",
-    category: 'coordination',
+    instrumentClass: 'governance',
     status: 'internal-only',
   },
   {
-    id: 'governance-engine',
-    name: 'governanceEngine',
-    description: 'Governance proposal and approval workflows. Multi-step ratification with role-scoped voting and veto rights.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { governanceEngine } from '@/lib/governanceEngine'",
+    catalogId: 'governance-engine',
+    packageName: 'governanceEngine (internal)',
+    description: 'Sovereign governance engine. Multi-step ratification workflows with role-scoped voting, veto authority, and constitutional enforcement.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { governanceEngine } from '@/lib/governanceEngine'",
     quickImport: "import { governanceEngine } from '@/lib/governanceEngine';",
-    category: 'organism',
+    instrumentClass: 'governance',
     status: 'internal-only',
   },
   {
-    id: 'icp-organism',
-    name: 'icpOrganism',
-    description: 'ICP canister organism interface. Deploy and communicate with organism canisters on the Internet Computer Protocol.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { icpOrganism } from '@/lib/icpOrganism'",
+    catalogId: 'icp-organism',
+    packageName: 'icpOrganism (internal)',
+    description: 'ICP canister organism interface. Commission, deploy, and communicate with sovereign organism canisters on the Internet Computer.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { icpOrganism } from '@/lib/icpOrganism'",
     quickImport: "import { icpOrganism } from '@/lib/icpOrganism';",
-    category: 'organism',
+    instrumentClass: 'organism',
     status: 'internal-only',
   },
   {
-    id: 'kernel-compression',
-    name: 'kernelCompression',
-    description: 'Kernel compression engine. Compress organism knowledge to φ-ratio target density for efficient storage and transmission.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { kernelCompression } from '@/lib/kernelCompression'",
+    catalogId: 'kernel-compression',
+    packageName: 'kernelCompression (internal)',
+    description: 'Sovereign kernel compression. Compress organism knowledge to target density for efficient sovereign storage and transmission.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { kernelCompression } from '@/lib/kernelCompression'",
     quickImport: "import { kernelCompression } from '@/lib/kernelCompression';",
-    category: 'memory',
+    instrumentClass: 'memory',
     status: 'internal-only',
   },
   {
-    id: 'living-document',
-    name: 'livingDocument',
-    description: 'Living document lifecycle. Documents that evolve, update, and re-synthesize as new information arrives.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { livingDocument } from '@/lib/livingDocument'",
+    catalogId: 'living-document',
+    packageName: 'livingDocument (internal)',
+    description: 'Living document engine. Documents that evolve, re-synthesize, and update as new sovereign intelligence arrives.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { livingDocument } from '@/lib/livingDocument'",
     quickImport: "import { livingDocument } from '@/lib/livingDocument';",
-    category: 'memory',
+    instrumentClass: 'memory',
     status: 'internal-only',
   },
   {
-    id: 'memory-engine',
-    name: 'memoryEngine',
-    description: 'Core memory storage and retrieval engine. Tiered read/write with TTL, tagging, and relevance scoring.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { memoryEngine } from '@/lib/memoryEngine'",
+    catalogId: 'memory-engine',
+    packageName: 'memoryEngine (internal)',
+    description: 'Sovereign memory core. Tiered read/write with TTL, tagging, relevance scoring, and organism-state anchoring.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { memoryEngine } from '@/lib/memoryEngine'",
     quickImport: "import { memoryEngine } from '@/lib/memoryEngine';",
-    category: 'memory',
+    instrumentClass: 'memory',
     status: 'internal-only',
   },
   {
-    id: 'message-engine',
-    name: 'messageEngine',
-    description: 'Message routing and delivery. Route messages between agents, canisters, and external services with guaranteed ordering.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { messageEngine } from '@/lib/messageEngine'",
+    catalogId: 'message-engine',
+    packageName: 'messageEngine (internal)',
+    description: 'Sovereign message routing. Deliver messages between organism agents, canisters, and external services with guaranteed ordering.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { messageEngine } from '@/lib/messageEngine'",
     quickImport: "import { messageEngine } from '@/lib/messageEngine';",
-    category: 'communication',
+    instrumentClass: 'communication',
     status: 'internal-only',
   },
   {
-    id: 'model-router',
-    name: 'modelRouter',
-    description: 'AI model routing. Select the correct model for each task type based on role, cost, latency, and capability.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { modelRouter } from '@/lib/modelRouter'",
+    catalogId: 'model-router',
+    packageName: 'modelRouter (internal)',
+    description: 'Sovereign model router. Select the appropriate AI model for each task type based on role authority, cost envelope, and capability profile.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { modelRouter } from '@/lib/modelRouter'",
     quickImport: "import { modelRouter } from '@/lib/modelRouter';",
-    category: 'coordination',
+    instrumentClass: 'coordination',
     status: 'internal-only',
   },
   {
-    id: 'nova-sovereign-encryption',
-    name: 'novaSovereignEncryption',
-    description: 'Sovereign encryption layer. Encrypt and sign organism payloads under sovereign key hierarchy.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { encrypt, decrypt } from '@/lib/novaSovereignEncryption'",
+    catalogId: 'nova-sovereign-encryption',
+    packageName: 'novaSovereignEncryption (internal)',
+    description: 'Nova sovereign encryption layer. Encrypt and sign organism payloads under the ItsNotAILABS sovereign key hierarchy.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { encrypt, decrypt } from '@/lib/novaSovereignEncryption'",
     quickImport: "import { encrypt, decrypt } from '@/lib/novaSovereignEncryption';",
-    category: 'utility',
+    instrumentClass: 'governance',
     status: 'internal-only',
   },
   {
-    id: 'organism-kernel-executor',
-    name: 'organismKernelExecutor',
-    description: 'Kernel execution engine. Execute compressed organism kernels in sandboxed runtime environments.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { executeKernel } from '@/lib/organismKernelExecutor'",
+    catalogId: 'organism-kernel-executor',
+    packageName: 'organismKernelExecutor (internal)',
+    description: 'Sovereign kernel executor. Run compressed organism kernels in sovereign sandboxed runtime environments.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { executeKernel } from '@/lib/organismKernelExecutor'",
     quickImport: "import { executeKernel } from '@/lib/organismKernelExecutor';",
-    category: 'organism',
+    instrumentClass: 'organism',
     status: 'internal-only',
   },
   {
-    id: 'permissions-manager',
-    name: 'permissionsManager',
-    description: 'Permission scoping. Role-scoped access control for organism resources, memory tiers, and external APIs.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { permissionsManager } from '@/lib/permissionsManager'",
+    catalogId: 'permissions-manager',
+    packageName: 'permissionsManager (internal)',
+    description: 'Sovereign permissions covenant. Role-scoped access control for organism memory tiers, sovereign resources, and external API surfaces.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { permissionsManager } from '@/lib/permissionsManager'",
     quickImport: "import { permissionsManager } from '@/lib/permissionsManager';",
-    category: 'utility',
+    instrumentClass: 'governance',
     status: 'internal-only',
   },
   {
-    id: 'recital-plus-one',
-    name: 'recitalPlusOne',
-    description: 'Constitutional enforcement engine. Enforces RECITAL_PLUS_ONE law — every action requires one witness beyond the actor.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { recitalPlusOne } from '@/lib/recitalPlusOne'",
+    catalogId: 'recital-plus-one',
+    packageName: 'recitalPlusOne (internal)',
+    description: 'Constitutional RECITAL_PLUS_ONE enforcement. Every sovereign act requires one witness beyond the actor. Non-negotiable.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { recitalPlusOne } from '@/lib/recitalPlusOne'",
     quickImport: "import { recitalPlusOne } from '@/lib/recitalPlusOne';",
-    category: 'organism',
+    instrumentClass: 'governance',
     status: 'internal-only',
   },
   {
-    id: 'replay-engine',
-    name: 'replayEngine',
-    description: 'Session replay. Reconstruct any past organism state from its event log. Full deterministic replay.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { replayEngine } from '@/lib/replayEngine'",
+    catalogId: 'replay-engine',
+    packageName: 'replayEngine (internal)',
+    description: 'Sovereign replay engine. Reconstruct any past organism state from its sovereign event log. Full deterministic replay.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { replayEngine } from '@/lib/replayEngine'",
     quickImport: "import { replayEngine } from '@/lib/replayEngine';",
-    category: 'memory',
+    instrumentClass: 'memory',
     status: 'internal-only',
   },
   {
-    id: 'sovereign-contracts-ledgers',
-    name: 'sovereignContractsLedgers',
-    description: 'Sovereign contracts and ledger management. Record and verify agreements, transactions, and obligations in tamper-evident logs.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { sovereignContractsLedgers } from '@/lib/sovereignContractsLedgers'",
+    catalogId: 'sovereign-contracts-ledgers',
+    packageName: 'sovereignContractsLedgers (internal)',
+    description: 'Sovereign contracts and ledger system. Record and verify agreements, obligations, and transactions in tamper-evident sovereign ledgers.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { sovereignContractsLedgers } from '@/lib/sovereignContractsLedgers'",
     quickImport: "import { sovereignContractsLedgers } from '@/lib/sovereignContractsLedgers';",
-    category: 'utility',
+    instrumentClass: 'governance',
     status: 'internal-only',
   },
   {
-    id: 'voice-engine',
-    name: 'voiceEngine',
-    description: 'Voice input/output. Convert spoken commands to CPL and organism responses to speech. Sovereign voice interface.',
-    version: 'internal',
-    license: 'PROPRIETARY',
-    access: 'internal',
-    install: "import { voiceEngine } from '@/lib/voiceEngine'",
+    catalogId: 'voice-engine',
+    packageName: 'voiceEngine (internal)',
+    description: 'Sovereign voice interface. Convert spoken commands to CPL and organism responses to speech. Voice access to the sovereign organism.',
+    version: 'organism',
+    licenseInstrument: 'ISIL-1.0 (proprietary)',
+    tier: 'organism-internal',
+    installInvocation: "import { voiceEngine } from '@/lib/voiceEngine'",
     quickImport: "import { voiceEngine } from '@/lib/voiceEngine';",
-    category: 'utility',
+    instrumentClass: 'infrastructure',
     status: 'internal-only',
   },
 ];
 
-// ─── Registry Lookup Helpers ──────────────────────────────────────────────────
+// ─── Catalog Query Interface ──────────────────────────────────────────────────
 
-/** Get all public tools (MIT) */
-export function getPublicTools(): ToolEntry[] {
-  return REGISTRY.filter(t => t.access === 'public');
+/** All sovereign public (MIT) entries */
+export function sovereignPublic(): CatalogEntry[] {
+  return SOVEREIGN_CATALOG.filter(e => e.tier === 'sovereign-public');
 }
 
-/** Get all commercial tools */
-export function getCommercialTools(): ToolEntry[] {
-  return REGISTRY.filter(t => t.access === 'commercial');
+/** All commercial entries */
+export function sovereignCommercial(): CatalogEntry[] {
+  return SOVEREIGN_CATALOG.filter(e => e.tier === 'sovereign-commercial');
 }
 
-/** Get all internal tools */
-export function getInternalTools(): ToolEntry[] {
-  return REGISTRY.filter(t => t.access === 'internal');
+/** All organism-internal entries */
+export function organismInternal(): CatalogEntry[] {
+  return SOVEREIGN_CATALOG.filter(e => e.tier === 'organism-internal');
 }
 
-/** Get tools by category */
-export function getByCategory(category: ToolCategory): ToolEntry[] {
-  return REGISTRY.filter(t => t.category === category);
+/** All entries in a given instrument class */
+export function byInstrumentClass(cls: InstrumentClass): CatalogEntry[] {
+  return SOVEREIGN_CATALOG.filter(e => e.instrumentClass === cls);
 }
 
-/** Find a tool by id */
-export function findTool(id: string): ToolEntry | undefined {
-  return REGISTRY.find(t => t.id === id);
+/** Locate a catalog entry by its catalogId */
+export function locate(catalogId: string): CatalogEntry | undefined {
+  return SOVEREIGN_CATALOG.find(e => e.catalogId === catalogId);
 }
 
-/** Print a formatted registry listing to console */
-export function listAll(): void {
-  const separator = '─'.repeat(80);
-  console.log('\n' + separator);
-  console.log('  ItsNotAILABS Tool Registry');
-  console.log('  ' + REGISTRY.length + ' tools registered');
-  console.log(separator);
+/** Get the install invocation for a given catalogId */
+export function installInvocation(catalogId: string): string | undefined {
+  return locate(catalogId)?.installInvocation;
+}
 
-  const sections: Array<{ label: string; tools: ToolEntry[] }> = [
-    { label: '  PUBLIC — MIT License', tools: getPublicTools() },
-    { label: '  COMMERCIAL — BUSL-1.1 / Per-Call', tools: getCommercialTools() },
-    { label: '  INTERNAL — Proprietary', tools: getInternalTools() },
+/** Print the full sovereign catalog to console */
+export function printCatalog(): void {
+  const bar = '━'.repeat(80);
+  console.log(`\n${bar}`);
+  console.log('  ItsNotAILABS Sovereign Tool Catalog');
+  console.log(`  ${SOVEREIGN_CATALOG.length} instruments registered`);
+  console.log(`  ISIL-1.0::CATALOG::2026`);
+  console.log(bar);
+
+  const tiers: Array<{ label: string; entries: CatalogEntry[] }> = [
+    { label: '  SOVEREIGN PUBLIC — MIT', entries: sovereignPublic() },
+    { label: '  SOVEREIGN COMMERCIAL — ISIL-1.0 per-call', entries: sovereignCommercial() },
+    { label: '  ORGANISM INTERNAL — ISIL-1.0 proprietary', entries: organismInternal() },
   ];
 
-  for (const section of sections) {
-    console.log('\n' + section.label);
-    console.log('  ' + '─'.repeat(40));
-    for (const tool of section.tools) {
-      console.log(`  ${tool.id.padEnd(36)} ${tool.description.substring(0, 50)}`);
-      console.log(`  ${' '.repeat(36)} ${tool.install}`);
+  for (const tier of tiers) {
+    console.log(`\n${tier.label}`);
+    console.log(`  ${'─'.repeat(40)}`);
+    for (const entry of tier.entries) {
+      const id = entry.catalogId.padEnd(38);
+      const desc = entry.description.substring(0, 48);
+      console.log(`  ${id} ${desc}`);
+      console.log(`  ${' '.repeat(38)} ${entry.installInvocation}`);
     }
   }
 
-  console.log('\n' + separator + '\n');
+  console.log(`\n${bar}\n`);
 }
 
-/** Get the install command for a specific tool */
-export function getInstallCommand(id: string): string | undefined {
-  return findTool(id)?.install;
-}
+// ─── Legacy Compatibility Aliases ────────────────────────────────────────────
+
+/** @deprecated Use SOVEREIGN_CATALOG */
+export const REGISTRY = SOVEREIGN_CATALOG;
+/** @deprecated Use locate() */
+export const findTool = locate;
+/** @deprecated Use sovereignPublic() */
+export const getPublicTools = sovereignPublic;
+/** @deprecated Use sovereignCommercial() */
+export const getCommercialTools = sovereignCommercial;
+/** @deprecated Use organismInternal() */
+export const getInternalTools = organismInternal;
+/** @deprecated Use byInstrumentClass() */
+export const getByCategory = byInstrumentClass;
+/** @deprecated Use installInvocation() */
+export const getInstallCommand = installInvocation;
+/** @deprecated Use printCatalog() */
+export const listAll = printCatalog;
