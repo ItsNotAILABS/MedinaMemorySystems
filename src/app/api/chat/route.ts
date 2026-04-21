@@ -8,12 +8,13 @@ import { getDefaultCompany, getOnboardingStats } from '@/lib/companyOnboarding';
 import { getOrganismState, getRegisterSummary } from '@/lib/organismSovereign';
 import { dualRead } from '@/lib/dualRead';
 import { checkAllGates } from '@/lib/gateEnforcement';
+import { ulriRoute, ulriConsensus } from '@/lib/ulriEngine';
 import type { StructuredResponse, ModelFamily, ParsedCommand } from '@/types';
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from '@/lib/sovereign-id';
 
 export async function POST(req: NextRequest) {
   try {
-    const { message } = await req.json() as { message: string };
+    const { message, useConsensus } = await req.json() as { message: string; useConsensus?: boolean };
     if (!message?.trim()) {
       return NextResponse.json({ error: 'Message required' }, { status: 400 });
     }
@@ -24,7 +25,7 @@ export async function POST(req: NextRequest) {
       const parsed = parseCommand(message);
       const response = await handleCommand(parsed);
       return NextResponse.json({
-        id: uuidv4(),
+        id: sovereignId(),
         role: 'assistant',
         content: response.title,
         commandParsed: parsed,
@@ -35,17 +36,23 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Conversational mode: route to best model
-    const modelId = routeToModel(message);
-    const invocation = invokeModel(modelId, message);
+    const ulriResult = useConsensus ? ulriConsensus(message, 3) : ulriRoute(message);
 
     return NextResponse.json({
-      id: uuidv4(),
+      id: sovereignId(),
       role: 'assistant',
-      content: invocation.response,
-      modelUsed: modelId,
+      content: ulriResult.consensus?.synthesized ?? ulriResult.invocation.response,
+      modelUsed: ulriResult.primary,
       timestamp: new Date().toISOString(),
       processingTime: Date.now() - startTime,
+      ulriScores: ulriResult.scores.slice(0, 5),
+      sovereignScores: ulriResult.sovereignScores,
+      consensus: ulriResult.consensus ? {
+        models: ulriResult.consensus.models,
+        agreementScore: ulriResult.consensus.agreementScore,
+      } : undefined,
+      routingLatency: ulriResult.routingLatency,
+      fieldsOfPossibility: ulriResult.fieldsOfPossibility,
     });
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

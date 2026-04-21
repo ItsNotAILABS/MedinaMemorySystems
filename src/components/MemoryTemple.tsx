@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import type { MemoryEntry } from '@/types';
 
 const TYPE_COLORS: Record<string, string> = {
@@ -239,7 +239,7 @@ function MemoryCard({
   return (
     <div
       onClick={onSelect}
-      className={clsx(
+      className={cls(
         'rounded-lg border p-3 cursor-pointer transition-all text-xs',
         selected
           ? 'border-purple-500/50 bg-[#1a1228]'

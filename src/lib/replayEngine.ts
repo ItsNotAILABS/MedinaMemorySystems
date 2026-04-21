@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type { ReplayEvent, ReplaySession } from '@/types';
 
 // ─── Store ────────────────────────────────────────────────────────────────────
@@ -12,7 +12,7 @@ let globalSequence = 0;
   const now = new Date(Date.now() - 3600000).toISOString();
   const events: ReplayEvent[] = [
     {
-      id: uuidv4(),
+      id: sovereignId(),
       sequenceId: 1,
       type: 'system',
       action: 'PLATFORM_INIT',
@@ -23,7 +23,7 @@ let globalSequence = 0;
       duration: 12,
     },
     {
-      id: uuidv4(),
+      id: sovereignId(),
       sequenceId: 2,
       type: 'memory',
       action: 'MEMORY_STORE',
@@ -34,7 +34,7 @@ let globalSequence = 0;
       duration: 45,
     },
     {
-      id: uuidv4(),
+      id: sovereignId(),
       sequenceId: 3,
       type: 'governance',
       action: 'PROPOSAL_CREATED',
@@ -45,7 +45,7 @@ let globalSequence = 0;
       duration: 20,
     },
     {
-      id: uuidv4(),
+      id: sovereignId(),
       sequenceId: 4,
       type: 'model',
       action: 'MODEL_INVOKED',
@@ -56,7 +56,7 @@ let globalSequence = 0;
       duration: 420,
     },
     {
-      id: uuidv4(),
+      id: sovereignId(),
       sequenceId: 5,
       type: 'governance',
       action: 'PROPOSAL_ENACTED',
@@ -69,7 +69,7 @@ let globalSequence = 0;
   ];
 
   const session: ReplaySession = {
-    id: uuidv4(),
+    id: sovereignId(),
     name: 'Session Alpha — Platform Bootstrap',
     startTime: now,
     endTime: new Date(Date.now() - 1800000).toISOString(),
@@ -85,7 +85,7 @@ let globalSequence = 0;
 
 export function startReplaySession(name: string): ReplaySession {
   const session: ReplaySession = {
-    id: uuidv4(),
+    id: sovereignId(),
     name,
     startTime: new Date().toISOString(),
     events: [],
@@ -116,7 +116,7 @@ export function recordEvent(
 ): void {
   globalSequence++;
   const event: ReplayEvent = {
-    id: uuidv4(),
+    id: sovereignId(),
     sequenceId: globalSequence,
     type,
     action,

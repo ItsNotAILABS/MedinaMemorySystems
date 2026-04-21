@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type {
   MemoryEntry,
   MemoryQuery,
@@ -67,7 +67,7 @@ function seedStore(): void {
 
   const now = new Date().toISOString();
   for (const seed of seeds) {
-    const id = uuidv4();
+    const id = sovereignId();
     store.set(id, { ...seed, id, createdAt: now, updatedAt: now });
   }
 }
@@ -84,7 +84,7 @@ export function storeMemory(
   parentId?: string,
 ): MemoryEntry {
   const now = new Date().toISOString();
-  const id = uuidv4();
+  const id = sovereignId();
 
   const coords: SpatialCoordinate = {
     theta: coordinates?.theta ?? Math.random() * 360,

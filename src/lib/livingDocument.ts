@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type { LivingDocumentPacket, GateId } from '@/types';
 
 // ─── Living Document Registry ─────────────────────────────────────────────────
@@ -38,7 +38,7 @@ const documents: Map<string, LivingDocumentPacket> = new Map();
   ];
 
   for (const doc of docs) {
-    const id = uuidv4();
+    const id = sovereignId();
     documents.set(id, { ...doc, id });
   }
 })();
@@ -63,7 +63,7 @@ export function createDocument(
 ): LivingDocumentPacket {
   const now = new Date().toISOString();
   const doc: LivingDocumentPacket = {
-    id: uuidv4(),
+    id: sovereignId(),
     title,
     version: '1.0.0',
     doctrineLevel,

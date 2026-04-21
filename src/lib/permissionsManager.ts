@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type { Permission, PermissionGrant, PermissionScope } from '@/types';
 
 // ─── Store ────────────────────────────────────────────────────────────────────
@@ -27,7 +27,7 @@ const permissions: Map<string, Permission> = new Map();
   ];
 
   for (const grant of defaultGrants) {
-    const id = uuidv4();
+    const id = sovereignId();
     permissions.set(id, {
       id,
       scope: grant.scope,
@@ -53,7 +53,7 @@ export function grantPermission(grant: PermissionGrant, grantedBy: string): Perm
   );
   if (existing) return existing;
 
-  const id = uuidv4();
+  const id = sovereignId();
   const perm: Permission = {
     id,
     scope: grant.scope,

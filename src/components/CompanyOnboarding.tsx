@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import type { Company, Connector, OnboardingMode } from '@/types';
 
 const MODE_INFO: Record<OnboardingMode, { label: string; desc: string; color: string; icon: string }> = {
@@ -112,7 +112,7 @@ export default function CompanyOnboarding() {
                 <button
                   key={mode}
                   onClick={() => void handleModeChange(mode)}
-                  className={clsx(
+                  className={cls(
                     'text-[10px] font-mono px-2 py-1 rounded transition-all',
                     company.mode === mode
                       ? 'text-white'
@@ -140,7 +140,7 @@ export default function CompanyOnboarding() {
               <button
                 key={mode}
                 onClick={() => void handleModeChange(mode)}
-                className={clsx(
+                className={cls(
                   'rounded-lg border p-4 text-left transition-all',
                   company.mode === mode
                     ? 'border-opacity-50 bg-[#12121e]'

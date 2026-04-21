@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type { RecitalPlusOneSequence } from '@/types';
 
 // ─── RECITAL_PLUS_ONE Law ─────────────────────────────────────────────────────
@@ -9,7 +9,7 @@ const sequences: Map<string, RecitalPlusOneSequence> = new Map();
 
 export function initiateRecital(input: string): RecitalPlusOneSequence {
   const seq: RecitalPlusOneSequence = {
-    id: uuidv4(),
+    id: sovereignId(),
     phase: 'recital',
     currentStep: 1,
     totalSteps: 4,

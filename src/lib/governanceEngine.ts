@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type { Gate, GateId, GateStatus, Proposal, ProposalStatus, AuditEntry } from '@/types';
 
 // ─── State ────────────────────────────────────────────────────────────────────
@@ -16,7 +16,7 @@ const auditLog: AuditEntry[] = [];
 (function seedProposals() {
   const now = new Date().toISOString();
   const p1: Proposal = {
-    id: uuidv4(),
+    id: sovereignId(),
     title: 'Adopt RECITAL_PLUS_ONE as Standing Law',
     description: 'Formally enshrine the RECITAL_PLUS_ONE resonance law as a permanent doctrine of the NOVA OVO platform.',
     author: 'Sovereign',
@@ -30,7 +30,7 @@ const auditLog: AuditEntry[] = [];
     auditLog: [],
   };
   const p2: Proposal = {
-    id: uuidv4(),
+    id: sovereignId(),
     title: 'Expand Model Families to Include Risk & Projection',
     description: 'Add two new model families (Risk and Projection) to the multi-model runtime directory.',
     author: 'Builder',
@@ -43,7 +43,7 @@ const auditLog: AuditEntry[] = [];
     auditLog: [],
   };
   const p3: Proposal = {
-    id: uuidv4(),
+    id: sovereignId(),
     title: 'Gate C Amber Resolution Protocol',
     description: 'Define standard operating procedure when Gate C enters amber status.',
     author: 'Governance',
@@ -59,7 +59,7 @@ const auditLog: AuditEntry[] = [];
   proposals.set(p3.id, p3);
 
   auditLog.push({
-    id: uuidv4(),
+    id: sovereignId(),
     action: 'PROPOSAL_ENACTED',
     actor: 'Sovereign',
     timestamp: now,
@@ -67,7 +67,7 @@ const auditLog: AuditEntry[] = [];
     proposalId: p1.id,
   });
   auditLog.push({
-    id: uuidv4(),
+    id: sovereignId(),
     action: 'PROPOSAL_APPROVED',
     actor: 'Governance',
     timestamp: now,
@@ -116,7 +116,7 @@ export function createProposal(
 ): Proposal {
   const now = new Date().toISOString();
   const proposal: Proposal = {
-    id: uuidv4(),
+    id: sovereignId(),
     title,
     description,
     author,
@@ -186,7 +186,7 @@ export function enactProposal(id: string): Proposal | null {
 
 function addAudit(action: string, actor: string, details: string, proposalId?: string): void {
   auditLog.push({
-    id: uuidv4(),
+    id: sovereignId(),
     action,
     actor,
     timestamp: new Date().toISOString(),
