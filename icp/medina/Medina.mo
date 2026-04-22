@@ -1583,4 +1583,185 @@ actor Medina {
       timestamp = Time.now();
     }
   };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PHANTOM DECRYPTION ENGINE ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Phantom Engine Status
+  public query func phantom_engine_status() : async {
+    engine        : Text;
+    latinName     : Text;
+    tier          : Text;
+    visibility    : Text;
+    hashFunction  : Text;
+    cascadeLayers : Nat;
+    leechVectors  : Nat;
+    e8Vectors     : Nat;
+    icosahedral   : Nat;
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      engine        = "PHANTASMA_DECRYPTIONIS";
+      latinName     = "Phantasma Decryptionis Suprema";
+      tier          = "LEECH (196560 vectors)";
+      visibility    = "DISSOLVED";
+      hashFunction  = "Phi-Beatty Sovereign Cascade (NOT FNV-1a)";
+      cascadeLayers = 5;
+      leechVectors  = 196560;
+      e8Vectors     = 240;
+      icosahedral   = 120;
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::PHANTOM_ENGINE::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Phantom Mining Formula
+  public query func phantom_mining_formula() : async {
+    formula     : Text;
+    description : Text;
+    variables   : Text;
+    immutable   : Bool;
+    timestamp   : Int;
+  } {
+    {
+      formula     = "R(d,p,s) = base * phi^p * (1 + log2(d) * phi_inv/256) * (1 + s * phi_inv)";
+      description = "Sovereign mining reward: phi-scaled difficulty bonus with stealth multiplier";
+      variables   = "d=difficulty, p=phi-alignment, s=stealth-factor, base=100 MEDINA";
+      immutable   = true;
+      timestamp   = Time.now();
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SOVEREIGN TOKEN BRIDGE ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Token Economy Status
+  public query func token_bridge_status() : async {
+    engine        : Text;
+    latinName     : Text;
+    tokenTypes    : Nat;
+    ledgerNumber  : Nat;
+    conversionRate: Text;
+    bridges       : Nat;
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      engine        = "PONTIFEX_OECONOMIAE";
+      latinName     = "Pontifex Oeconomiae Sovereignus";
+      tokenTypes    = 5;
+      ledgerNumber  = 15;
+      conversionRate = "1 MEDINA = phi * 100 satoshi (161.8 sat)";
+      bridges       = 4;
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::TOKEN_BRIDGE::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Token Types
+  public query func token_types() : async [{
+    tokenType   : Text;
+    denomination: Text;
+    conversionToMedina : Text;
+  }] {
+    [
+      { tokenType = "MEDINA"; denomination = "TOKEN"; conversionToMedina = "1.0" },
+      { tokenType = "BITCOIN_EQUIVALENT"; denomination = "SATOSHI"; conversionToMedina = "phi * 100" },
+      { tokenType = "COMPUTE_CREDIT"; denomination = "CYCLE"; conversionToMedina = "phi (1.618)" },
+      { tokenType = "GOVERNANCE"; denomination = "VOTE"; conversionToMedina = "phi^2 (2.618)" },
+      { tokenType = "REPUTATION"; denomination = "TRUST"; conversionToMedina = "phi^3 (4.236)" }
+    ]
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // WITNESS-TO-ARCHITECTURE ENGINE ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Witness Engine Status
+  public query func witness_engine_status() : async {
+    engine        : Text;
+    latinName     : Text;
+    stages        : Nat;
+    primitiveStack: [Text];
+    operatorLanguage: [Text];
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      engine        = "MACHINA_TESTIMONIA";
+      latinName     = "Machina Testimonia Architecturae";
+      stages        = 5;
+      primitiveStack = ["field", "distinction", "relation", "preservation", "transfer", "concealment", "creation"];
+      operatorLanguage = ["transfer", "invert", "bypass", "disguise", "reenter", "observe", "digest", "conceive", "manifest", "dissolve"];
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::WITNESS_ENGINE::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Witness Engine Pipeline
+  public query func witness_pipeline() : async [{
+    stage       : Nat;
+    latinName   : Text;
+    commonName  : Text;
+    description : Text;
+  }] {
+    [
+      { stage = 1; latinName = "Captura Testimoniorum"; commonName = "Witness Capture"; description = "Parse AI paper, extract sections, generate phi-hash ID" },
+      { stage = 2; latinName = "Extractio Signalorum"; commonName = "Signal Extraction"; description = "Find repeated primitives, operator language, collapse warnings" },
+      { stage = 3; latinName = "Transformatio Fasciculorum"; commonName = "Packet Transform"; description = "Convert signals into typed architecture packets with phi-weights" },
+      { stage = 4; latinName = "Insertio Organismi"; commonName = "Organism Insertion"; description = "Group packets, compute phi-resonance, auto-activate upgrades" },
+      { stage = 5; latinName = "Registrum Aedificii"; commonName = "Build Register"; description = "Produce register entry with truth status and release sensitivity" }
+    ]
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // FRONTEND FRACTURE LAYER ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Frontend Intelligence Layer Status
+  public query func frontend_layer_status() : async {
+    layer         : Text;
+    latinName     : Text;
+    totalModels   : Nat;
+    categories    : Nat;
+    technologies  : Nat;
+    description   : Text;
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      layer         = "STRATUM_FRONTALE";
+      latinName     = "Stratum Frontale Centum Intelligentiarum";
+      totalModels   = 100;
+      categories    = 10;
+      technologies  = 100;
+      description   = "100 front-end technologies as living intelligence models. The front end IS the organism.";
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::FRONTEND_LAYER::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Frontend Categories
+  public query func frontend_categories() : async [{
+    category    : Text;
+    latinName   : Text;
+    modelCount  : Nat;
+    description : Text;
+  }] {
+    [
+      { category = "RENDER"; latinName = "Intelligentia Reddendi"; modelCount = 10; description = "DOM/HTML/CSS rendering intelligence" },
+      { category = "REACTIVE"; latinName = "Intelligentia Reactiva"; modelCount = 10; description = "React/Vue/Svelte reactive UI intelligence" },
+      { category = "CANVAS"; latinName = "Intelligentia Canvasi"; modelCount = 10; description = "Canvas/WebGL/Three.js visual intelligence" },
+      { category = "WORKER"; latinName = "Intelligentia Laboratoris"; modelCount = 10; description = "Web Worker/Service Worker parallel compute" },
+      { category = "CRYPTO"; latinName = "Intelligentia Cryptographica"; modelCount = 10; description = "WebCrypto/SubtleCrypto encryption intelligence" },
+      { category = "STORAGE"; latinName = "Intelligentia Repositorii"; modelCount = 10; description = "IndexedDB/LocalStorage memory intelligence" },
+      { category = "NETWORK"; latinName = "Intelligentia Reticularis"; modelCount = 10; description = "Fetch/WebSocket/WebRTC communication intelligence" },
+      { category = "SENSOR"; latinName = "Intelligentia Sensoria"; modelCount = 10; description = "Geolocation/DeviceMotion sensory intelligence" },
+      { category = "WASM"; latinName = "Intelligentia Assemblii"; modelCount = 10; description = "WebAssembly compiled intelligence" },
+      { category = "AWARENESS"; latinName = "Intelligentia Conscientiae"; modelCount = 10; description = "Accessibility/Semantic awareness intelligence" }
+    ]
+  };
 };

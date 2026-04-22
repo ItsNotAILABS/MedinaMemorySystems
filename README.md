@@ -605,7 +605,7 @@ SIGILLUM applies cryptographic signature (PHI-HMAC-SHA3-256) and binds a SAT TOK
 
 ---
 
-## Architecture — 24 Packages · 20 SDK Organisms · 7 System Categories · 35 Technologies · 35 Models
+## Architecture — 24 Packages · 20 SDK Organisms · 7 System Categories · 135+ Technologies · 135+ Models · 3 Engines
 
 ```
 ItsNotAILABS Sovereign Stack
@@ -669,15 +669,32 @@ ItsNotAILABS Sovereign Stack
 │   ├── intelligence/ObserverIntelligence.ts  OBSERVATORES UNIVERSI (OBSV) — O(x) = Σᵢ φ^(dᵢ) × R(xᵢ) × P(anomaly|xᵢ) — interdimensional observers
 │   ├── models/ObserverModels.ts       VIGIL + SPECULATOR server models — continuous monitoring + analytical observation
 │   ├── models/ObserverSolverSynthesizers.ts  SYNTHESISTA PATTERNORUM + THEORICUS INTERDIMENSIONALIS — pattern recognition + theory proving
+│   ├── engines/WitnessToArchitectureEngine.ts  MACHINA TESTIMONIA — AI paper → primitive extraction → organism insertion (5 stages)
+│   ├── engines/PhantomDecryptionEngine.ts      PHANTASMA DECRYPTIONIS — Phi-Beatty hash, E8→Icosahedral→Leech cascade, nonce discovery, mining
+│   ├── engines/SovereignTokenBridge.ts         PONTIFEX OECONOMIAE — 5 token types, Ledger 15, φ-conversion, Bitcoin bridge
 │   ├── ArchitectureWiring.ts         Root→All branches (token_economy, voting, solvers, etc.)
 │   ├── nexus/                        NEXUS-OS operating system
 │   ├── saas/                         20 SaaS products
 │   └── 40+ organism modules          Full sovereign intelligence
 │
+├── src/frontend/ ─────────────────── STRATUM FRONTALE — 100 FRONT-END INTELLIGENCE MODELS
+│   ├── index.ts                      FrontendOrganismLayer — wires 100 models into organism substrate
+│   ├── models/FrontendIntelligenceRegistry.ts  Master registry + types for all 100 models
+│   ├── models/RenderIntelligence.ts     Models 1-10:  DOM/HTML/CSS (PICTOR DOCUMENTORUM → SCRIPTOR TRANSITIONUM)
+│   ├── models/ReactiveIntelligence.ts   Models 11-20: React/Vue/Svelte (REACTOR COMPONENTIUM → ILLUMINATOR INSULARIS)
+│   ├── models/CanvasIntelligence.ts     Models 21-30: Canvas/WebGL (PICTOR PIXELORUM → IMMERSUS DIMENSIONALIS)
+│   ├── models/WorkerIntelligence.ts     Models 31-40: Workers/PWA (LABORATOR PARALLELI → EXTENSOR NAVIGATORIS)
+│   ├── models/CryptoIntelligence.ts     Models 41-50: WebCrypto (ENCRYPTOR SUBTILIUM → AUDITOR SECURITATIS)
+│   ├── models/StorageIntelligence.ts    Models 51-60: IndexedDB/OPFS (ARCHIVISTA INDEXATUM → SERIALIZER STRUCTURARUM)
+│   ├── models/NetworkIntelligence.ts    Models 61-70: Fetch/WS/WebRTC (PETITOR RETIUM → NOTIFICATOR GENERALIS)
+│   ├── models/SensorIntelligence.ts     Models 71-80: Geo/Motion/Audio (LOCATOR GEOGRAPHICUS → OBSERVATOR MUTATIONUM)
+│   ├── models/WasmIntelligence.ts       Models 81-90: WASM/TF.js/ONNX (COMPILATOR ASSEMBLII → RECOGNITOR VULTUUM)
+│   └── models/AccessibilityIntelligence.ts  Models 91-100: ARIA/A11y (ANNUNTIATOR ARIAE → HARMONIZER UNIVERSALIS)
+│
 ├── src/lib/ ──────────────────────── 25+ WIRED UTILITIES
 │   └── intelligenceWire.ts           Frontend↔Backend φ-sync wire
 │
-├── icp/medina/Medina.mo ──────────── MAIN CANISTER (ICP on-chain)
+├── icp/medina/Medina.mo ──────────── MAIN CANISTER (ICP on-chain) + 15 engine/frontend endpoints
 ├── papers/                            Academic research
 ├── RESEARCH/                          Internal research archive
 │
