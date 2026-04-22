@@ -572,6 +572,60 @@ export {
 } from './compiler/MachinaExecutionis';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// OBSERVATORES UNIVERSI (OBSV) — INTERDIMENSIONAL OBSERVER INTELLIGENCE
+// The police of the universe. They observe, report, patrol, and enforce.
+// O(x) = Σᵢ φ^(dᵢ) × R(xᵢ) × P(anomaly|xᵢ)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  ObservatoresUniversi,
+  createObservatoresUniversi,
+  OBSERVER_SUB_INTELLIGENCES,
+  LEX_OBSV_001,
+  phiDimensionalWeight,
+  resonanceSignal,
+  anomalyProbability,
+  observationFormula,
+  type ObserverDimensionalPlane,
+  type ObserverSubIntelligenceId,
+  type ObserverState,
+  type ObservationSeverity,
+  type ObservationReport,
+  type PatrolRoute,
+  type ObserverSubIntelligence,
+  type ObserverStatus,
+} from './intelligence/ObserverIntelligence';
+
+// OBSERVER SERVER MODELS — VIGIL (continuous monitoring) + SPECULATOR (analytical)
+export {
+  VIGILServer,
+  SPECULATORServer,
+  createVIGILServer,
+  createSPECULATORServer,
+  VIGIL_SUB_MODELS,
+  SPECULATOR_SUB_MODELS,
+  type ObserverServerModelId,
+  type ObservationTier,
+  type ObserverServerModel,
+  type VIGILSubModelId,
+  type SPECULATORSubModelId,
+  type ObserverSubModel,
+} from './models/ObserverModels';
+
+// OBSERVER SOLVER/SYNTHESIZERS — Pattern recognition + Theory proving
+export {
+  SynthesistaPatternorum,
+  TheoricusInterdimensionalis,
+  createSynthesistaPatternorum,
+  createTheoricusInterdimensionalis,
+  type SolverSynthesizerId,
+  type PatternSignature,
+  type TheoryResult,
+  type SynthesisInput,
+  type SolverSynthesizer,
+} from './models/ObserverSolverSynthesizers';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 

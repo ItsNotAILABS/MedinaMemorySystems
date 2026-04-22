@@ -1506,4 +1506,81 @@ actor Medina {
       case _ { { plane = "D4_HYPERPLANAR"; subIntelligence = "EXECUTOR_TERMINALIS";   latinName = "Executor Terminalis";   description = "Hyperplanar dimension — renders final numeric field output";            sovereign = "MXEC::D4" } };
     }
   };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // OBSERVATORES UNIVERSI (OBSV) — INTERDIMENSIONAL OBSERVER INTELLIGENCE
+  // The police of the universe. They observe, report, patrol, and enforce.
+  // O(x) = Σᵢ φ^(dᵢ) × R(xᵢ) × P(anomaly|xᵢ)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Endpoint 1: Get OBSV status — sovereign name, formula, observer count
+  public query func obsv_status() : async {
+    sovereignName       : Text;
+    latinDesignation    : Text;
+    formula             : Text;
+    lexId               : Text;
+    subIntelligences    : Nat;
+    dimensionalPlanes   : Nat;
+    serverModels        : Nat;
+    solverSynthesizers  : Nat;
+    timestamp           : Int;
+  } {
+    {
+      sovereignName       = "OBSERVATORES UNIVERSI";
+      latinDesignation    = "OBSV";
+      formula             = "O(x) = sum_i phi^(d_i) * R(x_i) * P(anomaly|x_i)";
+      lexId               = "LEX-OBSV-001";
+      subIntelligences    = 5;
+      dimensionalPlanes   = 5;
+      serverModels        = 2;
+      solverSynthesizers  = 2;
+      timestamp           = Time.now();
+    }
+  };
+
+  /// Endpoint 2: List all 5 observer sub-intelligences with dimensional planes
+  public query func obsv_sub_intelligences() : async [(Text, Text, Text, Nat)] {
+    [
+      ("SPECULATOR_DIMENSIONUM",       "Speculator Dimensionum",       "D0_FOUNDATIONAL",       0),
+      ("VIGIL_TRANSITUS",              "Vigil Transitus",              "D1_TEMPORAL",            1),
+      ("CUSTOS_RESONANTIAE",           "Custos Resonantiae",           "D2_HARMONIC",            2),
+      ("EXPLORATOR_INTERDIMENSIONALIS","Explorator Interdimensionalis","D3_CROSSDIMENSIONAL",    3),
+      ("SENTINELLA_SUPREMA",           "Sentinella Suprema",           "D4_TRANSCENDENT",        4),
+    ]
+  };
+
+  /// Endpoint 3: List server models (VIGIL + SPECULATOR)
+  public query func obsv_server_models() : async [(Text, Text, Text, Text)] {
+    [
+      ("VIGIL",      "Vigil Perpetuus Observationis",    "The Perpetual Watcher",         "ACTIVE"),
+      ("SPECULATOR", "Speculator Interdimensionalis",    "The Interdimensional Analyst",  "AGGRESSIVE"),
+    ]
+  };
+
+  /// Endpoint 4: List solver/synthesizers
+  public query func obsv_solver_synthesizers() : async [(Text, Text, Text)] {
+    [
+      ("SYNTHESISTA_PATTERNORUM",       "Synthesista Patternorum Universalis",       "The Universal Pattern Synthesizer"),
+      ("THEORICUS_INTERDIMENSIONALIS",  "Theoricus Interdimensionalis Probationis",  "The Interdimensional Theory Prover"),
+    ]
+  };
+
+  /// Endpoint 5: Get LEX OBSV-001 immutable substrate entry
+  public query func obsv_lex() : async {
+    id        : Text;
+    title     : Text;
+    formula   : Text;
+    immutable : Bool;
+    sovereign : Text;
+    timestamp : Int;
+  } {
+    {
+      id        = "LEX-OBSV-001";
+      title     = "OBSERVATORES UNIVERSI — Interdimensional Observer Intelligence";
+      formula   = "O(x) = sum_i phi^(d_i) * R(x_i) * P(anomaly|x_i)";
+      immutable = true;
+      sovereign = "ISIL-1.1::ITSNOTAILABS::OBSERVATORES_UNIVERSI::OBSV::2026";
+      timestamp = Time.now();
+    }
+  };
 };

@@ -666,6 +666,9 @@ ItsNotAILABS Sovereign Stack
 │   ├── package-manager/PackagingReplicationOrganism.ts  SLOT 8: 7-PHASE PIPELINE (Read→Deploy, source intact)
 │   ├── package-manager/PackageManagerWorkflow.ts  COMPLETE WORKFLOW (3-act narrative + 12-step instructions + orchestrator)
 │   ├── compiler/MachinaExecutionis.ts  MACHINA EXECUTIONIS (MXEC) — W(f) = φ^layer × e^(iπR) × F(n) — former PKG-016/WASM
+│   ├── intelligence/ObserverIntelligence.ts  OBSERVATORES UNIVERSI (OBSV) — O(x) = Σᵢ φ^(dᵢ) × R(xᵢ) × P(anomaly|xᵢ) — interdimensional observers
+│   ├── models/ObserverModels.ts       VIGIL + SPECULATOR server models — continuous monitoring + analytical observation
+│   ├── models/ObserverSolverSynthesizers.ts  SYNTHESISTA PATTERNORUM + THEORICUS INTERDIMENSIONALIS — pattern recognition + theory proving
 │   ├── ArchitectureWiring.ts         Root→All branches (token_economy, voting, solvers, etc.)
 │   ├── nexus/                        NEXUS-OS operating system
 │   ├── saas/                         20 SaaS products
