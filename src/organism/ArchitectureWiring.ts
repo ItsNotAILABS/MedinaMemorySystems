@@ -68,7 +68,15 @@ export type ArchitectureDomain =
   | 'tools'
   | 'access'
   | 'vault'
-  | 'nexus';
+  | 'nexus'
+
+  // Sovereign subsystem branches
+  | 'token_economy'
+  | 'voting'
+  | 'multi_identity'
+  | 'solvers'
+  | 'organism_generator'
+  | 'spinal_cord';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // THE ARCHITECTURE TREE — Root and All Branches

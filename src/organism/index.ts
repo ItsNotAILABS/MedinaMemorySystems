@@ -399,6 +399,82 @@ export {
 } from './SovereignBuildHelpers';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// TOKEN ECONOMY & INTELLIGENCE CONTRACTS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  TokenEconomy,
+  CPLCompiler,
+  type IntelligenceContract,
+  type ContractStatus,
+} from './intelligence/TokenEconomy';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// VOTING BILL — TOKEN-WEIGHTED GOVERNANCE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SimpleTokenVoting,
+  WeightedTokenVoting,
+  SovereignTokenVoting,
+  type VotingBill as VotingBillType,
+  type TokenVote,
+  type VotePosition,
+  type BillStatus,
+} from './intelligence/VotingBill';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MULTI-IDENTITY — 20 SOVEREIGN IDENTITY TECHNOLOGIES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  MultiIdentityManager,
+  OrganismGenerator,
+  SpinalCordBus,
+  type Identity,
+  type Substrate,
+  type CanisterSeed,
+  type MultiIdentityTech,
+} from './intelligence/MultiIdentity';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ALPHA MODELS — PRAEFECTUS + ORACULUM
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  AlphaModelRegistry,
+  Praefectus,
+  Oraculum,
+  MotusEngine,
+  VisioEngine,
+  NexusBindingEngine,
+} from './models/AlphaModels';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOLVER MODELS — ARCHITECTUS + COGNITOR + VERIFICATOR
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SolverCouncil,
+  Architectus,
+  Cognitor,
+  Verificator,
+} from './models/SolverModels';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN RUNTIME KERNEL — EVERYTHING WIRED TOGETHER
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SovereignRuntimeKernel,
+  createSovereignKernel,
+  AnimaRuntime,
+  type AnimaRuntimeConfig,
+  type AnimaProcess,
+  type RuntimeSubsystem,
+} from './os/MedinaRuntime';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 
