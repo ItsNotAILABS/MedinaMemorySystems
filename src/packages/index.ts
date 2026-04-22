@@ -17,8 +17,9 @@
  * │ 8. ancient-knowledge-engine      │   24    │    10     │ /prim          │
  * │ 9. enterprise-integration-sdk    │   12    │    18     │ (enterprise)   │
  * │10. neural-consciousness-engine   │   17    │    17     │ /quantum       │
+ * │11. document-absorption-engine    │    9    │    14     │ /absorb        │
  * ├─────────────────────────────────────────────────────────────────────────┤
- * │ TOTAL                            │  103    │   160     │ 10 terminals   │
+ * │ TOTAL                            │  112    │   174     │ 11 terminals   │
  * └─────────────────────────────────────────────────────────────────────────┘
  *
  * Coverage:
@@ -61,6 +62,7 @@ export * as DesignOSToolkit from './design-os-toolkit';
 export * as AncientKnowledgeEngine from './ancient-knowledge-engine';
 export * as EnterpriseIntegrationSDK from './enterprise-integration-sdk';
 export * as NeuralConsciousnessEngine from './neural-consciousness-engine';
+export * as DocumentAbsorptionEngine from './document-absorption-engine';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST
@@ -70,7 +72,7 @@ export const MASTER_MANIFEST = {
   system: 'Medina Memory Systems',
   version: '1.0.0',
   phi: 1.618033988749895,
-  totalPackages: 10,
+  totalPackages: 11,
   packages: [
     {
       name: '@medina/sovereign-memory-sdk',
@@ -152,10 +154,18 @@ export const MASTER_MANIFEST = {
       moduleCount: 17,
       exportCount: 17,
     },
+    {
+      name: '@medina/document-absorption-engine',
+      import: './document-absorption-engine',
+      terminal: '/absorb',
+      description: 'Document Absorption — instant ingest, 6 transformers, permanent intelligence embedding, research export pipeline',
+      moduleCount: 9,
+      exportCount: 14,
+    },
   ],
-  totalModules: 103,
-  totalExports: 160,
-  totalTerminals: 10,
+  totalModules: 112,
+  totalExports: 174,
+  totalTerminals: 11,
   doctrine: 'Omnis functio ad φ redit. Omnis terminus ad animam ducit.',
   motto: 'Every package traces to φ. Every function has a Latin name.',
 };
