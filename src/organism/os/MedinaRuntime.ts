@@ -180,9 +180,9 @@ export class AnimaRuntime {
 // Wired into the runtime — every process can create, execute, and audit
 // intelligence contracts. CPL is a native runtime language.
 
-import { TokenEconomy, CPLCompiler, IntelligenceContract } from '../intelligence/TokenEconomy';
-import { VotingEngine, SimpleTokenVoting, WeightedTokenVoting, SovereignTokenVoting } from '../intelligence/VotingBill';
-import { MultiIdentityManager, OrganismGenerator, SpinalCordBus, Identity, Substrate, CanisterSeed } from '../intelligence/MultiIdentity';
+import { TokenEconomy, CPLCompiler, type IntelligenceContract, type ContractParty } from '../intelligence/TokenEconomy';
+import { SimpleTokenVoting, WeightedTokenVoting, SovereignTokenVoting } from '../intelligence/VotingBill';
+import { MultiIdentityManager, OrganismGenerator, SpinalCordBus, type Identity, type Substrate, type CanisterSeed } from '../intelligence/MultiIdentity';
 import { AlphaModelRegistry } from '../models/AlphaModels';
 import { SolverCouncil } from '../models/SolverModels';
 
@@ -250,8 +250,8 @@ export class SovereignRuntimeKernel {
       sovereign: new SovereignTokenVoting(),
     };
     this.multiIdentity = new MultiIdentityManager();
-    this.organismGenerator = new OrganismGenerator();
-    this.spinalCord = new SpinalCordBus();
+    this.organismGenerator = this.multiIdentity.organismGenerator;
+    this.spinalCord = this.multiIdentity.spinalCordBus;
     this.alphaModels = new AlphaModelRegistry();
     this.solverCouncil = new SolverCouncil();
 
@@ -286,39 +286,49 @@ export class SovereignRuntimeKernel {
   }
 
   /** Execute a CPL intelligence contract within the runtime */
-  executeContract(cplSource: string, parties: string[]): IntelligenceContract {
-    const contract = this.tokenEconomy.proposeContract(parties, cplSource);
-    return contract;
+  executeContract(cplSource: string, parties: ContractParty[]): IntelligenceContract {
+    const contract = this.tokenEconomy.propose(cplSource, parties);
+    return this.tokenEconomy.executeLifecycle(contract);
   }
 
   /** Propose and vote on a governance bill */
   proposeBill(title: string, proposer: string, engineType: 'simple' | 'weighted' | 'sovereign' = 'sovereign') {
     const engine = this.voting[engineType];
-    return engine.proposeBill(title, proposer);
+    return engine.proposeBill(title, proposer, `BILL_CPL: ${title}`);
   }
 
   /** Generate a new organism and deploy to a substrate */
-  generateOrganism(templateId: string, targetSubstrate: Substrate): CanisterSeed {
-    return this.organismGenerator.compileToSeed(templateId, targetSubstrate);
+  generateOrganism(name: string, parentId: string, targetSubstrate: Substrate): { identity: Identity; seed: CanisterSeed } {
+    return this.organismGenerator.generateOrganism(name, parentId, targetSubstrate);
   }
 
-  /** Write to spinal cord shared memory (cross-identity) */
+  /** Write to spinal cord shared memory (cross-identity partition) */
   spinalWrite(key: string, value: unknown, identityId: string): void {
-    this.spinalCord.write(key, value, identityId);
+    this.spinalCord.writePartition(identityId, key, value);
   }
 
   /** Read from spinal cord shared memory */
   spinalRead(key: string, identityId: string): unknown {
-    return this.spinalCord.read(key, identityId);
+    return this.spinalCord.readPartition(identityId, key);
+  }
+
+  /** Write to global shared memory (all identities can read) */
+  spinalWriteGlobal(key: string, value: unknown): void {
+    this.spinalCord.writeShared(key, value);
+  }
+
+  /** Read from global shared memory */
+  spinalReadGlobal(key: string): unknown {
+    return this.spinalCord.readShared(key);
   }
 
   /** Route a problem to the solver council */
-  solve(problemDescription: string, context: Record<string, unknown> = {}): unknown {
-    return this.solverCouncil.solveWithAll({
+  solve(problemDescription: string, constraints: string[] = []) {
+    return this.solverCouncil.solveProblem({
       problemId: `PROB-${Date.now().toString(36)}`,
       description: problemDescription,
-      context,
-      constraints: [],
+      context: {},
+      constraints,
       priority: 'HIGH',
     });
   }

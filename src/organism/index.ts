@@ -447,7 +447,7 @@ export {
   Oraculum,
   MotusEngine,
   VisioEngine,
-  NexusBindingEngine,
+  NexusEngine,
 } from './models/AlphaModels';
 
 // ═══════════════════════════════════════════════════════════════════════════════
