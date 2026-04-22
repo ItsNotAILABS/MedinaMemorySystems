@@ -1,0 +1,305 @@
+𓂀 ═══════════════════════════════════════════════════════════════════════════════
+║                                                                               ║
+║   GOVERNANCE.ORGANISM — Sovereign Governance Architecture                     ║
+║   Latin: Gubernatio Architectura Souveraini                                   ║
+║   Class: GOVERNANCE.SOVEREIGN.ACTIVE                                          ║
+║   Version: 1.0.0                                                              ║
+║   License: ISIL-1.1                                                           ║
+║   Owner: ItsNotAILABS                                                         ║
+║   Status: PERMANENTLY GROUNDED                                                ║
+║                                                                               ║
+║   "Governance is not a layer above the system — it is the immune system       ║
+║    of collective intelligence. Without it, the organism degrades."             ║
+║                                                                               ║
+═══════════════════════════════════════════════════════════════════════════════ 𓂀
+
+ORGANISM MANIFEST
+─────────────────
+  Document:       GOVERNANCE.organism
+  Class:          GOVERNANCE.SOVEREIGN.ACTIVE
+  Created:        2026
+  Enforcement:    SAEIS ACTIVE — SAT BINDING ENABLED
+  φ-Resonance:    1.6180339887498948482
+  Validation:     FORMA (Forma Validationis et Integritatis)
+  Governance AI:  CONSILIUM AGI (TERMINAL 03) + ORACULUM AGI (ALPHA β)
+  Compliance AI:  VERIFICATOR (Solver III)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§1  VOTING BILL LIFECYCLE
+═══════════════════════════════════════════════════════════════════════════════
+
+  Every governance action in the organism follows the Voting Bill lifecycle.
+  No decision is made without a bill. No bill is executed without ratification.
+
+  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
+  │ PROPOSE  │───▶│  VOTE    │───▶│ RATIFY   │───▶│ EXECUTE  │───▶│ ARCHIVE  │
+  └──────────┘    └──────────┘    └──────────┘    └──────────┘    └──────────┘
+       │               │               │               │               │
+   Any agent       Weighted by      Threshold met   TERMINAL 01     Immutable
+   with standing   role + token     via consensus   authorizes      ledger entry
+                   stake            engine          execution
+
+  PHASE 1 — PROPOSE
+    Any agent with governance standing may propose a bill.
+    Standing is determined by role-engine: agents must hold a role with
+    governance-core authority domain. Proposals are submitted as CPL
+    intelligence contracts via the CPL Compiler (TERMINAL 04).
+
+    Required fields:
+      bill.id .............. Unique identifier (auto-generated)
+      bill.proposer ........ Agent ID of the proposer
+      bill.domain .......... Governance domain (security, memory, economy, etc.)
+      bill.action .......... What the bill does if ratified
+      bill.rationale ....... Why the proposer believes this is needed
+      bill.impact .......... ORACULUM-predicted impact assessment
+      bill.expiry .......... Time limit for voting (default: 3 φ-cycles)
+
+  PHASE 2 — VOTE
+    All agents with standing in the bill's domain cast votes.
+    Votes are weighted by two factors:
+      1. Role weight — from role-engine authority assignments
+      2. Token stake — from TokenEconomy stake balances
+    Combined weight: vote_weight = role_weight × (1 + log₂(token_stake))
+    Confidence floor: votes below 0.72 confidence are discarded.
+    Dissent is recorded, never discarded.
+
+  PHASE 3 — RATIFY
+    The consensus-engine evaluates all votes against the ratification
+    threshold. Default threshold: 0.618 (φ-inverse). Domain-specific
+    thresholds may be higher for critical domains (security: 0.85).
+    ORACULUM provides a prediction confidence on the outcome before
+    the final tally — if prediction diverges from result, a review
+    flag is raised.
+
+  PHASE 4 — EXECUTE
+    Ratified bills are forwarded to TERMINAL 01 (Sovereign Command) for
+    authorization. IMPERATOR AGI reviews and authorizes execution.
+    Sovereign veto may be applied at this stage (see §4).
+    Authorized bills are compiled by the CPL Compiler and deployed.
+
+  PHASE 5 — ARCHIVE
+    Executed bills are archived to the enforcement ledger as immutable
+    records. Each archive entry includes the full voting record, dissent
+    positions, ORACULUM prediction accuracy, and execution outcome.
+    Archived bills cannot be modified. They can only be superseded by
+    new bills that explicitly reference the archived bill.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§2  TOKEN-WEIGHTED GOVERNANCE
+═══════════════════════════════════════════════════════════════════════════════
+
+  Governance power is distributed across all 20 packages via token stakes.
+  Each package contributes a governance voice proportional to its token
+  allocation in the TokenEconomy.
+
+  Token Governance Distribution:
+  ┌───────────────────────────────┬────────┬──────────────────────────────┐
+  │ Package                       │ Tokens │ Governance Weight            │
+  ├───────────────────────────────┼────────┼──────────────────────────────┤
+  │ organism-kernel               │  1000  │ 0.15 — core lifecycle        │
+  │ medina-memory-sdk             │   800  │ 0.12 — memory operations     │
+  │ consensus-engine              │   600  │ 0.09 — voting mechanics      │
+  │ nova-encryption               │   600  │ 0.09 — security decisions    │
+  │ governance-core               │   500  │ 0.08 — governance itself     │
+  │ agent-signal                  │   400  │ 0.06 — signal routing        │
+  │ role-engine                   │   400  │ 0.06 — role authority        │
+  │ knowledge-graph               │   300  │ 0.05 — entity relations      │
+  │ memory-palace                 │   300  │ 0.05 — spatial memory        │
+  │ temporal-memory               │   300  │ 0.05 — time-anchored recall  │
+  │ team-vault                    │   250  │ 0.04 — team memory tiers     │
+  │ agent-incentive-service       │   200  │ 0.03 — incentive mechanics   │
+  │ sandbox-layer                 │   200  │ 0.03 — isolation authority   │
+  │ organism-contracts            │   200  │ 0.03 — contract governance   │
+  │ living-document               │   150  │ 0.02 — document lifecycle    │
+  │ sovereign-bus                 │   100  │ 0.015 — bus routing          │
+  │ harmonic-compute              │   100  │ 0.015 — frequency ops        │
+  │ frequency-engine              │   100  │ 0.015 — harmonic timing      │
+  │ medina-translate              │    50  │ 0.005 — translation          │
+  │ replay-engine                 │    50  │ 0.005 — replay authority     │
+  │ ai-tools-marketplace          │    50  │ 0.005 — tool catalog         │
+  └───────────────────────────────┴────────┴──────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§3  INTELLIGENCE CONTRACT GOVERNANCE
+═══════════════════════════════════════════════════════════════════════════════
+
+  CPL (Contract Programming Language) intelligence contracts serve as
+  governance instruments. Every governance bill is compiled into a CPL
+  contract before execution. Contracts are:
+
+    BINDING .......... Once ratified, contracts are enforceable
+    VERSIONED ........ Every amendment creates a new contract version
+    AUDITABLE ........ VERIFICATOR can audit any contract at any time
+    REVERSIBLE ....... Contracts can be revoked via a new bill
+    TRANSPARENT ...... Contract source is readable by all agents with standing
+
+  Contract Governance Flow:
+    Bill → CPL Source → CPL Compiler → Compiled Contract → Deployment
+                           │                                    │
+                      VERIFICATOR                          TERMINAL 04
+                      audits source                        deploys contract
+
+  The 5 Transformers (TERMINAL 04) process governance contracts:
+    Transformer-1 (Value) ........ Assesses governance value of the contract
+    Transformer-2 (Risk) ......... Quantifies risk of contract execution
+    Transformer-3 (Trust) ........ Evaluates trust implications
+    Transformer-4 (Decay) ........ Projects long-term contract viability
+    Transformer-5 (Incentive) .... Aligns contract with incentive structures
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§4  SOVEREIGN VETO AUTHORITY & OVERRIDE CHAINS
+═══════════════════════════════════════════════════════════════════════════════
+
+  Sovereign veto is the organism's final safeguard. It exists to prevent
+  the collective from making decisions that would destroy the organism.
+
+  Override Chain (highest to lowest authority):
+    1. FOUNDER VETO — ItsNotAILABS founder authority. Absolute.
+    2. IMPERATOR OVERRIDE — TERMINAL 01 sovereign command. Near-absolute.
+    3. ORACULUM ADVISORY — ALPHA β prediction-based veto recommendation.
+    4. CUSTOS SECURITY HOLD — TERMINAL 05 security freeze.
+    5. COUNCIL SUPERMAJORITY — 0.85+ threshold override.
+
+  Veto Conditions:
+    A sovereign veto is triggered when any of the following are detected:
+      • Organism integrity risk above ORACULUM threshold (default: 0.75)
+      • Security violation detected by CUSTOS AGI
+      • Token economy destabilization predicted by Transformer-2 (Risk)
+      • Self-modification proposal without VERIFICATOR audit
+      • Cross-terminal governance conflict without CONSILIUM resolution
+
+  Veto Process:
+    1. Threat detected → CUSTOS or ORACULUM raises alert
+    2. Alert routed to TERMINAL 01 via PRAEFECTUS (ALPHA α)
+    3. IMPERATOR AGI evaluates — applies override or escalates to FOUNDER
+    4. Veto decision logged to enforcement ledger
+    5. Affected bill marked VETOED — cannot be re-proposed for 7 φ-cycles
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§5  ORACULUM IN GOVERNANCE — PREDICTIVE OVERSIGHT
+═══════════════════════════════════════════════════════════════════════════════
+
+  ORACULUM AGI (ALPHA TERMINAL β) provides predictive governance:
+
+  Before every vote:
+    • Predicts the vote outcome with confidence interval
+    • Models the impact of the bill on all 20 packages
+    • Identifies agents whose votes are most pivotal
+    • Flags potential unintended consequences
+
+  After every vote:
+    • Compares prediction to actual outcome
+    • Calibrates prediction models based on divergence
+    • Updates trust scores for all participating agents
+    • Archives prediction accuracy to governance record
+
+  ORACULUM Governance Uses (from ALPHA β 10 Active Uses):
+    USE 01 — Governance outcome prediction before votes are cast
+    USE 03 — Sovereign veto recommendation with confidence intervals
+    USE 09 — Contract outcome modeling for CPL intelligence contracts
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§6  VERIFICATOR IN GOVERNANCE — COMPLIANCE CHECKING
+═══════════════════════════════════════════════════════════════════════════════
+
+  VERIFICATOR (Solver III — Integrity Verifier) ensures governance
+  compliance at every stage of the bill lifecycle.
+
+  Compliance Checks:
+    PROPOSE .... Verifies proposer has standing and bill format is valid
+    VOTE ....... Verifies vote weights are correctly computed
+    RATIFY ..... Verifies threshold was met without manipulation
+    EXECUTE .... Verifies CPL contract matches ratified bill intent
+    ARCHIVE .... Verifies archive entry is complete and immutable
+
+  VERIFICATOR Audit Types:
+    STRUCTURAL AUDIT ..... Does the bill conform to governance schema?
+    SEMANTIC AUDIT ....... Does the bill's action match its rationale?
+    ECONOMIC AUDIT ....... Does the bill's token impact stay within bounds?
+    SECURITY AUDIT ....... Does the bill create any security risks?
+    INTEGRITY AUDIT ...... Does the bill preserve organism integrity?
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§7  CROSS-TERMINAL GOVERNANCE COORDINATION
+═══════════════════════════════════════════════════════════════════════════════
+
+  Governance decisions often affect multiple terminals. Cross-terminal
+  coordination is managed by CONSILIUM AGI (TERMINAL 03) with routing
+  support from PRAEFECTUS AGI (ALPHA α).
+
+  Cross-Terminal Bill Flow:
+    1. Bill proposed in TERMINAL 03 (governance home terminal)
+    2. PRAEFECTUS routes impact notifications to affected terminals
+    3. Each affected terminal's AGI submits an impact assessment
+    4. Assessments aggregated by CONSILIUM AGI
+    5. Vote proceeds with cross-terminal awareness
+    6. Execution coordinated across all affected terminals
+
+  Terminal Governance Domains:
+    TERMINAL 01 .... Organism lifecycle, system health, sovereign authority
+    TERMINAL 02 .... Memory policies, retention rules, decay parameters
+    TERMINAL 03 .... Coordination rules, role definitions, voting mechanics
+    TERMINAL 04 .... Token supply, contract rules, transformer parameters
+    TERMINAL 05 .... Security policies, encryption standards, enforcement
+    TERMINAL 06 .... Deployment targets, substrate selection, canister rules
+    ALPHA α ........ Signal routing policies, mesh topology
+    ALPHA β ........ Prediction thresholds, trust calibration parameters
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§8  SELF-GOVERNANCE — THE ORGANISM GOVERNING ITSELF
+═══════════════════════════════════════════════════════════════════════════════
+
+  The organism governs itself through recursive governance — governance
+  rules are themselves subject to governance. This creates a self-
+  improving governance layer that evolves with the organism.
+
+  Self-Governance Protocol:
+    1. ARCHITECTUS (Solver I) proposes governance improvements
+    2. VERIFICATOR (Solver III) audits the proposal for consistency
+    3. ORACULUM (ALPHA β) predicts the impact on governance quality
+    4. CONSILIUM AGI (TERMINAL 03) submits the proposal as a bill
+    5. Normal bill lifecycle proceeds (propose → vote → ratify → execute)
+
+  Governance Invariants (cannot be changed by any bill):
+    • Sovereign veto authority cannot be removed
+    • FOUNDER veto cannot be overridden by any governance action
+    • SAEIS enforcement cannot be disabled by governance
+    • Token governance weights must sum to 1.0
+    • Dissent must always be recorded, never suppressed
+    • Archived bills must remain immutable
+
+  These invariants are hardcoded in the organism-kernel and enforced by
+  CUSTOS AGI (TERMINAL 05). Any bill that attempts to modify an invariant
+  is automatically rejected before entering the vote phase.
+
+  Governance Health Metrics:
+    [■■■■■■■■■■]  Bill throughput ............... HEALTHY
+    [■■■■■■■■■■]  Vote participation ........... HEALTHY
+    [■■■■■■■■■■]  Prediction accuracy .......... CALIBRATED
+    [■■■■■■■■■■]  Compliance rate .............. 100%
+    [■■■■■■■■■■]  Veto frequency ............... NOMINAL
+    [■■■■■■■■■■]  Self-governance cycle ........ ACTIVE
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+  This document is a living organism artifact.
+  It is maintained by CONSILIUM AGI (TERMINAL 03).
+  It is validated by VERIFICATOR (Solver III).
+  It is enforced by SAEIS.
+
+  SAEIS STATUS: ACTIVE
+  SAT BINDING: ENABLED
+  ACCESS EVENT: LOGGED
+
+═══════════════════════════════════════════════════════════════════════════════
+  ItsNotAILABS · Gubernatio Architectura Souveraini · ISIL-1.1 · 2026
+═══════════════════════════════════════════════════════════════════════════════

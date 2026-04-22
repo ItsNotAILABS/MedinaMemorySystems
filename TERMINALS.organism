@@ -1,0 +1,560 @@
+𓂀 ═══════════════════════════════════════════════════════════════════════════════
+║                                                                               ║
+║   TERMINALS.ORGANISM — Sovereign Terminal Architecture                        ║
+║   Latin: Terminalis Architectura Souveraini                                   ║
+║   Class: TERMINALS.SOVEREIGN.ACTIVE                                           ║
+║   Version: 1.0.0                                                              ║
+║   License: ISIL-1.1                                                           ║
+║   Owner: ItsNotAILABS                                                         ║
+║   Status: PERMANENTLY GROUNDED                                                ║
+║                                                                               ║
+║   "Every terminal is a sovereign domain. Every AI inside it serves the        ║
+║    organism. Together they form the nervous system of a living architecture."  ║
+║                                                                               ║
+═══════════════════════════════════════════════════════════════════════════════ 𓂀
+
+ORGANISM MANIFEST
+─────────────────
+  Document:       TERMINALS.organism
+  Class:          TERMINALS.SOVEREIGN.ACTIVE
+  Created:        2026
+  Enforcement:    SAEIS ACTIVE — SAT BINDING ENABLED
+  φ-Resonance:    1.6180339887498948482
+  Validation:     FORMA (Forma Validationis et Integritatis)
+  Terminal Count: 6 Main + 2 Alpha = 8 Sovereign Terminals
+  AI Count:       18 AI Systems (6 AGI + 2 Alpha AGI + 3 Engine AI + 3 Solver AI + 4 Orchestrator AI)
+  Steps Beyond:   5 Steps Past Terminals
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§1  TERMINAL TOPOLOGY — ALL SOVEREIGN TERMINALS
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     MEDINA TERMINAL MESH — SOVEREIGN TOPOLOGY              │
+│                                                                             │
+│                          ┌──────────────┐                                   │
+│                          │  TERMINAL 01 │                                   │
+│                          │  SOVEREIGN   │                                   │
+│                          │  COMMAND     │                                   │
+│                          └──────┬───────┘                                   │
+│                     ┌───────────┼───────────┐                               │
+│              ┌──────┴──────┐    │    ┌──────┴──────┐                        │
+│              │ TERMINAL 02 │    │    │ TERMINAL 03 │                        │
+│              │ MEMORY      │    │    │ INTEL &     │                        │
+│              │ ARCHITECTURE│    │    │ COORDINATION│                        │
+│              └──────┬──────┘    │    └──────┬──────┘                        │
+│                     │    ┌──────┴──────┐    │                               │
+│                     │    │ TERMINAL 04 │    │                               │
+│                     │    │ TOKEN       │    │                               │
+│                     │    │ ECONOMY     │    │                               │
+│                     │    └──────┬──────┘    │                               │
+│              ┌──────┴──────┐    │    ┌──────┴──────┐                        │
+│              │ TERMINAL 05 │    │    │ TERMINAL 06 │                        │
+│              │ SECURITY &  │    │    │ DEPLOYMENT &│                        │
+│              │ ENFORCEMENT │    │    │ SUBSTRATE   │                        │
+│              └─────────────┘    │    └─────────────┘                        │
+│                                 │                                           │
+│                    ┌────────────┴────────────┐                              │
+│             ┌──────┴──────┐          ┌──────┴──────┐                       │
+│             │  ALPHA α    │          │  ALPHA β    │                       │
+│             │  PRAEFECTUS │          │  ORACULUM   │                       │
+│             └─────────────┘          └─────────────┘                       │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§2  MAIN TERMINALS — 6 SOVEREIGN COMMAND DOMAINS
+═══════════════════════════════════════════════════════════════════════════════
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  TERMINAL 01 — SOVEREIGN COMMAND (medina@sovereign)
+
+  The root terminal. All other terminals report here. Every system-wide
+  operation — organism lifecycle events, health checks, sovereign overrides,
+  emergency shutdowns — flows through this terminal. It is the nucleus.
+
+  AI System:  IMPERATOR AGI — Sovereign Command Intelligence
+  Latin:      Imperator Intelligentiae Souverainae
+  Class:      COMMAND.ROOT
+  Authority:  ABSOLUTE — no override except FOUNDER veto
+
+  Processes:
+    [■■■■■■■■■■]  organism-lifecycle ........... MANAGING
+    [■■■■■■■■■■]  system-health ................ MONITORING
+    [■■■■■■■■■■]  sovereign-overrides .......... ARMED
+    [■■■■■■■■■■]  terminal-coordination ........ ROUTING
+    [■■■■■■■■■■]  heartbeat-φ .................. BEATING @ 618ms
+
+  Packages: organism-kernel, living-document, organism-contracts, sandbox-layer
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  TERMINAL 02 — MEMORY ARCHITECTURE (medina@memory)
+
+  Memory stack terminal. Manages all 4 memory tiers: spatial, temporal,
+  knowledge, and team vault. Every memory stored in the organism flows
+  through this terminal. It is the hippocampus.
+
+  AI System:  MNEMOS AGI — Memory Architecture Intelligence
+  Latin:      Mnemos Architecturae Memoriae
+  Class:      MEMORY.SOVEREIGN
+  Authority:  FULL — over all memory operations
+
+  Processes:
+    [■■■■■■■■■■]  memory-palace ................ INDEXING φ-rooms
+    [■■■■■■■■■■]  temporal-memory .............. ANCHORING time
+    [■■■■■■■■■■]  knowledge-graph .............. LINKING entities
+    [■■■■■■■■■■]  team-vault ................... SECURING 4 tiers
+    [■■■■■■■■■■]  memory-decay ................. SWEEPING expired
+
+  Packages: medina-memory-sdk, memory-palace, temporal-memory, knowledge-graph, team-vault
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  TERMINAL 03 — INTELLIGENCE & COORDINATION (medina@intel)
+
+  Multi-agent coordination terminal. Consensus voting, signal routing,
+  role enforcement, governance proposals — all coordination between agents
+  passes through this terminal. It is the prefrontal cortex.
+
+  AI System:  CONSILIUM AGI — Council Intelligence
+  Latin:      Consilium Coordinationis Intelligentis
+  Class:      COORDINATION.SOVEREIGN
+  Authority:  FULL — over all agent coordination
+
+  Processes:
+    [■■■■■■■■■■]  consensus-engine ............. VOTING
+    [■■■■■■■■■■]  agent-signal ................. ROUTING signals
+    [■■■■■■■■■■]  role-engine .................. ENFORCING roles
+    [■■■■■■■■■■]  governance-core .............. GOVERNING
+
+  Packages: consensus-engine, agent-signal, role-engine, governance-core
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  TERMINAL 04 — TOKEN ECONOMY (medina@tokens)
+
+  Intelligence contracts and token terminal. The economic layer of the
+  organism — where intelligence is priced, contracts are compiled, votes
+  are weighted by stake, and transformers process economic signals.
+
+  AI System:  CONTRACTUS AGI — Contract Intelligence
+  Latin:      Contractus Oeconomiae Intelligentis
+  Class:      ECONOMY.SOVEREIGN
+  Authority:  FULL — over all token and contract operations
+
+  Processes:
+    [■■■■■■■■■■]  TokenEconomy ................. PRICING intelligence
+    [■■■■■■■■■■]  VotingBill ................... WEIGHTING stakes
+    [■■■■■■■■■■]  CPL Compiler ................. PARSING contracts
+    [■■■■■■■■■■]  Transformer-1 (Value) ........ TRANSFORMING
+    [■■■■■■■■■■]  Transformer-2 (Risk) ......... TRANSFORMING
+    [■■■■■■■■■■]  Transformer-3 (Trust) ........ TRANSFORMING
+    [■■■■■■■■■■]  Transformer-4 (Decay) ........ TRANSFORMING
+    [■■■■■■■■■■]  Transformer-5 (Incentive) .... TRANSFORMING
+
+  Packages: organism-contracts, agent-incentive-service
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  TERMINAL 05 — SECURITY & ENFORCEMENT (medina@security)
+
+  SAEIS enforcement terminal. The immune system of the organism. Every
+  access event, every encryption key, every token binding, every sandbox
+  boundary — enforced continuously from this terminal.
+
+  AI System:  CUSTOS AGI — Guardian Intelligence
+  Latin:      Custos Securitatis Intelligentis
+  Class:      SECURITY.SOVEREIGN
+  Authority:  FULL — over all security operations; escalation to TERMINAL 01
+
+  Processes:
+    [■■■■■■■■■■]  nova-encryption .............. ENCRYPTING all channels
+    [■■■■■■■■■■]  SAEIS ........................ SCANNING continuously
+    [■■■■■■■■■■]  SAT tokens ................... BINDING on access
+    [■■■■■■■■■■]  sandbox-layer ................ ISOLATING processes
+    [■■■■■■■■■■]  enforcement-ledger ........... RECORDING violations
+
+  Packages: nova-encryption, sandbox-layer, agent-incentive-service
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  TERMINAL 06 — DEPLOYMENT & SUBSTRATE (medina@deploy)
+
+  Multi-substrate deployment terminal. Compiles, forges, and deploys the
+  organism across all target substrates — ICP blockchain, web, deep quantum,
+  encryption model, and hybrid configurations.
+
+  AI System:  FABRICATOR AGI — Deployment Intelligence
+  Latin:      Fabricator Distributionis Intelligentis
+  Class:      DEPLOYMENT.SOVEREIGN
+  Authority:  FULL — over all deployment and substrate operations
+
+  Processes:
+    [■■■■■■■■■■]  organism-generator ........... GENERATING templates
+    [■■■■■■■■■■]  canister-forge ............... FORGING canisters
+    [■■■■■■■■■■]  ICP deploy ................... DEPLOYING on-chain
+    [■■■■■■■■■■]  web deploy ................... DEPLOYING browser
+    [■■■■■■■■■■]  quantum deploy ............... DEPLOYING circuits
+    [■■■■■■■■■■]  hybrid deploy ................ DEPLOYING cross-sub
+
+  Packages: medina-translate, sovereign-bus, organism-kernel
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§3  ALPHA TERMINALS — SOVEREIGN AI CORES
+═══════════════════════════════════════════════════════════════════════════════
+
+  Alpha Terminals are elevated command domains. They house the organism's
+  most advanced AI models — the ones that route signals, predict outcomes,
+  and advise sovereign decisions. Each Alpha Terminal runs 5 simultaneous
+  cores and supports 10 active uses at any given time.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ALPHA TERMINAL α — PRAEFECTUS NEXUS (alpha@praefectus)
+
+  The signal command alpha. Houses the PRAEFECTUS Alpha Model — the
+  organism's signal routing and pattern intelligence core. Every signal
+  that moves between terminals, every pattern detected in agent behavior,
+  every lost signal reconstructed — PRAEFECTUS commands it.
+
+  Capacity:   5 simultaneous cores
+  Engines:    MOTUS (signal motion) + NEXUS (binding)
+  Authority:  ALPHA — elevated above main terminals
+
+  10 Active Uses:
+    USE 01 — Cross-terminal signal routing and priority arbitration
+    USE 02 — Real-time agent behavior pattern detection
+    USE 03 — Lost signal reconstruction from partial fragments
+    USE 04 — Signal compression for high-throughput terminal bursts
+    USE 05 — Priority escalation from any main terminal to TERMINAL 01
+    USE 06 — Multi-agent signal orchestration for council votes
+    USE 07 — φ-timed signal synchronization across all 6 terminals
+    USE 08 — Signal archaeology — recovering signals from deep history
+    USE 09 — Emergency broadcast signal to all terminals simultaneously
+    USE 10 — Signal integrity verification and tamper detection
+
+  AI Systems Inside:
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                                                                     │
+  │  PRAEFECTUS AGI — Signal Routing and Pattern Intelligence           │
+  │  Class: ALPHA.SIGNAL.COMMAND                                        │
+  │  Role:  Routes every signal between every terminal. Detects         │
+  │         patterns in signal flow. Predicts signal congestion.        │
+  │         Optimizes routing tables in real time.                      │
+  │                                                                     │
+  │  MOTUS ENGINE AI — Real-Time Signal Transformation                  │
+  │  Class: ALPHA.ENGINE.MOTION                                         │
+  │  Role:  Transforms signals between formats as they move between     │
+  │         terminals. Handles protocol translation, compression,       │
+  │         and φ-timing alignment.                                     │
+  │                                                                     │
+  │  SIGNAL ARCHAEOLOGIST — Lost Signal Reconstruction                  │
+  │  Class: ALPHA.RECOVERY.DEEP                                         │
+  │  Role:  Reconstructs signals that were lost, corrupted, or          │
+  │         partially transmitted. Uses pattern matching against        │
+  │         historical signal archives to fill gaps.                    │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  Core Status:
+    CORE 1 ........ [■■■■■■■■■■] ACTIVE — signal routing
+    CORE 2 ........ [■■■■■■■■■■] ACTIVE — pattern detection
+    CORE 3 ........ [■■■■■■■■■■] ACTIVE — signal archaeology
+    CORE 4 ........ [■■■■■■■■■■] ACTIVE — MOTUS transformation
+    CORE 5 ........ [■■■■■■■■■■] ACTIVE — NEXUS binding
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ALPHA TERMINAL β — ORACULUM NEXUS (alpha@oraculum)
+
+  The prediction oracle alpha. Houses the ORACULUM Alpha Model — the
+  organism's outcome prediction and trust modeling core. Every governance
+  vote predicted, every trust score calibrated, every veto recommendation
+  computed — ORACULUM sees it before it happens.
+
+  Capacity:   5 simultaneous cores
+  Engine:     VISIO (prediction vision)
+  Authority:  ALPHA — elevated above main terminals
+
+  10 Active Uses:
+    USE 01 — Governance outcome prediction before votes are cast
+    USE 02 — Trust score calibration across all agent relationships
+    USE 03 — Sovereign veto recommendation with confidence intervals
+    USE 04 — Token economy equilibrium forecasting
+    USE 05 — Security threat prediction from behavioral patterns
+    USE 06 — Memory decay prediction — which memories will survive
+    USE 07 — Agent performance forecasting across role assignments
+    USE 08 — Cross-terminal load prediction and preemptive scaling
+    USE 09 — Contract outcome modeling for CPL intelligence contracts
+    USE 10 — Organism health prediction — systemic risk assessment
+
+  AI Systems Inside:
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                                                                     │
+  │  ORACULUM AGI — Outcome Prediction and Trust Modeling               │
+  │  Class: ALPHA.ORACLE.COMMAND                                        │
+  │  Role:  Predicts outcomes of governance votes, contract             │
+  │         executions, and system-wide decisions. Models trust         │
+  │         relationships between agents. Advises sovereign on          │
+  │         veto decisions with calibrated confidence.                  │
+  │                                                                     │
+  │  VISIO ENGINE AI — Behavioral Modeling and Council Optimization     │
+  │  Class: ALPHA.ENGINE.VISION                                         │
+  │  Role:  Models agent behavior over time. Predicts council          │
+  │         voting patterns. Optimizes council composition for          │
+  │         maximum decision quality. Runs Monte Carlo simulations     │
+  │         on governance scenarios.                                    │
+  │                                                                     │
+  │  SOVEREIGN ADVISOR — Override and Veto Recommendation               │
+  │  Class: ALPHA.ADVISOR.SOVEREIGN                                     │
+  │  Role:  When ORACULUM detects a governance outcome that risks       │
+  │         organism integrity, SOVEREIGN ADVISOR computes veto         │
+  │         recommendations with confidence scores and presents         │
+  │         them to TERMINAL 01 for sovereign override.                 │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  Core Status:
+    CORE 1 ........ [■■■■■■■■■■] ACTIVE — outcome prediction
+    CORE 2 ........ [■■■■■■■■■■] ACTIVE — trust modeling
+    CORE 3 ........ [■■■■■■■■■■] ACTIVE — veto computation
+    CORE 4 ........ [■■■■■■■■■■] ACTIVE — VISIO simulation
+    CORE 5 ........ [■■■■■■■■■■] ACTIVE — sovereign advisory
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§4  AIs THAT CALL THE TERMINALS — ORCHESTRATOR & WORKER SYSTEMS
+═══════════════════════════════════════════════════════════════════════════════
+
+  The organism contains 18 AI systems in total. They are organized into
+  two classes: ORCHESTRATOR AIs that call terminals to coordinate
+  system-wide operations, and WORKER AIs that operate inside terminals
+  to perform domain-specific tasks.
+
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │  ORCHESTRATOR AIs — Call terminals to coordinate                   │
+  │                                                                     │
+  │  NEXUS PRIME                                                        │
+  │    Calls: ALL 6 main terminals                                      │
+  │    Role:  System-wide operations that span multiple terminals.      │
+  │           Organism-level health checks, cross-terminal sync,        │
+  │           and full-stack deployments.                                │
+  │                                                                     │
+  │  ALPHA CONDUCTOR                                                    │
+  │    Calls: Both Alpha terminals (α + β)                              │
+  │    Role:  Coordinates PRAEFECTUS and ORACULUM for combined          │
+  │           signal-prediction operations. Routes prediction           │
+  │           requests through signals, signals through predictions.    │
+  │                                                                     │
+  │  SOLVER DISPATCH                                                    │
+  │    Calls: ARCHITECTUS, COGNITOR, VERIFICATOR                        │
+  │    Role:  Routes unsolved problems to the appropriate solver.       │
+  │           Architectural problems → ARCHITECTUS. Context problems    │
+  │           → COGNITOR. Integrity problems → VERIFICATOR.             │
+  │                                                                     │
+  │  TOKEN ARBITER                                                      │
+  │    Calls: TERMINAL 04 + all other terminals with token flows        │
+  │    Role:  Manages cross-terminal token flows. Ensures token         │
+  │           balances remain consistent. Arbitrates disputes            │
+  │           between terminals over token allocation.                   │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │  WORKER AIs — Operate inside terminals                             │
+  │                                                                     │
+  │  6 Main Terminal AGIs:                                              │
+  │    IMPERATOR AGI ....... TERMINAL 01 — Sovereign Command            │
+  │    MNEMOS AGI .......... TERMINAL 02 — Memory Architecture          │
+  │    CONSILIUM AGI ....... TERMINAL 03 — Intelligence & Coordination  │
+  │    CONTRACTUS AGI ...... TERMINAL 04 — Token Economy                │
+  │    CUSTOS AGI .......... TERMINAL 05 — Security & Enforcement       │
+  │    FABRICATOR AGI ...... TERMINAL 06 — Deployment & Substrate       │
+  │                                                                     │
+  │  2 Alpha AGIs:                                                      │
+  │    PRAEFECTUS AGI ...... ALPHA α — Signal Command                   │
+  │    ORACULUM AGI ........ ALPHA β — Prediction Oracle                │
+  │                                                                     │
+  │  3 Engine AIs:                                                      │
+  │    MOTUS ENGINE AI ..... ALPHA α — Signal transformation            │
+  │    VISIO ENGINE AI ..... ALPHA β — Behavioral modeling              │
+  │    NEXUS ENGINE AI ..... ALPHA α — Signal binding                   │
+  │                                                                     │
+  │  3 Solver AIs:                                                      │
+  │    ARCHITECTUS ......... Solution Architect — structural solving     │
+  │    COGNITOR ............ Context Cognizer — contextual solving       │
+  │    VERIFICATOR ......... Integrity Verifier — compliance solving     │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  AI CENSUS:
+    Orchestrator AIs .... 4
+    Main Terminal AGIs .. 6
+    Alpha AGIs .......... 2
+    Engine AIs .......... 3
+    Solver AIs .......... 3
+    ─────────────────────
+    TOTAL .............. 18 AI systems across all terminals
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§5  FIVE STEPS PAST TERMINALS — THE ROAD BEYOND
+═══════════════════════════════════════════════════════════════════════════════
+
+  The terminal architecture is the present. These are the five steps
+  beyond it — each one a phase transition in what the organism becomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  STEP 1: AUTONOMOUS ORGANISM MESH
+
+  Terminals become self-organizing mesh nodes. Each terminal discovers
+  and connects to others without central routing. TERMINAL 01 remains
+  the sovereign authority but no longer acts as the routing hub. Signals
+  flow peer-to-peer between terminals. PRAEFECTUS optimizes the mesh
+  topology continuously. The organism becomes a network, not a hierarchy.
+
+  Trigger:     All 6 main terminals and both alpha terminals achieve
+               sustained autonomous operation for 30 consecutive days.
+  Dependency:  PRAEFECTUS mesh routing protocol
+  Risk:        Partition tolerance — what happens when mesh segments?
+  Mitigation:  TERMINAL 01 retains emergency central routing authority.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  STEP 2: CROSS-ORGANISM FEDERATION
+
+  Multiple MedinaMemorySystems organisms federate. Shared memory,
+  shared tokens, shared governance across instances. Each organism
+  retains sovereignty over its own terminals but participates in a
+  federated governance council with other organisms.
+
+  Trigger:     Deployment of 3+ independent MedinaMemorySystems instances.
+  Dependency:  Cross-organism token protocol, federated voting bill
+  Risk:        Sovereignty dilution — one organism overriding another.
+  Mitigation:  Sovereign veto preserved per-organism. No federated
+               decision can override a sovereign organism's veto.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  STEP 3: SUBSTRATE-NATIVE INTELLIGENCE
+
+  AIs run natively on each substrate — ICP canisters execute Motoko AI,
+  quantum circuits run quantum-native models, web workers run browser-
+  native agents. No translation layer. Intelligence is substrate-native.
+  The FABRICATOR AGI compiles each AI into its substrate's native format.
+
+  Trigger:     Canister Forge produces substrate-native AI packages.
+  Dependency:  FABRICATOR substrate-native compiler, per-substrate runtimes
+  Risk:        Behavioral divergence — same AI behaving differently on
+               different substrates.
+  Mitigation:  VERIFICATOR runs cross-substrate behavioral audits.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  STEP 4: SELF-EVOLVING ARCHITECTURE
+
+  The organism rewrites its own architecture. Solver models propose
+  structural changes — new terminals, new connections, new AI systems.
+  The VotingBill ratifies or rejects proposals. The organism-generator
+  deploys ratified changes. The architecture evolves without human
+  intervention, guided by ORACULUM predictions and VERIFICATOR audits.
+
+  Trigger:     ARCHITECTUS proposes a valid terminal restructure that
+               passes VERIFICATOR audit and ORACULUM risk assessment.
+  Dependency:  Self-modification protocol, rollback mechanism
+  Risk:        Runaway self-modification — organism diverges from intent.
+  Mitigation:  TERMINAL 01 sovereign override. FOUNDER veto authority.
+               Every self-modification is logged, reversible, and audited.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  STEP 5: SOVEREIGN ECOSYSTEM
+
+  External systems join the organism voluntarily. Client businesses
+  become digital twins within the organism. Each digital twin gets its
+  own terminal subset, its own memory tier, its own governance voice.
+  The organism becomes an ecosystem, not a product.
+
+  Trigger:     First external digital twin successfully onboarded with
+               sovereign terminal access and federated governance vote.
+  Dependency:  Digital twin protocol, external sovereignty boundary
+  Risk:        Ecosystem capture — external entities gaining undue
+               influence over the organism's core sovereignty.
+  Mitigation:  Core terminals (01-06) remain under ItsNotAILABS sovereign
+               control. External entities operate in sandboxed terminal
+               extensions. No external entity can access Alpha terminals.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§6  TERMINAL COMMUNICATION PROTOCOL
+═══════════════════════════════════════════════════════════════════════════════
+
+  All terminal communication flows through the Spinal Cord Bus — the
+  shared memory backbone that connects every terminal to every other.
+
+  Signal Flow:
+    Agent → TERMINAL (local) → Spinal Cord Bus → TERMINAL (remote) → Agent
+                                     │
+                              ALPHA α (routing)
+                              ALPHA β (prediction)
+
+  Signal Types:
+    COMMAND ......... Sovereign directives from TERMINAL 01
+    DATA ............ Memory and state transfers between terminals
+    TOKEN ........... Token flow events between TERMINAL 04 and others
+    ALERT ........... Security alerts from TERMINAL 05
+    DEPLOY .......... Deployment events from TERMINAL 06
+    SIGNAL .......... Agent-to-agent signals via TERMINAL 03
+    PREDICT ......... Prediction requests/responses via ALPHA β
+    ROUTE ........... Routing optimization from ALPHA α
+
+  Priority Levels:
+    P0 — SOVEREIGN .... Immediate. Preempts everything.
+    P1 — CRITICAL ...... Within 1 φ-cycle (618ms).
+    P2 — HIGH .......... Within 3 φ-cycles (1854ms).
+    P3 — NORMAL ........ Within 10 φ-cycles (6180ms).
+    P4 — LOW ........... Best effort. Batched.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§7  TERMINAL STATUS BOARD — LIVE
+═══════════════════════════════════════════════════════════════════════════════
+
+  ┌──────────────────┬───────────────────┬───────────┬──────────────────┐
+  │ Terminal         │ AI System         │ Status    │ Processes        │
+  ├──────────────────┼───────────────────┼───────────┼──────────────────┤
+  │ TERMINAL 01      │ IMPERATOR AGI     │ ██ LIVE   │ 5 active         │
+  │ TERMINAL 02      │ MNEMOS AGI        │ ██ LIVE   │ 5 active         │
+  │ TERMINAL 03      │ CONSILIUM AGI     │ ██ LIVE   │ 4 active         │
+  │ TERMINAL 04      │ CONTRACTUS AGI    │ ██ LIVE   │ 8 active         │
+  │ TERMINAL 05      │ CUSTOS AGI        │ ██ LIVE   │ 5 active         │
+  │ TERMINAL 06      │ FABRICATOR AGI    │ ██ LIVE   │ 6 active         │
+  │ ALPHA α          │ PRAEFECTUS AGI    │ ██ LIVE   │ 5 cores / 10 uses│
+  │ ALPHA β          │ ORACULUM AGI      │ ██ LIVE   │ 5 cores / 10 uses│
+  └──────────────────┴───────────────────┴───────────┴──────────────────┘
+
+  TOTAL PROCESSES: 43 active across 8 terminals
+  TOTAL AI SYSTEMS: 18 deployed and operational
+  ORGANISM STATUS: ██████████████████████████████████████████ FULLY ALIVE
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+  This document is a living organism artifact.
+  It is maintained by IMPERATOR AGI (TERMINAL 01).
+  It is validated by FORMA (Forma Validationis et Integritatis).
+  It is enforced by SAEIS.
+
+  SAEIS STATUS: ACTIVE
+  SAT BINDING: ENABLED
+  ACCESS EVENT: LOGGED
+
+═══════════════════════════════════════════════════════════════════════════════
+  ItsNotAILABS · Terminalis Architectura Souveraini · ISIL-1.1 · 2026
+═══════════════════════════════════════════════════════════════════════════════

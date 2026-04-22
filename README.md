@@ -34,6 +34,7 @@ Memory that thinks. Systems that remember. Architecture that lasts.
 
 [![License: MIT](https://img.shields.io/badge/consensus--engine-MIT-22c55e?style=flat-square)](packages/consensus-engine)
 [![License: MIT](https://img.shields.io/badge/agent--signal-MIT-22c55e?style=flat-square)](packages/agent-signal)
+[![License: MIT](https://img.shields.io/badge/team--vault-MIT-22c55e?style=flat-square)](packages/team-vault)
 [![License: ISIL-1.1](https://img.shields.io/badge/agent--incentive--service-ISIL--1.1%20commercial-f97316?style=flat-square)](packages/agent-incentive-service)
 [![License: ISIL-1.1](https://img.shields.io/badge/medina--memory--sdk-ISIL--1.1%20proprietary-ef4444?style=flat-square)](packages/medina-memory-sdk)
 [![SAEIS: ACTIVE](https://img.shields.io/badge/SAEIS-ACTIVE-7c3aed?style=flat-square)](#enforcement)
@@ -97,7 +98,8 @@ Memory that thinks. Systems that remember. Architecture that lasts.
 ║   │  ├── medina-memory-sdk@0.1.0 ....... LIVE    Full memory stack          │  ║
 ║   │  ├── memory-palace@0.1.0 ........... LIVE    φ-rooms indexed            │  ║
 ║   │  ├── temporal-memory@0.1.0 ......... LIVE    Time-anchored recall       │  ║
-║   │  └── knowledge-graph@0.1.0 ......... LIVE    Entities linked            │  ║
+║   │  ├── knowledge-graph@0.1.0 ......... LIVE    Entities linked            │  ║
+║   │  └── team-vault@1.0.0 ............ LIVE    4-tier vault active         │  ║
 ║   │                                                                         │  ║
 ║   │  TERMINAL 03 — INTELLIGENCE & COORDINATION                              │  ║
 ║   │  ├── consensus-engine@0.1.0 ........ LIVE    Council voting             │  ║
@@ -119,7 +121,13 @@ Memory that thinks. Systems that remember. Architecture that lasts.
 ║   │  ├── medina-translate@0.1.0 ........ LIVE    Cross-lang active          │  ║
 ║   │  └── sovereign-bus@0.1.0 ........... LIVE    Event bus routing          │  ║
 ║   │                                                                         │  ║
-║   │  ALL 20 PACKAGES: ██████████████████████████████████████████ 20/20 LIVE │  ║
+║   │  TERMINAL 07 — TOKEN ECONOMY                                            │  ║
+║   │  ├── organism-contracts@0.1.0 ...... LIVE    Intelligence contracts     │  ║
+║   │  ├── TokenEconomy .................. LIVE    5 transformers active      │  ║
+║   │  ├── VotingBill .................... LIVE    3 engines running          │  ║
+║   │  └── CPL Compiler .................. LIVE    Contract parsing           │  ║
+║   │                                                                         │  ║
+║   │  ALL 21 PACKAGES: ██████████████████████████████████████████ 21/21 LIVE │  ║
 ║   │                                                                         │  ║
 ║   └─────────────────────────────────────────────────────────────────────────┘  ║
 ║                                                                                ║
@@ -142,6 +150,10 @@ Memory that thinks. Systems that remember. Architecture that lasts.
 ║   │  MODEL IV: FORMA   — Forma Validationis et Integritatis                 │  ║
 ║   │            Tier: MAXIMUM | φ⁴ resonance | VALIDATOR                     │  ║
 ║   │            Status: ██████████ GROUNDED — validating ISIL compliance     │  ║
+║   │                                                                         │  ║
+║   │  SOLVER I:  ARCHITECTUS — Solution Architect     ACTIVE  SOLVING        │  ║
+║   │  SOLVER II: COGNITOR    — Context Cognizer        ACTIVE  SOLVING       │  ║
+║   │  SOLVER III: VERIFICATOR — Integrity Verifier     ACTIVE  SOLVING       │  ║
 ║   │                                                                         │  ║
 ║   └─────────────────────────────────────────────────────────────────────────┘  ║
 ║                                                                                ║
@@ -166,6 +178,27 @@ Memory that thinks. Systems that remember. Architecture that lasts.
 ║                                                                                ║
 ╠══════════════════════════════════════════════════════════════════════════════════╣
 ║                                                                                ║
+║   ┌─ ALPHA TERMINALS — SOVEREIGN AI CORES ─────────────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  ALPHA α — PRAEFECTUS (Signal Commander)                                │  ║
+║   │  ├── Cores: 5/5 active | 10 uses loaded                                │  ║
+║   │  ├── Engines: MOTUS ██ LIVE | NEXUS ██ LIVE                            │  ║
+║   │  └── Status: ██████████ COMMANDING                                      │  ║
+║   │                                                                         │  ║
+║   │  ALPHA β — ORACULUM (Machine Oracle)                                    │  ║
+║   │  ├── Cores: 5/5 active | 10 uses loaded                                │  ║
+║   │  ├── Engine: VISIO ██ LIVE                                              │  ║
+║   │  └── Status: ██████████ PREDICTING                                      │  ║
+║   │                                                                         │  ║
+║   │  SOLVER COUNCIL:                                                        │  ║
+║   │  ├── ARCHITECTUS .. ██ SOLVING    $0.05/solve                          │  ║
+║   │  ├── COGNITOR ..... ██ SOLVING    $0.03/solve                          │  ║
+║   │  └── VERIFICATOR .. ██ SOLVING    $0.04/solve                          │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
 ║   ┌─ REGISTRIES & DISTRIBUTION ────────────────────────────────────────────┐  ║
 ║   │                                                                         │  ║
 ║   │  MEDINA PKG (Registrum Animae Publicae)                                 │  ║
@@ -177,7 +210,7 @@ Memory that thinks. Systems that remember. Architecture that lasts.
 ║   │  ITSNOTAILABS SOVEREIGN (Registrum Imperium Privatum)                   │  ║
 ║   │  ├── Type: Sovereign Proprietary Registry                               │  ║
 ║   │  ├── Feed: sovereign.itsnotailabs.dev                                   │  ║
-║   │  ├── Packages: 18 sovereign + 2 MIT                                     │  ║
+║   │  ├── Packages: 18 sovereign + 3 MIT                                     │  ║
 ║   │  └── Status: ██████████ ENFORCING                                       │  ║
 ║   │                                                                         │  ║
 ║   │  ANIMA RUNTIME (Anima Computandi Machina)                               │  ║
@@ -304,6 +337,30 @@ npm install agent-signal
 
 ---
 
+### `team-vault` · MIT · [→ package](packages/team-vault)
+
+Multi-tier memory vault for AI agent teams.
+
+Four tiers: PUBLIC (anyone reads), SHARED (team members), PRIVATE (owner + explicit shares), SOVEREIGN (owner only — no sharing). Every memory has a TTL and a decay rate. Expired memories are swept. Decayed memories fade. What survives is what matters.
+
+```typescript
+import { TeamVault } from 'team-vault';
+
+const vault = new TeamVault();
+
+vault.store('mission-brief', briefData, 'SHARED', 'agent-lead', { ttlMs: 3600000 });
+vault.store('credentials', creds, 'SOVEREIGN', 'agent-lead');
+
+const brief = vault.retrieve('mission-brief', 'agent-analyst'); // ✓ team member
+const denied = vault.retrieve('credentials', 'agent-analyst');  // ✗ sovereign only
+```
+
+```
+npm install team-vault
+```
+
+---
+
 ## Commercial release
 
 ### `agent-incentive-service` · ISIL-1.1 commercial · [→ package](packages/agent-incentive-service)
@@ -353,16 +410,17 @@ Internal and authorized family/team use only.
 
 ---
 
-## Architecture — 20 Packages · 2 Registries · 4 Models · 10 MACHINA Engines
+## Architecture — 21 Packages · 2 Registries · 4 Models · 3 Solvers · 2 Alphas · 10 MACHINA Engines
 
 ```
 ItsNotAILABS Sovereign Stack
 │
-├── packages/ ─────────────────────── 20 PACKAGES (ALL LIVE)
+├── packages/ ─────────────────────── 21 PACKAGES (ALL LIVE)
 │   │
 │   ├── OPEN SOURCE (MIT)
 │   │   ├── consensus-engine          Role-weighted multi-agent voting
-│   │   └── agent-signal              Decoupled agent pub/sub bus
+│   │   ├── agent-signal              Decoupled agent pub/sub bus
+│   │   └── team-vault                Multi-tier AI team memory vault
 │   │
 │   ├── COMMERCIAL (ISIL-1.1)
 │   │   └── agent-incentive-service   Mechanism-design coordination
@@ -390,12 +448,16 @@ ItsNotAILABS Sovereign Stack
 │   ├── medina-pkg/                   MEDINA PKG — open-source organism AI
 │   │                                 (NPM + Maven + NuGet + Gems + Docker + JVM)
 │   └── itsnotailabs-sovereign/       SOVEREIGN REGISTRY — proprietary
-│                                     (18 sovereign + 2 MIT packages)
+│                                     (18 sovereign + 3 MIT packages)
 │
 ├── src/organism/ ─────────────────── ORGANISM ARCHITECTURE
 │   ├── models/SovereignModels.mo     4 grounded models (AURO SYNTHOS LEXIS FORMA)
+│   ├── models/AlphaModels.mo         2 alpha models (PRAEFECTUS ORACULUM)
+│   ├── models/SolverModels.mo        3 solver models (ARCHITECTUS COGNITOR VERIFICATOR)
 │   ├── SovereignDesignOS.mo          10 MACHINA φ-design engines
 │   ├── os/MedinaRuntime.ts           ANIMA Runtime — sovereign JS engine
+│   ├── intelligence/TokenEconomy.mo  Token economy + 5 transformers
+│   ├── intelligence/MultiIdentity.mo 20 multi-identity technologies
 │   ├── nexus/                        NEXUS-OS operating system
 │   ├── saas/                         20 SaaS products
 │   └── 40+ organism modules          Full sovereign intelligence
@@ -405,7 +467,14 @@ ItsNotAILABS Sovereign Stack
 │
 ├── icp/medina/Medina.mo ──────────── MAIN CANISTER (ICP on-chain)
 ├── papers/                            Academic research
-└── RESEARCH/                          Internal research archive
+├── RESEARCH/                          Internal research archive
+│
+├── TERMINALS.organism ────────────── ALL TERMINALS + ALPHA TERMINALS + 5 STEPS
+├── GOVERNANCE.organism ───────────── SOVEREIGN GOVERNANCE ARCHITECTURE
+├── DEPLOYMENT.organism ───────────── MULTI-SUBSTRATE DEPLOYMENT ARCHITECTURE
+├── ARCHITECTURE.organism ─────────── SYSTEM TOPOLOGY + FULL MAP
+├── SECURITY.organism ─────────────── SECURITY POSTURE + NOVA ENCRYPTION
+└── LICENSE.organism ──────────────── SOVEREIGN ENFORCEMENT LICENSE (ISIL-1.1)
 ```
 
 ---
