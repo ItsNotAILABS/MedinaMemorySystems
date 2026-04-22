@@ -1244,9 +1244,14 @@ module OrganismWiring {
         wire.wireIntegrity
     };
 
-    /// Check if fully wired (includes package substrate verification)
+    /// Check if fully wired (includes package substrate and absorption engine verification)
     public func isFullyWired(wire : OrganismWire) : Bool {
-        wire.isFullyWired and wire.packageSubstrate.phiIntegrity >= 1.0
+        wire.isFullyWired
+        and wire.packageSubstrate.phiIntegrity >= 1.0
+        and wire.absorptionEngine.documentLayerConnection.wireIntegrity >= 1.0
+        and wire.absorptionEngine.substrateLayerConnection.wireIntegrity >= 1.0
+        and wire.absorptionEngine.memoryTempleConnection.wireIntegrity >= 1.0
+        and allPackagesAbsorbed(wire)
     };
 
     /// Get package count wired into organism
