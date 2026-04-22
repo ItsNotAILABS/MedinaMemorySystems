@@ -483,7 +483,57 @@ Each package is a **living organism document** — it carries metadata, self-doc
 
 ---
 
-## Architecture — 24 Packages · 2 Registries · 4 Models · 3 Solvers · 2 Alphas · 10 MACHINA Engines · 1 City-State
+## 20 SDK Organisms — Half with Sub-Packages, Half Standalone
+
+### SDKs WITH Sub-Packages (1-10)
+
+| # | SDK | Latin Name | Sub-Packages | Cost |
+|---|-----|-----------|-------------|------|
+| 1 | `medina-memory-sdk` | Memoria Completa | team-vault, memory-palace, temporal-memory, knowledge-graph | $0.001/call |
+| 2 | `medina-intelligence-engine` | Machina Intelligentiae | token-economy, voting-bill, cpl-compiler | $0.005/call |
+| 3 | `medina-substrate-os` | Systema Substrati | persona-engine, canister-forge, seed-compiler, spinal-cord-bus, substrate-bridge | $0.01/call |
+| 4 | `medina-alpha-council` | Consilium Alphae | praefectus-model, oraculum-model, solver-council | $0.003/call |
+| 5 | `medina-consensus-suite` | Consensus Completa | consensus-engine, agent-signal, governance-core | $0.002/call |
+| 6 | `medina-security-suite` | Securitas Completa | nova-encryption, sandbox-layer, saeis-enforcer | $0.008/call |
+| 7 | `medina-document-engine` | Machina Documentorum | living-document, organism-contracts | $0.003/call |
+| 8 | `medina-frequency-suite` | Frequentia Completa | harmonic-compute, frequency-engine | $0.001/call |
+| 9 | `medina-translation-suite` | Translatio Completa | medina-translate, replay-engine, sovereign-bus | $0.002/call |
+| 10 | `medina-tools-marketplace` | Forum Instrumentorum | ai-tools-marketplace, agent-incentive-service, role-engine | $0.001/call |
+
+### Standalone SDKs (11-20) — No Sub-Packages
+
+| # | SDK | Latin Name | What It Does | Cost |
+|---|-----|-----------|-------------|------|
+| 11 | `medina-pipeline-sdk` | Canalis Intelligentiae | AI pipeline construction — chain, gate, route | $0.004/call |
+| 12 | `medina-debate-sdk` | Disputatio Mechanica | Multi-agent debate — argumentation + resolution | $0.006/call |
+| 13 | `medina-orchestrator-sdk` | Orchestrator Agentium | Team assembly, task routing, load balancing | $0.005/call |
+| 14 | `medina-audit-sdk` | Auditorium Fidei | Immutable audit trail — every action recorded | $0.002/call |
+| 15 | `medina-vision-sdk` | Oro Visio | Screen reading and visual perception | $0.008/call |
+| 16 | `medina-hearing-sdk` | Nova Auditus | Voice recognition and audio processing | $0.007/call |
+| 17 | `medina-quantum-sdk` | Quantum Profundum | Quantum-resistant operations + lattice proofs | $0.01/call |
+| 18 | `medina-canister-sdk` | Canistrum Vivum | ICP canister development and deployment | $0.005/call |
+| 19 | `medina-saas-sdk` | Servitium Nubium | SaaS product generation from organism architecture | $0.003/call |
+| 20 | `medina-civilization-sdk` | Civitas SDK | City-state civilization builder | $0.004/call |
+
+---
+
+## 7 System Categories — 5 Technologies + 5 Models Each
+
+| Category | Latin Name | Technologies | Models |
+|----------|-----------|-------------|--------|
+| **Multimodal SDKs** | SDK Multimodalia | VISIO, AUDITUS, TEXTUS, CODEX, RATIO | UNITAS, SENSORIA, SYNTHESIUS, CRITICUS, MEMORIUS |
+| **Runtime Package** | Fasciculus Executionis | PHI_GC, MODULE_LOADER, PROCESS_SPAWNER, CPL_INTERPRETER, CROSS_BRIDGE | EXECUTOR, GUARDIAN, RESOLVER, DIAGNOSTICUS, ADAPTATOR |
+| **Registry Package** | Fasciculus Registri | PKG_PUBLISH, PKG_RESOLVE, PKG_MIRROR, PKG_AUDIT, PKG_TRANSLATE | CURATOR, VERIFICATOR_PKG, COMPATIBILIS, OPTIMIZATOR, NAVIGATOR |
+| **Terminal Package** | Fasciculus Terminalis | TERMINAL_CORE, TERMINAL_AI, TERMINAL_VIS, TERMINAL_SEC, TERMINAL_MULTI | INTERPRES_CMD, MONITOR, ASSISTANT, AUTOMATOR, HISTORIAN |
+| **Kernel Package** | Fasciculus Nuclei | HEARTBEAT, CORE_OPS, LAYER_MANAGER, ORGANISM_LIFECYCLE, WIRING_ENGINE | ARCHITECTUS_KERNEL, IMMUNIS, EVOLUATOR, SYNCHRONUS, THERMODYNAMUS |
+| **SDK Organisms** | Organismi SDK | SDK_GENERATOR, SDK_COMPOSITOR, SDK_VERSIONER, SDK_TESTER, SDK_DOCUMENTER | FABRICATOR, QUALITAS, EXEMPLAR, MIGRATOR, INTEGRATOR |
+| **Package Ecosystem** | Organismi Ecosystematis | ECO_TOPOLOGY, ECO_HEALTH, ECO_GOVERNANCE, ECO_EVOLUTION, ECO_ECONOMY | ECOLOGUS, GARDIANUS, PROPAGATOR, TAXONOMUS, SYMBIONT |
+
+**Totals:** 35 technologies + 35 models = **70 registered intelligence units** across 7 system categories.
+
+---
+
+## Architecture — 24 Packages · 20 SDK Organisms · 7 System Categories · 35 Technologies · 35 Models
 
 ```
 ItsNotAILABS Sovereign Stack
@@ -538,6 +588,7 @@ ItsNotAILABS Sovereign Stack
 │   ├── intelligence/VotingBill.ts    3 voting engines — WIRED TO RUNTIME
 │   ├── intelligence/MultiIdentity.ts 20 multi-identity technologies — WIRED TO RUNTIME
 │   ├── civilizations/OrganismCityState.ts  CIVITAS INTELLIGENTIAE — City-State Architecture
+│   ├── sdk/SDKOrganismRegistry.ts    20 SDK Organisms + 7 System Categories (35+35)
 │   ├── ArchitectureWiring.ts         Root→All branches (token_economy, voting, solvers, etc.)
 │   ├── nexus/                        NEXUS-OS operating system
 │   ├── saas/                         20 SaaS products

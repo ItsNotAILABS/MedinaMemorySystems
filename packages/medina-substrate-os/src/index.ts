@@ -13,8 +13,8 @@
  * This is a LIVING PACKAGE — it carries organism metadata and self-documents.
  */
 
-export { MultiIdentityManager, OrganismGenerator, SpinalCordBus } from '../../src/organism/intelligence/MultiIdentity';
-export { AnimaRuntime } from '../../src/organism/os/MedinaRuntime';
+export { MultiIdentityManager, OrganismGenerator, SpinalCordBus } from '../../../src/organism/intelligence/MultiIdentity';
+export { AnimaRuntime } from '../../../src/organism/os/MedinaRuntime';
 
 export const PACKAGE_ORGANISM = {
   name: '@itsnotailabs/substrate-os',

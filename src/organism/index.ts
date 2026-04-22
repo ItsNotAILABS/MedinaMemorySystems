@@ -475,6 +475,22 @@ export {
 } from './os/MedinaRuntime';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// SDK ORGANISM REGISTRY — 20 SDKs + 7 SYSTEM CATEGORIES (35 TECHNOLOGIES + 35 MODELS)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SDKOrganismRegistry,
+  createSDKRegistry,
+  SDK_ORGANISMS,
+  SYSTEM_CATEGORIES,
+  type SDKOrganism,
+  type SubPackage,
+  type SystemCategory,
+  type Technology,
+  type Model,
+} from './sdk/SDKOrganismRegistry';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 

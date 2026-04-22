@@ -13,9 +13,9 @@
  * This is a LIVING PACKAGE — it carries organism metadata and self-documents.
  */
 
-export { AlphaModelRegistry, Praefectus, Oraculum, MotusEngine, VisioEngine, NexusBindingEngine } from '../../src/organism/models/AlphaModels';
-export { SolverCouncil, Architectus, Cognitor, Verificator } from '../../src/organism/models/SolverModels';
-export { CivitasIntelligentiae, foundCivitas } from '../../src/organism/civilizations/OrganismCityState';
+export { AlphaModelRegistry, Praefectus, Oraculum, MotusEngine, VisioEngine, NexusEngine } from '../../../src/organism/models/AlphaModels';
+export { SolverCouncil, Architectus, Cognitor, Verificator } from '../../../src/organism/models/SolverModels';
+export { CivitasIntelligentiae, foundCivitas } from '../../../src/organism/civilizations/OrganismCityState';
 
 export const PACKAGE_ORGANISM = {
   name: '@itsnotailabs/alpha-council',

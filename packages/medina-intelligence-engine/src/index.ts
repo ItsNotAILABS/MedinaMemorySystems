@@ -12,8 +12,8 @@
  * This is a LIVING PACKAGE — it carries organism metadata and self-documents.
  */
 
-export { TokenEconomy, CPLCompiler } from '../../src/organism/intelligence/TokenEconomy';
-export { SimpleTokenVoting, WeightedTokenVoting, SovereignTokenVoting } from '../../src/organism/intelligence/VotingBill';
+export { TokenEconomy, CPLCompiler } from '../../../src/organism/intelligence/TokenEconomy';
+export { SimpleTokenVoting, WeightedTokenVoting, SovereignTokenVoting } from '../../../src/organism/intelligence/VotingBill';
 
 export const PACKAGE_ORGANISM = {
   name: '@itsnotailabs/intelligence-engine',
