@@ -1,4 +1,4 @@
-# 𓂀 @medina/phi-mathematics-engine
+# 𓂀 @medina/harmonic-computation-engine
 
 ![Version](https://img.shields.io/badge/version-1.0.0-gold) ![License](https://img.shields.io/badge/license-MIT-green) ![φ](https://img.shields.io/badge/φ-1.618033988749895-purple) ![Research](https://img.shields.io/badge/UTA-Research-blue)
 
@@ -24,7 +24,7 @@ This engine implements a complete mathematical substrate based on the golden rat
 ## Installation
 
 ```bash
-npm install @medina/phi-mathematics-engine
+npm install @medina/harmonic-computation-engine
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ npm install @medina/phi-mathematics-engine
 import {
   getPhi, fibonacci, compilePhiRatio,
   compileHarmonicSignature, getSchumannFrequencies
-} from '@medina/phi-mathematics-engine';
+} from '@medina/harmonic-computation-engine';
 
 // Get φ with full precision
 const phi = getPhi(); // 1.618033988749895
@@ -74,7 +74,7 @@ const schumann = getSchumannFrequencies();
 ```bibtex
 @software{medina_phi_mathematics_2026,
   author       = {Medina Hernandez, Alfredo},
-  title        = {Phi Mathematics Engine: A Golden Ratio Computational Substrate},
+  title        = {Harmonic Computation Engine: A Golden Ratio Computational Substrate},
   year         = {2026},
   publisher    = {ItsNotAILABS},
   version      = {1.0.0},

@@ -11,10 +11,10 @@
  * │ 2. organism-runtime-sdk          │   10    │    18     │ /pulse + /org  │
  * │ 3. governance-protocol           │    6    │    21     │ /gov           │
  * │ 4. intelligence-routing-sdk      │    9    │    10     │ /intel         │
- * │ 5. phi-mathematics-engine        │    6    │    25     │ /formula       │
+ * │ 5. harmonic-computation-engine    │    6    │    25     │ /formula       │
  * │ 6. sovereign-encryption-sdk      │    9    │    19     │ /defend+/anima │
  * │ 7. design-os-toolkit             │    5    │     6     │ (visual)       │
- * │ 8. ancient-knowledge-engine      │   24    │    10     │ /prim          │
+ * │ 8. civilization-pattern-engine    │   24    │    10     │ /prim          │
  * │ 9. enterprise-integration-sdk    │   12    │    18     │ (enterprise)   │
  * │10. neural-consciousness-engine   │   17    │    17     │ /quantum       │
  * │11. document-absorption-engine    │    9    │    14     │ /absorb        │
@@ -56,10 +56,10 @@ export * as SovereignMemorySDK from './sovereign-memory-sdk';
 export * as OrganismRuntimeSDK from './organism-runtime-sdk';
 export * as GovernanceProtocol from './governance-protocol';
 export * as IntelligenceRoutingSDK from './intelligence-routing-sdk';
-export * as PhiMathematicsEngine from './phi-mathematics-engine';
+export * as HarmonicComputationEngine from './harmonic-computation-engine';
 export * as SovereignEncryptionSDK from './sovereign-encryption-sdk';
 export * as DesignOSToolkit from './design-os-toolkit';
-export * as AncientKnowledgeEngine from './ancient-knowledge-engine';
+export * as CivilizationPatternEngine from './civilization-pattern-engine';
 export * as EnterpriseIntegrationSDK from './enterprise-integration-sdk';
 export * as NeuralConsciousnessEngine from './neural-consciousness-engine';
 export * as DocumentAbsorptionEngine from './document-absorption-engine';
@@ -107,8 +107,8 @@ export const MASTER_MANIFEST = {
       exportCount: 10,
     },
     {
-      name: '@medina/phi-mathematics-engine',
-      import: './phi-mathematics-engine',
+      name: '@medina/harmonic-computation-engine',
+      import: './harmonic-computation-engine',
       terminal: '/formula',
       description: 'φ Constants + Fibonacci + Sacred Geometry + Frequency Physics + Field Physics',
       moduleCount: 6,
@@ -131,8 +131,8 @@ export const MASTER_MANIFEST = {
       exportCount: 6,
     },
     {
-      name: '@medina/ancient-knowledge-engine',
-      import: './ancient-knowledge-engine',
+      name: '@medina/civilization-pattern-engine',
+      import: './civilization-pattern-engine',
       terminal: '/prim',
       description: 'Civilizations + Glyphs + Languages + CPL + Archetypes + Mythology + Patterns',
       moduleCount: 24,

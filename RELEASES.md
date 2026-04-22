@@ -33,14 +33,14 @@ Open source under MIT or Apache 2.0. Designed for academic collaboration, citati
 
 | # | Package | Tag | License | Docs |
 |---|---------|-----|---------|------|
-| 6 | `@medina/phi-mathematics-engine` | `@medina/phi-mathematics-engine@1.0.0` | MIT | [README](releases/research/phi-mathematics-engine/README.md) |
+| 6 | `@medina/harmonic-computation-engine` | `@medina/harmonic-computation-engine@1.0.0` | MIT | [README](releases/research/harmonic-computation-engine/README.md) |
 | 7 | `@medina/neural-consciousness-engine` | `@medina/neural-consciousness-engine@1.0.0` | Apache 2.0 | [README](releases/research/neural-consciousness-engine/README.md) |
-| 8 | `@medina/ancient-knowledge-engine` | `@medina/ancient-knowledge-engine@1.0.0` | MIT | [README](releases/research/ancient-knowledge-engine/README.md) |
+| 8 | `@medina/civilization-pattern-engine` | `@medina/civilization-pattern-engine@1.0.0` | MIT | [README](releases/research/civilization-pattern-engine/README.md) |
 
 ### What ships:
-- **phi-mathematics-engine** — φ constants, Fibonacci, sacred geometry, frequency physics (432 Hz/Schumann), Phi-Beatty sequences
+- **harmonic-computation-engine** — φ constants, Fibonacci, sacred geometry, frequency physics (432 Hz/Schumann), Phi-Beatty sequences
 - **neural-consciousness-engine** — 6 animal brain architectures (human/dolphin/crow/octopus/bee/elephant), dream cycles, consciousness layers, quantum state modeling
-- **ancient-knowledge-engine** — 34 civilizations, glyph computing (Mayan/Hebrew/Egyptian/Chinese), CPL, 12 hero journey stages, 7 rhetorical modes
+- **civilization-pattern-engine** — 34 civilizations, glyph computing (Mayan/Hebrew/Egyptian/Chinese), CPL, 12 hero journey stages, 7 rhetorical modes
 
 ### Citation
 
@@ -83,7 +83,7 @@ For enterprise licensing: **enterprise@itsnotailabs.com**
 
 | License | Packages | File |
 |---------|----------|------|
-| MIT | sovereign-memory-sdk, intelligence-routing-sdk, organism-runtime-sdk, document-absorption-engine, phi-mathematics-engine, ancient-knowledge-engine | [licenses/MIT.txt](licenses/MIT.txt) |
+| MIT | sovereign-memory-sdk, intelligence-routing-sdk, organism-runtime-sdk, document-absorption-engine, harmonic-computation-engine, civilization-pattern-engine | [licenses/MIT.txt](licenses/MIT.txt) |
 | Apache 2.0 | neural-consciousness-engine | [licenses/APACHE-2.0.txt](licenses/APACHE-2.0.txt) |
 | Proprietary (Commercial) | enterprise-integration-sdk | Contact for terms |
 | Living Organism License | sovereign-encryption-sdk | [licenses/LIVING-ORGANISM-LICENSE.md](licenses/LIVING-ORGANISM-LICENSE.md) |
@@ -102,7 +102,7 @@ git tag @medina/sovereign-memory-sdk@1.0.0
 git push origin @medina/sovereign-memory-sdk@1.0.0
 
 # Example: Release all 11 packages at v1.0.0
-for pkg in sovereign-memory-sdk enterprise-integration-sdk intelligence-routing-sdk organism-runtime-sdk document-absorption-engine phi-mathematics-engine neural-consciousness-engine ancient-knowledge-engine sovereign-encryption-sdk governance-protocol design-os-toolkit; do
+for pkg in sovereign-memory-sdk enterprise-integration-sdk intelligence-routing-sdk organism-runtime-sdk document-absorption-engine harmonic-computation-engine neural-consciousness-engine civilization-pattern-engine sovereign-encryption-sdk governance-protocol design-os-toolkit; do
   git tag "@medina/${pkg}@1.0.0"
 done
 git push origin --tags
@@ -127,9 +127,9 @@ src/packages/
 ├── intelligence-routing-sdk.ts     ← Package 3
 ├── organism-runtime-sdk.ts         ← Package 4
 ├── document-absorption-engine.ts   ← Package 5
-├── phi-mathematics-engine.ts       ← Package 6
+├── harmonic-computation-engine.ts       ← Package 6
 ├── neural-consciousness-engine.ts  ← Package 7
-├── ancient-knowledge-engine.ts     ← Package 8
+├── civilization-pattern-engine.ts     ← Package 8
 ├── sovereign-encryption-sdk.ts     ← Package 9
 ├── governance-protocol.ts          ← Package 10
 └── design-os-toolkit.ts            ← Package 11

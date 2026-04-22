@@ -1,4 +1,4 @@
-# 𓂀 @medina/ancient-knowledge-engine
+# 𓂀 @medina/civilization-pattern-engine
 
 ![Version](https://img.shields.io/badge/version-1.0.0-gold) ![License](https://img.shields.io/badge/license-MIT-green) ![φ](https://img.shields.io/badge/φ-1.618033988749895-purple) ![Research](https://img.shields.io/badge/UTA-Research-blue)
 
@@ -30,7 +30,7 @@ This engine implements computational models of 34 ancient civilizations' mathema
 ## Installation
 
 ```bash
-npm install @medina/ancient-knowledge-engine
+npm install @medina/civilization-pattern-engine
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ import {
   traceToPrimitive,
   checkPrimitiveCompliance,
   transcendDocPrimitiva
-} from '@medina/ancient-knowledge-engine';
+} from '@medina/civilization-pattern-engine';
 
 // Trace a concept to its primitive roots
 const trace = traceToPrimitive({
@@ -95,7 +95,7 @@ const transcended = transcendDocPrimitiva({
 ```bibtex
 @software{medina_ancient_knowledge_2026,
   author       = {Medina Hernandez, Alfredo},
-  title        = {Ancient Knowledge Engine: Computational Archaeology for AI Systems},
+  title        = {Civilization Pattern Engine: Computational Archaeology for AI Systems},
   year         = {2026},
   publisher    = {ItsNotAILABS},
   version      = {1.0.0},

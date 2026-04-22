@@ -56,7 +56,7 @@ jobs:
               echo "license=Proprietary (Commercial)" >> "$GITHUB_OUTPUT"
               echo "readme_path=releases/marketplace/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
               ;;
-            phi-mathematics-engine|ancient-knowledge-engine)
+            harmonic-computation-engine|civilization-pattern-engine)
               echo "category=UTA Research" >> "$GITHUB_OUTPUT"
               echo "license=MIT" >> "$GITHUB_OUTPUT"
               echo "readme_path=releases/research/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
