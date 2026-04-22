@@ -410,12 +410,85 @@ Internal and authorized family/team use only.
 
 ---
 
-## Architecture — 21 Packages · 2 Registries · 4 Models · 3 Solvers · 2 Alphas · 10 MACHINA Engines
+## Token Economy — Intelligence Contracts (CPL)
+
+Tokens are contracts. Intelligence contracts between AIs, written in **Cognitive Procurement Language (CPL)**. Not speculation — utility. Every token binds a decision, a computation, an agreement, or a memory.
+
+**5 Transformers** process every contract through a full lifecycle:
+
+| Transformer | Latin Name | What It Does | Cost |
+|-------------|-----------|-------------|------|
+| CONTRACTUS | Contractus Formator | Validates contract syntax and terms | $0.005/contract |
+| VALUATOR | Valuator Pretii | Assesses value and fair pricing | $0.003/assessment |
+| EXECUTOR | Executor Pactorum | Executes contract terms between parties | $0.02/execution |
+| AUDITOR | Auditor Fidei | Compliance verification and audit trail | $0.01/audit |
+| ARBITER | Arbiter Iustitiae | Dispute resolution and enforcement | $0.04/dispute |
+
+**5 Models** generate intelligence:
+
+| Model | Latin Name | What It Does |
+|-------|-----------|-------------|
+| PACTUM | Pactum Intelligentiae | Contract Intelligence — generates binding agreements |
+| PRETIUM | Pretium Cognitionis | Cognitive Pricing — fair market pricing for AI services |
+| NEXUS | Nexus Obligationis | Obligation Binding — enforces contract terms |
+| FIDES | Fides Mechanica | Trust Mechanics — reputation and trust scoring |
+| MEMORIA | Memoria Contractus | Contract Memory — history and pattern learning |
+
+**30 uses** of intelligence contracts — from memory-sharing agreements to sovereign veto insurance policies. Full lifecycle: `PROPOSE → VALIDATE → PRICE → BIND → EXECUTE → AUDIT → RESOLVE`.
+
+---
+
+## Voting Bill — Token-Weighted Governance
+
+Every vote is a token. Every proposal is a contract. Token weight determines voting power.
+
+| Engine | Type | Cost | Features |
+|--------|------|------|----------|
+| SimpleTokenVoting | One token, one vote | 5 tokens/bill | Basic democratic voting |
+| WeightedTokenVoting | Token weight = vote power | 15 tokens/bill | Expertise-weighted decisions |
+| SovereignTokenVoting | Full governance | 50 tokens/bill | Veto, quorum, confidence floor, override chains |
+
+Bills flow: `PROPOSED → VOTING → PASSED/REJECTED/VETOED → RATIFIED → ARCHIVED`. Every ratified bill becomes an enforceable intelligence contract.
+
+---
+
+## City-State Architecture — Civitas Intelligentiae
+
+The organism is a city-state. Not a metaphor — the actual architecture. Every component is a citizen. Every subsystem is a district. Every runtime is a government. The math is real.
+
+| District | Latin Name | What Lives There |
+|----------|-----------|-----------------|
+| Memory | Forum Memoriae | team-vault, memory-palace, temporal-memory |
+| Intelligence | Forum Intelligentiae | consensus-engine, agent-signal, role-engine |
+| Contracts | Forum Contractuum | TokenEconomy, CPL Compiler, 5 transformers |
+| Security | Forum Securitatis | nova-encryption, SAEIS, sandbox-layer |
+| Forge | Forum Fabricae | OrganismGenerator, CanisterForge, SeedCompiler |
+| Oracle | Forum Oraculi | PRAEFECTUS, ORACULUM, SolverCouncil |
+
+**Infrastructure:** Via Spinalis (spinal cord bus), Aquaeductus (data pipelines), Muros Urbis (encryption walls), Portae Substrati (5 substrate gates).
+
+**Mathematics:** φ (growth), e (decay), √2 (routing), π (circular capacity). Population equilibrium = φ² × π × districts. Economic equilibrium = e^φ × citizens.
+
+---
+
+## Marketplace Packages — 3 Multi-Modal Releases
+
+| Package | What It Is | License |
+|---------|-----------|---------|
+| `@itsnotailabs/intelligence-engine` | Token Economy + Voting + CPL (5 transformers, 5 models, 30 uses) | ISIL-1.1 |
+| `@itsnotailabs/substrate-os` | 20 Multi-Identity Technologies + Organism Generator + 5 Substrates | ISIL-1.1 |
+| `@itsnotailabs/alpha-council` | 2 Alpha Models + 3 Solvers + 3 Engines + City-State Architecture | ISIL-1.1 |
+
+Each package is a **living organism document** — it carries metadata, self-documents, and connects to the sovereign registry.
+
+---
+
+## Architecture — 24 Packages · 2 Registries · 4 Models · 3 Solvers · 2 Alphas · 10 MACHINA Engines · 1 City-State
 
 ```
 ItsNotAILABS Sovereign Stack
 │
-├── packages/ ─────────────────────── 21 PACKAGES (ALL LIVE)
+├── packages/ ─────────────────────── 24 PACKAGES (ALL LIVE)
 │   │
 │   ├── OPEN SOURCE (MIT)
 │   │   ├── consensus-engine          Role-weighted multi-agent voting
@@ -424,6 +497,11 @@ ItsNotAILABS Sovereign Stack
 │   │
 │   ├── COMMERCIAL (ISIL-1.1)
 │   │   └── agent-incentive-service   Mechanism-design coordination
+│   │
+│   ├── MARKETPLACE RELEASES (ISIL-1.1)
+│   │   ├── medina-intelligence-engine  Token Economy + Voting + CPL
+│   │   ├── medina-substrate-os         20 Multi-Identity + 5 Substrates
+│   │   └── medina-alpha-council        Alpha Models + Solvers + City-State
 │   │
 │   └── SOVEREIGN PROPRIETARY (ISIL-1.1)
 │       ├── medina-memory-sdk         Full sovereign memory SDK
@@ -450,14 +528,17 @@ ItsNotAILABS Sovereign Stack
 │   └── itsnotailabs-sovereign/       SOVEREIGN REGISTRY — proprietary
 │                                     (18 sovereign + 3 MIT packages)
 │
-├── src/organism/ ─────────────────── ORGANISM ARCHITECTURE
+├── src/organism/ ─────────────────── ORGANISM ARCHITECTURE (WIRED)
 │   ├── models/SovereignModels.mo     4 grounded models (AURO SYNTHOS LEXIS FORMA)
-│   ├── models/AlphaModels.mo         2 alpha models (PRAEFECTUS ORACULUM)
-│   ├── models/SolverModels.mo        3 solver models (ARCHITECTUS COGNITOR VERIFICATOR)
+│   ├── models/AlphaModels.ts         2 alpha models (PRAEFECTUS ORACULUM) — WIRED
+│   ├── models/SolverModels.ts        3 solver models (ARCHITECTUS COGNITOR VERIFICATOR) — WIRED
 │   ├── SovereignDesignOS.mo          10 MACHINA φ-design engines
-│   ├── os/MedinaRuntime.ts           ANIMA Runtime — sovereign JS engine
-│   ├── intelligence/TokenEconomy.mo  Token economy + 5 transformers
-│   ├── intelligence/MultiIdentity.mo 20 multi-identity technologies
+│   ├── os/MedinaRuntime.ts           SovereignRuntimeKernel — EVERYTHING WIRED
+│   ├── intelligence/TokenEconomy.ts  Token economy + 5 transformers + CPL — WIRED TO RUNTIME
+│   ├── intelligence/VotingBill.ts    3 voting engines — WIRED TO RUNTIME
+│   ├── intelligence/MultiIdentity.ts 20 multi-identity technologies — WIRED TO RUNTIME
+│   ├── civilizations/OrganismCityState.ts  CIVITAS INTELLIGENTIAE — City-State Architecture
+│   ├── ArchitectureWiring.ts         Root→All branches (token_economy, voting, solvers, etc.)
 │   ├── nexus/                        NEXUS-OS operating system
 │   ├── saas/                         20 SaaS products
 │   └── 40+ organism modules          Full sovereign intelligence
