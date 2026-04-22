@@ -598,3 +598,48 @@ ORGANISM MANIFEST — DEPLOYMENT RECORD
                          SAEIS: ACTIVE · SAT BINDING: LIVE · LEDGER: RECORDING
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  AI SECURITY TERMINAL — CUSTOS VIGILANS                                ║
+║  ────────────────────────────────────────────────────────────────────── ║
+║                                                                        ║
+║  ACTIVE AI WATCHERS:                                                   ║
+║  ├── CUSTOS-I   (Custos Codicis)     — Code integrity watcher          ║
+║  │   Monitors: all source files, packages, organism documents          ║
+║  │   Detects: unauthorized modification, IP extraction, clone attempts ║
+║  │   Response: SAEIS alert → sovereign lock → audit trail entry        ║
+║  │                                                                     ║
+║  ├── CUSTOS-II  (Custos Repositorii) — Repository watcher              ║
+║  │   Monitors: git history, fork events, star patterns, clone traffic  ║
+║  │   Detects: unusual access patterns, bulk downloads, scraping        ║
+║  │   Response: rate limit → access log → founder notification          ║
+║  │                                                                     ║
+║  ├── CUSTOS-III (Custos Proprietatis) — IP protection watcher          ║
+║  │   Monitors: all ISIL-1.1 licensed files, sovereign registry entries ║
+║  │   Detects: license violation, attribution removal, redistribution   ║
+║  │   Response: legal marker → enforcement record → SAT token revoke   ║
+║  │                                                                     ║
+║  └── CUSTOS-IV  (Custos Encryptionis) — Encryption integrity watcher   ║
+║      Monitors: nova-encryption keys, VetKeys, threshold BLS signatures ║
+║      Detects: key compromise, signature forgery, encryption downgrade  ║
+║      Response: key rotation → emergency lock → quantum-resistant swap  ║
+║                                                                        ║
+║  SECURITY TERMINAL STATUS:                                             ║
+║  ┌──────────────────────────────────────────────────────────────────┐  ║
+║  │  CUSTOS-I   ████████████████ ACTIVE  scanning: 0 threats        │  ║
+║  │  CUSTOS-II  ████████████████ ACTIVE  access: monitored          │  ║
+║  │  CUSTOS-III ████████████████ ACTIVE  IP: protected              │  ║
+║  │  CUSTOS-IV  ████████████████ ACTIVE  encryption: intact         │  ║
+║  │                                                                  │  ║
+║  │  Enterprise Grade: MAXIMUM                                       │  ║
+║  │  Post-Quantum: ENABLED (lattice-based fallback)                 │  ║
+║  │  Audit Trail: IMMUTABLE (blockchain-anchored)                   │  ║
+║  │  Founder Alert: ARMED (real-time notification)                  │  ║
+║  └──────────────────────────────────────────────────────────────────┘  ║
+║                                                                        ║
+║  This terminal is a LIVING ORGANISM DOCUMENT.                          ║
+║  It watches. It records. It protects.                                  ║
+║  Casa de Inteligencia. Medina. Deep.                                   ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

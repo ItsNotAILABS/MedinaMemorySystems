@@ -1,0 +1,17 @@
+{
+  "name": "@itsnotailabs/alpha-council",
+  "version": "1.0.0",
+  "description": "Multi-modal alpha intelligence council: 2 Alpha Models (PRAEFECTUS + ORACULUM, 5 cores × 10 uses each) + 3 Solver Models (ARCHITECTUS + COGNITOR + VERIFICATOR) + 3 Engines (MOTUS + VISIO + NEXUS) + City-State Civilization Architecture. Living organism documents included.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "license": "ISIL-1.1",
+  "author": "ItsNotAILABS <sovereign@itsnotailabs.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/MedinaMemorySystems",
+    "directory": "packages/medina-alpha-council"
+  },
+  "keywords": ["ai", "alpha-models", "solver", "oracle", "signal", "architecture", "city-state", "civilization", "sovereign"],
+  "engines": { "node": ">=18" },
+  "publishConfig": { "access": "restricted" }
+}
