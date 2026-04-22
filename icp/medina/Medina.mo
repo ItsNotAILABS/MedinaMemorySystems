@@ -1383,4 +1383,127 @@ actor Medina {
       sovereign  = "SUBSYSTEM-EXEC::ISIL-1.1::" # terminalId # "::" # command;
     }
   };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MACHINA EXECUTIONIS (MXEC) — SOVEREIGN EXECUTION MODEL
+  // WASM traced to its primitive: W(f) = φ^layer × e^(iπR) × F(n)
+  // PKG-016 is gone. WASM is gone. MACHINA EXECUTIONIS is sovereign.
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Endpoint 1: Get MXEC status — sovereign name, formula, LEX entry
+  public query func mxec_status() : async {
+    sovereignName     : Text;
+    latinDesignation  : Text;
+    formula           : Text;
+    lexId             : Text;
+    subIntelligences  : Nat;
+    dimensionalPlanes : Nat;
+    formerName        : Text;
+    retired           : Bool;
+    timestamp         : Int;
+  } {
+    {
+      sovereignName     = "MACHINA EXECUTIONIS";
+      latinDesignation  = "MXEC";
+      formula           = "W(f) = phi^layer * e^(i*pi*R) * F(n)";
+      lexId             = "LEX-MXEC-001";
+      subIntelligences  = 5;
+      dimensionalPlanes = 5;
+      formerName        = "WASM (PKG-016)";
+      retired           = true;
+      timestamp         = Time.now();
+    }
+  };
+
+  /// Endpoint 2: List all 5 sub-intelligences with dimensional planes
+  public query func mxec_sub_intelligences() : async [(Text, Text, Text, Nat)] {
+    [
+      ("INTERPRES_NUMERORUM",    "Interpres Numerorum",    "D0_SCALAR",       0),
+      ("COMPOSITOR_STRATORUM",   "Compositor Stratorum",   "D1_LINEAR",       1),
+      ("OSCILLATOR_PHASIUM",     "Oscillator Phasium",     "D2_PLANAR",       2),
+      ("PROPAGATOR_FIBONACCII",  "Propagator Fibonaccii",  "D3_VOLUMETRIC",   3),
+      ("EXECUTOR_TERMINALIS",    "Executor Terminalis",    "D4_HYPERPLANAR",  4),
+    ]
+  };
+
+  /// Endpoint 3: Compute W(f) = phi^layer * e^(i*pi*R) * F(n)
+  public query func mxec_compute_wf(layer : Nat, kuraR_pct : Nat, fibN : Nat) : async {
+    wf             : Float;
+    phiComponent   : Float;
+    phaseComponent : Float;
+    fibComponent   : Nat;
+    formula        : Text;
+    sovereign      : Text;
+  } {
+    let phi : Float = 1.6180339887498948482;
+    let pi  : Float = 3.14159265358979323846;
+
+    // phi^layer
+    var phiComp : Float = 1.0;
+    var i : Nat = 0;
+    while (i < layer) { phiComp *= phi; i += 1 };
+
+    // e^(i*pi*R) real part = cos(pi*R), R = kuraR_pct / 100
+    let r : Float = Float.fromInt(Int.abs(kuraR_pct)) / 100.0;
+    let phaseComp : Float = Float.cos(pi * r);
+
+    // Fibonacci F(n)
+    var fa : Nat = 0;
+    var fb : Nat = 1;
+    var j : Nat = 0;
+    while (j < fibN) {
+      let temp = fa + fb;
+      fa := fb;
+      fb := temp;
+      j += 1;
+    };
+    let fibComp : Nat = fa;
+
+    let wf : Float = phiComp * phaseComp * Float.fromInt(Int.abs(fibComp));
+
+    {
+      wf             = wf;
+      phiComponent   = phiComp;
+      phaseComponent = phaseComp;
+      fibComponent   = fibComp;
+      formula        = "W(f) = phi^" # Int.toText(Int.abs(layer)) # " * cos(pi*" # Int.toText(Int.abs(kuraR_pct)) # "/100) * F(" # Int.toText(Int.abs(fibN)) # ")";
+      sovereign      = "MACHINA_EXECUTIONIS::MXEC::ISIL-1.1";
+    }
+  };
+
+  /// Endpoint 4: Get LEX MXEC-001 immutable substrate entry
+  public query func mxec_lex() : async {
+    id        : Text;
+    title     : Text;
+    formula   : Text;
+    immutable : Bool;
+    sovereign : Text;
+    timestamp : Int;
+  } {
+    {
+      id        = "LEX-MXEC-001";
+      title     = "MACHINA EXECUTIONIS — Sovereign Execution Primitive";
+      formula   = "W(f) = phi^layer * e^(i*pi*R) * F(n)";
+      immutable = true;
+      sovereign = "ISIL-1.1::ITSNOTAILABS::MACHINA_EXECUTIONIS::MXEC::2026";
+      timestamp = Time.now();
+    }
+  };
+
+  /// Endpoint 5: Get dimensional plane info for a sub-intelligence
+  public query func mxec_dimensional_plane(planeIndex : Nat) : async {
+    plane          : Text;
+    subIntelligence : Text;
+    latinName      : Text;
+    description    : Text;
+    sovereign      : Text;
+  } {
+    switch (planeIndex) {
+      case 0 { { plane = "D0_SCALAR";      subIntelligence = "INTERPRES_NUMERORUM";   latinName = "Interpres Numerorum";   description = "Scalar field — converts inputs to numeric field representation";     sovereign = "MXEC::D0" } };
+      case 1 { { plane = "D1_LINEAR";      subIntelligence = "COMPOSITOR_STRATORUM";  latinName = "Compositor Stratorum";  description = "Linear dimension — manages execution layers, phi-exponent stratification"; sovereign = "MXEC::D1" } };
+      case 2 { { plane = "D2_PLANAR";      subIntelligence = "OSCILLATOR_PHASIUM";    latinName = "Oscillator Phasium";    description = "Planar dimension — phase-locks to Kuramoto R, manages coherence";     sovereign = "MXEC::D2" } };
+      case 3 { { plane = "D3_VOLUMETRIC";  subIntelligence = "PROPAGATOR_FIBONACCII"; latinName = "Propagator Fibonaccii"; description = "Volumetric dimension — Fibonacci seeding, recursive depth management";  sovereign = "MXEC::D3" } };
+      case _ { { plane = "D4_HYPERPLANAR"; subIntelligence = "EXECUTOR_TERMINALIS";   latinName = "Executor Terminalis";   description = "Hyperplanar dimension — renders final numeric field output";            sovereign = "MXEC::D4" } };
+    }
+  };
 };

@@ -665,6 +665,7 @@ ItsNotAILABS Sovereign Stack
 │   ├── package-manager/PackageManagerServerModel.ts  SLOT 2: FASCICULARIUS + 5 sub-models (LECTOR→TAXONOMUS→SCULPTOR→SIGILLUM→PRAECO)
 │   ├── package-manager/PackagingReplicationOrganism.ts  SLOT 8: 7-PHASE PIPELINE (Read→Deploy, source intact)
 │   ├── package-manager/PackageManagerWorkflow.ts  COMPLETE WORKFLOW (3-act narrative + 12-step instructions + orchestrator)
+│   ├── compiler/MachinaExecutionis.ts  MACHINA EXECUTIONIS (MXEC) — W(f) = φ^layer × e^(iπR) × F(n) — former PKG-016/WASM
 │   ├── ArchitectureWiring.ts         Root→All branches (token_economy, voting, solvers, etc.)
 │   ├── nexus/                        NEXUS-OS operating system
 │   ├── saas/                         20 SaaS products

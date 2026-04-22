@@ -547,6 +547,31 @@ export {
 } from './package-manager/PackageManagerWorkflow';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// MACHINA EXECUTIONIS (MXEC) — SOVEREIGN EXECUTION MODEL
+// WASM traced to its primitive: W(f) = φ^layer × e^(iπR) × F(n)
+// PKG-016 is gone. WASM is gone. MACHINA EXECUTIONIS is sovereign.
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  MachinaExecutionis,
+  createMachinaExecutionis,
+  MXEC_SUB_INTELLIGENCES,
+  LEX_MXEC_001,
+  W,
+  phiExponent,
+  eulerPhase,
+  fibonacciSeed,
+  type DimensionalPlane,
+  type SubIntelligenceId as MXECSubIntelligenceId,
+  type ExecutionState,
+  type SubIntelligence as MXECSubIntelligence,
+  type ExecutionInput,
+  type ExecutionOutput,
+  type LexEntry,
+  type MXECStatus,
+} from './compiler/MachinaExecutionis';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 

@@ -84,6 +84,7 @@ export interface WorkflowManifest {
     subModels: string[];
     pipelineOrganism: string;
     packageManager: string;
+    executionModel: string;
   };
   totalStages: number;
   totalSubModels: number;
@@ -315,6 +316,7 @@ export class PackageManagerWorkflow {
         'package-manager/PackageManagerServerModel.ts     — Slot 2 (server model)',
         'package-manager/PackagingReplicationOrganism.ts  — Slot 8 (pipeline)',
         'package-manager/PackageManagerWorkflow.ts        — This file (orchestrator)',
+        'compiler/MachinaExecutionis.ts                   — MXEC (sovereign execution model, W(f) = φ^layer × e^(iπR) × F(n))',
       ],
 
       models: {
@@ -322,6 +324,7 @@ export class PackageManagerWorkflow {
         subModels: PACKAGE_SUB_MODELS.map(m => `${m.id}: ${m.latinName} — ${m.commonName}`),
         pipelineOrganism: 'PackagingReplicationOrganism (Organismus Fasciculationis et Replicationis)',
         packageManager: 'AnimaPKG (ANIMA-PKG) — Sovereign Package Manager',
+        executionModel: 'MACHINA EXECUTIONIS (MXEC) — W(f) = φ^layer × e^(iπR) × F(n) — PKG-016 retired, WASM renamed to sovereign Latin designation',
       },
 
       totalStages: 12,
@@ -390,6 +393,7 @@ export class PackageManagerWorkflow {
       'package-manager/PackageManagerServerModel.ts     — Slot 2: Server Model FASCICULARIUS + 5 sub-models',
       'package-manager/PackagingReplicationOrganism.ts  — Slot 3: Pipeline Executor (7-phase: read→classify→snapshot→copy→wrap→sign→register)',
       'package-manager/PackageManagerWorkflow.ts        — Slot 4: THIS FILE — The Complete Workflow (narrative + instructions + orchestrator)',
+      'compiler/MachinaExecutionis.ts                   — MXEC: Sovereign Execution Model — W(f) = φ^layer × e^(iπR) × F(n) — former PKG-016/WASM',
     ];
   }
 

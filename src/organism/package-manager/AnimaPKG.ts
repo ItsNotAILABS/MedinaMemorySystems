@@ -133,16 +133,16 @@ export class AnimaPKGManager {
       source: 'mem://core.anima/ulri',
     });
     
-    // WASM Compiler package
+    // MACHINA EXECUTIONIS (former WASM/PKG-016 — sovereign Latin designation)
     this.registerPackage({
-      name: '@anima/wasm',
+      name: '@anima/mxec',
       version: '1.0.0',
       type: 'TOOL',
-      designation: '(ANIMA-WASM)',
+      designation: '(MACHINA-EXECUTIONIS)',
       frequency: 741,
       dependencies: ['@anima/os'],
-      exports: ['AnimaWASMCompiler', 'getAnimaWASM'],
-      source: 'mem://core.anima/wasm',
+      exports: ['MachinaExecutionis', 'createMachinaExecutionis', 'W', 'LEX_MXEC_001'],
+      source: 'mem://core.anima/mxec',
     });
     
     // Network package
