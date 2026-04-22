@@ -137,5 +137,158 @@ src/packages/
 
 ---
 
+## 🟢 Extended SDK Packages (30)
+
+30 multi-modal AI packages composed from existing utility libraries. See `src/packages/extended-sdk-registry.ts`.
+
+### Marketplace (15)
+
+| # | Package | Terminal | License |
+|---|---------|----------|---------|
+| 12 | `@medina/chaos-lab-sdk` | /chaos | MIT + Proprietary |
+| 13 | `@medina/sandbox-orchestrator-sdk` | /sandbox | MIT + Proprietary |
+| 14 | `@medina/voice-sovereign-sdk` | /voice | Proprietary |
+| 15 | `@medina/kernel-compression-sdk` | /compress | MIT + Proprietary |
+| 16 | `@medina/dual-read-sdk` | /verify | MIT + Proprietary |
+| 17 | `@medina/export-pipeline-sdk` | /export | MIT + Proprietary |
+| 18 | `@medina/campaign-intelligence-sdk` | /campaign | Proprietary |
+| 19 | `@medina/connector-mesh-sdk` | /mesh | MIT + Proprietary |
+| 20 | `@medina/workforce-ai-sdk` | /workforce | Proprietary |
+| 21 | `@medina/living-document-sdk` | /doc | MIT + Proprietary |
+| 22 | `@medina/gate-security-sdk` | /gate | MIT + Proprietary |
+| 23 | `@medina/replay-engine-sdk` | /replay | MIT + Proprietary |
+| 24 | `@medina/edge-detection-sdk` | /edge | MIT + Proprietary |
+| 25 | `@medina/substrate-bridge-sdk` | /bridge | MIT + Proprietary |
+| 26 | `@medina/access-vault-sdk` | /vault | MIT + Proprietary |
+
+### Research (8)
+
+| # | Package | Terminal | License |
+|---|---------|----------|---------|
+| 27 | `@medina/frequency-physics-sdk` | /freq | MIT |
+| 28 | `@medina/field-physics-sdk` | /field | MIT |
+| 29 | `@medina/sacred-geometry-sdk` | /geometry | MIT |
+| 30 | `@medina/bio-cognitive-sdk` | /bio | Apache 2.0 |
+| 31 | `@medina/swarm-consensus-sdk` | /swarm | Apache 2.0 |
+| 32 | `@medina/temporal-processing-sdk` | /temporal | MIT |
+| 33 | `@medina/rhetorical-engine-sdk` | /rhetoric | MIT |
+| 34 | `@medina/pattern-synthesis-sdk` | /pattern | MIT |
+
+### Sovereign (7)
+
+| # | Package | Terminal | License |
+|---|---------|----------|---------|
+| 35 | `@medina/anima-chain-sdk` | /anima | 🔒 Living Organism |
+| 36 | `@medina/sovereign-contracts-sdk` | /contract | 🔒 Living Organism |
+| 37 | `@medina/agi-convergence-sdk` | /agi | 🔒 Sovereign Constitutional |
+| 38 | `@medina/medina-os-sdk` | /os | 🔒 Living Organism |
+| 39 | `@medina/sovereign-identity-sdk` | /identity | 🔒 Living Organism |
+| 40 | `@medina/recital-evolution-sdk` | /recital | 🔒 Sovereign Constitutional |
+| 41 | `@medina/ulri-engine-sdk` | /ulri | 🔒 Creative Sovereign |
+
+---
+
+## 🤖 AI SDK Packages (5)
+
+These are not libraries — they are **autonomous intelligences** packaged as SDKs. See `src/packages/ai-sdk-registry.ts`.
+
+| # | AI | Personality | Autonomy | License |
+|---|-----|-------------|----------|---------|
+| 42 | `@medina/oro-ai` | The mind that executes | Sovereign | 🔒 Living Organism |
+| 43 | `@medina/nova-ai` | The conscience that validates | Sovereign | 🔒 Sovereign Constitutional |
+| 44 | `@medina/sentinel-ai` | The shield that never sleeps | Autonomous | 🔒 Living Organism |
+| 45 | `@medina/architect-ai` | Architecture is intelligence | Semi-autonomous | MIT + Proprietary |
+| 46 | `@medina/absorber-ai` | What enters becomes part of me | Autonomous | MIT + Proprietary |
+
+---
+
+## 🔧 Universal Developer Tools (50)
+
+50 micro-tools that connect to **any** substrate, blockchain, encryption, protocol. All MIT licensed. See `src/packages/universal-tools-registry.ts`.
+
+### 🔗 Blockchain & Web3 (10)
+`tools-icp-connect` · `tools-eth-connect` · `tools-btc-connect` · `tools-sol-connect` · `tools-multi-chain` · `tools-nft-toolkit` · `tools-defi-toolkit` · `tools-wallet-connect` · `tools-smart-contract` · `tools-chain-indexer`
+
+### 🔐 Encryption & Security (8)
+`tools-phi-encrypt` · `tools-key-rotation` · `tools-zero-knowledge` · `tools-hash-toolkit` · `tools-identity-verify` · `tools-secret-sharing` · `tools-tls-toolkit` · `tools-mpc-toolkit`
+
+### 🌐 Protocol & API (8)
+`tools-rest-client` · `tools-graphql-client` · `tools-websocket-hub` · `tools-grpc-client` · `tools-mqtt-client` · `tools-oauth-toolkit` · `tools-email-toolkit` · `tools-webhook-toolkit`
+
+### 📦 Data & Storage (8)
+`tools-kv-store` · `tools-object-store` · `tools-sql-toolkit` · `tools-vector-db` · `tools-cache-toolkit` · `tools-queue-toolkit` · `tools-search-toolkit` · `tools-stream-toolkit`
+
+### ⚡ Compute & Runtime (8)
+`tools-serverless-deploy` · `tools-container-toolkit` · `tools-wasm-toolkit` · `tools-ai-model-toolkit` · `tools-cron-toolkit` · `tools-edge-compute` · `tools-gpu-compute` · `tools-workflow-engine`
+
+### 🎨 Rendering & Output (8)
+`tools-pdf-generator` · `tools-chart-renderer` · `tools-image-toolkit` · `tools-markdown-renderer` · `tools-qr-generator` · `tools-notification-toolkit` · `tools-template-engine` · `tools-logging-toolkit`
+
+---
+
+## 📞 Callable Functions Registry
+
+**374+ registered callable functions** discoverable by GitHub Copilot, AI agents, and developers.
+
+See `src/packages/callable-functions-registry.ts` for the complete registry.
+
+| Source | Count |
+|--------|-------|
+| 11 Core SDKs | 61 |
+| 30 Extended SDKs | ~130 |
+| 5 AI SDKs | 25 |
+| 50 Universal Tools | ~200 |
+| **Total** | **374+** |
+
+### Discovery API
+```typescript
+import {
+  findByLatinName,
+  findByFunctionName,
+  searchFunctions,
+  getPublicFunctions,
+  generateCopilotDocs,
+} from '@medina/callable-functions-registry';
+
+// Find by Latin name
+const fn = findByLatinName('INSCRIPTIO MEMORIAE');
+
+// Search by description
+const results = searchFunctions('blockchain');
+
+// Get all public functions for Copilot
+const publicFns = getPublicFunctions();
+```
+
+---
+
+## 🌐 Landing Pages
+
+Every release includes a single-file living organism website. Each page has:
+- 873ms heartbeat animation with coherence tracking
+- Interactive terminal with 10 commands
+- Particle field visualization
+- Visitor intelligence layer
+- API reference tables
+
+Located at `releases/{category}/{package}/index.html`.
+
+---
+
+## System Totals
+
+| Metric | Count |
+|--------|-------|
+| Core SDK Packages | 11 |
+| Extended SDK Packages | 30 |
+| AI SDK Packages | 5 |
+| Universal Tools | 50 |
+| **Total Packages** | **96** |
+| Callable Functions | 374+ |
+| Landing Pages | 11 |
+| License Types | 6 |
+
+---
+
 *Developed by ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX*
 *Architecture is Intelligence. φ = 1.618033988749895.*

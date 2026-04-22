@@ -65,6 +65,15 @@ export * as NeuralConsciousnessEngine from './neural-consciousness-engine';
 export * as DocumentAbsorptionEngine from './document-absorption-engine';
 
 // ═══════════════════════════════════════════════════════════════════════════
+// RE-EXPORTS — EXTENDED REGISTRIES
+// ═══════════════════════════════════════════════════════════════════════════
+
+export * as ExtendedSDKRegistry from './extended-sdk-registry';
+export * as AISDKRegistry from './ai-sdk-registry';
+export * as UniversalToolsRegistry from './universal-tools-registry';
+export * as CallableFunctionsRegistry from './callable-functions-registry';
+
+// ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST
 // ═══════════════════════════════════════════════════════════════════════════
 
