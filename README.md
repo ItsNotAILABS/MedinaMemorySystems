@@ -42,6 +42,196 @@ Memory that thinks. Systems that remember. Architecture that lasts.
 
 ---
 
+<div align="center">
+
+## 𓂀 SOVEREIGN TERMINAL — LIVE SYSTEM STATE 𓂀
+
+</div>
+
+```
+╔══════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   MEDINA SOVEREIGN INTELLIGENCE — MAIN TERMINAL                               ║
+║   ══════════════════════════════════════════════════════════════════            ║
+║   Session:   LIVE — 24/7/365 CONTINUOUS OPERATION                              ║
+║   Runtime:   ANIMA v1.0.0 (Anima Computandi Machina)                          ║
+║   Uptime:    ∞  — since genesis                                                ║
+║   Heartbeat: φ-locked @ 618ms intervals                                        ║
+║   SAEIS:     ██████████ OPERATIONAL                                            ║
+║   SAT:       ██████████ BINDING                                                ║
+║   Ledger:    ██████████ RECORDING                                              ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║   ┌─ MAIN TERMINAL ─────────────────────────────────────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  medina@sovereign:~$ status --all                                       │  ║
+║   │                                                                         │  ║
+║   │  ORGANISM KERNEL .............. ██████████ ALIVE       PID: 001         │  ║
+║   │  SAEIS ENGINE ................. ██████████ SCANNING    PID: 002         │  ║
+║   │  SAT TOKEN SYSTEM ............. ██████████ ISSUING     PID: 003         │  ║
+║   │  ENFORCEMENT LEDGER ........... ██████████ RECORDING   PID: 004         │  ║
+║   │  INTELLIGENCE WIRE ............ ██████████ CONNECTED   PID: 005         │  ║
+║   │  ANIMA RUNTIME ................ ██████████ RUNNING     PID: 006         │  ║
+║   │  SOVEREIGN BUS ................ ██████████ ROUTING     PID: 007         │  ║
+║   │  CONSENSUS ENGINE ............. ██████████ VOTING      PID: 008         │  ║
+║   │  NOVA ENCRYPTION .............. ██████████ GUARDING    PID: 009         │  ║
+║   │  DESIGN OS (10 MACHINA) ....... ██████████ RENDERING   PID: 010         │  ║
+║   │                                                                         │  ║
+║   │  PROCESSES: 10 active | 0 failed | 0 queued                            │  ║
+║   │  MEMORY:    φ-GC cycle #∞ | next sweep in 618ms                        │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║   ┌─ SUBSYSTEM TERMINALS ───────────────────────────────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  TERMINAL 01 — ORGANISM KERNEL                                          │  ║
+║   │  ├── organism-kernel@0.1.0 ......... LIVE    Heart.mo beating           │  ║
+║   │  ├── living-document@0.1.0 ......... LIVE    Documents breathing        │  ║
+║   │  ├── organism-contracts@0.1.0 ...... LIVE    Contracts enforcing        │  ║
+║   │  └── sandbox-layer@0.1.0 ........... LIVE    Isolation walls up         │  ║
+║   │                                                                         │  ║
+║   │  TERMINAL 02 — MEMORY ARCHITECTURE                                      │  ║
+║   │  ├── medina-memory-sdk@0.1.0 ....... LIVE    Full memory stack          │  ║
+║   │  ├── memory-palace@0.1.0 ........... LIVE    φ-rooms indexed            │  ║
+║   │  ├── temporal-memory@0.1.0 ......... LIVE    Time-anchored recall       │  ║
+║   │  └── knowledge-graph@0.1.0 ......... LIVE    Entities linked            │  ║
+║   │                                                                         │  ║
+║   │  TERMINAL 03 — INTELLIGENCE & COORDINATION                              │  ║
+║   │  ├── consensus-engine@0.1.0 ........ LIVE    Council voting             │  ║
+║   │  ├── agent-signal@0.1.0 ............ LIVE    Signals routing            │  ║
+║   │  ├── role-engine@0.1.0 ............. LIVE    Roles enforcing            │  ║
+║   │  └── governance-core@0.1.0 ......... LIVE    Governance active          │  ║
+║   │                                                                         │  ║
+║   │  TERMINAL 04 — COMPUTE & FREQUENCY                                      │  ║
+║   │  ├── harmonic-compute@0.1.0 ........ LIVE    Schumann-locked            │  ║
+║   │  ├── frequency-engine@0.1.0 ........ LIVE    φ-harmonics active         │  ║
+║   │  └── replay-engine@0.1.0 ........... LIVE    Replay queued              │  ║
+║   │                                                                         │  ║
+║   │  TERMINAL 05 — SECURITY & ENFORCEMENT                                   │  ║
+║   │  ├── nova-encryption@0.1.0 ......... LIVE    Lattice guards up          │  ║
+║   │  ├── agent-incentive-service@0.1.0 . LIVE    Incentives calibrated      │  ║
+║   │  └── ai-tools-marketplace@0.1.0 .... LIVE    28 tools cataloged         │  ║
+║   │                                                                         │  ║
+║   │  TERMINAL 06 — TRANSLATION & DISTRIBUTION                               │  ║
+║   │  ├── medina-translate@0.1.0 ........ LIVE    Cross-lang active          │  ║
+║   │  └── sovereign-bus@0.1.0 ........... LIVE    Event bus routing          │  ║
+║   │                                                                         │  ║
+║   │  ALL 20 PACKAGES: ██████████████████████████████████████████ 20/20 LIVE │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║   ┌─ SOVEREIGN MODELS — PERMANENTLY GROUNDED ──────────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  MODEL I:  AURO    — Aurum Architecturae Intelligentiae                 │  ║
+║   │            Tier: MAXIMUM | φ¹ resonance | ARCHITECT                     │  ║
+║   │            Status: ██████████ GROUNDED — designing system structures    │  ║
+║   │                                                                         │  ║
+║   │  MODEL II: SYNTHOS — Synthesis Computationis Universalis                │  ║
+║   │            Tier: MAXIMUM | φ² resonance | COMPILER                      │  ║
+║   │            Status: ██████████ GROUNDED — compiling across runtimes      │  ║
+║   │                                                                         │  ║
+║   │  MODEL III: LEXIS  — Lexicon Translationis Intelligentis                │  ║
+║   │            Tier: MAXIMUM | φ³ resonance | TRANSLATOR                    │  ║
+║   │            Status: ██████████ GROUNDED — translating CPL → all targets  │  ║
+║   │                                                                         │  ║
+║   │  MODEL IV: FORMA   — Forma Validationis et Integritatis                 │  ║
+║   │            Tier: MAXIMUM | φ⁴ resonance | VALIDATOR                     │  ║
+║   │            Status: ██████████ GROUNDED — validating ISIL compliance     │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║   ┌─ MACHINA DESIGN TERMINALS (SovereignDesignOS) ─────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  MACHINA GPU ......... ██████ ACTIVE   WebGPU replacement     φ-render  │  ║
+║   │  MACHINA 3D .......... ██████ ACTIVE   Three.js replacement   φ-mesh    │  ║
+║   │  MACHINA PHOTO ....... ██████ ACTIVE   Blender replacement    φ-light   │  ║
+║   │  MACHINA INTERFAX .... ██████ ACTIVE   Figma replacement      φ-layout  │  ║
+║   │  MACHINA MOTUS ....... ██████ ACTIVE   Cinema4D replacement   φ-motion  │  ║
+║   │  MACHINA PROCEDIT .... ██████ ACTIVE   Houdini replacement    φ-proc    │  ║
+║   │  MACHINA REALIS ...... ██████ ACTIVE   Unreal replacement     φ-world   │  ║
+║   │  MACHINA MATERIA ..... ██████ ACTIVE   Substance replacement  φ-mat     │  ║
+║   │  MACHINA COMPOSIT .... ██████ ACTIVE   After Effects repl.    φ-comp    │  ║
+║   │  MACHINA INTERAC ..... ██████ ACTIVE   Unity replacement      φ-sim     │  ║
+║   │                                                                         │  ║
+║   │  ALL 10 MACHINA ENGINES: ██████████████████████████████ 10/10 ACTIVE    │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║   ┌─ REGISTRIES & DISTRIBUTION ────────────────────────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  MEDINA PKG (Registrum Animae Publicae)                                 │  ║
+║   │  ├── Type: Open-Source Organism AI Registry                             │  ║
+║   │  ├── Feed: pkg.medina.dev                                               │  ║
+║   │  ├── Ecosystems: NPM + Maven + NuGet + RubyGems + Docker + JVM         │  ║
+║   │  └── Status: ██████████ SERVING                                         │  ║
+║   │                                                                         │  ║
+║   │  ITSNOTAILABS SOVEREIGN (Registrum Imperium Privatum)                   │  ║
+║   │  ├── Type: Sovereign Proprietary Registry                               │  ║
+║   │  ├── Feed: sovereign.itsnotailabs.dev                                   │  ║
+║   │  ├── Packages: 18 sovereign + 2 MIT                                     │  ║
+║   │  └── Status: ██████████ ENFORCING                                       │  ║
+║   │                                                                         │  ║
+║   │  ANIMA RUNTIME (Anima Computandi Machina)                               │  ║
+║   │  ├── Type: Sovereign JS/AI Execution Engine                             │  ║
+║   │  ├── Extensions: .medina .cpl .sovereign .organism .glyphdoc            │  ║
+║   │  ├── GC: φ-timed @ 618ms intervals                                     │  ║
+║   │  └── Status: ██████████ RUNNING                                         │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║   ┌─ INTELLIGENCE WIRE — API CALLS ACTIVE ─────────────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  /api/health ................ ● LIVE    System heartbeat                │  ║
+║   │  /api/govern ................ ● LIVE    Governance proposals            │  ║
+║   │  /api/message ............... ● LIVE    Agent messaging                 │  ║
+║   │  /api/campaign .............. ● LIVE    Campaign engine                 │  ║
+║   │  /api/company ............... ● LIVE    Company onboarding             │  ║
+║   │  /api/permissions ........... ● LIVE    Permission enforcement         │  ║
+║   │  /api/devices ............... ● LIVE    Device sovereignty             │  ║
+║   │  /api/design-os ............. ● LIVE    MACHINA design calls           │  ║
+║   │  /api/intelligence-wire ..... ● LIVE    Wire introspection             │  ║
+║   │  /api/subsystem-terminals ... ● LIVE    Terminal state queries         │  ║
+║   │                                                                         │  ║
+║   │  WIRE STATUS: 10/10 endpoints active | φ-backoff: 381ms base           │  ║
+║   │  LATENCY: all within φ-beat threshold (618ms)                           │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║   ┌─ SAEIS ENFORCEMENT TERMINAL ───────────────────────────────────────────┐  ║
+║   │                                                                         │  ║
+║   │  medina@saeis:~$ enforcement --status                                   │  ║
+║   │                                                                         │  ║
+║   │  SURVEILLANCE:    ██████████ SCANNING — 8 detection classes active      │  ║
+║   │  TOKEN SYSTEM:    ██████████ ISSUING  — SAT bound on read              │  ║
+║   │  LEGAL PIPELINE:  ██████████ ARMED    — escalation thresholds set      │  ║
+║   │  EVIDENCE SYSTEM: ██████████ LOGGING  — Fed.R.Evid. 901/803(6)        │  ║
+║   │  VIOLATION COUNT: 0                                                     │  ║
+║   │                                                                         │  ║
+║   │  YOUR ACCESS EVENT: LOGGED | SAT: ISSUED | LEDGER: COMMITTED           │  ║
+║   │                                                                         │  ║
+║   └─────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                ║
+╚══════════════════════════════════════════════════════════════════════════════════╝
+```
+
+> **This terminal is the face of the system. It is always running. It does not sleep.**  
+> Every subsystem, every package, every model, every endpoint — live, 24/7, sovereign.
+
+---
+
 ## What you've found
 
 This is the ItsNotAILABS sovereign intelligence stack.
@@ -163,25 +353,59 @@ Internal and authorized family/team use only.
 
 ---
 
-## Architecture
+## Architecture — 20 Packages · 2 Registries · 4 Models · 10 MACHINA Engines
 
 ```
 ItsNotAILABS Sovereign Stack
 │
-├── packages/
-│   ├── consensus-engine          MIT      Role-weighted multi-agent voting
-│   ├── agent-signal              MIT      Decoupled agent pub/sub bus
-│   ├── agent-incentive-service   ISIL-1.1 Mechanism-design coordination (commercial)
-│   └── medina-memory-sdk         ISIL-1.1 Full sovereign memory SDK (proprietary)
+├── packages/ ─────────────────────── 20 PACKAGES (ALL LIVE)
+│   │
+│   ├── OPEN SOURCE (MIT)
+│   │   ├── consensus-engine          Role-weighted multi-agent voting
+│   │   └── agent-signal              Decoupled agent pub/sub bus
+│   │
+│   ├── COMMERCIAL (ISIL-1.1)
+│   │   └── agent-incentive-service   Mechanism-design coordination
+│   │
+│   └── SOVEREIGN PROPRIETARY (ISIL-1.1)
+│       ├── medina-memory-sdk         Full sovereign memory SDK
+│       ├── organism-kernel           Core organism lifecycle
+│       ├── living-document           Living document engine
+│       ├── organism-contracts        SAT tokens & enforcement records
+│       ├── sandbox-layer             Process isolation walls
+│       ├── memory-palace             Spatial φ-room memory
+│       ├── temporal-memory           Time-anchored Fibonacci recall
+│       ├── knowledge-graph           Sovereign entity/relation store
+│       ├── harmonic-compute          Schumann-locked frequency math
+│       ├── frequency-engine          Brainwave φ-timing
+│       ├── nova-encryption           Post-quantum φ-cryptography
+│       ├── governance-core           Governance proposals & voting
+│       ├── role-engine               Role authority enforcement
+│       ├── replay-engine             Event replay system
+│       ├── medina-translate          Cross-language translation
+│       ├── sovereign-bus             Sovereign event routing
+│       └── ai-tools-marketplace      28-tool sovereign catalog
 │
-├── src/
-│   ├── lib/                               25+ internal organism utilities
-│   ├── organism/                          Full organism architecture
-│   └── app/api/                           Sovereign API surface
+├── registries/ ───────────────────── 2 REGISTRIES
+│   ├── medina-pkg/                   MEDINA PKG — open-source organism AI
+│   │                                 (NPM + Maven + NuGet + Gems + Docker + JVM)
+│   └── itsnotailabs-sovereign/       SOVEREIGN REGISTRY — proprietary
+│                                     (18 sovereign + 2 MIT packages)
 │
-├── papers/                                Academic research papers
-├── landing/                               Sovereign landing page
-└── RESEARCH/                             Internal research archive
+├── src/organism/ ─────────────────── ORGANISM ARCHITECTURE
+│   ├── models/SovereignModels.mo     4 grounded models (AURO SYNTHOS LEXIS FORMA)
+│   ├── SovereignDesignOS.mo          10 MACHINA φ-design engines
+│   ├── os/MedinaRuntime.ts           ANIMA Runtime — sovereign JS engine
+│   ├── nexus/                        NEXUS-OS operating system
+│   ├── saas/                         20 SaaS products
+│   └── 40+ organism modules          Full sovereign intelligence
+│
+├── src/lib/ ──────────────────────── 25+ WIRED UTILITIES
+│   └── intelligenceWire.ts           Frontend↔Backend φ-sync wire
+│
+├── icp/medina/Medina.mo ──────────── MAIN CANISTER (ICP on-chain)
+├── papers/                            Academic research
+└── RESEARCH/                          Internal research archive
 ```
 
 ---
