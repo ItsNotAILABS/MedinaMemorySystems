@@ -392,8 +392,8 @@ export class PackageManagerWorkflow {
       'package-manager/AnimaPKG.ts                      — Slot 1: Sovereign Package Manager (substrate, registry, commands)',
       'package-manager/PackageManagerServerModel.ts     — Slot 2: Server Model FASCICULARIUS + 5 sub-models',
       'package-manager/PackagingReplicationOrganism.ts  — Slot 3: Pipeline Executor (7-phase: read→classify→snapshot→copy→wrap→sign→register)',
-      'package-manager/PackageManagerWorkflow.ts        — Slot 4: THIS FILE — The Complete Workflow (narrative + instructions + orchestrator)',
-      'compiler/MachinaExecutionis.ts                   — MXEC: Sovereign Execution Model — W(f) = φ^layer × e^(iπR) × F(n) — former PKG-016/WASM',
+      'package-manager/PackageManagerWorkflow.ts        — Slot 4: The Complete Workflow (narrative + instructions + orchestrator)',
+      'compiler/MachinaExecutionis.ts                   — Slot 5: MACHINA EXECUTIONIS (MXEC) — W(f) = φ^layer × e^(iπR) × F(n) — former PKG-016/WASM',
     ];
   }
 

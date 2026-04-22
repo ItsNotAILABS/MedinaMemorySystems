@@ -1457,7 +1457,7 @@ actor Medina {
       fb := temp;
       j += 1;
     };
-    let fibComp : Nat = fa;
+    let fibComp : Nat = fb;
 
     let wf : Float = phiComp * phaseComp * Float.fromInt(Int.abs(fibComp));
 
