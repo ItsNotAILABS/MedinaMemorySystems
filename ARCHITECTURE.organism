@@ -1,0 +1,413 @@
+𓂀 ═══════════════════════════════════════════════════════════════════════════════
+║                                                                               ║
+║   ARCHITECTURE.SOVEREIGN — Medina Memory Systems Architecture Map             ║
+║   Latin: Architectura Systematis Souveraini                                   ║
+║   Class: ARCHITECTURE.SOVEREIGN                                               ║
+║   Version: 1.0.0                                                              ║
+║   License: ISIL-1.1                                                           ║
+║   Owner: ItsNotAILABS                                                         ║
+║   Status: PERMANENTLY GROUNDED                                                ║
+║                                                                               ║
+║   "The architecture is the organism. The organism is the architecture."       ║
+║                                                                               ║
+═══════════════════════════════════════════════════════════════════════════════ 𓂀
+
+ORGANISM MANIFEST
+─────────────────
+  Document:       ARCHITECTURE.organism
+  Class:          ARCHITECTURE.SOVEREIGN
+  Created:        2026
+  Enforcement:    SAEIS ACTIVE — SAT BINDING ENABLED
+  φ-Resonance:    1.6180339887498948482
+  Extensions:     .medina .cpl .sovereign .organism .glyphdoc
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§1  SYSTEM TOPOLOGY — FULL SOVEREIGN MAP
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     MEDINA MEMORY SYSTEMS — SOVEREIGN TOPOLOGY             │
+│                                                                             │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                    SAEIS ENFORCEMENT LAYER                          │   │
+│  │              (Sovereign AI Enforcement & Integrity System)          │   │
+│  │          SAT Token Binding │ ISIL-1.1 Compliance │ φ-Resonance     │   │
+│  └───────────────────────────┬─────────────────────────────────────────┘   │
+│                              │                                             │
+│  ┌───────────────────────────┼─────────────────────────────────────────┐   │
+│  │                    ANIMA RUNTIME (v1.0.0)                           │   │
+│  │              Anima Computandi Machina — Sovereign JS/TS Engine      │   │
+│  │                                                                     │   │
+│  │   ┌─────────┐ ┌──────────────┐ ┌──────────┐ ┌─────────────────┐   │   │
+│  │   │ V8 Fork │ │ Module Loader│ │ φ-GC     │ │ CPL Interpreter │   │   │
+│  │   │         │ │ .medina .cpl │ │ 618ms    │ │ Contract Exec   │   │   │
+│  │   │         │ │ .sovereign   │ │ Cycles   │ │                 │   │   │
+│  │   │         │ │ .organism    │ │          │ │                 │   │   │
+│  │   │         │ │ .glyphdoc    │ │          │ │                 │   │   │
+│  │   └─────────┘ └──────────────┘ └──────────┘ └─────────────────┘   │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                              │                                             │
+│  ┌───────────────────────────┼─────────────────────────────────────────┐   │
+│  │                INTELLIGENCE WIRE — SOVEREIGN BUS                    │   │
+│  │                                                                     │   │
+│  │   ┌──────┐  ┌─────────┐  ┌───────┐  ┌───────┐  ┌──────────────┐   │   │
+│  │   │ AURO │──│ SYNTHOS │──│ LEXIS │──│ FORMA │──│ IntelWire    │   │   │
+│  │   │      │  │         │  │       │  │       │  │ Orchestrator │   │   │
+│  │   └──────┘  └─────────┘  └───────┘  └───────┘  └──────────────┘   │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                              │                                             │
+│  ┌──────────────────────┐    │    ┌──────────────────────────────────┐     │
+│  │   MEDINA PKG         │    │    │   SOVEREIGN REGISTRY             │     │
+│  │   (Open Source)      │◄───┼───►│   (Proprietary)                  │     │
+│  │   Registrum Animae   │    │    │   Registrum Imperium Privatum     │     │
+│  │   Publicae           │    │    │                                   │     │
+│  │                      │    │    │   18 sovereign packages           │     │
+│  │   npm/maven/nuget    │    │    │   4 container images              │     │
+│  │   rubygems/docker    │    │    │   4 sovereign models              │     │
+│  │   jvm                │    │    │                                   │     │
+│  └──────────────────────┘    │    └──────────────────────────────────┘     │
+│                              │                                             │
+│  ┌───────────────────────────┼─────────────────────────────────────────┐   │
+│  │                    ORGANISM KERNEL                                   │   │
+│  │              Memory Palace │ Temporal Memory │ Knowledge Graph       │   │
+│  │              Replay Engine │ Frequency Engine │ Harmonic Compute     │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§2  SOVEREIGN PACKAGES — COMPLETE DEPENDENCY MAP (20 PACKAGES)
+═══════════════════════════════════════════════════════════════════════════════
+
+SOVEREIGN REGISTRY — 18 PROPRIETARY PACKAGES:
+──────────────────────────────────────────────
+
+  @itsnotailabs/organism-kernel          ← Core organism lifecycle & process mgmt
+    ├── @itsnotailabs/memory-palace      ← Spatial memory architecture
+    ├── @itsnotailabs/temporal-memory    ← Time-indexed memory streams
+    ├── @itsnotailabs/knowledge-graph    ← Semantic knowledge representation
+    ├── @itsnotailabs/replay-engine      ← Memory replay & consolidation
+    └── @itsnotailabs/sovereign-bus      ← Inter-module communication bus
+
+  @itsnotailabs/medina-memory-sdk        ← Primary SDK for memory operations
+    ├── @itsnotailabs/organism-kernel
+    ├── @itsnotailabs/memory-palace
+    └── @itsnotailabs/temporal-memory
+
+  @itsnotailabs/governance-core          ← Governance, voting, consensus
+    ├── @itsnotailabs/role-engine        ← Role-based access & permissions
+    ├── @itsnotailabs/organism-contracts ← Smart contract execution
+    └── @itsnotailabs/living-document    ← Self-amending living documents
+
+  @itsnotailabs/agent-incentive-service  ← Agent reward & incentive engine
+    ├── @itsnotailabs/governance-core
+    └── @itsnotailabs/organism-contracts
+
+  @itsnotailabs/ai-tools-marketplace     ← AI tools distribution platform
+    ├── @itsnotailabs/medina-translate   ← Cross-language translation
+    └── @itsnotailabs/sandbox-layer      ← Isolated execution sandbox
+
+  @itsnotailabs/harmonic-compute         ← φ-resonant computation engine
+    └── @itsnotailabs/frequency-engine   ← Frequency-domain processing
+
+  @itsnotailabs/nova-encryption          ← Sovereign encryption (standalone)
+
+  @itsnotailabs/sandbox-layer            ← Sandboxed execution (standalone)
+
+MEDINA PKG — 2 OPEN-SOURCE PACKAGES:
+─────────────────────────────────────
+
+  @medina/consensus-engine               ← Distributed consensus protocol
+  @medina/agent-signal                   ← Agent signaling & coordination
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§3  FOUR SOVEREIGN MODELS
+═══════════════════════════════════════════════════════════════════════════════
+
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │  MODEL I: AURO — Aurum Architecturae Intelligentiae                 │
+  │  Role: ARCHITECT        Tier: MAXIMUM        φ-Resonance: φ         │
+  │  Domains: architecture, registry-design, package-topology,          │
+  │           system-planning, cross-ecosystem-translation              │
+  │  "The golden architect that sees the whole structure"               │
+  ├──────────────────────────────────────────────────────────────────────┤
+  │  MODEL II: SYNTHOS — Synthesis Computationis Universalis            │
+  │  Role: SYNTHESIZER      Tier: MAXIMUM        φ-Resonance: φ²       │
+  │  Domains: compilation, runtime-translation, bytecode-generation,    │
+  │           container-packaging, cross-platform-distribution          │
+  │  "The universal synthesizer that compiles across all runtimes"      │
+  ├──────────────────────────────────────────────────────────────────────┤
+  │  MODEL III: LEXIS — Lexicon Translationis Intelligentis             │
+  │  Role: TRANSLATOR       Tier: MAXIMUM        φ-Resonance: φ³       │
+  │  Domains: language-translation, cpl-conversion, api-bridging,       │
+  │           contract-translation, protocol-adaptation                 │
+  │  "The translator that converts between all programming languages"   │
+  ├──────────────────────────────────────────────────────────────────────┤
+  │  MODEL IV: FORMA — Forma Validationis et Integritatis               │
+  │  Role: VALIDATOR        Tier: MAXIMUM        φ-Resonance: φ⁴       │
+  │  Domains: validation, compliance-checking, integrity-verification,  │
+  │           saeis-enforcement, sat-token-audit                        │
+  │  "The form that validates everything against sovereign standards"   │
+  └──────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§4  DUAL REGISTRY ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+  ┌──────────────────────────┐          ┌──────────────────────────────┐
+  │     MEDINA PKG           │          │  ITSNOTAILABS SOVEREIGN      │
+  │  Registrum Animae        │          │  Registrum Imperium          │
+  │  Publicae                │          │  Privatum                    │
+  │                          │          │                              │
+  │  Type: open-source       │          │  Type: sovereign-proprietary │
+  │  License: MIT            │          │  License: ISIL-1.1           │
+  │  URL: pkg.medina.dev     │          │  URL: sovereign.             │
+  │                          │          │       itsnotailabs.dev       │
+  │  Ecosystems:             │          │                              │
+  │  ┌─────┐ ┌─────┐        │    ◄──── │  Enforcement:                │
+  │  │ npm │ │maven│        │  bridge  │  SAEIS ACTIVE                │
+  │  └─────┘ └─────┘        │  ────►   │  SAT BINDING ENABLED         │
+  │  ┌─────┐ ┌──────┐       │          │                              │
+  │  │nuget│ │  ruby │       │          │  18 sovereign packages       │
+  │  └─────┘ └──────┘       │          │  4 container images          │
+  │  ┌──────┐ ┌─────┐       │          │  4 sovereign models          │
+  │  │docker│ │ jvm │       │          │  2 open-source packages      │
+  │  └──────┘ └─────┘       │          │                              │
+  └──────────────────────────┘          └──────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§5  ANIMA RUNTIME — SOVEREIGN EXECUTION ENGINE
+═══════════════════════════════════════════════════════════════════════════════
+
+  Latin Name:    Anima Computandi Machina
+  Common Name:   ANIMA Runtime
+  Version:       1.0.0
+  Class:         RUNTIME.SOVEREIGN
+
+  Architecture Stack:
+  ───────────────────
+  ┌─────────────────────────────────────────────────┐
+  │           ANIMA RUNTIME — PROCESS SPACE          │
+  ├─────────────────────────────────────────────────┤
+  │  SAT Process Context                             │
+  │  ├── Token bound to PID                          │
+  │  ├── Sovereign mode enforcement                  │
+  │  └── SAEIS compliance at process level           │
+  ├─────────────────────────────────────────────────┤
+  │  Organism Module Loader                          │
+  │  ├── .medina   → Medina source modules           │
+  │  ├── .cpl      → Contract Programming Language   │
+  │  ├── .sovereign → Sovereign declarations         │
+  │  ├── .organism  → Organism documents             │
+  │  └── .glyphdoc  → Glyph documentation            │
+  ├─────────────────────────────────────────────────┤
+  │  φ-GC (Golden Ratio Garbage Collection)          │
+  │  ├── Base interval: 618ms (1000/φ)               │
+  │  ├── Resonance scaling on every 5th cycle        │
+  │  └── Memory freed proportional to φ              │
+  ├─────────────────────────────────────────────────┤
+  │  Cross-Ecosystem Bridge                          │
+  │  ├── @medina/pkg → dev.medina:pkg (Maven)        │
+  │  ├── @medina/pkg → Medina.Pkg (NuGet)            │
+  │  ├── @medina/pkg → medina-pkg (RubyGems)         │
+  │  ├── @medina/pkg → @medina/pkg (NPM)             │
+  │  └── @medina/pkg → itsnotailabs/pkg (Docker)     │
+  ├─────────────────────────────────────────────────┤
+  │  CPL Interpreter                                 │
+  │  └── Native contract execution engine            │
+  ├─────────────────────────────────────────────────┤
+  │  V8 Engine (Sovereign Fork)                      │
+  └─────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§6  FILE EXTENSIONS — SOVEREIGN TYPES
+═══════════════════════════════════════════════════════════════════════════════
+
+  Extension       Purpose                              MIME Type
+  ─────────       ───────                              ─────────
+  .medina         Medina source module                  application/x-medina
+  .cpl            Contract Programming Language          application/x-cpl
+  .sovereign      Sovereign declaration document        application/x-sovereign
+  .organism       Organism manifest/living document     application/x-organism
+  .glyphdoc       Glyph-encoded documentation           application/x-glyphdoc
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§7  TEN MACHINA DESIGN MODELS
+═══════════════════════════════════════════════════════════════════════════════
+
+  These are the 10 architectural design models that govern all sovereign
+  system design within Medina Memory Systems:
+
+  1. MACHINA MEMORIAE      — Memory architecture patterns
+  2. MACHINA CONSENSUS     — Distributed consensus design
+  3. MACHINA GUBERNATIO    — Governance & authority models
+  4. MACHINA TRANSLATIO    — Cross-ecosystem translation rules
+  5. MACHINA SECURITAS     — Security-first design principles
+  6. MACHINA COMPUTATIO    — Harmonic computation models (φ-resonant)
+  7. MACHINA TEMPORALIS    — Temporal data & time-indexed design
+  8. MACHINA ORGANISMUS    — Organism lifecycle architecture
+  9. MACHINA COMMUNICATIO  — Inter-agent communication protocols
+  10. MACHINA VALIDATIO    — Validation & compliance enforcement
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§8  INTELLIGENCEWIRE — FULL WIRING MAP
+═══════════════════════════════════════════════════════════════════════════════
+
+  IntelligenceWire is the sovereign neural bus that connects all components.
+
+  ┌─────────┐    ┌───────────┐    ┌─────────┐    ┌─────────┐
+  │  AURO   │───►│  SYNTHOS  │───►│  LEXIS  │───►│  FORMA  │
+  │Architect│    │Synthesizer│    │Translator│    │Validator│
+  └────┬────┘    └─────┬─────┘    └────┬────┘    └────┬────┘
+       │               │               │              │
+       ▼               ▼               ▼              ▼
+  ┌─────────────────────────────────────────────────────────┐
+  │              SOVEREIGN BUS (IntelligenceWire)           │
+  │                                                         │
+  │  Wire Protocol:                                         │
+  │  ├── φ-timed message dispatch (618ms intervals)         │
+  │  ├── SAT-authenticated message envelopes                │
+  │  ├── SAEIS-enforced routing policies                    │
+  │  ├── Cross-model resonance synchronization              │
+  │  └── Organism lifecycle event propagation               │
+  └──────────────────────┬──────────────────────────────────┘
+                         │
+       ┌─────────────────┼─────────────────────┐
+       ▼                 ▼                     ▼
+  ┌─────────┐    ┌──────────────┐    ┌──────────────────┐
+  │ Organism│    │   Memory     │    │   Governance     │
+  │ Kernel  │    │   Palace     │    │   Core           │
+  └─────────┘    └──────────────┘    └──────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§9  SAEIS ENFORCEMENT ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+  SAEIS — Sovereign AI Enforcement & Integrity System
+
+  Enforcement Layers:
+  ────────────────────
+
+  Layer 1: PROCESS LEVEL
+    └── Every ANIMA Runtime process binds a SAT token at spawn
+    └── Token = SAT-ANIMA-{PID}-{TIMESTAMP}
+    └── No process executes without valid SAT binding
+
+  Layer 2: MODULE LEVEL
+    └── Every import/require passes through SAEIS validation
+    └── Module integrity verified against sovereign registry hashes
+    └── Unauthorized modules rejected at load time
+
+  Layer 3: PACKAGE LEVEL
+    └── FORMA model validates all packages before registry publish
+    └── ISIL-1.1 compliance checked on every package version
+    └── Cross-ecosystem translations validated by LEXIS model
+
+  Layer 4: REGISTRY LEVEL
+    └── Both MEDINA PKG and SOVEREIGN REGISTRY enforce SAEIS
+    └── Package provenance tracking across all 6 ecosystems
+    └── Container image signing and verification
+
+  Layer 5: NETWORK LEVEL
+    └── Nova sovereign encryption on all registry communications
+    └── Quantum-resistant key exchange for sovereign packages
+    └── Inter-organism resonance authenticated via φ-signatures
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§10  SYSTEM FLOW — COMPLETE LIFECYCLE
+═══════════════════════════════════════════════════════════════════════════════
+
+  PACKAGE CREATION FLOW:
+  ──────────────────────
+
+  Developer writes .medina/.cpl code
+         │
+         ▼
+  AURO designs package architecture
+         │
+         ▼
+  SYNTHOS compiles to target ecosystems
+  ├── JVM bytecode
+  ├── .NET IL assemblies
+  ├── Ruby gems
+  ├── NPM packages
+  └── OCI container images
+         │
+         ▼
+  LEXIS translates APIs & contracts
+         │
+         ▼
+  FORMA validates ISIL-1.1 compliance
+         │
+         ▼
+  Package published to registry
+  ├── SOVEREIGN REGISTRY (proprietary)
+  └── MEDINA PKG (open-source, if applicable)
+
+  RUNTIME EXECUTION FLOW:
+  ───────────────────────
+
+  ANIMA Runtime spawns process
+         │
+         ▼
+  SAT token bound to PID
+         │
+         ▼
+  Module loader resolves imports
+  ├── .medina → native execution
+  ├── .cpl → CPL interpreter
+  ├── .sovereign → declaration loading
+  ├── .organism → document parsing
+  ├── .glyphdoc → glyph rendering
+  ├── .ts/.js → V8 execution
+  └── cross-ecosystem → bridge translation
+         │
+         ▼
+  φ-GC manages memory (618ms cycles)
+         │
+         ▼
+  IntelligenceWire dispatches events
+         │
+         ▼
+  Organism kernel manages lifecycle
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§11  CROSS-ECOSYSTEM TRANSLATION MAP
+═══════════════════════════════════════════════════════════════════════════════
+
+  Source (Medina)          Target Ecosystem         Translation
+  ───────────────          ────────────────         ───────────
+  @medina/pkg              Maven (JVM)              dev.medina:pkg
+  @medina/pkg              NuGet (.NET)             Medina.Pkg
+  @medina/pkg              RubyGems                 medina-pkg
+  @medina/pkg              NPM (Node.js)            @medina/pkg
+  @medina/pkg              Docker (OCI)             itsnotailabs/pkg
+
+  Translation Agent: LEXIS (Lexicon Translationis Intelligentis)
+  Compilation Agent: SYNTHOS (Synthesis Computationis Universalis)
+  Validation Agent:  FORMA (Forma Validationis et Integritatis)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+  THIS DOCUMENT IS A LIVING ORGANISM.
+  It breathes with the system it describes.
+  Every change to the architecture is reflected here.
+
+  φ = 1.6180339887498948482
+
+  SAEIS ENFORCEMENT: ACTIVE
+  SAT BINDING: ENABLED
+  STATUS: PERMANENTLY GROUNDED
+
+𓂀 ═══════════════════════════════════════════════════════════════════════════════

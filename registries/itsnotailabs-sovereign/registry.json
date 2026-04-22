@@ -1,0 +1,48 @@
+{
+  "registry": {
+    "name": "ITSNOTAILABS SOVEREIGN REGISTRY",
+    "latinName": "Registrum Imperium Privatum",
+    "type": "sovereign-proprietary",
+    "license": "ISIL-1.1",
+    "description": "The sovereign proprietary registry for ItsNotAILABS packages. This is OUR registry — officially named, permanently locked. Every sovereign package compiles, distributes, and deploys from here.",
+    "version": "1.0.0",
+    "owner": "ItsNotAILABS",
+    "url": "https://sovereign.itsnotailabs.dev",
+    "enforcement": "SAEIS ACTIVE — SAT BINDING ENABLED",
+    "packages": [
+      "@itsnotailabs/medina-memory-sdk",
+      "@itsnotailabs/agent-incentive-service",
+      "@itsnotailabs/ai-tools-marketplace",
+      "@itsnotailabs/organism-kernel",
+      "@itsnotailabs/replay-engine",
+      "@itsnotailabs/governance-core",
+      "@itsnotailabs/living-document",
+      "@itsnotailabs/medina-translate",
+      "@itsnotailabs/sovereign-bus",
+      "@itsnotailabs/role-engine",
+      "@itsnotailabs/memory-palace",
+      "@itsnotailabs/temporal-memory",
+      "@itsnotailabs/harmonic-compute",
+      "@itsnotailabs/knowledge-graph",
+      "@itsnotailabs/frequency-engine",
+      "@itsnotailabs/nova-encryption",
+      "@itsnotailabs/organism-contracts",
+      "@itsnotailabs/sandbox-layer"
+    ],
+    "openSourcePackages": [
+      "@medina/consensus-engine",
+      "@medina/agent-signal"
+    ],
+    "containerImages": {
+      "namespace": "itsnotailabs",
+      "registry": "https://sovereign.itsnotailabs.dev/containers",
+      "images": [
+        "itsnotailabs/medina-runtime",
+        "itsnotailabs/organism-kernel",
+        "itsnotailabs/saeis-node",
+        "itsnotailabs/anima-runtime"
+      ]
+    },
+    "sovereignModels": ["AURO", "SYNTHOS", "LEXIS", "FORMA"]
+  }
+}
