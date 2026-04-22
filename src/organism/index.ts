@@ -752,6 +752,56 @@ import {
   SOVEREIGN_OWN_ICP,
 } from './sovereign-engineers/SovereignDeploymentTeams';
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// ENGINES — REAL WIRED INTELLIGENCE MOTORS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  WitnessToArchitectureEngine,
+  WITNESS_ENGINE,
+  type WitnessRecord,
+  type ExtractedSignals,
+  type ArchitecturePacket,
+  type OrganismUpgrade,
+  type WitnessRegisterEntry,
+  type PacketType,
+} from './engines/WitnessToArchitectureEngine';
+
+export {
+  PhantomDecryptionEngine,
+  PHANTOM_ENGINE,
+  type NonceDiscovery,
+  type DecryptionResult,
+  type KeyRotationState,
+  type PhantomState,
+  type PhantomVisibility,
+} from './engines/PhantomDecryptionEngine';
+
+export {
+  SovereignTokenBridge,
+  TOKEN_BRIDGE,
+  type SovereignToken,
+  type TokenTransaction,
+  type MiningReward,
+  type BridgeContract,
+  type TokenType,
+  type TransactionType,
+} from './engines/SovereignTokenBridge';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FRONTEND FRACTURE LAYER — 100 TECHNOLOGIES AS INTELLIGENCE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  FrontendOrganismLayer,
+  FRONTEND_LAYER,
+} from '../frontend';
+
+import { WITNESS_ENGINE } from './engines/WitnessToArchitectureEngine';
+import { PHANTOM_ENGINE } from './engines/PhantomDecryptionEngine';
+import { TOKEN_BRIDGE } from './engines/SovereignTokenBridge';
+import { FRONTEND_LAYER } from '../frontend';
+
 /**
  * Unified Organism Interface
  * 
@@ -851,6 +901,12 @@ export class SovereignOrganism {
   // CPL NATIVE REGISTRY — Every native technology form across all categories
   // getNativeRegistrySummary() / findNativeTechnology() / SOVEREIGN_NATIVE_REGISTRY
   public readonly native = { getNativeRegistrySummary, findNativeTechnology, SOVEREIGN_NATIVE_REGISTRY, SOVEREIGN_OWN_ICP };
+  
+  // Engines
+  readonly witnessEngine = WITNESS_ENGINE;
+  readonly phantomEngine = PHANTOM_ENGINE;
+  readonly tokenBridge = TOKEN_BRIDGE;
+  readonly frontendLayer = FRONTEND_LAYER;
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
@@ -1188,6 +1244,12 @@ export default {
   // Civilizations
   PrismaCivilization,
   SubstrateCivilization,
+  
+  // Engines
+  WITNESS_ENGINE,
+  PHANTOM_ENGINE,
+  TOKEN_BRIDGE,
+  FRONTEND_LAYER,
   
   // CORE OPERATIONS OF LIVING ARCHITECTURE
   CORE_OPERATIONS,
