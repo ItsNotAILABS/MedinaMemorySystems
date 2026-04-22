@@ -43,6 +43,18 @@ import * as NeuralConsciousness from '../packages/neural-consciousness-engine';
 import * as DocumentAbsorption from '../packages/document-absorption-engine';
 
 // ═══════════════════════════════════════════════════════════════════════════
+// AGI CONVERGENCE — Wired into the organism, it doesn't call, it's just there
+// "Let the architecture flow. Deploy two sovereign dissolution agents."
+// "Deep research on extending the architecture into AGI and encryption and blockchain"
+// ═══════════════════════════════════════════════════════════════════════════
+
+import {
+  SOVEREIGN_AGI_MANIFEST,
+  generateDissolutionReport,
+  type DissolutionReport,
+} from './sovereignAGIConvergence';
+
+// ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS — THE ORGANISM'S MATHEMATICAL SUBSTRATE
 // All the math and physics from every package, unified
 // ═══════════════════════════════════════════════════════════════════════════
@@ -133,6 +145,10 @@ export interface OrganismSubstrateState {
   phiVerified: boolean;
   absorptionComplete: boolean;
   wiredAt: string;
+  // AGI Convergence — wired in, not called
+  agiManifest: typeof SOVEREIGN_AGI_MANIFEST;
+  agiReadiness: number;         // 0.0 - 1.0, target ≥ 0.95
+  chaosResilience: boolean;     // Has passed chaos testing
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -468,6 +484,10 @@ export function wireOrganismSubstrate(): OrganismSubstrateState {
   const totalLadder = allLadder.length;
   const avgIntegrity = packages.reduce((s, p) => s + p.phiIntegrity, 0) / packages.length;
 
+  // Generate AGI dissolution report — wired in, not called
+  const dissolutionReport = generateDissolutionReport();
+  const agiReadiness = dissolutionReport.overallScore / dissolutionReport.maxScore;
+
   return {
     packages,
     totalConstants,
@@ -477,6 +497,10 @@ export function wireOrganismSubstrate(): OrganismSubstrateState {
     phiVerified: avgIntegrity > 0.95,
     absorptionComplete: true,
     wiredAt: new Date().toISOString(),
+    // AGI Convergence — wired into organism substrate
+    agiManifest: SOVEREIGN_AGI_MANIFEST,
+    agiReadiness,
+    chaosResilience: dissolutionReport.allPassed,
   };
 }
 
@@ -543,6 +567,8 @@ export function getSubstrateStatus(): {
   substrateIntegrity: number;
   phiVerified: boolean;
   absorptionComplete: boolean;
+  agiReadiness: number;
+  chaosResilience: boolean;
 } {
   const substrate = getOrganismSubstrate();
   return {
@@ -553,10 +579,12 @@ export function getSubstrateStatus(): {
     substrateIntegrity: substrate.substrateIntegrity,
     phiVerified: substrate.phiVerified,
     absorptionComplete: substrate.absorptionComplete,
+    agiReadiness: substrate.agiReadiness,
+    chaosResilience: substrate.chaosResilience,
   };
 }
 
-/** Verify the complete organism wiring — φ integrity */
+/** Verify the complete organism wiring — φ integrity + AGI readiness */
 export function verifyOrganismWiring(): {
   verified: boolean;
   integrity: number;
@@ -564,6 +592,8 @@ export function verifyOrganismWiring(): {
   constantCount: number;
   physicsCount: number;
   ladderCount: number;
+  agiReadiness: number;
+  chaosResilience: boolean;
   message: string;
 } {
   const substrate = getOrganismSubstrate();
@@ -575,8 +605,10 @@ export function verifyOrganismWiring(): {
     constantCount: substrate.totalConstants,
     physicsCount: substrate.totalPhysicsBindings,
     ladderCount: substrate.totalLadderRungs,
+    agiReadiness: substrate.agiReadiness,
+    chaosResilience: substrate.chaosResilience,
     message: verified
-      ? `ORGANISM FULLY WIRED: ${substrate.packages.length} packages, ${substrate.totalConstants} constants, ${substrate.totalPhysicsBindings} physics bindings, ${substrate.totalLadderRungs} ladder rungs — φ-verified ✓`
+      ? `ORGANISM FULLY WIRED: ${substrate.packages.length} packages, ${substrate.totalConstants} constants, ${substrate.totalPhysicsBindings} physics bindings, ${substrate.totalLadderRungs} ladder rungs — φ-verified ✓ | AGI readiness: ${(substrate.agiReadiness * 100).toFixed(1)}% | Chaos resilience: ${substrate.chaosResilience ? '✓' : '✗'}`
       : `WIRING INCOMPLETE: integrity=${substrate.substrateIntegrity.toFixed(4)}`,
   };
 }
