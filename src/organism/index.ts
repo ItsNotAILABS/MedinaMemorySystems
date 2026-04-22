@@ -491,10 +491,28 @@ export {
 } from './sdk/SDKOrganismRegistry';
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// PACKAGING / REGISTRY / REPLICATION ORGANISM
+// COMPLETE PACKAGE MANAGER WORKFLOW — CORRECT SLOT ORDER
+// Slot 1: AnimaPKG (substrate) → Slot 2: ServerModel (FASCICULARIUS) →
+// Slots 3-7: Sub-Models (LECTOR→TAXONOMUS→SCULPTOR→SIGILLUM→PRAECO) →
+// Slot 8: PackagingReplicationOrganism (pipeline executor)
 // "The source organism does not need to lose anything. Packaging is not subtraction."
 // ═══════════════════════════════════════════════════════════════════════════════
 
+// Slot 2: Server Model — FASCICULARIUS (built first, writes the story)
+export {
+  PackageManagerServerModel,
+  createPackageManagerServerModel,
+  PACKAGE_SUB_MODELS,
+  type SubModelId,
+  type NarrativePhase,
+  type WorkflowStage,
+  type SubModel,
+  type NarrativeSegment,
+  type WorkflowNarrative,
+  type WorkflowServeResult,
+} from './package-manager/PackageManagerServerModel';
+
+// Slot 8: Pipeline Executor — PackagingReplicationOrganism
 export {
   PackagingReplicationOrganism,
   createPackagingOrganism,
@@ -517,6 +535,16 @@ export {
   type RegistryRecord,
   type PipelineResult,
 } from './package-manager/PackagingReplicationOrganism';
+
+// The Complete Workflow Orchestrator — ties everything together
+export {
+  PackageManagerWorkflow,
+  createPackageManagerWorkflow,
+  WORKFLOW_INSTRUCTIONS,
+  type WorkflowInstruction,
+  type WorkflowManifest,
+  type CompleteWorkflowResult,
+} from './package-manager/PackageManagerWorkflow';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE

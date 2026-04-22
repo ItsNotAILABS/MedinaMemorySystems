@@ -539,6 +539,31 @@ Each package is a **living organism document** — it carries metadata, self-doc
 
 The **PackagingReplicationOrganism** is a dedicated organism whose ONLY job is packaging. It reads from the source organism, processes through a 7-phase pipeline, and deploys — **without ever modifying the source**.
 
+### Complete Workflow — Slot Order
+
+| Slot | File | Component |
+|------|------|-----------|
+| 1 | `AnimaPKG.ts` | Sovereign Package Manager (substrate, registry, commands) |
+| 2 | `PackageManagerServerModel.ts` | **FASCICULARIUS** — Server Model that writes the workflow story |
+| 3 | Sub-Model in ServerModel | **LECTOR** (Lector Fontis) — The Source Reader |
+| 4 | Sub-Model in ServerModel | **TAXONOMUS** (Taxonomus Classium) — The Classifier |
+| 5 | Sub-Model in ServerModel | **SCULPTOR** (Sculptor Imaginis) — The Snapshot Sculptor |
+| 6 | Sub-Model in ServerModel | **SIGILLUM** (Sigillum Authenticum) — The Seal & Signer |
+| 7 | Sub-Model in ServerModel | **PRAECO** (Praeco Registrarii) — The Registry Herald |
+| 8 | `PackagingReplicationOrganism.ts` | Pipeline Executor (7-phase pipeline) |
+| — | `PackageManagerWorkflow.ts` | Complete Workflow Orchestrator (narrative + instructions) |
+
+### Workflow Narrative — Three Acts
+
+**ACT I — THE INTAKE (Beginning):**
+LECTOR reads from the source organism (non-destructive, read-only). Computes a SOURCE HASH fingerprint. TAXONOMUS classifies the packageable unit into one of 15 classes. Nothing has been modified.
+
+**ACT II — THE TRANSFORMATION (Middle):**
+SCULPTOR creates an immutable SNAPSHOT (frozen in time). Generates a DEEP COPY (not a reference — a complete clone). Wraps the copy with a PACKAGE MANIFEST (name, version, classification, dependencies, exports, technologies, models, cost). Source is still untouched.
+
+**ACT III — THE DEPLOYMENT (End):**
+SIGILLUM applies cryptographic signature (PHI-HMAC-SHA3-256) and binds a SAT TOKEN. PRAECO writes the REGISTRY RECORD, deploys to targets (REGISTERED → DEPLOYED → ACTIVE), and VERIFIES the source hash matches — proving the source was NEVER modified. `sourceIntact: true` — always.
+
 ### Seven-Phase Pipeline
 
 | Phase | Name | What It Does |
@@ -550,6 +575,16 @@ The **PackagingReplicationOrganism** is a dedicated organism whose ONLY job is p
 | 5 | **WRAP** | Wrap with manifest, metadata, living documents |
 | 6 | **SIGN** | Cryptographic signing + SAT token binding (PHI-HMAC-SHA3-256) |
 | 7 | **REGISTER** | Write to sovereign registry + deploy to targets |
+
+### Server Model: FASCICULARIUS
+
+| Sub-Model | Latin Name | Role | Narrative Phase |
+|-----------|-----------|------|-----------------|
+| **LECTOR** | Lector Fontis | The Source Reader | BEGINNING |
+| **TAXONOMUS** | Taxonomus Classium | The Classifier | BEGINNING |
+| **SCULPTOR** | Sculptor Imaginis | The Snapshot Sculptor | MIDDLE |
+| **SIGILLUM** | Sigillum Authenticum | The Seal & Signer | END |
+| **PRAECO** | Praeco Registrarii | The Registry Herald | END |
 
 ### Architectural Truth
 
@@ -626,8 +661,10 @@ ItsNotAILABS Sovereign Stack
 │   ├── intelligence/MultiIdentity.ts 20 multi-identity technologies — WIRED TO RUNTIME
 │   ├── civilizations/OrganismCityState.ts  CIVITAS INTELLIGENTIAE — City-State Architecture
 │   ├── sdk/SDKOrganismRegistry.ts    20 SDK Organisms + 7 System Categories (35+35)
-│   ├── package-manager/PackagingReplicationOrganism.ts  7-PHASE PIPELINE (Read→Deploy, source intact)
-│   ├── package-manager/AnimaPKG.ts   ANIMA-PKG sovereign package manager
+│   ├── package-manager/AnimaPKG.ts   SLOT 1: ANIMA-PKG sovereign package manager (substrate)
+│   ├── package-manager/PackageManagerServerModel.ts  SLOT 2: FASCICULARIUS + 5 sub-models (LECTOR→TAXONOMUS→SCULPTOR→SIGILLUM→PRAECO)
+│   ├── package-manager/PackagingReplicationOrganism.ts  SLOT 8: 7-PHASE PIPELINE (Read→Deploy, source intact)
+│   ├── package-manager/PackageManagerWorkflow.ts  COMPLETE WORKFLOW (3-act narrative + 12-step instructions + orchestrator)
 │   ├── ArchitectureWiring.ts         Root→All branches (token_economy, voting, solvers, etc.)
 │   ├── nexus/                        NEXUS-OS operating system
 │   ├── saas/                         20 SaaS products
