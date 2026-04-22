@@ -491,6 +491,34 @@ export {
 } from './sdk/SDKOrganismRegistry';
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// PACKAGING / REGISTRY / REPLICATION ORGANISM
+// "The source organism does not need to lose anything. Packaging is not subtraction."
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  PackagingReplicationOrganism,
+  createPackagingOrganism,
+  SourceReader,
+  PackageClassifier,
+  SnapshotEngine,
+  CopyGenerator,
+  PackageWrapperEngine,
+  PackageSigner,
+  PackageRegistrar,
+  type PackageableClass,
+  type PipelinePhase,
+  type DeployTarget,
+  type SourceReference,
+  type PackageSnapshot,
+  type PackageCopy,
+  type PackageManifest,
+  type PackageWrapper,
+  type PackageSignature,
+  type RegistryRecord,
+  type PipelineResult,
+} from './package-manager/PackagingReplicationOrganism';
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UNIFIED ORGANISM INTERFACE
 // ═══════════════════════════════════════════════════════════════════════════════
 
