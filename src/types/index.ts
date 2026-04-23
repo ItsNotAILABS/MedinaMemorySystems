@@ -4,6 +4,9 @@
 // Re-export all organism types (300 models, engines, memory temple)
 export * from './organisms';
 
+// Re-export GO System types (50 models, 30 MCP servers, 100 scrapers, 20 workflows)
+export * from './goSystem';
+
 // ─── Coordinates ────────────────────────────────────────────────────────────
 
 export interface SpatialCoordinate {
