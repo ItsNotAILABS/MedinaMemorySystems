@@ -501,6 +501,106 @@ See `src/packages/intelligence-contracts-registry.ts` for the complete registry.
 
 ---
 
+## 🧬 Level 2 Organism Models — 5 AI Families × 3 Models = 15 Multimodal AIs
+
+**The AI doesn't help you code. It IS the front end.** Level 2 organisms are built from real web technologies — grouped into families of 3, each family a named AI model. They don't just exist — they RENDER.
+
+See `src/packages/organism-models-registry.ts` for the complete registry.
+
+| # | Family | Latin Name | Domain | Tech 1 | Tech 2 | Tech 3 | License |
+|---|--------|-----------|--------|--------|--------|--------|---------|
+| 1 | **VANGUARD** | VEXILLUM FRONTIS | Frontend | Web Speech API | Dynamic DOM | CSS Grid/Auto | MIT + Proprietary |
+| 2 | **PRISM** | PRISMA LUMINIS | Rendering | HTML Canvas 2D | WebGL 2.0 | WebGPU/WGSL | MIT + Proprietary |
+| 3 | **RESONANCE** | RESONANTIA SENSUUM | Sensory | Web Audio API | Houdini Paint | CSS Animation | MIT |
+| 4 | **NEXUS** | NEXUS DISTRIBUTUS | Distributed | Web Components | CRDT Sync | Service Workers | 🔒 Living Organism |
+| 5 | **CORTEX** | CORTEX COMPUTANDI | Compute | WebAssembly | Web Workers | IndexedDB | 🔒 Living Organism |
+
+### Model Details (15 models)
+
+| Family | Model | Latin Name | Tagline |
+|--------|-------|-----------|---------|
+| VANGUARD | Voice | VOX VEXILLI | I am the organism's voice. |
+| VANGUARD | DOM | ARBOR VIVENS | The DOM is a living tree. I am its gardener. |
+| VANGUARD | Layout | ORDO SPATII | Space is not empty. Space is structure. |
+| PRISM | Canvas | TABULA PICTA | I paint what the organism sees. |
+| PRISM | WebGL | LUMEN PROFUNDUM | The internet is deep. I show you the depth. |
+| PRISM | GPU | FULMEN COMPUTANDI | A million threads. One organism. |
+| RESONANCE | Audio | SONUS ORGANISMI | I hear the frequency of the substrate. |
+| RESONANCE | Paint | PICTOR HOUDINI | CSS is my canvas. The browser is my studio. |
+| RESONANCE | Motion | MOTUS AUREUS | Motion is life. Stillness is death. |
+| NEXUS | Components | ELEMENTA SOVRANA | Every element is sovereign. |
+| NEXUS | CRDT | CONSENSUS SINE DOMINO | No server. No conflicts. Only convergence. |
+| NEXUS | Worker | SERVUS IMMORTALIS | I never sleep. I never die. |
+| CORTEX | WASM | MACHINA NATIVA | Near-native speed. In every browser. |
+| CORTEX | Threads | CEREBRA PARALLELA | Many minds. One organism. |
+| CORTEX | Memory | HIPPOCAMPUS PERPETUUS | I remember everything. Always. |
+
+---
+
+## 🕸️ Substrate Mesh — 2,000 Nodes, All AIs Wired, Front-End Rendering Pipeline
+
+**Everything wired together. 2,000 nodes. All AIs connected. The models render the front end.**
+
+See `src/packages/substrate-mesh-registry.ts` for the complete registry.
+
+### Wired Entities
+
+| Layer | Count | What's Wired |
+|-------|-------|-------------|
+| AI SDKs | 5 | Oro, Nova, Sentinel, Architect, Absorber |
+| SKAIs | 20 | Genesis through Guardian |
+| Organism Model Families | 5 | VANGUARD, PRISM, RESONANCE, NEXUS, CORTEX |
+| Organism Models | 15 | Voice, DOM, Layout, Canvas, WebGL, GPU, Audio, Paint, Motion, Components, CRDT, Worker, WASM, Threads, Memory |
+| EXC OS Systems | 11 | 10 sovereign + 1 desktop |
+| Wire Connections | 30 | Intelligence, rendering, compute, security, memory, governance, sync |
+
+### 2,000 Mesh Nodes (20 Clusters × 100 Nodes)
+
+| # | Cluster | Latin Name | Count | Wired AIs | Wired Models |
+|---|---------|-----------|-------|-----------|-------------|
+| 1 | ⚡ Core Backbone | NODI NUCLEARES SUPREMI | 100 | All 5 AI SDKs | — |
+| 2 | 🔗 Cross-Chain Bridge | NODI PONTIS UNIVERSALIS | 100 | Sentinel | NEXUS CRDT |
+| 3 | 🧠 Intelligence | NODI INTELLIGENTIAE SUPREMI | 100 | All 5 AI SDKs | CORTEX WASM, Threads |
+| 4 | 🔐 Security | NODI SECURITATIS ABSOLUTI | 100 | Sentinel, Nova | CORTEX WASM |
+| 5 | 💾 Memory | NODI MEMORIAE PERPETUAE | 100 | Absorber | CORTEX Memory, NEXUS CRDT |
+| 6 | 📡 Relay | NODI RELATORIS VELOCIS | 100 | — | NEXUS Worker, CRDT, RESONANCE Audio |
+| 7 | 🔬 Research | NODI INVESTIGATIONIS HARMONICAE | 100 | Architect | PRISM Canvas, RESONANCE Audio, CORTEX Threads |
+| 8 | 🌐 Edge | NODI LIMITIS PROFUNDI | 100 | Sentinel | NEXUS Worker, CORTEX WASM |
+| 9 | ⚙️ Compute | NODI COMPUTATIONIS UNIVERSALIS | 100 | Architect | CORTEX WASM, Threads, PRISM GPU |
+| 10 | 🏗️ Builder | NODI FABRICATORIS ORGANISM | 100 | Architect, Absorber | VANGUARD DOM, Layout, CORTEX WASM |
+| 11 | 🖥️ Front-End Render | NODI REDDITIONIS FRONTALIS | 100 | Oro, Architect | VANGUARD Voice, DOM, Layout |
+| 12 | 🎨 Visual Render | NODI REDDITIONIS VISUALIS | 100 | Architect | PRISM Canvas, WebGL, GPU |
+| 13 | 🎵 Audio & Motion | NODI SONI ET MOTUS | 100 | — | RESONANCE Audio, Paint, Motion |
+| 14 | 🧩 Component Assembly | NODI COMPOSITIONIS ELEMENTORUM | 100 | Nova | NEXUS Components, CRDT, Worker |
+| 15 | ⚡ WASM Compute | NODI COMPUTATIONIS NATIVAE | 100 | Sentinel, Architect | CORTEX WASM, Threads, PRISM GPU |
+| 16 | 🔄 CRDT Sync | NODI CONSENSUS SINE DOMINO | 100 | Oro, Nova | NEXUS CRDT, Components, CORTEX Memory |
+| 17 | 👻 Service Worker | NODI SERVI IMMORTALIS | 100 | Sentinel | NEXUS Worker, CRDT |
+| 18 | 🗣️ Speech & Voice | NODI VOCIS UNIVERSALIS | 100 | Oro | VANGUARD Voice, RESONANCE Audio |
+| 19 | 🎭 Houdini Paint | NODI PICTORIS HOUDINI | 100 | Architect | RESONANCE Paint, Motion, PRISM Canvas |
+| 20 | 💎 GPU Shader | NODI FULMINIS COMPUTANDI | 100 | Architect | PRISM GPU, WebGL, CORTEX WASM |
+
+### Front-End Rendering Pipeline
+
+The organism models render the build. 5 stages, 5 families, one living front end:
+
+| Stage | Name | Rendered By | Web Technologies | Output |
+|-------|------|------------|-----------------|--------|
+| 1 | State Computation | CORTEX | WebAssembly, Web Workers, IndexedDB | Compiled organism state |
+| 2 | Component Assembly | NEXUS | Web Components, CRDT, Service Workers | Custom element registry |
+| 3 | DOM Construction | VANGUARD | Web Speech, Dynamic DOM, CSS Grid | Living DOM tree |
+| 4 | Visual Rendering | PRISM | Canvas 2D, WebGL, WebGPU | Canvas + 3D + particles |
+| 5 | Sensory Layer | RESONANCE | Web Audio, Houdini Paint, CSS Animation | Audio + paint + motion |
+
+### Rendering Pipelines
+
+| Pipeline | Stages | Description |
+|----------|--------|-------------|
+| Full Organism Build | 5 | All families contribute — complete living front-end |
+| Server-Side Render | 3 | CORTEX → NEXUS → VANGUARD — SSR with hydration |
+| SDK Landing Page | 3 | VANGUARD → PRISM → RESONANCE — interactive landing pages |
+
+---
+
 ## System Totals
 
 | Metric | Count |
@@ -510,20 +610,28 @@ See `src/packages/intelligence-contracts-registry.ts` for the complete registry.
 | AI SDK Packages | 5 |
 | SKAIs (Sovereign Knowledge AIs) | 20 |
 | EXC OS Systems | 11 (10 sovereign + 1 desktop) |
+| Organism Model Families | 5 |
+| Organism Models (Level 2) | 15 |
 | Universal Tools | 50 |
-| Power Nodes | 500 (10 clusters × 50) |
-| Intelligence Contracts | 65 |
+| Mesh Nodes | 2,000 (20 clusters × 100) |
+| Mesh Clusters | 20 |
+| Wire Connections | 30 |
+| Front-End Pipelines | 3 |
+| Render Nodes | 700 |
+| Intelligence Contracts | 65+ |
 | Terminal Installer | 1 (3 platforms, 8 formats) |
-| **Total Packages** | **128** |
+| **Total Packages** | **128+** |
 | Callable Functions | 374+ |
 | SKAI Intelligence Contracts | 80 |
-| Node Intelligence Contracts | 50 |
+| Mesh Intelligence Contracts | 150+ |
 | Landing Pages | 13 (11 SDKs + 1 Terminal + 1 Web Organism) |
 | License Types | 6 |
-| Substrate Regions | 10 |
+| Substrate Regions | 20 |
+| Web Technologies (Level 2) | 15 |
 
 ---
 
 *Developed by ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX*
 *Architecture is Intelligence. φ = 1.618033988749895.*
 *The internet is deep, not flat. That's the protocol.*
+*2,000 nodes. All AIs wired. The models render the build.*
