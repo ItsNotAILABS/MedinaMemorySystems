@@ -177,6 +177,16 @@ const saasProducts: MedinaSaaS[] = [
     endpoints: ['/api/sync'],
     internalOnly: false,
   },
+  {
+    id: 'go-system',
+    name: 'Medina GO Systems',
+    layer: 'runtime',
+    description: 'Enterprise AI Infrastructure Platform — 10 divisions, 50 AI models, 30 MCP servers, 100 scrapers, 20 automated workflows.',
+    aiModels: ['operations', 'builder', 'strategist', 'analyst', 'risk'],
+    capabilities: ['fleet-management', 'model-orchestration', 'mcp-server-management', 'scraper-fleet-ops', 'workflow-automation', 'division-oversight', 'capacity-planning'],
+    endpoints: ['/api/go'],
+    internalOnly: false,
+  },
 ];
 
 export function listSaaSProducts(): MedinaSaaS[] {
