@@ -332,6 +332,29 @@ The GitHub Actions workflow (`.github/workflows/build-terminal.yml`) will:
 
 ---
 
+## 🌐 Web Organism — Public Landing Page
+
+The main public-facing website for MEDINA. This is where people discover, learn about, and download everything.
+
+**URL:** `/organism` (via Next.js) or `public/organism/index.html` (static)
+
+### What's On It
+- **Hero** — MEDINA branding, stats (97 SDKs, 374+ functions, 5 AI agents, 50 tools), download + browse buttons
+- **Download Section** — One-click downloads for Windows (.exe/.msi), macOS (.dmg/.pkg), Linux (.AppImage/.deb/.rpm) with command-line alternatives
+- **Terminal Preview** — Animated live demo of the MEDINA Terminal (typewriter-style)
+- **Features** — 873ms heartbeat, three-gate security, spatial memory, callable functions, encryption, universal tools
+- **AI Agents** — Cards for Oro, Nova, Sentinel, Architect, Absorber with roles and autonomy levels
+- **SDK Browser** — Filterable grid of all 97 packages (core/extended/AI/tools) with descriptions
+- **Research** — Academic research papers, citations (BibTeX), UTA collaboration
+- **How To Get Started** — 3-step guide (Download → Install → Open) for non-technical users
+
+### How To Access
+- **Web:** Navigate to `/organism` in the Next.js app
+- **Static:** Open `public/organism/index.html` directly
+- **Deploy:** The `public/` folder is served automatically by Next.js
+
+---
+
 ## System Totals
 
 | Metric | Count |
@@ -343,7 +366,7 @@ The GitHub Actions workflow (`.github/workflows/build-terminal.yml`) will:
 | Terminal Installer | 1 (3 platforms, 8 formats) |
 | **Total Packages** | **97** |
 | Callable Functions | 374+ |
-| Landing Pages | 12 (11 SDKs + 1 Terminal) |
+| Landing Pages | 13 (11 SDKs + 1 Terminal + 1 Web Organism) |
 | License Types | 6 |
 
 ---
