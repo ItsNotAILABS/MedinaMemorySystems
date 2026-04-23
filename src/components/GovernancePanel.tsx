@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import type { Proposal, Gate, AuditEntry } from '@/types';
 
 const STATUS_STYLES: Record<string, { color: string; bg: string; border: string }> = {
@@ -163,7 +163,7 @@ export default function GovernancePanel() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={clsx(
+            className={cls(
               'py-2.5 text-xs font-medium border-b-2 transition-colors capitalize',
               activeTab === tab
                 ? 'border-green-500 text-green-400'

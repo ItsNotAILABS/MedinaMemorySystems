@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
+import { cls } from '@/lib/sovereign-cls';
 import type { Permission, PermissionScope } from '@/types';
 
 const SCOPE_GROUPS: Record<string, PermissionScope[]> = {
@@ -175,7 +175,7 @@ function ScopeRow({
           <span className="text-yellow-400">{scope2}</span>
         </div>
         <span
-          className={clsx(
+          className={cls(
             'text-[10px] px-1.5 py-0.5 rounded font-mono',
             permissions.length > 0
               ? 'text-green-400 bg-green-400/10 border border-green-400/30'

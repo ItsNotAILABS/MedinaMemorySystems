@@ -1,22 +1,29 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import clsx from 'clsx';
-import type { ChatMessage, ModelFamily, StructuredResponse } from '@/types';
-import { v4 as uuidv4 } from 'uuid';
-import WaveformVisualizer, { MicrophoneVisualizer } from './WaveformVisualizer';
-import {
-  oroSpeak,
-  startListening,
-  stopListening,
-  setWaveformCallback,
-  setRecognitionResultCallback,
-  setListeningStateCallback,
-  type ListeningState,
-} from '@/lib/voiceEngine';
+import { cls } from '@/lib/sovereign-cls';
+import type { ChatMessage, ModelFamily, StructuredResponse, UlriScore, UlriConsensusInfo } from '@/types';
+import { sovereignId } from '@/lib/sovereign-id';
 
-interface OVOChatProps {
-  onTaskSubmit?: (task: string) => void;
+interface SovereignScoreEntry {
+  id: string;
+  name: string;
+  kind: string;
+  score: number;
+  color: string;
+}
+
+interface FieldOfPossibility {
+  source: string;
+  possibilities: string[];
+}
+
+interface EnhancedChatMessage extends ChatMessage {
+  ulriScores?: UlriScore[];
+  sovereignScores?: SovereignScoreEntry[];
+  consensus?: UlriConsensusInfo;
+  routingLatency?: number;
+  fieldsOfPossibility?: FieldOfPossibility[];
 }
 
 const MODEL_COLORS: Record<string, string> = {
@@ -30,64 +37,39 @@ const MODEL_COLORS: Record<string, string> = {
   projection: '#06b6d4',
 };
 
-const WELCOME_MESSAGE: ChatMessage = {
+const WELCOME_MESSAGE: EnhancedChatMessage = {
   id: 'welcome',
   role: 'system',
-  content: `𓂀 Welcome to **NOVA OVO** — Sovereign Intelligence Platform.
+  content: `Welcome to **NOVA OVO** — Sovereign Intelligence Platform.
 
-I am **ORO**, your Primary Sovereign Intelligence. Speak to me using your microphone, or type commands:
+Powered by **ULRI** — Unified Layered Routing Intelligence (MEDINA Sovereign). Your messages are scored across three sovereign layers: keyword affinity, organism resonance, and gate weight — then routed to the optimal model.
 
+**Commands:**
 • \`/memory find <query>\` — Search memory
 • \`/govern list\` — List proposals
-• \`/model invoke <model> <prompt>\` — Invoke model
+• \`/model list\` — List model families
 • \`/organism status\` — View organism state
 • \`/help\` — Full command reference
 
-Press the **🎤 Mic** button to start voice conversation.`,
+Toggle **Consensus Mode** for multi-model intelligence synthesis.`,
   timestamp: new Date().toISOString(),
 };
 
 const QUICK_COMMANDS = [
-  { label: 'Memory', cmd: '/memory list' },
-  { label: 'Gates', cmd: '/govern gates' },
-  { label: 'Models', cmd: '/model list' },
-  { label: 'Organism', cmd: '/organism status' },
+  { label: 'Memory', cmd: '/memory list', icon: '🧠' },
+  { label: 'Gates', cmd: '/govern gates', icon: '⚖️' },
+  { label: 'Models', cmd: '/model list', icon: '⚡' },
+  { label: 'Organism', cmd: '/organism status', icon: '◉' },
 ];
 
-export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
-  const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE]);
+export default function OVOChat() {
+  const [messages, setMessages] = useState<EnhancedChatMessage[]>([WELCOME_MESSAGE]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  
-  // Voice state
-  const [isListening, setIsListening] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [waveform, setWaveform] = useState<number[]>(new Array(64).fill(0));
-  const [interimTranscript, setInterimTranscript] = useState('');
-  
+  const [consensusMode, setConsensusMode] = useState(false);
+  const [showRouting, setShowRouting] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-
-  // Initialize voice callbacks
-  useEffect(() => {
-    setWaveformCallback((wf) => {
-      setWaveform(wf);
-      setIsSpeaking(wf.some(v => v > 0.1));
-    });
-
-    setRecognitionResultCallback((text, isFinal, confidence) => {
-      if (isFinal && text.trim()) {
-        setInterimTranscript('');
-        void handleSend(text);
-      } else {
-        setInterimTranscript(text);
-      }
-    });
-
-    setListeningStateCallback((state: ListeningState) => {
-      setIsListening(state.isListening);
-    });
-  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -97,15 +79,15 @@ export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
     const content = (text ?? input).trim();
     if (!content || loading) return;
 
-    const userMsg: ChatMessage = {
-      id: uuidv4(),
+    const userMsg: EnhancedChatMessage = {
+      id: sovereignId(),
       role: 'user',
       content,
       timestamp: new Date().toISOString(),
     };
 
-    const loadingMsg: ChatMessage = {
-      id: uuidv4(),
+    const loadingMsg: EnhancedChatMessage = {
+      id: sovereignId(),
       role: 'assistant',
       content: '',
       timestamp: new Date().toISOString(),
@@ -120,38 +102,23 @@ export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content }),
+        body: JSON.stringify({ message: content, useConsensus: consensusMode }),
       });
-      const data = await res.json() as ChatMessage & { processingTime?: number };
+      const data = await res.json() as EnhancedChatMessage & { processingTime?: number };
 
       setMessages((prev) => [
         ...prev.slice(0, -1),
         {
           ...data,
-          id: data.id ?? uuidv4(),
+          id: data.id ?? sovereignId(),
           processing: false,
         },
       ]);
-
-      // Speak the response if voice mode is active
-      // Limit to ~200 chars to avoid overly long speech
-      const MAX_VOICE_RESPONSE_LENGTH = 200;
-      if (isListening && data.content) {
-        await oroSpeak(data.content.slice(0, MAX_VOICE_RESPONSE_LENGTH));
-      }
-
-      // Check if this is a task that should open the terminal
-      if (content.toLowerCase().includes('task:') || 
-          content.toLowerCase().startsWith('build ') ||
-          content.toLowerCase().startsWith('create ') ||
-          content.toLowerCase().startsWith('generate ')) {
-        onTaskSubmit?.(content);
-      }
     } catch {
       setMessages((prev) => [
         ...prev.slice(0, -1),
         {
-          id: uuidv4(),
+          id: sovereignId(),
           role: 'assistant',
           content: 'Error: Failed to connect to NOVA OVO API.',
           timestamp: new Date().toISOString(),
@@ -160,7 +127,7 @@ export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, isListening, onTaskSubmit]);
+  }, [input, loading, consensusMode]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -169,83 +136,52 @@ export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
     }
   };
 
-  const toggleListening = () => {
-    if (isListening) {
-      stopListening();
-      setIsListening(false);
-    } else {
-      startListening();
-      setIsListening(true);
-    }
-  };
-
   return (
     <div className="flex flex-col h-full bg-[#0a0a0f]">
-      {/* Header with Voice Controls */}
+      {/* Header */}
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#1e1e2e] bg-[#0d0d15] shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-blue-400 text-lg">𓂀</span>
-          <h1 className="text-sm font-semibold text-slate-200">ORO</h1>
-          <span className="text-xs text-slate-500 ml-1">Sovereign Intelligence</span>
+          <span className="text-blue-400 text-lg">💬</span>
+          <h1 className="text-sm font-semibold text-slate-200">OVO Chat</h1>
+          <span className="text-[10px] text-slate-500 font-mono ml-1">ULRI (MEDINA Sovereign)</span>
         </div>
         <div className="flex items-center gap-2">
-          {/* Voice Toggle */}
+          {/* Consensus toggle */}
           <button
-            onClick={toggleListening}
-            className={clsx(
-              'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
-              isListening
-                ? 'bg-green-600/20 border border-green-500/50 text-green-400 animate-pulse'
-                : 'bg-[#1e1e2e] border border-[#2d2d42] text-slate-400 hover:text-slate-200'
+            onClick={() => setConsensusMode(!consensusMode)}
+            className={cls(
+              'flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono transition-all',
+              consensusMode
+                ? 'bg-blue-600/20 text-blue-400 border border-blue-500/40'
+                : 'bg-[#1e1e2e] text-slate-500 border border-transparent hover:text-slate-300',
             )}
           >
-            <span>{isListening ? '🎤' : '🎤'}</span>
-            {isListening ? 'Listening...' : 'Voice'}
+            <span className={cls('w-1.5 h-1.5 rounded-full transition-colors', consensusMode ? 'bg-blue-400' : 'bg-slate-600')} />
+            Consensus {consensusMode ? 'ON' : 'OFF'}
           </button>
-          
-          {/* Quick Commands */}
+          {/* Quick commands */}
           {QUICK_COMMANDS.map((qc) => (
             <button
               key={qc.cmd}
               onClick={() => void handleSend(qc.cmd)}
-              className="px-2 py-1 text-[10px] rounded bg-[#1e1e2e] text-slate-400 hover:bg-[#2a2a3e] hover:text-slate-200 transition-colors font-mono"
+              className="px-2 py-1 text-[10px] rounded bg-[#1e1e2e] text-slate-400 hover:bg-[#2a2a3e] hover:text-slate-200 transition-colors font-mono flex items-center gap-1"
             >
+              <span>{qc.icon}</span>
               {qc.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Voice Visualizers */}
-      {(isListening || isSpeaking) && (
-        <div className="flex border-b border-[#1e1e2e] bg-[#0d0d15]">
-          <div className="flex-1 px-4 py-2 border-r border-[#1e1e2e]">
-            <MicrophoneVisualizer 
-              isListening={isListening} 
-              color="#10b981"
-              height={32}
-            />
-            {interimTranscript && (
-              <div className="mt-1 text-xs text-slate-500 font-mono truncate">
-                {interimTranscript}
-              </div>
-            )}
-          </div>
-          <div className="flex-1 px-4 py-2">
-            <WaveformVisualizer 
-              waveform={waveform} 
-              isActive={isSpeaking}
-              color="#3b82f6"
-              height={32}
-            />
-          </div>
-        </div>
-      )}
-
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
         {messages.map((msg) => (
-          <MessageBubble key={msg.id} message={msg} />
+          <MessageBubble
+            key={msg.id}
+            message={msg}
+            showRoutingId={showRouting}
+            onToggleRouting={(id) => setShowRouting(showRouting === id ? null : id)}
+          />
         ))}
         <div ref={messagesEndRef} />
       </div>
@@ -258,24 +194,28 @@ export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={isListening ? "Listening for voice input..." : "Type a message or /command…"}
+            placeholder={consensusMode ? 'Multi-model consensus mode… Type a message or /command' : 'Type a message or /command…'}
             rows={1}
-            className={clsx(
-              'w-full cmd-input rounded-lg px-4 py-3 pr-24 text-sm resize-none',
-              'bg-[#12121a] border border-[#1e1e2e] focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20',
-              'text-slate-200 placeholder-slate-600 outline-none',
-              'font-mono',
+            className={cls(
+              'w-full cmd-input rounded-lg px-4 py-3 pr-28 text-sm resize-none',
+              'bg-[#12121a] border focus:ring-1 outline-none font-mono',
+              'text-slate-200 placeholder-slate-600',
+              consensusMode
+                ? 'border-blue-500/30 focus:border-blue-500 focus:ring-blue-500/20'
+                : 'border-[#1e1e2e] focus:border-blue-500 focus:ring-blue-500/20',
             )}
             style={{ minHeight: 48, maxHeight: 120 }}
           />
-          <div className="absolute right-2 bottom-2 flex items-center gap-1">
-            {input.trim() && (
-              <span className="text-[10px] text-slate-600 font-mono">⏎</span>
+          <div className="absolute right-2 bottom-2 flex items-center gap-1.5">
+            {consensusMode && (
+              <span className="text-[9px] text-blue-400 font-mono px-1.5 py-0.5 rounded bg-blue-500/10">
+                3x
+              </span>
             )}
             <button
               onClick={() => void handleSend()}
               disabled={!input.trim() || loading}
-              className={clsx(
+              className={cls(
                 'px-3 py-1.5 rounded text-sm font-medium transition-all',
                 input.trim() && !loading
                   ? 'bg-blue-600 hover:bg-blue-500 text-white'
@@ -287,34 +227,45 @@ export default function OVOChat({ onTaskSubmit }: OVOChatProps) {
           </div>
         </div>
         <div className="flex items-center gap-2 mt-1.5 text-[10px] text-slate-600">
-          <span>⌘ Enter to send</span>
+          <span>Enter to send</span>
           <span>•</span>
           <span>Shift+Enter for newline</span>
           <span>•</span>
           <span>Type / for commands</span>
-          <span>•</span>
-          <span className={isListening ? 'text-green-400' : ''}>
-            {isListening ? '🎤 Voice active' : 'Voice off'}
-          </span>
+          {consensusMode && (
+            <>
+              <span>•</span>
+              <span className="text-blue-400">Consensus: top 3 models synthesized</span>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-function MessageBubble({ message }: { message: ChatMessage }) {
+function MessageBubble({
+  message,
+  showRoutingId,
+  onToggleRouting,
+}: {
+  message: EnhancedChatMessage;
+  showRoutingId: string | null;
+  onToggleRouting: (id: string) => void;
+}) {
   const isUser = message.role === 'user';
   const isSystem = message.role === 'system';
+  const showRouting = showRoutingId === message.id;
 
   if (message.processing) {
     return (
       <div className="flex items-start gap-3 animate-fade-in">
-        <div className="w-6 h-6 rounded bg-[#1e1e2e] flex items-center justify-center text-xs shrink-0 mt-0.5">
-          ⚡
+        <div className="w-7 h-7 rounded-lg bg-[#1e1e2e] flex items-center justify-center text-xs shrink-0 mt-0.5">
+          <span className="animate-pulse">⚡</span>
         </div>
         <div className="bg-[#12121a] border border-[#1e1e2e] rounded-lg px-4 py-3">
           <span className="text-blue-400 font-mono text-sm">
-            Processing<span className="cursor-blink">▋</span>
+            ULRI sovereign routing<span className="cursor-blink">▋</span>
           </span>
         </div>
       </div>
@@ -324,7 +275,9 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   if (isSystem) {
     return (
       <div className="bg-[#0f0f1a] border border-[#1e1e2e] rounded-lg px-4 py-3 animate-fade-in">
-        <div className="text-xs text-slate-500 mb-1.5 font-mono">SYSTEM</div>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-[10px] text-blue-400 font-mono px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/30">SYSTEM</span>
+        </div>
         <div className="text-sm text-slate-300 whitespace-pre-wrap leading-relaxed font-mono">
           {formatContent(message.content)}
         </div>
@@ -335,7 +288,7 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   if (isUser) {
     return (
       <div className="flex justify-end animate-fade-in">
-        <div className="max-w-2xl bg-blue-600/20 border border-blue-500/30 rounded-lg px-4 py-2.5">
+        <div className="max-w-2xl bg-blue-600/15 border border-blue-500/25 rounded-lg px-4 py-2.5">
           <div className="text-sm text-slate-200 font-mono whitespace-pre-wrap">{message.content}</div>
           <div className="text-[10px] text-slate-500 mt-1 text-right">{formatTime(message.timestamp)}</div>
         </div>
@@ -344,17 +297,19 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   }
 
   const modelColor = message.modelUsed ? (MODEL_COLORS[message.modelUsed] ?? '#6b7280') : '#6b7280';
+  const hasUlri = message.ulriScores && message.ulriScores.length > 0;
 
   return (
     <div className="flex items-start gap-3 animate-fade-in">
       <div
-        className="w-6 h-6 rounded shrink-0 mt-0.5 flex items-center justify-center text-[10px] font-bold text-white"
-        style={{ background: modelColor }}
+        className="w-7 h-7 rounded-lg shrink-0 mt-0.5 flex items-center justify-center text-[11px] font-bold text-white"
+        style={{ background: modelColor, boxShadow: `0 0 8px ${modelColor}40` }}
       >
         {message.modelUsed ? message.modelUsed[0].toUpperCase() : 'N'}
       </div>
       <div className="flex-1 max-w-3xl">
-        <div className="flex items-center gap-2 mb-1.5">
+        {/* Model label and routing info */}
+        <div className="flex items-center gap-2 mb-1.5 flex-wrap">
           {message.modelUsed && (
             <span
               className="text-[10px] font-mono px-1.5 py-0.5 rounded"
@@ -367,6 +322,25 @@ function MessageBubble({ message }: { message: ChatMessage }) {
               {message.modelUsed}
             </span>
           )}
+          {message.consensus && (
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30">
+              consensus {(message.consensus.agreementScore * 100).toFixed(0)}%
+              <span className="text-blue-300 ml-1">
+                [{message.consensus.models.map((m) => m[0].toUpperCase()).join('+')}]
+              </span>
+            </span>
+          )}
+          {message.routingLatency !== undefined && (
+            <span className="text-[10px] text-slate-600 font-mono">{message.routingLatency}ms</span>
+          )}
+          {hasUlri && (
+            <button
+              onClick={() => onToggleRouting(message.id)}
+              className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#1e1e2e] text-slate-500 hover:text-slate-300 transition-colors"
+            >
+              {showRouting ? '▾ ULRI' : '▸ ULRI'}
+            </button>
+          )}
           {message.commandParsed?.valid && (
             <span className="text-[10px] font-mono text-slate-500">
               {message.commandParsed.raw}
@@ -375,6 +349,74 @@ function MessageBubble({ message }: { message: ChatMessage }) {
           <span className="text-[10px] text-slate-600">{formatTime(message.timestamp)}</span>
         </div>
 
+        {/* ULRI Routing visualization */}
+        {showRouting && hasUlri && (
+          <div className="mb-2 bg-[#0a0a12] border border-[#1e1e2e] rounded-lg p-3 space-y-3">
+            <div className="text-[10px] text-slate-500 font-mono">ULRI Sovereign Routing — (Res×0.40 + Org×0.30 + Gate×0.20 + Pattern×0.10)</div>
+            <div className="space-y-1">
+              {message.ulriScores!.map((score) => {
+                const color = MODEL_COLORS[score.modelId] ?? '#6b7280';
+                const pct = Math.min(100, score.compositeScore * 500);
+                return (
+                  <div key={score.modelId} className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono w-20 shrink-0" style={{ color }}>{score.modelId}</span>
+                    <div className="flex-1 h-1.5 bg-[#1a1a2e] rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${pct}%`,
+                          background: `linear-gradient(90deg, ${color}80, ${color})`,
+                        }}
+                      />
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 w-10 text-right">
+                      {(score.compositeScore * 100).toFixed(0)}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            {/* Sovereign model landscape */}
+            {message.sovereignScores && message.sovereignScores.length > 0 && (
+              <div>
+                <div className="text-[10px] text-slate-600 font-mono mb-1.5">Sovereign Model Landscape</div>
+                <div className="flex flex-wrap gap-1">
+                  {message.sovereignScores.map((s) => (
+                    <span
+                      key={s.id}
+                      className="text-[9px] font-mono px-1.5 py-0.5 rounded"
+                      style={{
+                        color: s.color,
+                        background: `${s.color}12`,
+                        border: `1px solid ${s.color}30`,
+                        opacity: 0.4 + s.score * 0.6,
+                      }}
+                    >
+                      {s.name.split(' ')[0]} {(s.score * 100).toFixed(0)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* Fields of possibility */}
+            {message.fieldsOfPossibility && message.fieldsOfPossibility.length > 0 && (
+              <div>
+                <div className="text-[10px] text-slate-600 font-mono mb-1.5">Fields of Possibility</div>
+                <div className="space-y-1">
+                  {message.fieldsOfPossibility.map((f) => (
+                    <div key={f.source} className="text-[9px] font-mono">
+                      <span className="text-blue-400">{f.source}</span>
+                      <span className="text-slate-600"> → </span>
+                      <span className="text-slate-400">{f.possibilities.join(' · ')}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Response content */}
         <div className="bg-[#12121a] border border-[#1e1e2e] rounded-lg px-4 py-3">
           {message.structuredResponse ? (
             <StructuredResponseView response={message.structuredResponse} />
@@ -428,7 +470,7 @@ function DataPreview({ data }: { data: unknown }) {
   return (
     <pre className="text-[11px] text-slate-400 bg-[#0a0a0f] rounded p-2 overflow-x-auto max-h-48 overflow-y-auto font-mono leading-relaxed">
       {preview}
-      {truncated && <span className="text-slate-600">\n… ({lines.length - 12} more lines)</span>}
+      {truncated && <span className="text-slate-600">{'\n'}… ({lines.length - 12} more lines)</span>}
     </pre>
   );
 }

@@ -15,6 +15,10 @@ import ModelEngine "./ModelEngine";
 import WorkPacket "./WorkPacket";
 import Matalko "./MatalkoICP";
 import Organism "./SovereignOrganism";
+import CFR "./CallableFunctionRegistry";
+import SubTerminals "./SubsystemTerminals";
+import DesignOS "./SovereignDesignOS";
+import FBSync "./FrontendBackendSync";
 
 /// ΜΕΔΙΝΑ: Κυρίαρχον Μνήμης-Λειτουργικόν Νοητικόν Σύστημα
 /// (MEDINA: Sovereign Memory-Operating Intelligence System)
@@ -1763,5 +1767,109 @@ actor Medina {
       { category = "WASM"; latinName = "Intelligentia Assemblii"; modelCount = 10; description = "WebAssembly compiled intelligence" },
       { category = "AWARENESS"; latinName = "Intelligentia Conscientiae"; modelCount = 10; description = "Accessibility/Semantic awareness intelligence" }
     ]
+  };
+
+  // ΤABULΑ ΛΑΤΙΝΑ — TABULA LATINA (Callable Function Registry API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// τabulα functiones — tabula functionum (full callable function registry)
+  public query func tabula_functionum() : async {
+    functions : [CFR.CallableFunction];
+    terminals : [CFR.TerminalStation];
+    totalFunctions : Nat;
+    totalTerminals : Nat;
+    doctrine : Text;
+    phiRoot : Float;
+  } {
+    CFR.buildFullRegistry();
+  };
+
+  /// τερμινάλια — terminalia (all 10 terminal stations)
+  public query func terminalia() : async [CFR.TerminalStation] {
+    CFR.buildTerminalStations();
+  };
+
+  /// ινβενίρε λατίνε — invenire latine (find callable by Latin name)
+  public query func invenire_latine(nomen_latinum : Text) : async ?CFR.CallableFunction {
+    CFR.findByLatinName(nomen_latinum);
+  };
+
+  /// ινβενίρε φυνκτιόνεμ — invenire functionem (find callable by function name)
+  public query func invenire_functionem(nomen : Text) : async ?CFR.CallableFunction {
+    CFR.findByFunctionName(nomen);
+  };
+
+  /// αεδιφικάρε τερμινάλε — aedificare terminale (build a terminal station)
+  public query func aedificare_terminale(id_stationis : Text) : async ?{
+    station : CFR.TerminalStation;
+    functions : [CFR.CallableFunction];
+  } {
+    CFR.resolveTerminal(id_stationis);
+  };
+
+  /// ρενδερε τabulαμ — rendere tabulam (render the full Latin tablet)
+  public query func rendere_tabulam() : async Text {
+    CFR.renderLatinTablet();
+  };
+
+  /// συμμάριυμ ρεγίστρι — summarium registri (callable registry summary)
+  public query func summarium_registri() : async CFR.RegistrySummary {
+    CFR.getSummary();
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΤΕΡΜΙΝΑΛΙΑ ΣΥΒΣΥΣΤΕΜΑΤΑ — TERMINALIA SUBSYSTEMATA (Subsystem Terminals API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// ομνια τερμινάλια — omnia terminalia (get all subsystem terminals)
+  public query func omnia_terminalia() : async [SubTerminals.TerminalSubsystem] {
+    SubTerminals.buildAllTerminals();
+  };
+
+  /// συμμάριυμ τερμινάλιυμ — summarium terminalium (terminal summary)
+  public query func summarium_terminalium() : async SubTerminals.TerminalSummary {
+    SubTerminals.getSummary(SubTerminals.buildAllTerminals());
+  };
+
+  /// ρενδερε τερμινάλια — rendere terminalia (render terminals tablet)
+  public query func rendere_terminalia() : async Text {
+    SubTerminals.renderTerminalsTablet(SubTerminals.buildAllTerminals());
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΜΑΧΙΝΑ ΔΕΣΙΓΝΟΣ — MACHINA DESIGNOS (Sovereign Design OS API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// ρεγίστρυμ δεσίγνι — registrum designi (sovereign design registry)
+  public query func registrum_designi() : async {
+    models : [DesignOS.SovereignDesignModel];
+    totalModels : Nat;
+    totalUses : Nat;
+    phiRoot : Float;
+  } {
+    DesignOS.buildRegistry();
+  };
+
+  /// ρενδερε δεσίγνυμ — rendere designum (render design tablet)
+  public query func rendere_designum() : async Text {
+    DesignOS.renderDesignTablet();
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ΣΎΓΧΡΟΝΙΣΜΟΣ — SYNCHRONISMUS (Frontend-Backend Sync API)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// ρεγίστρυμ σύγχρονισμού — registrum synchronismi (sync registry)
+  public query func registrum_synchronismi() : async {
+    mappings : [FBSync.SyncMapping];
+    totalMappings : Nat;
+    phi : Float;
+  } {
+    FBSync.buildSyncRegistry();
+  };
+
+  /// ρενδερε σύγχρονισμόν — rendere synchronismon (render sync tablet)
+  public query func rendere_synchronismon() : async Text {
+    FBSync.renderSyncTablet();
   };
 };

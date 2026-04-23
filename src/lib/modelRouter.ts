@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { sovereignId } from './sovereign-id';
 import type { ModelDefinition, ModelFamily, ModelInvocation } from '@/types';
 
 // ─── Model Registry ───────────────────────────────────────────────────────────
@@ -179,7 +179,7 @@ export function invokeModel(
   const latency = model.latency + Math.floor(Math.random() * 100);
 
   const invocation: ModelInvocation = {
-    id: uuidv4(),
+    id: sovereignId(),
     modelId,
     prompt,
     response,
