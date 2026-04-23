@@ -275,6 +275,63 @@ Located at `releases/{category}/{package}/index.html`.
 
 ---
 
+## 🖥️ MEDINA Terminal — Cross-Platform Sovereign Terminal
+
+A native desktop terminal that IS the organism. Available for **Windows**, **macOS**, and **Linux**.
+
+See `src/packages/terminal-installer-sdk.ts` for the installer SDK.
+See `releases/terminal/medina-terminal/index.html` for the organism terminal app.
+
+### Features
+- **6 Tabs**: Terminal, Calls Registry (374+ searchable), Chat (Oro/Nova), World (SDK landing pages), Tools (50), Settings
+- **5 AI Agents**: Oro (executes), Nova (validates), Sentinel (defends), Architect (analyzes), Absorber (ingests)
+- **873ms heartbeat** with φ-harmonic coherence tracking
+- **Three-gate security** (A/B/C) always active
+- **World viewer** — Each SDK ships with a living organism landing page, viewable in the World tab
+
+### Installer Downloads
+
+| Platform | Format | File |
+|----------|--------|------|
+| Windows x64 | NSIS | `medina-terminal-1.0.0-x64-setup.exe` |
+| Windows ARM64 | NSIS | `medina-terminal-1.0.0-arm64-setup.exe` |
+| Windows x64 | MSI | `medina-terminal-1.0.0-x64-setup.msi` |
+| macOS Universal | DMG | `medina-terminal-1.0.0-universal.dmg` |
+| macOS Universal | PKG | `medina-terminal-1.0.0-universal.pkg` |
+| Linux x64 | AppImage | `medina-terminal-1.0.0-x64.AppImage` |
+| Linux x64 | DEB | `medina-terminal-1.0.0-x64.deb` |
+| Linux x64 | RPM | `medina-terminal-1.0.0-x64.rpm` |
+
+### Alternative Install
+```bash
+# Windows (winget)
+winget install ItsNotAILABS.MedinaTerminal
+
+# macOS (Homebrew)
+brew install --cask medina-terminal
+
+# Linux (AppImage — run anywhere)
+chmod +x medina-terminal-1.0.0-x64.AppImage
+./medina-terminal-1.0.0-x64.AppImage
+```
+
+### Build Workflow
+
+Push a tag `medina-terminal@1.0.0` or use the manual workflow dispatch:
+
+```bash
+git tag medina-terminal@1.0.0
+git push origin medina-terminal@1.0.0
+```
+
+The GitHub Actions workflow (`.github/workflows/build-terminal.yml`) will:
+1. Build Windows installers (NSIS + MSI) on `windows-latest`
+2. Build macOS installers (DMG + PKG) on `macos-latest`
+3. Build Linux installers (AppImage + DEB + RPM) on `ubuntu-latest`
+4. Create a GitHub Release with all artifacts attached
+
+---
+
 ## System Totals
 
 | Metric | Count |
@@ -283,9 +340,10 @@ Located at `releases/{category}/{package}/index.html`.
 | Extended SDK Packages | 30 |
 | AI SDK Packages | 5 |
 | Universal Tools | 50 |
-| **Total Packages** | **96** |
+| Terminal Installer | 1 (3 platforms, 8 formats) |
+| **Total Packages** | **97** |
 | Callable Functions | 374+ |
-| Landing Pages | 11 |
+| Landing Pages | 12 (11 SDKs + 1 Terminal) |
 | License Types | 6 |
 
 ---

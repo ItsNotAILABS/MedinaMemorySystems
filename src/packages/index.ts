@@ -72,6 +72,7 @@ export * as ExtendedSDKRegistry from './extended-sdk-registry';
 export * as AISDKRegistry from './ai-sdk-registry';
 export * as UniversalToolsRegistry from './universal-tools-registry';
 export * as CallableFunctionsRegistry from './callable-functions-registry';
+export * as TerminalInstallerSDK from './terminal-installer-sdk';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST
