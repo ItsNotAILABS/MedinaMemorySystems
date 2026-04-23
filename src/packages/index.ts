@@ -73,6 +73,10 @@ export * as AISDKRegistry from './ai-sdk-registry';
 export * as UniversalToolsRegistry from './universal-tools-registry';
 export * as CallableFunctionsRegistry from './callable-functions-registry';
 export * as TerminalInstallerSDK from './terminal-installer-sdk';
+export * as SKAIRegistry from './skai-registry';
+export * as EXCOSRegistry from './exc-os-registry';
+export * as PowerNodesRegistry from './power-nodes-registry';
+export * as IntelligenceContractsRegistry from './intelligence-contracts-registry';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST
