@@ -624,7 +624,7 @@ export const MESH_CLUSTERS: MeshCluster[] = [
     tagline: 'The mesh speaks and listens',
     icon: '🗣️',
     count: 100,
-    kernelCompression: 'harmonic' as 'fibonacci-spiral',
+    kernelCompression: 'fibonacci-spiral',
     substrateDepth: 13,
     capabilities: [
       'Real-time speech recognition with organism context',
