@@ -1,0 +1,35 @@
+{
+  "name": "role-engine",
+  "version": "1.0.0",
+  "description": "Role authority engine for AI agent teams. Domain-scoped roles, veto powers, frequency-derived weights, and role inheritance chains.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "agents",
+    "roles",
+    "authority",
+    "orchestration",
+    "governance",
+    "multi-agent"
+  ],
+  "author": "ItsNotAILABS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/role-engine"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

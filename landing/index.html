@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medina Memory Systems — ItsNotAILABS</title>
+  <meta name="description" content="Sovereign memory infrastructure and multi-agent intelligence tools. Open source. Built deep. Released for the builders." />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #0a0a0f;
+      --ink-2:    #11111a;
+      --ink-3:    #1a1a28;
+      --line:     rgba(255,255,255,0.07);
+      --glow:     #6c63ff;
+      --glow-2:   #9d8fff;
+      --gold:     #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --text:     #e8e6f0;
+      --muted:    #7b7896;
+      --mono:     'JetBrains Mono', 'Fira Code', monospace;
+      --sans:     'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise texture overlay ────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Grid lines ───────────────────────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────────── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section { padding: 7rem 0; }
+
+    /* ── Nav ──────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--line);
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    nav .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Hero ─────────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      position: relative;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(108,99,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--glow) 0%, var(--glow-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-latin {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: rgba(201,168,76,0.55);
+      letter-spacing: 0.1em;
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── Buttons ──────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--glow);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--glow-2);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(108,99,255,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* ── Organism / animated sigil ────────────────────────────────────── */
+    .organism-wrap {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 480px;
+      height: 480px;
+      opacity: 0.35;
+    }
+
+    @media (max-width: 900px) { .organism-wrap { display: none; } }
+
+    .organism-wrap svg { width: 100%; height: 100%; }
+
+    /* ── Section titles ───────────────────────────────────────────────── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 4rem;
+    }
+
+    /* ── Release cards ────────────────────────────────────────────────── */
+    .release-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .release-card {
+      background: var(--ink-2);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .release-card:hover { background: var(--ink-3); }
+
+    .release-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--glow);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .release-card:hover::before { opacity: 1; }
+
+    .card-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--glow-2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-tag .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--glow);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .release-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .release-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .card-meta {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: rgba(201,168,76,0.6);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Package list ─────────────────────────────────────────────────── */
+    .pkg-list {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .pkg-row {
+      background: var(--ink-2);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 1.25rem 1.75rem;
+      gap: 1rem;
+      transition: background 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .pkg-row:hover { background: var(--ink-3); }
+
+    .pkg-name {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--glow-2);
+    }
+
+    .pkg-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .pkg-badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    .badge-mit { color: var(--glow-2); border-color: rgba(108,99,255,0.3); }
+    .badge-new { color: var(--gold); border-color: rgba(201,168,76,0.3); background: var(--gold-dim); }
+
+    /* ── Papers ───────────────────────────────────────────────────────── */
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .paper-card {
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .paper-card:hover {
+      border-color: rgba(108,99,255,0.35);
+      transform: translateY(-3px);
+    }
+
+    .paper-number {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .paper-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .paper-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .paper-read {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--glow-2);
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .paper-read::after { content: '→'; }
+
+    /* ── About / organism section ─────────────────────────────────────── */
+    #about { background: var(--ink-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .about-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-box {
+      background: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--glow-2);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── Terminal block ───────────────────────────────────────────────── */
+    .terminal {
+      background: #070710;
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: 10px;
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+
+    .terminal-bar {
+      background: rgba(108,99,255,0.12);
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(108,99,255,0.15);
+    }
+
+    .terminal-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    .terminal-body {
+      padding: 1.5rem;
+      line-height: 2;
+    }
+
+    .t-muted { color: var(--muted); }
+    .t-cmd   { color: var(--glow-2); }
+    .t-out   { color: var(--gold); }
+    .t-ok    { color: #5af078; }
+    .t-dim   { color: rgba(255,255,255,0.25); }
+
+    /* ── Contact / encrypt ────────────────────────────────────────────── */
+    #contact { text-align: center; }
+
+    .contact-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .contact-latin {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: rgba(201,168,76,0.5);
+      letter-spacing: 0.12em;
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-card {
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+    }
+
+    .pgp-block {
+      background: #070710;
+      border: 1px solid rgba(108,99,255,0.2);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: left;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+      word-break: break-all;
+    }
+
+    .pgp-block .pgp-header { color: var(--glow-2); }
+    .pgp-block .pgp-key    { color: rgba(255,255,255,0.35); }
+
+    .contact-methods {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+
+    .contact-badge:hover {
+      border-color: rgba(108,99,255,0.4);
+      color: var(--text);
+    }
+
+    .contact-badge .icon { font-size: 1rem; }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2.5rem 0;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── Divider ──────────────────────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 0;
+    }
+
+    /* ── Scroll reveal ────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="inner">
+    <a href="#" class="nav-brand">⬡ ItsNotAILABS</a>
+    <ul class="nav-links">
+      <li><a href="#releases">Releases</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#papers">Papers</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div style="position:relative; max-width: 660px;">
+      <div class="hero-tag">ItsNotAILABS — v1.0.0</div>
+      <h1>
+        Sovereign<br/>
+        <em>Memory Systems</em><br/>
+        for AI Builders
+      </h1>
+      <p class="hero-sub">
+        Open-source infrastructure for multi-agent AI teams. Tiered memory, weighted consensus, signal-driven coordination. Built for the builders who go deep.
+      </p>
+      <p class="hero-latin">Memoria est fundamentum intelligentiae — Memory is the foundation of intelligence</p>
+      <div class="hero-actions">
+        <a href="#releases" class="btn btn-primary">
+          <span>↓</span> View Releases
+        </a>
+        <a href="https://github.com/ItsNotAILABS/MedinaMemorySystems" class="btn btn-outline" target="_blank">
+          GitHub →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Organism SVG sigil -->
+  <div class="organism-wrap">
+    <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="og" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#6c63ff" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#6c63ff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- Outer rings -->
+      <circle cx="240" cy="240" r="220" stroke="#6c63ff" stroke-opacity="0.1" stroke-width="1"/>
+      <circle cx="240" cy="240" r="180" stroke="#6c63ff" stroke-opacity="0.14" stroke-width="1"/>
+      <circle cx="240" cy="240" r="140" stroke="#6c63ff" stroke-opacity="0.18" stroke-width="1"/>
+      <circle cx="240" cy="240" r="100" stroke="#6c63ff" stroke-opacity="0.22" stroke-width="1"/>
+      <circle cx="240" cy="240" r="60"  stroke="#6c63ff" stroke-opacity="0.3"  stroke-width="1"/>
+      <!-- Hex grid lines -->
+      <g stroke="#6c63ff" stroke-opacity="0.12" stroke-width="0.8">
+        <line x1="240" y1="20"  x2="240" y2="460"/>
+        <line x1="20"  y1="240" x2="460" y2="240"/>
+        <line x1="78"  y1="78"  x2="402" y2="402"/>
+        <line x1="402" y1="78"  x2="78"  y2="402"/>
+        <!-- Diagonals at 30° -->
+        <line x1="130" y1="20"  x2="350" y2="460"/>
+        <line x1="350" y1="20"  x2="130" y2="460"/>
+        <line x1="20"  y1="130" x2="460" y2="350"/>
+        <line x1="20"  y1="350" x2="460" y2="130"/>
+      </g>
+      <!-- Node dots: 10 roles -->
+      <g fill="#9d8fff">
+        <circle cx="240" cy="20"  r="3" opacity="0.9"/>  <!-- SOVEREIGN top -->
+        <circle cx="420" cy="120" r="2.5" opacity="0.7"/>
+        <circle cx="420" cy="360" r="2.5" opacity="0.7"/>
+        <circle cx="240" cy="460" r="3" opacity="0.9"/>  <!-- base -->
+        <circle cx="60"  cy="360" r="2.5" opacity="0.7"/>
+        <circle cx="60"  cy="120" r="2.5" opacity="0.7"/>
+        <circle cx="240" cy="100" r="4" opacity="1"/>    <!-- LEAD -->
+        <circle cx="340" cy="190" r="3.5" opacity="0.85"/>
+        <circle cx="340" cy="300" r="3.5" opacity="0.85"/>
+        <circle cx="240" cy="380" r="4" opacity="1"/>
+        <circle cx="140" cy="300" r="3.5" opacity="0.85"/>
+        <circle cx="140" cy="190" r="3.5" opacity="0.85"/>
+      </g>
+      <!-- Connecting lines between nodes -->
+      <g stroke="#9d8fff" stroke-opacity="0.15" stroke-width="0.8">
+        <line x1="240" y1="100" x2="340" y2="190"/>
+        <line x1="340" y1="190" x2="340" y2="300"/>
+        <line x1="340" y1="300" x2="240" y2="380"/>
+        <line x1="240" y1="380" x2="140" y2="300"/>
+        <line x1="140" y1="300" x2="140" y2="190"/>
+        <line x1="140" y1="190" x2="240" y2="100"/>
+        <!-- Cross connections -->
+        <line x1="240" y1="100" x2="240" y2="380"/>
+        <line x1="340" y1="190" x2="140" y2="300"/>
+        <line x1="340" y1="300" x2="140" y2="190"/>
+      </g>
+      <!-- Center glow -->
+      <circle cx="240" cy="240" r="80" fill="url(#og)"/>
+      <circle cx="240" cy="240" r="8" fill="#6c63ff" opacity="0.9"/>
+      <circle cx="240" cy="240" r="4" fill="#fff" opacity="0.9"/>
+
+      <!-- Rotating tick ring -->
+      <g style="transform-origin:240px 240px; animation: spin 40s linear infinite;">
+        <circle cx="240" cy="240" r="108" stroke="#c9a84c" stroke-opacity="0.18" stroke-width="0.8" stroke-dasharray="4 8"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Releases ────────────────────────────────────────────────────────────── -->
+<section id="releases">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">GitHub Releases</div>
+      <h2>Two Releases. Both ready.</h2>
+      <p class="section-intro">Each release is a complete, standalone system. Not demos. Not experiments. Infrastructure you can drop into a real project today.</p>
+    </div>
+
+    <div class="release-grid reveal">
+      <div class="release-card">
+        <div class="card-tag"><span class="dot"></span> v1.0.0 — MIT</div>
+        <h3>Multi-Agent Teams</h3>
+        <p>Sovereign multi-AI team engine. Ten roles, frequency-weighted consensus, tiered memory, pub/sub signal bus, structured debate, sequential pipelines, full orchestration. Production-ready TypeScript.</p>
+        <div class="card-meta">1,302 lines &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; TypeScript</div>
+      </div>
+      <div class="release-card">
+        <div class="card-tag"><span class="dot"></span> v1.0.0 — MIT</div>
+        <h3>Standalone Packages</h3>
+        <p>Two extracted, standalone packages. Drop into any stack, no lock-in. <code>consensus-engine</code>: role-weighted voting with typed authority. <code>agent-signal</code>: decoupled pub/sub signal bus.</p>
+        <div class="card-meta">2 packages &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; Zero dependencies</div>
+      </div>
+      <div class="release-card">
+        <div class="card-tag"><span class="dot"></span> v1.0.0 — Commercial</div>
+        <h3>Incentive Service</h3>
+        <p>Mechanism-design coordination for agent teams. Principal-agent, free-rider, holdup — all solved structurally. Role-weighted consensus with typed authority, reputation staking, stage gates. Per-call commercial license.</p>
+        <div class="card-meta">BUSL-1.1 &nbsp;·&nbsp; Per-call &nbsp;·&nbsp; TypeScript</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Packages ────────────────────────────────────────────────────────────── -->
+<section id="packages">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">MIT Packages</div>
+      <h2>Two packages. Both drop-in.</h2>
+      <p class="section-intro">Extracted from the multi-agent team engine. Use one or both. No dependencies on anything proprietary. No lock-in.</p>
+    </div>
+
+        <div class="pkg-list reveal">
+      <a class="pkg-row" href="packages/consensus-engine" target="_blank">
+        <div>
+          <div class="pkg-name">consensus-engine</div>
+          <div class="pkg-desc">Weighted role-based voting for multi-agent systems. Veto, confidence floors, dissent tracking. Typed authority domains per decision type.</div>
+        </div>
+        <span class="pkg-badge badge-new">NEW</span>
+      </a>
+      <a class="pkg-row" href="packages/agent-signal" target="_blank">
+        <div>
+          <div class="pkg-name">agent-signal</div>
+          <div class="pkg-desc">Pub/sub signal bus for AI agents. BROADCAST, DIRECT, ROLE, and URGENT signal types. Decoupled coordination for any agent team.</div>
+        </div>
+        <span class="pkg-badge badge-mit">MIT</span>
+      </a>
+      <a class="pkg-row" href="packages/agent-incentive-service" target="_blank">
+        <div>
+          <div class="pkg-name">agent-incentive-service</div>
+          <div class="pkg-desc">Mechanism-design coordination for agent teams. Role-scoped enforcement, confidence-weighted voting, mandatory reasoning transparency, reputation staking. Per-call commercial license.</div>
+        </div>
+        <span class="pkg-badge badge-commercial">COMMERCIAL</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Quick start terminal ────────────────────────────────────────────────── -->
+<section style="padding: 5rem 0;">
+  <div class="container reveal">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dot" style="background:#ff5f57"></div>
+        <div class="terminal-dot" style="background:#febc2e"></div>
+        <div class="terminal-dot" style="background:#28c840"></div>
+        <span style="font-family:var(--mono); font-size:0.7rem; color:var(--muted); margin-left:0.5rem;">quick-start.ts</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-muted">// Install the two MIT packages</span></div>
+        <div><span class="t-cmd">npm install</span> consensus-engine agent-signal</div>
+        <br/>
+        <div><span class="t-muted">// Build a consensus-driven agent team</span></div>
+        <div><span class="t-cmd">import</span> <span class="t-out">{ ConsensusEngine }</span> <span class="t-cmd">from</span> <span class="t-out">'consensus-engine'</span>;</div>
+        <div><span class="t-cmd">import</span> <span class="t-out">{ SignalBus }</span> <span class="t-cmd">from</span> <span class="t-out">'agent-signal'</span>;</div>
+        <br/>
+        <div><span class="t-dim">const</span> consensus = <span class="t-out">new ConsensusEngine</span>({ roles, confidenceFloor: <span class="t-cmd">0.72</span> });</div>
+        <div><span class="t-dim">const</span> bus = <span class="t-out">new SignalBus</span>();</div>
+        <br/>
+        <div><span class="t-muted">// Each agent submits output as your AI calls return</span></div>
+        <div>bus.<span class="t-out">emit</span>({ type: <span class="t-cmd">'BROADCAST'</span>, payload: result, from: <span class="t-cmd">'analyst'</span> });</div>
+        <div><span class="t-dim">const</span> decision = consensus.<span class="t-out">resolve</span>(<span class="t-cmd">'task-001'</span>, outputs);</div>
+        <br/>
+        <div><span class="t-ok">// ✓ decision.approved — decision.winner — decision.dissent</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Papers ──────────────────────────────────────────────────────────────── -->
+<section id="papers">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Public Papers</div>
+      <h2>Five papers. MIT. No paywalls.</h2>
+      <p class="section-intro">We write what we build. Two academic papers (cognitive science + economics). Three practical guides. Cite them, build on them, send them to your department.</p>
+    </div>
+
+    <div class="papers-grid reveal">
+      <a class="paper-card" href="papers/COGNITIVE_MEMORY_AND_AI_AGENTS.md" target="_blank">
+        <div class="paper-number">01 / MIT</div>
+        <h3>Cognitive Memory Architecture in AI Agents</h3>
+        <p>Episodic, semantic, procedural, working memory mapped to AI design. Forgetting curves, tiered access control, transactive team memory. Three testable hypotheses for UTA cognitive science programs.</p>
+        <span class="paper-read">Read</span>
+      </a>
+      <a class="paper-card" href="papers/AGENT_INCENTIVE_STRUCTURES.md" target="_blank">
+        <div class="paper-number">02 / MIT</div>
+        <h3>Incentive Structures for Multi-Agent AI Systems</h3>
+        <p>Principal-agent problem, free-rider problem, holdup problem — applied to AI agent teams. Role-weighted consensus with typed authority. Token economics and reputation staking for agent networks.</p>
+        <span class="paper-read">Read</span>
+      </a>
+      <a class="paper-card" href="papers/WHY_AI_TEAMS_BEAT_SINGLE_MODELS.md" target="_blank">
+        <div class="paper-number">03 / MIT</div>
+        <h3>Why AI Teams Beat Single Models</h3>
+        <p>Why self-critique fails, what roles actually fix it, five patterns that make teams work, and when to use a team vs. a single model.</p>
+        <span class="paper-read">Read</span>
+      </a>
+      <a class="paper-card" href="papers/MEMORY_IN_AI_SYSTEMS.md" target="_blank">
+        <div class="paper-number">04 / MIT</div>
+        <h3>Memory in AI Systems</h3>
+        <p>The four types of AI agent memory. Tiered access control. TTL expiry. The most common memory mistake and how to avoid it.</p>
+        <span class="paper-read">Read</span>
+      </a>
+      <a class="paper-card" href="papers/HOW_TO_BUILD_AI_WORKFLOWS_THAT_DONT_BREAK.md" target="_blank">
+        <div class="paper-number">05 / MIT</div>
+        <h3>How to Build AI Workflows That Don't Break</h3>
+        <p>Output gates, confidence tracking, fault isolation, visible disagreement, audit trails. A checklist before you ship.</p>
+        <span class="paper-read">Read</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── About ───────────────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">ItsNotAILABS</div>
+        <h2>Intelligence architecture. Built sovereign.</h2>
+        <p style="color: var(--muted); font-size:0.95rem; margin-bottom: 1.25rem;">
+          We build deep AI infrastructure. Memory systems, sovereign agents, multi-model coordination. We don't wrap APIs — we architect the layer underneath.
+        </p>
+        <p style="color: var(--muted); font-size:0.95rem; margin-bottom: 1.25rem;">
+          Everything released here is a slice of something much larger. We release because we believe the tools that make AI systems trustworthy should be free to use.
+        </p>
+        <p style="font-family: var(--mono); font-size:0.75rem; color: rgba(201,168,76,0.55); font-style:italic;">
+          Ex machina, veritas — From the machine, truth
+        </p>
+        <div class="about-stat-grid">
+          <div class="stat-box">
+            <div class="stat-num">10</div>
+            <div class="stat-label">Agent roles, frequency-aligned</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Memory access tiers</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">MIT</div>
+            <div class="stat-label">All packages, free forever</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">What you can build with it</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dot" style="background:#ff5f57"></div>
+            <div class="terminal-dot" style="background:#febc2e"></div>
+            <div class="terminal-dot" style="background:#28c840"></div>
+            <span style="font-family:var(--mono); font-size:0.7rem; color:var(--muted); margin-left:0.5rem;">architecture.ts</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-muted">// The ten roles and their frequencies</span></div>
+            <div><span class="t-out">SOVEREIGN</span>      <span class="t-dim">//</span> <span class="t-cmd">963 Hz</span> — final authority</div>
+            <div><span class="t-out">LEAD</span>           <span class="t-dim">//</span> <span class="t-cmd">852 Hz</span> — coordination</div>
+            <div><span class="t-out">SYNTHESIZER</span>    <span class="t-dim">//</span> <span class="t-cmd">741 Hz</span> — integration</div>
+            <div><span class="t-out">CRITIC</span>         <span class="t-dim">//</span> <span class="t-cmd">639 Hz</span> — adversarial review</div>
+            <div><span class="t-out">ANALYST</span>        <span class="t-dim">//</span> <span class="t-cmd">528 Hz</span> — deep analysis</div>
+            <div><span class="t-out">GUARDIAN</span>       <span class="t-dim">//</span> <span class="t-cmd">528 Hz</span> — gate-keeping</div>
+            <div><span class="t-out">DOMAIN_EXPERT</span>  <span class="t-dim">//</span> <span class="t-cmd">444 Hz</span> — specialist depth</div>
+            <div><span class="t-out">BUILDER</span>        <span class="t-dim">//</span> <span class="t-cmd">417 Hz</span> — construction</div>
+            <div><span class="t-out">MEMORY_CURATOR</span> <span class="t-dim">//</span> <span class="t-cmd">432 Hz</span> — memory mgmt</div>
+            <div><span class="t-out">RESEARCHER</span>     <span class="t-dim">//</span> <span class="t-cmd">396 Hz</span> — context</div>
+            <br/>
+            <div><span class="t-ok">// consensus weight = role_hz / 963</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Contact ─────────────────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="section-label" style="justify-content:center; display:flex;">Contact</div>
+      <h2 style="text-align:center;">It goes deeper than this.</h2>
+      <p class="contact-latin">Si vis scire plus, quaere — If you want to know more, ask</p>
+
+      <div class="contact-card">
+        <h3>Secure Contact</h3>
+        <p>Want to go deeper? Licensing inquiries, collaboration, enterprise access, academic partnerships. Reach out — securely.</p>
+
+        <div class="pgp-block">
+          <div class="pgp-header">-----BEGIN PGP PUBLIC KEY BLOCK-----</div>
+          <div class="pgp-key">
+            mQINBGZ... [contact ItsNotAILABS on GitHub to request full key]
+          </div>
+          <div class="pgp-header">-----END PGP PUBLIC KEY BLOCK-----</div>
+          <br/>
+          <div style="color:rgba(108,99,255,0.7);">Key fingerprint: publish your PGP key via GitHub profile → Settings → SSH and GPG keys</div>
+        </div>
+
+        <div class="contact-methods">
+          <a class="contact-badge" href="https://github.com/ItsNotAILABS" target="_blank">
+            <span class="icon">⬡</span> GitHub
+          </a>
+          <a class="contact-badge" href="mailto:contact@itsnotailabs.com">
+            <span class="icon">✉</span> Email
+          </a>
+          <a class="contact-badge" href="#" onclick="return false;" title="Signal / encrypted messaging available on request">
+            <span class="icon">🔐</span> Encrypted
+          </a>
+          <a class="contact-badge" href="https://github.com/ItsNotAILABS/MedinaMemorySystems/issues" target="_blank">
+            <span class="icon">◎</span> Issues
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⬡ ItsNotAILABS</div>
+    <ul class="footer-links">
+      <li><a href="https://github.com/ItsNotAILABS/MedinaMemorySystems" target="_blank">GitHub</a></li>
+      <li><a href="papers/README.md" target="_blank">Papers</a></li>
+      <li><a href="packages/medina-memory-sdk" target="_blank">SDK</a></li>
+      <li><a href="RESEARCH/README.md" target="_blank">Research</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 ItsNotAILABS · MIT (consensus-engine, agent-signal) · ISIL-1.0 (core systems, incentive service) · ISIL-1.0 Sovereign Intelligence License — All Rights Reserved</div>
+  </div>
+</footer>
+
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+);
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Typing effect on hero tag
+const tag = document.querySelector('.hero-tag');
+if (tag) {
+  const original = tag.textContent;
+  tag.textContent = '';
+  let i = 0;
+  const type = () => {
+    if (i < original.length) { tag.textContent += original[i++]; setTimeout(type, 38); }
+  };
+  setTimeout(type, 600);
+}
+</script>
+</body>
+</html>

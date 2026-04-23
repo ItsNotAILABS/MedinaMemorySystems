@@ -1,0 +1,15 @@
+{
+  "name": "@itsnotailabs/temporal-memory",
+  "version": "0.1.0",
+  "description": "Time-anchored memory with temporal indexing, decay functions, and Fibonacci-interval consolidation",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "ItsNotAILABS <sovereign@itsnotailabs.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/MedinaMemorySystems",
+    "directory": "packages/temporal-memory"
+  },
+  "keywords": ["sovereign", "organism", "medina", "temporal-indexing"]
+}

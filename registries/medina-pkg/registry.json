@@ -1,0 +1,33 @@
+{
+  "registry": {
+    "name": "MEDINA PKG",
+    "latinName": "Registrum Animae Publicae",
+    "type": "open-source",
+    "license": "MIT",
+    "description": "Free open-source organism AI registry — the universal package bridge for developing platforms under Medina protocols and extensions. Unifies Apache Maven, Microsoft NuGet, NPM, RubyGems, Docker Containers, and JVM packages into a single intelligent organism registry.",
+    "version": "1.0.0",
+    "owner": "ItsNotAILABS",
+    "url": "https://pkg.medina.dev",
+    "ecosystems": {
+      "npm": { "scope": "@medina", "feed": "https://pkg.medina.dev/npm" },
+      "maven": { "groupId": "dev.medina", "feed": "https://pkg.medina.dev/maven" },
+      "nuget": { "prefix": "Medina.", "feed": "https://pkg.medina.dev/nuget" },
+      "rubygems": { "prefix": "medina-", "feed": "https://pkg.medina.dev/gems" },
+      "docker": { "namespace": "medina", "feed": "https://pkg.medina.dev/containers" },
+      "jvm": { "groupId": "dev.medina", "feed": "https://pkg.medina.dev/jvm" }
+    },
+    "agents": {
+      "architectAgent": { "role": "Architectural advisor for package design", "model": "AURO" },
+      "translatorTransformer": { "role": "Cross-ecosystem translator: CPL/Medina → Java/JVM/.NET/Ruby/JS/Containers", "model": "LEXIS" },
+      "validationAgent": { "role": "Package integrity and ISIL compliance validation", "model": "FORMA" }
+    },
+    "extensions": [".medina", ".cpl", ".sovereign", ".organism", ".glyphdoc"],
+    "translationTargets": [
+      { "target": "Java Runtime (JVM)", "description": "Medina CPL → Java bytecode via LEXIS transformer" },
+      { "target": "Microsoft .NET", "description": "Medina CPL → .NET IL assemblies" },
+      { "target": "Ruby", "description": "Medina CPL → RubyGems packages" },
+      { "target": "JavaScript/Node.js", "description": "Medina CPL → NPM packages via ANIMA runtime" },
+      { "target": "Docker Containers", "description": "Medina packages → OCI container images" }
+    ]
+  }
+}

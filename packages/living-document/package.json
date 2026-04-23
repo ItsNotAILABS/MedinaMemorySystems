@@ -1,0 +1,35 @@
+{
+  "name": "living-document",
+  "version": "1.0.0",
+  "description": "Living document framework. Self-updating documents with versioned sections, organism-authored amendments, SAT binding, and enforcement metadata.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "SEE-LICENSE",
+  "keywords": [
+    "ai",
+    "documents",
+    "living",
+    "contracts",
+    "sovereign",
+    "itsnotailabs",
+    "enforcement"
+  ],
+  "author": "ItsNotAILABS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/living-document"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

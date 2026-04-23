@@ -1,0 +1,35 @@
+{
+  "name": "agent-incentive-service",
+  "version": "1.0.0",
+  "description": "Role-weighted agent incentive coordination service. Per-call API for multi-agent consensus, reputation staking, confidence decay, and authority-typed decision resolution. Based on ItsNotAILABS mechanism design research.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "ai-agents",
+    "multi-agent",
+    "incentive",
+    "consensus",
+    "mechanism-design",
+    "reputation",
+    "coordination"
+  ],
+  "author": "ItsNotAILABS <contact@itsnotailabs.com>",
+  "homepage": "https://itsnotailabs.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/MedinaMemorySystems"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

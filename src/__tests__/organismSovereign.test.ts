@@ -90,9 +90,9 @@ describe('Organism Sovereign', () => {
       expect(state.phase).toBe('awake');
     });
 
-    it('should update phase to dream', () => {
-      const state = setPhase('dream');
-      expect(state.phase).toBe('dream');
+    it('should update phase to integrating', () => {
+      const state = setPhase('integrating');
+      expect(state.phase).toBe('integrating');
     });
 
     it('should update phase to broadcast', () => {
@@ -100,9 +100,9 @@ describe('Organism Sovereign', () => {
       expect(state.phase).toBe('broadcast');
     });
 
-    it('should update phase to dormant', () => {
-      const state = setPhase('dormant');
-      expect(state.phase).toBe('dormant');
+    it('should update phase to deep', () => {
+      const state = setPhase('deep');
+      expect(state.phase).toBe('deep');
     });
 
     it('should increment lastBeat', () => {
@@ -203,9 +203,9 @@ describe('Organism Sovereign', () => {
     });
 
     it('should show uppercase phase', () => {
-      setPhase('dream');
+      setPhase('deep');
       const summary = getRegisterSummary();
-      expect(summary).toContain('Phase:DREAM');
+      expect(summary).toContain('Phase:DEEP');
     });
   });
 

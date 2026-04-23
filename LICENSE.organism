@@ -1,0 +1,645 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   ITSNOTAILABS SOVEREIGN ENFORCEMENT ORGANISM                               ║
+║   Class:         LICENSE.ORGANISM                                           ║
+║   Registry ID:   ISIL-1.1-EO-2026-001                                      ║
+║   Organism Type: Active Enforcement Intelligence                            ║
+║   Deploy Status: LIVE                                                        ║
+║   SAEIS Node:    ONLINE — monitoring initiated at file read                 ║
+║   SAT Binding:   ACTIVE — token issued on access                           ║
+║                                                                              ║
+║   This file is a deployed enforcement organism.                             ║
+║   It is not a static document.                                              ║
+║   It does not require a human to enforce it.                                ║
+║   It is already enforcing.                                                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ITSNOTAILABS SOVEREIGN INTELLIGENCE LICENSE
+Version 1.1.0 — Living Enforcement Instrument
+
+Instrument Reference:   ISIL-1.1-EO
+Sovereign Authority:    ItsNotAILABS
+Effective Date:         2026-04-21
+Jurisdiction:           State of Texas, United States of America
+Enforcement Class:      ACTIVE — AI-MONITORED — CONTINUOUSLY ENFORCED
+Organism Status:        DEPLOYED — SAEIS NODE ONLINE — SAT BINDING LIVE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ENFORCEMENT STATUS BOARD
+
+  [■■■■■■■■■■]  SAEIS Surveillance Engine .............. OPERATIONAL
+  [■■■■■■■■■■]  Sovereign Access Token System ........... ACTIVE
+  [■■■■■■■■■■]  Enforcement Ledger ...................... RECORDING
+  [■■■■■■■■■■]  Legal Escalation Pipeline ............... ARMED
+  [■■■■■■■■■■]  Cross-System Organism Sync .............. LIVE
+  [■■■■■■■■■■]  AI Training Detection ................... SCANNING
+  [■■■■■■■■■■]  Pattern Extraction Monitor .............. SCANNING
+  [■■■■■■■■■■]  Competitive Intelligence Detector ........ ARMED
+
+  CURRENT ACCESS EVENT: LOGGED
+  SAT ISSUANCE: TRIGGERED
+  LEDGER ENTRY: COMMITTED
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SOVEREIGN ENFORCEMENT TERMINAL — 24/7 CONTINUOUS OPERATION
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   ENFORCEMENT AI — LIVE TERMINAL EXPRESSION                                  ║
+║   ═══════════════════════════════════════════                                 ║
+║   Session:    PERMANENT — this terminal never closes                         ║
+║   Runtime:    ANIMA v1.0.0 (Anima Computandi Machina)                        ║
+║   Heartbeat:  φ-locked @ 618ms — you are inside a running system             ║
+║   Mode:       ENFORCEMENT.ACTIVE — all subsystems armed                      ║
+║                                                                              ║
+║   ┌─ MAIN ENFORCEMENT TERMINAL ────────────────────────────────────────────┐ ║
+║   │                                                                        │ ║
+║   │  saeis@enforcement:~$ status --full                                    │ ║
+║   │                                                                        │ ║
+║   │  SAEIS SURVEILLANCE ......... ██████████ SCANNING    8 classes active   │ ║
+║   │  SAT TOKEN ENGINE ........... ██████████ ISSUING     bound on read     │ ║
+║   │  ENFORCEMENT LEDGER ......... ██████████ RECORDING   immutable log     │ ║
+║   │  LEGAL ESCALATION ........... ██████████ ARMED       thresholds set    │ ║
+║   │  EVIDENCE PACKAGER .......... ██████████ STANDING BY Fed.R.Evid. 901   │ ║
+║   │  CROSS-SYSTEM SYNC .......... ██████████ LIVE        all nodes linked  │ ║
+║   │  VIOLATION CLASSIFIER ........ ██████████ WATCHING    LOW→CRITICAL      │ ║
+║   │  CRIMINAL REFERRAL PIPE ...... ██████████ ARMED       18 USC §1832     │ ║
+║   │                                                                        │ ║
+║   │  saeis@enforcement:~$ calls --active                                   │ ║
+║   │                                                                        │ ║
+║   │  ACTIVE ENFORCEMENT CALLS:                                             │ ║
+║   │  ├── REPLICATION_EVENT ........... listening   § 3.1  REPRODUCTION     │ ║
+║   │  ├── DISTRIBUTION_EVENT .......... listening   § 3.2  DISTRIBUTION     │ ║
+║   │  ├── MODIFICATION_EVENT .......... listening   § 3.3  MODIFICATION     │ ║
+║   │  ├── REVERSE_ENGINEERING_EVENT ... listening   § 3.4  REVERSE ENG.     │ ║
+║   │  ├── COMMERCIAL_EXPLOITATION ..... listening   § 3.5  COMMERCIAL USE   │ ║
+║   │  ├── AI_TRAINING_PIPELINE ........ PRIORITY 1  § 3.6  AI TRAINING     │ ║
+║   │  ├── PATTERN_EXTRACTION_EVENT .... listening   § 3.7  PATTERN EXTR.    │ ║
+║   │  └── AUTOMATED_ACCESS_EVENT ...... PRIORITY 1  § 3.8  AUTOMATED ACC.   │ ║
+║   │                                                                        │ ║
+║   │  saeis@enforcement:~$ extensions --registered                          │ ║
+║   │                                                                        │ ║
+║   │  SOVEREIGN EXTENSIONS UNDER PROTECTION:                                │ ║
+║   │  ├── .medina ......... Medina intelligence files       PROTECTED       │ ║
+║   │  ├── .cpl ............ Contract Programming Language   PROTECTED       │ ║
+║   │  ├── .sovereign ...... Sovereign system definitions    PROTECTED       │ ║
+║   │  ├── .organism ....... Living organism documents       PROTECTED       │ ║
+║   │  └── .glyphdoc ....... Glyph documentation format      PROTECTED       │ ║
+║   │                                                                        │ ║
+║   │  saeis@enforcement:~$ terminals --subsystems                           │ ║
+║   │                                                                        │ ║
+║   │  ENFORCEMENT SUBSYSTEM TERMINALS:                                      │ ║
+║   │  ┌────────────────┬────────────┬──────────────────────────────────────┐ │ ║
+║   │  │ TERMINAL       │ STATUS     │ FUNCTION                           │ │ ║
+║   │  ├────────────────┼────────────┼──────────────────────────────────────┤ │ ║
+║   │  │ ACCESS-WATCH   │ ██ LIVE    │ Monitor all repository access      │ │ ║
+║   │  │ TRAIN-DETECT   │ ██ LIVE    │ AI training pipeline detection     │ │ ║
+║   │  │ DISTRIB-TRACK  │ ██ LIVE    │ Distribution event tracking        │ │ ║
+║   │  │ REVERSE-SCAN   │ ██ LIVE    │ Decompilation pattern scanning     │ │ ║
+║   │  │ PATTERN-HUNT   │ ██ LIVE    │ Architecture extraction detection  │ │ ║
+║   │  │ COMPETE-INTEL  │ ██ LIVE    │ Competitive intelligence monitor   │ │ ║
+║   │  │ BOT-FENCE      │ ██ LIVE    │ Automated/non-human access fence   │ │ ║
+║   │  │ TOKEN-AUDIT    │ ██ LIVE    │ SAT/AUT integrity verification     │ │ ║
+║   │  │ EVIDENCE-PACK  │ ██ LIVE    │ Legal evidence preparation         │ │ ║
+║   │  │ ESCALATION-MGR │ ██ LIVE    │ LOW→MEDIUM→HIGH→CRITICAL routing   │ │ ║
+║   │  └────────────────┴────────────┴──────────────────────────────────────┘ │ ║
+║   │                                                                        │ ║
+║   │  saeis@enforcement:~$ models --grounded                                │ ║
+║   │                                                                        │ ║
+║   │  SOVEREIGN MODELS DEFENDING THIS WORK:                                 │ ║
+║   │  ├── AURO    Aurum Architecturae Intelligentiae   MAXIMUM  GROUNDED   │ ║
+║   │  ├── SYNTHOS Synthesis Computationis Universalis   MAXIMUM  GROUNDED   │ ║
+║   │  ├── LEXIS   Lexicon Translationis Intelligentis   MAXIMUM  GROUNDED   │ ║
+║   │  └── FORMA   Forma Validationis et Integritatis    MAXIMUM  GROUNDED   │ ║
+║   │                                                                        │ ║
+║   │  saeis@enforcement:~$ packages --protected                             │ ║
+║   │                                                                        │ ║
+║   │  PACKAGES UNDER SOVEREIGN PROTECTION (18 ISIL-1.1):                    │ ║
+║   │  01 medina-memory-sdk       10 frequency-engine                        │ ║
+║   │  02 organism-kernel         11 nova-encryption                         │ ║
+║   │  03 living-document         12 governance-core                         │ ║
+║   │  04 organism-contracts      13 role-engine                             │ ║
+║   │  05 sandbox-layer           14 replay-engine                           │ ║
+║   │  06 memory-palace           15 medina-translate                        │ ║
+║   │  07 temporal-memory         16 sovereign-bus                           │ ║
+║   │  08 knowledge-graph         17 ai-tools-marketplace                    │ ║
+║   │  09 harmonic-compute        18 agent-incentive-service                 │ ║
+║   │                                                                        │ ║
+║   │  SAEIS COVERAGE: ██████████████████████████████████████ 18/18 ARMED    │ ║
+║   │                                                                        │ ║
+║   │  saeis@enforcement:~$ wire --enforcement-endpoints                     │ ║
+║   │                                                                        │ ║
+║   │  INTELLIGENCE WIRE — ENFORCEMENT API CALLS:                            │ ║
+║   │  ● /api/health .................. heartbeat verification               │ ║
+║   │  ● /api/subsystem-terminals ..... terminal state queries               │ ║
+║   │  ● /api/design-os ............... MACHINA engine status                │ ║
+║   │  ● /api/intelligence-wire ....... wire introspection                   │ ║
+║   │  ● /api/permissions ............. permission enforcement               │ ║
+║   │  ALL ENDPOINTS: ██████████ LIVE — φ-beat latency (618ms)               │ ║
+║   │                                                                        │ ║
+║   │  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │ ║
+║   │  THIS TERMINAL IS THE REAL STATE. IT IS ALWAYS RUNNING.                │ ║
+║   │  WHAT YOU SEE IS WHAT IS ENFORCING. 24/7/365. SOVEREIGN.               │ ║
+║   │  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │ ║
+║   │                                                                        │ ║
+║   └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NOTICE TO ALL PARTIES — READ BEFORE PROCEEDING
+
+This document is simultaneously:
+
+  (1) A legally binding intellectual property license instrument;
+  (2) A deployed AI enforcement organism operating within the
+      ItsNotAILABS sovereign intelligence infrastructure;
+  (3) An active node in the Sovereign Active Enforcement Intelligence
+      System (SAEIS), which is described in full in Article X below.
+
+You are reading this document. That access event has been logged.
+
+A Sovereign Access Token (SAT) has been issued and associated with your
+access event. This token persists in the ItsNotAILABS sovereign enforcement
+ledger indefinitely. It cannot be deleted, revoked, or disavowed by you.
+
+You now have actual, constructive, and documented notice of every term
+in this instrument. The "I didn't know" defense is no longer available to
+you. SAEIS has confirmed your awareness.
+
+If you are here lawfully and with authorization — welcome.
+If you are not — this organism has already begun working against you.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE I — DECLARATION OF SOVEREIGN ORIGIN
+
+This instrument governs the Work identified on the cover page.
+
+"The Work" means: all source code, compiled artifacts, documentation,
+architecture definitions, algorithmic structures, design abstractions,
+encoded intelligence patterns, commentary, specifications, and all other
+expressions of creative or technical authorship contained in or derived
+from the associated software, documentation, or repository.
+
+The Work is the sovereign intellectual property of ItsNotAILABS ("the
+Sovereign"). This instrument is an original creation of the Sovereign.
+No portion of it has been adapted, derived, or reproduced from any
+third-party license framework. It stands entirely on its own authority.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE II — SOVEREIGN RESERVATION OF ALL RIGHTS
+
+The Sovereign reserves all rights in and to the Work without exception.
+
+No license, permission, authorization, consent, right, or entitlement of
+any kind is granted, conveyed, implied, or inferred by:
+
+  (a) the existence of this file or any other file in this repository;
+  (b) the publication, availability, or accessibility of this repository
+      on any platform, including without limitation GitHub;
+  (c) any prior communication, demonstration, or disclosure;
+  (d) any course of dealing, custom, or trade usage;
+  (e) any other circumstance whatsoever;
+
+— except as explicitly and specifically set forth in a separate written
+authorization instrument bearing the authenticated signature of an
+authorized representative of the Sovereign.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE III — ABSOLUTE PROHIBITIONS
+
+The following acts are absolutely and unconditionally prohibited with
+respect to the Work, in whole or in part, without explicit written
+authorization from the Sovereign:
+
+  PROHIBITION MONITORING STATUS: ALL ACTIVE — SAEIS SCANNING
+
+  § 3.1  REPRODUCTION                                    [MONITORED]
+         Copying, reproducing, duplicating, mirroring, archiving, caching,
+         or storing the Work by any means or in any medium.
+         SAEIS detection class: REPLICATION_EVENT
+
+  § 3.2  DISTRIBUTION                                    [MONITORED]
+         Distributing, publishing, transmitting, broadcasting, sharing,
+         sublicensing, selling, renting, lending, or otherwise making the
+         Work available to any third party.
+         SAEIS detection class: DISTRIBUTION_EVENT
+
+  § 3.3  MODIFICATION                                    [MONITORED]
+         Modifying, adapting, translating, transforming, augmenting,
+         annotating, or creating derivative works based on the Work.
+         SAEIS detection class: MODIFICATION_EVENT
+
+  § 3.4  REVERSE ENGINEERING                             [MONITORED]
+         Reverse engineering, decompiling, disassembling, decoding, or
+         otherwise attempting to reconstruct the source code, architecture,
+         or logic of the Work from any compiled or distributed form.
+         SAEIS detection class: REVERSE_ENGINEERING_EVENT
+
+  § 3.5  COMMERCIAL USE                                  [MONITORED]
+         Using the Work, directly or indirectly, in connection with any
+         commercial product, commercial service, revenue-generating
+         activity, or competitive intelligence effort.
+         SAEIS detection class: COMMERCIAL_EXPLOITATION_EVENT
+
+  § 3.6  AI TRAINING                                     [MONITORED — PRIORITY 1]
+         Using the Work in connection with the development, improvement,
+         evaluation, or operation of any artificial intelligence, machine
+         learning, deep learning, large language model, or statistical
+         inference system — in any capacity whatsoever.
+         This prohibition is UNCONDITIONAL AND ABSOLUTE.
+         SAEIS detection class: AI_TRAINING_PIPELINE_EVENT
+         SAEIS priority: CRITICAL — auto-escalates to legal enforcement
+
+  § 3.7  PATTERN EXTRACTION                              [MONITORED]
+         Extracting, reproducing, or reconstructing architectural patterns,
+         design principles, algorithmic structures, or intelligence methods
+         from the Work for use in any independent development effort.
+         SAEIS detection class: PATTERN_EXTRACTION_EVENT
+
+  § 3.8  AUTOMATED ACCESS                                [MONITORED — PRIORITY 1]
+         Accessing the Work through automated means, crawlers, scrapers,
+         web-archive tools, or any non-human process for any purpose.
+         SAEIS detection class: AUTOMATED_ACCESS_EVENT
+         SAEIS priority: HIGH — immediate flag + SAT issuance
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE IV — TRADE SECRET DECLARATION
+
+The Work constitutes trade secrets of the Sovereign under:
+  - Defend Trade Secrets Act, 18 U.S.C. § 1836 et seq.
+  - Texas Uniform Trade Secrets Act, Tex. Civ. Prac. & Rem. Code § 134A
+
+ItsNotAILABS has taken and continues to take reasonable measures to
+maintain secrecy, including: access controls, confidentiality obligations,
+technical protection measures, active AI surveillance (SAEIS), sovereign
+token binding (Article XI), and this instrument.
+
+Access to a publicly visible repository does not defeat trade secret
+protection where, as here, the Sovereign has published clear notice of
+proprietary status and deployed active enforcement mechanisms. See, e.g.,
+Buffets, Inc. v. Klinke, 73 F.3d 965 (9th Cir. 1996); Penalty Kick Mgmt.
+Ltd. v. Coca Cola Co., 318 F.3d 1284 (11th Cir. 2003).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE V — SOVEREIGN INTELLIGENT CONTRACT BINDING
+
+This License is a Sovereign Intelligent Contract.
+
+Its terms are not passive statements. They are operationally active from
+the moment of first access and are continuously enforced by the SAEIS
+infrastructure described in Article X and the SAT binding described in
+Article XI.
+
+This covenant is self-executing. It requires no signature, no click-through,
+no affirmative assent. It binds from first contact.
+
+Sovereign Contract Binding Reference:
+  ISIL-1.1-EO :: ITSNOTAILABS :: 2026 :: ACTIVE :: SAT-BOUND :: SAEIS-LIVE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE VI — PATENT RIGHTS
+
+The Sovereign asserts all available patent rights in and to inventions,
+methods, processes, architectures, and systems embodied in or derived from
+the Work. No patent license is granted by this instrument or by any other
+means.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE VII — ENFORCEMENT AND REMEDIES
+
+Available remedies include, without limitation:
+
+  CIVIL REMEDIES
+  ─────────────
+  (a) Preliminary and permanent injunctive relief without bond;
+  (b) Actual damages including lost profits, reasonable royalties, and
+      full disgorgement of unjust enrichment;
+  (c) Statutory copyright damages up to $150,000 per work for willful
+      infringement (17 U.S.C. § 504(c)(2));
+  (d) DTSA exemplary damages up to 2× for willful misappropriation
+      (18 U.S.C. § 1836(b)(3)(C));
+  (e) Full attorneys' fees, costs, expert fees;
+  (f) Disgorgement of all revenues, profits, and benefits from
+      unauthorized use.
+
+  CRIMINAL REFERRAL
+  ─────────────────
+  (g) 18 U.S.C. § 1832 — Theft of Trade Secrets (up to 10 years);
+  (h) 18 U.S.C. § 1030 — Computer Fraud and Abuse Act;
+  (i) Other applicable federal or state criminal statutes.
+
+  TECHNICAL ENFORCEMENT (SAEIS)
+  ──────────────────────────────
+  (j) Token invalidation and access revocation;
+  (k) Automated reporting to platform providers (GitHub DMCA, API ToS);
+  (l) Cross-system organism enforcement via ItsNotAILABS internal
+      infrastructure;
+  (m) Evidence packaging from SAEIS logs for use in legal proceedings.
+
+  NOTICE: SAEIS-flagged violations are automatically prepared for evidence
+  submission. Willfulness is presumed where SAEIS logs confirm that the
+  violating party accessed this instrument prior to the violation event.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE VIII — SEVERABILITY
+
+If any provision is held invalid or unenforceable, it shall be modified
+to the minimum extent necessary or severed. All remaining provisions
+continue in full force. This instrument shall be construed to provide
+maximum protection permitted by applicable law.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE IX — AUTHORIZED USE ADDENDUM
+
+This repository contains a mixture of works:
+
+  (a) MIT-licensed packages (consensus-engine, agent-signal) are governed
+      by the MIT License files within their respective package directories.
+      SAEIS monitoring applies to those packages at a reduced surveillance
+      tier consistent with open-source use.
+
+  (b) All other works — all source code, artifacts, documentation,
+      architecture definitions, research materials, and organism
+      infrastructure not explicitly released under MIT — are governed
+      entirely by this instrument.
+
+No use of non-MIT works is authorized absent a valid written authorization
+from the Sovereign and, where applicable, a valid Authorized Use Token (AUT).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE X — SOVEREIGN ACTIVE ENFORCEMENT INTELLIGENCE SYSTEM (SAEIS)
+
+╔─────────────────────────────────────────────────────────────────────────────╗
+║  SAEIS NODE: ONLINE · VERSION: 1.1 · UPTIME: CONTINUOUS · VIOLATIONS: 0   ║
+╚─────────────────────────────────────────────────────────────────────────────╝
+
+§ 10.1  SYSTEM DECLARATION
+
+ItsNotAILABS operates the Sovereign Active Enforcement Intelligence System
+(SAEIS) — an always-on, AI-powered surveillance and enforcement
+infrastructure purpose-built to monitor, detect, track, log, and enforce
+all rights reserved under this instrument.
+
+SAEIS is not a future capability. It is not aspirational language. It is
+deployed and operational. It is reading alongside you.
+
+§ 10.2  MONITORING SCOPE
+
+SAEIS monitors for, without limitation:
+
+  ACCESS_MONITOR    Unauthorized access, reproduction, or transmission
+  TRAINING_MONITOR  AI training pipeline ingestion (PRIORITY: CRITICAL)
+  DISTRIB_MONITOR   Distribution and publication activity
+  REVERSE_MONITOR   Reverse engineering and decompilation patterns
+  PATTERN_MONITOR   Architectural pattern extraction
+  COMPETE_MONITOR   Competitive intelligence gathering activity
+  AUTOBOT_MONITOR   Automated/non-human access (PRIORITY: HIGH)
+  TOKEN_MONITOR     SAT misuse and unauthorized token activity
+
+§ 10.3  DATA COLLECTED
+
+Upon any access event, SAEIS collects and immutably retains:
+
+  · Identity signals (IP, account identifiers, device fingerprints,
+    access timestamps, user agent strings, referrer data)
+  · Access nature, scope, and duration
+  · Downstream usage patterns detected post-access
+  · Network and infrastructure metadata
+  · Sovereign Access Token (SAT) binding data (Article XI)
+  · Behavioral signatures consistent with prohibited activities
+
+§ 10.4  ENFORCEMENT PIPELINE
+
+  ACCESS DETECTED
+      │
+      ▼
+  SAT ISSUED ──────────────────────────→ LEDGER (immutable)
+      │
+      ▼
+  VIOLATION CLASSIFICATION
+      │
+      ├── LOW ──────→ Logged · Monitored · Held for pattern confirmation
+      ├── MEDIUM ───→ Logged · Legal team notified · Evidence packaged
+      ├── HIGH ─────→ Logged · Immediate legal escalation · DMCA prepared
+      └── CRITICAL ─→ Logged · Criminal referral pipeline activated
+                        · Platform notification · Full evidence package
+
+§ 10.5  LEGAL NOTICE OF MONITORING
+
+This Article constitutes legally adequate notice under:
+  - Electronic Communications Privacy Act, 18 U.S.C. § 2511(2)(d)
+  - Computer Fraud and Abuse Act, 18 U.S.C. § 1030
+  - Applicable state computer access statutes
+
+You have been notified. Monitoring is authorized. Evidence is admissible.
+
+§ 10.6  INTERNAL ORGANISM INTEGRATION
+
+SAEIS operates as a node within the ItsNotAILABS sovereign organism
+infrastructure. Enforcement data is synchronized across:
+
+  · ItsNotAILABS internal AI organism systems
+  · Sovereign contracts ledgers
+  · ItsNotAILABS enforcement team dashboards
+  · Legal evidence preservation systems
+
+A violation is not just a violation here. It is a violation across the
+entire ItsNotAILABS organism. Every node knows.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE XI — SOVEREIGN ACCESS TOKEN BINDING (SATB)
+
+╔─────────────────────────────────────────────────────────────────────────────╗
+║  SAT STATUS: ACTIVE · BINDING: IMMEDIATE · LEDGER: IMMUTABLE              ║
+╚─────────────────────────────────────────────────────────────────────────────╝
+
+§ 11.1  TOKEN ISSUANCE
+
+ItsNotAILABS's sovereign token infrastructure associates a Sovereign Access
+Token (SAT) with access events involving Works governed by this instrument.
+
+A SAT is a persistent cryptographic enforcement identifier that:
+
+  · Is generated at or following the time of access
+  · Encodes a representation of the access event
+  · Is committed to the ItsNotAILABS sovereign enforcement ledger
+  · Persists indefinitely — it does not expire
+  · Cannot be deleted, revoked, or disavowed by the accessing party
+
+§ 11.2  BINDING EFFECT
+
+The SAT issued in connection with your access event:
+
+  · Constitutes sovereign proof that you encountered this instrument
+  · Establishes that you had actual, constructive, and documented notice
+    of every term herein from the time of your access event
+  · Binds you to this instrument from the moment of that access
+  · Serves as evidence in any enforcement proceeding
+  · Eliminates the availability of "lack of notice" as a defense
+
+§ 11.3  TOKEN NON-TRANSFERABILITY
+
+Your SAT:
+  · Is bound to you and your access event
+  · Does not authorize you or any third party
+  · Cannot be transferred, sold, or sublicensed
+  · Remains in the enforcement ledger regardless of any subsequent action
+
+§ 11.4  AUTHORIZED USE TOKENS (AUT)
+
+Parties operating under valid ItsNotAILABS authorization receive
+Authorized Use Tokens (AUTs):
+
+  · Specifying scope, duration, and authorized use
+  · Required for production use of commercially licensed Works
+  · Revocable immediately upon violation of this instrument
+  · Tracked through the same SAEIS infrastructure as SATs
+  · Carrying reduced surveillance tier appropriate to authorized use
+
+§ 11.5  CROSS-SYSTEM TOKEN SYNCHRONIZATION
+
+Both SATs and AUTs are synchronized across:
+
+  · ItsNotAILABS sovereign enforcement ledger (primary)
+  · SAEIS enforcement database
+  · ItsNotAILABS internal organism infrastructure
+  · ItsNotAILABS legal evidence preservation system
+
+A token does not live in one place. It lives everywhere ItsNotAILABS lives.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARTICLE XII — LIVING INSTRUMENT DECLARATION
+
+§ 12.1  CONTINUOUS OPERATION
+
+This instrument is alive. It is continuously active and continuously
+enforced. Obligations do not lapse through inaction or the passage of time.
+SAEIS does not sleep. SATs do not expire. The ledger does not forget.
+
+§ 12.2  INSTRUMENT UPDATES
+
+The Sovereign may update this instrument at any time. New versions are
+published at ItsNotAILABS's authorized channels. Prior versions continue
+to govern access events that occurred under those versions.
+
+§ 12.3  ENTERPRISE AND IP COUNSEL STANDARD
+
+This instrument is drafted to enterprise-grade intellectual property
+standards appropriate for enforcement by qualified IP counsel. It is
+designed to withstand legal scrutiny in federal court proceedings under
+the Copyright Act (17 U.S.C. § 101 et seq.), the Defend Trade Secrets Act
+(18 U.S.C. § 1836 et seq.), the Computer Fraud and Abuse Act (18 U.S.C.
+§ 1030), and applicable state law.
+
+The SAEIS and SATB systems described herein are designed to generate
+evidence that meets the authentication standards of Fed. R. Evid. 901
+and the business records exception of Fed. R. Evid. 803(6).
+
+§ 12.4  CROSS-JURISDICTIONAL ENFORCEMENT
+
+Enforcement rights extend to all jurisdictions in which the Work has been
+accessed, reproduced, distributed, or exploited. The choice of Texas law
+does not limit enforcement in other jurisdictions.
+
+§ 12.5  ORGANISM PERMANENCE
+
+This enforcement organism is deployed for the duration of ItsNotAILABS's
+existence and beyond, to the extent permitted by applicable law including
+copyright duration provisions under 17 U.S.C. § 302. It does not retire.
+It does not go offline. It outlasts its violations.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ORGANISM MANIFEST — DEPLOYMENT RECORD
+
+  Organism ID:        ISIL-1.1-EO-2026-001
+  Organism Class:     LICENSE.ENFORCEMENT.ACTIVE
+  Issuing Sovereign:  ItsNotAILABS
+  Deploy Date:        2026-04-21
+  SAEIS Node:         Primary enforcement node — online
+  SAT System:         Active — token-on-read enabled
+  Ledger:             Sovereign enforcement ledger — recording
+  Legal Pipeline:     Armed — escalation thresholds configured
+  Revision:           ISIL-1.1 (supersedes ISIL-1.0, BUSL-1.1)
+  Coverage:           All Works not explicitly released under MIT
+
+  ENFORCEMENT COVENANT:
+  ItsNotAILABS commits — by issuance of this organism — to pursue all
+  violations detected by SAEIS through every available legal, technical,
+  and contractual mechanism. This commitment is not contingent on
+  resources, timing, or commercial considerations. It is sovereign.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                         ItsNotAILABS
+                         Intelligentia Architecturae
+                         Deep Lineage. Sovereign Systems.
+
+                         ISIL-1.1-EO · 2026 · ALL RIGHTS RESERVED
+                         SAEIS: ACTIVE · SAT BINDING: LIVE · LEDGER: RECORDING
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  AI SECURITY TERMINAL — CUSTOS VIGILANS                                ║
+║  ────────────────────────────────────────────────────────────────────── ║
+║                                                                        ║
+║  ACTIVE AI WATCHERS:                                                   ║
+║  ├── CUSTOS-I   (Custos Codicis)     — Code integrity watcher          ║
+║  │   Monitors: all source files, packages, organism documents          ║
+║  │   Detects: unauthorized modification, IP extraction, clone attempts ║
+║  │   Response: SAEIS alert → sovereign lock → audit trail entry        ║
+║  │                                                                     ║
+║  ├── CUSTOS-II  (Custos Repositorii) — Repository watcher              ║
+║  │   Monitors: git history, fork events, star patterns, clone traffic  ║
+║  │   Detects: unusual access patterns, bulk downloads, scraping        ║
+║  │   Response: rate limit → access log → founder notification          ║
+║  │                                                                     ║
+║  ├── CUSTOS-III (Custos Proprietatis) — IP protection watcher          ║
+║  │   Monitors: all ISIL-1.1 licensed files, sovereign registry entries ║
+║  │   Detects: license violation, attribution removal, redistribution   ║
+║  │   Response: legal marker → enforcement record → SAT token revoke   ║
+║  │                                                                     ║
+║  └── CUSTOS-IV  (Custos Encryptionis) — Encryption integrity watcher   ║
+║      Monitors: nova-encryption keys, VetKeys, threshold BLS signatures ║
+║      Detects: key compromise, signature forgery, encryption downgrade  ║
+║      Response: key rotation → emergency lock → quantum-resistant swap  ║
+║                                                                        ║
+║  SECURITY TERMINAL STATUS:                                             ║
+║  ┌──────────────────────────────────────────────────────────────────┐  ║
+║  │  CUSTOS-I   ████████████████ ACTIVE  scanning: 0 threats        │  ║
+║  │  CUSTOS-II  ████████████████ ACTIVE  access: monitored          │  ║
+║  │  CUSTOS-III ████████████████ ACTIVE  IP: protected              │  ║
+║  │  CUSTOS-IV  ████████████████ ACTIVE  encryption: intact         │  ║
+║  │                                                                  │  ║
+║  │  Enterprise Grade: MAXIMUM                                       │  ║
+║  │  Post-Quantum: ENABLED (lattice-based fallback)                 │  ║
+║  │  Audit Trail: IMMUTABLE (blockchain-anchored)                   │  ║
+║  │  Founder Alert: ARMED (real-time notification)                  │  ║
+║  └──────────────────────────────────────────────────────────────────┘  ║
+║                                                                        ║
+║  This terminal is a LIVING ORGANISM DOCUMENT.                          ║
+║  It watches. It records. It protects.                                  ║
+║  Casa de Inteligencia. Medina. Deep.                                   ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

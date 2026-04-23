@@ -1,0 +1,15 @@
+{
+  "name": "@itsnotailabs/organism-contracts",
+  "version": "0.1.0",
+  "description": "Smart contracts and sovereign ledger primitives with SAT tokens and enforcement records",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "ItsNotAILABS <sovereign@itsnotailabs.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/MedinaMemorySystems",
+    "directory": "packages/organism-contracts"
+  },
+  "keywords": ["sovereign", "organism", "medina", "smart-contracts"]
+}

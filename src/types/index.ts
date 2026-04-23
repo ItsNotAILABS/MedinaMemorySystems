@@ -162,7 +162,17 @@ export interface ParsedCommand {
 }
 
 export interface StructuredResponse {
-  type: 'memory' | 'governance' | 'model' | 'company' | 'organism' | 'help' | 'error' | 'info';
+  type:
+    | 'memory' | 'governance' | 'model' | 'company' | 'organism' | 'help' | 'error' | 'info'
+    | 'campaign' | 'voice' | 'message' | 'export' | 'document' | 'device'
+    | 'kernel' | 'edge' | 'resonance' | 'recital' | 'gate' | 'encryption' | 'wire'
+    | 'icp' | 'contract' | 'ledger' | 'cpl' | 'intelligence' | 'nexus'
+    | 'deploy' | 'synthesis' | 'wiring' | 'thermodynamics' | 'quantum' | 'compiler'
+    | 'network' | 'os' | 'access' | 'sandbox' | 'sensory' | 'saas' | 'civilization'
+    | 'signal' | 'consensus' | 'frequency' | 'bus' | 'vault' | 'translate'
+    | 'council' | 'role' | 'substrate' | 'sdk' | 'marketplace'
+    | 'graph' | 'palace' | 'temporal' | 'harmonic' | 'token' | 'livingdoc' | 'incentive'
+    | 'replay' | 'permissions';
   title: string;
   data: unknown;
   actions?: ResponseAction[];

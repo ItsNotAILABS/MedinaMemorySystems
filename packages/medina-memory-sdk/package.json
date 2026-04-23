@@ -1,0 +1,37 @@
+{
+  "name": "@medina/memory-sdk",
+  "version": "1.0.0",
+  "description": "Enterprise memory infrastructure SDK by Medina Memory Systems. Includes 10 sub-SDKs: spatial memory, document intelligence, knowledge graphs, semantic search, context engine, pattern recognition, temporal memory, harmonic computing, frequency alignment, and organism sync.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "license": "Commercial",
+  "keywords": [
+    "memory",
+    "ai",
+    "enterprise",
+    "knowledge-graph",
+    "semantic-search",
+    "context",
+    "icp",
+    "multi-agent",
+    "ai-teams"
+  ],
+  "author": "Medina Memory Systems <sdk@medinamemorysystems.com>",
+  "homepage": "https://medinamemorysystems.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medinamemorysystems/sdk"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

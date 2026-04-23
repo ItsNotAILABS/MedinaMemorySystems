@@ -1,0 +1,35 @@
+{
+  "name": "organism-kernel",
+  "version": "1.0.0",
+  "description": "Organism execution kernel. Lifecycle management, state transitions, canister deployment, genome expression, and organism-to-organism communication.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "SEE-LICENSE",
+  "keywords": [
+    "ai",
+    "organism",
+    "kernel",
+    "lifecycle",
+    "agents",
+    "sovereign",
+    "itsnotailabs"
+  ],
+  "author": "ItsNotAILABS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/organism-kernel"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

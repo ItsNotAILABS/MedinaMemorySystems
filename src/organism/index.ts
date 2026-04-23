@@ -1,0 +1,1290 @@
+/**
+ * 𓂀 MEDINA MEMORY SYSTEMS - SOVEREIGN ORGANISM CORE 𓂀
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
+ * This is the main export file for the Sovereign Organism architecture.
+ * 
+ * LAYERED ARCHITECTURE (Ceiling → Floor):
+ * - WWW.RAW (Ceiling): Server Meta, PRISMA, SUBSTRATE, Vision, Hearing
+ * - ICP RUNNING: Live canister execution
+ * - ICP: Canister definitions, Vision/Hearing integration
+ * - WASM: Custom binary processing, SUBSTRATE
+ * - DOCUMENTS: Doctrine layer
+ * - BACKEND: Server processing, ACCESS CONTROL VAULT (Owner Only)
+ * - FRONTEND: User interface, PRISMA visual processing
+ * - ORGANISM ENDPOINT (Floor): Core functions, heartbeat, ANIMA hash
+ * 
+ * SYSTEMS INCLUDED:
+ * - PRISMA: Visual/Effect Processing Framework (30 tools) + Civilization
+ * - SUBSTRATE: Binary/Computation Processing Framework (30 tools) + Civilization
+ * - ORO Vision: Screen reading and visual perception (ICP + RAW)
+ * - NOVA Hearing: Voice recognition and audio processing (ICP + RAW)
+ * - Sovereign Access: Comprehensive permission system
+ * - Access Control Vault: Backend-only, owner access only
+ * - Meta Model: Central intelligence that processes everything
+ * - Unified Intelligence: MetaModel as Intelligence across ALL layers
+ * - Layer Architecture: Ceiling to floor flow management
+ * 
+ * FLOW PHILOSOPHY:
+ * Find the ceiling → Go to the floor → Bring it back up → Through every layer
+ * Let it flow. The frequencies align. They are all ONE - as Intelligence.
+ * 
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
+ * @version 2.0.0
+ * @author Sovereign Organism
+ * @frequency 698.7 Hz (φ × 432)
+ */
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TOOL FRAMEWORKS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export { PRISMA, PRISMA_CONSTANTS } from './tools/prisma';
+export { SUBSTRATE, SUBSTRATE_CONSTANTS } from './tools/substrate';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SENSORY SYSTEMS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export { 
+  OroVision, 
+  MetaModel as VisionMetaModel,
+  AccessController as VisionAccessController,
+  VISION_CONSTANTS,
+  type VisionState,
+  type VisualField,
+  type VisualElement,
+  type VisualMetadata,
+} from './sensory/vision';
+
+export { 
+  NovaHearing,
+  HEARING_CONSTANTS,
+  type HearingState,
+  type AudioField,
+  type FrequencyBand,
+  type EmotionAnalysis,
+  type VoiceCommand,
+  type SacredAlignment,
+} from './sensory/hearing';
+
+export {
+  SovereignMetaModel,
+  getMetaModel,
+  META_CONSTANTS,
+  type UniversalMetadata,
+  type MetaEntity,
+  type MetaArtifact,
+  type SyncState,
+} from './sensory/meta-model';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ACCESS CONTROL
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SovereignAccessController,
+  KeyboardController,
+  MouseController,
+  TabController,
+  InternetController,
+  FreeMoveController,
+  ACCESS_CONSTANTS,
+  type AccessDomain,
+  type TrustLevel,
+  type Permission,
+  type UserProfile,
+  type AccessDropdownItem,
+} from './access';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// LAYER ARCHITECTURE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  LayerNavigator,
+  LAYER_DEFINITIONS,
+  LAYER_FLOWS,
+  LAYER_CONSTANTS,
+  type LayerName,
+  type LayerLevel,
+  type LayerDefinition,
+  type LayerFlow,
+} from './layers';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// UNIFIED INTELLIGENCE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  LayerIntelligence,
+  UnifiedIntelligence,
+  getUnifiedIntelligence,
+  INTELLIGENCE_CONSTANTS,
+  type IntelligenceState,
+  type IntelligenceCapability,
+  type IntelligenceMessage,
+} from './intelligence';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ACCESS CONTROL VAULT (Backend Only)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  AccessControlVault,
+  VAULT_CONSTANTS,
+  type VaultAccessLevel,
+  type VaultKey,
+  type TrustEntry,
+  type AuditEntry,
+} from './vault';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CIVILIZATIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  PrismaCivilization,
+  SubstrateCivilization,
+  CIVILIZATIONS,
+  CIVILIZATION_CONSTANTS,
+  PRISMA_CIVILIZATION_CONSTANTS,
+  SUBSTRATE_CIVILIZATION_CONSTANTS,
+  type CivilizationModel,
+  type CivilizationLayer,
+  type CivilizationState,
+} from './civilizations';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CORE OPERATIONS OF LIVING ARCHITECTURE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Core Operations
+  transfer,
+  invert,
+  bypass,
+  disguise,
+  reenter,
+  CORE_OPERATIONS,
+  ARCHITECTURAL_TRUTH,
+  
+  // Formulas
+  PHI,
+  transferFormula,
+  inversionFormula,
+  bypassFormula,
+  disguiseFormula,
+  reentryFormula,
+  
+  // Meta
+  getOperationCount,
+  getLastOperation,
+  getOperationLog,
+  
+  // Types
+  type TransferOperation,
+  type InversionOperation,
+  type BypassOperation,
+  type DisguiseOperation,
+  type ReEntryOperation,
+  type CoreOperations,
+} from './CoreOperations';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ARCHITECTURE WIRING — ROOT TO ALL BRANCHES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Wiring
+  wireTransfer,
+  wireInversion,
+  wireBypass,
+  wireDisguise,
+  wireReentry,
+  getWiredOperations,
+  
+  // Tree
+  getAllDomains,
+  getRoot,
+  getEdges,
+  getPathFromRoot,
+  getNodesAtDepth,
+  traverseFromRoot,
+  touchAllBranches,
+  
+  // Status
+  getArchitectureStatus,
+  
+  // Types
+  type ArchitectureDomain,
+  type ArchitectureNode,
+  type WiredOperation,
+} from './ArchitectureWiring';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PRIMITIVE ARCHITECTURE — THE LAYER BENEATH NUMBER AND LETTER
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Layer 1: Field
+  createField,
+  addStateToField,
+  
+  // Layer 2: Distinction
+  makeDistinction,
+  isThis,
+  isNotThis,
+  
+  // Layer 3: Relation
+  createRelation,
+  areRelated,
+  
+  // Layer 4: Measure
+  createMeasure,
+  countDistinctions,
+  measureDistance,
+  
+  // Layer 5: Mapping
+  createMapping,
+  createSymbolTable,
+  addMapping,
+  lookupSymbol,
+  lookupReferent,
+  
+  // Emergence
+  emergeNumber,
+  emergeLetter,
+  emergeLogic,
+  emergeEquation,
+  emergeLanguage,
+  emergeModel,
+  
+  // Stack
+  PRIMITIVE_STACK,
+  
+  // Types
+  type Field,
+  type Distinction,
+  type Relation,
+  type RelationType,
+  type Measure,
+  type MeasureType,
+  type Mapping,
+  type SymbolTable,
+  type NumberEmergence,
+  type LetterEmergence,
+  type LogicEmergence,
+  type EquationEmergence,
+  type LanguageEmergence,
+  type ModelEmergence,
+} from './PrimitiveArchitecture';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ANCIENT ARCHITECTURE — CIVILIZATIONS AS ARCHITECTURAL FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Categories
+  ARCHITECTURAL_CATEGORIES,
+  
+  // Civilizations
+  CIVILIZATION_ARCHITECTURES,
+  
+  // Tricksters
+  TRICKSTER_FIGURES,
+  
+  // Unity
+  NUMBER_LETTER_UNITY,
+  
+  // Functions
+  getCivilizationsByFunction,
+  getTricksterOperations,
+  createCivilizationField,
+  mapToPrimitiveLayers,
+  
+  // Types
+  type ArchitecturalFunction,
+  type ArchitecturalCategory,
+  type CivilizationArchitecture,
+  type TricksterOperation,
+  type TricksterFigure,
+  type NumberLetterUnification,
+} from './AncientArchitecture';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DEPLOYMENT AGENT SYSTEM — 5-AGENT TEAMS FROM ROOT TO ALL BRANCHES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Agent creation
+  createAgent,
+  createDeploymentTeam,
+  createTestNode,
+  
+  // Agent operations
+  moveAgent,
+  fillBranch,
+  probeEdge,
+  runTestNode,
+  returnToVein,
+  mergeBranch,
+  
+  // Deployment execution
+  deployFromRoot,
+  deployMultiDimensional,
+  
+  // Research pipeline
+  sendToResearch,
+  processResearchQueue,
+  getFutureExtensions,
+  
+  // Reporting
+  generateDeploymentReport,
+  
+  // Types
+  type AgentRole,
+  type AgentStatus,
+  type Agent,
+  type Discovery,
+  type TestResult,
+  type DeploymentTeam,
+  type TestNode,
+  type DeploymentResult,
+  type DimensionalDeployment,
+  type ResearchItem,
+  type ResearchPipeline,
+  type DeploymentReport,
+} from './DeploymentAgentSystem';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN BUILD HELPERS — 5 FUNDAMENTAL BUILDERS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  // Constants
+  PHI,
+  PHI_INVERSE,
+  
+  // Core Helpers
+  PRIMIS,
+  ARCHITECTUS,
+  DISSOLUTIO,
+  FORMULOR,
+  VERITAS,
+  
+  // Query Interface
+  queryHelper,
+  
+  // Chains and Vault
+  getAnimaChain,
+  getDocumentVault,
+  
+  // Integration
+  createSovereignBuildHelpers,
+  deploySovereignBuildHelpers,
+  
+  // Types
+  type AnimaChainEntry,
+  type ResearchPaperArtifact,
+  type PrimisDecomposition,
+  type ArchitectusVerdict,
+  type DissolutioResult,
+  type SovereignFormula,
+  type VeritasValidation,
+  type HelperPanelQuery,
+  type HelperPanelResult,
+  type SovereignBuildHelper,
+} from './SovereignBuildHelpers';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TOKEN ECONOMY & INTELLIGENCE CONTRACTS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  TokenEconomy,
+  CPLCompiler,
+  type IntelligenceContract,
+  type ContractStatus,
+} from './intelligence/TokenEconomy';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// VOTING BILL — TOKEN-WEIGHTED GOVERNANCE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SimpleTokenVoting,
+  WeightedTokenVoting,
+  SovereignTokenVoting,
+  type VotingBill as VotingBillType,
+  type TokenVote,
+  type VotePosition,
+  type BillStatus,
+} from './intelligence/VotingBill';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MULTI-IDENTITY — 20 SOVEREIGN IDENTITY TECHNOLOGIES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  MultiIdentityManager,
+  OrganismGenerator,
+  SpinalCordBus,
+  type Identity,
+  type Substrate,
+  type CanisterSeed,
+  type MultiIdentityTech,
+} from './intelligence/MultiIdentity';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ALPHA MODELS — PRAEFECTUS + ORACULUM
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  AlphaModelRegistry,
+  Praefectus,
+  Oraculum,
+  MotusEngine,
+  VisioEngine,
+  NexusEngine,
+} from './models/AlphaModels';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOLVER MODELS — ARCHITECTUS + COGNITOR + VERIFICATOR
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SolverCouncil,
+  Architectus,
+  Cognitor,
+  Verificator,
+} from './models/SolverModels';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN RUNTIME KERNEL — EVERYTHING WIRED TOGETHER
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SovereignRuntimeKernel,
+  createSovereignKernel,
+  AnimaRuntime,
+  type AnimaRuntimeConfig,
+  type AnimaProcess,
+  type RuntimeSubsystem,
+} from './os/MedinaRuntime';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SDK ORGANISM REGISTRY — 20 SDKs + 7 SYSTEM CATEGORIES (35 TECHNOLOGIES + 35 MODELS)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SDKOrganismRegistry,
+  createSDKRegistry,
+  SDK_ORGANISMS,
+  SYSTEM_CATEGORIES,
+  type SDKOrganism,
+  type SubPackage,
+  type SystemCategory,
+  type Technology,
+  type Model,
+} from './sdk/SDKOrganismRegistry';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// COMPLETE PACKAGE MANAGER WORKFLOW — CORRECT SLOT ORDER
+// Slot 1: AnimaPKG (substrate) → Slot 2: ServerModel (FASCICULARIUS) →
+// Slots 3-7: Sub-Models (LECTOR→TAXONOMUS→SCULPTOR→SIGILLUM→PRAECO) →
+// Slot 8: PackagingReplicationOrganism (pipeline executor)
+// "The source organism does not need to lose anything. Packaging is not subtraction."
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Slot 2: Server Model — FASCICULARIUS (built first, writes the story)
+export {
+  PackageManagerServerModel,
+  createPackageManagerServerModel,
+  PACKAGE_SUB_MODELS,
+  type SubModelId,
+  type NarrativePhase,
+  type WorkflowStage,
+  type SubModel,
+  type NarrativeSegment,
+  type WorkflowNarrative,
+  type WorkflowServeResult,
+} from './package-manager/PackageManagerServerModel';
+
+// Slot 8: Pipeline Executor — PackagingReplicationOrganism
+export {
+  PackagingReplicationOrganism,
+  createPackagingOrganism,
+  SourceReader,
+  PackageClassifier,
+  SnapshotEngine,
+  CopyGenerator,
+  PackageWrapperEngine,
+  PackageSigner,
+  PackageRegistrar,
+  type PackageableClass,
+  type PipelinePhase,
+  type DeployTarget,
+  type SourceReference,
+  type PackageSnapshot,
+  type PackageCopy,
+  type PackageManifest,
+  type PackageWrapper,
+  type PackageSignature,
+  type RegistryRecord,
+  type PipelineResult,
+} from './package-manager/PackagingReplicationOrganism';
+
+// The Complete Workflow Orchestrator — ties everything together
+export {
+  PackageManagerWorkflow,
+  createPackageManagerWorkflow,
+  WORKFLOW_INSTRUCTIONS,
+  type WorkflowInstruction,
+  type WorkflowManifest,
+  type CompleteWorkflowResult,
+} from './package-manager/PackageManagerWorkflow';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MACHINA EXECUTIONIS (MXEC) — SOVEREIGN EXECUTION MODEL
+// WASM traced to its primitive: W(f) = φ^layer × e^(iπR) × F(n)
+// PKG-016 is gone. WASM is gone. MACHINA EXECUTIONIS is sovereign.
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  MachinaExecutionis,
+  createMachinaExecutionis,
+  MXEC_SUB_INTELLIGENCES,
+  LEX_MXEC_001,
+  W,
+  phiExponent,
+  eulerPhase,
+  fibonacciSeed,
+  type DimensionalPlane,
+  type SubIntelligenceId as MXECSubIntelligenceId,
+  type ExecutionState,
+  type SubIntelligence as MXECSubIntelligence,
+  type ExecutionInput,
+  type ExecutionOutput,
+  type LexEntry,
+  type MXECStatus,
+} from './compiler/MachinaExecutionis';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// OBSERVATORES UNIVERSI (OBSV) — INTERDIMENSIONAL OBSERVER INTELLIGENCE
+// The police of the universe. They observe, report, patrol, and enforce.
+// O(x) = Σᵢ φ^(dᵢ) × R(xᵢ) × P(anomaly|xᵢ)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  ObservatoresUniversi,
+  createObservatoresUniversi,
+  OBSERVER_SUB_INTELLIGENCES,
+  LEX_OBSV_001,
+  phiDimensionalWeight,
+  resonanceSignal,
+  anomalyProbability,
+  observationFormula,
+  type ObserverDimensionalPlane,
+  type ObserverSubIntelligenceId,
+  type ObserverState,
+  type ObservationSeverity,
+  type ObservationReport,
+  type PatrolRoute,
+  type ObserverSubIntelligence,
+  type ObserverStatus,
+} from './intelligence/ObserverIntelligence';
+
+// OBSERVER SERVER MODELS — VIGIL (continuous monitoring) + SPECULATOR (analytical)
+export {
+  VIGILServer,
+  SPECULATORServer,
+  createVIGILServer,
+  createSPECULATORServer,
+  VIGIL_SUB_MODELS,
+  SPECULATOR_SUB_MODELS,
+  type ObserverServerModelId,
+  type ObservationTier,
+  type ObserverServerModel,
+  type VIGILSubModelId,
+  type SPECULATORSubModelId,
+  type ObserverSubModel,
+} from './models/ObserverModels';
+
+// OBSERVER SOLVER/SYNTHESIZERS — Pattern recognition + Theory proving
+export {
+  SynthesistaPatternorum,
+  TheoricusInterdimensionalis,
+  createSynthesistaPatternorum,
+  createTheoricusInterdimensionalis,
+  type SolverSynthesizerId,
+  type PatternSignature,
+  type TheoryResult,
+  type SynthesisInput,
+  type SolverSynthesizer,
+} from './models/ObserverSolverSynthesizers';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// UNIFIED ORGANISM INTERFACE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+import { PRISMA, PRISMA_CONSTANTS } from './tools/prisma';
+import { SUBSTRATE, SUBSTRATE_CONSTANTS } from './tools/substrate';
+import { OroVision, VISION_CONSTANTS } from './sensory/vision';
+import { NovaHearing, HEARING_CONSTANTS } from './sensory/hearing';
+import { SovereignMetaModel, getMetaModel, META_CONSTANTS } from './sensory/meta-model';
+import { 
+  SovereignAccessController, 
+  KeyboardController,
+  MouseController,
+  TabController,
+  InternetController,
+  FreeMoveController,
+  ACCESS_CONSTANTS 
+} from './access';
+import { LayerNavigator, LAYER_DEFINITIONS, LAYER_CONSTANTS } from './layers';
+import { UnifiedIntelligence, getUnifiedIntelligence, INTELLIGENCE_CONSTANTS } from './intelligence';
+import { AccessControlVault, VAULT_CONSTANTS } from './vault';
+import { PrismaCivilization, SubstrateCivilization, CIVILIZATION_CONSTANTS } from './civilizations';
+import { CORE_OPERATIONS, ARCHITECTURAL_TRUTH, touchAllBranches, getArchitectureStatus } from './ArchitectureWiring';
+import { PRIMITIVE_STACK, createField, makeDistinction, createRelation, createMeasure, createMapping } from './PrimitiveArchitecture';
+import { CIVILIZATION_ARCHITECTURES, TRICKSTER_FIGURES, NUMBER_LETTER_UNITY } from './AncientArchitecture';
+import { deployFromRoot, deployMultiDimensional, generateDeploymentReport } from './DeploymentAgentSystem';
+import { 
+  PHI, 
+  PRIMIS, 
+  ARCHITECTUS, 
+  DISSOLUTIO, 
+  FORMULOR, 
+  VERITAS, 
+  queryHelper,
+  deploySovereignBuildHelpers,
+  getAnimaChain,
+  getDocumentVault,
+} from './SovereignBuildHelpers';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// KNOWLEDGE SYNTHESIS ORGANISM — Ingest + Synthesize External Systems
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  synthesize,
+  seedKnowledge,
+  getSynthesisOrganism,
+  getKnowledgeBase,
+  getAllSystems,
+  getAllPasses,
+  getSynthesisPass,
+  querySystemByName,
+  SynthesisOrganism,
+  type ExternalSystem,
+  type ExternalSystemCapability,
+  type SynthesisPass,
+  type SynthesisKnowledgeBase,
+} from './KnowledgeSynthesisOrganism';
+
+import {
+  SynthesisOrganism,
+  getSynthesisOrganism,
+} from './KnowledgeSynthesisOrganism';
+
+export {
+  SovereignArchitectureDeliveryOrganism,
+  getSovereign,
+  runSovereignDelivery,
+  EDGE_CROSSING_TECHNOLOGIES,
+  type GatePass,
+  type SovereignVerdict,
+  type DeliveryTeam,
+  type TeamDelivery,
+  type ArchitectureChunk,
+  type EdgeCrossingSpec,
+  type DeliveryPackage,
+  type SovereignDeliveryReport,
+} from './SovereignArchitectureDelivery';
+
+import {
+  SovereignArchitectureDeliveryOrganism,
+  getSovereign,
+  runSovereignDelivery,
+} from './SovereignArchitectureDelivery';
+
+export {
+  assembleSovereignDeploymentTeams,
+  runFullSovereignDeployment,
+  activateTeamWithDelivery,
+  viewDocuments,
+  viewDocumentSummary,
+  getNativeRegistrySummary,
+  findNativeTechnology,
+  registerPlatform,
+  activateTransformer,
+  getActivePlatforms,
+  getActiveTransformers,
+  SOVEREIGN_NATIVE_REGISTRY,
+  SOVEREIGN_OWN_ICP,
+  type SovereignTeamRole,
+  type SovereignTeam,
+  type SovereignTeamMember,
+  type SovereignDeploymentAssembly,
+  type TeamDocument,
+  type ExternalPlatform,
+  type TranslatedTransformer,
+  type IntegrationMode,
+  type TeamLanguage,
+  type TeamStatus,
+  type NativeTechnologyCategory,
+  type NativeSubTechnology,
+} from './sovereign-engineers/SovereignDeploymentTeams';
+
+import {
+  assembleSovereignDeploymentTeams,
+  runFullSovereignDeployment,
+  viewDocuments,
+  viewDocumentSummary,
+  getNativeRegistrySummary,
+  findNativeTechnology,
+  registerPlatform,
+  getActivePlatforms,
+  getActiveTransformers,
+  SOVEREIGN_NATIVE_REGISTRY,
+  SOVEREIGN_OWN_ICP,
+} from './sovereign-engineers/SovereignDeploymentTeams';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ENGINES — REAL WIRED INTELLIGENCE MOTORS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  WitnessToArchitectureEngine,
+  WITNESS_ENGINE,
+  type WitnessRecord,
+  type ExtractedSignals,
+  type ArchitecturePacket,
+  type OrganismUpgrade,
+  type WitnessRegisterEntry,
+  type PacketType,
+} from './engines/WitnessToArchitectureEngine';
+
+export {
+  PhantomDecryptionEngine,
+  PHANTOM_ENGINE,
+  type NonceDiscovery,
+  type DecryptionResult,
+  type KeyRotationState,
+  type PhantomState,
+  type PhantomVisibility,
+} from './engines/PhantomDecryptionEngine';
+
+export {
+  SovereignTokenBridge,
+  TOKEN_BRIDGE,
+  type SovereignToken,
+  type TokenTransaction,
+  type MiningReward,
+  type BridgeContract,
+  type TokenType,
+  type TransactionType,
+} from './engines/SovereignTokenBridge';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FRONTEND FRACTURE LAYER — 100 TECHNOLOGIES AS INTELLIGENCE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  FrontendOrganismLayer,
+  FRONTEND_LAYER,
+} from '../frontend';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN ENTITY FAMILIES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SOVEREIGN_ENTITY_REGISTRY,
+  SOVEREIGN_ENTITIES,
+  SOVEREIGN_FAMILIES,
+  SovereignEntityRegistry,
+  type SovereignEntity,
+  type SovereignFamily,
+  type SovereignFamilyName,
+} from './sovereign-entities/SovereignEntityFamilies';
+
+import { WITNESS_ENGINE } from './engines/WitnessToArchitectureEngine';
+import { PHANTOM_ENGINE } from './engines/PhantomDecryptionEngine';
+import { TOKEN_BRIDGE } from './engines/SovereignTokenBridge';
+import { FRONTEND_LAYER } from '../frontend';
+import { SOVEREIGN_ENTITY_REGISTRY } from './sovereign-entities/SovereignEntityFamilies';
+
+/**
+ * Unified Organism Interface
+ * 
+ * Single entry point to all organism capabilities.
+ * Implements the ceiling-to-floor architecture with MetaModel as Intelligence
+ * across ALL layers. They are all ONE.
+ * 
+ * THE PRIMITIVE STACK:
+ *   1. field       → before number, before letter, possible states
+ *   2. distinction → something becomes not-that, boundary appears
+ *   3. relation    → distinctions bind: near/far, before/after, same/different
+ *   4. measure     → relations stabilize → number appears
+ *   5. mapping     → persistence/transfer → symbol appears
+ */
+export class SovereignOrganism {
+  // Core systems
+  public readonly metaModel: SovereignMetaModel;
+  public readonly vision: OroVision;
+  public readonly hearing: NovaHearing;
+  public readonly access: SovereignAccessController;
+  
+  // Layer Architecture
+  public readonly layerNavigator: LayerNavigator;
+  public readonly unifiedIntelligence: UnifiedIntelligence;
+  
+  // Civilizations
+  public readonly prismaCivilization: PrismaCivilization;
+  public readonly substrateCivilization: SubstrateCivilization;
+  
+  // Controllers
+  public readonly keyboard: KeyboardController;
+  public readonly mouse: MouseController;
+  public readonly tabs: TabController;
+  public readonly internet: InternetController;
+  public readonly freeMove: FreeMoveController;
+  
+  // Tools
+  public readonly PRISMA = PRISMA;
+  public readonly SUBSTRATE = SUBSTRATE;
+  
+  // CORE OPERATIONS OF LIVING ARCHITECTURE
+  public readonly coreOperations = CORE_OPERATIONS;
+  public readonly architecturalTruth = ARCHITECTURAL_TRUTH;
+  
+  // PRIMITIVE STACK — The Layer Beneath Number and Letter
+  public readonly primitiveStack = PRIMITIVE_STACK;
+  public readonly primitives = {
+    createField,
+    makeDistinction,
+    createRelation,
+    createMeasure,
+    createMapping,
+  };
+  
+  // ANCIENT ARCHITECTURE — Civilizations as Architectural Functions
+  public readonly civilizationArchitectures = CIVILIZATION_ARCHITECTURES;
+  public readonly tricksterFigures = TRICKSTER_FIGURES;
+  public readonly numberLetterUnity = NUMBER_LETTER_UNITY;
+  
+  // DEPLOYMENT AGENT SYSTEM — 5-Agent Teams from Root to All Branches
+  public readonly deployment = {
+    deployFromRoot,
+    deployMultiDimensional,
+    generateDeploymentReport,
+  };
+  
+  // SOVEREIGN BUILD HELPERS — 5 Fundamental Builders
+  public readonly sovereignHelpers = {
+    PHI,
+    PRIMIS,
+    ARCHITECTUS,
+    DISSOLUTIO,
+    FORMULOR,
+    VERITAS,
+    queryHelper,
+    deploySovereignBuildHelpers,
+    getAnimaChain,
+    getDocumentVault,
+  };
+  
+  // KNOWLEDGE SYNTHESIS ORGANISM — Ingests + Synthesizes external systems
+  // "Take his information, synthesize it, and put it in you."
+  public readonly synthesis: SynthesisOrganism = getSynthesisOrganism();
+
+  // SOVEREIGN ARCHITECTURE DELIVERY ORGANISM — Gates, routes, and delivers architecture
+  // "He needs to be completely sovereign. Give a yes to the team, or it isn't."
+  public readonly sovereign: SovereignArchitectureDeliveryOrganism = getSovereign();
+
+  // SOVEREIGN DEPLOYMENT TEAMS — 15 line teams, all sovereign, all builders
+  // "Create all the ones you need — co-design, architectural engineers, everything."
+  public readonly deploymentTeams = assembleSovereignDeploymentTeams();
+
+  // DOCUMENT STREAM — Where to see what the teams are delivering
+  // viewDocuments() / viewDocumentSummary() / registerPlatform() / getActivePlatforms()
+  public readonly documents = { viewDocuments, viewDocumentSummary, registerPlatform, getActivePlatforms, getActiveTransformers };
+
+  // CPL NATIVE REGISTRY — Every native technology form across all categories
+  // getNativeRegistrySummary() / findNativeTechnology() / SOVEREIGN_NATIVE_REGISTRY
+  public readonly native = { getNativeRegistrySummary, findNativeTechnology, SOVEREIGN_NATIVE_REGISTRY, SOVEREIGN_OWN_ICP };
+  
+  // Engines
+  readonly witnessEngine = WITNESS_ENGINE;
+  readonly phantomEngine = PHANTOM_ENGINE;
+  readonly tokenBridge = TOKEN_BRIDGE;
+  readonly frontendLayer = FRONTEND_LAYER;
+  readonly sovereignEntities = SOVEREIGN_ENTITY_REGISTRY;
+  
+  // Constants (All layers unified)
+  public readonly CONSTANTS = {
+    PRISMA: PRISMA_CONSTANTS,
+    SUBSTRATE: SUBSTRATE_CONSTANTS,
+    VISION: VISION_CONSTANTS,
+    HEARING: HEARING_CONSTANTS,
+    META: META_CONSTANTS,
+    ACCESS: ACCESS_CONSTANTS,
+    LAYERS: LAYER_CONSTANTS,
+    INTELLIGENCE: INTELLIGENCE_CONSTANTS,
+    VAULT: VAULT_CONSTANTS,
+    CIVILIZATIONS: CIVILIZATION_CONSTANTS,
+  };
+  
+  constructor() {
+    // Initialize core systems
+    this.metaModel = getMetaModel();
+    this.vision = this.metaModel.getVision();
+    this.hearing = this.metaModel.getHearing();
+    this.access = this.metaModel.getAccessController();
+    
+    // Initialize layer architecture
+    this.layerNavigator = new LayerNavigator();
+    this.unifiedIntelligence = getUnifiedIntelligence();
+    
+    // Initialize civilizations
+    this.prismaCivilization = new PrismaCivilization();
+    this.substrateCivilization = new SubstrateCivilization();
+    
+    // Initialize controllers
+    this.keyboard = new KeyboardController(this.access);
+    this.mouse = new MouseController(this.access);
+    this.tabs = new TabController(this.access);
+    this.internet = new InternetController(this.access);
+    this.freeMove = new FreeMoveController(this.access);
+  }
+  
+  /**
+   * Start the organism
+   */
+  start(): void {
+    console.log('𓂀 Sovereign Organism: Awakening...');
+    console.log('☥ Starting MetaModel as Intelligence across ALL layers...');
+    
+    // Touch all branches from root with core operations
+    const branches = touchAllBranches();
+    console.log(`𓆃 Core Operations wired to ${branches.length} architectural domains`);
+    
+    this.metaModel.start();
+    this.unifiedIntelligence.start();
+    this.prismaCivilization.activate();
+    this.substrateCivilization.activate();
+    
+    // Log architecture status
+    const status = getArchitectureStatus();
+    console.log(`☥ Architecture: ${status.totalDomains} domains, ${status.edges.length} edges`);
+    console.log(`☥ Core Operations: transfer, inversion, bypass, disguise, re-entry`);
+    console.log('☥ Organism is now alive and processing');
+    console.log('𓆃 Ceiling to floor flow established. Let it flow.');
+  }
+  
+  /**
+   * Stop the organism
+   */
+  stop(): void {
+    console.log('Ω Sovereign Organism: Entering dormancy...');
+    this.metaModel.stop();
+    this.unifiedIntelligence.stop();
+    this.prismaCivilization.deactivate();
+    this.substrateCivilization.deactivate();
+    this.hearing.cleanup();
+  }
+  
+  /**
+   * Enable all sensory systems
+   */
+  async enableAllSenses(): Promise<void> {
+    console.log('𓂀 Enabling all sensory systems...');
+    await this.metaModel.enableVision();
+    await this.metaModel.enableHearing();
+    console.log('☥ All senses enabled');
+  }
+  
+  /**
+   * Get current state
+   */
+  getState() {
+    return this.metaModel.getSyncState();
+  }
+  
+  /**
+   * Get current beat
+   */
+  getBeat(): number {
+    return this.metaModel.getBeat();
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // LAYER NAVIGATION
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  /**
+   * Get current layer
+   */
+  getCurrentLayer() {
+    return this.layerNavigator.getCurrentLayer();
+  }
+  
+  /**
+   * Get ceiling layer (www.raw)
+   */
+  getCeiling() {
+    return this.layerNavigator.getCeiling();
+  }
+  
+  /**
+   * Get floor layer (organism endpoint)
+   */
+  getFloor() {
+    return this.layerNavigator.getFloor();
+  }
+  
+  /**
+   * Flow from ceiling to floor
+   */
+  *flowDown() {
+    yield* this.layerNavigator.flowDown();
+  }
+  
+  /**
+   * Flow from floor to ceiling
+   */
+  *flowUp() {
+    yield* this.layerNavigator.flowUp();
+  }
+  
+  /**
+   * Complete round trip flow
+   */
+  *completeFlow() {
+    yield* this.layerNavigator.completeFlow();
+  }
+  
+  /**
+   * Get overall coherence across all layers
+   */
+  getCoherence(): number {
+    return this.unifiedIntelligence.getOverallCoherence();
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SENSORY OPERATIONS
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  /**
+   * Look at screen and understand
+   */
+  async look() {
+    return this.metaModel.lookAndUnderstand();
+  }
+  
+  /**
+   * Listen and understand
+   */
+  async listen() {
+    return this.metaModel.listenAndUnderstand();
+  }
+  
+  /**
+   * Process voice command
+   */
+  async processVoice() {
+    return this.metaModel.processVoiceCommand();
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ARTIFACT OPERATIONS
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  /**
+   * Create artifact
+   */
+  createArtifact(type: string, content: any) {
+    return this.metaModel.createArtifact(type, content);
+  }
+  
+  /**
+   * Execute artifact
+   */
+  async executeArtifact(artifactId: string, executor: (content: any) => Promise<any>) {
+    return this.metaModel.executeArtifact(artifactId, executor);
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // METADATA OPERATIONS
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  /**
+   * Read metadata from any entity
+   */
+  readMetadata(entity: any) {
+    return this.metaModel.readMetadata(entity);
+  }
+  
+  /**
+   * Write metadata to entity
+   */
+  writeMetadata<T>(entity: T, metadata: any) {
+    return this.metaModel.writeMetadata(entity, metadata);
+  }
+  
+  /**
+   * Get trust score
+   */
+  getTrustScore(): number {
+    return this.access.getTrustScore();
+  }
+  
+  /**
+   * Get access dropdown for UI
+   */
+  getAccessDropdown() {
+    return this.access.getAccessDropdown();
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ARCHITECTURE OPERATIONS — Core Operations of Living Architecture
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  /**
+   * Get architecture status
+   */
+  getArchitectureStatus() {
+    return getArchitectureStatus();
+  }
+  
+  /**
+   * Touch all branches from root
+   */
+  touchAllBranches() {
+    return touchAllBranches();
+  }
+  
+  /**
+   * Transfer operation
+   */
+  transfer<T>(payload: T, source: string, target: string) {
+    return this.coreOperations.transfer(payload, source, target);
+  }
+  
+  /**
+   * Invert operation
+   */
+  invert<T>(input: T, type: 'negate' | 'mirror' | 'complement' | 'transpose' | 'reverse') {
+    return this.coreOperations.invert(input, type);
+  }
+  
+  /**
+   * Bypass operation
+   */
+  bypass(normalPath: string[], bypassPath: string[], reason: string) {
+    return this.coreOperations.bypass(normalPath, bypassPath, reason);
+  }
+  
+  /**
+   * Disguise operation
+   */
+  disguise<T>(original: T, appearance: string) {
+    return this.coreOperations.disguise(original, appearance);
+  }
+  
+  /**
+   * Re-entry operation
+   */
+  reenter<T>(payload: T, exitPoint: string, reEntryPoint: string) {
+    return this.coreOperations.reenter(payload, exitPoint, reEntryPoint);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SINGLETON ORGANISM INSTANCE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+let organismInstance: SovereignOrganism | null = null;
+
+/**
+ * Get the singleton Sovereign Organism instance
+ */
+export function getOrganism(): SovereignOrganism {
+  if (!organismInstance) {
+    organismInstance = new SovereignOrganism();
+  }
+  return organismInstance;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DEFAULT EXPORT
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export default {
+  // Main class
+  SovereignOrganism,
+  getOrganism,
+  
+  // Tool frameworks
+  PRISMA,
+  SUBSTRATE,
+  
+  // Sensory systems
+  OroVision,
+  NovaHearing,
+  SovereignMetaModel,
+  getMetaModel,
+  
+  // Access control
+  SovereignAccessController,
+  KeyboardController,
+  MouseController,
+  TabController,
+  InternetController,
+  FreeMoveController,
+  
+  // Layer architecture
+  LayerNavigator,
+  LAYER_DEFINITIONS,
+  
+  // Intelligence
+  UnifiedIntelligence,
+  getUnifiedIntelligence,
+  
+  // Vault
+  AccessControlVault,
+  
+  // Civilizations
+  PrismaCivilization,
+  SubstrateCivilization,
+  
+  // Engines
+  WITNESS_ENGINE,
+  PHANTOM_ENGINE,
+  TOKEN_BRIDGE,
+  FRONTEND_LAYER,
+  SOVEREIGN_ENTITY_REGISTRY,
+  
+  // CORE OPERATIONS OF LIVING ARCHITECTURE
+  CORE_OPERATIONS,
+  ARCHITECTURAL_TRUTH,
+  touchAllBranches,
+  getArchitectureStatus,
+  
+  // All constants
+  CONSTANTS: {
+    PRISMA: PRISMA_CONSTANTS,
+    SUBSTRATE: SUBSTRATE_CONSTANTS,
+    VISION: VISION_CONSTANTS,
+    HEARING: HEARING_CONSTANTS,
+    META: META_CONSTANTS,
+    ACCESS: ACCESS_CONSTANTS,
+    LAYERS: LAYER_CONSTANTS,
+    INTELLIGENCE: INTELLIGENCE_CONSTANTS,
+    VAULT: VAULT_CONSTANTS,
+    CIVILIZATIONS: CIVILIZATION_CONSTANTS,
+  },
+};

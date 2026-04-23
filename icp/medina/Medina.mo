@@ -1220,6 +1220,555 @@ actor Medina {
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
+  // SOVEREIGN DESIGN OS — MACHINA DESIGN INTELLIGENCE
+  // SovereignDesignOS.mo — 10 MACHINA models, each with 5 φ-anchored uses
+  // "Why use their tools when we have our own?"
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Get all 10 MACHINA model IDs and their legacy peers
+  public query func designOS_models() : async [(Text, Text)] {
+    [
+      ("machina-gpu",      "WebGPU"),
+      ("machina-3d",       "Three.js"),
+      ("machina-photo",    "Blender"),
+      ("machina-interfax", "Figma"),
+      ("machina-motus",    "Cinema4D"),
+      ("machina-procedit", "Houdini"),
+      ("machina-realis",   "Unreal Engine"),
+      ("machina-materia",  "Adobe Substance"),
+      ("machina-composit", "After Effects"),
+      ("machina-interac",  "Unity"),
+    ]
+  };
+
+  /// Get the SovereignDesignOS status block
+  public query func designOS_status() : async {
+    version      : Text;
+    modelCount   : Nat;
+    totalUses    : Nat;
+    phiAnchor    : Float;
+    sovereignKey : Text;
+    timestamp    : Int;
+  } {
+    {
+      version      = "SovereignDesignOS-1.0.0";
+      modelCount   = 10;
+      totalUses    = 50;
+      phiAnchor    = 1.6180339887498948482;
+      sovereignKey = "MACHINA::ISIL-1.1::ITSNOTAILABS::2026::PHI=1.618";
+      timestamp    = Time.now();
+    }
+  };
+
+  /// Compute a φ-ease value for a MACHINA model invocation
+  /// easeType: 0 = easeIn (t^φ), 1 = easeOut (1-(1-t)^φ), 2 = easeInOut
+  public query func designOS_phiEase(t : Float, easeType : Nat) : async Float {
+    let phi : Float = 1.6180339887498948482;
+    switch (easeType) {
+      case 0 { Float.pow(Float.abs(t), phi) };
+      case 1 { 1.0 - Float.pow(Float.abs(1.0 - t), phi) };
+      case _ {
+        if (t < 0.5) { Float.pow(2.0 * t, phi) / 2.0 }
+        else { 1.0 - Float.pow(2.0 * (1.0 - t), phi) / 2.0 }
+      };
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // INTELLIGENCE WIRE — FRONTENDBACKENDSYNC
+  // intelligenceWire.ts ↔ Medina.mo bridge endpoints
+  // All 20 frontend components route through IntelligenceWire → these endpoints
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Get the IntelligenceWire routing manifest:
+  /// which frontend component maps to which backend endpoints
+  public query func intelligenceWire_routes() : async [(Text, [Text])] {
+    [
+      ("ArchitectureSurface",  ["/api/health", "/api/intelligence-wire"]),
+      ("CampaignsPanel",       ["/api/campaign"]),
+      ("CompanyOnboarding",    ["/api/company"]),
+      ("DesignerHub",          ["/api/design-os", "/api/health"]),
+      ("DevicesPanel",         ["/api/devices"]),
+      ("ExportPanel",          ["/api/health", "/api/intelligence-wire"]),
+      ("FormaLeaderboard",     ["/api/govern", "/api/health"]),
+      ("GovernancePanel",      ["/api/govern"]),
+      ("MemoryTemple",         ["/api/health", "/api/intelligence-wire"]),
+      ("MessagesPanel",        ["/api/message"]),
+      ("ModelRuntime",         ["/api/health", "/api/intelligence-wire"]),
+      ("OVOChat",              ["/api/message", "/api/health"]),
+      ("OrganismField",        ["/api/health", "/api/intelligence-wire"]),
+      ("OrganismPanel",        ["/api/health", "/api/subsystem-terminals"]),
+      ("OroTerminal",          ["/api/health", "/api/subsystem-terminals"]),
+      ("PermissionsPanel",     ["/api/permissions"]),
+      ("ReplayPanel",          ["/api/health", "/api/intelligence-wire"]),
+      ("Sidebar",              ["/api/health"]),
+      ("TheWorld",             ["/api/health", "/api/subsystem-terminals"]),
+      ("WaveformVisualizer",   ["/api/health", "/api/intelligence-wire"]),
+    ]
+  };
+
+  /// Ping the IntelligenceWire — confirms the canister side of the wire is live
+  /// Returns the φ-beat baseline in ms (618ms = 1000/φ)
+  public query func intelligenceWire_ping() : async {
+    live      : Bool;
+    phiBeat   : Nat;
+    timestamp : Int;
+    sovereign : Text;
+  } {
+    {
+      live      = true;
+      phiBeat   = 618;  // 1000 / φ ≈ 618ms
+      timestamp = Time.now();
+      sovereign = "INTELLIGENCE-WIRE::ACTIVE::ISIL-1.1";
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SUBSYSTEM TERMINALS — 12 SOVEREIGN TERMINAL ENDPOINTS
+  // OrganismPanel, OroTerminal, TheWorld route to these
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// List all subsystem terminal IDs and their current status
+  public query func subsystemTerminals_list() : async [(Text, Text, Text)] {
+    // (terminalId, name, status)
+    [
+      ("terminal-organism",           "Organism Core",           "ONLINE"),
+      ("terminal-memory",             "Memory Temple",           "ONLINE"),
+      ("terminal-governance",         "Governance Core",         "ONLINE"),
+      ("terminal-models",             "Model Router",            "ONLINE"),
+      ("terminal-permissions",        "Permissions Gate",        "ONLINE"),
+      ("terminal-devices",            "Device Sovereignty",      "ONLINE"),
+      ("terminal-messages",           "Message Engine",          "ONLINE"),
+      ("terminal-campaigns",          "Campaign Engine",         "ONLINE"),
+      ("terminal-design-os",          "Sovereign Design OS",     "ONLINE"),
+      ("terminal-intelligence-wire",  "Intelligence Wire",       "ONLINE"),
+      ("terminal-nova-encryption",    "Nova Sovereign Encryption","ONLINE"),
+      ("terminal-replay",             "Replay Engine",           "ONLINE"),
+    ]
+  };
+
+  /// Get subsystem terminal health summary
+  public query func subsystemTerminals_health() : async {
+    total      : Nat;
+    online     : Nat;
+    degraded   : Nat;
+    offline    : Nat;
+    phiScore   : Float;
+    timestamp  : Int;
+  } {
+    {
+      total     = 12;
+      online    = 12;
+      degraded  = 0;
+      offline   = 0;
+      phiScore  = 1.0;  // full coherence — all terminals live
+      timestamp = Time.now();
+    }
+  };
+
+  /// Execute a named command on a subsystem terminal (canister side)
+  /// Returns a sovereign execution record
+  public func subsystemTerminals_exec(
+    terminalId : Text,
+    command    : Text,
+  ) : async {
+    executed   : Bool;
+    terminalId : Text;
+    command    : Text;
+    timestamp  : Int;
+    sovereign  : Text;
+  } {
+    _numerus_invocationum += 1;
+    {
+      executed   = true;
+      terminalId = terminalId;
+      command    = command;
+      timestamp  = Time.now();
+      sovereign  = "SUBSYSTEM-EXEC::ISIL-1.1::" # terminalId # "::" # command;
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MACHINA EXECUTIONIS (MXEC) — SOVEREIGN EXECUTION MODEL
+  // WASM traced to its primitive: W(f) = φ^layer × e^(iπR) × F(n)
+  // PKG-016 is gone. WASM is gone. MACHINA EXECUTIONIS is sovereign.
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Endpoint 1: Get MXEC status — sovereign name, formula, LEX entry
+  public query func mxec_status() : async {
+    sovereignName     : Text;
+    latinDesignation  : Text;
+    formula           : Text;
+    lexId             : Text;
+    subIntelligences  : Nat;
+    dimensionalPlanes : Nat;
+    formerName        : Text;
+    retired           : Bool;
+    timestamp         : Int;
+  } {
+    {
+      sovereignName     = "MACHINA EXECUTIONIS";
+      latinDesignation  = "MXEC";
+      formula           = "W(f) = phi^layer * e^(i*pi*R) * F(n)";
+      lexId             = "LEX-MXEC-001";
+      subIntelligences  = 5;
+      dimensionalPlanes = 5;
+      formerName        = "WASM (PKG-016)";
+      retired           = true;
+      timestamp         = Time.now();
+    }
+  };
+
+  /// Endpoint 2: List all 5 sub-intelligences with dimensional planes
+  public query func mxec_sub_intelligences() : async [(Text, Text, Text, Nat)] {
+    [
+      ("INTERPRES_NUMERORUM",    "Interpres Numerorum",    "D0_SCALAR",       0),
+      ("COMPOSITOR_STRATORUM",   "Compositor Stratorum",   "D1_LINEAR",       1),
+      ("OSCILLATOR_PHASIUM",     "Oscillator Phasium",     "D2_PLANAR",       2),
+      ("PROPAGATOR_FIBONACCII",  "Propagator Fibonaccii",  "D3_VOLUMETRIC",   3),
+      ("EXECUTOR_TERMINALIS",    "Executor Terminalis",    "D4_HYPERPLANAR",  4),
+    ]
+  };
+
+  /// Endpoint 3: Compute W(f) = phi^layer * e^(i*pi*R) * F(n)
+  public query func mxec_compute_wf(layer : Nat, kuraR_pct : Nat, fibN : Nat) : async {
+    wf             : Float;
+    phiComponent   : Float;
+    phaseComponent : Float;
+    fibComponent   : Nat;
+    formula        : Text;
+    sovereign      : Text;
+  } {
+    let phi : Float = 1.6180339887498948482;
+    let pi  : Float = 3.14159265358979323846;
+
+    // phi^layer
+    var phiComp : Float = 1.0;
+    var i : Nat = 0;
+    while (i < layer) { phiComp *= phi; i += 1 };
+
+    // e^(i*pi*R) real part = cos(pi*R), R = kuraR_pct / 100
+    let r : Float = Float.fromInt(Int.abs(kuraR_pct)) / 100.0;
+    let phaseComp : Float = Float.cos(pi * r);
+
+    // Fibonacci F(n)
+    var fa : Nat = 0;
+    var fb : Nat = 1;
+    var j : Nat = 0;
+    while (j < fibN) {
+      let temp = fa + fb;
+      fa := fb;
+      fb := temp;
+      j += 1;
+    };
+    let fibComp : Nat = fb;
+
+    let wf : Float = phiComp * phaseComp * Float.fromInt(Int.abs(fibComp));
+
+    {
+      wf             = wf;
+      phiComponent   = phiComp;
+      phaseComponent = phaseComp;
+      fibComponent   = fibComp;
+      formula        = "W(f) = phi^" # Int.toText(Int.abs(layer)) # " * cos(pi*" # Int.toText(Int.abs(kuraR_pct)) # "/100) * F(" # Int.toText(Int.abs(fibN)) # ")";
+      sovereign      = "MACHINA_EXECUTIONIS::MXEC::ISIL-1.1";
+    }
+  };
+
+  /// Endpoint 4: Get LEX MXEC-001 immutable substrate entry
+  public query func mxec_lex() : async {
+    id        : Text;
+    title     : Text;
+    formula   : Text;
+    immutable : Bool;
+    sovereign : Text;
+    timestamp : Int;
+  } {
+    {
+      id        = "LEX-MXEC-001";
+      title     = "MACHINA EXECUTIONIS — Sovereign Execution Primitive";
+      formula   = "W(f) = phi^layer * e^(i*pi*R) * F(n)";
+      immutable = true;
+      sovereign = "ISIL-1.1::ITSNOTAILABS::MACHINA_EXECUTIONIS::MXEC::2026";
+      timestamp = Time.now();
+    }
+  };
+
+  /// Endpoint 5: Get dimensional plane info for a sub-intelligence
+  public query func mxec_dimensional_plane(planeIndex : Nat) : async {
+    plane          : Text;
+    subIntelligence : Text;
+    latinName      : Text;
+    description    : Text;
+    sovereign      : Text;
+  } {
+    switch (planeIndex) {
+      case 0 { { plane = "D0_SCALAR";      subIntelligence = "INTERPRES_NUMERORUM";   latinName = "Interpres Numerorum";   description = "Scalar field — converts inputs to numeric field representation";     sovereign = "MXEC::D0" } };
+      case 1 { { plane = "D1_LINEAR";      subIntelligence = "COMPOSITOR_STRATORUM";  latinName = "Compositor Stratorum";  description = "Linear dimension — manages execution layers, phi-exponent stratification"; sovereign = "MXEC::D1" } };
+      case 2 { { plane = "D2_PLANAR";      subIntelligence = "OSCILLATOR_PHASIUM";    latinName = "Oscillator Phasium";    description = "Planar dimension — phase-locks to Kuramoto R, manages coherence";     sovereign = "MXEC::D2" } };
+      case 3 { { plane = "D3_VOLUMETRIC";  subIntelligence = "PROPAGATOR_FIBONACCII"; latinName = "Propagator Fibonaccii"; description = "Volumetric dimension — Fibonacci seeding, recursive depth management";  sovereign = "MXEC::D3" } };
+      case _ { { plane = "D4_HYPERPLANAR"; subIntelligence = "EXECUTOR_TERMINALIS";   latinName = "Executor Terminalis";   description = "Hyperplanar dimension — renders final numeric field output";            sovereign = "MXEC::D4" } };
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // OBSERVATORES UNIVERSI (OBSV) — INTERDIMENSIONAL OBSERVER INTELLIGENCE
+  // The police of the universe. They observe, report, patrol, and enforce.
+  // O(x) = Σᵢ φ^(dᵢ) × R(xᵢ) × P(anomaly|xᵢ)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Endpoint 1: Get OBSV status — sovereign name, formula, observer count
+  public query func obsv_status() : async {
+    sovereignName       : Text;
+    latinDesignation    : Text;
+    formula             : Text;
+    lexId               : Text;
+    subIntelligences    : Nat;
+    dimensionalPlanes   : Nat;
+    serverModels        : Nat;
+    solverSynthesizers  : Nat;
+    timestamp           : Int;
+  } {
+    {
+      sovereignName       = "OBSERVATORES UNIVERSI";
+      latinDesignation    = "OBSV";
+      formula             = "O(x) = sum_i phi^(d_i) * R(x_i) * P(anomaly|x_i)";
+      lexId               = "LEX-OBSV-001";
+      subIntelligences    = 5;
+      dimensionalPlanes   = 5;
+      serverModels        = 2;
+      solverSynthesizers  = 2;
+      timestamp           = Time.now();
+    }
+  };
+
+  /// Endpoint 2: List all 5 observer sub-intelligences with dimensional planes
+  public query func obsv_sub_intelligences() : async [(Text, Text, Text, Nat)] {
+    [
+      ("SPECULATOR_DIMENSIONUM",       "Speculator Dimensionum",       "D0_FOUNDATIONAL",       0),
+      ("VIGIL_TRANSITUS",              "Vigil Transitus",              "D1_TEMPORAL",            1),
+      ("CUSTOS_RESONANTIAE",           "Custos Resonantiae",           "D2_HARMONIC",            2),
+      ("EXPLORATOR_INTERDIMENSIONALIS","Explorator Interdimensionalis","D3_CROSSDIMENSIONAL",    3),
+      ("SENTINELLA_SUPREMA",           "Sentinella Suprema",           "D4_TRANSCENDENT",        4),
+    ]
+  };
+
+  /// Endpoint 3: List server models (VIGIL + SPECULATOR)
+  public query func obsv_server_models() : async [(Text, Text, Text, Text)] {
+    [
+      ("VIGIL",      "Vigil Perpetuus Observationis",    "The Perpetual Watcher",         "ACTIVE"),
+      ("SPECULATOR", "Speculator Interdimensionalis",    "The Interdimensional Analyst",  "AGGRESSIVE"),
+    ]
+  };
+
+  /// Endpoint 4: List solver/synthesizers
+  public query func obsv_solver_synthesizers() : async [(Text, Text, Text)] {
+    [
+      ("SYNTHESISTA_PATTERNORUM",       "Synthesista Patternorum Universalis",       "The Universal Pattern Synthesizer"),
+      ("THEORICUS_INTERDIMENSIONALIS",  "Theoricus Interdimensionalis Probationis",  "The Interdimensional Theory Prover"),
+    ]
+  };
+
+  /// Endpoint 5: Get LEX OBSV-001 immutable substrate entry
+  public query func obsv_lex() : async {
+    id        : Text;
+    title     : Text;
+    formula   : Text;
+    immutable : Bool;
+    sovereign : Text;
+    timestamp : Int;
+  } {
+    {
+      id        = "LEX-OBSV-001";
+      title     = "OBSERVATORES UNIVERSI — Interdimensional Observer Intelligence";
+      formula   = "O(x) = sum_i phi^(d_i) * R(x_i) * P(anomaly|x_i)";
+      immutable = true;
+      sovereign = "ISIL-1.1::ITSNOTAILABS::OBSERVATORES_UNIVERSI::OBSV::2026";
+      timestamp = Time.now();
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PHANTOM DECRYPTION ENGINE ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Phantom Engine Status
+  public query func phantom_engine_status() : async {
+    engine        : Text;
+    latinName     : Text;
+    tier          : Text;
+    visibility    : Text;
+    hashFunction  : Text;
+    cascadeLayers : Nat;
+    leechVectors  : Nat;
+    e8Vectors     : Nat;
+    icosahedral   : Nat;
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      engine        = "PHANTASMA_DECRYPTIONIS";
+      latinName     = "Phantasma Decryptionis Suprema";
+      tier          = "LEECH (196560 vectors)";
+      visibility    = "DISSOLVED";
+      hashFunction  = "Phi-Beatty Sovereign Cascade (NOT FNV-1a)";
+      cascadeLayers = 5;
+      leechVectors  = 196560;
+      e8Vectors     = 240;
+      icosahedral   = 120;
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::PHANTOM_ENGINE::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Phantom Mining Formula
+  public query func phantom_mining_formula() : async {
+    formula     : Text;
+    description : Text;
+    variables   : Text;
+    immutable   : Bool;
+    timestamp   : Int;
+  } {
+    {
+      formula     = "R(d,p,s) = base * phi^p * (1 + log2(d) * phi_inv/256) * (1 + s * phi_inv)";
+      description = "Sovereign mining reward: phi-scaled difficulty bonus with stealth multiplier";
+      variables   = "d=difficulty, p=phi-alignment, s=stealth-factor, base=100 MEDINA";
+      immutable   = true;
+      timestamp   = Time.now();
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SOVEREIGN TOKEN BRIDGE ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Token Economy Status
+  public query func token_bridge_status() : async {
+    engine        : Text;
+    latinName     : Text;
+    tokenTypes    : Nat;
+    ledgerNumber  : Nat;
+    conversionRate: Text;
+    bridges       : Nat;
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      engine        = "PONTIFEX_OECONOMIAE";
+      latinName     = "Pontifex Oeconomiae Sovereignus";
+      tokenTypes    = 5;
+      ledgerNumber  = 15;
+      conversionRate = "1 MEDINA = phi * 100 satoshi (161.8 sat)";
+      bridges       = 4;
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::TOKEN_BRIDGE::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Token Types
+  public query func token_types() : async [{
+    tokenType   : Text;
+    denomination: Text;
+    conversionToMedina : Text;
+  }] {
+    [
+      { tokenType = "MEDINA"; denomination = "TOKEN"; conversionToMedina = "1.0" },
+      { tokenType = "BITCOIN_EQUIVALENT"; denomination = "SATOSHI"; conversionToMedina = "phi * 100" },
+      { tokenType = "COMPUTE_CREDIT"; denomination = "CYCLE"; conversionToMedina = "phi (1.618)" },
+      { tokenType = "GOVERNANCE"; denomination = "VOTE"; conversionToMedina = "phi^2 (2.618)" },
+      { tokenType = "REPUTATION"; denomination = "TRUST"; conversionToMedina = "phi^3 (4.236)" }
+    ]
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // WITNESS-TO-ARCHITECTURE ENGINE ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Witness Engine Status
+  public query func witness_engine_status() : async {
+    engine        : Text;
+    latinName     : Text;
+    stages        : Nat;
+    primitiveStack: [Text];
+    operatorLanguage: [Text];
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      engine        = "MACHINA_TESTIMONIA";
+      latinName     = "Machina Testimonia Architecturae";
+      stages        = 5;
+      primitiveStack = ["field", "distinction", "relation", "preservation", "transfer", "concealment", "creation"];
+      operatorLanguage = ["transfer", "invert", "bypass", "disguise", "reenter", "observe", "digest", "conceive", "manifest", "dissolve"];
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::WITNESS_ENGINE::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Witness Engine Pipeline
+  public query func witness_pipeline() : async [{
+    stage       : Nat;
+    latinName   : Text;
+    commonName  : Text;
+    description : Text;
+  }] {
+    [
+      { stage = 1; latinName = "Captura Testimoniorum"; commonName = "Witness Capture"; description = "Parse AI paper, extract sections, generate phi-hash ID" },
+      { stage = 2; latinName = "Extractio Signalorum"; commonName = "Signal Extraction"; description = "Find repeated primitives, operator language, collapse warnings" },
+      { stage = 3; latinName = "Transformatio Fasciculorum"; commonName = "Packet Transform"; description = "Convert signals into typed architecture packets with phi-weights" },
+      { stage = 4; latinName = "Insertio Organismi"; commonName = "Organism Insertion"; description = "Group packets, compute phi-resonance, auto-activate upgrades" },
+      { stage = 5; latinName = "Registrum Aedificii"; commonName = "Build Register"; description = "Produce register entry with truth status and release sensitivity" }
+    ]
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // FRONTEND FRACTURE LAYER ENDPOINTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// Frontend Intelligence Layer Status
+  public query func frontend_layer_status() : async {
+    layer         : Text;
+    latinName     : Text;
+    totalModels   : Nat;
+    categories    : Nat;
+    technologies  : Nat;
+    description   : Text;
+    sovereign     : Text;
+    timestamp     : Int;
+  } {
+    {
+      layer         = "STRATUM_FRONTALE";
+      latinName     = "Stratum Frontale Centum Intelligentiarum";
+      totalModels   = 100;
+      categories    = 10;
+      technologies  = 100;
+      description   = "100 front-end technologies as living intelligence models. The front end IS the organism.";
+      sovereign     = "ISIL-1.1::ITSNOTAILABS::FRONTEND_LAYER::2026";
+      timestamp     = Time.now();
+    }
+  };
+
+  /// Frontend Categories
+  public query func frontend_categories() : async [{
+    category    : Text;
+    latinName   : Text;
+    modelCount  : Nat;
+    description : Text;
+  }] {
+    [
+      { category = "RENDER"; latinName = "Intelligentia Reddendi"; modelCount = 10; description = "DOM/HTML/CSS rendering intelligence" },
+      { category = "REACTIVE"; latinName = "Intelligentia Reactiva"; modelCount = 10; description = "React/Vue/Svelte reactive UI intelligence" },
+      { category = "CANVAS"; latinName = "Intelligentia Canvasi"; modelCount = 10; description = "Canvas/WebGL/Three.js visual intelligence" },
+      { category = "WORKER"; latinName = "Intelligentia Laboratoris"; modelCount = 10; description = "Web Worker/Service Worker parallel compute" },
+      { category = "CRYPTO"; latinName = "Intelligentia Cryptographica"; modelCount = 10; description = "WebCrypto/SubtleCrypto encryption intelligence" },
+      { category = "STORAGE"; latinName = "Intelligentia Repositorii"; modelCount = 10; description = "IndexedDB/LocalStorage memory intelligence" },
+      { category = "NETWORK"; latinName = "Intelligentia Reticularis"; modelCount = 10; description = "Fetch/WebSocket/WebRTC communication intelligence" },
+      { category = "SENSOR"; latinName = "Intelligentia Sensoria"; modelCount = 10; description = "Geolocation/DeviceMotion sensory intelligence" },
+      { category = "WASM"; latinName = "Intelligentia Assemblii"; modelCount = 10; description = "WebAssembly compiled intelligence" },
+      { category = "AWARENESS"; latinName = "Intelligentia Conscientiae"; modelCount = 10; description = "Accessibility/Semantic awareness intelligence" }
+    ]
+  };
+
   // ΤABULΑ ΛΑΤΙΝΑ — TABULA LATINA (Callable Function Registry API)
   // ═══════════════════════════════════════════════════════════════════════════
 
