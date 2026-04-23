@@ -283,7 +283,7 @@ For each field model:
 resonance(input) = min(0.95, keywordHits / totalKeywords × 3)
 ```
 
-Domain keywords are seeded per domain (e.g., `stream`, `flow`, `pipe` for STREAMS_SOVEREIGN). Model-level tokens from the sovereign name, Latin name, and description description are added. The combined keyword set participates in cross-domain resonance scoring.
+Domain keywords are seeded per domain (e.g., `stream`, `flow`, `pipe` for STREAMS_SOVEREIGN). Model-level tokens from the sovereign name, Latin name, and description are added. The combined keyword set participates in cross-domain resonance scoring.
 
 ### Doctrine Injection
 

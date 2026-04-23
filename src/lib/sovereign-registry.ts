@@ -368,6 +368,10 @@ export function bootSovereignRegistry(): void {
   // Registered into the ULRI substrate so every field model participates
   // in routing, resonance scoring, and doctrine injection.
 
+  // Resonance scoring constants
+  const MAX_RESONANCE_SCORE = 0.95;  // Cap so field models never fully dominate core intelligence models
+  const KEYWORD_MATCH_MULTIPLIER = 3; // Amplifier: a 33% keyword-hit rate yields resonance ≈ 1.0 (before cap)
+
   for (const domain of ALL_SOVEREIGN_FIELD_DOMAINS) {
     const domainKeywords = DOMAIN_KEYWORDS[domain.id];
     const domainKind = DOMAIN_KIND_MAP[domain.id];
@@ -395,7 +399,7 @@ export function bootSovereignRegistry(): void {
         resonance: (input) => {
           const lower = input.toLowerCase();
           const hits = allKeywords.filter((kw) => lower.includes(kw)).length;
-          return Math.min(0.95, hits / Math.max(allKeywords.length, 1) * 3);
+          return Math.min(MAX_RESONANCE_SCORE, hits / Math.max(allKeywords.length, 1) * KEYWORD_MATCH_MULTIPLIER);
         },
         expand: () => domain.models.map((m) => `${m.id} — ${m.latinName}`),
         invoke: (input) => `${fieldModel.id} (${fieldModel.latinName}): ${fieldModel.description} — processing "${input.slice(0, 40)}"`,
