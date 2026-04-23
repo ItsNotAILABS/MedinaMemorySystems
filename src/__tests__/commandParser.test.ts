@@ -46,6 +46,16 @@ describe('commandParser', () => {
         expect(result.flags).toEqual({ limit: '5', verbose: true });
       });
 
+      it('should parse all memory commands', () => {
+        const verbs = ['find', 'store', 'pin', 'unpin', 'delete', 'lineage', 'navigate', 'dual', 'list', 'root', 'update', 'stats', 'pinned'];
+        for (const verb of verbs) {
+          const result = parseCommand(`/memory ${verb}`);
+          expect(result.valid).toBe(true);
+          expect(result.module).toBe('memory');
+          expect(result.verb).toBe(verb);
+        }
+      });
+
       it('should handle case insensitivity for module and verb', () => {
         const result = parseCommand('/MEMORY FIND');
         expect(result.valid).toBe(true);
