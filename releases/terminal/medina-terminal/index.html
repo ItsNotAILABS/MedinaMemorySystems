@@ -866,7 +866,14 @@
   function addChatMessage(sender, text, type = 'ai') {
     const msg = document.createElement('div');
     msg.className = 'chat-msg ' + type;
-    msg.innerHTML = `<div class="sender">${sender}</div><div class="msg-text">${text}</div>`;
+    const senderDiv = document.createElement('div');
+    senderDiv.className = 'sender';
+    senderDiv.textContent = sender;
+    const textDiv = document.createElement('div');
+    textDiv.className = 'msg-text';
+    textDiv.textContent = text;
+    msg.appendChild(senderDiv);
+    msg.appendChild(textDiv);
     chatMessages.appendChild(msg);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
