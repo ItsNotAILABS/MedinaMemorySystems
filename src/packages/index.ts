@@ -77,6 +77,7 @@ export * as SKAIRegistry from './skai-registry';
 export * as EXCOSRegistry from './exc-os-registry';
 export * as PowerNodesRegistry from './power-nodes-registry';
 export * as IntelligenceContractsRegistry from './intelligence-contracts-registry';
+export * as OrganismModelsRegistry from './organism-models-registry';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST
