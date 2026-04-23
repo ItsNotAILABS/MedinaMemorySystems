@@ -79,6 +79,7 @@ export * as PowerNodesRegistry from './power-nodes-registry';
 export * as IntelligenceContractsRegistry from './intelligence-contracts-registry';
 export * as OrganismModelsRegistry from './organism-models-registry';
 export * as SubstrateMeshRegistry from './substrate-mesh-registry';
+export * as FrontEndEnginesRegistry from './frontend-engines-registry';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST

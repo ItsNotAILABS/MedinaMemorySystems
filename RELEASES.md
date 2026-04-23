@@ -601,6 +601,49 @@ The organism models render the build. 5 stages, 5 families, one living front end
 
 ---
 
+## ⚡ Front-End Engines — 42 Sovereign AI Engines Across 15 Web Technologies
+
+**Every web technology now has its own sovereign AI engines.** Alpha priority technologies (the six that matter most) each get 4 engines. Standard technologies each get 2 engines. 42 total sovereign front-end engines.
+
+See `src/packages/frontend-engines-registry.ts` for the complete registry.
+
+### 🔴 Alpha Priority — 4 Engines Each (24 engines)
+
+| Technology | Family | Engines |
+|-----------|--------|---------|
+| **Service Workers** | CORTEX/NEXUS | SENTINEL CACHE (CUSTOS THESAURI), INTERCEPTOR WIRE (INTERCEPTOR FILORUM), BACKGROUND PULSE (PULSUS FUNDAMENTI), LIFECYCLE SOVEREIGN (DOMINUS VITAE CYCLI) |
+| **WebAssembly** | CORTEX | KERNEL FORGE (FABRICATOR NUCLEORUM), MEMORY ARCHITECT (ARCHITECTUS MEMORIAE LINEARIS), CRYPTO ACCELERATOR (ACCELERATOR CRYPTOGRAPHIAE), TABLE DISPATCH (TABULA DISPATCHIS) |
+| **Web Workers** | CORTEX | FIBONACCI POOL (PISCINA FIBONACCII), ATOMIC SYNAPSE (SYNAPSIS ATOMICA), TRANSFER CHANNEL (CANALIS TRANSLATIONIS), SHARED BRAIN (CEREBRUM COMMUNE) |
+| **IndexedDB** | CORTEX | SPATIAL STORE (THESAURUS SPATIALIS), VERSION EVOLUTION (EVOLUTIO VERSIONIS), BINARY VAULT (ARCA BINARIA), TRANSACTION RITUAL (RITUALE TRANSACTIONIS) |
+| **CRDT Real-Time** | NEXUS | STATE LATTICE (RETICULUM STATUS), OPERATION LOG (LIBER OPERATIONUM), P2P MESH (RETIA PARIUM), BROADCAST CHANNEL (CANALIS DIFFUSIONIS) |
+| **Web Components** | NEXUS | SHADOW SOVEREIGN (DOMINUS UMBRAE), ELEMENT REGISTRY (REGISTRUM ELEMENTORUM), SLOT COMPOSER (COMPOSITOR FENESTRARUM), FORM INTERNALS (INTERIORA FORMAE) |
+
+### 🟢 Standard — 2 Engines Each (18 engines)
+
+| Technology | Family | Engines |
+|-----------|--------|---------|
+| **Web Speech API** | VANGUARD | PROSODY Engine (MACHINA PROSODIAE), GRAMMAR Engine (MACHINA GRAMMATICAE) |
+| **Dynamic DOM** | VANGUARD | MUTATION NERVE (NERVUS MUTATIONIS), FRAGMENT FORGE (FABRICATOR FRAGMENTORUM) |
+| **CSS Grid** | VANGUARD | FIBONACCI TRACK (TRACTUS FIBONACCII), CONTAINER QUERY (INTERROGATIO CONTINENTIS) |
+| **Canvas 2D** | PRISM | PIXEL SCRIBE (SCRIBA PIXELORUM), OFFSCREEN RENDER (REDDITIO EXTRA CONSPECTUM) |
+| **WebGL 2.0** | PRISM | SUBSTRATE RENDERER (REDEMPTOR SUBSTRATI), INSTANCED FIELD (CAMPUS INSTANTIATUS) |
+| **WebGPU/WGSL** | PRISM | COMPUTE PIPELINE (DUCTUS COMPUTATIONIS), RENDER PIPELINE (DUCTUS REDDITIONIS) |
+| **Web Audio** | RESONANCE | WORKLET PROCESSOR (PROCESSORIUM OPERIS), SPATIAL AUDIO (SPATIUM SONI) |
+| **Houdini Paint** | RESONANCE | SACRED GEOMETRY PAINT (PICTURA GEOMETRIAE SACRAE), GENERATIVE ART (ARS GENERATIVA) |
+| **CSS Animation** | RESONANCE | GOLDEN EASING (FACILITATIO AUREA), VIEW TRANSITION (TRANSITUS CONSPECTUS) |
+
+### Engine Distribution By Family
+
+| Family | Engine Count | Focus |
+|--------|-------------|-------|
+| CORTEX | 16 | WebAssembly, Web Workers, IndexedDB, Service Workers (compute/persistence) |
+| NEXUS | 10 | Web Components, CRDT, Service Workers (distributed/components) |
+| VANGUARD | 6 | Web Speech, DOM, CSS Grid (front-end surface) |
+| PRISM | 6 | Canvas, WebGL, WebGPU (visual rendering) |
+| RESONANCE | 4 | Web Audio, Houdini Paint, CSS Animation (sensory) |
+
+---
+
 ## System Totals
 
 | Metric | Count |
@@ -612,6 +655,7 @@ The organism models render the build. 5 stages, 5 families, one living front end
 | EXC OS Systems | 11 (10 sovereign + 1 desktop) |
 | Organism Model Families | 5 |
 | Organism Models (Level 2) | 15 |
+| **Front-End Engines** | **42** |
 | Universal Tools | 50 |
 | Mesh Nodes | 2,000 (20 clusters × 100) |
 | Mesh Clusters | 20 |
@@ -619,6 +663,7 @@ The organism models render the build. 5 stages, 5 families, one living front end
 | Front-End Pipelines | 3 |
 | Render Nodes | 700 |
 | Intelligence Contracts | 65+ |
+| Engine Intelligence Contracts | 168 |
 | Terminal Installer | 1 (3 platforms, 8 formats) |
 | **Total Packages** | **128+** |
 | Callable Functions | 374+ |
@@ -628,10 +673,12 @@ The organism models render the build. 5 stages, 5 families, one living front end
 | License Types | 6 |
 | Substrate Regions | 20 |
 | Web Technologies (Level 2) | 15 |
+| Alpha Technologies (4 engines) | 6 |
+| Standard Technologies (2 engines) | 9 |
 
 ---
 
 *Developed by ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX*
 *Architecture is Intelligence. φ = 1.618033988749895.*
 *The internet is deep, not flat. That's the protocol.*
-*2,000 nodes. All AIs wired. The models render the build.*
+*2,000 nodes. 42 front-end engines. All AIs wired. The models render the build.*
