@@ -33,6 +33,16 @@ import {
   type FrontendIntelligenceManifest,
 } from './models/FrontendIntelligenceRegistry';
 
+import {
+  SOVEREIGN_FAMILY_MODELS,
+  getSovereignFamilyModel,
+  getSovereignFamilyModelByNumber,
+  getModelsByFamily,
+  getTotalSovereignFamilyCost,
+  getSovereignFamilyManifest,
+  type FrontendSovereignModel,
+} from './models/SovereignFamilyIntelligence';
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -74,6 +84,9 @@ export class FrontendOrganismLayer {
   readonly sensorModels = SENSOR_MODELS;
   readonly wasmModels = WASM_MODELS;
   readonly awarenessModels = AWARENESS_MODELS;
+
+  // 50 Sovereign Family models (101-150) — 10 families, 50 technologies
+  readonly sovereignFamilyModels = SOVEREIGN_FAMILY_MODELS;
 
   readonly allModels = FRONTEND_MODEL_REGISTRY;
   readonly registry = FRONTEND_MODEL_REGISTRY;
@@ -296,3 +309,7 @@ export type { WasmModel };
 // Accessibility/Awareness Intelligence (091–100)
 export { AWARENESS_MODELS, createAccessibilityModel, getAccessibilityModel, getAccessibilityModelByNumber, calculateAccessibilityCost, getTotalAccessibilityCost };
 export type { AccessibilityModel };
+
+// Sovereign Family Intelligence (101–150) — 10 families, 50 entities, 50 technologies
+export { SOVEREIGN_FAMILY_MODELS, getSovereignFamilyModel, getSovereignFamilyModelByNumber, getModelsByFamily, getTotalSovereignFamilyCost, getSovereignFamilyManifest };
+export type { FrontendSovereignModel };

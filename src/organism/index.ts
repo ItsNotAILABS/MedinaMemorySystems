@@ -797,10 +797,25 @@ export {
   FRONTEND_LAYER,
 } from '../frontend';
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// SOVEREIGN ENTITY FAMILIES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export {
+  SOVEREIGN_ENTITY_REGISTRY,
+  SOVEREIGN_ENTITIES,
+  SOVEREIGN_FAMILIES,
+  SovereignEntityRegistry,
+  type SovereignEntity,
+  type SovereignFamily,
+  type SovereignFamilyName,
+} from './sovereign-entities/SovereignEntityFamilies';
+
 import { WITNESS_ENGINE } from './engines/WitnessToArchitectureEngine';
 import { PHANTOM_ENGINE } from './engines/PhantomDecryptionEngine';
 import { TOKEN_BRIDGE } from './engines/SovereignTokenBridge';
 import { FRONTEND_LAYER } from '../frontend';
+import { SOVEREIGN_ENTITY_REGISTRY } from './sovereign-entities/SovereignEntityFamilies';
 
 /**
  * Unified Organism Interface
@@ -907,6 +922,7 @@ export class SovereignOrganism {
   readonly phantomEngine = PHANTOM_ENGINE;
   readonly tokenBridge = TOKEN_BRIDGE;
   readonly frontendLayer = FRONTEND_LAYER;
+  readonly sovereignEntities = SOVEREIGN_ENTITY_REGISTRY;
   
   // Constants (All layers unified)
   public readonly CONSTANTS = {
@@ -1250,6 +1266,7 @@ export default {
   PHANTOM_ENGINE,
   TOKEN_BRIDGE,
   FRONTEND_LAYER,
+  SOVEREIGN_ENTITY_REGISTRY,
   
   // CORE OPERATIONS OF LIVING ARCHITECTURE
   CORE_OPERATIONS,
