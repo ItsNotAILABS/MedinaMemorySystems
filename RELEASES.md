@@ -709,7 +709,7 @@ Source: `src/packages/sovereign-tools-engine.ts`
 
 **THE CORE PROBLEM**: Distributed data tables existed in isolation across organisms, substrates, and builds — never converging into a single unified registry that is both marketplace-facing (sellable, licensable) AND internally accessible.
 
-**THE FIX**: SUR — one database with multiple faces:
+**THE FIX**: SUR — one database with multiple faces. **The architecture finds them all.**
 
 | Face | Latin Name | Purpose |
 |------|-----------|---------|
@@ -717,27 +717,42 @@ Source: `src/packages/sovereign-tools-engine.ts`
 | **DATABASE** | THESAURUS | Living storage of all entities with cross-references |
 | **CALLABLE** | INVOCABILIS | Unified function interface to query, search, export any entity |
 
-### Sources Unified
+### 27 Entity Classes • 26 Source Files • 800+ Entities Unified
 
-| Source | Count | Registry |
-|--------|-------|----------|
-| AI SDKs | 5 | ai-sdk-registry.ts |
-| SKAIs | 20 | skai-registry.ts |
-| EXC OS Systems | 11 | exc-os-registry.ts |
-| Extended SDKs | 30 | extended-sdk-registry.ts |
-| Front-End Engines | 42 | frontend-engines-registry.ts |
-| Organism Models | 15 | organism-models-registry.ts |
-| Mesh Clusters | 20 | substrate-mesh-registry.ts |
-| Universal Tools | 50 | universal-tools-registry.ts |
-| Sovereign Tools | 200 | sovereign-tools-engine.ts |
-| Callable Functions | 374+ | callable-functions-registry.ts |
-| Intelligence Contracts | Aggregated | intelligence-contracts-registry.ts |
-| Core SDK Packages | 11 | index.ts |
+| # | Source | Count | Registry | Entity Class |
+|---|--------|-------|----------|-------------|
+| 1 | AI SDKs | 5 | ai-sdk-registry.ts | `ai-sdk` |
+| 2 | SKAIs | 20 | skai-registry.ts | `skai` |
+| 3 | EXC OS Systems | 11 | exc-os-registry.ts | `exc-os` |
+| 4 | Extended SDKs | 30 | extended-sdk-registry.ts | `extended-sdk` |
+| 5 | Front-End Engines | 42 | frontend-engines-registry.ts | `frontend-engine` |
+| 6 | Organism Models | 15 | organism-models-registry.ts | `organism-model` |
+| 7 | Mesh Clusters | 20 | substrate-mesh-registry.ts | `mesh-cluster` |
+| 8 | Universal Tools | 50 | universal-tools-registry.ts | `universal-tool` |
+| 9 | Sovereign Tools | 200 | sovereign-tools-engine.ts | `sovereign-tool` |
+| 10 | Callable Functions | 374+ | callable-functions-registry.ts | `callable-function` |
+| 11 | Core SDK Packages | 11 | index.ts | `core-sdk` |
+| 12 | **Glyphs** | **32** | kernelCompression.ts | `glyph` |
+| 13 | **MEDINA OS Components** | **23** | medinaOS.ts | `os-component` |
+| 14 | **SaaS Products** | **11** | medinaOS.ts | `saas-product` |
+| 15 | **Contract Types** | **14** | sovereignContractsLedgers.ts | `contract-type` |
+| 16 | **Ledger Types** | **14** | sovereignContractsLedgers.ts | `ledger-type` |
+| 17 | **Universal Models** | **300** | types/organisms.ts | `universal-model` |
+| 18 | **Formula Kernels** | **8** | fullStackKernelRegistry.ts | `formula-kernel` |
+| 19 | **Execution Flows** | **5** | fullStackKernelRegistry.ts | `formula-kernel` |
+| 20 | **Document Paths** | **35+** | fullStackKernelRegistry.ts | `document-path` |
+| 21 | **Organism Kernels** | **7** | organismKernelExecutor.ts | `organism-kernel` |
+| 22 | **Frequencies** | **20** | types/organisms.ts + kernelExecutor | `frequency` |
+| 23 | **Research Domains** | **8** | agiConvergenceResearch.ts | `research-domain` |
+| 24 | **F-Model Categories** | **11** | types/index.ts | `frontend-model-category` |
+| 25 | **ICP Intelligence Models** | **4** | types/index.ts | `frontend-model-category` |
+| 26 | **Installer Config** | **1** | terminal-installer-sdk.ts | `installer-config` |
 
-### Callable Interface (30 functions)
+### Callable Interface (43 functions)
 
 - **Lookup**: `surGet`, `surGetMany`
-- **By Class**: `surAIs`, `surSKAIs`, `surEXCs`, `surExtendedSDKs`, `surEngines`, `surModels`, `surUniversalTools`, `surSovereignTools`, `surFunctions`, `surContracts`, `surCoreSDKs`, `surClusters`
+- **By Class (Original 12)**: `surAIs`, `surSKAIs`, `surEXCs`, `surExtendedSDKs`, `surEngines`, `surModels`, `surUniversalTools`, `surSovereignTools`, `surFunctions`, `surContracts`, `surCoreSDKs`, `surClusters`
+- **By Class (New 13)**: `surGlyphs`, `surOSComponents`, `surSaaSProducts`, `surContractTypes`, `surLedgerTypes`, `surUniversalModels`, `surFormulaKernels`, `surDocumentPaths`, `surOrganismKernels`, `surFrequencies`, `surResearchDomains`, `surInstallerConfigs`, `surFModelCategories`
 - **By Market**: `surMarketplace`, `surResearch`, `surSovereign`, `surInternal`
 - **By Protocol**: `surAutonomous`, `surSellable`, `surQueryable`
 - **Search**: `surSearch`, `surByTag`, `surBySource`
@@ -745,7 +760,7 @@ Source: `src/packages/sovereign-tools-engine.ts`
 - **Exports**: `surAllExports`, `surWhoExports`
 - **Statistics**: `surCountByClass`, `surCountByMarket`, `surCountBySource`
 
-Source: `src/packages/sovereign-unified-registry.ts`
+Source: `src/packages/sovereign-unified-registry.ts` (1,475 lines)
 
 ---
 
