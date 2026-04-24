@@ -11,6 +11,7 @@ import CompanyOnboarding from '@/components/CompanyOnboarding';
 import ReplayPanel from '@/components/ReplayPanel';
 import PermissionsPanel from '@/components/PermissionsPanel';
 import OrganismField from '@/components/OrganismField';
+import AgentJournalPanel from '@/components/AgentJournalPanel';
 import type { PanelId } from '@/types';
 
 export default function HomePage() {
@@ -23,6 +24,7 @@ export default function HomePage() {
       case 'memory': return <MemoryTemple />;
       case 'governance': return <GovernancePanel />;
       case 'models': return <ModelRuntime />;
+      case 'agents': return <AgentJournalPanel />;
       case 'company': return <CompanyOnboarding />;
       case 'replay': return <ReplayPanel />;
       case 'permissions': return <PermissionsPanel />;

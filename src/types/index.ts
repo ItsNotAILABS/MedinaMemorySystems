@@ -175,7 +175,7 @@ export interface StructuredResponse {
     | 'signal' | 'consensus' | 'frequency' | 'bus' | 'vault' | 'translate'
     | 'council' | 'role' | 'substrate' | 'sdk' | 'marketplace'
     | 'graph' | 'palace' | 'temporal' | 'harmonic' | 'token' | 'livingdoc' | 'incentive'
-    | 'replay' | 'permissions';
+    | 'replay' | 'permissions' | 'agents' | 'agent-journal';
   title: string;
   data: unknown;
   actions?: ResponseAction[];
@@ -405,7 +405,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents';
 
 export interface NavItem {
   id: PanelId;
@@ -611,3 +611,72 @@ export const ICP_INTELLIGENCE_MODELS = [
   'F-MODEL-113', // @dfinity/identity - ICP IDENTITY INTELLIGENCE
   'F-MODEL-114', // @dfinity/candid - ICP INTERFACE INTELLIGENCE
 ] as const;
+
+// ─── Activated Agent Journal Stream ─────────────────────────────────────────
+
+export type AgentJournalPhase =
+  | 'activation'
+  | 'vault-retrieval'
+  | 'doctrine-retrieval'
+  | 'reasoning'
+  | 'arbitration'
+  | 'composition'
+  | 'promotion'
+  | 'drift-log'
+  | 'completion'
+  | 'error';
+
+export interface AgentJournalEntry {
+  id: string;
+  sessionId: string;
+  agentId: ModelFamily | 'arbitrator' | 'system';
+  phase: AgentJournalPhase;
+  action: string;
+  detail?: string;
+  maturityScore?: number;  // 0–1
+  timestamp: string;
+}
+
+export type AgentSessionStatus =
+  | 'activating'
+  | 'retrieving'
+  | 'reasoning'
+  | 'arbitrating'
+  | 'promoting'
+  | 'complete'
+  | 'failed';
+
+export interface AgentOutput {
+  agentId: ModelFamily;
+  response: string;
+  confidence: number;  // 0–1
+  latency: number;     // ms
+}
+
+export interface ActivatedAgentSession {
+  id: string;
+  task: string;
+  context?: string;
+  taskClass: string;
+  activatedAgents: ModelFamily[];
+  status: AgentSessionStatus;
+  journal: AgentJournalEntry[];
+  vaultRetrievals: MemoryEntry[];
+  doctrineRetrievals: MemoryEntry[];
+  agentOutputs: AgentOutput[];
+  arbitratedOutput?: string;
+  composedAnswer?: string;
+  maturityScore?: number;   // 0–1 overall quality
+  promoted: boolean;
+  promotedMemoryId?: string;
+  startedAt: string;
+  completedAt?: string;
+}
+
+export interface AgentActivationRequest {
+  task: string;
+  context?: string;
+  agentOverrides?: ModelFamily[];  // force specific agents instead of auto-select
+  autoPromote?: boolean;           // auto-promote if maturity > threshold
+  promoteThreshold?: number;       // default 0.80
+}
