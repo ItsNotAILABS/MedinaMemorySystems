@@ -175,7 +175,8 @@ export interface StructuredResponse {
     | 'signal' | 'consensus' | 'frequency' | 'bus' | 'vault' | 'translate'
     | 'council' | 'role' | 'substrate' | 'sdk' | 'marketplace'
     | 'graph' | 'palace' | 'temporal' | 'harmonic' | 'token' | 'livingdoc' | 'incentive'
-    | 'replay' | 'permissions' | 'agents';
+    | 'replay' | 'permissions' | 'agents'
+    | 'agi' | 'desktop' | 'extension' | 'tab-control';
   title: string;
   data: unknown;
   actions?: ResponseAction[];
@@ -405,7 +406,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents' | 'agi';
 
 export interface NavItem {
   id: PanelId;
@@ -679,4 +680,118 @@ export interface AgentActivationRequest {
   agentOverrides?: ModelFamily[];  // force specific agents instead of auto-select
   autoPromote?: boolean;           // auto-promote if maturity > threshold
   promoteThreshold?: number;       // default 0.80
+}
+
+// ─── AGI Desktop Runtime ────────────────────────────────────────────────────
+
+/** Status of the AGI kernel running as a desktop-grade autonomous system */
+export type AGIKernelStatus = 'booting' | 'running' | 'degraded' | 'shutdown';
+
+/** Capability tier for the AGI runtime */
+export type AGICapabilityTier = 'observer' | 'assistant' | 'operator' | 'autonomous';
+
+/** A browser tab controlled by the AGI */
+export interface AGITab {
+  id: string;
+  url: string;
+  title: string;
+  status: 'loading' | 'ready' | 'navigating' | 'error' | 'closed';
+  pinnedByAI: boolean;
+  /** Agent assigned to monitor/control this tab */
+  assignedAgent?: ModelFamily;
+  createdAt: string;
+  lastActivity: string;
+}
+
+/** An internet action the AGI can perform */
+export type InternetActionType =
+  | 'navigate'
+  | 'search'
+  | 'read-page'
+  | 'extract-data'
+  | 'fill-form'
+  | 'click'
+  | 'screenshot'
+  | 'download'
+  | 'api-call';
+
+/** A single internet action request */
+export interface InternetAction {
+  id: string;
+  type: InternetActionType;
+  tabId?: string;
+  url?: string;
+  selector?: string;
+  data?: Record<string, unknown>;
+  status: 'queued' | 'running' | 'complete' | 'failed';
+  result?: string;
+  error?: string;
+  agentId: ModelFamily | 'system';
+  createdAt: string;
+  completedAt?: string;
+}
+
+/** A deployed AI process running inside the AGI */
+export interface DeployedAI {
+  id: string;
+  name: string;
+  description: string;
+  agentFamily: ModelFamily;
+  status: 'deploying' | 'active' | 'paused' | 'stopped' | 'error';
+  capabilities: string[];
+  /** Tabs this AI can control */
+  assignedTabs: string[];
+  /** Task loop — what the AI is doing */
+  currentTask?: string;
+  actionHistory: InternetAction[];
+  metrics: {
+    actionsCompleted: number;
+    actionsQueued: number;
+    uptime: number;        // seconds
+    lastHeartbeat: string;
+  };
+  createdAt: string;
+}
+
+/** Browser extension connection state */
+export type ExtensionConnectionStatus = 'disconnected' | 'connecting' | 'connected' | 'error';
+
+/** Extension sidebar panel modes */
+export type ExtensionPanelMode = 'chat' | 'page-analysis' | 'memory-write' | 'agent-assist' | 'tab-control';
+
+/** Message from/to the browser extension */
+export interface ExtensionMessage {
+  id: string;
+  direction: 'inbound' | 'outbound';
+  type: 'page-context' | 'command' | 'response' | 'heartbeat' | 'tab-event';
+  payload: Record<string, unknown>;
+  timestamp: string;
+}
+
+/** The browser extension state visible to the platform */
+export interface ExtensionState {
+  connectionStatus: ExtensionConnectionStatus;
+  activePanel: ExtensionPanelMode;
+  currentPageUrl?: string;
+  currentPageTitle?: string;
+  connectedTabs: number;
+  messageLog: ExtensionMessage[];
+  lastHeartbeat?: string;
+}
+
+/** Full AGI Desktop state for the platform sync */
+export interface AGIDesktopState {
+  kernelStatus: AGIKernelStatus;
+  capabilityTier: AGICapabilityTier;
+  tabs: AGITab[];
+  deployedAIs: DeployedAI[];
+  actionQueue: InternetAction[];
+  extension: ExtensionState;
+  stats: {
+    totalTabs: number;
+    totalDeployedAIs: number;
+    totalActionsRun: number;
+    totalActionsQueued: number;
+    uptime: number;
+  };
 }
