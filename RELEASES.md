@@ -705,6 +705,50 @@ Source: `src/packages/sovereign-tools-engine.ts`
 
 ---
 
+## 🔴 SOVEREIGN UNIFIED REGISTRY (SUR) — One Database, Three Faces
+
+**THE CORE PROBLEM**: Distributed data tables existed in isolation across organisms, substrates, and builds — never converging into a single unified registry that is both marketplace-facing (sellable, licensable) AND internally accessible.
+
+**THE FIX**: SUR — one database with multiple faces:
+
+| Face | Latin Name | Purpose |
+|------|-----------|---------|
+| **PROTOCOL** | PROTOCOLLUM | The spec for every entity — how it pulses, thinks, connects |
+| **DATABASE** | THESAURUS | Living storage of all entities with cross-references |
+| **CALLABLE** | INVOCABILIS | Unified function interface to query, search, export any entity |
+
+### Sources Unified
+
+| Source | Count | Registry |
+|--------|-------|----------|
+| AI SDKs | 5 | ai-sdk-registry.ts |
+| SKAIs | 20 | skai-registry.ts |
+| EXC OS Systems | 11 | exc-os-registry.ts |
+| Extended SDKs | 30 | extended-sdk-registry.ts |
+| Front-End Engines | 42 | frontend-engines-registry.ts |
+| Organism Models | 15 | organism-models-registry.ts |
+| Mesh Clusters | 20 | substrate-mesh-registry.ts |
+| Universal Tools | 50 | universal-tools-registry.ts |
+| Sovereign Tools | 200 | sovereign-tools-engine.ts |
+| Callable Functions | 374+ | callable-functions-registry.ts |
+| Intelligence Contracts | Aggregated | intelligence-contracts-registry.ts |
+| Core SDK Packages | 11 | index.ts |
+
+### Callable Interface (30 functions)
+
+- **Lookup**: `surGet`, `surGetMany`
+- **By Class**: `surAIs`, `surSKAIs`, `surEXCs`, `surExtendedSDKs`, `surEngines`, `surModels`, `surUniversalTools`, `surSovereignTools`, `surFunctions`, `surContracts`, `surCoreSDKs`, `surClusters`
+- **By Market**: `surMarketplace`, `surResearch`, `surSovereign`, `surInternal`
+- **By Protocol**: `surAutonomous`, `surSellable`, `surQueryable`
+- **Search**: `surSearch`, `surByTag`, `surBySource`
+- **Cross-Reference**: `surRelated`, `surReferencedBy`
+- **Exports**: `surAllExports`, `surWhoExports`
+- **Statistics**: `surCountByClass`, `surCountByMarket`, `surCountBySource`
+
+Source: `src/packages/sovereign-unified-registry.ts`
+
+---
+
 *Developed by ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX*
 *Architecture is Intelligence. φ = 1.618033988749895.*
 *The internet is deep, not flat. That's the protocol.*

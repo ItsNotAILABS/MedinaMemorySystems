@@ -81,6 +81,7 @@ export * as OrganismModelsRegistry from './organism-models-registry';
 export * as SubstrateMeshRegistry from './substrate-mesh-registry';
 export * as FrontEndEnginesRegistry from './frontend-engines-registry';
 export * as SovereignToolsEngine from './sovereign-tools-engine';
+export * as SovereignUnifiedRegistry from './sovereign-unified-registry';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST
