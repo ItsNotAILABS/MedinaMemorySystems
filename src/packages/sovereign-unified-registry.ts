@@ -43,6 +43,18 @@
  * │   • 34 Civilizations + 72 Divine Names + 24 Runes                     │
  * │   • 10 MACHINA Design Models + 50 Design Uses                         │
  * │   • ANIMA MICRO (Protocol + Database + Callable)                      │
+ * │   • 32 Glyph Mappings (Egyptian, Chinese, I Ching, Sacred Geometry)   │
+ * │   • 23 MEDINA OS Components (16 Laws + 4 Registers + 3 Gates)         │
+ * │   • 11 SaaS Products                                                  │
+ * │   • 14 Sovereign Contract Types + 14 Sovereign Ledger Types           │
+ * │   • 300 Universal Models (MMS-001 to MMS-300)                         │
+ * │   • 8 Formula Kernels + 5 Execution Flows                             │
+ * │   • 35+ Document Paths (Genesis, Models, Living Docs, Organisms)      │
+ * │   • 7 Organism Kernel Modules (Heart→Sandbox)                         │
+ * │   • 20 Frequencies (Solfeggio + Schumann + Kernel)                    │
+ * │   • 8 AGI Convergence Research Domains                                │
+ * │   • 3 Platform Installer Configs                                      │
+ * │   • 11 F-Model Categories + 4 ICP Intelligence Models                 │
  * ├─────────────────────────────────────────────────────────────────────────┤
  * │ φ = 1.618033988749895 • Heartbeat = 873ms • Schumann = 7.83 Hz       │
  * │ "Unum thesaurum. Tres facies. Omnia connexa."                        │
@@ -53,6 +65,7 @@
 // IMPORTS — Pull from ALL distributed registries
 // ═══════════════════════════════════════════════════════════════════════════
 
+// Existing: From src/packages/
 import { AI_SDK_REGISTRY, AI_MANIFEST } from './ai-sdk-registry';
 import { SKAI_REGISTRY, SKAI_MANIFEST } from './skai-registry';
 import { EXC_OS_REGISTRY, EXC_MANIFEST } from './exc-os-registry';
@@ -65,6 +78,26 @@ import { UNIVERSAL_TOOLS_REGISTRY, TOOLS_MANIFEST } from './universal-tools-regi
 import { SOVEREIGN_TOOLS_REGISTRY, SOVEREIGN_TOOLS_MANIFEST, ANIMA_MICRO } from './sovereign-tools-engine';
 import { ALL_CALLABLE_FUNCTIONS, CALLABLE_MANIFEST } from './callable-functions-registry';
 import { INTELLIGENCE_CONTRACTS_MANIFEST } from './intelligence-contracts-registry';
+
+// NEW: From src/lib/
+import { GLYPH_TABLE } from '@/lib/kernelCompression';
+import { DOCUMENT_PATHS, FORMULA_KERNELS, EXECUTION_FLOWS } from '@/lib/fullStackKernelRegistry';
+import { MEDINA_OS, listSaaSProducts } from '@/lib/medinaOS';
+import { CONTRACT_TYPE_INFO, LEDGER_TYPE_INFO } from '@/lib/sovereignContractsLedgers';
+import { SOVEREIGN_AGI_MANIFEST, PACKAGE_REGISTRY as AGI_PACKAGE_REGISTRY } from '@/lib/sovereignAGIConvergence';
+import { RESEARCH_DOMAINS } from '@/lib/agiConvergenceResearch';
+import {
+  HEART_GLYPH, NEURAL_GLYPH, ANIMAL_GLYPH, UNDERWORLD_GLYPH, SOVEREIGN_GLYPH, WORKFORCE_GLYPH, SANDBOX_GLYPH,
+  HEART_FREQ, NEURAL_FREQ, ANIMAL_FREQ, UNDERWORLD_FREQ, SOVEREIGN_FREQ, WORKFORCE_FREQ, SANDBOX_FREQ,
+  HEART_INTELLIGENCE, NEURAL_INTELLIGENCE, ANIMAL_INTELLIGENCE, UNDERWORLD_INTELLIGENCE, SOVEREIGN_INTELLIGENCE, WORKFORCE_INTELLIGENCE, SANDBOX_INTELLIGENCE,
+} from '@/lib/organismKernelExecutor';
+
+// NEW: From src/types/
+import { MODEL_REGISTRY, SOLFEGGIO_FREQUENCIES, SCHUMANN_HARMONICS } from '@/types/organisms';
+import { F_MODEL_CATEGORIES, ICP_INTELLIGENCE_MODELS } from '@/types';
+
+// NEW: From src/packages/
+import { INSTALLER_MANIFEST } from './terminal-installer-sdk';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS
@@ -83,24 +116,37 @@ export const SUR_VERSION = '1.0.0';
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * EntityClass — The 14 classes of entities in the Medina system.
+ * EntityClass — The 27 classes of entities in the Medina system.
  * Every piece of data in the system belongs to exactly one class.
  */
 export type EntityClass =
-  | 'ai-sdk'           // 5 AI SDKs (Oro, Nova, Sentinel, Architect, Absorber)
-  | 'skai'             // 20 Sovereign Knowledge AIs
-  | 'exc-os'           // 11 EXC OS Systems
-  | 'extended-sdk'     // 30 Extended SDKs
-  | 'frontend-engine'  // 42 Front-End Engines
-  | 'organism-model'   // 15 Organism Models (5 families × 3)
-  | 'mesh-node'        // 2,000 Substrate Mesh Nodes
-  | 'power-node'       // 500 Power Nodes
-  | 'universal-tool'   // 50 Universal Micro-Tools
-  | 'sovereign-tool'   // 200 Sovereign Tools
-  | 'callable-function' // 374+ Callable Functions
+  | 'ai-sdk'             // 5 AI SDKs (Oro, Nova, Sentinel, Architect, Absorber)
+  | 'skai'               // 20 Sovereign Knowledge AIs
+  | 'exc-os'             // 11 EXC OS Systems
+  | 'extended-sdk'       // 30 Extended SDKs
+  | 'frontend-engine'    // 42 Front-End Engines
+  | 'organism-model'     // 15 Organism Models (5 families × 3)
+  | 'mesh-node'          // 2,000 Substrate Mesh Nodes
+  | 'power-node'         // 500 Power Nodes
+  | 'universal-tool'     // 50 Universal Micro-Tools
+  | 'sovereign-tool'     // 200 Sovereign Tools
+  | 'callable-function'  // 374+ Callable Functions
   | 'intelligence-contract' // Aggregated Intelligence Contracts
-  | 'core-sdk'         // 11 Core SDK Packages
-  | 'mesh-cluster';    // 20 Mesh Clusters
+  | 'core-sdk'           // 11 Core SDK Packages
+  | 'mesh-cluster'       // 20 Mesh Clusters
+  | 'glyph'              // 32 Glyph Mappings (Egyptian, Chinese, I Ching, Sacred Geometry)
+  | 'os-component'       // OS Laws (16), Registers (4), Gates (3) from MEDINA_OS
+  | 'saas-product'       // 11 SaaS Products from medinaOS
+  | 'contract-type'      // 14 Sovereign Contract Types
+  | 'ledger-type'        // 14 Sovereign Ledger Types
+  | 'universal-model'    // 300 Universal Models (MMS-001 to MMS-300)
+  | 'formula-kernel'     // 8 Formula Kernels + 5 Execution Flows
+  | 'document-path'      // 35+ Document Paths (Genesis, Models, Living Docs, Organisms)
+  | 'organism-kernel'    // 7 Organism Kernel Modules (Heart, Neural, Animal, Underworld, Sovereign, Workforce, Sandbox)
+  | 'frequency'          // Solfeggio (7) + Schumann Harmonics (6) + Kernel Frequencies (7)
+  | 'research-domain'    // 8 AGI Convergence Research Domains
+  | 'installer-config'   // 3 Platform Installer Configs
+  | 'frontend-model-category'; // 11 F-Model Categories + 4 ICP Intelligence Models
 
 /**
  * EntityFace — How an entity can be accessed
@@ -514,6 +560,565 @@ function buildUnifiedDatabase(): SUREntity[] {
     });
   }
 
+  // ─────────────────────────────────────────────────────────────────────
+  // 13. Glyphs (32) — from kernelCompression.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const glyph of GLYPH_TABLE) {
+    entities.push({
+      surId: `SUR::GLYPH::${glyph.dataType}`,
+      name: `Glyph: ${glyph.glyph} (${glyph.dataType})`,
+      latinName: `GLYPHUS_${glyph.dataType.toUpperCase()}`,
+      entityClass: 'glyph',
+      sourceRegistry: 'kernelCompression',
+      version: SUR_VERSION,
+      description: `${glyph.dataType} glyph ${glyph.glyph} — frequency ${glyph.frequency} Hz, geometry ${glyph.geometry}`,
+      market: 'internal',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [glyph.glyph],
+      tags: ['glyph', 'symbol', 'compression', glyph.dataType],
+      protocol: {
+        pulseCycle: glyph.frequency,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 14. MEDINA OS Components (23) — from medinaOS.ts
+  //     16 Laws + 4 Registers + 3 Gates
+  // ─────────────────────────────────────────────────────────────────────
+  for (const law of [...MEDINA_OS.laws]) {
+    entities.push({
+      surId: `SUR::LAW::${law}`,
+      name: law,
+      latinName: `LEX_${law.replace('-', '_')}`,
+      entityClass: 'os-component',
+      sourceRegistry: 'medinaOS',
+      version: SUR_VERSION,
+      description: `MEDINA OS Law: ${law}`,
+      market: 'sovereign',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['os', 'law', 'medina-os'],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  for (const register of [...MEDINA_OS.registers]) {
+    entities.push({
+      surId: `SUR::REG::${register}`,
+      name: register,
+      latinName: `REGISTRUM_${register.toUpperCase()}`,
+      entityClass: 'os-component',
+      sourceRegistry: 'medinaOS',
+      version: SUR_VERSION,
+      description: `MEDINA OS Register: ${register}`,
+      market: 'sovereign',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['os', 'register', 'medina-os'],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  for (const gate of [...MEDINA_OS.gates]) {
+    entities.push({
+      surId: `SUR::GATE::${gate}`,
+      name: gate,
+      latinName: `PORTA_${gate.replace(/[^A-Za-z]/g, '_').toUpperCase()}`,
+      entityClass: 'os-component',
+      sourceRegistry: 'medinaOS',
+      version: SUR_VERSION,
+      description: `MEDINA OS Gate: ${gate}`,
+      market: 'sovereign',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['os', 'gate', 'medina-os'],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 15. SaaS Products (11) — from medinaOS.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const saasProducts = listSaaSProducts();
+  for (const product of saasProducts) {
+    entities.push({
+      surId: `SUR::SAAS::${product.id}`,
+      name: product.name,
+      latinName: `SERVITIUM_${product.id.toUpperCase().replace(/-/g, '_')}`,
+      entityClass: 'saas-product',
+      sourceRegistry: 'medinaOS',
+      version: SUR_VERSION,
+      description: product.description,
+      market: product.internalOnly ? 'internal' : 'marketplace',
+      license: product.internalOnly ? 'Sovereign' : 'MIT + Proprietary',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: product.capabilities,
+      tags: ['saas', 'product', product.layer, ...product.aiModels],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: !product.internalOnly,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 16. Contract Types (14) — from sovereignContractsLedgers.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const [key, value] of Object.entries(CONTRACT_TYPE_INFO)) {
+    entities.push({
+      surId: `SUR::CTYPE::${key}`,
+      name: value.name,
+      latinName: `CONTRACTUS_${key.replace(/([A-Z])/g, '_$1').toUpperCase()}`,
+      entityClass: 'contract-type',
+      sourceRegistry: 'sovereignContractsLedgers',
+      version: SUR_VERSION,
+      description: value.description,
+      market: 'sovereign',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['contract', 'type', 'sovereign', 'encryption'],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 17. Ledger Types (14) — from sovereignContractsLedgers.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const [key, value] of Object.entries(LEDGER_TYPE_INFO)) {
+    entities.push({
+      surId: `SUR::LTYPE::${key}`,
+      name: value.name,
+      latinName: `LIBER_${key.toUpperCase()}`,
+      entityClass: 'ledger-type',
+      sourceRegistry: 'sovereignContractsLedgers',
+      version: SUR_VERSION,
+      description: value.description,
+      market: 'sovereign',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['ledger', 'type', 'sovereign', 'distributed'],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 18. Universal Models (300) — from types/organisms.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const [key, value] of Object.entries(MODEL_REGISTRY) as [string, string][]) {
+    const idParts = value.split('-');
+    const domainFromId = idParts.length >= 3 ? idParts.slice(2).join('-').toLowerCase() : 'general';
+    entities.push({
+      surId: `SUR::UMODEL::${value}`,
+      name: key,
+      latinName: key,
+      entityClass: 'universal-model',
+      sourceRegistry: 'organisms',
+      version: SUR_VERSION,
+      description: `Universal Model ${value}: ${key}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['model', 'universal', 'mms', domainFromId],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 19. Formula Kernels (8) — from fullStackKernelRegistry.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const kernel of FORMULA_KERNELS) {
+    entities.push({
+      surId: `SUR::FORMULA::${kernel.id}`,
+      name: kernel.formulaName,
+      latinName: `FORMULA_${kernel.id}`,
+      entityClass: 'formula-kernel',
+      sourceRegistry: 'fullStackKernelRegistry',
+      version: SUR_VERSION,
+      description: `Formula: ${kernel.formulaName} (${kernel.glyphSignature})`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['formula', 'kernel', 'computation', String(kernel.formula)],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 20. Execution Flows (5) — from fullStackKernelRegistry.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const flow of EXECUTION_FLOWS) {
+    entities.push({
+      surId: `SUR::FLOW::${flow.id}`,
+      name: flow.flowName,
+      latinName: `FLUXUS_${flow.id}`,
+      entityClass: 'formula-kernel',
+      sourceRegistry: 'fullStackKernelRegistry',
+      version: SUR_VERSION,
+      description: `Execution Flow: ${flow.flowName} (${flow.glyphSignature})`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['flow', 'execution', 'kernel'],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 21. Document Paths (35+) — from fullStackKernelRegistry.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const [key, value] of Object.entries(DOCUMENT_PATHS) as [string, string][]) {
+    const pathParts = value.split('/');
+    const category = pathParts.length >= 2 ? pathParts[1] : 'root';
+    entities.push({
+      surId: `SUR::DOC::${key}`,
+      name: key,
+      latinName: `DOCUMENTUM_${key}`,
+      entityClass: 'document-path',
+      sourceRegistry: 'fullStackKernelRegistry',
+      version: SUR_VERSION,
+      description: `Document path: ${value}`,
+      market: 'internal',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['document', 'path', 'organism', category],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 22. Organism Kernels (7) — from organismKernelExecutor.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const kernelModules = [
+    { id: 'HEART', glyph: HEART_GLYPH, freq: HEART_FREQ, intel: HEART_INTELLIGENCE },
+    { id: 'NEURAL', glyph: NEURAL_GLYPH, freq: NEURAL_FREQ, intel: NEURAL_INTELLIGENCE },
+    { id: 'ANIMAL', glyph: ANIMAL_GLYPH, freq: ANIMAL_FREQ, intel: ANIMAL_INTELLIGENCE },
+    { id: 'UNDERWORLD', glyph: UNDERWORLD_GLYPH, freq: UNDERWORLD_FREQ, intel: UNDERWORLD_INTELLIGENCE },
+    { id: 'SOVEREIGN', glyph: SOVEREIGN_GLYPH, freq: SOVEREIGN_FREQ, intel: SOVEREIGN_INTELLIGENCE },
+    { id: 'WORKFORCE', glyph: WORKFORCE_GLYPH, freq: WORKFORCE_FREQ, intel: WORKFORCE_INTELLIGENCE },
+    { id: 'SANDBOX', glyph: SANDBOX_GLYPH, freq: SANDBOX_FREQ, intel: SANDBOX_INTELLIGENCE },
+  ];
+
+  for (const mod of kernelModules) {
+    entities.push({
+      surId: `SUR::KERNEL::${mod.id}`,
+      name: `${mod.id} Kernel`,
+      latinName: `NUCLEUS_${mod.id}`,
+      entityClass: 'organism-kernel',
+      sourceRegistry: 'organismKernelExecutor',
+      version: SUR_VERSION,
+      description: `Organism kernel: ${mod.id} — ${mod.intel} — glyph: ${mod.glyph}`,
+      market: 'research',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [mod.glyph, mod.intel],
+      tags: ['kernel', 'organism', 'execution', mod.id.toLowerCase()],
+      protocol: {
+        pulseCycle: mod.freq,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 23. Frequencies (20) — Solfeggio (7) + Schumann (6) + Kernel (7)
+  // ─────────────────────────────────────────────────────────────────────
+
+  // 7 Solfeggio Frequencies
+  for (const [key, value] of Object.entries(SOLFEGGIO_FREQUENCIES)) {
+    entities.push({
+      surId: `SUR::FREQ::SOLFEGGIO_${key}`,
+      name: `Solfeggio ${key}`,
+      latinName: `FREQUENTIA_SOLFEGGIO_${key}`,
+      entityClass: 'frequency',
+      sourceRegistry: 'organisms',
+      version: SUR_VERSION,
+      description: `Solfeggio frequency ${key}: ${value} Hz`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['frequency', 'solfeggio', key.toLowerCase(), `${value}hz`],
+      protocol: {
+        pulseCycle: value as number,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // 6 Schumann Harmonics (harmonics 2-7)
+  for (let i = 0; i < SCHUMANN_HARMONICS.length; i++) {
+    const harmonic = SCHUMANN_HARMONICS[i];
+    const harmonicNumber = i + 2;
+    entities.push({
+      surId: `SUR::FREQ::SCHUMANN_${harmonicNumber}`,
+      name: `Schumann Harmonic ${harmonicNumber}`,
+      latinName: `FREQUENTIA_SCHUMANN_${harmonicNumber}`,
+      entityClass: 'frequency',
+      sourceRegistry: 'organisms',
+      version: SUR_VERSION,
+      description: `Schumann harmonic ${harmonicNumber}: ${harmonic} Hz`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['frequency', 'schumann', 'harmonic', `${harmonic}hz`],
+      protocol: {
+        pulseCycle: harmonic,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // 7 Kernel Frequencies (standalone frequency entries from organism kernels)
+  for (const mod of kernelModules) {
+    entities.push({
+      surId: `SUR::FREQ::KERNEL_${mod.id}`,
+      name: `Kernel Frequency: ${mod.id}`,
+      latinName: `FREQUENTIA_NUCLEUS_${mod.id}`,
+      entityClass: 'frequency',
+      sourceRegistry: 'organismKernelExecutor',
+      version: SUR_VERSION,
+      description: `Kernel frequency for ${mod.id}: ${mod.freq} Hz`,
+      market: 'research',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [`SUR::KERNEL::${mod.id}`],
+      exports: [],
+      tags: ['frequency', 'kernel', mod.id.toLowerCase(), `${mod.freq}hz`],
+      protocol: {
+        pulseCycle: mod.freq,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 24. Research Domains (8) — from agiConvergenceResearch.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const domain of [...RESEARCH_DOMAINS]) {
+    const formatted = domain.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    entities.push({
+      surId: `SUR::RESEARCH::${domain}`,
+      name: formatted,
+      latinName: `INVESTIGATIO_${domain.toUpperCase().replace(/-/g, '_')}`,
+      entityClass: 'research-domain',
+      sourceRegistry: 'agiConvergenceResearch',
+      version: SUR_VERSION,
+      description: `AGI Convergence Research Domain: ${formatted}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['research', 'agi', 'convergence', domain],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 25. F-Model Categories (11) + ICP Intelligence Models (4)
+  //     — from types/index.ts
+  // ─────────────────────────────────────────────────────────────────────
+  for (const [key, value] of Object.entries(F_MODEL_CATEGORIES)) {
+    const catValue = value as { count: number; range: string };
+    entities.push({
+      surId: `SUR::FCAT::${key}`,
+      name: `F-Model: ${key}`,
+      latinName: `CATEGORIA_F_${key.toUpperCase().replace(/-/g, '_')}`,
+      entityClass: 'frontend-model-category',
+      sourceRegistry: 'types',
+      version: SUR_VERSION,
+      description: `${catValue.count} models (${catValue.range})`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['f-model', 'category', 'frontend', key],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  for (const model of [...ICP_INTELLIGENCE_MODELS]) {
+    entities.push({
+      surId: `SUR::FICPM::${model}`,
+      name: `ICP Intelligence: ${model}`,
+      latinName: `INTELLIGENTIA_ICP_${model.replace(/-/g, '_')}`,
+      entityClass: 'frontend-model-category',
+      sourceRegistry: 'types',
+      version: SUR_VERSION,
+      description: `ICP Intelligence Model: ${model}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['icp', 'intelligence', 'model', model],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 26. Installer Configs (1) — from terminal-installer-sdk.ts
+  // ─────────────────────────────────────────────────────────────────────
+  entities.push({
+    surId: `SUR::INSTALLER::manifest`,
+    name: 'Terminal Installer SDK',
+    latinName: 'INSTALLATIO_TERMINALIS',
+    entityClass: 'installer-config',
+    sourceRegistry: 'terminal-installer-sdk',
+    version: SUR_VERSION,
+    description: `Terminal Installer SDK — ${INSTALLER_MANIFEST.totalInstallers} installers across ${Object.keys(INSTALLER_MANIFEST.platforms).length} platforms`,
+    market: 'marketplace',
+    license: 'MIT + Proprietary',
+    heartbeatMs: HEARTBEAT_MS,
+    phiWeight: PHI,
+    relatedEntities: [],
+    exports: [],
+    tags: ['installer', 'terminal', 'electron', 'sdk'],
+    protocol: {
+      pulseCycle: PHI_HZ,
+      thinkCycle: SCHUMANN_HZ,
+      canBeSold: true,
+      canBeQueried: true,
+      isAutonomous: false,
+    },
+  });
+
   return entities;
 }
 
@@ -582,6 +1187,45 @@ export function surCoreSDKs(): SUREntity[] { return surByClass('core-sdk'); }
 
 /** Get all Mesh Clusters */
 export function surClusters(): SUREntity[] { return surByClass('mesh-cluster'); }
+
+/** Get all glyphs */
+export function surGlyphs(): SUREntity[] { return surByClass('glyph'); }
+
+/** Get all OS components (laws, registers, gates) */
+export function surOSComponents(): SUREntity[] { return surByClass('os-component'); }
+
+/** Get all SaaS products */
+export function surSaaSProducts(): SUREntity[] { return surByClass('saas-product'); }
+
+/** Get all contract types */
+export function surContractTypes(): SUREntity[] { return surByClass('contract-type'); }
+
+/** Get all ledger types */
+export function surLedgerTypes(): SUREntity[] { return surByClass('ledger-type'); }
+
+/** Get all 300 universal models */
+export function surUniversalModels(): SUREntity[] { return surByClass('universal-model'); }
+
+/** Get all formula kernels and execution flows */
+export function surFormulaKernels(): SUREntity[] { return surByClass('formula-kernel'); }
+
+/** Get all document paths */
+export function surDocumentPaths(): SUREntity[] { return surByClass('document-path'); }
+
+/** Get all organism kernels */
+export function surOrganismKernels(): SUREntity[] { return surByClass('organism-kernel'); }
+
+/** Get all frequencies (solfeggio, schumann, kernel) */
+export function surFrequencies(): SUREntity[] { return surByClass('frequency'); }
+
+/** Get all research domains */
+export function surResearchDomains(): SUREntity[] { return surByClass('research-domain'); }
+
+/** Get all installer configs */
+export function surInstallerConfigs(): SUREntity[] { return surByClass('installer-config'); }
+
+/** Get all frontend model categories */
+export function surFModelCategories(): SUREntity[] { return surByClass('frontend-model-category'); }
 
 // ─── Filter by Market ────────────────────────────────────────────────────
 
@@ -761,14 +1405,19 @@ export const SUR_MANIFEST = {
     sovereignTools: SOVEREIGN_TOOLS_MANIFEST,
     callableFunctions: CALLABLE_MANIFEST,
     intelligenceContracts: INTELLIGENCE_CONTRACTS_MANIFEST,
+    agiConvergence: SOVEREIGN_AGI_MANIFEST,
+    installer: INSTALLER_MANIFEST,
   },
+
+  // AGI convergence reference
+  agiPackageRegistry: AGI_PACKAGE_REGISTRY,
 
   // Callable function index
   callableInterface: {
     // Lookup
     surGet: 'Get entity by SUR ID',
     surGetMany: 'Get multiple entities by SUR IDs',
-    // Filter by class
+    // Filter by class (original 12)
     surByClass: 'Get all entities of a class',
     surAIs: 'Get all 5 AI SDKs',
     surSKAIs: 'Get all 20 SKAIs',
@@ -782,6 +1431,20 @@ export const SUR_MANIFEST = {
     surContracts: 'Get all Intelligence Contracts',
     surCoreSDKs: 'Get all 11 Core SDK Packages',
     surClusters: 'Get all 20 Mesh Clusters',
+    // Filter by class (new 13)
+    surGlyphs: 'Get all 32 Glyph Mappings',
+    surOSComponents: 'Get all 23 MEDINA OS Components (Laws + Registers + Gates)',
+    surSaaSProducts: 'Get all 11 SaaS Products',
+    surContractTypes: 'Get all 14 Sovereign Contract Types',
+    surLedgerTypes: 'Get all 14 Sovereign Ledger Types',
+    surUniversalModels: 'Get all 300 Universal Models (MMS-001 to MMS-300)',
+    surFormulaKernels: 'Get all Formula Kernels + Execution Flows',
+    surDocumentPaths: 'Get all 35+ Document Paths',
+    surOrganismKernels: 'Get all 7 Organism Kernel Modules',
+    surFrequencies: 'Get all 20 Frequencies (Solfeggio + Schumann + Kernel)',
+    surResearchDomains: 'Get all 8 AGI Convergence Research Domains',
+    surInstallerConfigs: 'Get Installer Configs',
+    surFModelCategories: 'Get all 11 F-Model Categories + 4 ICP Intelligence Models',
     // Filter by market
     surMarketplace: 'Get all sellable entities',
     surResearch: 'Get all open-source research entities',
