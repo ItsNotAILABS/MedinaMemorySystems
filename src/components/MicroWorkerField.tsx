@@ -22,6 +22,9 @@ const STAGE_ICONS: Record<string, string> = {
   SOVEREIGN: '𓂀',
 };
 
+/** How often the UI polls for career state updates (ms) */
+const CAREER_STATUS_POLL_MS = 2000;
+
 /**
  * MicroWorkerField — Live career status in the OrganismField bar.
  * Shows careers flowing, stage distribution, and flow cycles.
@@ -45,7 +48,7 @@ export default function MicroWorkerField() {
     bootMicroWorkers();
     refresh();
 
-    const interval = setInterval(refresh, 2000);
+    const interval = setInterval(refresh, CAREER_STATUS_POLL_MS);
     return () => clearInterval(interval);
   }, [refresh]);
 

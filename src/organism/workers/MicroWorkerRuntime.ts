@@ -70,7 +70,6 @@ const CAREER_STAGES: CareerStage[] = ['APPRENTICE', 'JOURNEYMAN', 'MASTER', 'SOV
 const workerStates: Map<string, WorkerState> = new Map();
 let runtimeBooted = false;
 let runtimeBootedAt: number | null = null;
-let totalFlowCycles = 0;
 
 /**
  * Boot all 100 career flows (client-side mirror).
@@ -109,6 +108,7 @@ export function getRuntimeState(): MicroWorkerRuntimeState {
   const flowingWorkers = workers.filter(w => w.status === 'FLOWING').length;
   const deepeningWorkers = workers.filter(w => w.status === 'DEEPENING').length;
   const errorWorkers = workers.filter(w => w.status === 'ERROR').length;
+  const computedTotalFlowCycles = workers.reduce((sum, w) => sum + w.flowCycles, 0);
 
   const careers: Record<CareerStage, number> = {
     APPRENTICE: workers.filter(w => w.careerStage === 'APPRENTICE').length,
@@ -134,7 +134,7 @@ export function getRuntimeState(): MicroWorkerRuntimeState {
     flowingWorkers,
     deepeningWorkers,
     errorWorkers,
-    totalFlowCycles,
+    totalFlowCycles: computedTotalFlowCycles,
     careers,
     workers,
     domains,
