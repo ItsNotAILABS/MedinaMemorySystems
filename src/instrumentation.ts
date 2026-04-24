@@ -10,28 +10,40 @@
  *  They should have been on 10 seconds ago."
  *
  * When the Next.js server process boots:
- *   1. All 100 micro workers come online immediately
- *   2. Heartbeats start pulsing at φ-derived intervals
- *   3. The organism is alive before any client connects
- *   4. Any user who opens a page sees workers already running
+ *   1. All 100 micro worker careers come online immediately
+ *   2. All 260 marketplace tools register and activate
+ *   3. All 55 enterprise protocols begin flowing
+ *   4. Heartbeats start pulsing at φ-derived intervals
+ *   5. The organism is alive before any client connects
+ *   6. Any user who opens a page sees everything already running
  *
  * This is the production enterprise. Always on.
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
 export async function register() {
-  // Only boot workers on the server side (not in Edge runtime or client)
+  // Only boot on the server side (not in Edge runtime or client)
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (typeof globalThis !== 'undefined' && typeof (globalThis as Record<string, unknown>).process !== 'undefined') {
     const proc = (globalThis as Record<string, unknown>).process as { env?: Record<string, string | undefined> };
     if (proc.env?.NEXT_RUNTIME === 'nodejs') {
+      console.log('[𓂀 INSTRUMENTATION] Next.js server process starting — booting organism...');
+
+      // 1. Boot all 100 career flows
       const { bootServerWorkers } = await import(
         '@/organism/workers/ServerWorkerRuntime'
       );
-
-      console.log('[𓂀 INSTRUMENTATION] Next.js server process starting — booting organism...');
       bootServerWorkers();
-      console.log('[𓂀 INSTRUMENTATION] Organism is ALIVE. 100 careers flowing. No page load needed.');
+      console.log('[𓂀 INSTRUMENTATION] 100 careers flowing. No page load needed.');
+
+      // 2. Boot the Call Marketplace (260 tools + 55 protocols)
+      const { bootCallMarketplace } = await import(
+        '@/lib/callMarketplaceEngine'
+      );
+      bootCallMarketplace();
+      console.log('[𓂀 INSTRUMENTATION] Call Marketplace LIVE. 260 tools registered. 55 protocols active.');
+
+      console.log('[𓂀 INSTRUMENTATION] Organism is FULLY ALIVE. Workers + Marketplace + Protocols. Always on.');
     }
   }
 }
