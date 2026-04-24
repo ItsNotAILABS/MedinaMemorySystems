@@ -2,6 +2,7 @@
 
 import { usePlatformSync } from '@/hooks/usePlatformSync';
 import type { OrganismRegister } from '@/types';
+import MicroWorkerField from '@/components/MicroWorkerField';
 
 const REGISTER_CONFIG: Record<OrganismRegister, { label: string; abbr: string; color: string; glow: string }> = {
   cognitive: { label: 'Cognitive', abbr: 'COG', color: '#3b82f6', glow: 'rgba(59,130,246,0.3)' },
@@ -127,6 +128,10 @@ export default function OrganismField() {
         <span className="text-slate-500 font-mono text-[10px]">Mem</span>
         <span className="text-purple-400 font-mono font-bold text-[10px]">{sync.memory.total}</span>
       </div>
+
+      {/* Micro Workers */}
+      <div className="w-px h-4 bg-[#1e1e2e] shrink-0" />
+      <MicroWorkerField />
     </div>
   );
 }

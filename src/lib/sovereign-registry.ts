@@ -9,6 +9,7 @@
 import { registerModel } from './sovereign-model';
 import { ALL_SOVEREIGN_FIELD_DOMAINS } from '@/organism/models/SovereignFieldModels';
 import type { SovereignFieldDomain } from '@/organism/models/SovereignFieldModels';
+import { ALL_WORKER_DOMAINS, ALL_MICRO_WORKERS } from '@/organism/workers/MicroWorkerManifest';
 
 // ─── Domain → sovereign model kind mapping ────────────────────────────────────
 
@@ -404,6 +405,55 @@ export function bootSovereignRegistry(): void {
         expand: () => domain.models.map((m) => `${m.id} — ${m.latinName}`),
         invoke: (input) => `${fieldModel.id} (${fieldModel.latinName}): ${fieldModel.description} — processing "${input.slice(0, 40)}"`,
         color: fieldModel.color,
+      });
+    }
+  }
+
+  // ─── Micro Worker Models — 100 always-on sovereign workers ──────────────────
+  // 10 domains × 10 workers each = 100 total micro workers
+  // Registered into ULRI so worker intelligence participates in routing.
+
+  const WORKER_DOMAIN_KEYWORDS: Record<string, string[]> = {
+    MEMORIA:    ['memory', 'index', 'salience', 'lineage', 'resonance', 'decay', 'semantic', 'spatial', 'doctrine', 'compact'],
+    SENSUS:     ['vision', 'audio', 'frequency', 'input', 'emotion', 'gesture', 'sensor', 'context', 'attention', 'perception'],
+    NEXUS:      ['api', 'sync', 'cache', 'websocket', 'batch', 'offline', 'latency', 'protocol', 'peer', 'bandwidth'],
+    COGNITIO:   ['pattern', 'model', 'intent', 'context', 'prediction', 'anomaly', 'knowledge', 'learning', 'inference', 'thought'],
+    CUSTODIA:   ['gate', 'security', 'audit', 'threat', 'permission', 'provenance', 'encryption', 'integrity', 'breach', 'enforce'],
+    GUBERNATIO: ['proposal', 'vote', 'doctrine', 'audit', 'law', 'compliance', 'quorum', 'amendment', 'delegation', 'governance'],
+    FABRICATIO: ['wasm', 'bundle', 'validate', 'render', 'optimize', 'dependency', 'reload', 'canister', 'schema', 'build'],
+    RESONANTIA: ['phi', 'beat', 'harmonic', 'frequency', 'resonance', 'wave', 'fibonacci', 'phase', 'schumann', 'entrainment'],
+    FLUXUS:     ['stream', 'backpressure', 'transform', 'event', 'queue', 'buffer', 'pipeline', 'fan', 'merge', 'dead letter'],
+    IMPERIUM:   ['orchestrate', 'health', 'load', 'schedule', 'lifecycle', 'priority', 'metric', 'error', 'config', 'telemetry'],
+  };
+
+  for (const domain of ALL_WORKER_DOMAINS) {
+    const domainKw = WORKER_DOMAIN_KEYWORDS[domain.id] ?? [];
+
+    for (const worker of domain.workers) {
+      const nameTokens = worker.name.toLowerCase().replace(/_/g, ' ').split(' ');
+      const workerKeywords = [...new Set([...domainKw, ...nameTokens, 'worker', 'micro', 'always-on'])];
+
+      registerModel({
+        id: `worker:${domain.id}:${worker.id}`,
+        name: `${worker.name} — ${worker.latinName}`,
+        kind: 'substrate',
+        description: `[${domain.latinName}] ${worker.purpose}`,
+        capabilities: [
+          worker.purpose,
+          `${domain.tagline}`,
+          `Worker ${worker.id} (rank ${worker.rank}/10) in ${domain.id}`,
+          `Heartbeat: ${worker.heartbeatMs}ms · Max queue: ${worker.maxQueue}`,
+          `Always-on · Passive · Production-grade`,
+        ],
+        keywords: workerKeywords,
+        resonance: (input) => {
+          const lower = input.toLowerCase();
+          const hits = workerKeywords.filter((kw) => lower.includes(kw)).length;
+          return Math.min(MAX_RESONANCE_SCORE, hits / Math.max(workerKeywords.length, 1) * KEYWORD_MATCH_MULTIPLIER);
+        },
+        expand: () => domain.workers.map((w) => `${w.name} — ${w.latinName}`),
+        invoke: (input) => `${worker.name} (${worker.latinName}): ${worker.purpose} — processing "${input.slice(0, 40)}"`,
+        color: worker.color,
       });
     }
   }
