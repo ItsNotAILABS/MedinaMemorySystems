@@ -7,7 +7,7 @@
  *  Agent/Caller, Settlement Record, and Exposure Layer."
  *
  * Complete type definitions for the VOIS-addressable Call Marketplace.
- * 260 tools across 13 categories, 55 enterprise protocols, 5 permission
+ * 260 tools across 12 categories, 55 enterprise protocols, 5 permission
  * tiers, 6 pricing classes, 5 reward classes, and full settlement/proof.
  *
  * This is NOT a generic API directory. It is the naming, schema, permission,

@@ -229,17 +229,21 @@ const SHIELD_NAMES = [
 ];
 
 // Build the full 260-tool inventory
+// Core: TOOL-001–020 (20), AI Calls: TOOL-021–060 (40), Blueprints: TOOL-061–080 (20),
+// Recipes: TOOL-081–100 (20), Lenses: TOOL-101–120 (20), Hooks: TOOL-121–140 (20),
+// Triggers: TOOL-141–160 (20), Adapters: TOOL-161–180 (20), Sensors: TOOL-181–200 (20),
+// Shields: TOOL-201–220 (20)  =  260 total
 const ALL_TOOL_DEFS: ToolDef[] = [
-  ...CORE_TOOLS,
-  ...generateCategoryTools('AI_CALLS', 21, 40, AI_CALL_NAMES),
-  ...generateCategoryTools('BLUEPRINTS', 61, 20, BLUEPRINT_NAMES),
-  ...generateCategoryTools('RECIPES', 81, 20, RECIPE_NAMES),
-  ...generateCategoryTools('LENSES', 101, 20, LENS_NAMES),
-  ...generateCategoryTools('HOOKS', 121, 20, HOOK_NAMES),
-  ...generateCategoryTools('TRIGGERS', 141, 20, TRIGGER_NAMES),
-  ...generateCategoryTools('ADAPTERS', 161, 20, ADAPTER_NAMES),
-  ...generateCategoryTools('SENSORS', 181, 20, SENSOR_NAMES),
-  ...generateCategoryTools('SHIELDS', 201, 20, SHIELD_NAMES),
+  ...CORE_TOOLS,                                                       // TOOL-001–020
+  ...generateCategoryTools('AI_CALLS',   21,  40, AI_CALL_NAMES),      // TOOL-021–060
+  ...generateCategoryTools('BLUEPRINTS', 61,  20, BLUEPRINT_NAMES),    // TOOL-061–080
+  ...generateCategoryTools('RECIPES',    81,  20, RECIPE_NAMES),       // TOOL-081–100
+  ...generateCategoryTools('LENSES',     101, 20, LENS_NAMES),         // TOOL-101–120
+  ...generateCategoryTools('HOOKS',      121, 20, HOOK_NAMES),         // TOOL-121–140
+  ...generateCategoryTools('TRIGGERS',   141, 20, TRIGGER_NAMES),      // TOOL-141–160
+  ...generateCategoryTools('ADAPTERS',   161, 20, ADAPTER_NAMES),      // TOOL-161–180
+  ...generateCategoryTools('SENSORS',    181, 20, SENSOR_NAMES),       // TOOL-181–200
+  ...generateCategoryTools('SHIELDS',    201, 20, SHIELD_NAMES),       // TOOL-201–220
 ];
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -325,6 +329,29 @@ const ALL_PROTOCOL_DEFS: ProtoDef[] = [
   { id: 'PROTO-054', name: 'sdkWebSocket', displayName: 'SDK WebSocket', category: 'SDK', description: 'SDK WebSocket connection lifecycle management.', tier: 'ENTERPRISE', durationMs: 50 },
   { id: 'PROTO-055', name: 'sdkDocGenerate', displayName: 'SDK Doc Generate', category: 'SDK', description: 'Automated SDK documentation generation from schemas.', tier: 'ENTERPRISE', durationMs: 3000 },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PROTOCOL → TOOL BINDING — Maps protocol categories to relevant core tools
+// ─────────────────────────────────────────────────────────────────────────────
+
+const PROTOCOL_CATEGORY_TOOL_MAP: Record<string, string> = {
+  CLIENT_LIFECYCLE: 'TOOL-004',   // STATE-GUARDIAN
+  AI_PIPELINE:     'TOOL-006',   // INFER-ENGINE
+  DATA_GOVERNANCE: 'TOOL-010',   // MEMORY-CONSOLIDATOR
+  SECURITY_TRUST:  'TOOL-011',   // SENTINEL-WATCH
+  PLATFORM_OPS:    'TOOL-016',   // RESOURCE-BALANCER
+  BILLING_METERING:'TOOL-005',   // CYCLE-COUNTER
+  RESEARCH_PRODUCT:'TOOL-007',   // PATTERN-SEEKER
+  MULTI_AGENT:     'TOOL-009',   // ATTENTION-ROUTER
+  INTELLIGENCE:    'TOOL-014',   // ANOMALY-DETECTOR
+  COMPLIANCE:      'TOOL-012',   // INTEGRITY-CHECKER
+  INTEGRATION:     'TOOL-017',   // CONNECTION-POOL
+  SDK:             'TOOL-008',   // CONTEXT-BUILDER
+};
+
+function getProtocolToolBinding(proto: ProtoDef): string {
+  return PROTOCOL_CATEGORY_TOOL_MAP[proto.category] || 'TOOL-001';
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // BOOT — Called once at process start
@@ -416,7 +443,7 @@ export function bootCallMarketplace(): void {
       description: proto.description,
       steps: [
         { step_id: `${proto.id}-S1`, name: 'validate', worker_binding: 'MW-041', tool_binding: 'TOOL-013', timeout_ms: 5000, retry_count: 1 },
-        { step_id: `${proto.id}-S2`, name: 'execute', worker_binding: 'MW-091', tool_binding: proto.id.replace('PROTO-', 'TOOL-'), timeout_ms: proto.durationMs, retry_count: 2 },
+        { step_id: `${proto.id}-S2`, name: 'execute', worker_binding: 'MW-091', tool_binding: getProtocolToolBinding(proto), timeout_ms: proto.durationMs, retry_count: 2 },
         { step_id: `${proto.id}-S3`, name: 'settle', worker_binding: 'MW-097', tool_binding: 'TOOL-020', timeout_ms: 2000, retry_count: 1 },
       ],
       status: 'active',
