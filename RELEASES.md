@@ -760,7 +760,68 @@ Source: `src/packages/sovereign-tools-engine.ts`
 - **Exports**: `surAllExports`, `surWhoExports`
 - **Statistics**: `surCountByClass`, `surCountByMarket`, `surCountBySource`
 
-Source: `src/packages/sovereign-unified-registry.ts` (1,475 lines)
+Source: `src/packages/sovereign-unified-registry.ts` (2,289 lines)
+
+---
+
+## 𓂀 JARVISIUS — Sovereign Intelligence Assistant
+
+**THE PRODUCT**: A full AI assistant that slides out like Edge Copilot, controls your browser, takes notes, creates documents, captures pages — everything synced to MERIDIAN forever, attributed to Alfredo.
+
+### Three Layers
+
+| Layer | What | Where |
+|-------|------|-------|
+| **ENGINE** | In-memory sovereign store + action processor | `src/lib/jarvisEngine.ts` + `src/app/api/jarvis/route.ts` |
+| **EXTENSION** | Chrome/Edge Manifest V3 side panel | `extensions/jarvis/` (7 files) |
+| **DASHBOARD** | MERIDIAN control center panel | `src/components/JarvisPanel.tsx` |
+| **SDK** | Package for SUR integration | `src/packages/jarvis-sovereign-sdk.ts` |
+
+### What JARVIS Does From Day One
+
+| Capability | Command | How |
+|-----------|---------|-----|
+| Open any URL | `/open <url>` | Background.js → chrome.tabs.create |
+| Switch tabs | `/tab <number>` | Background.js → chrome.tabs.update |
+| Close tabs | `/close` | Background.js → chrome.tabs.remove |
+| Take notes | `/note <title> \| <content>` | API → jarvisEngine sovereign store |
+| Create documents | `/pdf <title>` | API → document store |
+| Screenshot page | `/screenshot` | Background.js → chrome.tabs.captureVisibleTab |
+| Capture page text | Quick action button | Content.js → API capture |
+| Search the web | `/search <query>` | Opens Google in new tab |
+| System status | `/status` | Returns full state from engine |
+| Chat naturally | Just type anything | Routed through MERIDIAN organism |
+
+### Extension Installation
+
+1. Open `chrome://extensions` or `edge://extensions`
+2. Enable **Developer Mode**
+3. Click **Load unpacked**
+4. Select the `extensions/jarvis/` folder
+5. JARVISIUS appears in your browser toolbar — click to open the side panel
+
+### API Endpoints
+
+```
+GET  /api/jarvis?action=dashboard    → Full dashboard data
+GET  /api/jarvis?action=state        → JARVIS status
+GET  /api/jarvis?action=notes        → All notes
+GET  /api/jarvis?action=documents    → All documents
+GET  /api/jarvis?action=commands     → Command log
+POST /api/jarvis { action: 'chat', message }     → Chat
+POST /api/jarvis { action: 'note', title, content, tags } → Create note
+POST /api/jarvis { action: 'tab', tabAction, url }  → Tab control
+POST /api/jarvis { action: 'capture', url, title }  → Capture page
+```
+
+### SDK Package: `@medina/jarvis-sovereign-sdk`
+
+- **Latin**: JARVISIUS SUVERANUS
+- **Terminal**: /jarvis
+- **Modules**: 6 (chat, notes, documents, tabs, capture, commands)
+- **Exports**: 20 functions + 8 types
+- **Market**: Marketplace
+- **License**: MIT + Proprietary
 
 ---
 
