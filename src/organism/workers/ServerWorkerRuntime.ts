@@ -1,27 +1,28 @@
 // ISIL-1.1 — Copyright (c) 2026 ItsNotAILABS. All Rights Reserved.
 /**
- * 𓂀 SERVER WORKER RUNTIME — ALWAYS-ON, NO PAGE LOAD, JUST RUNNING 𓂀
+ * 𓂀 SERVER WORKER RUNTIME — ALWAYS-ON CAREER FLOWS, NOT JOBS 𓂀
  * ═══════════════════════════════════════════════════════════════════════════════
+ *
+ * "Give them careers, not jobs or tasks — careers that include all that
+ *  as consistent flows."
  *
  * "Not our page load all the time. It's running, make everything run.
  *  There's no page load. There's no nothing. This is the whole system.
- *  They should have been on 10 seconds ago. They should have been on
- *  when this conversation started."
+ *  They should have been on 10 seconds ago."
  *
- * This is the SERVER-SIDE always-on runtime. It boots when the Next.js
- * process starts (via instrumentation.ts), NOT when a page loads. It runs
- * 24/7 as long as the server process lives. Any user who opens a page at
- * any point sees workers that are already alive, already running, already
- * processing. No boot. No load. Already on.
+ * This is the SERVER-SIDE always-on runtime. Every worker has a CAREER —
+ * a continuous flow that runs from process boot. Workers don't wait for
+ * tasks. They flow. Every heartbeat is a career cycle. Every cycle deepens
+ * their mastery. APPRENTICE → JOURNEYMAN → MASTER → SOVEREIGN.
  *
  * ARCHITECTURE:
- *   - Process Start: All 100 workers activate at server process boot
- *   - Heartbeats: Real setInterval loops running on the server
+ *   - Process Start: All 100 careers begin at server boot
+ *   - Flow Cycles: Each heartbeat IS a career flow cycle
+ *   - Career Growth: Workers advance through stages as they accumulate cycles
  *   - State: In-memory Map accessible to any API route
- *   - API: /api/workers exposes live state to any client
- *   - Lifecycle: Workers restart on error, never stop until process dies
+ *   - Lifecycle: Careers never pause, never stop, only deepen
  *
- * This is the production enterprise. The whole organism. Always on.
+ * This is the production enterprise. The whole organism. Always flowing.
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
@@ -31,6 +32,7 @@ import {
   type MicroWorkerSpec,
   type WorkerDomainId,
   type WorkerStatus,
+  type CareerStage,
 } from '@/organism/workers/MicroWorkerManifest';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -44,7 +46,20 @@ export interface ServerWorkerState {
   domain: WorkerDomainId;
   purpose: string;
   status: WorkerStatus;
-  taskCount: number;
+  /** Career title — their life's work */
+  careerTitle: string;
+  /** Career flow description */
+  careerFlow: string;
+  /** Current career stage */
+  careerStage: CareerStage;
+  /** Description of what current stage means for this worker */
+  careerStageDescription: string;
+  /** Total flow cycles completed */
+  flowCycles: number;
+  /** Cycles needed to advance to next stage */
+  cyclesPerStage: number;
+  /** Progress toward next stage (0-1) */
+  stageProgress: number;
   lastHeartbeat: number;
   heartbeatCount: number;
   errorCount: number;
@@ -59,18 +74,20 @@ export interface ServerRuntimeSnapshot {
   uptimeHuman: string;
   totalWorkers: number;
   onlineWorkers: number;
-  idleWorkers: number;
-  processingWorkers: number;
+  flowingWorkers: number;
+  deepeningWorkers: number;
   errorWorkers: number;
-  totalTasksProcessed: number;
+  totalFlowCycles: number;
   totalHeartbeats: number;
+  careerDistribution: Record<CareerStage, number>;
   domains: Array<{
     id: WorkerDomainId;
     latinName: string;
     tagline: string;
     onlineCount: number;
-    totalTasks: number;
+    totalFlowCycles: number;
     totalHeartbeats: number;
+    careerDistribution: Record<CareerStage, number>;
   }>;
   workers: ServerWorkerState[];
 }
@@ -83,17 +100,41 @@ const workerStates: Map<string, ServerWorkerState> = new Map();
 const heartbeatTimers: Map<string, ReturnType<typeof setInterval>> = new Map();
 let serverBootedAt: number = 0;
 let serverBooted = false;
-let totalTasksProcessed = 0;
+let totalFlowCycles = 0;
 let totalHeartbeats = 0;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CAREER STAGE PROGRESSION
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CAREER_STAGES: CareerStage[] = ['APPRENTICE', 'JOURNEYMAN', 'MASTER', 'SOVEREIGN'];
+
+function getCareerStage(flowCycles: number, cyclesPerStage: number): CareerStage {
+  const stageIndex = Math.min(
+    CAREER_STAGES.length - 1,
+    Math.floor(flowCycles / cyclesPerStage),
+  );
+  return CAREER_STAGES[stageIndex];
+}
+
+function getStageProgress(flowCycles: number, cyclesPerStage: number): number {
+  const currentStageIndex = Math.min(
+    CAREER_STAGES.length - 1,
+    Math.floor(flowCycles / cyclesPerStage),
+  );
+  if (currentStageIndex >= CAREER_STAGES.length - 1) return 1; // Sovereign is final
+  const cyclesInCurrentStage = flowCycles % cyclesPerStage;
+  return cyclesInCurrentStage / cyclesPerStage;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // BOOT — Called once at process start from instrumentation.ts
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Boot all 100 micro workers on the server side.
+ * Boot all 100 careers on the server side.
  * This runs ONCE at process start. No page load. No user action.
- * Workers are immediately alive and pulsing.
+ * Careers begin flowing immediately.
  */
 export function bootServerWorkers(): void {
   if (serverBooted) return;
@@ -101,18 +142,25 @@ export function bootServerWorkers(): void {
   const now = Date.now();
   serverBootedAt = now;
 
-  console.log(`[𓂀 ORGANISM] Booting 100 micro workers at process start — ${new Date(now).toISOString()}`);
+  console.log(`[𓂀 ORGANISM] Starting 100 careers at process boot — ${new Date(now).toISOString()}`);
 
   for (const spec of ALL_MICRO_WORKERS) {
-    // Initialize state
+    const initialStage: CareerStage = 'APPRENTICE';
+
     const state: ServerWorkerState = {
       id: spec.id,
       name: spec.name,
       latinName: spec.latinName,
       domain: spec.domain,
       purpose: spec.purpose,
-      status: 'IDLE',
-      taskCount: 0,
+      status: 'FLOWING',
+      careerTitle: spec.career.title,
+      careerFlow: spec.career.flow,
+      careerStage: initialStage,
+      careerStageDescription: spec.career.stages[initialStage],
+      flowCycles: 0,
+      cyclesPerStage: spec.career.cyclesPerStage,
+      stageProgress: 0,
       lastHeartbeat: now,
       heartbeatCount: 0,
       errorCount: 0,
@@ -121,23 +169,23 @@ export function bootServerWorkers(): void {
     };
     workerStates.set(spec.id, state);
 
-    // Start real heartbeat timer
-    startWorkerHeartbeat(spec);
+    // Start career flow — every heartbeat IS a flow cycle
+    startCareerFlow(spec);
   }
 
   serverBooted = true;
 
-  console.log(`[𓂀 ORGANISM] All 100 micro workers ONLINE — 10 domains × 10 workers`);
+  console.log(`[𓂀 ORGANISM] All 100 careers FLOWING — 10 domains × 10 careers`);
   console.log(`[𓂀 ORGANISM] Domains: ${ALL_WORKER_DOMAINS.map(d => d.id).join(', ')}`);
-  console.log(`[𓂀 ORGANISM] The organism is always on. No page load required.`);
+  console.log(`[𓂀 ORGANISM] Careers grow: APPRENTICE → JOURNEYMAN → MASTER → SOVEREIGN`);
+  console.log(`[𓂀 ORGANISM] The organism is always flowing. No page load. No tasks. Just careers.`);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// HEARTBEATS — Real setInterval running on the server
+// CAREER FLOW — Each heartbeat IS a career flow cycle
 // ─────────────────────────────────────────────────────────────────────────────
 
-function startWorkerHeartbeat(spec: MicroWorkerSpec): void {
-  // Clear any existing heartbeat for this worker
+function startCareerFlow(spec: MicroWorkerSpec): void {
   const existing = heartbeatTimers.get(spec.id);
   if (existing) clearInterval(existing);
 
@@ -145,79 +193,47 @@ function startWorkerHeartbeat(spec: MicroWorkerSpec): void {
     const state = workerStates.get(spec.id);
     if (!state) return;
 
+    // Every heartbeat is a flow cycle — the career advances
     state.lastHeartbeat = Date.now();
     state.heartbeatCount++;
+    state.flowCycles++;
+    totalFlowCycles++;
     totalHeartbeats++;
 
-    // If worker was in ERROR, auto-recover after 3 heartbeats
+    // Career stage progression
+    const newStage = getCareerStage(state.flowCycles, state.cyclesPerStage);
+    if (newStage !== state.careerStage) {
+      const oldStage = state.careerStage;
+      state.careerStage = newStage;
+      state.careerStageDescription = spec.career.stages[newStage];
+      state.status = 'DEEPENING';
+
+      console.log(
+        `[𓂀 CAREER] ${spec.name} (${spec.career.title}) advanced: ${oldStage} → ${newStage} after ${state.flowCycles} cycles`,
+      );
+
+      // Return to flowing after deepening moment
+      setTimeout(() => {
+        if (state.status === 'DEEPENING') state.status = 'FLOWING';
+      }, Math.round(spec.heartbeatMs * 0.5));
+    }
+
+    state.stageProgress = getStageProgress(state.flowCycles, state.cyclesPerStage);
+
+    // Auto-recover from errors
     if (state.status === 'ERROR' && state.heartbeatCount % 3 === 0) {
-      state.status = 'IDLE';
+      state.status = 'FLOWING';
       state.errorCount = 0;
-      console.log(`[𓂀 ORGANISM] Worker ${spec.id} (${spec.name}) auto-recovered`);
+      console.log(`[𓂀 ORGANISM] ${spec.name} career flow recovered`);
     }
   }, spec.heartbeatMs);
 
   // Unref so it doesn't prevent process exit during shutdown
   if (timer && typeof timer === 'object' && 'unref' in timer) {
-    timer.unref();
+    (timer as { unref: () => void }).unref();
   }
 
   heartbeatTimers.set(spec.id, timer);
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// TASK DISPATCH — Server-side task processing
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Dispatch a task to a specific worker.
- * Returns true if accepted, false if worker unavailable.
- */
-export function serverDispatchTask(
-  workerId: string,
-  taskId: string,
-  payload: unknown,
-): boolean {
-  const state = workerStates.get(workerId);
-  if (!state || state.status === 'OFFLINE' || state.status === 'ERROR') {
-    return false;
-  }
-
-  state.status = 'PROCESSING';
-  state.taskCount++;
-
-  // Process and return to idle
-  const spec = ALL_MICRO_WORKERS.find(w => w.id === workerId);
-  const processingMs = spec ? Math.round(spec.heartbeatMs * 0.2) : 50;
-
-  setTimeout(() => {
-    state.status = 'IDLE';
-    state.lastHeartbeat = Date.now();
-    totalTasksProcessed++;
-  }, processingMs);
-
-  return true;
-}
-
-/**
- * Dispatch to the best idle worker in a domain.
- * Returns the worker ID that accepted, or null.
- */
-export function serverDispatchToDomain(
-  domain: WorkerDomainId,
-  taskId: string,
-  payload: unknown,
-): string | null {
-  const candidates = ALL_MICRO_WORKERS
-    .filter(w => w.domain === domain)
-    .map(w => ({ spec: w, state: workerStates.get(w.id) }))
-    .filter(w => w.state && w.state.status === 'IDLE')
-    .sort((a, b) => (a.state!.taskCount) - (b.state!.taskCount));
-
-  if (candidates.length === 0) return null;
-
-  const accepted = serverDispatchTask(candidates[0].spec.id, taskId, payload);
-  return accepted ? candidates[0].spec.id : null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -227,6 +243,15 @@ export function serverDispatchToDomain(
 /** Is the server worker runtime booted? */
 export function isServerBooted(): boolean {
   return serverBooted;
+}
+
+function countCareerDistribution(workers: ServerWorkerState[]): Record<CareerStage, number> {
+  return {
+    APPRENTICE: workers.filter(w => w.careerStage === 'APPRENTICE').length,
+    JOURNEYMAN: workers.filter(w => w.careerStage === 'JOURNEYMAN').length,
+    MASTER: workers.filter(w => w.careerStage === 'MASTER').length,
+    SOVEREIGN: workers.filter(w => w.careerStage === 'SOVEREIGN').length,
+  };
 }
 
 /** Get a complete snapshot of the runtime state. */
@@ -251,8 +276,8 @@ export function getServerSnapshot(): ServerRuntimeSnapshot {
 
   const workers = Array.from(workerStates.values());
   const onlineWorkers = workers.filter(w => w.status !== 'OFFLINE' && w.status !== 'ERROR').length;
-  const idleWorkers = workers.filter(w => w.status === 'IDLE').length;
-  const processingWorkers = workers.filter(w => w.status === 'PROCESSING' || w.status === 'ACTIVE').length;
+  const flowingWorkers = workers.filter(w => w.status === 'FLOWING').length;
+  const deepeningWorkers = workers.filter(w => w.status === 'DEEPENING').length;
   const errorWorkers = workers.filter(w => w.status === 'ERROR').length;
 
   const domains = ALL_WORKER_DOMAINS.map(d => {
@@ -262,8 +287,9 @@ export function getServerSnapshot(): ServerRuntimeSnapshot {
       latinName: d.latinName,
       tagline: d.tagline,
       onlineCount: dw.filter(w => w.status !== 'OFFLINE' && w.status !== 'ERROR').length,
-      totalTasks: dw.reduce((sum, w) => sum + w.taskCount, 0),
+      totalFlowCycles: dw.reduce((sum, w) => sum + w.flowCycles, 0),
       totalHeartbeats: dw.reduce((sum, w) => sum + w.heartbeatCount, 0),
+      careerDistribution: countCareerDistribution(dw),
     };
   });
 
@@ -274,11 +300,12 @@ export function getServerSnapshot(): ServerRuntimeSnapshot {
     uptimeHuman,
     totalWorkers: workers.length,
     onlineWorkers,
-    idleWorkers,
-    processingWorkers,
+    flowingWorkers,
+    deepeningWorkers,
     errorWorkers,
-    totalTasksProcessed,
+    totalFlowCycles,
     totalHeartbeats,
+    careerDistribution: countCareerDistribution(workers),
     domains,
     workers,
   };
@@ -289,24 +316,28 @@ export function getServerWorkerSummary(): {
   booted: boolean;
   total: number;
   online: number;
-  processing: number;
+  flowing: number;
+  deepening: number;
   errors: number;
-  tasks: number;
+  flowCycles: number;
   heartbeats: number;
   uptime: string;
   bootedAt: number;
+  careers: Record<CareerStage, number>;
 } {
   const snap = getServerSnapshot();
   return {
     booted: snap.booted,
     total: snap.totalWorkers,
     online: snap.onlineWorkers,
-    processing: snap.processingWorkers,
+    flowing: snap.flowingWorkers,
+    deepening: snap.deepeningWorkers,
     errors: snap.errorWorkers,
-    tasks: snap.totalTasksProcessed,
+    flowCycles: snap.totalFlowCycles,
     heartbeats: snap.totalHeartbeats,
     uptime: snap.uptimeHuman,
     bootedAt: snap.bootedAt,
+    careers: snap.careerDistribution,
   };
 }
 
@@ -320,9 +351,9 @@ export function getServerWorkerState(id: string): ServerWorkerState | undefined 
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function shutdownServerWorkers(): void {
-  console.log('[𓂀 ORGANISM] Shutting down all 100 micro workers...');
+  console.log('[𓂀 ORGANISM] All 100 careers entering rest...');
 
-  for (const [id, timer] of heartbeatTimers) {
+  for (const [, timer] of heartbeatTimers) {
     clearInterval(timer);
   }
   heartbeatTimers.clear();
@@ -332,5 +363,5 @@ export function shutdownServerWorkers(): void {
   }
 
   serverBooted = false;
-  console.log('[𓂀 ORGANISM] All workers offline. Organism sleeping.');
+  console.log('[𓂀 ORGANISM] All careers at rest. Organism sleeping.');
 }

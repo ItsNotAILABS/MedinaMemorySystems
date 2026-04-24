@@ -1,29 +1,34 @@
-// 𓂀 MICRO WORKER — UNIVERSAL SOVEREIGN WORKER SCRIPT 𓂀
-// "They're all supposed to be on 24 hours. Just passive. Already working."
+// 𓂀 MICRO WORKER — SOVEREIGN CAREER FLOW SCRIPT 𓂀
+// "Give them careers, not jobs or tasks — careers that include all that
+//  as consistent flows."
 //
-// This is the universal web worker script. Each micro worker instance runs
-// this same code but receives a unique spec at BOOT time that defines its
-// identity, domain, heartbeat interval, and purpose.
+// This is the universal worker script. Each worker runs a CAREER —
+// a continuous, always-flowing stream of work. Not task dispatch.
+// Not job queues. A career that flows at its φ-derived rhythm,
+// advancing through stages: APPRENTICE → JOURNEYMAN → MASTER → SOVEREIGN.
 //
 // PROTOCOL:
 //   Main → Worker: { type: 'BOOT', spec: {...} }
-//   Main → Worker: { type: 'TASK', taskId: '...', payload: {...} }
 //   Main → Worker: { type: 'HEARTBEAT_REQUEST' }
 //   Main → Worker: { type: 'SHUTDOWN' }
-//   Worker → Main: { type: 'BOOTED', id: '...', timestamp: ... }
-//   Worker → Main: { type: 'HEARTBEAT', id: '...', status: '...', taskCount: ..., timestamp: ... }
-//   Worker → Main: { type: 'TASK_COMPLETE', id: '...', taskId: '...', result: {...}, duration: ... }
-//   Worker → Main: { type: 'TASK_ERROR', id: '...', taskId: '...', error: '...' }
-//   Worker → Main: { type: 'ERROR', id: '...', error: '...', timestamp: ... }
+//   Main → Worker: { type: 'CONFIG_UPDATE', config: {...} }
+//   Worker → Main: { type: 'BOOTED', id, careerTitle, timestamp }
+//   Worker → Main: { type: 'FLOW_CYCLE', id, stage, flowCycles, stageProgress, result, timestamp }
+//   Worker → Main: { type: 'STAGE_ADVANCE', id, oldStage, newStage, flowCycles, timestamp }
+//   Worker → Main: { type: 'HEARTBEAT', id, status, stage, flowCycles, timestamp }
+//   Worker → Main: { type: 'ERROR', id, error, timestamp }
 //
 // φ = 1.618033988749895
 
 const PHI = 1.618033988749895;
+const CAREER_STAGES = ['APPRENTICE', 'JOURNEYMAN', 'MASTER', 'SOVEREIGN'];
 
 let spec = null;
-let status = 'IDLE';
-let taskCount = 0;
+let status = 'FLOWING';
+let flowCycles = 0;
+let careerStage = 'APPRENTICE';
 let heartbeatInterval = null;
+let careerFlowInterval = null;
 let bootedAt = null;
 
 // ─── Message Handler ──────────────────────────────────────────────────────────
@@ -35,9 +40,6 @@ self.addEventListener('message', function(event) {
   switch (msg.type) {
     case 'BOOT':
       handleBoot(msg.spec);
-      break;
-    case 'TASK':
-      handleTask(msg.taskId, msg.payload);
       break;
     case 'HEARTBEAT_REQUEST':
       sendHeartbeat();
@@ -56,248 +58,236 @@ self.addEventListener('message', function(event) {
 function handleBoot(workerSpec) {
   spec = workerSpec;
   bootedAt = Date.now();
-  status = 'IDLE';
-  taskCount = 0;
+  status = 'FLOWING';
+  flowCycles = 0;
+  careerStage = 'APPRENTICE';
 
-  // Start heartbeat at the spec's φ-derived interval
-  if (heartbeatInterval) {
-    clearInterval(heartbeatInterval);
-  }
+  // Start heartbeat
+  if (heartbeatInterval) clearInterval(heartbeatInterval);
   heartbeatInterval = setInterval(sendHeartbeat, spec.heartbeatMs);
 
-  // Report booted
+  // Start career flow — every cycle IS the career flowing
+  if (careerFlowInterval) clearInterval(careerFlowInterval);
+  careerFlowInterval = setInterval(runCareerFlowCycle, spec.heartbeatMs);
+
   self.postMessage({
     type: 'BOOTED',
     id: spec.id,
+    careerTitle: spec.career ? spec.career.title : spec.name,
     timestamp: bootedAt,
   });
 }
 
-// ─── Task Processing ──────────────────────────────────────────────────────────
+// ─── Career Flow — The continuous work of this worker's life ─────────────────
 
-function handleTask(taskId, payload) {
-  if (!spec) {
+function runCareerFlowCycle() {
+  if (!spec) return;
+
+  flowCycles++;
+  const result = executeCareerFlow(spec.domain, spec.name, careerStage);
+
+  // Check for stage advancement
+  const cyclesPerStage = (spec.career && spec.career.cyclesPerStage) || 1000;
+  const newStageIndex = Math.min(
+    CAREER_STAGES.length - 1,
+    Math.floor(flowCycles / cyclesPerStage)
+  );
+  const newStage = CAREER_STAGES[newStageIndex];
+
+  if (newStage !== careerStage) {
+    const oldStage = careerStage;
+    careerStage = newStage;
+    status = 'DEEPENING';
+
     self.postMessage({
-      type: 'TASK_ERROR',
-      id: 'UNKNOWN',
-      taskId: taskId,
-      error: 'Worker not booted — spec not received.',
+      type: 'STAGE_ADVANCE',
+      id: spec.id,
+      oldStage: oldStage,
+      newStage: newStage,
+      flowCycles: flowCycles,
+      timestamp: Date.now(),
     });
-    return;
+
+    // Return to flowing after deepening
+    setTimeout(function() {
+      status = 'FLOWING';
+    }, Math.round(spec.heartbeatMs * 0.5));
   }
 
-  status = 'PROCESSING';
-  taskCount++;
-  const startTime = Date.now();
+  // Calculate stage progress
+  const stageProgress = newStageIndex >= CAREER_STAGES.length - 1
+    ? 1
+    : (flowCycles % cyclesPerStage) / cyclesPerStage;
 
-  try {
-    // Domain-specific processing
-    const result = processTask(spec.domain, spec.name, payload);
-    const duration = Date.now() - startTime;
-
-    status = 'IDLE';
-
-    self.postMessage({
-      type: 'TASK_COMPLETE',
-      id: spec.id,
-      taskId: taskId,
-      result: result,
-      duration: duration,
-    });
-  } catch (err) {
-    status = 'IDLE';
-
-    self.postMessage({
-      type: 'TASK_ERROR',
-      id: spec.id,
-      taskId: taskId,
-      error: err.message || String(err),
-    });
-  }
+  self.postMessage({
+    type: 'FLOW_CYCLE',
+    id: spec.id,
+    stage: careerStage,
+    flowCycles: flowCycles,
+    stageProgress: stageProgress,
+    result: result,
+    timestamp: Date.now(),
+  });
 }
 
-// ─── Domain-Specific Processing ───────────────────────────────────────────────
+// ─── Career Flow Execution by Domain ─────────────────────────────────────────
 
-function processTask(domain, workerName, payload) {
+function executeCareerFlow(domain, workerName, stage) {
   switch (domain) {
-    case 'MEMORIA':
-      return processMemoria(workerName, payload);
-    case 'SENSUS':
-      return processSensus(workerName, payload);
-    case 'NEXUS':
-      return processNexus(workerName, payload);
-    case 'COGNITIO':
-      return processCognitio(workerName, payload);
-    case 'CUSTODIA':
-      return processCustodia(workerName, payload);
-    case 'GUBERNATIO':
-      return processGubernatio(workerName, payload);
-    case 'FABRICATIO':
-      return processFabricatio(workerName, payload);
-    case 'RESONANTIA':
-      return processResonantia(workerName, payload);
-    case 'FLUXUS':
-      return processFluxus(workerName, payload);
-    case 'IMPERIUM':
-      return processImperium(workerName, payload);
-    default:
-      return { processed: true, domain: domain, worker: workerName };
+    case 'MEMORIA': return flowMemoria(workerName, stage);
+    case 'SENSUS': return flowSensus(workerName, stage);
+    case 'NEXUS': return flowNexus(workerName, stage);
+    case 'COGNITIO': return flowCognitio(workerName, stage);
+    case 'CUSTODIA': return flowCustodia(workerName, stage);
+    case 'GUBERNATIO': return flowGubernatio(workerName, stage);
+    case 'FABRICATIO': return flowFabricatio(workerName, stage);
+    case 'RESONANTIA': return flowResonantia(workerName, stage);
+    case 'FLUXUS': return flowFluxus(workerName, stage);
+    case 'IMPERIUM': return flowImperium(workerName, stage);
+    default: return { flowing: true, domain: domain, worker: workerName, stage: stage };
   }
 }
 
-// ─── MEMORIA processing ──────────────────────────────────────────────────────
+// ─── MEMORIA career flows ────────────────────────────────────────────────────
 
-function processMemoria(worker, payload) {
-  const data = payload || {};
+function flowMemoria(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'MEMORY_INDEXER':
-      return { indexed: true, entries: data.entries || 0, timestamp: Date.now() };
+      return { indexed: depth * 10, depth: depth, freshness: Math.random() * PHI % 1 };
     case 'SALIENCE_SCORER':
-      const salience = Math.min(1, Math.max(0, (data.value || 0.5) * PHI % 1));
-      return { salience: salience, recalculated: true };
+      return { scored: depth * 5, recalibrated: true, precision: 0.5 + (depth * 0.1) };
     case 'RESONANCE_CALCULATOR':
-      const resonance = Math.abs(Math.sin((data.frequency || 432) * PHI));
-      return { resonance: resonance, phiAligned: resonance > 0.618 };
+      return { resonance: Math.abs(Math.sin(Date.now() / 618 * PHI)), phiAligned: true, harmonics: depth };
     case 'SEMANTIC_VECTORIZER':
-      // Simple mock vector generation
-      const vector = [];
-      const text = String(data.text || '');
-      for (let i = 0; i < 8; i++) {
-        vector.push(((text.charCodeAt(i % text.length) || 0) / 255) * PHI % 1);
-      }
-      return { vector: vector, dimensions: 8 };
+      return { vectors: depth * 8, dimensions: 8 * depth, coverage: depth / 4 };
     default:
-      return { processed: true, worker: worker, domain: 'MEMORIA' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── SENSUS processing ───────────────────────────────────────────────────────
+// ─── SENSUS career flows ─────────────────────────────────────────────────────
 
-function processSensus(worker, payload) {
-  const data = payload || {};
+function flowSensus(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'AUDIO_ANALYZER':
-      return { fftBands: 256, peakFrequency: data.frequency || 432, analyzed: true };
+      return { bands: 64 * depth, peakHz: 432, clarity: 0.6 + (depth * 0.1) };
     case 'FREQUENCY_MONITOR':
-      const aligned = Math.abs((data.frequency || 432) - 432) < 10;
-      return { frequency: data.frequency || 432, aligned: aligned, target: 432 };
-    case 'INPUT_CLASSIFIER':
-      return { inputType: data.type || 'text', confidence: 0.95 };
+      return { aligned: true, drift: Math.max(0, 10 - depth * 2), frequency: 432 };
+    case 'EMOTION_DETECTOR':
+      return { sensitivity: 0.5 + (depth * 0.12), channels: depth * 3, coherence: true };
     default:
-      return { processed: true, worker: worker, domain: 'SENSUS' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── NEXUS processing ────────────────────────────────────────────────────────
+// ─── NEXUS career flows ──────────────────────────────────────────────────────
 
-function processNexus(worker, payload) {
-  const data = payload || {};
+function flowNexus(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'LATENCY_MONITOR':
-      return { latencyMs: data.latencyMs || 0, threshold: 618, healthy: (data.latencyMs || 0) < 618 };
+      return { latencyMs: Math.max(1, 618 / depth), healthy: true, optimized: depth > 2 };
     case 'BANDWIDTH_OPTIMIZER':
-      return { compressed: true, ratio: 1 / PHI, savings: '38.2%' };
+      return { savings: (1 / PHI) * depth / 4, compressed: true, efficiency: 0.5 + (depth * 0.12) };
     default:
-      return { processed: true, worker: worker, domain: 'NEXUS' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── COGNITIO processing ─────────────────────────────────────────────────────
+// ─── COGNITIO career flows ───────────────────────────────────────────────────
 
-function processCognitio(worker, payload) {
-  const data = payload || {};
+function flowCognitio(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'PATTERN_RECOGNIZER':
-      return { patterns: data.patterns || [], recognized: true, confidence: 0.87 };
+      return { patterns: depth * 4, confidence: 0.6 + (depth * 0.1), novel: depth > 2 };
     case 'INTENT_CLASSIFIER':
-      return { intent: data.intent || 'query', confidence: 0.92, model: 'cognitio-v1' };
+      return { accuracy: 0.7 + (depth * 0.07), intents: depth * 5, model: 'cognitio-v' + depth };
     case 'ANOMALY_DETECTOR':
-      const score = Math.random();
-      return { anomalyScore: score, isAnomaly: score > (1 / PHI), threshold: 1 / PHI };
+      return { threshold: 1 / (PHI * depth), scanned: true, sensitivity: depth };
     default:
-      return { processed: true, worker: worker, domain: 'COGNITIO' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── CUSTODIA processing ─────────────────────────────────────────────────────
+// ─── CUSTODIA career flows ───────────────────────────────────────────────────
 
-function processCustodia(worker, payload) {
-  const data = payload || {};
+function flowCustodia(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'GATE_A_SENTINEL':
     case 'GATE_B_SENTINEL':
     case 'GATE_C_SENTINEL':
-      return { gate: worker.replace('_SENTINEL', ''), status: 'green', enforced: true };
+      return { gate: worker.replace('_SENTINEL', ''), enforced: true, vigilance: 0.7 + (depth * 0.07) };
     case 'THREAT_SCANNER':
-      return { threats: [], scanned: true, clean: true, timestamp: Date.now() };
-    case 'ENCRYPTION_WORKER':
-      return { encrypted: true, algorithm: 'AES-256-GCM', keyId: data.keyId || 'sovereign-key' };
+      return { scanned: true, clean: true, depth: depth, coverage: 0.5 + (depth * 0.12) };
     default:
-      return { processed: true, worker: worker, domain: 'CUSTODIA' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── GUBERNATIO processing ───────────────────────────────────────────────────
+// ─── GUBERNATIO career flows ─────────────────────────────────────────────────
 
-function processGubernatio(worker, payload) {
-  const data = payload || {};
+function flowGubernatio(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'VOTE_TALLIER':
-      const votes = data.votes || [];
-      const yes = votes.filter(function(v) { return v === 'yes'; }).length;
-      return { yes: yes, no: votes.length - yes, total: votes.length, passed: yes > votes.length / 2 };
+      return { accuracy: 0.9 + (depth * 0.025), throughput: depth * 10, integrity: true };
     case 'DOCTRINE_DRIFT_DETECTOR':
-      return { drift: 0.02, threshold: 0.1, aligned: true };
+      return { drift: Math.max(0, 0.1 - (depth * 0.02)), aligned: true, sensitivity: depth };
     default:
-      return { processed: true, worker: worker, domain: 'GUBERNATIO' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── FABRICATIO processing ───────────────────────────────────────────────────
+// ─── FABRICATIO career flows ─────────────────────────────────────────────────
 
-function processFabricatio(worker, payload) {
-  return { processed: true, worker: worker, domain: 'FABRICATIO', built: true };
+function flowFabricatio(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
+  return { flowing: true, worker: worker, stage: stage, depth: depth, built: true, quality: 0.6 + (depth * 0.1) };
 }
 
-// ─── RESONANTIA processing ──────────────────────────────────────────────────
+// ─── RESONANTIA career flows ─────────────────────────────────────────────────
 
-function processResonantia(worker, payload) {
-  const data = payload || {};
+function flowResonantia(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'PHI_OSCILLATOR':
-      return { phi: PHI, beat: Date.now() % 1000 / 618, signal: Math.sin(Date.now() / 618 * Math.PI * 2) };
+      return { phi: PHI, beat: (Date.now() % 1000) / 618, signal: Math.sin(Date.now() / 618 * Math.PI * 2), purity: 0.5 + (depth * 0.12) };
     case 'BEAT_SYNCHRONIZER':
-      return { synced: true, beatMs: 873, phase: (Date.now() % 873) / 873 };
+      return { synced: true, coherence: 0.6 + (depth * 0.1), phase: (Date.now() % 873) / 873 };
     case 'HARMONIC_ANALYZER':
-      return { fundamental: 432, harmonics: [432, 432 * PHI, 432 * PHI * PHI], aligned: true };
+      return { fundamental: 432, harmonics: depth + 2, aligned: true, depth: depth };
     default:
-      return { processed: true, worker: worker, domain: 'RESONANTIA' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── FLUXUS processing ──────────────────────────────────────────────────────
+// ─── FLUXUS career flows ─────────────────────────────────────────────────────
 
-function processFluxus(worker, payload) {
-  const data = payload || {};
+function flowFluxus(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'BACKPRESSURE_GOVERNOR':
-      return { pressure: data.queueDepth || 0, maxQueue: 100, throttled: (data.queueDepth || 0) > 80 };
+      return { pressure: Math.max(0, 50 - (depth * 10)), capacity: depth * 25, throttled: false };
     default:
-      return { processed: true, worker: worker, domain: 'FLUXUS' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
-// ─── IMPERIUM processing ────────────────────────────────────────────────────
+// ─── IMPERIUM career flows ───────────────────────────────────────────────────
 
-function processImperium(worker, payload) {
-  const data = payload || {};
+function flowImperium(worker, stage) {
+  const depth = CAREER_STAGES.indexOf(stage) + 1;
   switch (worker) {
     case 'HEALTH_MONITOR':
-      return { healthy: true, checked: data.workerIds || [], timestamp: Date.now() };
+      return { healthy: true, coverage: depth * 25, precision: 0.6 + (depth * 0.1) };
     case 'METRIC_COLLECTOR':
-      return { collected: true, metrics: data.metrics || {}, timestamp: Date.now() };
+      return { collected: true, metrics: depth * 10, freshness: 1 / depth };
     default:
-      return { processed: true, worker: worker, domain: 'IMPERIUM' };
+      return { flowing: true, worker: worker, stage: stage, depth: depth };
   }
 }
 
@@ -310,7 +300,8 @@ function sendHeartbeat() {
     type: 'HEARTBEAT',
     id: spec.id,
     status: status,
-    taskCount: taskCount,
+    stage: careerStage,
+    flowCycles: flowCycles,
     timestamp: Date.now(),
   });
 }
@@ -322,6 +313,10 @@ function handleShutdown() {
     clearInterval(heartbeatInterval);
     heartbeatInterval = null;
   }
+  if (careerFlowInterval) {
+    clearInterval(careerFlowInterval);
+    careerFlowInterval = null;
+  }
   status = 'OFFLINE';
   self.close();
 }
@@ -329,12 +324,15 @@ function handleShutdown() {
 // ─── Config Update ───────────────────────────────────────────────────────────
 
 function handleConfigUpdate(config) {
-  // Apply runtime configuration updates
   if (config && config.heartbeatMs && spec) {
     spec.heartbeatMs = config.heartbeatMs;
     if (heartbeatInterval) {
       clearInterval(heartbeatInterval);
       heartbeatInterval = setInterval(sendHeartbeat, spec.heartbeatMs);
+    }
+    if (careerFlowInterval) {
+      clearInterval(careerFlowInterval);
+      careerFlowInterval = setInterval(runCareerFlowCycle, spec.heartbeatMs);
     }
   }
 }

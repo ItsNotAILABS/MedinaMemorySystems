@@ -8,10 +8,24 @@ import {
   type MicroWorkerRuntimeState,
 } from '@/organism/workers/MicroWorkerRuntime';
 
+const STAGE_COLORS: Record<string, string> = {
+  APPRENTICE: '#3b82f6',
+  JOURNEYMAN: '#f59e0b',
+  MASTER: '#10b981',
+  SOVEREIGN: '#a855f7',
+};
+
+const STAGE_ICONS: Record<string, string> = {
+  APPRENTICE: '◇',
+  JOURNEYMAN: '◈',
+  MASTER: '◆',
+  SOVEREIGN: '𓂀',
+};
+
 /**
- * MicroWorkerField — Live worker status in the OrganismField bar.
- * Shows total online workers, processing count, and tasks completed.
- * Always on. Always passive.
+ * MicroWorkerField — Live career status in the OrganismField bar.
+ * Shows careers flowing, stage distribution, and flow cycles.
+ * Always on. Always flowing. Careers, not tasks.
  */
 export default function MicroWorkerField() {
   const [summary, setSummary] = useState<ReturnType<typeof getWorkerSummary> | null>(null);
@@ -28,7 +42,6 @@ export default function MicroWorkerField() {
   }, [expanded]);
 
   useEffect(() => {
-    // Boot workers on mount — always-on, passive
     bootMicroWorkers();
     refresh();
 
@@ -49,7 +62,7 @@ export default function MicroWorkerField() {
           background: allOnline ? 'rgba(16,185,129,0.08)' : 'rgba(239,68,68,0.08)',
           border: `1px solid ${allOnline ? 'rgba(16,185,129,0.25)' : 'rgba(239,68,68,0.25)'}`,
         }}
-        title={`${summary.online}/${summary.total} workers online · ${summary.tasks} tasks · ${summary.uptime} uptime`}
+        title={`${summary.online}/${summary.total} careers flowing · ${summary.flowCycles} cycles · ${summary.uptime} uptime`}
       >
         {/* Pulse indicator */}
         <span
@@ -59,10 +72,10 @@ export default function MicroWorkerField() {
         <span className="font-mono text-[10px]" style={{ color: allOnline ? '#10b981' : '#ef4444' }}>
           {summary.online}
         </span>
-        <span className="text-[10px] text-slate-600">MW</span>
-        {summary.processing > 0 && (
-          <span className="font-mono text-[10px] text-blue-400">
-            ⚡{summary.processing}
+        <span className="text-[10px] text-slate-600">careers</span>
+        {summary.flowing > 0 && (
+          <span className="font-mono text-[10px] text-emerald-400">
+            ≋{summary.flowing}
           </span>
         )}
       </button>
@@ -70,14 +83,26 @@ export default function MicroWorkerField() {
       {/* Expanded domain breakdown */}
       {expanded && (
         <div
-          className="absolute top-full right-0 mt-1 w-72 bg-[#0d0d15] border border-[#1e1e2e] rounded-lg shadow-xl z-50 overflow-hidden"
+          className="absolute top-full right-0 mt-1 w-80 bg-[#0d0d15] border border-[#1e1e2e] rounded-lg shadow-xl z-50 overflow-hidden"
         >
-          <div className="px-3 py-2 border-b border-[#1e1e2e] flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold text-slate-300">MICRO WORKERS</span>
-              <span className="text-[10px] text-slate-500 font-mono">{summary.total}</span>
+          <div className="px-3 py-2 border-b border-[#1e1e2e]">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[10px] font-bold text-slate-300">CAREERS FLOWING</span>
+              <span className="text-[10px] text-slate-600 font-mono">{summary.uptime}</span>
             </div>
-            <span className="text-[10px] text-slate-600 font-mono">{summary.uptime}</span>
+            {/* Career stage distribution */}
+            <div className="flex items-center gap-2">
+              {(['APPRENTICE', 'JOURNEYMAN', 'MASTER', 'SOVEREIGN'] as const).map((stage) => (
+                <div key={stage} className="flex items-center gap-0.5">
+                  <span className="text-[9px]" style={{ color: STAGE_COLORS[stage] }}>
+                    {STAGE_ICONS[stage]}
+                  </span>
+                  <span className="text-[9px] font-mono" style={{ color: STAGE_COLORS[stage] }}>
+                    {summary.careers[stage]}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="max-h-60 overflow-y-auto">
             {domainStats.map((domain) => (
@@ -88,7 +113,7 @@ export default function MicroWorkerField() {
                 <div className="flex items-center gap-2 min-w-0">
                   <span
                     className="w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ background: domain.activeCount === 10 ? '#10b981' : '#f59e0b' }}
+                    style={{ background: domain.onlineCount === 10 ? '#10b981' : '#f59e0b' }}
                   />
                   <span className="text-[10px] font-mono text-slate-400 truncate">
                     {domain.id}
@@ -96,18 +121,18 @@ export default function MicroWorkerField() {
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-[10px] font-mono text-slate-500">
-                    {domain.activeCount}/10
+                    {domain.onlineCount}/10
                   </span>
                   <span className="text-[10px] font-mono text-slate-600">
-                    {domain.totalTasks}t
+                    {domain.totalFlowCycles}c
                   </span>
                 </div>
               </div>
             ))}
           </div>
           <div className="px-3 py-1.5 border-t border-[#1e1e2e] flex items-center justify-between">
-            <span className="text-[10px] text-slate-500">Tasks processed</span>
-            <span className="text-[10px] font-mono text-slate-400">{summary.tasks}</span>
+            <span className="text-[10px] text-slate-500">Total flow cycles</span>
+            <span className="text-[10px] font-mono text-slate-400">{summary.flowCycles}</span>
           </div>
         </div>
       )}

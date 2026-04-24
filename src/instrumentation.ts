@@ -21,13 +21,17 @@
 
 export async function register() {
   // Only boot workers on the server side (not in Edge runtime or client)
-  if (process.env.NEXT_RUNTIME === 'nodejs') {
-    const { bootServerWorkers } = await import(
-      '@/organism/workers/ServerWorkerRuntime'
-    );
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (typeof globalThis !== 'undefined' && typeof (globalThis as Record<string, unknown>).process !== 'undefined') {
+    const proc = (globalThis as Record<string, unknown>).process as { env?: Record<string, string | undefined> };
+    if (proc.env?.NEXT_RUNTIME === 'nodejs') {
+      const { bootServerWorkers } = await import(
+        '@/organism/workers/ServerWorkerRuntime'
+      );
 
-    console.log('[𓂀 INSTRUMENTATION] Next.js server process starting — booting organism...');
-    bootServerWorkers();
-    console.log('[𓂀 INSTRUMENTATION] Organism is ALIVE. 100 micro workers running. No page load needed.');
+      console.log('[𓂀 INSTRUMENTATION] Next.js server process starting — booting organism...');
+      bootServerWorkers();
+      console.log('[𓂀 INSTRUMENTATION] Organism is ALIVE. 100 careers flowing. No page load needed.');
+    }
   }
 }

@@ -431,7 +431,8 @@ export function bootSovereignRegistry(): void {
 
     for (const worker of domain.workers) {
       const nameTokens = worker.name.toLowerCase().replace(/_/g, ' ').split(' ');
-      const workerKeywords = [...new Set([...domainKw, ...nameTokens, 'worker', 'micro', 'always-on'])];
+      const careerTokens = worker.career.title.toLowerCase().split(' ').filter((t: string) => t.length > 2);
+      const workerKeywords = [...new Set([...domainKw, ...nameTokens, ...careerTokens, 'career', 'flow', 'always-on'])];
 
       registerModel({
         id: `worker:${domain.id}:${worker.id}`,
@@ -440,10 +441,11 @@ export function bootSovereignRegistry(): void {
         description: `[${domain.latinName}] ${worker.purpose}`,
         capabilities: [
           worker.purpose,
-          `${domain.tagline}`,
+          `Career: ${worker.career.title}`,
+          `Career flow: ${worker.career.flow.slice(0, 80)}`,
           `Worker ${worker.id} (rank ${worker.rank}/10) in ${domain.id}`,
-          `Heartbeat: ${worker.heartbeatMs}ms · Max queue: ${worker.maxQueue}`,
-          `Always-on · Passive · Production-grade`,
+          `Heartbeat: ${worker.heartbeatMs}ms · Stages: APPRENTICE → JOURNEYMAN → MASTER → SOVEREIGN`,
+          `Always-on · Career flow · Production-grade`,
         ],
         keywords: workerKeywords,
         resonance: (input) => {
