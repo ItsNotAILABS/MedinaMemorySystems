@@ -7,7 +7,7 @@
  *  Agent/Caller, Settlement Record, and Exposure Layer."
  *
  * Complete type definitions for the VOIS-addressable Call Marketplace.
- * 260 tools across 12 categories, 55 enterprise protocols, 5 permission
+ * 260 tools across 12 categories, 110 enterprise protocols, 5 permission
  * tiers, 6 pricing classes, 5 reward classes, and full settlement/proof.
  *
  * This is NOT a generic API directory. It is the naming, schema, permission,
@@ -28,7 +28,7 @@
  *   Sensors           TOOL-221–240   20   Continuous monitoring probes
  *   Shields           TOOL-241–260   20   Protection & safety mechanisms
  *
- * PROTOCOL CATEGORIES (55 protocols):
+ * PROTOCOL CATEGORIES (110 protocols):
  *   Client Lifecycle  001–005         5
  *   AI Pipeline       006–010         5
  *   Data Governance   011–015         5
@@ -41,6 +41,17 @@
  *   Compliance        041–045         5
  *   Integration       046–050         5
  *   SDK               051–055         5
+ *   Memory Ops        056–060         5
+ *   Governance        061–065         5
+ *   Observability     066–070         5
+ *   Developer Exp     071–075         5
+ *   Edge Computing    076–080         5
+ *   Marketplace Ops   081–085         5
+ *   Shadow Ops        086–090         5
+ *   Organism Lifecycle 091–095        5
+ *   Quantum Ops       096–100         5
+ *   Cross-Domain      101–105         5
+ *   Sovereign Ops     106–110         5
  *
  * φ = 1.618033988749895
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -294,7 +305,18 @@ export type ProtocolCategory =
   | 'INTELLIGENCE'
   | 'COMPLIANCE'
   | 'INTEGRATION'
-  | 'SDK';
+  | 'SDK'
+  | 'MEMORY_OPS'
+  | 'GOVERNANCE'
+  | 'OBSERVABILITY'
+  | 'DEVELOPER_EXP'
+  | 'EDGE_COMPUTING'
+  | 'MARKETPLACE_OPS'
+  | 'SHADOW_OPS'
+  | 'ORGANISM_LIFECYCLE'
+  | 'QUANTUM_OPS'
+  | 'CROSS_DOMAIN'
+  | 'SOVEREIGN_OPS';
 
 export type ProtocolStatus = 'active' | 'testing' | 'deprecated' | 'planned';
 

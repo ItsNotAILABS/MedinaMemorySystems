@@ -14,7 +14,7 @@
  *   - Call Contracts: Machine-readable invocation definitions
  *   - Permission Enforcement: 5-tier access control
  *   - Settlement: Usage, billing, reward, and proof records
- *   - Protocol Dispatch: 55 enterprise protocols
+ *   - Protocol Dispatch: 110 enterprise protocols across 23 categories
  *   - Client Management: Multi-tenant with quotas and health
  *
  * All 20 core tools are registered at boot as "always-running" — they
@@ -247,7 +247,7 @@ const ALL_TOOL_DEFS: ToolDef[] = [
 ];
 
 // ═════════════════════════════════════════════════════════════════════════════
-// PROTOCOL INVENTORY — 55 Enterprise Protocols
+// PROTOCOL INVENTORY — 110 Enterprise Protocols across 23 Categories
 // ═════════════════════════════════════════════════════════════════════════════
 
 interface ProtoDef {
@@ -328,6 +328,72 @@ const ALL_PROTOCOL_DEFS: ProtoDef[] = [
   { id: 'PROTO-053', name: 'sdkBatchOperation', displayName: 'SDK Batch Operation', category: 'SDK', description: 'SDK batch operation processing with progress tracking.', tier: 'ENTERPRISE', durationMs: 5000 },
   { id: 'PROTO-054', name: 'sdkWebSocket', displayName: 'SDK WebSocket', category: 'SDK', description: 'SDK WebSocket connection lifecycle management.', tier: 'ENTERPRISE', durationMs: 50 },
   { id: 'PROTO-055', name: 'sdkDocGenerate', displayName: 'SDK Doc Generate', category: 'SDK', description: 'Automated SDK documentation generation from schemas.', tier: 'ENTERPRISE', durationMs: 3000 },
+  // Memory Ops 056–060
+  { id: 'PROTO-056', name: 'memoryConsolidate', displayName: 'Memory Consolidation', category: 'MEMORY_OPS', description: 'Consolidate working memory into long-term storage with lineage and doctrine alignment.', tier: 'INTERNAL', durationMs: 2000 },
+  { id: 'PROTO-057', name: 'memoryRecall', displayName: 'Memory Recall', category: 'MEMORY_OPS', description: 'Intelligent recall from episodic, semantic, and procedural memory stores.', tier: 'INTERNAL', durationMs: 500 },
+  { id: 'PROTO-058', name: 'memoryDecay', displayName: 'Memory Decay', category: 'MEMORY_OPS', description: 'Apply salience-weighted decay to memories — low-value fades, high-value persists.', tier: 'INTERNAL', durationMs: 1000 },
+  { id: 'PROTO-059', name: 'memoryResonance', displayName: 'Memory Resonance', category: 'MEMORY_OPS', description: 'Compute φ-harmonic resonance between memory entries for associative retrieval.', tier: 'INTERNAL', durationMs: 800 },
+  { id: 'PROTO-060', name: 'memoryLineageTrace', displayName: 'Memory Lineage Trace', category: 'MEMORY_OPS', description: 'Trace full parent-child lineage chains across memory artifacts with proof hashes.', tier: 'INTERNAL', durationMs: 1500 },
+  // Governance 061–065
+  { id: 'PROTO-061', name: 'proposalLifecycle', displayName: 'Proposal Lifecycle', category: 'GOVERNANCE', description: 'Full governance proposal pipeline — draft, review, vote, enact, archive.', tier: 'INTERNAL', durationMs: 5000 },
+  { id: 'PROTO-062', name: 'doctrineAlignment', displayName: 'Doctrine Alignment Check', category: 'GOVERNANCE', description: 'Verify action or artifact alignment against sovereign doctrine and law vectors.', tier: 'INTERNAL_SOVEREIGN', durationMs: 1000 },
+  { id: 'PROTO-063', name: 'gateEnforcement', displayName: 'Three-Gate Enforcement', category: 'GOVERNANCE', description: 'Enforce the three-gate governance model (A: Governance, B: Memory, C: Sovereign).', tier: 'INTERNAL', durationMs: 300 },
+  { id: 'PROTO-064', name: 'votingConsensus', displayName: 'Voting Consensus', category: 'GOVERNANCE', description: 'Multi-stakeholder voting consensus with weighted authority and quorum detection.', tier: 'INTERNAL', durationMs: 2000 },
+  { id: 'PROTO-065', name: 'policyEnforcement', displayName: 'Policy Enforcement', category: 'GOVERNANCE', description: 'Runtime policy enforcement across all subsystem operations and tool invocations.', tier: 'INTERNAL_SOVEREIGN', durationMs: 100 },
+  // Observability 066–070
+  { id: 'PROTO-066', name: 'distributedTracing', displayName: 'Distributed Tracing', category: 'OBSERVABILITY', description: 'End-to-end distributed tracing across workers, tools, and protocol chains.', tier: 'INTERNAL', durationMs: 50 },
+  { id: 'PROTO-067', name: 'metricAggregation', displayName: 'Metric Aggregation', category: 'OBSERVABILITY', description: 'Real-time metric aggregation with φ-harmonic sampling intervals.', tier: 'INTERNAL', durationMs: 100 },
+  { id: 'PROTO-068', name: 'alertCorrelation', displayName: 'Alert Correlation', category: 'OBSERVABILITY', description: 'Correlate alerts across subsystems to detect compound incidents and root causes.', tier: 'INTERNAL', durationMs: 200 },
+  { id: 'PROTO-069', name: 'dashboardRefresh', displayName: 'Dashboard Refresh', category: 'OBSERVABILITY', description: 'Coordinated dashboard data refresh across all monitoring surfaces.', tier: 'PARTNER', durationMs: 500 },
+  { id: 'PROTO-070', name: 'logCorrelation', displayName: 'Log Correlation', category: 'OBSERVABILITY', description: 'Cross-system log correlation using trace IDs and temporal proximity.', tier: 'INTERNAL', durationMs: 300 },
+  // Developer Experience 071–075
+  { id: 'PROTO-071', name: 'devSandbox', displayName: 'Developer Sandbox', category: 'DEVELOPER_EXP', description: 'Isolated developer sandbox provisioning with mock tools and safe data.', tier: 'PARTNER', durationMs: 3000 },
+  { id: 'PROTO-072', name: 'schemaValidation', displayName: 'Schema Validation', category: 'DEVELOPER_EXP', description: 'Validate tool schemas, contracts, and metadata against spec compliance.', tier: 'PARTNER', durationMs: 200 },
+  { id: 'PROTO-073', name: 'debugReplay', displayName: 'Debug Replay', category: 'DEVELOPER_EXP', description: 'Replay a failed call or protocol execution with full state inspection.', tier: 'INTERNAL', durationMs: 1000 },
+  { id: 'PROTO-074', name: 'toolTestHarness', displayName: 'Tool Test Harness', category: 'DEVELOPER_EXP', description: 'Automated test harness for tool invocation validation and regression testing.', tier: 'PARTNER', durationMs: 5000 },
+  { id: 'PROTO-075', name: 'apiPlayground', displayName: 'API Playground', category: 'DEVELOPER_EXP', description: 'Interactive API playground with live tool invocation and response inspection.', tier: 'ENTERPRISE', durationMs: 500 },
+  // Edge Computing 076–080
+  { id: 'PROTO-076', name: 'edgeDeploy', displayName: 'Edge Deploy', category: 'EDGE_COMPUTING', description: 'Deploy tool instances to edge nodes with automatic replication and failover.', tier: 'INTERNAL_SOVEREIGN', durationMs: 8000 },
+  { id: 'PROTO-077', name: 'edgeSync', displayName: 'Edge Sync', category: 'EDGE_COMPUTING', description: 'Synchronize state between edge nodes and central organism core.', tier: 'INTERNAL', durationMs: 2000 },
+  { id: 'PROTO-078', name: 'edgeFailover', displayName: 'Edge Failover', category: 'EDGE_COMPUTING', description: 'Automatic failover from edge to core when edge health degrades.', tier: 'INTERNAL', durationMs: 500 },
+  { id: 'PROTO-079', name: 'edgeOptimize', displayName: 'Edge Optimize', category: 'EDGE_COMPUTING', description: 'Optimize tool placement across edge nodes based on latency and demand patterns.', tier: 'INTERNAL', durationMs: 5000 },
+  { id: 'PROTO-080', name: 'edgeIsolation', displayName: 'Edge Isolation', category: 'EDGE_COMPUTING', description: 'Security isolation of edge node execution environments with zero-trust boundaries.', tier: 'INTERNAL_SOVEREIGN', durationMs: 1000 },
+  // Marketplace Operations 081–085
+  { id: 'PROTO-081', name: 'toolRegistration', displayName: 'Tool Registration', category: 'MARKETPLACE_OPS', description: 'Register a new tool in the marketplace with full schema, metadata, and contract.', tier: 'INTERNAL_SOVEREIGN', durationMs: 3000 },
+  { id: 'PROTO-082', name: 'toolDeprecation', displayName: 'Tool Deprecation', category: 'MARKETPLACE_OPS', description: 'Gracefully deprecate a tool — notify callers, redirect traffic, archive records.', tier: 'INTERNAL_SOVEREIGN', durationMs: 5000 },
+  { id: 'PROTO-083', name: 'marketplaceAudit', displayName: 'Marketplace Audit', category: 'MARKETPLACE_OPS', description: 'Full marketplace audit — tool health, contract compliance, settlement integrity.', tier: 'INTERNAL', durationMs: 10000 },
+  { id: 'PROTO-084', name: 'catalogRefresh', displayName: 'Catalog Refresh', category: 'MARKETPLACE_OPS', description: 'Refresh the public tool catalog with current status, pricing, and availability.', tier: 'INTERNAL', durationMs: 2000 },
+  { id: 'PROTO-085', name: 'settlementReconcile', displayName: 'Settlement Reconcile', category: 'MARKETPLACE_OPS', description: 'Reconcile settlement records against usage logs and billing systems.', tier: 'INTERNAL', durationMs: 8000 },
+  // Shadow Operations 086–090
+  { id: 'PROTO-086', name: 'shadowClone', displayName: 'Shadow Clone', category: 'SHADOW_OPS', description: 'Create a SHADOW clone of a tool for public-safe exposure with redacted outputs.', tier: 'INTERNAL_SOVEREIGN', durationMs: 5000 },
+  { id: 'PROTO-087', name: 'shadowRedact', displayName: 'Shadow Redaction', category: 'SHADOW_OPS', description: 'Apply phi-anonymization and PII redaction to outputs before public exposure.', tier: 'INTERNAL', durationMs: 200 },
+  { id: 'PROTO-088', name: 'shadowGate', displayName: 'Shadow Gate', category: 'SHADOW_OPS', description: 'Gate control for shadow interfaces — permission check, rate limit, lineage trace.', tier: 'INTERNAL', durationMs: 50 },
+  { id: 'PROTO-089', name: 'shadowMonitor', displayName: 'Shadow Monitor', category: 'SHADOW_OPS', description: 'Monitor shadow clone health, usage patterns, and potential exposure risks.', tier: 'INTERNAL', durationMs: 500 },
+  { id: 'PROTO-090', name: 'shadowRevoke', displayName: 'Shadow Revoke', category: 'SHADOW_OPS', description: 'Emergency revocation of shadow clone access — kill public exposure immediately.', tier: 'INTERNAL_SOVEREIGN', durationMs: 100 },
+  // Organism Lifecycle 091–095
+  { id: 'PROTO-091', name: 'organismBoot', displayName: 'Organism Boot', category: 'ORGANISM_LIFECYCLE', description: 'Full organism boot sequence — workers, marketplace, protocols, memory, governance.', tier: 'INTERNAL_SOVEREIGN', durationMs: 15000 },
+  { id: 'PROTO-092', name: 'organismHealthCheck', displayName: 'Organism Health Check', category: 'ORGANISM_LIFECYCLE', description: 'Deep organism health assessment — all 100 workers, all subsystems, all protocols.', tier: 'INTERNAL', durationMs: 5000 },
+  { id: 'PROTO-093', name: 'organismEvolution', displayName: 'Organism Evolution', category: 'ORGANISM_LIFECYCLE', description: 'Guided organism evolution — version upgrade, capability expansion, doctrine update.', tier: 'INTERNAL_SOVEREIGN', durationMs: 30000 },
+  { id: 'PROTO-094', name: 'organismSnapshot', displayName: 'Organism Snapshot', category: 'ORGANISM_LIFECYCLE', description: 'Capture full organism state snapshot for backup, migration, or audit.', tier: 'INTERNAL', durationMs: 10000 },
+  { id: 'PROTO-095', name: 'organismRestore', displayName: 'Organism Restore', category: 'ORGANISM_LIFECYCLE', description: 'Restore organism from a previous snapshot with integrity verification.', tier: 'INTERNAL_SOVEREIGN', durationMs: 20000 },
+  // Quantum Operations 096–100
+  { id: 'PROTO-096', name: 'quantumEntangle', displayName: 'Quantum Entangle', category: 'QUANTUM_OPS', description: 'Establish quantum-coherent links between organism subsystems for instant state correlation.', tier: 'INTERNAL_SOVEREIGN', durationMs: 3000 },
+  { id: 'PROTO-097', name: 'quantumCoherence', displayName: 'Quantum Coherence Check', category: 'QUANTUM_OPS', description: 'Verify quantum coherence across entangled subsystem pairs.', tier: 'INTERNAL', durationMs: 500 },
+  { id: 'PROTO-098', name: 'quantumTunnel', displayName: 'Quantum Tunnel', category: 'QUANTUM_OPS', description: 'Tunnel data across domain boundaries bypassing normal routing for emergency transfers.', tier: 'INTERNAL_SOVEREIGN', durationMs: 200 },
+  { id: 'PROTO-099', name: 'quantumDecoherence', displayName: 'Quantum Decoherence Recovery', category: 'QUANTUM_OPS', description: 'Detect and recover from quantum decoherence events across entangled subsystems.', tier: 'INTERNAL', durationMs: 1000 },
+  { id: 'PROTO-100', name: 'quantumSuperposition', displayName: 'Quantum Superposition', category: 'QUANTUM_OPS', description: 'Execute tool in quantum superposition — parallel execution across multiple state branches.', tier: 'INTERNAL_SOVEREIGN', durationMs: 5000 },
+  // Cross-Domain 101–105
+  { id: 'PROTO-101', name: 'crossDomainRoute', displayName: 'Cross-Domain Route', category: 'CROSS_DOMAIN', description: 'Route calls across organism domain boundaries with proper permission escalation.', tier: 'INTERNAL', durationMs: 100 },
+  { id: 'PROTO-102', name: 'crossDomainSync', displayName: 'Cross-Domain Sync', category: 'CROSS_DOMAIN', description: 'Synchronize state across domains (MEMORIA, NEXUS, COGNITIO, etc.) at φ intervals.', tier: 'INTERNAL', durationMs: 1500 },
+  { id: 'PROTO-103', name: 'crossDomainTransaction', displayName: 'Cross-Domain Transaction', category: 'CROSS_DOMAIN', description: 'Atomic transactions spanning multiple organism domains with rollback on failure.', tier: 'INTERNAL_SOVEREIGN', durationMs: 3000 },
+  { id: 'PROTO-104', name: 'crossDomainMigrate', displayName: 'Cross-Domain Migration', category: 'CROSS_DOMAIN', description: 'Migrate tool or data ownership from one domain to another with full lineage.', tier: 'INTERNAL_SOVEREIGN', durationMs: 8000 },
+  { id: 'PROTO-105', name: 'crossDomainFederate', displayName: 'Cross-Domain Federation', category: 'CROSS_DOMAIN', description: 'Federate queries across domains, merging results with conflict resolution.', tier: 'INTERNAL', durationMs: 2000 },
+  // Sovereign Operations 106–110
+  { id: 'PROTO-106', name: 'sovereignOverride', displayName: 'Sovereign Override', category: 'SOVEREIGN_OPS', description: 'Crown-level override of any tool, protocol, or governance decision.', tier: 'INTERNAL_SOVEREIGN', durationMs: 50 },
+  { id: 'PROTO-107', name: 'sovereignSeal', displayName: 'Sovereign Seal', category: 'SOVEREIGN_OPS', description: 'Apply sovereign seal to artifacts — immutable proof of founder approval.', tier: 'INTERNAL_SOVEREIGN', durationMs: 500 },
+  { id: 'PROTO-108', name: 'sovereignAudit', displayName: 'Sovereign Audit', category: 'SOVEREIGN_OPS', description: 'Full sovereign-level audit — every tool invocation, settlement, and state change.', tier: 'INTERNAL_SOVEREIGN', durationMs: 15000 },
+  { id: 'PROTO-109', name: 'sovereignRelease', displayName: 'Sovereign Release', category: 'SOVEREIGN_OPS', description: 'Sovereign release control — approve, sign, and publish new organism versions.', tier: 'INTERNAL_SOVEREIGN', durationMs: 10000 },
+  { id: 'PROTO-110', name: 'sovereignEmergency', displayName: 'Sovereign Emergency', category: 'SOVEREIGN_OPS', description: 'Emergency sovereign protocol — full system halt, lockdown, or controlled shutdown.', tier: 'INTERNAL_SOVEREIGN', durationMs: 100 },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -347,6 +413,17 @@ const PROTOCOL_CATEGORY_TOOL_MAP: Record<string, string> = {
   COMPLIANCE:      'TOOL-012',   // INTEGRITY-CHECKER
   INTEGRATION:     'TOOL-017',   // CONNECTION-POOL
   SDK:             'TOOL-008',   // CONTEXT-BUILDER
+  MEMORY_OPS:      'TOOL-010',   // MEMORY-CONSOLIDATOR
+  GOVERNANCE:      'TOOL-004',   // STATE-GUARDIAN
+  OBSERVABILITY:   'TOOL-020',   // LOG-STREAMER
+  DEVELOPER_EXP:   'TOOL-008',   // CONTEXT-BUILDER
+  EDGE_COMPUTING:  'TOOL-016',   // RESOURCE-BALANCER
+  MARKETPLACE_OPS: 'TOOL-005',   // CYCLE-COUNTER
+  SHADOW_OPS:      'TOOL-013',   // BOUNDARY-ENFORCER
+  ORGANISM_LIFECYCLE:'TOOL-001', // PULSE-KEEPER
+  QUANTUM_OPS:     'TOOL-002',   // SYNC-WEAVER
+  CROSS_DOMAIN:    'TOOL-009',   // ATTENTION-ROUTER
+  SOVEREIGN_OPS:   'TOOL-015',   // SEAL-VERIFIER
 };
 
 function getProtocolToolBinding(proto: ProtoDef): string {
@@ -433,7 +510,7 @@ export function bootCallMarketplace(): void {
     contractStore.set(def.id, contract);
   }
 
-  // Register all 55 protocols
+  // Register all 110 protocols
   for (const proto of ALL_PROTOCOL_DEFS) {
     const protocol: ProtocolDefinition = {
       protocol_id: proto.id,

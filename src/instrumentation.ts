@@ -12,7 +12,7 @@
  * When the Next.js server process boots:
  *   1. All 100 micro worker careers come online immediately
  *   2. All 260 marketplace tools register and activate
- *   3. All 55 enterprise protocols begin flowing
+ *   3. All 110 enterprise protocols begin flowing
  *   4. Heartbeats start pulsing at φ-derived intervals
  *   5. The organism is alive before any client connects
  *   6. Any user who opens a page sees everything already running
@@ -36,12 +36,12 @@ export async function register() {
       bootServerWorkers();
       console.log('[𓂀 INSTRUMENTATION] 100 careers flowing. No page load needed.');
 
-      // 2. Boot the Call Marketplace (260 tools + 55 protocols)
+      // 2. Boot the Call Marketplace (260 tools + 110 protocols)
       const { bootCallMarketplace } = await import(
         '@/lib/callMarketplaceEngine'
       );
       bootCallMarketplace();
-      console.log('[𓂀 INSTRUMENTATION] Call Marketplace LIVE. 260 tools registered. 55 protocols active.');
+      console.log('[𓂀 INSTRUMENTATION] Call Marketplace LIVE. 260 tools registered. 110 protocols active.');
 
       console.log('[𓂀 INSTRUMENTATION] Organism is FULLY ALIVE. Workers + Marketplace + Protocols. Always on.');
     }
