@@ -400,7 +400,7 @@ export function bootSovereignRegistry(): void {
         resonance: (input) => {
           const lower = input.toLowerCase();
           const hits = allKeywords.filter((kw) => lower.includes(kw)).length;
-          return Math.min(MAX_RESONANCE_SCORE, hits / Math.max(allKeywords.length, 1) * KEYWORD_MATCH_MULTIPLIER);
+          return Math.min(MAX_RESONANCE_SCORE, (hits / Math.max(allKeywords.length, 1)) * KEYWORD_MATCH_MULTIPLIER);
         },
         expand: () => domain.models.map((m) => `${m.id} — ${m.latinName}`),
         invoke: (input) => `${fieldModel.id} (${fieldModel.latinName}): ${fieldModel.description} — processing "${input.slice(0, 40)}"`,
@@ -449,7 +449,7 @@ export function bootSovereignRegistry(): void {
         resonance: (input) => {
           const lower = input.toLowerCase();
           const hits = workerKeywords.filter((kw) => lower.includes(kw)).length;
-          return Math.min(MAX_RESONANCE_SCORE, hits / Math.max(workerKeywords.length, 1) * KEYWORD_MATCH_MULTIPLIER);
+          return Math.min(MAX_RESONANCE_SCORE, (hits / Math.max(workerKeywords.length, 1)) * KEYWORD_MATCH_MULTIPLIER);
         },
         expand: () => domain.workers.map((w) => `${w.name} — ${w.latinName}`),
         invoke: (input) => `${worker.name} (${worker.latinName}): ${worker.purpose} — processing "${input.slice(0, 40)}"`,

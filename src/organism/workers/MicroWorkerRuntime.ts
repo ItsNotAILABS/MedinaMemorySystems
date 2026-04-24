@@ -230,7 +230,7 @@ export function onWorkerEvent(listener: WorkerEventListener): () => void {
  * Shutdown all workers gracefully.
  */
 export function shutdownAllWorkers(): void {
-  for (const [id, state] of workerStates) {
+  for (const state of workerStates.values()) {
     state.status = 'OFFLINE';
   }
   runtimeBooted = false;

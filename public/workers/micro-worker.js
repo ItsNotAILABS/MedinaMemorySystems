@@ -88,12 +88,12 @@ function handleTask(taskId, payload) {
 
   status = 'PROCESSING';
   taskCount++;
-  var startTime = Date.now();
+  const startTime = Date.now();
 
   try {
     // Domain-specific processing
-    var result = processTask(spec.domain, spec.name, payload);
-    var duration = Date.now() - startTime;
+    const result = processTask(spec.domain, spec.name, payload);
+    const duration = Date.now() - startTime;
 
     status = 'IDLE';
 
@@ -148,21 +148,21 @@ function processTask(domain, workerName, payload) {
 // ─── MEMORIA processing ──────────────────────────────────────────────────────
 
 function processMemoria(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'MEMORY_INDEXER':
       return { indexed: true, entries: data.entries || 0, timestamp: Date.now() };
     case 'SALIENCE_SCORER':
-      var salience = Math.min(1, Math.max(0, (data.value || 0.5) * PHI % 1));
+      const salience = Math.min(1, Math.max(0, (data.value || 0.5) * PHI % 1));
       return { salience: salience, recalculated: true };
     case 'RESONANCE_CALCULATOR':
-      var resonance = Math.abs(Math.sin((data.frequency || 432) * PHI));
+      const resonance = Math.abs(Math.sin((data.frequency || 432) * PHI));
       return { resonance: resonance, phiAligned: resonance > 0.618 };
     case 'SEMANTIC_VECTORIZER':
       // Simple mock vector generation
-      var vector = [];
-      var text = String(data.text || '');
-      for (var i = 0; i < 8; i++) {
+      const vector = [];
+      const text = String(data.text || '');
+      for (let i = 0; i < 8; i++) {
         vector.push(((text.charCodeAt(i % text.length) || 0) / 255) * PHI % 1);
       }
       return { vector: vector, dimensions: 8 };
@@ -174,12 +174,12 @@ function processMemoria(worker, payload) {
 // ─── SENSUS processing ───────────────────────────────────────────────────────
 
 function processSensus(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'AUDIO_ANALYZER':
       return { fftBands: 256, peakFrequency: data.frequency || 432, analyzed: true };
     case 'FREQUENCY_MONITOR':
-      var aligned = Math.abs((data.frequency || 432) - 432) < 10;
+      const aligned = Math.abs((data.frequency || 432) - 432) < 10;
       return { frequency: data.frequency || 432, aligned: aligned, target: 432 };
     case 'INPUT_CLASSIFIER':
       return { inputType: data.type || 'text', confidence: 0.95 };
@@ -191,7 +191,7 @@ function processSensus(worker, payload) {
 // ─── NEXUS processing ────────────────────────────────────────────────────────
 
 function processNexus(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'LATENCY_MONITOR':
       return { latencyMs: data.latencyMs || 0, threshold: 618, healthy: (data.latencyMs || 0) < 618 };
@@ -205,14 +205,14 @@ function processNexus(worker, payload) {
 // ─── COGNITIO processing ─────────────────────────────────────────────────────
 
 function processCognitio(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'PATTERN_RECOGNIZER':
       return { patterns: data.patterns || [], recognized: true, confidence: 0.87 };
     case 'INTENT_CLASSIFIER':
       return { intent: data.intent || 'query', confidence: 0.92, model: 'cognitio-v1' };
     case 'ANOMALY_DETECTOR':
-      var score = Math.random();
+      const score = Math.random();
       return { anomalyScore: score, isAnomaly: score > (1 / PHI), threshold: 1 / PHI };
     default:
       return { processed: true, worker: worker, domain: 'COGNITIO' };
@@ -222,7 +222,7 @@ function processCognitio(worker, payload) {
 // ─── CUSTODIA processing ─────────────────────────────────────────────────────
 
 function processCustodia(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'GATE_A_SENTINEL':
     case 'GATE_B_SENTINEL':
@@ -240,11 +240,11 @@ function processCustodia(worker, payload) {
 // ─── GUBERNATIO processing ───────────────────────────────────────────────────
 
 function processGubernatio(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'VOTE_TALLIER':
-      var votes = data.votes || [];
-      var yes = votes.filter(function(v) { return v === 'yes'; }).length;
+      const votes = data.votes || [];
+      const yes = votes.filter(function(v) { return v === 'yes'; }).length;
       return { yes: yes, no: votes.length - yes, total: votes.length, passed: yes > votes.length / 2 };
     case 'DOCTRINE_DRIFT_DETECTOR':
       return { drift: 0.02, threshold: 0.1, aligned: true };
@@ -262,7 +262,7 @@ function processFabricatio(worker, payload) {
 // ─── RESONANTIA processing ──────────────────────────────────────────────────
 
 function processResonantia(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'PHI_OSCILLATOR':
       return { phi: PHI, beat: Date.now() % 1000 / 618, signal: Math.sin(Date.now() / 618 * Math.PI * 2) };
@@ -278,7 +278,7 @@ function processResonantia(worker, payload) {
 // ─── FLUXUS processing ──────────────────────────────────────────────────────
 
 function processFluxus(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'BACKPRESSURE_GOVERNOR':
       return { pressure: data.queueDepth || 0, maxQueue: 100, throttled: (data.queueDepth || 0) > 80 };
@@ -290,7 +290,7 @@ function processFluxus(worker, payload) {
 // ─── IMPERIUM processing ────────────────────────────────────────────────────
 
 function processImperium(worker, payload) {
-  var data = payload || {};
+  const data = payload || {};
   switch (worker) {
     case 'HEALTH_MONITOR':
       return { healthy: true, checked: data.workerIds || [], timestamp: Date.now() };
