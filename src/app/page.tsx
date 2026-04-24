@@ -11,6 +11,7 @@ import CompanyOnboarding from '@/components/CompanyOnboarding';
 import ReplayPanel from '@/components/ReplayPanel';
 import PermissionsPanel from '@/components/PermissionsPanel';
 import OrganismField from '@/components/OrganismField';
+import JarvisPanel from '@/components/JarvisPanel';
 import type { PanelId } from '@/types';
 
 export default function HomePage() {
@@ -20,6 +21,7 @@ export default function HomePage() {
   const renderPanel = () => {
     switch (activePanel) {
       case 'chat': return <OVOChat />;
+      case 'jarvis': return <JarvisPanel />;
       case 'memory': return <MemoryTemple />;
       case 'governance': return <GovernancePanel />;
       case 'models': return <ModelRuntime />;

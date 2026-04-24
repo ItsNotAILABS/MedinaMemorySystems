@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "JARVISIUS — Sovereign Intelligence Assistant",
+  "version": "1.0.0",
+  "description": "Your sovereign AI assistant. Controls tabs, takes notes, creates documents, captures pages — all synced to MERIDIAN.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "sidePanel",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "https://*.medinatech.io/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Open JARVISIUS",
+    "default_icon": {
+      "16": "icons/jarvis-16.png",
+      "48": "icons/jarvis-48.png",
+      "128": "icons/jarvis-128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/jarvis-16.png",
+    "48": "icons/jarvis-48.png",
+    "128": "icons/jarvis-128.png"
+  }
+}
