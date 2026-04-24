@@ -80,6 +80,7 @@ export * as IntelligenceContractsRegistry from './intelligence-contracts-registr
 export * as OrganismModelsRegistry from './organism-models-registry';
 export * as SubstrateMeshRegistry from './substrate-mesh-registry';
 export * as FrontEndEnginesRegistry from './frontend-engines-registry';
+export * as SovereignToolsEngine from './sovereign-tools-engine';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MASTER MANIFEST
