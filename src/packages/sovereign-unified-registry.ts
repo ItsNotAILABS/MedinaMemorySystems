@@ -99,6 +99,19 @@ import { F_MODEL_CATEGORIES, ICP_INTELLIGENCE_MODELS } from '@/types';
 // NEW: From src/packages/
 import { INSTALLER_MANIFEST } from './terminal-installer-sdk';
 
+// NEW WAVE 2: SDK Package Manifests + Data Functions
+import { PACKAGE_MANIFEST as CIVILIZATION_MANIFEST, getCivilizations, getHeroJourney, getElements, getRhetoricalModes } from './civilization-pattern-engine';
+import { PACKAGE_MANIFEST as DESIGN_MANIFEST, getDesignModels, getAllDesignUses } from './design-os-toolkit';
+import { PACKAGE_MANIFEST as ENTERPRISE_MANIFEST, getConnectorTemplates } from './enterprise-integration-sdk';
+import { PACKAGE_MANIFEST as GOVERNANCE_MANIFEST, getGates as getGovernanceGates } from './governance-protocol';
+import { PACKAGE_MANIFEST as HARMONIC_MANIFEST, getPlatonicSolids, getSchumannFrequencies } from './harmonic-computation-engine';
+import { PACKAGE_MANIFEST as ROUTING_MANIFEST, getModels as getModelFamilies, getTerminals } from './intelligence-routing-sdk';
+import { PACKAGE_MANIFEST as NEURAL_MANIFEST, getAnimalBrains, getDreamPhases, getZoneStates, getConsciousnessLayers, getAlwaysOnMemorySystems, getTemporalDimensions } from './neural-consciousness-engine';
+import { PACKAGE_MANIFEST as RUNTIME_MANIFEST } from './organism-runtime-sdk';
+import { PACKAGE_MANIFEST as ENCRYPTION_MANIFEST } from './sovereign-encryption-sdk';
+import { PACKAGE_MANIFEST as MEMORY_MANIFEST } from './sovereign-memory-sdk';
+import { PACKAGE_MANIFEST as ABSORPTION_MANIFEST } from './document-absorption-engine';
+
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -146,7 +159,27 @@ export type EntityClass =
   | 'frequency'          // Solfeggio (7) + Schumann Harmonics (6) + Kernel Frequencies (7)
   | 'research-domain'    // 8 AGI Convergence Research Domains
   | 'installer-config'   // 3 Platform Installer Configs
-  | 'frontend-model-category'; // 11 F-Model Categories + 4 ICP Intelligence Models
+  | 'frontend-model-category' // 11 F-Model Categories + 4 ICP Intelligence Models
+  | 'civilization'          // 34 Civilizations from civilization-pattern-engine
+  | 'hero-stage'            // 12 Hero Journey Stages  
+  | 'element'               // 5 Classical Elements (Fire, Earth, Air, Water, Aether)
+  | 'rhetorical-mode'       // 7 Rhetorical Modes (Logos, Ethos, Pathos, Kairos, Telos, Mythos, Topos)
+  | 'design-model'          // 10 MACHINA Design Models (GPU, 3D, PHOTO, etc.)
+  | 'design-use'            // 50 Sovereign Design Uses
+  | 'connector-template'    // 8 Enterprise Connectors (Salesforce, SAP, etc.)
+  | 'governance-gate'       // 3 Governance Gates (A, B, C)
+  | 'platonic-solid'        // 5 Platonic Solids
+  | 'model-family'          // 8 Model Families (strategist, builder, analyst, etc.)
+  | 'terminal-station'      // 10 Terminal Stations
+  | 'animal-brain'          // Animal Brain architectures
+  | 'dream-phase'           // 5 Dream Phases (wake, N1, N2, N3, REM)
+  | 'consciousness-layer'   // Consciousness depth layers
+  | 'zone-state'            // Cross-cultural flow states
+  | 'memory-system'         // 6 Always-On Memory Systems
+  | 'temporal-dimension'    // 3 Temporal Dimensions (past, present, future)
+  | 'edge-type'             // 14 Edge Types from organismEdgeModel
+  | 'chaos-category'        // 8 Chaos Lab Categories
+  | 'shell-type';           // 5 Shell Types from crossOrganismResonance
 
 /**
  * EntityFace — How an entity can be accessed
@@ -1119,6 +1152,614 @@ function buildUnifiedDatabase(): SUREntity[] {
     },
   });
 
+  // ─────────────────────────────────────────────────────────────────────
+  // 27. Civilizations (34) — from civilization-pattern-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const civilizations = getCivilizations();
+  for (const civ of civilizations) {
+    entities.push({
+      surId: `SUR::CIV::${civ.name.toUpperCase().replace(/\s+/g, '_')}`,
+      name: civ.name,
+      latinName: `CIVILIZATIO_${civ.name.toUpperCase().replace(/\s+/g, '_')}`,
+      entityClass: 'civilization',
+      sourceRegistry: 'civilization-pattern-engine',
+      version: SUR_VERSION,
+      description: `${civ.name} civilization — ${civ.era} era, ${civ.region}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: civ.contributions || [],
+      tags: ['civilization', 'pattern', 'culture', civ.name.toLowerCase(), civ.era || '', civ.region || ''],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 28. Hero Journey Stages (12) — from civilization-pattern-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const heroStages = getHeroJourney();
+  for (const stage of heroStages) {
+    entities.push({
+      surId: `SUR::HERO::${stage.name.toUpperCase().replace(/\s+/g, '_')}`,
+      name: `Hero: ${stage.name}`,
+      latinName: `HEROS_${stage.name.toUpperCase().replace(/\s+/g, '_')}`,
+      entityClass: 'hero-stage',
+      sourceRegistry: 'civilization-pattern-engine',
+      version: SUR_VERSION,
+      description: stage.description,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['hero', 'journey', 'archetype', stage.phase.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 29. Classical Elements (5) — from civilization-pattern-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const elements = getElements();
+  for (const el of elements) {
+    entities.push({
+      surId: `SUR::ELEMENT::${el.element.toUpperCase()}`,
+      name: `Element: ${el.element}`,
+      latinName: `ELEMENTUM_${el.element.toUpperCase()}`,
+      entityClass: 'element',
+      sourceRegistry: 'civilization-pattern-engine',
+      version: SUR_VERSION,
+      description: `Classical element: ${el.element} — ${el.physicalCorrelate}, ${el.direction}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['element', 'classical', el.element.toLowerCase(), el.physicalCorrelate || '', el.direction || ''],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 30. Rhetorical Modes (7) — from civilization-pattern-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const modes = getRhetoricalModes();
+  for (const mode of modes) {
+    entities.push({
+      surId: `SUR::RHETORIC::${mode.greekName.toUpperCase()}`,
+      name: `Rhetoric: ${mode.greekName}`,
+      latinName: `RHETORICA_${mode.greekName.toUpperCase()}`,
+      entityClass: 'rhetorical-mode',
+      sourceRegistry: 'civilization-pattern-engine',
+      version: SUR_VERSION,
+      description: mode.meaning,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['rhetoric', 'mode', 'persuasion', mode.greekName.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 31. MACHINA Design Models (10) — from design-os-toolkit.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const designModels = getDesignModels();
+  for (const model of designModels) {
+    entities.push({
+      surId: `SUR::DESIGN::${model.category}`,
+      name: `MACHINA ${model.category}: ${model.machinaName}`,
+      latinName: `MACHINA_${model.category}`,
+      entityClass: 'design-model',
+      sourceRegistry: 'design-os-toolkit',
+      version: SUR_VERSION,
+      description: `${model.machinaName} — ${model.motto}`,
+      market: 'marketplace',
+      license: 'MIT + Proprietary',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['design', 'machina', 'visual', model.category.toLowerCase(), model.replacesIndustry || ''],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: true,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 32. Sovereign Design Uses (50) — from design-os-toolkit.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const designUses = getAllDesignUses();
+  for (const use of designUses) {
+    entities.push({
+      surId: `SUR::DUSE::${use.id}`,
+      name: use.name,
+      latinName: `USUS_${use.id.toUpperCase().replace(/-/g, '_')}`,
+      entityClass: 'design-use',
+      sourceRegistry: 'design-os-toolkit',
+      version: SUR_VERSION,
+      description: use.description,
+      market: 'marketplace',
+      license: 'MIT + Proprietary',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['design', 'use', 'sovereign'],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: true,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 33. Enterprise Connectors (8) — from enterprise-integration-sdk.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const connectors = getConnectorTemplates();
+  for (const conn of connectors) {
+    entities.push({
+      surId: `SUR::CONN::${conn.id}`,
+      name: conn.name,
+      latinName: `CONNEXIO_${conn.id.toUpperCase().replace(/-/g, '_')}`,
+      entityClass: 'connector-template',
+      sourceRegistry: 'enterprise-integration-sdk',
+      version: SUR_VERSION,
+      description: `Enterprise connector: ${conn.name} (${conn.status || 'standard'})`,
+      market: 'marketplace',
+      license: 'MIT + Proprietary',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: conn.capabilities || [],
+      tags: ['connector', 'enterprise', 'integration', conn.name.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: true,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 34. Governance Gates (3) — from governance-protocol.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const govGates = getGovernanceGates();
+  for (const gate of govGates) {
+    entities.push({
+      surId: `SUR::GGATE::${gate.id}`,
+      name: `Governance Gate ${gate.id}: ${gate.name}`,
+      latinName: `PORTA_GUBERNATIONIS_${gate.id}`,
+      entityClass: 'governance-gate',
+      sourceRegistry: 'governance-protocol',
+      version: SUR_VERSION,
+      description: gate.description,
+      market: 'sovereign',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['gate', 'governance', 'protocol', gate.id.toLowerCase(), gate.name.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 35. Platonic Solids (5) — from harmonic-computation-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const platonics = getPlatonicSolids();
+  for (const solid of platonics) {
+    entities.push({
+      surId: `SUR::PLATONIC::${solid.name.toUpperCase().replace(/\s+/g, '_')}`,
+      name: solid.name,
+      latinName: `SOLIDUM_${solid.name.toUpperCase().replace(/\s+/g, '_')}`,
+      entityClass: 'platonic-solid',
+      sourceRegistry: 'harmonic-computation-engine',
+      version: SUR_VERSION,
+      description: `Platonic solid: ${solid.name} — ${solid.faces} faces, ${solid.vertices} vertices, ${solid.edges} edges`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['platonic', 'solid', 'geometry', 'sacred', solid.name.toLowerCase(), solid.element || ''],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 36. Model Families (8) — from intelligence-routing-sdk.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const modelFamilies = getModelFamilies();
+  for (const fam of modelFamilies) {
+    entities.push({
+      surId: `SUR::MFAM::${fam.name.toUpperCase().replace(/\s+/g, '_')}`,
+      name: `Model Family: ${fam.name}`,
+      latinName: `FAMILIA_${fam.name.toUpperCase().replace(/[\s-]+/g, '_')}`,
+      entityClass: 'model-family',
+      sourceRegistry: 'intelligence-routing-sdk',
+      version: SUR_VERSION,
+      description: fam.description || `Intelligence model family: ${fam.name}`,
+      market: 'marketplace',
+      license: 'MIT + Proprietary',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: fam.capabilities || [],
+      tags: ['model', 'family', 'intelligence', 'routing', fam.name.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: true,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 37. Terminal Stations (10) — from intelligence-routing-sdk.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const terminals = getTerminals();
+  for (const term of terminals) {
+    entities.push({
+      surId: `SUR::TERM::${term.command.replace(/\//g, '').toUpperCase()}`,
+      name: `Terminal: ${term.command}`,
+      latinName: `TERMINUS_${term.command.replace(/\//g, '').toUpperCase()}`,
+      entityClass: 'terminal-station',
+      sourceRegistry: 'intelligence-routing-sdk',
+      version: SUR_VERSION,
+      description: term.motto,
+      market: 'marketplace',
+      license: 'MIT + Proprietary',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: (term.functionIds || []).map(String),
+      tags: ['terminal', 'station', 'command', term.command.replace(/\//g, '')],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: true,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 38. Animal Brains — from neural-consciousness-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const animalBrains = getAnimalBrains();
+  for (const brain of animalBrains) {
+    entities.push({
+      surId: `SUR::BRAIN::${brain.animal.toUpperCase().replace(/\s+/g, '_')}`,
+      name: `Animal Brain: ${brain.animal}`,
+      latinName: `CEREBRUM_${brain.animal.toUpperCase().replace(/\s+/g, '_')}`,
+      entityClass: 'animal-brain',
+      sourceRegistry: 'neural-consciousness-engine',
+      version: SUR_VERSION,
+      description: `${brain.animal} brain architecture — ${brain.specialization}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['brain', 'animal', 'neural', 'consciousness', brain.animal.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 39. Dream Phases (5) — from neural-consciousness-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const dreamPhases = getDreamPhases();
+  for (const phase of dreamPhases) {
+    entities.push({
+      surId: `SUR::DREAM::${phase.phase.toUpperCase()}`,
+      name: `Dream Phase: ${phase.phase}`,
+      latinName: `SOMNIUM_${phase.phase.toUpperCase()}`,
+      entityClass: 'dream-phase',
+      sourceRegistry: 'neural-consciousness-engine',
+      version: SUR_VERSION,
+      description: `${phase.phase} — ${phase.brainWaves}, ${phase.primaryFunction}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['dream', 'phase', 'consciousness', 'sleep', phase.phase.toLowerCase()],
+      protocol: {
+        pulseCycle: phase.frequency || PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 40. Consciousness Layers — from neural-consciousness-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const consciousnessLayers = getConsciousnessLayers();
+  for (const layer of consciousnessLayers) {
+    entities.push({
+      surId: `SUR::CONSC::${layer.name.toUpperCase().replace(/\s+/g, '_')}`,
+      name: `Consciousness: ${layer.name}`,
+      latinName: `CONSCIENTIA_${layer.name.toUpperCase().replace(/\s+/g, '_')}`,
+      entityClass: 'consciousness-layer',
+      sourceRegistry: 'neural-consciousness-engine',
+      version: SUR_VERSION,
+      description: `${layer.name} — ${layer.content}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['consciousness', 'layer', 'depth', 'neural', layer.name.toLowerCase()],
+      protocol: {
+        pulseCycle: layer.frequency ?? PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 41. Zone States — from neural-consciousness-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const zoneStates = getZoneStates();
+  for (const zone of zoneStates) {
+    entities.push({
+      surId: `SUR::ZONE::${zone.name.toUpperCase().replace(/\s+/g, '_')}`,
+      name: `Zone: ${zone.name}`,
+      latinName: `ZONA_${zone.name.toUpperCase().replace(/\s+/g, '_')}`,
+      entityClass: 'zone-state',
+      sourceRegistry: 'neural-consciousness-engine',
+      version: SUR_VERSION,
+      description: zone.description,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['zone', 'flow', 'consciousness', 'state', zone.name.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 42. Always-On Memory Systems (6) — from neural-consciousness-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const memorySystems = getAlwaysOnMemorySystems();
+  for (const mem of memorySystems) {
+    entities.push({
+      surId: `SUR::MEMSYS::${mem.type.toUpperCase()}`,
+      name: `Memory System: ${mem.type}`,
+      latinName: `MEMORIA_${mem.type.toUpperCase()}`,
+      entityClass: 'memory-system',
+      sourceRegistry: 'neural-consciousness-engine',
+      version: SUR_VERSION,
+      description: mem.description,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['memory', 'system', 'always-on', 'neural', mem.type.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 43. Temporal Dimensions (3) — from neural-consciousness-engine.ts
+  // ─────────────────────────────────────────────────────────────────────
+  const temporals = getTemporalDimensions();
+  for (const dim of temporals) {
+    entities.push({
+      surId: `SUR::TEMPORAL::${dim.dimension.toUpperCase()}`,
+      name: `Temporal: ${dim.dimension}`,
+      latinName: `TEMPUS_${dim.dimension.toUpperCase()}`,
+      entityClass: 'temporal-dimension',
+      sourceRegistry: 'neural-consciousness-engine',
+      version: SUR_VERSION,
+      description: `${dim.dimension} — ${dim.focus}, ${dim.processingType}`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['temporal', 'dimension', 'time', 'consciousness', dim.dimension.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 44. Edge Types (14) — enumerated from organism edge model
+  // ─────────────────────────────────────────────────────────────────────
+  const edgeTypes = [
+    'null-value', 'undefined-value', 'empty-array', 'empty-string',
+    'network-failure', 'permission-denied', 'timeout', 'invalid-input',
+    'state-corruption', 'api-error', 'browser-incompatibility',
+    'rate-limit', 'quota-exceeded', 'concurrency-conflict',
+  ];
+  for (const et of edgeTypes) {
+    entities.push({
+      surId: `SUR::EDGE::${et.toUpperCase().replace(/-/g, '_')}`,
+      name: `Edge: ${et}`,
+      latinName: `ACIES_${et.toUpperCase().replace(/-/g, '_')}`,
+      entityClass: 'edge-type',
+      sourceRegistry: 'organismEdgeModel',
+      version: SUR_VERSION,
+      description: `Edge type: ${et} — organism boundary condition`,
+      market: 'internal',
+      license: 'Sovereign',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['edge', 'type', 'boundary', 'organism', et],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 45. Chaos Categories (8) — enumerated from chaosLabEngine
+  // ─────────────────────────────────────────────────────────────────────
+  const chaosCategories = [
+    'entropy-flood', 'edge-probe', 'resonance-disruption', 'frequency-shift',
+    'state-corruption', 'load-surge', 'coherence-inversion', 'timing-skew',
+  ];
+  for (const cat of chaosCategories) {
+    entities.push({
+      surId: `SUR::CHAOS::${cat.toUpperCase().replace(/-/g, '_')}`,
+      name: `Chaos: ${cat}`,
+      latinName: `CHAOS_${cat.toUpperCase().replace(/-/g, '_')}`,
+      entityClass: 'chaos-category',
+      sourceRegistry: 'chaosLabEngine',
+      version: SUR_VERSION,
+      description: `Chaos category: ${cat} — controlled perturbation for edge discovery`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['chaos', 'category', 'lab', 'experiment', cat],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: false,
+      },
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // 46. Shell Types (5) — enumerated from crossOrganismResonance
+  // ─────────────────────────────────────────────────────────────────────
+  const shellTypes = ['Sovereign', 'Workforce', 'Document', 'Kernel', 'Hybrid'];
+  for (const shell of shellTypes) {
+    entities.push({
+      surId: `SUR::SHELL::${shell.toUpperCase()}`,
+      name: `Shell: ${shell}`,
+      latinName: `TESTA_${shell.toUpperCase()}`,
+      entityClass: 'shell-type',
+      sourceRegistry: 'crossOrganismResonance',
+      version: SUR_VERSION,
+      description: `Organism shell type: ${shell} — resonance container for cross-organism communication`,
+      market: 'research',
+      license: 'MIT',
+      heartbeatMs: HEARTBEAT_MS,
+      phiWeight: PHI,
+      relatedEntities: [],
+      exports: [],
+      tags: ['shell', 'type', 'resonance', 'organism', shell.toLowerCase()],
+      protocol: {
+        pulseCycle: PHI_HZ,
+        thinkCycle: SCHUMANN_HZ,
+        canBeSold: false,
+        canBeQueried: true,
+        isAutonomous: true,
+      },
+    });
+  }
+
   return entities;
 }
 
@@ -1226,6 +1867,138 @@ export function surInstallerConfigs(): SUREntity[] { return surByClass('installe
 
 /** Get all frontend model categories */
 export function surFModelCategories(): SUREntity[] { return surByClass('frontend-model-category'); }
+
+/** Get all civilizations */
+export function surCivilizations(): SUREntity[] { return surByClass('civilization'); }
+
+/** Get all hero journey stages */
+export function surHeroStages(): SUREntity[] { return surByClass('hero-stage'); }
+
+/** Get all classical elements */
+export function surElements(): SUREntity[] { return surByClass('element'); }
+
+/** Get all rhetorical modes */
+export function surRhetoricalModes(): SUREntity[] { return surByClass('rhetorical-mode'); }
+
+/** Get all MACHINA design models */
+export function surDesignModels(): SUREntity[] { return surByClass('design-model'); }
+
+/** Get all sovereign design uses */
+export function surDesignUses(): SUREntity[] { return surByClass('design-use'); }
+
+/** Get all enterprise connector templates */
+export function surConnectors(): SUREntity[] { return surByClass('connector-template'); }
+
+/** Get all governance gates from protocol */
+export function surGovernanceGates(): SUREntity[] { return surByClass('governance-gate'); }
+
+/** Get all Platonic solids */
+export function surPlatonicSolids(): SUREntity[] { return surByClass('platonic-solid'); }
+
+/** Get all model families */
+export function surModelFamilies(): SUREntity[] { return surByClass('model-family'); }
+
+/** Get all terminal stations */
+export function surTerminals(): SUREntity[] { return surByClass('terminal-station'); }
+
+/** Get all animal brain architectures */
+export function surAnimalBrains(): SUREntity[] { return surByClass('animal-brain'); }
+
+/** Get all dream phases */
+export function surDreamPhases(): SUREntity[] { return surByClass('dream-phase'); }
+
+/** Get all consciousness layers */
+export function surConsciousnessLayers(): SUREntity[] { return surByClass('consciousness-layer'); }
+
+/** Get all zone states */
+export function surZoneStates(): SUREntity[] { return surByClass('zone-state'); }
+
+/** Get all always-on memory systems */
+export function surMemorySystems(): SUREntity[] { return surByClass('memory-system'); }
+
+/** Get all temporal dimensions */
+export function surTemporalDimensions(): SUREntity[] { return surByClass('temporal-dimension'); }
+
+/** Get all edge types */
+export function surEdgeTypes(): SUREntity[] { return surByClass('edge-type'); }
+
+/** Get all chaos categories */
+export function surChaosCategories(): SUREntity[] { return surByClass('chaos-category'); }
+
+/** Get all shell types */
+export function surShellTypes(): SUREntity[] { return surByClass('shell-type'); }
+
+// ─── Advanced Queries ─────────────────────────────────────────────────
+
+/** Get entities by license type */
+export function surByLicense(license: LicenseType): SUREntity[] {
+  return SUR_DATABASE.filter(e => e.license === license);
+}
+
+/** Get entities within a frequency range */
+export function surByFrequencyRange(minHz: number, maxHz: number): SUREntity[] {
+  return SUR_DATABASE.filter(e => e.protocol.pulseCycle >= minHz && e.protocol.pulseCycle <= maxHz);
+}
+
+/** Get total entity count */
+export function surTotalCount(): number {
+  return SUR_DATABASE.length;
+}
+
+/** Get all unique tags across the entire system */
+export function surAllTags(): string[] {
+  const tagSet = new Set<string>();
+  for (const e of SUR_DATABASE) {
+    for (const t of e.tags) {
+      if (t) tagSet.add(t);
+    }
+  }
+  return Array.from(tagSet).sort();
+}
+
+/** Get count of unique tags */
+export function surTagCount(): number {
+  return surAllTags().length;
+}
+
+/** Get all unique source registries */
+export function surAllSources(): string[] {
+  return [...new Set(SUR_DATABASE.map(e => e.sourceRegistry))].sort();
+}
+
+/** Get top N entity classes by count */
+export function surTopClasses(n = 10): { entityClass: EntityClass; count: number }[] {
+  const counts = surCountByClass();
+  return Object.entries(counts)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, n)
+    .map(([cls, count]) => ({ entityClass: cls as EntityClass, count }));
+}
+
+/** Get complete system statistics */
+export function surStats(): {
+  totalEntities: number;
+  totalClasses: number;
+  totalSources: number;
+  totalExports: number;
+  totalTags: number;
+  byMarket: Record<string, number>;
+  byClass: Record<string, number>;
+  autonomous: number;
+  sellable: number;
+} {
+  return {
+    totalEntities: SUR_DATABASE.length,
+    totalClasses: Object.keys(surCountByClass()).length,
+    totalSources: surAllSources().length,
+    totalExports: surAllExports().length,
+    totalTags: surTagCount(),
+    byMarket: surCountByMarket(),
+    byClass: surCountByClass(),
+    autonomous: surAutonomous().length,
+    sellable: surSellable().length,
+  };
+}
 
 // ─── Filter by Market ────────────────────────────────────────────────────
 
@@ -1407,6 +2180,17 @@ export const SUR_MANIFEST = {
     intelligenceContracts: INTELLIGENCE_CONTRACTS_MANIFEST,
     agiConvergence: SOVEREIGN_AGI_MANIFEST,
     installer: INSTALLER_MANIFEST,
+    civilization: CIVILIZATION_MANIFEST,
+    design: DESIGN_MANIFEST,
+    enterprise: ENTERPRISE_MANIFEST,
+    governance: GOVERNANCE_MANIFEST,
+    harmonic: HARMONIC_MANIFEST,
+    routing: ROUTING_MANIFEST,
+    neural: NEURAL_MANIFEST,
+    runtime: RUNTIME_MANIFEST,
+    encryption: ENCRYPTION_MANIFEST,
+    memory: MEMORY_MANIFEST,
+    absorption: ABSORPTION_MANIFEST,
   },
 
   // AGI convergence reference
@@ -1445,6 +2229,36 @@ export const SUR_MANIFEST = {
     surResearchDomains: 'Get all 8 AGI Convergence Research Domains',
     surInstallerConfigs: 'Get Installer Configs',
     surFModelCategories: 'Get all 11 F-Model Categories + 4 ICP Intelligence Models',
+    // Filter by class (wave 2 — 20 more)
+    surCivilizations: 'Get all 34 Civilizations',
+    surHeroStages: 'Get all 12 Hero Journey Stages',
+    surElements: 'Get all 5 Classical Elements',
+    surRhetoricalModes: 'Get all 7 Rhetorical Modes',
+    surDesignModels: 'Get all 10 MACHINA Design Models',
+    surDesignUses: 'Get all 50 Sovereign Design Uses',
+    surConnectors: 'Get all 8 Enterprise Connectors',
+    surGovernanceGates: 'Get all 3 Governance Gates',
+    surPlatonicSolids: 'Get all 5 Platonic Solids',
+    surModelFamilies: 'Get all 8 Model Families',
+    surTerminals: 'Get all 10 Terminal Stations',
+    surAnimalBrains: 'Get all Animal Brain Architectures',
+    surDreamPhases: 'Get all 5 Dream Phases',
+    surConsciousnessLayers: 'Get all Consciousness Layers',
+    surZoneStates: 'Get all Zone/Flow States',
+    surMemorySystems: 'Get all 6 Always-On Memory Systems',
+    surTemporalDimensions: 'Get all 3 Temporal Dimensions',
+    surEdgeTypes: 'Get all 14 Edge Types',
+    surChaosCategories: 'Get all 8 Chaos Categories',
+    surShellTypes: 'Get all 5 Shell Types',
+    // Advanced queries
+    surByLicense: 'Filter by license type',
+    surByFrequencyRange: 'Filter by frequency range (min/max Hz)',
+    surTotalCount: 'Get total entity count',
+    surAllTags: 'Get all unique tags',
+    surTagCount: 'Get count of unique tags',
+    surAllSources: 'Get all unique source registries',
+    surTopClasses: 'Get top N entity classes by count',
+    surStats: 'Get complete system statistics',
     // Filter by market
     surMarketplace: 'Get all sellable entities',
     surResearch: 'Get all open-source research entities',
