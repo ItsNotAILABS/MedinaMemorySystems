@@ -70,7 +70,7 @@ const protocolStats = {
   byCategory: {},
 };
 
-// ─── 55 Protocol Definitions ─────────────────────────────────────
+// ─── 110 Protocol Definitions ─────────────────────────────────────
 
 const PROTOCOLS = [
   // Client Lifecycle
