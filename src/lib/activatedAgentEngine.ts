@@ -29,6 +29,34 @@ import type {
   MemoryEntry,
 } from '@/types';
 
+// ─── Scoring Constants ────────────────────────────────────────────────────────
+
+/** Minimum baseline confidence regardless of response length */
+const BASE_CONFIDENCE = 0.5;
+/** Characters of response needed to reach full length-based confidence bonus */
+const RESPONSE_LENGTH_NORMALIZER = 500;
+/** Weight given to response-length signal in confidence calculation */
+const LENGTH_WEIGHT_FACTOR = 0.4;
+/** Hard ceiling on per-agent confidence */
+const MAX_CONFIDENCE = 0.95;
+
+/** Confidence boost applied after agreement is above baseline (rewards multi-agent concurrence) */
+const AGREEMENT_SCORE_BOOST = 0.2;
+
+/** Weight of average agent confidence in maturity score */
+const MATURITY_CONFIDENCE_WEIGHT = 0.5;
+/** Weight of arbitration agreement score in maturity score */
+const MATURITY_AGREEMENT_WEIGHT = 0.3;
+/** Per-vault-hit bonus toward maturity (capped by MAX_VAULT_BONUS) */
+const VAULT_HIT_WEIGHT = 0.04;
+const MAX_VAULT_BONUS = 0.12;
+/** Per-doctrine-hit bonus toward maturity (capped by MAX_DOCTRINE_BONUS) */
+const DOCTRINE_HIT_WEIGHT = 0.05;
+const MAX_DOCTRINE_BONUS = 0.10;
+/** Per-additional-agent bonus toward maturity (capped by MAX_AGENT_BONUS) */
+const AGENT_COUNT_WEIGHT = 0.03;
+const MAX_AGENT_BONUS = 0.09;
+
 // ─── Session Store ───────────────────────────────────────────────────────────
 
 const sessions: Map<string, ActivatedAgentSession> = new Map();
@@ -167,8 +195,8 @@ function runAgents(
     const invocation = invokeModel(agentId, enrichedPrompt);
     const latency = Date.now() - start;
 
-    // Confidence heuristic: longer, richer responses = higher confidence
-    const confidence = Math.min(0.5 + (invocation.response.length / 500) * 0.4, 0.95);
+    // Confidence heuristic: longer, richer responses signal higher confidence
+    const confidence = Math.min(BASE_CONFIDENCE + (invocation.response.length / RESPONSE_LENGTH_NORMALIZER) * LENGTH_WEIGHT_FACTOR, MAX_CONFIDENCE);
 
     outputs.push({ agentId, response: invocation.response, confidence, latency });
 
@@ -223,7 +251,7 @@ export function arbitrate(agentOutputs: AgentOutput[]): { synthesized: string; a
     ? `${top.response}\n\n──\n${divergent}`
     : top.response;
 
-  return { synthesized, agreementScore: Math.min(agreementScore + 0.2, 1) };
+  return { synthesized, agreementScore: Math.min(agreementScore + AGREEMENT_SCORE_BOOST, 1) };
 }
 
 /**
@@ -247,12 +275,16 @@ function scoreMaturity(
     agentOutputs.length > 0
       ? agentOutputs.reduce((s, o) => s + o.confidence, 0) / agentOutputs.length
       : 0;
-  const vaultBonus = Math.min(vaultHits * 0.04, 0.12);
-  const doctrineBonus = Math.min(doctrineHits * 0.05, 0.10);
-  const agentCountBonus = Math.min((agentOutputs.length - 1) * 0.03, 0.09);
+  const vaultBonus = Math.min(vaultHits * VAULT_HIT_WEIGHT, MAX_VAULT_BONUS);
+  const doctrineBonus = Math.min(doctrineHits * DOCTRINE_HIT_WEIGHT, MAX_DOCTRINE_BONUS);
+  const agentCountBonus = Math.min((agentOutputs.length - 1) * AGENT_COUNT_WEIGHT, MAX_AGENT_BONUS);
 
   return Math.min(
-    avgConfidence * 0.5 + agreementScore * 0.3 + vaultBonus + doctrineBonus + agentCountBonus,
+    avgConfidence * MATURITY_CONFIDENCE_WEIGHT
+      + agreementScore * MATURITY_AGREEMENT_WEIGHT
+      + vaultBonus
+      + doctrineBonus
+      + agentCountBonus,
     1,
   );
 }

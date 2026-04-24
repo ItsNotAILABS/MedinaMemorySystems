@@ -194,6 +194,8 @@ export default function AgentJournalPanel() {
       const res = await fetch('/api/agents', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        // threshold: 0.0 — manual promotion bypasses the maturity gate entirely;
+        // the user has explicitly chosen to promote regardless of score.
         body: JSON.stringify({ action: 'promote', sessionId: selected.id, threshold: 0.0 }),
       });
       const data = await res.json() as { data: { promoted: boolean; memory: { id: string } } };

@@ -175,7 +175,7 @@ export interface StructuredResponse {
     | 'signal' | 'consensus' | 'frequency' | 'bus' | 'vault' | 'translate'
     | 'council' | 'role' | 'substrate' | 'sdk' | 'marketplace'
     | 'graph' | 'palace' | 'temporal' | 'harmonic' | 'token' | 'livingdoc' | 'incentive'
-    | 'replay' | 'permissions' | 'agents' | 'agent-journal';
+    | 'replay' | 'permissions' | 'agents';
   title: string;
   data: unknown;
   actions?: ResponseAction[];
