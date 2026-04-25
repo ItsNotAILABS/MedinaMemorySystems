@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOVA OVO — Page Intelligence Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="icons/icon48.png" alt="NOVA OVO" class="logo" />
+      <div>
+        <h1>NOVA OVO — Page Intelligence</h1>
+        <p class="subtitle">Settings &amp; Configuration</p>
+      </div>
+    </header>
+
+    <!-- API Configuration -->
+    <section class="section">
+      <h2 class="section-title">🔌 API Configuration</h2>
+      <div class="form-group">
+        <label for="api-host">API Host URL</label>
+        <input type="text" id="api-host" class="input" placeholder="http://localhost:3000" />
+        <p class="help-text">The URL of your NOVA OVO instance</p>
+      </div>
+      <div class="form-row">
+        <button id="btn-test" class="btn btn--secondary">Test Connection</button>
+        <span id="test-result" class="test-result"></span>
+      </div>
+    </section>
+
+    <!-- Analysis Preferences -->
+    <section class="section">
+      <h2 class="section-title">🔍 Analysis Preferences</h2>
+      <div class="form-group">
+        <label class="toggle-row">
+          <input type="checkbox" id="auto-analyze" />
+          <span class="toggle-slider"></span>
+          <span>Auto-analyze pages on load</span>
+        </label>
+        <p class="help-text">Automatically analyze pages when you navigate to them</p>
+      </div>
+    </section>
+
+    <!-- Highlight Settings -->
+    <section class="section">
+      <h2 class="section-title">🖍️ Highlight Settings</h2>
+      <div class="form-group">
+        <label for="highlight-color">Highlight Color</label>
+        <div class="color-row">
+          <input type="color" id="highlight-color" value="#10b981" class="color-input" />
+          <span id="color-hex" class="color-hex">#10b981</span>
+        </div>
+      </div>
+      <div class="preset-colors">
+        <button class="color-preset" data-color="#10b981" style="background:#10b981" title="Green"></button>
+        <button class="color-preset" data-color="#3b82f6" style="background:#3b82f6" title="Blue"></button>
+        <button class="color-preset" data-color="#eab308" style="background:#eab308" title="Yellow"></button>
+        <button class="color-preset" data-color="#a855f7" style="background:#a855f7" title="Purple"></button>
+        <button class="color-preset" data-color="#ef4444" style="background:#ef4444" title="Red"></button>
+        <button class="color-preset" data-color="#f97316" style="background:#f97316" title="Orange"></button>
+      </div>
+    </section>
+
+    <!-- Memory Defaults -->
+    <section class="section">
+      <h2 class="section-title">💾 Memory Defaults</h2>
+      <div class="form-group">
+        <label for="default-memory-type">Default Memory Type</label>
+        <select id="default-memory-type" class="select">
+          <option value="semantic">Semantic</option>
+          <option value="episodic">Episodic</option>
+          <option value="procedural">Procedural</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="default-tags">Default Tags (comma-separated)</label>
+        <input type="text" id="default-tags" class="input" placeholder="e.g. research, web" />
+        <p class="help-text">Tags automatically added to every capture</p>
+      </div>
+    </section>
+
+    <!-- Export / Import -->
+    <section class="section">
+      <h2 class="section-title">📦 Data Management</h2>
+      <div class="form-row">
+        <button id="btn-export" class="btn btn--secondary">📤 Export Settings</button>
+        <button id="btn-import" class="btn btn--secondary">📥 Import Settings</button>
+        <input type="file" id="file-import" accept=".json" style="display:none" />
+      </div>
+      <div class="form-row" style="margin-top:8px">
+        <button id="btn-clear-history" class="btn btn--danger">🗑️ Clear Analysis History</button>
+        <button id="btn-clear-highlights" class="btn btn--danger">🗑️ Clear All Highlights</button>
+      </div>
+    </section>
+
+    <!-- Save -->
+    <section class="section section--actions">
+      <button id="btn-save" class="btn btn--primary btn--large">💾 Save All Settings</button>
+      <div id="save-status" class="save-status"></div>
+    </section>
+
+    <!-- About -->
+    <section class="section section--about">
+      <h2 class="section-title">ℹ️ About</h2>
+      <div class="about-grid">
+        <div class="about-item">
+          <span class="about-label">Extension</span>
+          <span class="about-value">NOVA OVO — Page Intelligence</span>
+        </div>
+        <div class="about-item">
+          <span class="about-label">Version</span>
+          <span class="about-value">1.0.0</span>
+        </div>
+        <div class="about-item">
+          <span class="about-label">Platform</span>
+          <span class="about-value">Sovereign Intelligence (MEDINA)</span>
+        </div>
+        <div class="about-item">
+          <span class="about-label">Manifest</span>
+          <span class="about-value">V3 (Chromium/Edge)</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

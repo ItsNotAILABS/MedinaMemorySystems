@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=400" />
+  <title>NOVA OVO — Page Intelligence</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="header-left">
+      <img src="icons/icon32.png" alt="NOVA OVO" class="header-logo" />
+      <h1 class="header-title">NOVA OVO</h1>
+    </div>
+    <div class="header-right">
+      <span id="memory-badge" class="badge" title="Memories captured this session">0</span>
+      <button id="btn-settings" class="icon-btn" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- Connection Status -->
+  <div id="connection-bar" class="connection-bar connection-bar--unknown">
+    <span id="connection-dot" class="connection-dot"></span>
+    <span id="connection-text">Checking connection…</span>
+  </div>
+
+  <!-- Tab Bar -->
+  <nav id="tab-bar" class="tab-bar">
+    <button class="tab-btn tab-btn--active" data-tab="analysis">🔍 Analysis</button>
+    <button class="tab-btn" data-tab="memory">💾 Memory</button>
+    <button class="tab-btn" data-tab="highlights">🖍️ Highlights</button>
+    <button class="tab-btn" data-tab="history">📜 History</button>
+  </nav>
+
+  <!-- Tab Panels -->
+  <main id="tab-panels">
+
+    <!-- Tab 1: Page Analysis -->
+    <section id="panel-analysis" class="tab-panel tab-panel--active">
+      <div id="page-info" class="card">
+        <div class="page-title" id="page-title">Loading…</div>
+        <div class="page-url" id="page-url"></div>
+        <div class="page-domain" id="page-domain"></div>
+        <div class="page-stats" id="page-stats">
+          <span class="stat"><span class="stat-label">Words</span><span class="stat-value" id="stat-words">—</span></span>
+          <span class="stat"><span class="stat-label">Read time</span><span class="stat-value" id="stat-readtime">—</span></span>
+          <span class="stat"><span class="stat-label">Links</span><span class="stat-value" id="stat-links">—</span></span>
+          <span class="stat"><span class="stat-label">Images</span><span class="stat-value" id="stat-images">—</span></span>
+        </div>
+      </div>
+
+      <div id="meta-tags-section" class="card card--collapsible">
+        <button class="card-toggle" id="meta-toggle">▶ Meta Tags <span id="meta-count" class="count-badge">0</span></button>
+        <div class="card-body card-body--collapsed" id="meta-body"></div>
+      </div>
+
+      <button id="btn-analyze" class="btn btn--primary btn--full">
+        <span class="btn-icon">🔍</span> Analyze Page
+      </button>
+
+      <div id="analysis-result" class="result-area result-area--hidden">
+        <div class="result-header">
+          <span>Analysis Result</span>
+          <button id="btn-copy-analysis" class="btn btn--small" title="Copy">📋</button>
+        </div>
+        <div id="analysis-content" class="result-content"></div>
+      </div>
+
+      <div id="analysis-loading" class="loading-state loading-state--hidden">
+        <div class="spinner"></div>
+        <p>Analyzing page with NOVA OVO…</p>
+      </div>
+
+      <div id="analysis-error" class="error-state error-state--hidden">
+        <p class="error-icon">⚠️</p>
+        <p id="analysis-error-msg">An error occurred</p>
+        <button id="btn-retry-analysis" class="btn btn--small">Retry</button>
+      </div>
+    </section>
+
+    <!-- Tab 2: Memory Capture -->
+    <section id="panel-memory" class="tab-panel">
+      <div class="card">
+        <label class="field-label" for="memory-text">Manual Memory Entry</label>
+        <textarea id="memory-text" class="textarea" rows="4" placeholder="Type a memory to capture…"></textarea>
+
+        <label class="field-label" for="memory-type">Memory Type</label>
+        <select id="memory-type" class="select">
+          <option value="semantic">Semantic</option>
+          <option value="episodic">Episodic</option>
+          <option value="procedural">Procedural</option>
+        </select>
+
+        <label class="field-label" for="memory-tags">Tags (comma-separated)</label>
+        <input id="memory-tags" type="text" class="input" placeholder="e.g. research, important, ai" />
+
+        <div class="btn-group">
+          <button id="btn-save-manual" class="btn btn--primary">💾 Save Memory</button>
+          <button id="btn-capture-selection" class="btn btn--secondary">📌 Capture Selection</button>
+        </div>
+        <button id="btn-capture-page" class="btn btn--accent btn--full">📄 Capture Full Page</button>
+      </div>
+
+      <div id="memory-save-loading" class="loading-state loading-state--hidden">
+        <div class="spinner"></div>
+        <p>Saving to Memory Temple…</p>
+      </div>
+
+      <div id="memory-save-success" class="success-state success-state--hidden">
+        <p>✅ Memory saved successfully</p>
+      </div>
+
+      <div id="memory-save-error" class="error-state error-state--hidden">
+        <p class="error-icon">⚠️</p>
+        <p id="memory-error-msg">Failed to save memory</p>
+      </div>
+
+      <div class="section-header">
+        <h3>Recent Captures</h3>
+        <button id="btn-refresh-captures" class="btn btn--small">🔄</button>
+      </div>
+
+      <div id="recent-captures" class="captures-list">
+        <div class="empty-state">
+          <p class="empty-icon">📭</p>
+          <p>No memories captured yet</p>
+          <p class="empty-hint">Use the form above or select text on any page</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Highlights -->
+    <section id="panel-highlights" class="tab-panel">
+      <div id="highlights-list" class="highlights-list">
+        <div class="empty-state">
+          <p class="empty-icon">🖍️</p>
+          <p>No highlights on this page</p>
+          <p class="empty-hint">Select text on the page and click "Highlight"</p>
+        </div>
+      </div>
+
+      <div class="btn-group" style="margin-top: 12px;">
+        <button id="btn-export-highlights" class="btn btn--secondary btn--full">📤 Export as Markdown</button>
+        <button id="btn-clear-highlights" class="btn btn--danger btn--full">🗑️ Clear All</button>
+      </div>
+    </section>
+
+    <!-- Tab 4: History -->
+    <section id="panel-history" class="tab-panel">
+      <div id="history-list" class="history-list">
+        <div class="empty-state">
+          <p class="empty-icon">📜</p>
+          <p>No pages analyzed yet</p>
+          <p class="empty-hint">Analyze a page to see it here</p>
+        </div>
+      </div>
+
+      <button id="btn-export-history" class="btn btn--secondary btn--full" style="margin-top: 12px;">📤 Export History</button>
+    </section>
+  </main>
+
+  <!-- Settings Panel (overlay) -->
+  <section id="settings-panel" class="settings-panel settings-panel--hidden">
+    <div class="settings-header">
+      <h2>Settings</h2>
+      <button id="btn-close-settings" class="icon-btn">✕</button>
+    </div>
+
+    <div class="card">
+      <label class="field-label" for="api-host">API Host</label>
+      <input id="api-host" type="text" class="input" value="http://localhost:3000" />
+      <button id="btn-test-connection" class="btn btn--secondary" style="margin-top: 8px;">🔌 Test Connection</button>
+      <div id="connection-test-result" class="connection-test-result"></div>
+    </div>
+
+    <div class="card">
+      <label class="field-label">Auto-Analyze Pages</label>
+      <label class="toggle">
+        <input type="checkbox" id="auto-analyze" />
+        <span class="toggle-slider"></span>
+        <span class="toggle-label">Automatically analyze pages on load</span>
+      </label>
+    </div>
+
+    <div class="card">
+      <label class="field-label" for="highlight-color">Highlight Color</label>
+      <div class="color-picker-row">
+        <input type="color" id="highlight-color" value="#10b981" class="color-input" />
+        <span id="highlight-color-hex" class="color-hex">#10b981</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <button id="btn-save-settings" class="btn btn--primary btn--full">💾 Save Settings</button>
+    </div>
+
+    <div class="card card--muted">
+      <p class="version-info">NOVA OVO Page Intelligence v1.0.0</p>
+      <p class="version-info">Sovereign Intelligence Platform</p>
+    </div>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>
