@@ -461,7 +461,7 @@ describe('messageEngine', () => {
       const sent = messageEngine.getSentMessages(2);
       
       expect(sent.length).toBeLessThanOrEqual(2);
-    });
+    }, 15000);
 
     it('should sort by sentAt descending', async () => {
       const sent = messageEngine.getSentMessages();

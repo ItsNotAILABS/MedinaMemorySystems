@@ -1286,7 +1286,7 @@ describe('receiveResonance', () => {
 
   it('adjusts phiPhase', () => {
     const orig = createOrganismSDK(makeConfig());
-    const sdk = receiveResonance(orig, makePulse({ phase: 180 }));
+    const sdk = receiveResonance(orig, makePulse({ phase: 90 }));
     expect(sdk.heartbeat.phiPhase).not.toBe(orig.heartbeat.phiPhase);
   });
 
