@@ -1215,7 +1215,7 @@ describe('computeSynapticStrength', () => {
     );
     const result = computeSynapticStrength(updated.synapses[0]);
     expect(result.trend).toBe('strengthening');
-    expect(result.potentiationCount).toBeUndefined; // potentiationCount is on synapse not result
+    expect((result as unknown as Record<string, unknown>).potentiationCount).toBeUndefined; // potentiationCount is on synapse not result
     expect(result.hebbianScore).toBeGreaterThan(0);
   });
 

@@ -383,8 +383,8 @@ describe('Platinum - Intelligence Distributor', () => {
   });
   
   test('Distribute spreads computation', () => {
-    distributor.createNode('a', 'backend', (x: number) => x * 2);
-    distributor.createNode('b', 'backend', (x: number) => x * 3);
+    distributor.createNode('a', 'backend', (x: unknown) => (x as number) * 2);
+    distributor.createNode('b', 'backend', (x: unknown) => (x as number) * 3);
     
     const results = distributor.distribute<number, number>(5, ['a', 'b']);
     expect(results.get('a')).toBe(10);

@@ -424,7 +424,7 @@ export function getPathFromRoot(domain: ArchitectureDomain): ArchitectureDomain[
   
   while (current) {
     path.unshift(current.domain);
-    current = current.parent ? ARCHITECTURE_TREE.get(current.parent) : null;
+    current = current.parent ? ARCHITECTURE_TREE.get(current.parent) : undefined;
   }
   
   return path;

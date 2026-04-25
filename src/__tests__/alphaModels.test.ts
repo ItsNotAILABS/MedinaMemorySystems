@@ -324,7 +324,7 @@ describe('Alpha Models - Platinum (Catalytic AGI)', () => {
     const combined = model.synthesis.op2_combine(1, 2, 3);
     expect(combined).toEqual([1, 2, 3]);
     
-    const merged = model.synthesis.op3_merge({ a: 1 }, { b: 2 });
+    const merged = model.synthesis.op3_merge({ a: 1 }, { b: 2 } as Record<string, number>);
     expect(merged).toEqual({ a: 1, b: 2 });
     
     const yield_ = model.synthesis.op7_getYield(1);

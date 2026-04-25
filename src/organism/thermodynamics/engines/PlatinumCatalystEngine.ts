@@ -478,7 +478,7 @@ export class SynthesisEngine {
         const values = inputs.map(arr => (arr as unknown[])[i]).filter(v => v !== undefined);
         if (typeof values[0] === 'number') {
           result.push(
-            values.reduce((acc, val, j) => acc + (val as number) * (normalizedWeights[j] || 0), 0)
+            values.reduce((acc: number, val, j) => acc + (val as number) * (normalizedWeights[j] || 0), 0)
           );
         } else {
           result.push(values[Math.floor(values.length * PHI) % values.length]);

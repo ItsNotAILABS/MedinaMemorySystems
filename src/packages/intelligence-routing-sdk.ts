@@ -220,7 +220,7 @@ export function parseCommand(input: string): ParsedCommand {
     return { raw: input, verb: '', module: '', args: [], flags: {}, valid: false, error: 'Commands must start with /' };
   }
   const parts = trimmed.slice(1).split(/\s+/);
-  const module = parts[0] ?? '';
+  const moduleName = parts[0] ?? '';
   const verb = parts[1] ?? '';
   const flags: Record<string, string | boolean> = {};
   const args: string[] = [];
@@ -234,8 +234,8 @@ export function parseCommand(input: string): ParsedCommand {
     }
   }
 
-  const valid = COMMAND_MODULES.includes(module) && verb.length > 0;
-  return { raw: input, verb, module, args, flags, valid, error: valid ? undefined : `Unknown module or missing verb` };
+  const valid = COMMAND_MODULES.includes(moduleName) && verb.length > 0;
+  return { raw: input, verb, module: moduleName, args, flags, valid, error: valid ? undefined : `Unknown module or missing verb` };
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
