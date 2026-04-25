@@ -14,6 +14,7 @@ import {
   getRootMemory,
 } from '@/lib/memoryEngine';
 import { dualRead } from '@/lib/dualRead';
+import { omniRead } from '@/lib/omniRead';
 import type { ApiResponse } from '@/types';
 
 export async function GET(req: NextRequest) {
@@ -58,6 +59,10 @@ export async function GET(req: NextRequest) {
       }
       case 'dual': {
         const result = dualRead(query, limit);
+        return json({ success: true, data: result, timestamp: now() });
+      }
+      case 'omni': {
+        const result = omniRead(query, limit);
         return json({ success: true, data: result, timestamp: now() });
       }
       default:

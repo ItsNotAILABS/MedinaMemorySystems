@@ -54,6 +54,99 @@ export interface MemoryResult {
   queryTime: number;
 }
 
+// ─── Omni Read ───────────────────────────────────────────────────────────────
+
+/** Shape returned by a single gate check. */
+export interface GateCheckResult {
+  allowed: boolean;
+  gate: {
+    id: string;
+    name: string;
+    status: string;
+    description: string;
+    lastChecked: string;
+  };
+  reason: string;
+}
+
+/**
+ * OmniReadResult — the unified, read-only omnidirectional query response.
+ *
+ * One call, one return value, every dimension. No mutations. No side effects.
+ * This is what "read-only" means when read-only is also information.
+ */
+export interface OmniReadResult {
+  /** The raw query string that was processed. */
+  query: string;
+  /** The query compressed through the sovereign lexicon. */
+  compressed: string;
+  /** ISO timestamp of when the read was performed. */
+  timestamp: string;
+  /** Wall-clock ms for the entire omnidirectional pass. */
+  processingMs: number;
+  /** Number of independent dimensions processed. */
+  dimensionCount: number;
+
+  /** Dimension 1 — Semantic: keyword/content matches ranked by salience. */
+  semantic: {
+    matches: MemoryEntry[];
+    avgSalience: number;
+  };
+
+  /** Dimension 2 — Resonance: entries ranked by resonance score. */
+  resonance: {
+    matches: MemoryEntry[];
+    avgScore: number;
+  };
+
+  /** Dimension 3 — Doctrinal: entries with doctrine alignment ≥ 0.8. */
+  doctrinal: {
+    matches: MemoryEntry[];
+    avgAlignment: number;
+  };
+
+  /** Dimension 4 — Spatial: entries grouped by ring (1–12). */
+  spatial: {
+    byRing: Record<number, MemoryEntry[]>;
+    nearestRing: number | null;
+  };
+
+  /** Dimension 5 — Lineage: chains traced from top semantic matches. */
+  lineage: {
+    chains: Array<{
+      lineageId: string;
+      entries: MemoryEntry[];
+      depth: number;
+    }>;
+  };
+
+  /** Dimension 6 — Pinned: all pinned memories (always relevant anchors). */
+  pinned: MemoryEntry[];
+
+  /** Dimension 7 — Stats: current store aggregate. */
+  stats: {
+    total: number;
+    pinned: number;
+    byType: Record<string, number>;
+    avgSalience: number;
+  };
+
+  /** Dimension 8 — Gates: live gate check across all three sovereign gates. */
+  gates: Record<string, GateCheckResult>;
+
+  /** Dimension 9 — Sovereign Symbols: lexicon entries relevant to the query. */
+  sovereignSymbols: Array<{
+    symbol: string;
+    english: string;
+    latin: string;
+    doctrine: string;
+    weight: number;
+  }>;
+
+  /** Dimension 10 — Unified: top entries ranked across all dimensions combined. */
+  unified: MemoryEntry[];
+}
+
 // ─── Organism State (4-Register) ────────────────────────────────────────────
 
 export type OrganismRegister = 'cognitive' | 'affective' | 'somatic' | 'sovereign';
