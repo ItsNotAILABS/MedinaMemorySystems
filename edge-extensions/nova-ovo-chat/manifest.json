@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "NOVA OVO — Sovereign Chat",
+  "version": "1.0.0",
+  "description": "Sovereign AI chat interface powered by NOVA OVO multi-model intelligence. Chat with ORO/Nova, store memories, run commands.",
+  "permissions": ["storage", "activeTab", "sidePanel"],
+  "host_permissions": ["http://localhost:3000/*", "https://*.medina.tech/*"],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "NOVA OVO Chat"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["content.css"],
+    "run_at": "document_idle"
+  }],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}
