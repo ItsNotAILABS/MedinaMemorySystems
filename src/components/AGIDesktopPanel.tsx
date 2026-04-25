@@ -323,15 +323,24 @@ export default function AGIDesktopPanel() {
     return () => clearInterval(interval);
   }, [fetchState]);
 
+  const [error, setError] = useState<string | null>(null);
+
   const apiPost = async (endpoint: string, body: Record<string, unknown>) => {
     setLoading(true);
+    setError(null);
     try {
-      await fetch(endpoint, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
+      const data = await res.json();
+      if (!data.success) {
+        setError(data.error ?? 'Request failed');
+      }
       await fetchState();
+    } catch (err) {
+      setError(String(err));
     } finally {
       setLoading(false);
     }
@@ -398,6 +407,14 @@ export default function AGIDesktopPanel() {
     <div className="flex flex-col h-full bg-[#0a0a0f] text-white">
       <KernelStatusBar state={state} onBoot={bootKernel} onShutdown={shutdownKernel} onSetTier={setTier} />
       <StatsRow state={state} />
+
+      {/* Error Banner */}
+      {error && (
+        <div className="flex items-center gap-2 px-4 py-2 bg-red-900/20 border-b border-red-800/30 text-red-400 text-xs font-mono">
+          <span>❌ {error}</span>
+          <button onClick={() => setError(null)} className="ml-auto text-red-500 hover:text-red-300">✕</button>
+        </div>
+      )}
 
       {/* AGI Task Input */}
       {isRunning && (

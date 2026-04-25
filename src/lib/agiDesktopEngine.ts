@@ -107,17 +107,7 @@ export function openTab(url: string, assignedAgent?: ModelFamily): AGITab {
     lastActivity: now,
   };
 
-  tabs.set(tab.id, tab);
-
-  // Simulate page load completing
-  setTimeout(() => {
-    const existing = tabs.get(tab.id);
-    if (existing && existing.status === 'loading') {
-      tabs.set(tab.id, { ...existing, status: 'ready', lastActivity: new Date().toISOString() });
-    }
-  }, 0);
-
-  // Mark as ready immediately for synchronous flow
+  // Mark as ready for synchronous in-memory flow
   tab.status = 'ready';
   tabs.set(tab.id, tab);
 
