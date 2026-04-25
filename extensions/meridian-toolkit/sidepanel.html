@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MERIDIAN Toolkit</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-tertiary: #1a1a24;
+      --bg-card: #14141e;
+      --accent: #f59e0b;
+      --accent-dim: rgba(245, 158, 11, 0.15);
+      --accent-glow: rgba(245, 158, 11, 0.3);
+      --text-primary: #e2e2e8;
+      --text-secondary: #8888a0;
+      --text-muted: #555566;
+      --border: #2a2a3a;
+      --error: #ef4444;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --info: #3b82f6;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ───────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+      border-bottom: 1px solid var(--accent);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 12px rgba(245, 158, 11, 0.1);
+    }
+    .header-icon { font-size: 22px; }
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .header-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    /* ── Tab Bar ──────────────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-bar::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 4px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--text-secondary); background: var(--bg-tertiary); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .tab-icon { font-size: 16px; }
+    .tab-label { font-size: 9px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    /* ── Panels ───────────────────────────────────────────── */
+    .panel { display: none; padding: 12px; overflow-y: auto; height: calc(100vh - 110px); }
+    .panel.active { display: block; }
+
+    /* ── Action Button ────────────────────────────────────── */
+    .action-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--accent), #d97706);
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .action-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px var(--accent-glow); }
+    .action-btn:active { transform: translateY(0); }
+    .action-btn:disabled { opacity: 0.5; cursor: wait; transform: none; }
+
+    .secondary-btn {
+      padding: 8px 14px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .secondary-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .secondary-btn.active { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+
+    /* ── Results Container ────────────────────────────────── */
+    .results {
+      margin-top: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .results-header {
+      padding: 10px 14px;
+      background: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .results-body { padding: 12px 14px; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .stat-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(42, 42, 58, 0.5);
+      font-size: 12px;
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-key { color: var(--text-secondary); }
+    .detail-val { color: var(--text-primary); font-weight: 500; text-align: right; max-width: 60%; word-break: break-all; }
+
+    .code-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      margin: 8px 0;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 11px;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 300px;
+      overflow-y: auto;
+      color: var(--text-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .badge-error { background: rgba(239, 68, 68, 0.15); color: var(--error); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-success { background: rgba(34, 197, 94, 0.15); color: var(--success); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .badge-info { background: rgba(59, 130, 246, 0.15); color: var(--info); border: 1px solid rgba(59, 130, 246, 0.3); }
+
+    .issue-item {
+      padding: 8px;
+      margin: 6px 0;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      border-left: 3px solid var(--border);
+      font-size: 12px;
+    }
+    .issue-item.error { border-left-color: var(--error); }
+    .issue-item.warning { border-left-color: var(--warning); }
+    .issue-category { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .issue-message { margin-top: 2px; }
+    .issue-element { margin-top: 4px; font-family: monospace; font-size: 10px; color: var(--text-muted); word-break: break-all; }
+
+    .color-swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      margin: 3px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .color-swatch:hover { border-color: var(--accent); }
+    .color-swatch .swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+    .empty-icon { font-size: 36px; margin-bottom: 12px; }
+    .empty-text { font-size: 12px; }
+
+    /* ── Input / Textarea ─────────────────────────────────── */
+    textarea, input[type="text"] {
+      width: 100%;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      color: var(--text-primary);
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 12px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea:focus, input[type="text"]:focus { border-color: var(--accent); }
+    textarea { min-height: 120px; }
+    input[type="text"] { min-height: 36px; }
+
+    .input-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-group { margin-bottom: 10px; }
+
+    /* ── Transform buttons ────────────────────────────────── */
+    .transform-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin: 8px 0;
+    }
+    .transform-btn {
+      padding: 8px 4px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .transform-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    /* ── CSS Selector Input ───────────────────────────────── */
+    .selector-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .selector-row input { flex: 1; }
+    .selector-row button { white-space: nowrap; }
+
+    /* ── Section Divider ──────────────────────────────────── */
+    .section-divider {
+      margin: 16px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── Loading spinner ──────────────────────────────────── */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(0,0,0,0.2);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Scrollbar ────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    .copy-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .font-item {
+      padding: 8px;
+      margin: 6px 0;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .font-name { font-weight: 600; font-size: 13px; }
+    .font-detail { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+    .perf-bar {
+      height: 6px;
+      background: var(--bg-primary);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .perf-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.4s;
+    }
+    .perf-good { background: var(--success); }
+    .perf-ok { background: var(--warning); }
+    .perf-bad { background: var(--error); }
+  </style>
+</head>
+<body>
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <div class="header">
+    <span class="header-icon">🛠</span>
+    <div>
+      <div class="header-title">MERIDIAN TOOLKIT</div>
+      <div class="header-sub">Sovereign Developer Tools</div>
+    </div>
+  </div>
+
+  <!-- ── Tab Bar ─────────────────────────────────────────── -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="analyze">
+      <span class="tab-icon">🔬</span>
+      <span class="tab-label">Analyze</span>
+    </button>
+    <button class="tab-btn" data-tab="code">
+      <span class="tab-icon">💻</span>
+      <span class="tab-label">Code</span>
+    </button>
+    <button class="tab-btn" data-tab="colors">
+      <span class="tab-icon">🎨</span>
+      <span class="tab-label">Colors</span>
+    </button>
+    <button class="tab-btn" data-tab="perf">
+      <span class="tab-icon">⚡</span>
+      <span class="tab-label">Perf</span>
+    </button>
+    <button class="tab-btn" data-tab="a11y">
+      <span class="tab-icon">♿</span>
+      <span class="tab-label">A11y</span>
+    </button>
+    <button class="tab-btn" data-tab="utils">
+      <span class="tab-icon">📋</span>
+      <span class="tab-label">Utils</span>
+    </button>
+  </div>
+
+  <!-- ── Analyze Panel ───────────────────────────────────── -->
+  <div id="panel-analyze" class="panel active">
+    <button class="action-btn" id="btn-analyze">🔬 Analyze This Page</button>
+    <div id="analyze-results"></div>
+  </div>
+
+  <!-- ── Code Panel ──────────────────────────────────────── -->
+  <div id="panel-code" class="panel">
+    <button class="action-btn" id="btn-extract-code">💻 Extract Code Blocks</button>
+    <div id="code-results"></div>
+  </div>
+
+  <!-- ── Colors Panel ────────────────────────────────────── -->
+  <div id="panel-colors" class="panel">
+    <button class="action-btn" id="btn-extract-colors">🎨 Extract Colors</button>
+    <div style="margin-top: 8px;">
+      <button class="secondary-btn" id="btn-extract-fonts">🔤 Extract Fonts</button>
+      <button class="secondary-btn" id="btn-css-inspect">🔍 CSS Inspect</button>
+    </div>
+    <div id="css-selector-row" class="selector-row" style="margin-top: 10px; display: none;">
+      <input type="text" id="css-selector" placeholder="CSS selector (e.g. .header, #main, body)">
+      <button class="secondary-btn" id="btn-css-go">Inspect</button>
+    </div>
+    <div id="colors-results"></div>
+  </div>
+
+  <!-- ── Performance Panel ───────────────────────────────── -->
+  <div id="panel-perf" class="panel">
+    <button class="action-btn" id="btn-perf">⚡ Check Performance</button>
+    <div id="perf-results"></div>
+  </div>
+
+  <!-- ── Accessibility Panel ─────────────────────────────── -->
+  <div id="panel-a11y" class="panel">
+    <button class="action-btn" id="btn-a11y">♿ Scan Accessibility</button>
+    <div id="a11y-results"></div>
+  </div>
+
+  <!-- ── Utils Panel ─────────────────────────────────────── -->
+  <div id="panel-utils" class="panel">
+    <!-- JSON Formatter -->
+    <div class="section-divider">📋 JSON Formatter</div>
+    <div class="input-group">
+      <label class="input-label">Paste JSON</label>
+      <textarea id="json-input" placeholder='{"key": "value", "arr": [1,2,3]}'></textarea>
+    </div>
+    <button class="action-btn" id="btn-format-json" style="margin-bottom: 4px;">Format JSON</button>
+    <div id="json-results"></div>
+
+    <!-- Regex Tester -->
+    <div class="section-divider" style="margin-top: 20px;">🔍 Regex Tester</div>
+    <div class="input-group">
+      <label class="input-label">Pattern</label>
+      <input type="text" id="regex-pattern" placeholder="e.g. \b\w+@\w+\.\w+\b">
+    </div>
+    <div class="input-group">
+      <label class="input-label">Flags</label>
+      <input type="text" id="regex-flags" placeholder="g, i, m, gi..." value="g" style="width: 100px;">
+    </div>
+    <div class="input-group">
+      <label class="input-label">Test String</label>
+      <textarea id="regex-input" placeholder="Text to test against..." style="min-height: 80px;"></textarea>
+    </div>
+    <button class="action-btn" id="btn-test-regex">Test Regex</button>
+    <div id="regex-results"></div>
+
+    <!-- Text Transformer -->
+    <div class="section-divider" style="margin-top: 20px;">✏️ Text Transformer</div>
+    <div class="input-group">
+      <label class="input-label">Input Text</label>
+      <textarea id="transform-input" placeholder="Enter text to transform..." style="min-height: 80px;"></textarea>
+    </div>
+    <div class="transform-grid">
+      <button class="transform-btn" data-transform="upper">UPPER</button>
+      <button class="transform-btn" data-transform="lower">lower</button>
+      <button class="transform-btn" data-transform="title">Title Case</button>
+      <button class="transform-btn" data-transform="reverse">esreveR</button>
+      <button class="transform-btn" data-transform="slug">slug-case</button>
+      <button class="transform-btn" data-transform="camel">camelCase</button>
+      <button class="transform-btn" data-transform="snake">snake_case</button>
+      <button class="transform-btn" data-transform="chars">Char Count</button>
+      <button class="transform-btn" data-transform="words">Word Count</button>
+      <button class="transform-btn" data-transform="lines">Line Count</button>
+    </div>
+    <div id="transform-results"></div>
+
+    <!-- Extract Meta -->
+    <div class="section-divider" style="margin-top: 20px;">🏷️ Meta Extractor</div>
+    <button class="action-btn" id="btn-extract-meta">Extract Meta Tags</button>
+    <div id="meta-results"></div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
