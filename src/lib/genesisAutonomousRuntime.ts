@@ -25,6 +25,12 @@ import {
   HEARTBEAT_MS,
   SCHUMANN_FUNDAMENTAL,
 } from './kernelCompression';
+import { S0 } from './sovereignLanguage';
+
+// S₀ — Sovereign Origin State: this module is the runtime implementation of S₀.
+// S₀ is the irreducible starting condition from which all organism state derives.
+// Every entity oscillation, Kuramoto synchronization, and genesis cycle begins here.
+export { S0 };
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // §1  INLINE TYPES

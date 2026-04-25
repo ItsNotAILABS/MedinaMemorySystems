@@ -13,6 +13,12 @@
 
 import { sovereignId } from './sovereign-id';
 import { PHI, PHI_INVERSE, HEARTBEAT_MS } from './kernelCompression';
+import { SL_0 } from './sovereignLanguage';
+
+// SL-0 — Sovereign Layer Zero: this module is the runtime implementation of SL-0.
+// SL-0 is the foundational governance substrate — identity, keys, gates, contracts —
+// below which nothing else exists. Every function in this flow operates at SL-0.
+export { SL_0 };
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // §1  TYPES
