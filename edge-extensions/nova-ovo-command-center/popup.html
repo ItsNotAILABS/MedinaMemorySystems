@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=500, initial-scale=1.0">
+  <title>NOVA OVO Command Center</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <span class="header-title">NOVA OVO COMMAND CENTER</span>
+      <span class="version-tag" id="versionTag">v1.0.0</span>
+    </div>
+    <div class="header-right">
+      <span class="status-dot disconnected" id="statusDot" title="Disconnected"></span>
+      <button class="settings-btn" id="settingsBtn" title="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Main scrollable area -->
+  <div class="main-scroll">
+
+    <!-- Section 1: System Status Dashboard -->
+    <div class="section" id="sectionStatus">
+      <div class="section-header" data-section="sectionStatus">
+        <span class="section-title">📊 System Status</span>
+        <span class="section-toggle">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-value" id="healthStatus">—</div>
+            <div class="stat-label">Health</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="totalMemories">—</div>
+            <div class="stat-label">Memories</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="activeProposals">—</div>
+            <div class="stat-label">Proposals</div>
+          </div>
+        </div>
+
+        <div class="sub-label">Memory Types</div>
+        <div class="memory-breakdown" id="memoryBreakdown">
+          <span class="memory-type-tag">Loading...</span>
+        </div>
+
+        <div class="sub-label">Governance Gates</div>
+        <div class="gates-row" id="gatesRow">
+          <div class="gate-indicator"><span class="gate-dot closed"></span> A</div>
+          <div class="gate-indicator"><span class="gate-dot closed"></span> B</div>
+          <div class="gate-indicator"><span class="gate-dot closed"></span> C</div>
+        </div>
+
+        <div class="sub-label">Available Models</div>
+        <div class="model-list" id="modelList">
+          <span class="model-tag">Loading...</span>
+        </div>
+
+        <div class="heartbeat" id="heartbeat">Last check: never</div>
+      </div>
+    </div>
+
+    <!-- Section 2: AGI Desktop Control -->
+    <div class="section" id="sectionAGI">
+      <div class="section-header" data-section="sectionAGI">
+        <span class="section-title">🖥️ AGI Desktop Control</span>
+        <span class="section-toggle">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="control-row">
+          <button class="btn primary" id="kernelBtn">⚡ Boot Kernel</button>
+          <select class="tier-select" id="tierSelect">
+            <option value="assistant">Assistant</option>
+            <option value="operator">Operator</option>
+            <option value="architect">Architect</option>
+            <option value="sovereign">Sovereign</option>
+          </select>
+        </div>
+
+        <div class="sub-label">Open Tabs</div>
+        <div class="control-row">
+          <button class="btn" id="newTabBtn" style="flex:1">+ New Tab</button>
+          <button class="btn" id="refreshTabsBtn">🔄</button>
+        </div>
+        <div class="tab-list" id="tabList">
+          <div class="empty-state">No tabs open</div>
+        </div>
+
+        <div class="sub-label">Deployed AIs</div>
+        <div class="agents-list" id="agentsList">
+          <div class="empty-state">No agents deployed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Quick Actions Grid -->
+    <div class="section" id="sectionActions">
+      <div class="section-header" data-section="sectionActions">
+        <span class="section-title">⚡ Quick Actions</span>
+        <span class="section-toggle">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="actions-grid">
+          <button class="action-btn" data-action="chat">
+            <span class="action-icon">💬</span>
+            <span class="action-label">Chat</span>
+          </button>
+          <button class="action-btn" data-action="memory">
+            <span class="action-icon">🧠</span>
+            <span class="action-label">Memory</span>
+          </button>
+          <button class="action-btn" data-action="govern">
+            <span class="action-icon">⚖️</span>
+            <span class="action-label">Govern</span>
+          </button>
+          <button class="action-btn" data-action="stats">
+            <span class="action-icon">📊</span>
+            <span class="action-label">Stats</span>
+          </button>
+          <button class="action-btn" data-action="gates">
+            <span class="action-icon">🔒</span>
+            <span class="action-label">Gates</span>
+          </button>
+          <button class="action-btn" data-action="agents">
+            <span class="action-icon">🤖</span>
+            <span class="action-label">Agents</span>
+          </button>
+          <button class="action-btn" data-action="export">
+            <span class="action-icon">📤</span>
+            <span class="action-label">Export</span>
+          </button>
+          <button class="action-btn" data-action="sync">
+            <span class="action-icon">🔄</span>
+            <span class="action-label">Sync</span>
+          </button>
+          <button class="action-btn" data-action="health">
+            <span class="action-icon">⚡</span>
+            <span class="action-label">Health</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Recent Activity Feed -->
+    <div class="section" id="sectionActivity">
+      <div class="section-header" data-section="sectionActivity">
+        <span class="section-title">📋 Recent Activity</span>
+        <span class="section-toggle">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="activity-feed" id="activityFeed">
+          <div class="empty-state">No recent activity</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Command Input -->
+    <div class="section" id="sectionCommand">
+      <div class="section-header" data-section="sectionCommand">
+        <span class="section-title">⌨️ Command Input</span>
+        <span class="section-toggle">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="command-area">
+          <div class="autocomplete-list" id="autocompleteList"></div>
+          <div class="command-input-row">
+            <input type="text" class="command-input" id="commandInput" placeholder="/help — type a slash command..." autocomplete="off" spellcheck="false">
+            <button class="btn primary" id="commandSendBtn">Run</button>
+          </div>
+        </div>
+        <div class="command-output" id="commandOutput"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Overlay for stats/gates/agents panels -->
+  <div class="overlay" id="overlay">
+    <div class="overlay-content">
+      <div class="overlay-header">
+        <span class="overlay-title" id="overlayTitle">Details</span>
+        <button class="overlay-close" id="overlayClose">✕</button>
+      </div>
+      <div id="overlayBody"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

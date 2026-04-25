@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=600, initial-scale=1.0">
+  <title>NOVA OVO Command Center — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <h1 class="options-title">⚙️ NOVA OVO Settings</h1>
+      <p class="options-subtitle">Configure your Command Center</p>
+    </header>
+
+    <form id="settingsForm" autocomplete="off">
+
+      <!-- Connection -->
+      <section class="options-section">
+        <h2 class="section-heading">🔗 Connection</h2>
+        <div class="field">
+          <label for="apiHost">API Host URL</label>
+          <input type="url" id="apiHost" placeholder="http://localhost:3000" spellcheck="false">
+          <span class="field-hint">The base URL of your NOVA OVO platform instance.</span>
+        </div>
+      </section>
+
+      <!-- Health Check -->
+      <section class="options-section">
+        <h2 class="section-heading">🩺 Health Check</h2>
+        <div class="field">
+          <label for="healthCheckInterval">Check Interval (minutes)</label>
+          <select id="healthCheckInterval">
+            <option value="0.5">Every 30 seconds</option>
+            <option value="1">Every 1 minute</option>
+            <option value="5">Every 5 minutes</option>
+            <option value="10">Every 10 minutes</option>
+            <option value="30">Every 30 minutes</option>
+          </select>
+          <span class="field-hint">How often the extension pings the platform for status updates.</span>
+        </div>
+      </section>
+
+      <!-- Notifications -->
+      <section class="options-section">
+        <h2 class="section-heading">🔔 Notifications</h2>
+        <div class="field checkbox-field">
+          <input type="checkbox" id="notificationsEnabled">
+          <label for="notificationsEnabled">Enable system status notifications</label>
+        </div>
+        <span class="field-hint">Get notified when the platform goes online, offline, or enters degraded state.</span>
+      </section>
+
+      <!-- Startup -->
+      <section class="options-section">
+        <h2 class="section-heading">🚀 Startup</h2>
+        <div class="field checkbox-field">
+          <input type="checkbox" id="autoBoot">
+          <label for="autoBoot">Auto-boot AGI kernel on browser start</label>
+        </div>
+        <span class="field-hint">Automatically send a boot-kernel command when the browser starts.</span>
+      </section>
+
+      <!-- Theme -->
+      <section class="options-section">
+        <h2 class="section-heading">🎨 Theme</h2>
+        <div class="field">
+          <label for="theme">Color Theme</label>
+          <select id="theme">
+            <option value="dark">Dark (Default)</option>
+            <option value="midnight">Midnight</option>
+            <option value="ember">Ember</option>
+          </select>
+          <span class="field-hint">Choose the visual theme for the Command Center popup.</span>
+        </div>
+      </section>
+
+      <!-- Save -->
+      <div class="actions-bar">
+        <button type="submit" class="btn-save" id="saveBtn">💾 Save Settings</button>
+        <span class="save-status" id="saveStatus"></span>
+      </div>
+
+    </form>
+
+    <!-- About -->
+    <section class="options-section about-section">
+      <h2 class="section-heading">ℹ️ About</h2>
+      <div class="about-content">
+        <p><strong>NOVA OVO — Command Center</strong></p>
+        <p>Version 1.0.0</p>
+        <p>Full sovereign command center for the NOVA OVO AGI platform. Control the AGI Desktop, deploy agents, manage governance, and monitor system health — all from your browser toolbar.</p>
+        <p class="about-copy">&copy; 2025 Medina Memory Systems. All rights reserved.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
