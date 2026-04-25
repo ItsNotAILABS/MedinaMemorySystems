@@ -12,6 +12,7 @@ import ReplayPanel from '@/components/ReplayPanel';
 import PermissionsPanel from '@/components/PermissionsPanel';
 import OrganismField from '@/components/OrganismField';
 import AgentJournalPanel from '@/components/AgentJournalPanel';
+import AGIDesktopPanel from '@/components/AGIDesktopPanel';
 import type { PanelId } from '@/types';
 
 export default function HomePage() {
@@ -21,6 +22,7 @@ export default function HomePage() {
   const renderPanel = () => {
     switch (activePanel) {
       case 'chat': return <OVOChat />;
+      case 'agi': return <AGIDesktopPanel />;
       case 'memory': return <MemoryTemple />;
       case 'governance': return <GovernancePanel />;
       case 'models': return <ModelRuntime />;
