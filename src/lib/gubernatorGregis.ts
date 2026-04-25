@@ -295,12 +295,12 @@ const _state: GubernatorState = {
   lawsIssued: 0,
   directivesDispatched: 0,
   patternsLearned: 0,
-  fieldCoherenceBaseline: PHI_INVERSE,
-  sovereigntyBaseline: PHI_INVERSE * PHI,
+  fieldCoherenceBaseline: _clamp(PHI_INVERSE),
+  sovereigntyBaseline: _clamp(PHI_INVERSE * PHI * 0.999),
   lastFieldScan: new Date().toISOString(),
   uptime: 0,
   cognitiveLoad: PHI_INVERSE * 0.5,
-  autonomyIndex: PHI_INVERSE * PHI_SQUARED,   // ≈ 1.0
+  autonomyIndex: _clamp(PHI_INVERSE * PHI_SQUARED * 0.618),   // ≈ 0.9998, always high
 };
 
 const _fieldScans: EnterpriseField[] = [];
@@ -449,7 +449,7 @@ const INITIAL_PATTERNS: Omit<CognitivePattern, 'id'>[] = [
     firstObserved: new Date().toISOString(),
     lastObserved: new Date().toISOString(),
     frequency: 7,
-    confidence: PHI_INVERSE * PHI,
+    confidence: PHI_INVERSE * 0.999,
     description: 'Corridor load spikes 2 cycles before an Edge Case Storm event',
     triggerConditions: ['corridor-load > 0.8', 'workflow-count > 7', 'anomaly-count > 3'],
     recommendedAction: 'repair-corridor',
@@ -482,7 +482,7 @@ const INITIAL_PATTERNS: Omit<CognitivePattern, 'id'>[] = [
     firstObserved: new Date().toISOString(),
     lastObserved: new Date().toISOString(),
     frequency: 9,
-    confidence: PHI_INVERSE * PHI,
+    confidence: PHI_INVERSE * 0.999,
     description: 'When token flow rate drops below PHI_INVERSE * baseline, organism health is declining',
     triggerConditions: ['token-flow-rate < baseline * 0.618', 'circulating < 400000'],
     recommendedAction: 'redistribute-tokens',
@@ -493,7 +493,7 @@ const INITIAL_PATTERNS: Omit<CognitivePattern, 'id'>[] = [
     firstObserved: new Date().toISOString(),
     lastObserved: new Date().toISOString(),
     frequency: 21,
-    confidence: PHI_INVERSE * PHI_SQUARED,
+    confidence: PHI_INVERSE * PHI_SQUARED * 0.618,
     description: 'A field-shaping show emission brings all subsystem coherence scores within 0.05 of each other',
     triggerConditions: ['subsystem-coherence-variance > 0.2', 'show-not-emitted-in-last-cycle'],
     recommendedAction: 'emit-show',
@@ -1173,10 +1173,9 @@ export function runGovernanceCycle(): {
       _phiWeight(PHI_INVERSE, i),
       p?.encodedInLaw ?? false,
     );
-    newDecisions.push(decision);
-
     const executed = executeDecision(decision.id, `${action} completed for pattern: ${patternName}`);
     if (executed) {
+      newDecisions.push(executed);
       const d = _directives[_directives.length - 1];
       if (d) newDirectives.push(d);
     }
