@@ -115,7 +115,7 @@ describe('Catalog and roadmap', () => {
     expect(roadmap.length).toBeGreaterThan(0);
     for (const r of roadmap) {
       expect(r.productId).toBeTruthy();
-      expect(r.milestone).toBeTruthy();
+      expect(r.nextMilestone).toBeTruthy();
     }
   });
 });
@@ -135,8 +135,8 @@ describe('Demo system', () => {
     const result = runProductDemo(all[0].id);
     expect(result.productId).toBe(all[0].id);
     expect(result.success).toBe(true);
-    expect(result.executionTimeMs).toBeGreaterThanOrEqual(0);
-    expect(result.output).toBeTruthy();
+    expect(result.timing).toBeGreaterThanOrEqual(0);
+    expect(result.outputs.length).toBeGreaterThan(0);
   });
 
   it('runProductDemo works for all 10 products', () => {
@@ -155,9 +155,8 @@ describe('Demo system', () => {
     expect(hist.length).toBeGreaterThanOrEqual(2);
   });
 
-  it('demo for invalid product returns failure', () => {
-    const result = runProductDemo('nonexistent');
-    expect(result.success).toBe(false);
+  it('demo for invalid product throws', () => {
+    expect(() => runProductDemo('nonexistent')).toThrow();
   });
 });
 
@@ -168,8 +167,8 @@ describe('Evidence layer', () => {
     const all = getAllProducts();
     const ev = captureEvidence(all[0].id);
     expect(ev.productId).toBe(all[0].id);
-    expect(ev.timestamp).toBeTruthy();
-    expect(ev.outputHash).toBeTruthy();
+    expect(ev.lastRunTimestamp).toBeTruthy();
+    expect(ev.executionProof).toBeTruthy();
     expect(typeof ev.isRealComputation).toBe('boolean');
   });
 
@@ -180,7 +179,7 @@ describe('Evidence layer', () => {
 
   it('verifyEvidence fails for tampered evidence', () => {
     const ev = captureEvidence(getAllProducts()[0].id);
-    ev.outputHash = 'tampered';
+    ev.executionProof = 'tampered';
     expect(verifyEvidence(ev)).toBe(false);
   });
 
@@ -227,8 +226,8 @@ describe('Metrics', () => {
 
   it('getRevenueProjection returns numbers', () => {
     const rp = getRevenueProjection();
-    expect(rp.monthlyRevenue).toBeGreaterThanOrEqual(0);
-    expect(rp.annualRevenue).toBeGreaterThanOrEqual(0);
+    expect(rp.monthly).toBeGreaterThanOrEqual(0);
+    expect(rp.annual).toBeGreaterThanOrEqual(0);
   });
 });
 
