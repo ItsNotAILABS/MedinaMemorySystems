@@ -71,7 +71,7 @@ describe('PackageSubstrateIntegration', () => {
       const tet = constants.find(c => c.name === 'Tetractys');
       expect(tet).toBeDefined();
       expect(tet!.value).toBe(10);
-      expect(tet!.source).toBe('@medina/ancient-knowledge-engine');
+      expect(tet!.source).toBe('@medina/civilization-pattern-engine');
     });
 
     it('should include Absorption Harmonic from Document Absorption', () => {
@@ -204,11 +204,11 @@ describe('PackageSubstrateIntegration', () => {
       }
     });
 
-    it('should trace /formula to phi-mathematics-engine', () => {
+    it('should trace /formula to harmonic-computation-engine', () => {
       const ladder = buildPackageLadder();
       const formula = ladder.find(r => r.terminalCommand === '/formula');
       expect(formula).toBeDefined();
-      expect(formula!.packageName).toBe('@medina/phi-mathematics-engine');
+      expect(formula!.packageName).toBe('@medina/harmonic-computation-engine');
       expect(formula!.engineWireId).toBe('ENGINE-011-GEOMETRY');
     });
 
@@ -296,7 +296,7 @@ describe('PackageSubstrateIntegration', () => {
     it('should find Tetractys constant', () => {
       const tet = findConstantSource('Tetractys');
       expect(tet).toBeDefined();
-      expect(tet!.source).toBe('@medina/ancient-knowledge-engine');
+      expect(tet!.source).toBe('@medina/civilization-pattern-engine');
     });
 
     it('should return undefined for unknown constants', () => {

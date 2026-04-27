@@ -1,6 +1,6 @@
 /**
- * @medina/ancient-knowledge-engine
- * Complete Ancient Knowledge & Archetype System Package
+ * @medina/civilization-pattern-engine
+ * Complete Civilization Pattern & Archetype System Package
  *
  * Combines: AncientCivilizations.mo + AncientGlyphCodex.mo + AncientLanguageArchitecture.mo +
  *           AncientMathEngine.mo + CPL.mo + CPLTranslator.mo + GodArchetypes.mo +
@@ -400,7 +400,7 @@ export function detectPattern(data: number[], type: PatternType = 'Numeric'): Pa
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const PACKAGE_MANIFEST = {
-  name: '@medina/ancient-knowledge-engine',
+  name: '@medina/civilization-pattern-engine',
   version: '1.0.0',
   description: 'Complete Ancient Knowledge — civilizations, glyphs, languages, CPL, archetypes, mythology, patterns',
   modules: [

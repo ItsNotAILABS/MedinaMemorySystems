@@ -1,6 +1,6 @@
 /**
- * @medina/phi-mathematics-engine
- * Complete Phi Mathematics & Sacred Geometry System Package
+ * @medina/harmonic-computation-engine
+ * Complete Harmonic Computation & Geometric System Package
  *
  * Combines: icpOrganism + MatalkoICP.mo + FrequencyPhysicsEngine.mo +
  *           FieldPhysicsEngine.mo + SacredGeometryEngine.mo + AncientMathEngine.mo
@@ -338,7 +338,7 @@ export function isPerfectNumber(n: number): boolean {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const PACKAGE_MANIFEST = {
-  name: '@medina/phi-mathematics-engine',
+  name: '@medina/harmonic-computation-engine',
   version: '1.0.0',
   description: 'Complete φ Mathematics — golden ratio, Fibonacci, sacred geometry, frequency physics, field dynamics',
   modules: [

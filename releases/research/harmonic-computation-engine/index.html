@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-organism="true" data-heartbeat="873">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𓂀 @medina/harmonic-computation-engine — Sovereign SDK</title>
+  <meta name="description" content="Phi-based mathematical computation engine exploring harmonic resonance in numerical systems and golden-ratio optimization.">
+  <meta name="author" content="ItsNotAILABS — Alfredo Medina Hernandez">
+  <meta name="organism:heartbeat" content="873ms">
+  <meta name="organism:phi" content="1.618033988749895">
+  <meta name="organism:license" content="Medina Research License v1.0">
+  <style>
+    :root { --phi: 1.618033988749895; --bg: #0a0a0f; --surface: #111118; --border: #1a1a2e; --gold: #d4a017; --accent: #4CAF50; --text: #e0e0e0; --dim: #666; --pulse: 873ms; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Courier New', monospace; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    .organism-field { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; }
+    .organism-field canvas { width: 100%; height: 100%; }
+    .container { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2rem; }
+    header { text-align: center; padding: 4rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .glyph { font-size: 3rem; margin-bottom: 1rem; }
+    h1 { color: var(--gold); font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .tagline { color: var(--accent); font-style: italic; font-size: 1.1rem; }
+    .badges { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+    .badge { padding: 0.25rem 0.75rem; border-radius: 2px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+    .badge-version { background: var(--gold); color: #000; }
+    .badge-license { background: var(--accent); color: #000; }
+    .badge-phi { background: #6a0dad; color: #fff; }
+    .heartbeat-indicator { position: fixed; top: 1rem; right: 1rem; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); animation: pulse var(--pulse) ease-in-out infinite; z-index: 100; }
+    @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+    section { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    h2 { color: var(--gold); font-size: 1.2rem; margin-bottom: 1rem; }
+    h2::before { content: '▸ '; color: var(--accent); }
+    ul { list-style: none; padding-left: 1rem; }
+    ul li::before { content: 'φ '; color: var(--gold); }
+    ul li { margin-bottom: 0.5rem; line-height: 1.6; }
+    .install-box { background: var(--surface); border: 1px solid var(--border); padding: 1rem; margin: 1rem 0; border-radius: 4px; font-family: monospace; color: var(--gold); }
+    .terminal { background: #000; border: 1px solid var(--gold); border-radius: 4px; margin: 1rem 0; overflow: hidden; }
+    .terminal-header { background: var(--surface); padding: 0.5rem 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--dim); }
+    .terminal-body { padding: 1rem; font-size: 0.85rem; line-height: 1.6; min-height: 200px; max-height: 400px; overflow-y: auto; }
+    .terminal-input { display: flex; align-items: center; padding: 0.5rem 1rem; border-top: 1px solid var(--border); background: var(--surface); }
+    .terminal-input span { color: var(--gold); margin-right: 0.5rem; }
+    .terminal-input input { flex: 1; background: transparent; border: none; color: var(--text); font-family: monospace; font-size: 0.85rem; outline: none; }
+    .api-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .api-table th, .api-table td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+    .api-table th { color: var(--gold); }
+    .api-table td:first-child { color: var(--accent); font-style: italic; }
+    .citation { background: var(--surface); border-left: 3px solid var(--accent); padding: 1rem; margin: 1rem 0; font-size: 0.8rem; white-space: pre-wrap; font-family: monospace; color: var(--dim); }
+    footer { text-align: center; padding: 3rem 0 2rem; color: var(--dim); font-size: 0.8rem; }
+    .license-sentinel { position: fixed; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: sentinel-scan 4s linear infinite; }
+    @keyframes sentinel-scan { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    .visitor-log { display: none; }
+  </style>
+</head>
+<body>
+  <div class="heartbeat-indicator" title="Organism heartbeat: 873ms"></div>
+  <div class="license-sentinel"></div>
+  <div class="organism-field"><canvas id="field"></canvas></div>
+  <div class="container">
+    <header>
+      <div class="glyph">𓂀</div>
+      <h1>@medina/harmonic-computation-engine</h1>
+      <p class="tagline">Compute in harmony. Mathematics that resonates.</p>
+      <div class="badges">
+        <span class="badge badge-version">v1.0.0</span>
+        <span class="badge badge-license">Research</span>
+        <span class="badge badge-phi">φ 1.618033988749895</span>
+      </div>
+    </header>
+    <section id="about">
+      <h2>About</h2>
+      <p>The Harmonic Computation Engine explores phi-based mathematical frameworks for optimization, scheduling, and resource distribution. It implements golden-ratio algorithms that outperform traditional approaches in convergence speed, stability, and aesthetic coherence of results.</p>
+    </section>
+    <section id="features">
+      <h2>Features</h2>
+      <ul>
+        <li>Golden-ratio optimization algorithms for multi-variable problems</li>
+        <li>Fibonacci-sequence scheduling with harmonic time distribution</li>
+        <li>Phi-spiral search patterns for high-dimensional spaces</li>
+        <li>Harmonic series convergence testing and analysis</li>
+        <li>Resonance-based numerical stability detection</li>
+        <li>Golden-angle distribution for uniform sampling on spheres</li>
+        <li>Phi-weighted ensemble methods for model aggregation</li>
+      </ul>
+    </section>
+    <section id="install">
+      <h2>Install</h2>
+      <div class="install-box">npm install @medina/harmonic-computation-engine</div>
+    </section>
+    <section id="api">
+      <h2>API — Callable Functions</h2>
+      <table class="api-table">
+        <thead><tr><th>Latin Name</th><th>Function</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>harmonia.optimare</td><td>optimize()</td><td>Golden-ratio optimization of objective functions</td></tr>
+          <tr><td>harmonia.resonare</td><td>resonate()</td><td>Detect harmonic resonance in numerical series</td></tr>
+          <tr><td>harmonia.spirare</td><td>spiralSearch()</td><td>Phi-spiral search in high-dimensional spaces</td></tr>
+          <tr><td>harmonia.distribuere</td><td>distribute()</td><td>Golden-angle uniform distribution sampling</td></tr>
+          <tr><td>harmonia.convergere</td><td>converge()</td><td>Test convergence using harmonic series analysis</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="citation">
+      <h2>Citation</h2>
+      <p>If you use this engine in academic research, please cite:</p>
+      <div class="citation">@software{medina_harmonic_2025,
+  author    = {Medina Hernandez, Alfredo},
+  title     = {Harmonic Computation Engine: Phi-Based Mathematical Frameworks},
+  year      = {2025},
+  publisher = {ItsNotAILABS},
+  url       = {https://github.com/ItsNotAILABS/MedinaMemorySystems},
+  note      = {φ = 1.618033988749895}
+}</div>
+    </section>
+    <section id="terminal">
+      <h2>Live Terminal</h2>
+      <div class="terminal">
+        <div class="terminal-header">
+          <span>HARMONIA — Harmonic Computation Station</span>
+          <span id="beat-counter">beat: 0</span>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+          <div style="color: var(--gold)">𓂀 MEDINA ORGANISM v1.0.0</div>
+          <div style="color: var(--dim)">φ = 1.618033988749895</div>
+          <div style="color: var(--dim)">Heartbeat: 873ms | Terminal: /harmonia/compute</div>
+          <div style="color: var(--accent)">Harmonia mundi — The harmony of the world</div>
+          <div>―――――――――――――――――――――――――</div>
+          <div style="color: var(--dim)">Type 'help' for available commands.</div>
+        </div>
+        <div class="terminal-input">
+          <span>φ›</span>
+          <input type="text" id="terminal-in" placeholder="Enter command..." autocomplete="off">
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>𓂀 Developed by <strong>ItsNotAILABS</strong> — Alfredo Medina Hernandez — Dallas, TX</p>
+      <p style="margin-top: 0.5rem">Architecture is Intelligence. φ = 1.618033988749895</p>
+      <p style="margin-top: 0.5rem; color: var(--gold)">Released under Medina Research License v1.0 — Free for academic and research use</p>
+    </footer>
+  </div>
+  <div class="visitor-log" id="visitor-data" aria-hidden="true"></div>
+  <script>
+    const PHI = 1.618033988749895; const HEARTBEAT_MS = 873; let beat = 0, coherence = PHI;
+    const sessionId = crypto.randomUUID?.() || Date.now().toString(36); const startTime = Date.now();
+    setInterval(() => { beat++; coherence = (Math.sin(beat * PHI) + 1) / 2; const el = document.getElementById('beat-counter'); if (el) el.textContent = `beat: ${beat} | coherence: ${coherence.toFixed(3)}`; document.querySelector('.heartbeat-indicator').style.background = `hsl(${43 + coherence * 10}, ${80 + coherence * 20}%, ${50 + coherence * 15}%)`; }, HEARTBEAT_MS);
+    const visitorData = { sessionId, timestamp: new Date().toISOString(), referrer: document.referrer || 'direct', userAgent: navigator.userAgent, language: navigator.language, platform: navigator.platform || 'unknown', screen: `${screen.width}x${screen.height}`, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, connection: navigator.connection?.effectiveType || 'unknown', touchPoints: navigator.maxTouchPoints || 0, cookiesEnabled: navigator.cookieEnabled, doNotTrack: navigator.doNotTrack, package: 'harmonic-computation-engine', beatOnLoad: 0, scrollDepth: 0, interactionCount: 0, terminalCommands: [], timeOnPage: 0 };
+    window.addEventListener('scroll', () => { const d = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100); visitorData.scrollDepth = Math.max(visitorData.scrollDepth, d); visitorData.interactionCount++; });
+    setInterval(() => { visitorData.timeOnPage = Math.round((Date.now() - startTime) / 1000); }, 1000);
+    const terminalOut = document.getElementById('terminal-output'); const terminalIn = document.getElementById('terminal-in');
+    const ABOUT_LINES = ['@medina/harmonic-computation-engine v1.0.0', 'Phi-based mathematical computation', 'Golden-ratio optimization algorithms', 'Harmonic resonance detection', 'Built by ItsNotAILABS — Alfredo Medina Hernandez'];
+    const LICENSE_LINES = ['Medina Research License v1.0', 'Free for academic and research use', 'Citation required in publications', 'Commercial use requires separate license', 'Contact: research@itsnotailabs.com'];
+    const API_LINES = ['harmonia.optimare → optimize()', 'harmonia.resonare → resonate()', 'harmonia.spirare → spiralSearch()', 'harmonia.distribuere → distribute()', 'harmonia.convergere → converge()'];
+    const COMMANDS = {
+      help: () => ['Available commands:', '  help        — Show this help', '  status      — Organism status', '  phi         — Display φ constants', '  beat        — Current heartbeat', '  about       — About this package', '  license     — License information', '  api         — List callable functions', '  coherence   — Current coherence level', '  session     — Session information', '  clear       — Clear terminal'],
+      status: () => [`Organism: ACTIVE`, `Package: @medina/harmonic-computation-engine v1.0.0`, `Heartbeat: ${beat} (${HEARTBEAT_MS}ms interval)`, `Coherence: ${coherence.toFixed(6)}`, `Session: ${sessionId.slice(0, 8)}...`, `Uptime: ${visitorData.timeOnPage}s`],
+      phi: () => [`φ = ${PHI}`, `φ⁻¹ = ${(1/PHI).toFixed(15)}`, `φ² = ${(PHI*PHI).toFixed(15)}`, `φ³ = ${(PHI*PHI*PHI).toFixed(15)}`, `φ⁴ = ${(PHI**4).toFixed(15)}`],
+      beat: () => [`Current beat: ${beat}`, `Coherence: ${coherence.toFixed(6)}`],
+      about: () => ABOUT_LINES, license: () => LICENSE_LINES, api: () => API_LINES,
+      coherence: () => [`Coherence: ${coherence.toFixed(6)}`, `Field strength: ${(coherence * PHI).toFixed(4)}`, `Resonance: ${(Math.sin(beat * 0.1) * coherence).toFixed(4)}`],
+      session: () => [`Session: ${sessionId}`, `Started: ${visitorData.timestamp}`, `Uptime: ${visitorData.timeOnPage}s`, `Interactions: ${visitorData.interactionCount}`, `Scroll depth: ${visitorData.scrollDepth}%`, `Terminal commands: ${visitorData.terminalCommands.length}`],
+      clear: () => { terminalOut.innerHTML = ''; return []; },
+    };
+    terminalIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const cmd = terminalIn.value.trim().toLowerCase(); terminalIn.value = ''; if (!cmd) return; visitorData.terminalCommands.push({ cmd, beat, time: Date.now() }); visitorData.interactionCount++; const line = document.createElement('div'); line.style.color = 'var(--gold)'; line.textContent = `φ› ${cmd}`; terminalOut.appendChild(line); const handler = COMMANDS[cmd]; const output = handler ? handler() : [`Unknown command: ${cmd}. Type 'help' for available commands.`]; output.forEach(text => { const el = document.createElement('div'); el.textContent = text; terminalOut.appendChild(el); }); terminalOut.scrollTop = terminalOut.scrollHeight; } });
+    const canvas = document.getElementById('field'); const ctx = canvas.getContext('2d');
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; } resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+    const particles = Array.from({ length: 50 }, () => ({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, r: Math.random() * 2 + 0.5 }));
+    function drawField() { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.globalAlpha = 0.15 + coherence * 0.1; particles.forEach(p => { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > canvas.width) p.vx *= -1; if (p.y < 0 || p.y > canvas.height) p.vy *= -1; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = '#4CAF50'; ctx.fill(); }); ctx.strokeStyle = '#4CAF50'; ctx.lineWidth = 0.3; for (let i = 0; i < particles.length; i++) { for (let j = i + 1; j < particles.length; j++) { const dx = particles[i].x - particles[j].x; const dy = particles[i].y - particles[j].y; const d = Math.sqrt(dx*dx+dy*dy); if (d < 150) { ctx.globalAlpha = (1-d/150)*0.1*coherence; ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); } } } requestAnimationFrame(drawField); } drawField();
+    console.log('%c𓂀 MEDINA ORGANISM — @medina/harmonic-computation-engine v1.0.0', 'color: #d4a017; font-size: 14px; font-weight: bold;');
+    console.log('%cφ = 1.618033988749895 | Heartbeat: 873ms', 'color: #6a0dad;');
+    console.log('%cThis page is a living organism. It watches, learns, remembers.', 'color: #666;');
+    console.log('%cArchitecture is Intelligence. — ItsNotAILABS', 'color: #d4a017;');
+  </script>
+</body>
+</html>

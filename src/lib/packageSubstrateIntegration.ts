@@ -34,10 +34,10 @@ import * as SovereignMemory from '../packages/sovereign-memory-sdk';
 import * as OrganismRuntime from '../packages/organism-runtime-sdk';
 import * as Governance from '../packages/governance-protocol';
 import * as IntelligenceRouting from '../packages/intelligence-routing-sdk';
-import * as PhiMathematics from '../packages/phi-mathematics-engine';
+import * as PhiMathematics from '../packages/harmonic-computation-engine';
 import * as SovereignEncryption from '../packages/sovereign-encryption-sdk';
 import * as DesignOS from '../packages/design-os-toolkit';
-import * as AncientKnowledge from '../packages/ancient-knowledge-engine';
+import * as AncientKnowledge from '../packages/civilization-pattern-engine';
 import * as Enterprise from '../packages/enterprise-integration-sdk';
 import * as NeuralConsciousness from '../packages/neural-consciousness-engine';
 import * as DocumentAbsorption from '../packages/document-absorption-engine';
@@ -81,7 +81,7 @@ export const TETRACTYS = 10;
 
 /** One ladder rung — from package name down to substrate */
 export interface LadderRung {
-  packageName: string;        // @medina/phi-mathematics-engine
+  packageName: string;        // @medina/harmonic-computation-engine
   latinName: string;          // TERMINALE FORMULAE
   terminalCommand: string;    // /formula
   engineWireId: string;       // ENGINE-XXX
@@ -159,21 +159,21 @@ export interface OrganismSubstrateState {
 /** Extract all mathematical constants the organism needs */
 export function extractMathematicalConstants(): MathematicalConstant[] {
   return [
-    // From @medina/phi-mathematics-engine
-    { name: 'Golden Ratio', symbol: 'φ', value: PHI, source: '@medina/phi-mathematics-engine', significance: 'Self-referential identity: φ = 1 + 1/φ' },
-    { name: 'Golden Ratio Inverse', symbol: 'φ⁻¹', value: PHI_INVERSE, source: '@medina/phi-mathematics-engine', significance: 'Complement: φ⁻¹ = φ - 1' },
-    { name: 'Golden Ratio Squared', symbol: 'φ²', value: PHI_SQUARED, source: '@medina/phi-mathematics-engine', significance: 'φ² = φ + 1' },
-    { name: 'Golden Ratio Cubed', symbol: 'φ³', value: PHI_CUBED, source: '@medina/phi-mathematics-engine', significance: 'φ³ = 2φ + 1' },
+    // From @medina/harmonic-computation-engine
+    { name: 'Golden Ratio', symbol: 'φ', value: PHI, source: '@medina/harmonic-computation-engine', significance: 'Self-referential identity: φ = 1 + 1/φ' },
+    { name: 'Golden Ratio Inverse', symbol: 'φ⁻¹', value: PHI_INVERSE, source: '@medina/harmonic-computation-engine', significance: 'Complement: φ⁻¹ = φ - 1' },
+    { name: 'Golden Ratio Squared', symbol: 'φ²', value: PHI_SQUARED, source: '@medina/harmonic-computation-engine', significance: 'φ² = φ + 1' },
+    { name: 'Golden Ratio Cubed', symbol: 'φ³', value: PHI_CUBED, source: '@medina/harmonic-computation-engine', significance: 'φ³ = 2φ + 1' },
     { name: 'Golden Ratio Fourth', symbol: 'φ⁴', value: PHI_FOURTH, source: '@medina/sovereign-encryption-sdk', significance: 'Beatty sequence foundation' },
     { name: 'Golden Ratio Twelfth', symbol: 'φ¹²', value: PHI_TWELFTH, source: '@medina/sovereign-encryption-sdk', significance: 'Full cycle return' },
-    { name: 'Pi', symbol: 'π', value: Math.PI, source: '@medina/phi-mathematics-engine', significance: 'Circle closure' },
-    { name: 'Tau', symbol: 'τ', value: 2 * Math.PI, source: '@medina/phi-mathematics-engine', significance: 'Full rotation' },
-    { name: 'Euler Number', symbol: 'e', value: Math.E, source: '@medina/phi-mathematics-engine', significance: 'Natural growth' },
-    { name: 'Tetractys', symbol: 'T₁₀', value: TETRACTYS, source: '@medina/ancient-knowledge-engine', significance: 'Pythagorean perfect number: 1+2+3+4=10' },
+    { name: 'Pi', symbol: 'π', value: Math.PI, source: '@medina/harmonic-computation-engine', significance: 'Circle closure' },
+    { name: 'Tau', symbol: 'τ', value: 2 * Math.PI, source: '@medina/harmonic-computation-engine', significance: 'Full rotation' },
+    { name: 'Euler Number', symbol: 'e', value: Math.E, source: '@medina/harmonic-computation-engine', significance: 'Natural growth' },
+    { name: 'Tetractys', symbol: 'T₁₀', value: TETRACTYS, source: '@medina/civilization-pattern-engine', significance: 'Pythagorean perfect number: 1+2+3+4=10' },
     { name: 'Absorption Harmonic', symbol: 'f_abs', value: ABSORPTION_FREQUENCY, source: '@medina/document-absorption-engine', significance: '432 × φ⁻¹ = 267.02 Hz — the frequency of absorption' },
     { name: 'Sovereign Frequency', symbol: 'f_sov', value: SOVEREIGN_FREQUENCY, source: '@medina/sovereign-encryption-sdk', significance: 'Sovereign encryption operating frequency' },
     { name: 'Heartbeat Period', symbol: 't_heart', value: HEARTBEAT_MS, source: '@medina/organism-runtime-sdk', significance: '873ms — the organism heartbeat' },
-    { name: 'Golden Angle', symbol: 'θ_φ', value: 2 * Math.PI * PHI_INVERSE, source: '@medina/phi-mathematics-engine', significance: '≈137.5° — optimal distribution angle' },
+    { name: 'Golden Angle', symbol: 'θ_φ', value: 2 * Math.PI * PHI_INVERSE, source: '@medina/harmonic-computation-engine', significance: '≈137.5° — optimal distribution angle' },
   ];
 }
 
@@ -181,9 +181,9 @@ export function extractMathematicalConstants(): MathematicalConstant[] {
 export function extractPhysicsBindings(): PhysicsBinding[] {
   return [
     // Frequency physics
-    { name: 'Schumann Fundamental', frequency: SCHUMANN, unit: 'Hz', source: '@medina/phi-mathematics-engine', substrateLayer: 'frequency' },
-    { name: '432 Hz Tuning', frequency: FREQ_432, unit: 'Hz', source: '@medina/phi-mathematics-engine', substrateLayer: 'frequency' },
-    { name: 'Solfeggio 528 Love', frequency: SOLFEGGIO_528, unit: 'Hz', source: '@medina/phi-mathematics-engine', substrateLayer: 'frequency' },
+    { name: 'Schumann Fundamental', frequency: SCHUMANN, unit: 'Hz', source: '@medina/harmonic-computation-engine', substrateLayer: 'frequency' },
+    { name: '432 Hz Tuning', frequency: FREQ_432, unit: 'Hz', source: '@medina/harmonic-computation-engine', substrateLayer: 'frequency' },
+    { name: 'Solfeggio 528 Love', frequency: SOLFEGGIO_528, unit: 'Hz', source: '@medina/harmonic-computation-engine', substrateLayer: 'frequency' },
     { name: 'Gamma Binding', frequency: GAMMA_BINDING, unit: 'Hz', source: '@medina/neural-consciousness-engine', substrateLayer: 'neural' },
     { name: 'Alpha Peak', frequency: ALPHA_PEAK, unit: 'Hz', source: '@medina/neural-consciousness-engine', substrateLayer: 'neural' },
     { name: 'Absorption Harmonic', frequency: ABSORPTION_FREQUENCY, unit: 'Hz', source: '@medina/document-absorption-engine', substrateLayer: 'document' },
@@ -197,12 +197,12 @@ export function extractPhysicsBindings(): PhysicsBinding[] {
     { name: 'Quantum Tunnel', frequency: 639.0, unit: 'Hz', source: '@medina/neural-consciousness-engine', substrateLayer: 'quantum' },
     { name: 'Quantum Decoherence Protection', frequency: 528.0, unit: 'Hz', source: '@medina/neural-consciousness-engine', substrateLayer: 'quantum' },
     // Chemistry physics
-    { name: 'Copper Conductivity', frequency: 59600000.0, unit: 'S/m', source: '@medina/phi-mathematics-engine', substrateLayer: 'chemistry' },
-    { name: 'Silver Conductivity', frequency: 63000000.0, unit: 'S/m', source: '@medina/phi-mathematics-engine', substrateLayer: 'chemistry' },
-    { name: 'Gold Conductivity', frequency: 45200000.0, unit: 'S/m', source: '@medina/phi-mathematics-engine', substrateLayer: 'chemistry' },
+    { name: 'Copper Conductivity', frequency: 59600000.0, unit: 'S/m', source: '@medina/harmonic-computation-engine', substrateLayer: 'chemistry' },
+    { name: 'Silver Conductivity', frequency: 63000000.0, unit: 'S/m', source: '@medina/harmonic-computation-engine', substrateLayer: 'chemistry' },
+    { name: 'Gold Conductivity', frequency: 45200000.0, unit: 'S/m', source: '@medina/harmonic-computation-engine', substrateLayer: 'chemistry' },
     // Sacred geometry
-    { name: 'Phi Frequency', frequency: PHI, unit: 'φ', source: '@medina/phi-mathematics-engine', substrateLayer: 'geometry' },
-    { name: 'Phi Squared Frequency', frequency: PHI_SQUARED, unit: 'φ²', source: '@medina/phi-mathematics-engine', substrateLayer: 'geometry' },
+    { name: 'Phi Frequency', frequency: PHI, unit: 'φ', source: '@medina/harmonic-computation-engine', substrateLayer: 'geometry' },
+    { name: 'Phi Squared Frequency', frequency: PHI_SQUARED, unit: 'φ²', source: '@medina/harmonic-computation-engine', substrateLayer: 'geometry' },
   ];
 }
 
@@ -257,7 +257,7 @@ export function buildPackageLadder(): LadderRung[] {
     },
     // Package 5: Phi Mathematics
     {
-      packageName: '@medina/phi-mathematics-engine',
+      packageName: '@medina/harmonic-computation-engine',
       latinName: 'TERMINALE FORMULAE',
       terminalCommand: '/formula',
       engineWireId: 'ENGINE-011-GEOMETRY',
@@ -287,7 +287,7 @@ export function buildPackageLadder(): LadderRung[] {
     },
     // Package 8: Ancient Knowledge
     {
-      packageName: '@medina/ancient-knowledge-engine',
+      packageName: '@medina/civilization-pattern-engine',
       latinName: 'TERMINALE PRIMITIVI',
       terminalCommand: '/prim',
       engineWireId: 'ENGINE-005-QUANTUM',
@@ -395,7 +395,7 @@ export function wireOrganismSubstrate(): OrganismSubstrateState {
       5, 16, '/mem',
       allLadder.filter(r => r.packageName === '@medina/sovereign-memory-sdk'),
       allConstants.filter(c => c.source === '@medina/sovereign-memory-sdk' || c.name === 'Golden Ratio'),
-      allPhysics.filter(p => p.source === '@medina/phi-mathematics-engine' && p.substrateLayer === 'frequency'),
+      allPhysics.filter(p => p.source === '@medina/harmonic-computation-engine' && p.substrateLayer === 'frequency'),
     ),
     buildPackageIntelligence(
       'PKG-002', '@medina/organism-runtime-sdk',
@@ -422,12 +422,12 @@ export function wireOrganismSubstrate(): OrganismSubstrateState {
       allPhysics.filter(p => p.substrateLayer === 'neural'),
     ),
     buildPackageIntelligence(
-      'PKG-005', '@medina/phi-mathematics-engine',
+      'PKG-005', '@medina/harmonic-computation-engine',
       'φ suite, Fibonacci, sacred geometry, Schumann, field physics',
       6, 25, '/formula',
-      allLadder.filter(r => r.packageName === '@medina/phi-mathematics-engine'),
-      allConstants.filter(c => c.source === '@medina/phi-mathematics-engine'),
-      allPhysics.filter(p => p.source === '@medina/phi-mathematics-engine'),
+      allLadder.filter(r => r.packageName === '@medina/harmonic-computation-engine'),
+      allConstants.filter(c => c.source === '@medina/harmonic-computation-engine'),
+      allPhysics.filter(p => p.source === '@medina/harmonic-computation-engine'),
     ),
     buildPackageIntelligence(
       'PKG-006', '@medina/sovereign-encryption-sdk',
@@ -446,11 +446,11 @@ export function wireOrganismSubstrate(): OrganismSubstrateState {
       [],
     ),
     buildPackageIntelligence(
-      'PKG-008', '@medina/ancient-knowledge-engine',
+      'PKG-008', '@medina/civilization-pattern-engine',
       '34 civilizations, CPL, archetypes, hero journey, mythology',
       24, 10, '/prim',
-      allLadder.filter(r => r.packageName === '@medina/ancient-knowledge-engine'),
-      allConstants.filter(c => c.source === '@medina/ancient-knowledge-engine'),
+      allLadder.filter(r => r.packageName === '@medina/civilization-pattern-engine'),
+      allConstants.filter(c => c.source === '@medina/civilization-pattern-engine'),
       allPhysics.filter(p => p.substrateLayer === 'quantum'),
     ),
     buildPackageIntelligence(
