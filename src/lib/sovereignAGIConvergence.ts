@@ -79,7 +79,7 @@ export const SOVEREIGN_AGI_MANIFEST = {
 
 /** Canonical names of all 11 organism packages */
 export const PACKAGE_REGISTRY = [
-  'ancient-knowledge-engine',
+  'civilization-pattern-engine',
   'design-os-toolkit',
   'document-absorption-engine',
   'enterprise-integration-sdk',
@@ -87,7 +87,7 @@ export const PACKAGE_REGISTRY = [
   'intelligence-routing-sdk',
   'neural-consciousness-engine',
   'organism-runtime-sdk',
-  'phi-mathematics-engine',
+  'harmonic-computation-engine',
   'sovereign-encryption-sdk',
   'sovereign-memory-sdk',
 ] as const;

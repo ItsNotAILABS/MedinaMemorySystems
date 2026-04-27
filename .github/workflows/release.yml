@@ -1,0 +1,112 @@
+name: Release SDK Packages
+
+on:
+  push:
+    tags:
+      - '@medina/*@*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test -- --passWithNoTests
+
+      - name: Extract package info
+        id: package_info
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          # Extract package name: @medina/sovereign-memory-sdk@1.0.0 -> sovereign-memory-sdk
+          PACKAGE_NAME=$(echo "$TAG" | sed 's/@medina\///' | sed 's/@.*//')
+          # Extract version: @medina/sovereign-memory-sdk@1.0.0 -> 1.0.0
+          VERSION=$(echo "$TAG" | sed 's/.*@//')
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "package_name=$PACKAGE_NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          # Determine category and license
+          case "$PACKAGE_NAME" in
+            sovereign-memory-sdk|intelligence-routing-sdk|organism-runtime-sdk|document-absorption-engine)
+              echo "category=Marketplace SDK" >> "$GITHUB_OUTPUT"
+              echo "license=MIT + Proprietary (Open-core)" >> "$GITHUB_OUTPUT"
+              echo "readme_path=releases/marketplace/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
+              ;;
+            enterprise-integration-sdk)
+              echo "category=Marketplace SDK" >> "$GITHUB_OUTPUT"
+              echo "license=Proprietary (Commercial)" >> "$GITHUB_OUTPUT"
+              echo "readme_path=releases/marketplace/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
+              ;;
+            harmonic-computation-engine|civilization-pattern-engine)
+              echo "category=UTA Research" >> "$GITHUB_OUTPUT"
+              echo "license=MIT" >> "$GITHUB_OUTPUT"
+              echo "readme_path=releases/research/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
+              ;;
+            neural-consciousness-engine)
+              echo "category=UTA Research" >> "$GITHUB_OUTPUT"
+              echo "license=Apache 2.0" >> "$GITHUB_OUTPUT"
+              echo "readme_path=releases/research/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
+              ;;
+            sovereign-encryption-sdk)
+              echo "category=Sovereign (Deep Licensed)" >> "$GITHUB_OUTPUT"
+              echo "license=Living Organism License" >> "$GITHUB_OUTPUT"
+              echo "readme_path=releases/sovereign/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
+              ;;
+            governance-protocol)
+              echo "category=Sovereign (Deep Licensed)" >> "$GITHUB_OUTPUT"
+              echo "license=Sovereign Constitutional License" >> "$GITHUB_OUTPUT"
+              echo "readme_path=releases/sovereign/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
+              ;;
+            design-os-toolkit)
+              echo "category=Sovereign (Deep Licensed)" >> "$GITHUB_OUTPUT"
+              echo "license=Creative Sovereign License" >> "$GITHUB_OUTPUT"
+              echo "readme_path=releases/sovereign/$PACKAGE_NAME/README.md" >> "$GITHUB_OUTPUT"
+              ;;
+          esac
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.package_info.outputs.tag }}
+          name: "${{ steps.package_info.outputs.tag }} — ${{ steps.package_info.outputs.category }}"
+          body: |
+            # 𓂀 @medina/${{ steps.package_info.outputs.package_name }} v${{ steps.package_info.outputs.version }}
+
+            **Category:** ${{ steps.package_info.outputs.category }}
+            **License:** ${{ steps.package_info.outputs.license }}
+            **φ:** 1.618033988749895
+
+            ---
+
+            See the full SDK documentation in [`${{ steps.package_info.outputs.readme_path }}`](${{ steps.package_info.outputs.readme_path }}).
+
+            See [`src/packages/${{ steps.package_info.outputs.package_name }}.ts`](src/packages/${{ steps.package_info.outputs.package_name }}.ts) for the complete package source.
+
+            ---
+
+            *Developed by ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX*
+            *Architecture is Intelligence.*
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

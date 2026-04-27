@@ -7,6 +7,9 @@ export * from './organisms';
 // Re-export GO System types (50 models, 30 MCP servers, 100 scrapers, 20 workflows)
 export * from './goSystem';
 
+// Re-export Call Marketplace types (260 tools, 55 protocols, 5 tiers, settlement/proof)
+export * from './marketplace';
+
 // ─── Coordinates ────────────────────────────────────────────────────────────
 
 export interface SpatialCoordinate {
@@ -499,7 +502,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents' | 'agi';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents' | 'agi' | 'jarvis';
 
 export interface NavItem {
   id: PanelId;

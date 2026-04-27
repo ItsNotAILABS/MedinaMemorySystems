@@ -7,6 +7,43 @@
  */
 
 import { registerModel } from './sovereign-model';
+import { ALL_SOVEREIGN_FIELD_DOMAINS } from '@/organism/models/SovereignFieldModels';
+import type { SovereignFieldDomain } from '@/organism/models/SovereignFieldModels';
+import { ALL_WORKER_DOMAINS, ALL_MICRO_WORKERS } from '@/organism/workers/MicroWorkerManifest';
+
+// ─── Domain → sovereign model kind mapping ────────────────────────────────────
+
+const DOMAIN_KIND_MAP: Record<SovereignFieldDomain['id'], 'substrate' | 'pattern' | 'compiler' | 'intelligence' | 'gate' | 'law'> = {
+  STREAMS_SOVEREIGN:    'substrate',
+  WEBRTC_SOVEREIGN:     'substrate',
+  COMPONENTS_SOVEREIGN: 'substrate',
+  WORKERS_SOVEREIGN:    'substrate',
+  OBSERVERS_SOVEREIGN:  'pattern',
+  CANVAS_SOVEREIGN:     'substrate',
+  SVG_SOVEREIGN:        'substrate',
+  XR_SOVEREIGN:         'intelligence',
+  WASM_SOVEREIGN:       'compiler',
+  AUDIO_SOVEREIGN:      'intelligence',
+  GPU_SOVEREIGN:        'compiler',
+  GL_SOVEREIGN:         'compiler',
+};
+
+// ─── Domain keyword seeds ─────────────────────────────────────────────────────
+
+const DOMAIN_KEYWORDS: Record<SovereignFieldDomain['id'], string[]> = {
+  STREAMS_SOVEREIGN:    ['stream', 'flow', 'pipe', 'reader', 'writer', 'byte', 'backpressure', 'abort', 'tee', 'split', 'merge'],
+  WEBRTC_SOVEREIGN:     ['webrtc', 'peer', 'ice', 'sdp', 'stun', 'turn', 'rtc', 'media', 'track', 'mesh', 'p2p', 'channel'],
+  COMPONENTS_SOVEREIGN: ['component', 'element', 'shadow', 'template', 'slot', 'lifecycle', 'attribute', 'registry', 'upgrade', 'custom element'],
+  WORKERS_SOVEREIGN:    ['worker', 'shared worker', 'service worker', 'worklet', 'atomics', 'buffer', 'pool', 'thread', 'parallel', 'background'],
+  OBSERVERS_SOVEREIGN:  ['observer', 'intersection', 'resize', 'mutation', 'performance', 'visibility', 'focus', 'idle', 'threshold', 'timing'],
+  CANVAS_SOVEREIGN:     ['canvas', 'draw', 'pixel', 'path', 'bitmap', 'gradient', 'clip', 'transform', 'composite', 'offscreen'],
+  SVG_SOVEREIGN:        ['svg', 'filter', 'mask', 'clip path', 'animate', 'viewbox', 'symbol', 'marker', 'text path', 'vector'],
+  XR_SOVEREIGN:         ['xr', 'vr', 'ar', 'session', 'hand', 'pose', 'anchor', 'hit test', 'layer', 'world sensor', 'extended reality'],
+  WASM_SOVEREIGN:       ['wasm', 'webassembly', 'module', 'memory', 'table', 'import', 'export', 'simd', 'thread', 'gc', 'binary'],
+  AUDIO_SOVEREIGN:      ['audio', 'oscillator', 'analyser', 'convolver', 'panner', 'worklet', 'param', 'buffer', 'frequency', 'sound'],
+  GPU_SOVEREIGN:        ['gpu', 'webgpu', 'device', 'command', 'render', 'compute', 'shader', 'texture', 'buffer', 'pipeline', 'bind'],
+  GL_SOVEREIGN:         ['webgl', 'vertex', 'fragment', 'vao', 'fbo', 'ubo', 'instanced', 'glsl', 'extension', 'transform feedback'],
+};
 
 export function bootSovereignRegistry(): void {
   // ─── Intelligence Models (the original 8 families) ───────────────────────
@@ -326,4 +363,100 @@ export function bootSovereignRegistry(): void {
     invoke: (input) => `Sovereign protocol: ${input.slice(0, 40)} — address resolved.`,
     color: '#2dd4bf',
   });
+
+  // ─── Sovereign Field Models — 120 field intelligence units ──────────────────
+  // 12 domains × 10 models each = 120 total field sovereigns
+  // Registered into the ULRI substrate so every field model participates
+  // in routing, resonance scoring, and doctrine injection.
+
+  // Resonance scoring constants
+  const MAX_RESONANCE_SCORE = 0.95;  // Cap so field models never fully dominate core intelligence models
+  const KEYWORD_MATCH_MULTIPLIER = 3; // Amplifier: a 33% keyword-hit rate yields resonance ≈ 1.0 (before cap)
+
+  for (const domain of ALL_SOVEREIGN_FIELD_DOMAINS) {
+    const domainKeywords = DOMAIN_KEYWORDS[domain.id];
+    const domainKind = DOMAIN_KIND_MAP[domain.id];
+
+    for (const fieldModel of domain.models) {
+      // Build model-specific keyword set: domain base + model-level tokens
+      const modelTokens = fieldModel.id.toLowerCase().replace(/_/g, ' ').split(' ');
+      const latinTokens = fieldModel.latinName.toLowerCase().split(' ');
+      const descTokens = fieldModel.description.toLowerCase().split(/\W+/).filter((t) => t.length > 3);
+      const allKeywords = [...new Set([...domainKeywords, ...modelTokens, ...latinTokens, ...descTokens.slice(0, 4)])];
+
+      registerModel({
+        id: `field:${domain.id}:${fieldModel.id}`,
+        name: `${fieldModel.id} — ${fieldModel.latinName}`,
+        kind: domainKind,
+        description: `[${domain.latinName}] ${fieldModel.description}`,
+        capabilities: [
+          fieldModel.description,
+          `${domain.tagline}`,
+          `Field rank ${fieldModel.rank} of 10 in ${domain.id}`,
+          `Domain: ${domain.latinName}`,
+          `Latin: ${fieldModel.latinName}`,
+        ],
+        keywords: allKeywords,
+        resonance: (input) => {
+          const lower = input.toLowerCase();
+          const hits = allKeywords.filter((kw) => lower.includes(kw)).length;
+          return Math.min(MAX_RESONANCE_SCORE, (hits / Math.max(allKeywords.length, 1)) * KEYWORD_MATCH_MULTIPLIER);
+        },
+        expand: () => domain.models.map((m) => `${m.id} — ${m.latinName}`),
+        invoke: (input) => `${fieldModel.id} (${fieldModel.latinName}): ${fieldModel.description} — processing "${input.slice(0, 40)}"`,
+        color: fieldModel.color,
+      });
+    }
+  }
+
+  // ─── Micro Worker Models — 100 always-on sovereign workers ──────────────────
+  // 10 domains × 10 workers each = 100 total micro workers
+  // Registered into ULRI so worker intelligence participates in routing.
+
+  const WORKER_DOMAIN_KEYWORDS: Record<string, string[]> = {
+    MEMORIA:    ['memory', 'index', 'salience', 'lineage', 'resonance', 'decay', 'semantic', 'spatial', 'doctrine', 'compact'],
+    SENSUS:     ['vision', 'audio', 'frequency', 'input', 'emotion', 'gesture', 'sensor', 'context', 'attention', 'perception'],
+    NEXUS:      ['api', 'sync', 'cache', 'websocket', 'batch', 'offline', 'latency', 'protocol', 'peer', 'bandwidth'],
+    COGNITIO:   ['pattern', 'model', 'intent', 'context', 'prediction', 'anomaly', 'knowledge', 'learning', 'inference', 'thought'],
+    CUSTODIA:   ['gate', 'security', 'audit', 'threat', 'permission', 'provenance', 'encryption', 'integrity', 'breach', 'enforce'],
+    GUBERNATIO: ['proposal', 'vote', 'doctrine', 'audit', 'law', 'compliance', 'quorum', 'amendment', 'delegation', 'governance'],
+    FABRICATIO: ['wasm', 'bundle', 'validate', 'render', 'optimize', 'dependency', 'reload', 'canister', 'schema', 'build'],
+    RESONANTIA: ['phi', 'beat', 'harmonic', 'frequency', 'resonance', 'wave', 'fibonacci', 'phase', 'schumann', 'entrainment'],
+    FLUXUS:     ['stream', 'backpressure', 'transform', 'event', 'queue', 'buffer', 'pipeline', 'fan', 'merge', 'dead letter'],
+    IMPERIUM:   ['orchestrate', 'health', 'load', 'schedule', 'lifecycle', 'priority', 'metric', 'error', 'config', 'telemetry'],
+  };
+
+  for (const domain of ALL_WORKER_DOMAINS) {
+    const domainKw = WORKER_DOMAIN_KEYWORDS[domain.id] ?? [];
+
+    for (const worker of domain.workers) {
+      const nameTokens = worker.name.toLowerCase().replace(/_/g, ' ').split(' ');
+      const careerTokens = worker.career.title.toLowerCase().split(' ').filter((t: string) => t.length > 2);
+      const workerKeywords = [...new Set([...domainKw, ...nameTokens, ...careerTokens, 'career', 'flow', 'always-on'])];
+
+      registerModel({
+        id: `worker:${domain.id}:${worker.id}`,
+        name: `${worker.name} — ${worker.latinName}`,
+        kind: 'substrate',
+        description: `[${domain.latinName}] ${worker.purpose}`,
+        capabilities: [
+          worker.purpose,
+          `Career: ${worker.career.title}`,
+          `Career flow: ${worker.career.flow.slice(0, 80)}`,
+          `Worker ${worker.id} (rank ${worker.rank}/10) in ${domain.id}`,
+          `Heartbeat: ${worker.heartbeatMs}ms · Stages: APPRENTICE → JOURNEYMAN → MASTER → SOVEREIGN`,
+          `Always-on · Career flow · Production-grade`,
+        ],
+        keywords: workerKeywords,
+        resonance: (input) => {
+          const lower = input.toLowerCase();
+          const hits = workerKeywords.filter((kw) => lower.includes(kw)).length;
+          return Math.min(MAX_RESONANCE_SCORE, (hits / Math.max(workerKeywords.length, 1)) * KEYWORD_MATCH_MULTIPLIER);
+        },
+        expand: () => domain.workers.map((w) => `${w.name} — ${w.latinName}`),
+        invoke: (input) => `${worker.name} (${worker.latinName}): ${worker.purpose} — processing "${input.slice(0, 40)}"`,
+        color: worker.color,
+      });
+    }
+  }
 }

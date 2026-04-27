@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Sovereign AI Hub — AGI Orchestrator & Multi-AI Command Center",
+  "version": "1.0.0",
+  "description": "Command center for 10 Alpha Script AIs, research assistant, document generator, prompt library, workflow automator, data dashboard, intelligence feed. Routes through MERIDIAN sovereign architecture. By Alfredo Medina Hernandez.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "sidePanel",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "https://*.medinatech.io/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Open Sovereign AI Hub",
+    "default_icon": {
+      "16": "icons/hub-16.png",
+      "48": "icons/hub-48.png",
+      "128": "icons/hub-128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/hub-16.png",
+    "48": "icons/hub-48.png",
+    "128": "icons/hub-128.png"
+  }
+}

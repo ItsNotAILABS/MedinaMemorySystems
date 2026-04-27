@@ -8,6 +8,7 @@ import type { PanelId, NavItem } from '@/types';
 const NAV_ITEMS: NavItem[] = [
   { id: 'chat', label: 'Chat', icon: '💬', color: '#3b82f6' },
   { id: 'agi', label: 'AGI Desktop', icon: '🖥️', color: '#10b981' },
+  { id: 'jarvis', label: 'JARVIS', icon: '𓂀', color: '#00d4ff' },
   { id: 'memory', label: 'Memory', icon: '🧠', color: '#8b5cf6' },
   { id: 'governance', label: 'Governance', icon: '⚖️', color: '#10b981' },
   { id: 'models', label: 'Models', icon: '⚡', color: '#6366f1' },

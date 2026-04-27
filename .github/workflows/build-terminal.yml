@@ -1,0 +1,191 @@
+name: Build Terminal Installers
+
+on:
+  push:
+    tags:
+      - 'medina-terminal@*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build (e.g., 1.0.0)'
+        required: true
+        default: '1.0.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Build Windows installers
+        run: npx electron-builder --win --x64 --arm64
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installers
+          path: dist/*.exe
+
+      - name: Upload MSI artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-msi
+          path: dist/*.msi
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Build macOS installers
+        run: npx electron-builder --mac --universal
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload DMG artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-dmg
+          path: dist/*.dmg
+
+      - name: Upload PKG artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-pkg
+          path: dist/*.pkg
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Build Linux installers
+        run: npx electron-builder --linux --x64 --arm64
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload AppImage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-appimage
+          path: dist/*.AppImage
+
+      - name: Upload DEB artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-deb
+          path: dist/*.deb
+
+      - name: Upload RPM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-rpm
+          path: dist/*.rpm
+
+  release:
+    needs: [build-windows, build-macos, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: installers/
+
+      - name: Extract version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> "$GITHUB_OUTPUT"
+          else
+            TAG="${GITHUB_REF#refs/tags/medina-terminal@}"
+            echo "version=$TAG" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "medina-terminal@${{ steps.version.outputs.version }}"
+          name: "𓂀 MEDINA Terminal v${{ steps.version.outputs.version }} — Cross-Platform Sovereign Terminal"
+          body: |
+            # 𓂀 MEDINA Terminal v${{ steps.version.outputs.version }}
+
+            **Sovereign Organism Terminal — Windows · macOS · Linux**
+
+            The MEDINA Terminal is a living organism interface with:
+            - 6 tabs: Terminal, Calls Registry, Chat, World, Tools, Settings
+            - 374+ callable functions with Latin names
+            - 96 SDK packages (11 core + 30 extended + 5 AI + 50 tools)
+            - 5 AI agents: Oro, Nova, Sentinel, Architect, Absorber
+            - 873ms heartbeat with φ-harmonic coherence
+            - Three-gate security (A/B/C)
+            - Live SDK landing page viewer
+
+            ## Downloads
+
+            ### Windows
+            - `medina-terminal-${{ steps.version.outputs.version }}-x64-setup.exe` — 64-bit installer
+            - `medina-terminal-${{ steps.version.outputs.version }}-arm64-setup.exe` — ARM64 installer
+            - `medina-terminal-${{ steps.version.outputs.version }}-x64-setup.msi` — MSI installer
+
+            ### macOS
+            - `medina-terminal-${{ steps.version.outputs.version }}-universal.dmg` — Universal (Intel + Apple Silicon)
+            - `medina-terminal-${{ steps.version.outputs.version }}-universal.pkg` — PKG installer
+
+            ### Linux
+            - `medina-terminal-${{ steps.version.outputs.version }}-x64.AppImage` — Portable (run anywhere)
+            - `medina-terminal-${{ steps.version.outputs.version }}-x64.deb` — Debian/Ubuntu
+            - `medina-terminal-${{ steps.version.outputs.version }}-x64.rpm` — Fedora/RHEL
+
+            ---
+            *Developed by ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX*
+            *Architecture is Intelligence. φ = 1.618033988749895*
+          files: |
+            installers/**/*
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

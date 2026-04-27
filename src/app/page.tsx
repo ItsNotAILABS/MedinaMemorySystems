@@ -13,6 +13,7 @@ import PermissionsPanel from '@/components/PermissionsPanel';
 import OrganismField from '@/components/OrganismField';
 import AgentJournalPanel from '@/components/AgentJournalPanel';
 import AGIDesktopPanel from '@/components/AGIDesktopPanel';
+import JarvisPanel from '@/components/JarvisPanel';
 import type { PanelId } from '@/types';
 
 export default function HomePage() {
@@ -23,6 +24,7 @@ export default function HomePage() {
     switch (activePanel) {
       case 'chat': return <OVOChat />;
       case 'agi': return <AGIDesktopPanel />;
+      case 'jarvis': return <JarvisPanel />;
       case 'memory': return <MemoryTemple />;
       case 'governance': return <GovernancePanel />;
       case 'models': return <ModelRuntime />;

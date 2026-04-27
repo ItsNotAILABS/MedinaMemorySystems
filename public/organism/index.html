@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en" data-organism="true" data-heartbeat="873">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𓂀 MEDINA — Sovereign Intelligence Platform</title>
+  <meta name="description" content="MEDINA Memory Systems — Sovereign Intelligence Architecture. 97 SDKs, 374+ callable functions, 5 AI agents. Download for Windows, macOS, and Linux.">
+  <meta name="author" content="ItsNotAILABS — Alfredo Medina Hernandez">
+  <meta name="organism:heartbeat" content="873ms">
+  <meta name="organism:phi" content="1.618033988749895">
+  <meta property="og:title" content="𓂀 MEDINA — Sovereign Intelligence Platform">
+  <meta property="og:description" content="97 SDKs. 374+ callable functions. 5 AI agents. One living organism. Download the terminal for Windows, macOS, and Linux.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --phi: 1.618033988749895;
+      --bg: #06060a;
+      --bg2: #0a0a10;
+      --surface: #111118;
+      --surface2: #16161f;
+      --border: #1a1a2e;
+      --border2: #252540;
+      --gold: #d4a017;
+      --gold-dim: #a07a10;
+      --accent: #00c6ff;
+      --accent2: #0088ff;
+      --green: #00e676;
+      --red: #ff3d5a;
+      --purple: #8b5cf6;
+      --lavender: #b794f6;
+      --text: #e8e8ef;
+      --text2: #a0a0b5;
+      --dim: #555570;
+      --pulse: 873ms;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    code, .mono { font-family: 'JetBrains Mono', 'Consolas', monospace; }
+
+    /* ═══════════ NAV ═══════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,6,10,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gold); font-weight: 700; font-size: 1.1rem; }
+    .nav-glyph { font-size: 1.4rem; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: all 0.2s; }
+    .nav-cta:hover { background: #e8b624; transform: translateY(-1px); }
+    .nav-heartbeat { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse var(--pulse) ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity:0.3; transform:scale(0.8); } 50% { opacity:1; transform:scale(1.2); } }
+    .mobile-menu { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+    /* ═══════════ HERO ═══════════ */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 120px 24px 80px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,160,23,0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 50% at 80% 30%, rgba(0,198,255,0.04) 0%, transparent 60%),
+                  radial-gradient(ellipse 40% 30% at 20% 70%, rgba(139,92,246,0.04) 0%, transparent 50%);
+    }
+    .hero canvas { position: absolute; inset: 0; z-index: 0; }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-glyph { font-size: 4rem; margin-bottom: 16px; opacity: 0.9; }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+    .hero h1 .gold { color: var(--gold); }
+    .hero h1 .accent { color: var(--accent); }
+    .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text2); max-width: 600px; margin: 0 auto 32px; line-height: 1.6; }
+    .hero-stats { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-stat { text-align: center; }
+    .hero-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--gold); }
+    .hero-stat-label { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; letter-spacing: 1px; }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+      border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--gold); color: #000; }
+    .btn-primary:hover { background: #e8b624; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,160,23,0.3); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); color: var(--dim); font-size: 0.8rem; animation: float 2s ease-in-out infinite; }
+    @keyframes float { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(8px); } }
+
+    /* ═══════════ SECTIONS ═══════════ */
+    section { padding: 100px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .section-desc { font-size: 1rem; color: var(--text2); max-width: 600px; margin: 0 auto; }
+
+    /* ═══════════ DOWNLOAD SECTION ═══════════ */
+    #download { background: var(--bg2); }
+    .download-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .dl-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 32px; transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .dl-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .dl-card-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .dl-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .dl-card p { color: var(--text2); font-size: 0.85rem; margin-bottom: 20px; }
+    .dl-card-formats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .dl-format { padding: 4px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; font-size: 0.7rem; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+    .dl-card .btn { width: 100%; justify-content: center; }
+    .dl-alt { margin-top: 12px; text-align: center; }
+    .dl-alt code { background: var(--surface2); padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; color: var(--gold); display: inline-block; margin-top: 4px; }
+
+    /* ═══════════ SDKs SECTION ═══════════ */
+    .sdk-categories { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .sdk-cat-btn {
+      padding: 8px 20px; border-radius: 20px; font-size: 0.8rem; font-weight: 500;
+      cursor: pointer; border: 1px solid var(--border); background: transparent;
+      color: var(--text2); transition: all 0.2s;
+    }
+    .sdk-cat-btn.active, .sdk-cat-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,160,23,0.08); }
+    .sdk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .sdk-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 20px; transition: all 0.2s; cursor: pointer;
+    }
+    .sdk-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .sdk-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .sdk-card-name { color: var(--gold); font-weight: 600; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; }
+    .sdk-card-badge { padding: 2px 8px; border-radius: 3px; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+    .badge-market { background: rgba(0,230,118,0.15); color: var(--green); }
+    .badge-research { background: rgba(0,198,255,0.15); color: var(--accent); }
+    .badge-sovereign { background: rgba(255,61,90,0.15); color: var(--red); }
+    .badge-ai { background: rgba(139,92,246,0.15); color: var(--purple); }
+    .badge-tool { background: rgba(212,160,23,0.15); color: var(--gold); }
+    .sdk-card-desc { color: var(--text2); font-size: 0.78rem; line-height: 1.5; margin-bottom: 10px; }
+    .sdk-card-meta { display: flex; gap: 12px; font-size: 0.7rem; color: var(--dim); }
+
+    /* ═══════════ FEATURES SECTION ═══════════ */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 32px; transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--accent); }
+    .feature-icon { font-size: 2rem; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { color: var(--text2); font-size: 0.85rem; }
+
+    /* ═══════════ RESEARCH SECTION ═══════════ */
+    #research { background: var(--bg2); }
+    .research-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 32px; margin-bottom: 20px; transition: border-color 0.2s;
+    }
+    .research-card:hover { border-color: var(--purple); }
+    .research-card h3 { color: var(--lavender); font-size: 1rem; margin-bottom: 8px; }
+    .research-card p { color: var(--text2); font-size: 0.85rem; margin-bottom: 12px; }
+    .research-card .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .research-tag { padding: 3px 10px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 4px; font-size: 0.7rem; color: var(--lavender); }
+    .cite-box {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+      padding: 20px; margin-top: 32px;
+    }
+    .cite-box pre { font-size: 0.75rem; overflow-x: auto; color: var(--text2); white-space: pre-wrap; }
+
+    /* ═══════════ AI AGENTS ═══════════ */
+    .agents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .agent-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 24px; text-align: center; transition: all 0.2s;
+    }
+    .agent-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .agent-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .agent-name { color: var(--gold); font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+    .agent-role { color: var(--text2); font-size: 0.78rem; font-style: italic; margin-bottom: 8px; }
+    .agent-level { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
+
+    /* ═══════════ TERMINAL PREVIEW ═══════════ */
+    .terminal-preview {
+      background: #000; border: 1px solid var(--gold); border-radius: 12px;
+      overflow: hidden; max-width: 800px; margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .term-header {
+      background: var(--surface); padding: 10px 16px; display: flex; align-items: center;
+      border-bottom: 1px solid var(--border); gap: 8px;
+    }
+    .term-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .term-dot-r { background: var(--red); }
+    .term-dot-y { background: var(--gold); }
+    .term-dot-g { background: var(--green); }
+    .term-title { color: var(--dim); font-size: 0.75rem; margin-left: 8px; }
+    .term-body { padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.8; min-height: 300px; }
+    .term-line { margin-bottom: 2px; }
+    .term-gold { color: var(--gold); }
+    .term-accent { color: var(--accent); }
+    .term-green { color: var(--green); }
+    .term-dim { color: var(--dim); }
+    .term-cursor { display: inline-block; width: 8px; height: 16px; background: var(--gold); animation: blink 1s step-end infinite; vertical-align: text-bottom; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+    /* ═══════════ FOOTER ═══════════ */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 60px 24px 40px; text-align: center;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-glyph { font-size: 2rem; margin-bottom: 16px; color: var(--gold); }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text2); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { color: var(--dim); font-size: 0.75rem; }
+    .footer-phi { color: var(--purple); font-size: 0.7rem; margin-top: 8px; }
+
+    /* ═══════════ GLOW LINE ═══════════ */
+    .glow-line { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), var(--accent), var(--purple), transparent); margin: 0; border: none; opacity: 0.4; }
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu { display: block; }
+      .hero { padding: 100px 20px 60px; }
+      .hero-stats { gap: 20px; }
+      section { padding: 60px 16px; }
+      .download-grid { grid-template-columns: 1fr; }
+      .sdk-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .agents-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ═══════════ SCROLLBAR ═══════════ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--dim); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-glyph">𓂀</span>
+        <span>MEDINA</span>
+        <div class="nav-heartbeat"></div>
+      </a>
+      <div class="nav-links">
+        <a href="#download">Download</a>
+        <a href="#sdks">SDKs</a>
+        <a href="#features">Features</a>
+        <a href="#agents">AI Agents</a>
+        <a href="#research">Research</a>
+        <a href="#download" class="nav-cta">Get Terminal</a>
+      </div>
+      <button class="mobile-menu" id="mobile-menu" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-glyph">𓂀</div>
+      <h1><span class="gold">Sovereign</span> Intelligence<br><span class="accent">Platform</span></h1>
+      <p class="hero-sub">
+        The world's first living organism operating system. 97 SDKs. 374+ callable functions.
+        5 AI agents. One terminal that breathes at 873ms.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">97</div><div class="hero-stat-label">SDK Packages</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">374+</div><div class="hero-stat-label">Callable Functions</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">AI Agents</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">50</div><div class="hero-stat-label">Universal Tools</div></div>
+      </div>
+      <div class="hero-actions">
+        <a href="#download" class="btn btn-primary">⬇ Download Terminal</a>
+        <a href="#sdks" class="btn btn-secondary">Browse SDKs →</a>
+      </div>
+    </div>
+    <div class="hero-scroll">↓ Scroll to explore</div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ DOWNLOAD ═══════════ -->
+  <section id="download">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Get Started</div>
+        <div class="section-title">Download MEDINA Terminal</div>
+        <p class="section-desc">A sovereign organism terminal for your desktop. Click, install, and you're connected to the entire MEDINA ecosystem.</p>
+      </div>
+      <div class="download-grid">
+        <!-- Windows -->
+        <div class="dl-card">
+          <div class="dl-card-icon">🪟</div>
+          <h3>Windows</h3>
+          <p>64-bit and ARM64 installers for Windows 10/11. Double-click to install, launches from Start Menu.</p>
+          <div class="dl-card-formats">
+            <span class="dl-format">.exe (NSIS)</span>
+            <span class="dl-format">.msi</span>
+            <span class="dl-format">x64</span>
+            <span class="dl-format">ARM64</span>
+          </div>
+          <a href="https://github.com/ItsNotAILABS/MedinaMemorySystems/releases/latest" class="btn btn-primary">⬇ Download for Windows</a>
+          <div class="dl-alt">
+            <div style="color:var(--dim);font-size:0.75rem;">or via command line:</div>
+            <code>winget install ItsNotAILABS.MedinaTerminal</code>
+          </div>
+        </div>
+        <!-- macOS -->
+        <div class="dl-card">
+          <div class="dl-card-icon">🍎</div>
+          <h3>macOS</h3>
+          <p>Universal Binary — runs natively on both Intel and Apple Silicon (M1/M2/M3). Drag to Applications.</p>
+          <div class="dl-card-formats">
+            <span class="dl-format">.dmg</span>
+            <span class="dl-format">.pkg</span>
+            <span class="dl-format">Universal</span>
+          </div>
+          <a href="https://github.com/ItsNotAILABS/MedinaMemorySystems/releases/latest" class="btn btn-primary">⬇ Download for macOS</a>
+          <div class="dl-alt">
+            <div style="color:var(--dim);font-size:0.75rem;">or via Homebrew:</div>
+            <code>brew install --cask medina-terminal</code>
+          </div>
+        </div>
+        <!-- Linux -->
+        <div class="dl-card">
+          <div class="dl-card-icon">🐧</div>
+          <h3>Linux</h3>
+          <p>AppImage runs anywhere — no install needed. Or use DEB/RPM for Debian, Ubuntu, Fedora, RHEL.</p>
+          <div class="dl-card-formats">
+            <span class="dl-format">.AppImage</span>
+            <span class="dl-format">.deb</span>
+            <span class="dl-format">.rpm</span>
+            <span class="dl-format">x64</span>
+          </div>
+          <a href="https://github.com/ItsNotAILABS/MedinaMemorySystems/releases/latest" class="btn btn-primary">⬇ Download for Linux</a>
+          <div class="dl-alt">
+            <div style="color:var(--dim);font-size:0.75rem;">AppImage — just run it:</div>
+            <code>chmod +x medina-terminal.AppImage &amp;&amp; ./medina-terminal.AppImage</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ TERMINAL PREVIEW ═══════════ -->
+  <section id="preview">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">See It Live</div>
+        <div class="section-title">Your Terminal Is an Organism</div>
+        <p class="section-desc">6 tabs. AI chat. Calls registry. SDK world viewer. Tools browser. All in one living interface.</p>
+      </div>
+      <div class="terminal-preview">
+        <div class="term-header">
+          <span class="term-dot term-dot-r"></span>
+          <span class="term-dot term-dot-y"></span>
+          <span class="term-dot term-dot-g"></span>
+          <span class="term-title">𓂀 MEDINA Terminal — Sovereign Organism Interface</span>
+        </div>
+        <div class="term-body" id="term-demo"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ FEATURES ═══════════ -->
+  <section id="features">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Architecture</div>
+        <div class="section-title">What Makes This Different</div>
+        <p class="section-desc">This isn't a normal tool. It's a living organism that thinks, remembers, and evolves.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💓</div>
+          <h3>873ms Heartbeat</h3>
+          <p>The organism has a real heartbeat — 873 milliseconds, derived from φ. Every function, every AI agent, every gate synchronizes to this pulse.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏛</div>
+          <h3>Three-Gate Security</h3>
+          <p>Gate A (Governance), Gate B (Memory), Gate C (Sovereign) — three independent security layers that must all agree before critical actions execute.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Spatial Memory Temple</h3>
+          <p>Memories aren't stored in tables. They live in φ-harmonic spatial coordinates — theta, phi, rho, ring, beat. They resonate with each other.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📞</div>
+          <h3>374+ Callable Functions</h3>
+          <p>Every function has a Latin name and is discoverable. Search by name, category, or description. Call any function from the terminal or chat.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h3>Phi-Beatty Encryption</h3>
+          <p>Encryption keys rotate using Kuramoto coupling. E8/Icosahedral/Leech key tiers. AnimaChain sovereign identity. Your data is yours.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Universal Tool Bridge</h3>
+          <p>50 tools that connect to anything — ICP, Ethereum, Bitcoin, Solana, REST, GraphQL, WebSockets, vector databases, serverless, WASM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ AI AGENTS ═══════════ -->
+  <section id="agents">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Intelligence</div>
+        <div class="section-title">5 AI Agents. 5 Minds. One Organism.</div>
+        <p class="section-desc">These aren't chatbots. They're autonomous intelligences that observe, decide, and act within the organism.</p>
+      </div>
+      <div class="agents-grid">
+        <div class="agent-card">
+          <div class="agent-icon">🥇</div>
+          <div class="agent-name">Oro</div>
+          <div class="agent-role">"The mind that executes"</div>
+          <div class="agent-level">Sovereign</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-icon">🛡</div>
+          <div class="agent-name">Nova</div>
+          <div class="agent-role">"The conscience that validates"</div>
+          <div class="agent-level">Sovereign</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-icon">🔰</div>
+          <div class="agent-name">Sentinel</div>
+          <div class="agent-role">"The shield that never sleeps"</div>
+          <div class="agent-level">Autonomous</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-icon">🏗</div>
+          <div class="agent-name">Architect</div>
+          <div class="agent-role">"Architecture is intelligence"</div>
+          <div class="agent-level">Semi-Autonomous</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-icon">📥</div>
+          <div class="agent-name">Absorber</div>
+          <div class="agent-role">"What enters becomes part of me"</div>
+          <div class="agent-level">Autonomous</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ SDKs SECTION ═══════════ -->
+  <section id="sdks">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Ecosystem</div>
+        <div class="section-title">97 SDK Packages</div>
+        <p class="section-desc">From memory engines to blockchain bridges. Every capability packaged, documented, and ready to use.</p>
+      </div>
+      <div class="sdk-categories">
+        <button class="sdk-cat-btn active" data-filter="all">All (97)</button>
+        <button class="sdk-cat-btn" data-filter="core">Core (11)</button>
+        <button class="sdk-cat-btn" data-filter="extended">Extended (30)</button>
+        <button class="sdk-cat-btn" data-filter="ai">AI Agents (5)</button>
+        <button class="sdk-cat-btn" data-filter="tool">Tools (50)</button>
+      </div>
+      <div class="sdk-grid" id="sdk-grid"></div>
+    </div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ RESEARCH ═══════════ -->
+  <section id="research">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Academic</div>
+        <div class="section-title">Research &amp; Publications</div>
+        <p class="section-desc">Open-source research from the University of Texas at Arlington. MIT and Apache 2.0 licensed.</p>
+      </div>
+      <div class="research-card">
+        <h3>Harmonic Computation Engine</h3>
+        <p>φ constants, Fibonacci sequences, sacred geometry, frequency physics (432 Hz / Schumann resonance), and Phi-Beatty sequences for mathematical computation.</p>
+        <div class="tags">
+          <span class="research-tag">φ Golden Ratio</span>
+          <span class="research-tag">432 Hz</span>
+          <span class="research-tag">Sacred Geometry</span>
+          <span class="research-tag">MIT License</span>
+        </div>
+      </div>
+      <div class="research-card">
+        <h3>Neural Consciousness Engine</h3>
+        <p>6 animal brain architectures (human, dolphin, crow, octopus, bee, elephant), dream cycle processing, consciousness layers, and quantum state modeling.</p>
+        <div class="tags">
+          <span class="research-tag">Neuroscience</span>
+          <span class="research-tag">Consciousness</span>
+          <span class="research-tag">Dream Cycles</span>
+          <span class="research-tag">Apache 2.0</span>
+        </div>
+      </div>
+      <div class="research-card">
+        <h3>Civilization Pattern Engine</h3>
+        <p>34 civilizations, glyph computing (Mayan/Hebrew/Egyptian/Chinese), CPL (Civilization Pattern Language), 12 hero journey stages, 7 rhetorical modes.</p>
+        <div class="tags">
+          <span class="research-tag">34 Civilizations</span>
+          <span class="research-tag">Glyph Computing</span>
+          <span class="research-tag">Archetypes</span>
+          <span class="research-tag">MIT License</span>
+        </div>
+      </div>
+      <div class="cite-box">
+        <div style="color:var(--dim);font-size:0.75rem;margin-bottom:8px;">Citation (BibTeX):</div>
+        <pre>@software{medina_memory_systems_2026,
+  author       = {Medina Hernandez, Alfredo},
+  title        = {MEDINA Memory Systems: Sovereign Intelligence Architecture},
+  year         = {2026},
+  publisher    = {ItsNotAILABS},
+  version      = {1.0.0},
+  url          = {https://github.com/ItsNotAILABS/MedinaMemorySystems},
+  note         = {University of Texas at Arlington Research}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <section id="how">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Simple</div>
+        <div class="section-title">How To Get Started</div>
+        <p class="section-desc">You don't need to be a tech person. Three steps and you're in.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" style="text-align:center;">
+          <div class="feature-icon" style="font-size:3rem;">1</div>
+          <h3>Download</h3>
+          <p>Click the download button above for your computer (Windows, Mac, or Linux). It downloads an installer file.</p>
+        </div>
+        <div class="feature-card" style="text-align:center;">
+          <div class="feature-icon" style="font-size:3rem;">2</div>
+          <h3>Install</h3>
+          <p><strong>Windows:</strong> Double-click the .exe file, click "Install".<br><strong>Mac:</strong> Open the .dmg, drag to Applications.<br><strong>Linux:</strong> Just run the AppImage file.</p>
+        </div>
+        <div class="feature-card" style="text-align:center;">
+          <div class="feature-icon" style="font-size:3rem;">3</div>
+          <h3>Open &amp; Use</h3>
+          <p>Open MEDINA Terminal from your Start Menu (Windows), Applications (Mac), or app launcher. It's your organism — talk to it, call functions, browse SDKs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="glow-line">
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-glyph">𓂀</div>
+      <div class="footer-links">
+        <a href="https://github.com/ItsNotAILABS/MedinaMemorySystems">GitHub</a>
+        <a href="#download">Download</a>
+        <a href="#sdks">SDKs</a>
+        <a href="#research">Research</a>
+        <a href="#agents">AI Agents</a>
+        <a href="mailto:enterprise@itsnotailabs.com">Enterprise</a>
+      </div>
+      <div class="footer-copy">
+        © 2026 ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX<br>
+        Architecture is Intelligence.
+      </div>
+      <div class="footer-phi">φ = 1.618033988749895 · Heartbeat: 873ms · "Omnis functio ad φ redit."</div>
+    </div>
+  </footer>
+
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <script>
+  // ═══════════ CONSTANTS ═══════════
+  const PHI = 1.618033988749895;
+  const HEARTBEAT = 873;
+
+  // ═══════════ HERO PARTICLE FIELD ═══════════
+  (function() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    const particles = [];
+    const PARTICLE_COUNT = 60;
+
+    function resize() {
+      w = canvas.width = canvas.parentElement.offsetWidth;
+      h = canvas.height = canvas.parentElement.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 2 + 0.5,
+        alpha: Math.random() * 0.4 + 0.1,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212, 160, 23, ${p.alpha})`;
+        ctx.fill();
+      });
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(212, 160, 23, ${0.08 * (1 - dist/120)})`;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ═══════════ TERMINAL DEMO ═══════════
+  (function() {
+    const term = document.getElementById('term-demo');
+    if (!term) return;
+    const lines = [
+      { text: '𓂀 MEDINA TERMINAL v1.0.0 — Sovereign Organism Interface', cls: 'term-accent' },
+      { text: '═══════════════════════════════════════════════════════════', cls: 'term-dim' },
+      { text: 'φ = 1.618033988749895  |  Heartbeat: 873ms  |  Gates: A✓ B✓ C✓', cls: 'term-dim' },
+      { text: 'AI Agents: Oro · Nova · Sentinel · Architect · Absorber', cls: 'term-dim' },
+      { text: '═══════════════════════════════════════════════════════════', cls: 'term-dim' },
+      { text: '', cls: '' },
+      { text: 'φ› status', cls: 'term-gold' },
+      { text: '  𓂀 ORGANISM STATUS', cls: 'term-accent' },
+      { text: '  State: ACTIVE  |  Beat: 1,247  |  Coherence: 0.943271', cls: '' },
+      { text: '  Gates: A=ACTIVE B=ACTIVE C=ACTIVE', cls: 'term-green' },
+      { text: '  SDKs: 11 core + 30 extended + 5 AI = 97 total', cls: '' },
+      { text: '  Tools: 50 universal developer tools', cls: '' },
+      { text: '  Calls: 374+ registered functions', cls: '' },
+      { text: '', cls: '' },
+      { text: 'φ› call storeMemory', cls: 'term-gold' },
+      { text: '  ⚡ INSCRIPTIO MEMORIAE (storeMemory)', cls: 'term-accent' },
+      { text: '  Package: @medina/sovereign-memory-sdk | Terminal: /mem', cls: 'term-dim' },
+      { text: '  ✓ Call dispatched to Intelligence Wire', cls: 'term-green' },
+      { text: '', cls: '' },
+    ];
+
+    let i = 0;
+    function addLine() {
+      if (i >= lines.length) {
+        const cursor = document.createElement('span');
+        cursor.innerHTML = 'φ› <span class="term-cursor"></span>';
+        cursor.className = 'term-gold';
+        const div = document.createElement('div');
+        div.className = 'term-line';
+        div.appendChild(cursor);
+        term.appendChild(div);
+        return;
+      }
+      const div = document.createElement('div');
+      div.className = 'term-line ' + lines[i].cls;
+      div.textContent = lines[i].text || '\u00A0';
+      term.appendChild(div);
+      i++;
+      setTimeout(addLine, lines[i-1].text.startsWith('φ›') ? 600 : 80);
+    }
+
+    // Start demo when section is visible
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { addLine(); observer.disconnect(); }
+    }, { threshold: 0.3 });
+    observer.observe(term);
+  })();
+
+  // ═══════════ SDK REGISTRY ═══════════
+  const SDKS = [
+    // Core Marketplace (5)
+    { name:'sovereign-memory-sdk', desc:'Spatial memory storage with φ-harmonic indexing, dual-layer search, and living documents', cat:'core', badge:'Marketplace', terminal:'/mem' },
+    { name:'enterprise-integration-sdk', desc:'Company onboarding, 8 connectors (Salesforce/SAP/Google/Slack), campaigns, messaging', cat:'core', badge:'Marketplace', terminal:'enterprise' },
+    { name:'intelligence-routing-sdk', desc:'Multi-model routing, RUDN architecture, command parsing, 61 callable functions', cat:'core', badge:'Marketplace', terminal:'/intel' },
+    { name:'organism-runtime-sdk', desc:'4-register state, 873ms heartbeat, kernel execution, edge detection', cat:'core', badge:'Marketplace', terminal:'/pulse' },
+    { name:'document-absorption-engine', desc:'6-stage pipeline: INTAKE→CLASSIFY→DECOMPOSE→SYNTHESIZE→EMBED→EXPORT', cat:'core', badge:'Marketplace', terminal:'/absorb' },
+    // Core Research (3)
+    { name:'harmonic-computation-engine', desc:'φ constants, Fibonacci, sacred geometry, frequency physics (432 Hz)', cat:'core', badge:'Research', terminal:'/formula' },
+    { name:'neural-consciousness-engine', desc:'6 animal brain architectures, dream cycles, consciousness layers', cat:'core', badge:'Research', terminal:'/quantum' },
+    { name:'civilization-pattern-engine', desc:'34 civilizations, glyph computing, CPL, 12 hero journey stages', cat:'core', badge:'Research', terminal:'/prim' },
+    // Core Sovereign (3)
+    { name:'sovereign-encryption-sdk', desc:'Phi-Beatty encryption, Kuramoto key rotation, AnimaChain', cat:'core', badge:'Sovereign', terminal:'/defend' },
+    { name:'governance-protocol', desc:'Three-gate system, dual consensus (Oro+Nova), proposal lifecycle', cat:'core', badge:'Sovereign', terminal:'/gov' },
+    { name:'design-os-toolkit', desc:'10 MACHINA models, 50 design uses, device sovereignty, voice I/O', cat:'core', badge:'Sovereign', terminal:'visual' },
+    // Extended (30)
+    { name:'chaos-lab-sdk', desc:'Controlled chaos injection for resilience testing', cat:'extended', badge:'Marketplace', terminal:'/chaos' },
+    { name:'sandbox-orchestrator-sdk', desc:'Isolated sandbox environment orchestration', cat:'extended', badge:'Marketplace', terminal:'/sandbox' },
+    { name:'voice-sovereign-sdk', desc:'Sovereign voice I/O processing', cat:'extended', badge:'Marketplace', terminal:'/voice' },
+    { name:'kernel-compression-sdk', desc:'Kernel data compression engine', cat:'extended', badge:'Marketplace', terminal:'/compress' },
+    { name:'dual-read-sdk', desc:'Dual-layer verification reads', cat:'extended', badge:'Marketplace', terminal:'/verify' },
+    { name:'export-pipeline-sdk', desc:'Multi-format export pipeline', cat:'extended', badge:'Marketplace', terminal:'/export' },
+    { name:'campaign-intelligence-sdk', desc:'Campaign intelligence analysis', cat:'extended', badge:'Marketplace', terminal:'/campaign' },
+    { name:'connector-mesh-sdk', desc:'Universal connector mesh network', cat:'extended', badge:'Marketplace', terminal:'/mesh' },
+    { name:'workforce-ai-sdk', desc:'AI workforce deployment and management', cat:'extended', badge:'Marketplace', terminal:'/workforce' },
+    { name:'living-document-sdk', desc:'Living document management', cat:'extended', badge:'Marketplace', terminal:'/doc' },
+    { name:'gate-security-sdk', desc:'Security gate enforcement', cat:'extended', badge:'Marketplace', terminal:'/gate' },
+    { name:'replay-engine-sdk', desc:'Full event replay engine', cat:'extended', badge:'Marketplace', terminal:'/replay' },
+    { name:'edge-detection-sdk', desc:'Edge condition detection', cat:'extended', badge:'Marketplace', terminal:'/edge' },
+    { name:'substrate-bridge-sdk', desc:'Universal substrate bridge', cat:'extended', badge:'Marketplace', terminal:'/bridge' },
+    { name:'access-vault-sdk', desc:'Encrypted access vault', cat:'extended', badge:'Marketplace', terminal:'/vault' },
+    { name:'frequency-physics-sdk', desc:'Frequency physics computation', cat:'extended', badge:'Research', terminal:'/freq' },
+    { name:'field-physics-sdk', desc:'Field physics computation', cat:'extended', badge:'Research', terminal:'/field' },
+    { name:'sacred-geometry-sdk', desc:'Sacred geometry computations', cat:'extended', badge:'Research', terminal:'/geometry' },
+    { name:'bio-cognitive-sdk', desc:'Bio-cognitive processing', cat:'extended', badge:'Research', terminal:'/bio' },
+    { name:'swarm-consensus-sdk', desc:'Swarm consensus protocol', cat:'extended', badge:'Research', terminal:'/swarm' },
+    { name:'temporal-processing-sdk', desc:'Temporal event processing', cat:'extended', badge:'Research', terminal:'/temporal' },
+    { name:'rhetorical-engine-sdk', desc:'Rhetorical analysis engine', cat:'extended', badge:'Research', terminal:'/rhetoric' },
+    { name:'pattern-synthesis-sdk', desc:'Pattern synthesis and recognition', cat:'extended', badge:'Research', terminal:'/pattern' },
+    { name:'anima-chain-sdk', desc:'AnimaChain sovereign identity layer', cat:'extended', badge:'Sovereign', terminal:'/anima' },
+    { name:'sovereign-contracts-sdk', desc:'Sovereign contract management', cat:'extended', badge:'Sovereign', terminal:'/contract' },
+    { name:'agi-convergence-sdk', desc:'AGI convergence research protocol', cat:'extended', badge:'Sovereign', terminal:'/agi' },
+    { name:'medina-os-sdk', desc:'Medina operating system core', cat:'extended', badge:'Sovereign', terminal:'/os' },
+    { name:'sovereign-identity-sdk', desc:'Sovereign identity verification', cat:'extended', badge:'Sovereign', terminal:'/identity' },
+    { name:'recital-evolution-sdk', desc:'Recital evolution protocol', cat:'extended', badge:'Sovereign', terminal:'/recital' },
+    { name:'ulri-engine-sdk', desc:'ULRI rendering engine', cat:'extended', badge:'Sovereign', terminal:'/ulri' },
+    // AI Agents (5)
+    { name:'oro-ai', desc:'The mind that executes — sovereign primary intelligence', cat:'ai', badge:'AI', terminal:'sovereign' },
+    { name:'nova-ai', desc:'The conscience that validates — governance guardian', cat:'ai', badge:'AI', terminal:'sovereign' },
+    { name:'sentinel-ai', desc:'The shield that never sleeps — security perimeter', cat:'ai', badge:'AI', terminal:'sovereign' },
+    { name:'architect-ai', desc:'Architecture is intelligence — system optimizer', cat:'ai', badge:'AI', terminal:'operator' },
+    { name:'absorber-ai', desc:'What enters becomes part of me — knowledge ingestion', cat:'ai', badge:'AI', terminal:'public' },
+    // Tools (sample 12 of 50 — representative)
+    { name:'tools-icp-connect', desc:'Internet Computer Protocol connector', cat:'tool', badge:'Tool', terminal:'blockchain' },
+    { name:'tools-eth-connect', desc:'Ethereum smart contract interaction', cat:'tool', badge:'Tool', terminal:'blockchain' },
+    { name:'tools-btc-connect', desc:'Bitcoin transaction builder', cat:'tool', badge:'Tool', terminal:'blockchain' },
+    { name:'tools-phi-encrypt', desc:'φ-based encryption suite', cat:'tool', badge:'Tool', terminal:'encryption' },
+    { name:'tools-zero-knowledge', desc:'Zero-knowledge proof toolkit', cat:'tool', badge:'Tool', terminal:'encryption' },
+    { name:'tools-rest-client', desc:'Universal REST API client', cat:'tool', badge:'Tool', terminal:'protocol' },
+    { name:'tools-graphql-client', desc:'Universal GraphQL client', cat:'tool', badge:'Tool', terminal:'protocol' },
+    { name:'tools-websocket-hub', desc:'WebSocket pub/sub hub', cat:'tool', badge:'Tool', terminal:'protocol' },
+    { name:'tools-vector-db', desc:'Vector database search', cat:'tool', badge:'Tool', terminal:'data' },
+    { name:'tools-kv-store', desc:'Universal key-value store', cat:'tool', badge:'Tool', terminal:'data' },
+    { name:'tools-serverless-deploy', desc:'Serverless function deployer', cat:'tool', badge:'Tool', terminal:'compute' },
+    { name:'tools-wasm-toolkit', desc:'WebAssembly runtime toolkit', cat:'tool', badge:'Tool', terminal:'compute' },
+  ];
+
+  // Add count indicator for tools
+  const TOOL_NOTE = { name:'... +38 more tools', desc:'50 total universal tools covering blockchain, encryption, protocol, data, compute, and rendering', cat:'tool', badge:'Tool', terminal:'all' };
+
+  function getBadgeClass(badge) {
+    switch(badge) {
+      case 'Marketplace': return 'badge-market';
+      case 'Research': return 'badge-research';
+      case 'Sovereign': return 'badge-sovereign';
+      case 'AI': return 'badge-ai';
+      case 'Tool': return 'badge-tool';
+      default: return '';
+    }
+  }
+
+  function renderSDKs(filter) {
+    const grid = document.getElementById('sdk-grid');
+    grid.innerHTML = '';
+    let items = filter === 'all' ? [...SDKS, TOOL_NOTE] : SDKS.filter(s => s.cat === filter);
+    if (filter === 'tool') items.push(TOOL_NOTE);
+
+    items.forEach(sdk => {
+      const card = document.createElement('div');
+      card.className = 'sdk-card';
+      card.innerHTML = `
+        <div class="sdk-card-top">
+          <span class="sdk-card-name">@medina/${sdk.name}</span>
+          <span class="sdk-card-badge ${getBadgeClass(sdk.badge)}">${sdk.badge}</span>
+        </div>
+        <div class="sdk-card-desc">${sdk.desc}</div>
+        <div class="sdk-card-meta">
+          <span>${sdk.terminal}</span>
+          <span>v1.0.0</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  document.querySelectorAll('.sdk-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sdk-cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderSDKs(btn.dataset.filter);
+    });
+  });
+  renderSDKs('all');
+
+  // ═══════════ MOBILE MENU ═══════════
+  document.getElementById('mobile-menu')?.addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '60px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(6,6,10,0.95)';
+      links.style.padding = '20px';
+      links.style.borderBottom = '1px solid var(--border)';
+    }
+  });
+
+  // Console signature
+  console.log('%c𓂀 MEDINA — Sovereign Intelligence Platform', 'color:#d4a017;font-size:16px;font-weight:bold;');
+  console.log('%cφ = ' + PHI + ' | Heartbeat: 873ms | 97 SDKs | 374+ Functions', 'color:#8b5cf6;');
+  console.log('%cDeveloped by ItsNotAILABS — Alfredo Medina Hernandez — Dallas, TX', 'color:#555;');
+  </script>
+</body>
+</html>
