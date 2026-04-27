@@ -277,16 +277,18 @@ function scoreMaturity(
       : 0;
   const vaultBonus = Math.min(vaultHits * VAULT_HIT_WEIGHT, MAX_VAULT_BONUS);
   const doctrineBonus = Math.min(doctrineHits * DOCTRINE_HIT_WEIGHT, MAX_DOCTRINE_BONUS);
-  const agentCountBonus = Math.min((agentOutputs.length - 1) * AGENT_COUNT_WEIGHT, MAX_AGENT_BONUS);
-
-  return Math.min(
-    avgConfidence * MATURITY_CONFIDENCE_WEIGHT
-      + agreementScore * MATURITY_AGREEMENT_WEIGHT
-      + vaultBonus
-      + doctrineBonus
-      + agentCountBonus,
-    1,
+  const agentCountBonus = Math.max(
+    0,
+    Math.min((agentOutputs.length - 1) * AGENT_COUNT_WEIGHT, MAX_AGENT_BONUS),
   );
+  const maturityScore =
+    avgConfidence * MATURITY_CONFIDENCE_WEIGHT
+    + agreementScore * MATURITY_AGREEMENT_WEIGHT
+    + vaultBonus
+    + doctrineBonus
+    + agentCountBonus;
+
+  return Math.max(0, Math.min(maturityScore, 1));
 }
 
 /**

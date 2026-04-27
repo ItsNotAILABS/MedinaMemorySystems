@@ -196,13 +196,22 @@
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
+  function getHighlightStorageKey() {
+    const utf8Bytes = new TextEncoder().encode(window.location.href);
+    let binary = '';
+    utf8Bytes.forEach((byte) => {
+      binary += String.fromCharCode(byte);
+    });
+    return HIGHLIGHT_STORAGE_KEY + '_' + btoa(binary).slice(0, 60);
+  }
+
   function saveHighlights() {
-    const storageKey = HIGHLIGHT_STORAGE_KEY + '_' + btoa(window.location.href).slice(0, 60);
+    const storageKey = getHighlightStorageKey();
     chrome.storage.local.set({ [storageKey]: highlights });
   }
 
   function loadHighlights() {
-    const storageKey = HIGHLIGHT_STORAGE_KEY + '_' + btoa(window.location.href).slice(0, 60);
+    const storageKey = getHighlightStorageKey();
     chrome.storage.local.get([storageKey], (result) => {
       if (result[storageKey]) {
         highlights = result[storageKey];

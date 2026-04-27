@@ -108,7 +108,7 @@ chrome.runtime.onStartup.addListener(async () => {
       await apiRequest("/api/agi", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "boot-kernel", tier: "assistant" }),
+        body: JSON.stringify({ action: "boot", tier: "assistant" }),
       });
     } catch {
       // Kernel boot failed silently on startup

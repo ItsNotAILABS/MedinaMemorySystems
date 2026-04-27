@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       if (!session) {
         return NextResponse.json({ success: false, error: 'Session not found' }, { status: 404 });
       }
-      const entry = promoteIfReusable(session, body.threshold ?? 0.0);
+      const entry = promoteIfReusable(session, body.threshold ?? 0.80);
       return NextResponse.json({
         success: true,
         data: { promoted: !!entry, memory: entry },
@@ -49,7 +49,8 @@ export async function POST(req: NextRequest) {
         : 0,
     });
   } catch (err) {
-    return NextResponse.json({ success: false, error: String(err) }, { status: 500 });
+    console.error('[/api/agents POST]', err);
+    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -93,6 +94,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ success: false, error: `Unknown action: ${action}` }, { status: 400 });
     }
   } catch (err) {
-    return NextResponse.json({ success: false, error: String(err) }, { status: 500 });
+    console.error('[/api/agents GET]', err);
+    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
   }
 }

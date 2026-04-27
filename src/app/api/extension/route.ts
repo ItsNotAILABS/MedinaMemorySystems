@@ -58,7 +58,8 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ success: false, error: `Unknown action: ${body.action}` }, { status: 400 });
     }
   } catch (err) {
-    return NextResponse.json({ success: false, error: String(err) }, { status: 500 });
+    console.error('[/api/extension POST]', err);
+    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -68,6 +69,7 @@ export async function GET() {
     const state = getExtensionState();
     return NextResponse.json({ success: true, data: state, timestamp: new Date().toISOString() });
   } catch (err) {
-    return NextResponse.json({ success: false, error: String(err) }, { status: 500 });
+    console.error('[/api/extension GET]', err);
+    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
   }
 }
