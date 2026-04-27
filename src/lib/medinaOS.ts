@@ -265,10 +265,31 @@ export function listAddresses(): SovereignAddress[] {
   return Array.from(addressBook.values());
 }
 
-export function getProtocolOptions(): Array<{ extension: ProtocolExtension; meaning: string; example: string }> {
+export function getProtocolOptions(): Array<{ extension: ProtocolExtension; meaning: string; example: string; latin: string; etymology: string; compressionWeight: number }> {
   return [
-    { extension: '.mdn', meaning: 'MEDINA — the organism itself', example: 'memory-temple.mdn' },
-    { extension: '.ovo', meaning: 'OVO — origin, the new egg', example: 'memory-temple.ovo' },
-    { extension: '.arc', meaning: 'ARC — architecture, the thing itself', example: 'memory-temple.arc' },
+    {
+      extension: '.mdn',
+      meaning: 'MEDINA — the organism itself',
+      example: 'memory-temple.mdn',
+      latin: 'Medina — Urbs Sovereigna',
+      etymology: 'From Arabic مدينة (madīna, "city") — the sovereign city-state where law and civilization were first unified.',
+      compressionWeight: 5,
+    },
+    {
+      extension: '.ovo',
+      meaning: 'OVO — origin, the new egg',
+      example: 'memory-temple.ovo',
+      latin: 'Ovum — Origo Nova Vitae',
+      etymology: 'From Latin ovum ("egg") — the philosophical egg containing all potential before differentiation. Every .ovo address is an S₀.',
+      compressionWeight: 4,
+    },
+    {
+      extension: '.arc',
+      meaning: 'ARC — architecture, the thing itself',
+      example: 'memory-temple.arc',
+      latin: 'Arcus — Architectura Compressa',
+      etymology: 'From Latin arcus ("arch") — the structural form that bears load by converting force into geometry. φ-proportioned.',
+      compressionWeight: 6,
+    },
   ];
 }

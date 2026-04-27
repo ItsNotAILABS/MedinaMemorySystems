@@ -1,7 +1,15 @@
 import type { Gate, GateId, GateStatus } from '@/types';
 import { getGates, setGateStatus } from './governanceEngine';
+import { PORTA_SOVEREIGNA } from './sovereignLanguage';
 
-// ─── Gate Enforcement ─────────────────────────────────────────────────────────
+// ─── Gate Enforcement — PORTA SOVEREIGNA ─────────────────────────────────────
+//
+// PORTA SOVEREIGNA: the single enforcement surface through which all
+// inter-organism, inter-domain, and external communications must pass.
+// Gates A, B, and C are the three portals of this sovereign gateway.
+//
+// Doctrine: PORTA SOVEREIGNA.doctrine
+export { PORTA_SOVEREIGNA };
 
 export interface GateCheckResult {
   allowed: boolean;

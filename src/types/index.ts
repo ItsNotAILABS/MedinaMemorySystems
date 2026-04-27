@@ -57,6 +57,99 @@ export interface MemoryResult {
   queryTime: number;
 }
 
+// ─── Omni Read ───────────────────────────────────────────────────────────────
+
+/** Shape returned by a single gate check. */
+export interface GateCheckResult {
+  allowed: boolean;
+  gate: {
+    id: string;
+    name: string;
+    status: string;
+    description: string;
+    lastChecked: string;
+  };
+  reason: string;
+}
+
+/**
+ * OmniReadResult — the unified, read-only omnidirectional query response.
+ *
+ * One call, one return value, every dimension. No mutations. No side effects.
+ * This is what "read-only" means when read-only is also information.
+ */
+export interface OmniReadResult {
+  /** The raw query string that was processed. */
+  query: string;
+  /** The query compressed through the sovereign lexicon. */
+  compressed: string;
+  /** ISO timestamp of when the read was performed. */
+  timestamp: string;
+  /** Wall-clock ms for the entire omnidirectional pass. */
+  processingMs: number;
+  /** Number of independent dimensions processed. */
+  dimensionCount: number;
+
+  /** Dimension 1 — Semantic: keyword/content matches ranked by salience. */
+  semantic: {
+    matches: MemoryEntry[];
+    avgSalience: number;
+  };
+
+  /** Dimension 2 — Resonance: entries ranked by resonance score. */
+  resonance: {
+    matches: MemoryEntry[];
+    avgScore: number;
+  };
+
+  /** Dimension 3 — Doctrinal: entries with doctrine alignment ≥ 0.8. */
+  doctrinal: {
+    matches: MemoryEntry[];
+    avgAlignment: number;
+  };
+
+  /** Dimension 4 — Spatial: entries grouped by ring (1–12). */
+  spatial: {
+    byRing: Record<number, MemoryEntry[]>;
+    nearestRing: number | null;
+  };
+
+  /** Dimension 5 — Lineage: chains traced from top semantic matches. */
+  lineage: {
+    chains: Array<{
+      lineageId: string;
+      entries: MemoryEntry[];
+      depth: number;
+    }>;
+  };
+
+  /** Dimension 6 — Pinned: all pinned memories (always relevant anchors). */
+  pinned: MemoryEntry[];
+
+  /** Dimension 7 — Stats: current store aggregate. */
+  stats: {
+    total: number;
+    pinned: number;
+    byType: Record<string, number>;
+    avgSalience: number;
+  };
+
+  /** Dimension 8 — Gates: live gate check across all three sovereign gates. */
+  gates: Record<string, GateCheckResult>;
+
+  /** Dimension 9 — Sovereign Symbols: lexicon entries relevant to the query. */
+  sovereignSymbols: Array<{
+    symbol: string;
+    english: string;
+    latin: string;
+    doctrine: string;
+    weight: number;
+  }>;
+
+  /** Dimension 10 — Unified: top entries ranked across all dimensions combined. */
+  unified: MemoryEntry[];
+}
+
 // ─── Organism State (4-Register) ────────────────────────────────────────────
 
 export type OrganismRegister = 'cognitive' | 'affective' | 'somatic' | 'sovereign';
@@ -178,7 +271,8 @@ export interface StructuredResponse {
     | 'signal' | 'consensus' | 'frequency' | 'bus' | 'vault' | 'translate'
     | 'council' | 'role' | 'substrate' | 'sdk' | 'marketplace'
     | 'graph' | 'palace' | 'temporal' | 'harmonic' | 'token' | 'livingdoc' | 'incentive'
-    | 'replay' | 'permissions';
+    | 'replay' | 'permissions' | 'agents'
+    | 'agi' | 'desktop' | 'extension' | 'tab-control';
   title: string;
   data: unknown;
   actions?: ResponseAction[];
@@ -408,7 +502,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'jarvis';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents' | 'agi' | 'jarvis';
 
 export interface NavItem {
   id: PanelId;
@@ -614,3 +708,186 @@ export const ICP_INTELLIGENCE_MODELS = [
   'F-MODEL-113', // @dfinity/identity - ICP IDENTITY INTELLIGENCE
   'F-MODEL-114', // @dfinity/candid - ICP INTERFACE INTELLIGENCE
 ] as const;
+
+// ─── Activated Agent Journal Stream ─────────────────────────────────────────
+
+export type AgentJournalPhase =
+  | 'activation'
+  | 'vault-retrieval'
+  | 'doctrine-retrieval'
+  | 'reasoning'
+  | 'arbitration'
+  | 'composition'
+  | 'promotion'
+  | 'drift-log'
+  | 'completion'
+  | 'error';
+
+export interface AgentJournalEntry {
+  id: string;
+  sessionId: string;
+  agentId: ModelFamily | 'arbitrator' | 'system';
+  phase: AgentJournalPhase;
+  action: string;
+  detail?: string;
+  maturityScore?: number;  // 0–1
+  timestamp: string;
+}
+
+export type AgentSessionStatus =
+  | 'activating'
+  | 'retrieving'
+  | 'reasoning'
+  | 'arbitrating'
+  | 'promoting'
+  | 'complete'
+  | 'failed';
+
+export interface AgentOutput {
+  agentId: ModelFamily;
+  response: string;
+  confidence: number;  // 0–1
+  latency: number;     // ms
+}
+
+export interface ActivatedAgentSession {
+  id: string;
+  task: string;
+  context?: string;
+  taskClass: string;
+  activatedAgents: ModelFamily[];
+  status: AgentSessionStatus;
+  journal: AgentJournalEntry[];
+  vaultRetrievals: MemoryEntry[];
+  doctrineRetrievals: MemoryEntry[];
+  agentOutputs: AgentOutput[];
+  arbitratedOutput?: string;
+  composedAnswer?: string;
+  maturityScore?: number;   // 0–1 overall quality
+  promoted: boolean;
+  promotedMemoryId?: string;
+  startedAt: string;
+  completedAt?: string;
+}
+
+export interface AgentActivationRequest {
+  task: string;
+  context?: string;
+  agentOverrides?: ModelFamily[];  // force specific agents instead of auto-select
+  autoPromote?: boolean;           // auto-promote if maturity > threshold
+  promoteThreshold?: number;       // default 0.80
+}
+
+// ─── AGI Desktop Runtime ────────────────────────────────────────────────────
+
+/** Status of the AGI kernel running as a desktop-grade autonomous system */
+export type AGIKernelStatus = 'booting' | 'running' | 'degraded' | 'shutdown';
+
+/** Capability tier for the AGI runtime */
+export type AGICapabilityTier = 'observer' | 'assistant' | 'operator' | 'autonomous';
+
+/** A browser tab controlled by the AGI */
+export interface AGITab {
+  id: string;
+  url: string;
+  title: string;
+  status: 'loading' | 'ready' | 'navigating' | 'error' | 'closed';
+  pinnedByAI: boolean;
+  /** Agent assigned to monitor/control this tab */
+  assignedAgent?: ModelFamily;
+  createdAt: string;
+  lastActivity: string;
+}
+
+/** An internet action the AGI can perform */
+export type InternetActionType =
+  | 'navigate'
+  | 'search'
+  | 'read-page'
+  | 'extract-data'
+  | 'fill-form'
+  | 'click'
+  | 'screenshot'
+  | 'download'
+  | 'api-call';
+
+/** A single internet action request */
+export interface InternetAction {
+  id: string;
+  type: InternetActionType;
+  tabId?: string;
+  url?: string;
+  selector?: string;
+  data?: Record<string, unknown>;
+  status: 'queued' | 'running' | 'complete' | 'failed';
+  result?: string;
+  error?: string;
+  agentId: ModelFamily | 'system';
+  createdAt: string;
+  completedAt?: string;
+}
+
+/** A deployed AI process running inside the AGI */
+export interface DeployedAI {
+  id: string;
+  name: string;
+  description: string;
+  agentFamily: ModelFamily;
+  status: 'deploying' | 'active' | 'paused' | 'stopped' | 'error';
+  capabilities: string[];
+  /** Tabs this AI can control */
+  assignedTabs: string[];
+  /** Task loop — what the AI is doing */
+  currentTask?: string;
+  actionHistory: InternetAction[];
+  metrics: {
+    actionsCompleted: number;
+    actionsQueued: number;
+    uptime: number;        // seconds
+    lastHeartbeat: string;
+  };
+  createdAt: string;
+}
+
+/** Browser extension connection state */
+export type ExtensionConnectionStatus = 'disconnected' | 'connecting' | 'connected' | 'error';
+
+/** Extension sidebar panel modes */
+export type ExtensionPanelMode = 'chat' | 'page-analysis' | 'memory-write' | 'agent-assist' | 'tab-control';
+
+/** Message from/to the browser extension */
+export interface ExtensionMessage {
+  id: string;
+  direction: 'inbound' | 'outbound';
+  type: 'page-context' | 'command' | 'response' | 'heartbeat' | 'tab-event';
+  payload: Record<string, unknown>;
+  timestamp: string;
+}
+
+/** The browser extension state visible to the platform */
+export interface ExtensionState {
+  connectionStatus: ExtensionConnectionStatus;
+  activePanel: ExtensionPanelMode;
+  currentPageUrl?: string;
+  currentPageTitle?: string;
+  connectedTabs: number;
+  messageLog: ExtensionMessage[];
+  lastHeartbeat?: string;
+}
+
+/** Full AGI Desktop state for the platform sync */
+export interface AGIDesktopState {
+  kernelStatus: AGIKernelStatus;
+  capabilityTier: AGICapabilityTier;
+  tabs: AGITab[];
+  deployedAIs: DeployedAI[];
+  actionQueue: InternetAction[];
+  extension: ExtensionState;
+  stats: {
+    totalTabs: number;
+    totalDeployedAIs: number;
+    totalActionsRun: number;
+    totalActionsQueued: number;
+    uptime: number;
+  };
+}

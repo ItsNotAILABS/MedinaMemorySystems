@@ -630,7 +630,7 @@ export function receiveResonance(
   sdk: OrganismSDKInstance,
   pulse: ResonancePulse
 ): OrganismSDKInstance {
-  const phaseDifference = Math.abs(sdk.heartbeat.phiPhase - pulse.phase);
+  const phaseDifference = pulse.phase - sdk.heartbeat.phiPhase;
   const couplingStrength = pulse.amplitude * PHI_INVERSE;
   const phaseAdjustment = couplingStrength * Math.sin((phaseDifference * Math.PI) / 180);
 

@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "NOVA OVO — Command Center",
+  "version": "1.0.0",
+  "description": "Full sovereign command center. Control AGI Desktop, deploy agents, manage governance, monitor system health — the NOVA OVO mission control.",
+  "permissions": ["storage", "activeTab", "tabs", "alarms", "notifications"],
+  "host_permissions": ["http://localhost:3000/*", "https://*.medina.tech/*"],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "NOVA OVO Command Center"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html"
+}

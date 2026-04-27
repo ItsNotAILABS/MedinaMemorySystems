@@ -486,7 +486,7 @@ export function wireOrganismSubstrate(): OrganismSubstrateState {
 
   // Generate AGI dissolution report — wired in, not called
   const dissolutionReport = generateDissolutionReport();
-  const agiReadiness = dissolutionReport.overallScore / dissolutionReport.maxScore;
+  const agiReadiness = dissolutionReport.overallScore / 100;
 
   return {
     packages,
@@ -500,7 +500,7 @@ export function wireOrganismSubstrate(): OrganismSubstrateState {
     // AGI Convergence — wired into organism substrate
     agiManifest: SOVEREIGN_AGI_MANIFEST,
     agiReadiness,
-    chaosResilience: dissolutionReport.allPassed,
+    chaosResilience: dissolutionReport.agiReady,
   };
 }
 

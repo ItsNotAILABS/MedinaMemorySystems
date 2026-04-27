@@ -698,7 +698,7 @@ export function VERITAS(artifact: string, artifactContent: unknown): VeritasVali
     isValid,
     truthScore,
     validationChecks,
-    architectureTruth: ARCHITECTURAL_TRUTH,
+    architectureTruth: JSON.stringify(ARCHITECTURAL_TRUTH),
     rejectionReasons,
   };
   

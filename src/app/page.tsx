@@ -11,6 +11,8 @@ import CompanyOnboarding from '@/components/CompanyOnboarding';
 import ReplayPanel from '@/components/ReplayPanel';
 import PermissionsPanel from '@/components/PermissionsPanel';
 import OrganismField from '@/components/OrganismField';
+import AgentJournalPanel from '@/components/AgentJournalPanel';
+import AGIDesktopPanel from '@/components/AGIDesktopPanel';
 import JarvisPanel from '@/components/JarvisPanel';
 import type { PanelId } from '@/types';
 
@@ -21,10 +23,12 @@ export default function HomePage() {
   const renderPanel = () => {
     switch (activePanel) {
       case 'chat': return <OVOChat />;
+      case 'agi': return <AGIDesktopPanel />;
       case 'jarvis': return <JarvisPanel />;
       case 'memory': return <MemoryTemple />;
       case 'governance': return <GovernancePanel />;
       case 'models': return <ModelRuntime />;
+      case 'agents': return <AgentJournalPanel />;
       case 'company': return <CompanyOnboarding />;
       case 'replay': return <ReplayPanel />;
       case 'permissions': return <PermissionsPanel />;

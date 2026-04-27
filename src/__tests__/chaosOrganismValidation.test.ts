@@ -197,7 +197,7 @@ describe('🌪️ CHAOS INJECTION — Malformed Input Resilience', () => {
     const fallback = { safe: true };
     expect(organismEdgeModel.safeObject(null, fallback, 'chaos')).toBe(fallback);
     expect(organismEdgeModel.safeObject('string' as any, fallback, 'chaos')).toBe(fallback);
-    expect(organismEdgeModel.safeObject({ valid: true }, fallback, 'chaos')).toEqual({ valid: true });
+    expect(organismEdgeModel.safeObject({ valid: true } as Record<string, unknown>, fallback, 'chaos')).toEqual({ valid: true });
     chaosPass++;
   });
 
@@ -420,7 +420,7 @@ describe('🔐 ENCRYPTION CHAOS — Cryptographic Resilience', () => {
       const result = nse.deriveNextPhiKey(key, state, i);
       expect(result.currentKey.length).toBe(32);
       expect(result.iterationCount).toBe(i + 1);
-      key = result.currentKey;
+      key = result.currentKey as Uint8Array<ArrayBuffer>;
     }
     encryptionPass++;
   });
@@ -1244,7 +1244,7 @@ describe('⏱️ TIMING & PERFORMANCE — Operations Within Bounds', () => {
     const state = new Uint8Array([5, 6, 7, 8]);
     for (let i = 0; i < 100; i++) {
       const result = nse.deriveNextPhiKey(key, state, i);
-      key = result.currentKey;
+      key = result.currentKey as Uint8Array<ArrayBuffer>;
     }
     const elapsed = Date.now() - start;
     expect(elapsed).toBeLessThan(500);

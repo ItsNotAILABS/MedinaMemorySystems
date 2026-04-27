@@ -364,7 +364,6 @@ export {
 
 export {
   // Constants
-  PHI,
   PHI_INVERSE,
   
   // Core Helpers

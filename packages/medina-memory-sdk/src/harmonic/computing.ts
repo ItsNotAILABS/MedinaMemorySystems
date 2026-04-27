@@ -95,7 +95,7 @@ export function harmonicResonance(f1: number, f2: number): number {
  * Find the nearest Solfeggio frequency to a given Hz value.
  */
 export function nearestSolfeggio(hz: number): { name: string; frequency: number; deviation: number } {
-  let nearest = { name: 'UT', frequency: SOLFEGGIO.UT, deviation: Infinity };
+  let nearest: { name: string; frequency: number; deviation: number } = { name: 'UT', frequency: SOLFEGGIO.UT, deviation: Infinity };
   for (const [name, freq] of Object.entries(SOLFEGGIO)) {
     const deviation = Math.abs(hz - freq);
     if (deviation < nearest.deviation) {

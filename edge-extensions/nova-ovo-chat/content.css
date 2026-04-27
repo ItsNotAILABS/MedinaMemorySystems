@@ -1,0 +1,11 @@
+.nova-ovo-highlight {
+  background-color: rgba(59, 130, 246, 0.35);
+  border-bottom: 2px solid #3b82f6;
+  padding: 1px 2px;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+
+.nova-ovo-highlight:hover {
+  background-color: rgba(59, 130, 246, 0.55);
+}
