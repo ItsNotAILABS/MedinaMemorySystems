@@ -1,0 +1,47 @@
+{
+  "name": "@medina/cli",
+  "version": "1.0.0",
+  "description": "Command-line interface for MEDINA Memory Systems organism management",
+  "author": "Alfredo Medina Hernandez <tech@medinatech.com>",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "dist/index.js",
+  "bin": {
+    "medina": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "medina",
+    "organism",
+    "cli",
+    "icp",
+    "phi-harmonic",
+    "agi"
+  ],
+  "dependencies": {
+    "@medina/client-sdk": "workspace:*",
+    "@medina/enterprise-sdk": "workspace:*",
+    "commander": "^11.1.0",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "inquirer": "^9.2.12",
+    "table": "^6.8.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/inquirer": "^9.0.7",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

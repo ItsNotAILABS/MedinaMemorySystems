@@ -24,9 +24,12 @@ MedinaMemorySystems/
 │   ├── client-sdk/              # TypeScript Client Library
 │   └── protocol-adapters/       # Protocol Bridges ✅ NEW
 │
-├── apps/                        # Production Applications ✅ NEW
+├── apps/                        # Production Apps & Dev Tools ✅ NEW
 │   ├── medina-dashboard/        # Next.js Enterprise Control Center
-│   └── medina-api-server/       # Node.js REST + WebSocket + GraphQL API
+│   ├── medina-api-server/       # Node.js REST + WebSocket + GraphQL API
+│   ├── medina-cli/              # CLI for organism deployment & management
+│   ├── medina-testing-tools/    # Testing harness (1,101+ tests)
+│   └── medina-dev-tools/        # Code generators & validators
 │
 ├── portfolio/                   # IP & Commercial Assets
 │   ├── ip-registry/             # Intellectual Property Documentation
@@ -173,9 +176,11 @@ MedinaMemorySystems/
 
 ---
 
-## PRODUCTION APPS
+## PRODUCTION APPS & TOOLS
 
-### 1. MEDINA Dashboard
+### Production Applications
+
+#### 1. MEDINA Dashboard
 **Path**: `/apps/medina-dashboard/`
 **Tech**: Next.js 14, TypeScript, Tailwind CSS
 **Status**: ✅ Production Ready
@@ -191,7 +196,7 @@ MedinaMemorySystems/
 
 ---
 
-### 2. MEDINA API Server
+#### 2. MEDINA API Server
 **Path**: `/apps/medina-api-server/`
 **Tech**: Node.js, Express, TypeScript, WebSocket, GraphQL
 **Status**: ✅ Production Ready
@@ -204,6 +209,56 @@ MedinaMemorySystems/
 - φ-harmonic rate limiting
 - Multi-tenant organization support
 - Docker + docker-compose deployment
+
+---
+
+### Development Tools
+
+#### 3. MEDINA CLI
+**Path**: `/apps/medina-cli/`
+**Tech**: Node.js, TypeScript, Commander
+**Status**: ✅ Production Ready
+
+**Features**:
+- Deploy organisms to Internet Computer
+- Monitor 873ms heartbeat in real-time
+- Manage 8 workforce agents (φ-scaled)
+- OMNIS™ governance proposals and voting
+- Memory export/import with Fibonacci indexing
+- Intelligence module testing (823+ modules)
+- Status monitoring and health checks
+
+---
+
+#### 4. MEDINA Testing Tools
+**Path**: `/apps/medina-testing-tools/`
+**Tech**: Node.js, TypeScript, Jest
+**Status**: ✅ Production Ready
+
+**Features**:
+- 1,101+ automated tests across all systems
+- Test all 823+ intelligence modules (7 pillars)
+- Validate φ-harmonic mathematics (19 decimal precision)
+- Test animal cognition (8 species × 12 capabilities = 96 functions)
+- Chaos theory validation (Lyapunov, Feigenbaum, Ising, Kuramoto)
+- Performance benchmarking suite
+- CI/CD integration with JSON reports
+
+---
+
+#### 5. MEDINA Dev Tools
+**Path**: `/apps/medina-dev-tools/`
+**Tech**: Node.js, TypeScript, EJS Templates
+**Status**: ✅ Production Ready
+
+**Features**:
+- Generate organisms with φ-harmonic heartbeat
+- Create intelligence modules across 7 pillars
+- Generate workforce agents (φ-scaled capacity)
+- Scaffold complete projects from templates
+- Validate organism implementations
+- Validate φ-harmonic code (19 decimal precision)
+- Generate Candid interfaces automatically
 
 ---
 
