@@ -1,0 +1,130 @@
+MEDINA PROPRIETARY LICENSE
+Version 1.0, May 2026
+
+Copyright © 2024-2026 Alfredo Medina Hernandez. All Rights Reserved.
+
+MEDINA TECH
+Dallas, Texas, United States
+
+================================================================================
+
+TERMS AND CONDITIONS
+
+1. GRANT OF LICENSE
+
+   Subject to the terms and conditions of this license, Alfredo Medina
+   Hernandez ("Licensor") grants you a limited, non-exclusive, non-transferable,
+   revocable license to use the Protocol Adapters software ("Software") solely
+   for the purposes specified in your license tier.
+
+2. LICENSE TIERS
+
+   a) DEVELOPER LICENSE (Free - Non-Commercial Use)
+      - ICP and HTTP adapters only
+      - Personal and open-source projects (attribution required)
+      - Non-commercial applications
+      - Community support
+
+   b) PROFESSIONAL LICENSE ($199/month)
+      - All protocol adapters (ICP, HTTP, WebSocket, GraphQL, gRPC, MQTT, AMQP)
+      - Commercial use permitted
+      - Standard email support
+      - Software updates included
+
+   c) ENTERPRISE LICENSE (Custom Pricing)
+      - All adapters + custom protocol bridges
+      - On-premise deployment rights
+      - Priority support with SLA
+      - Custom protocol development
+      - Dedicated account management
+
+3. RESTRICTIONS
+
+   You may NOT:
+   - Redistribute, sublicense, or sell the Software without written permission
+   - Remove or modify copyright notices or attributions
+   - Reverse engineer, decompile, or disassemble the Software
+   - Use the Software in violation of applicable laws or regulations
+   - Create derivative works without explicit written consent
+   - Use the Software in any way that competes with Licensor's business
+
+4. INTELLECTUAL PROPERTY
+
+   The Software contains proprietary and confidential information protected by
+   intellectual property laws, including but not limited to:
+
+   - φ-Harmonic Computing™ methodology
+   - Wave Router frequency multiplexing architecture (patent pending)
+   - ICP integration protocols (patent pending)
+   - Multi-protocol translation engine (patent pending)
+
+   All rights, title, and interest in and to the Software remain with Licensor.
+
+5. ATTRIBUTION
+
+   If you use this Software in derivative works or publications, you must provide
+   clear attribution:
+
+   "Powered by MEDINA Protocol Adapters by Alfredo Medina Hernandez"
+
+6. TRADEMARKS
+
+   The following are trademarks of Alfredo Medina Hernandez / MEDINA TECH:
+   - MEDINA™
+   - NOVA™
+   - φ-Harmonic Computing™
+   - OMNIS™
+   - Sovereign Heart™
+
+   You may not use these trademarks without prior written permission.
+
+7. WARRANTY DISCLAIMER
+
+   THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS
+   FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+8. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+   LIABILITY, WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF,
+   OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+9. TERMINATION
+
+   This license is effective until terminated. Licensor may terminate this
+   license at any time if you fail to comply with any term. Upon termination,
+   you must cease all use of the Software and destroy all copies.
+
+10. GOVERNING LAW
+
+    This license shall be governed by and construed in accordance with the laws
+    of the State of Texas, United States, without regard to conflict of law
+    provisions.
+
+11. EXPORT COMPLIANCE
+
+    You agree to comply with all applicable export and import laws and regulations.
+    The Software may not be exported or re-exported to certain countries or to
+    persons or entities prohibited from receiving U.S. exports.
+
+12. ENTIRE AGREEMENT
+
+    This license constitutes the entire agreement between you and Licensor
+    regarding the Software and supersedes all prior agreements and understandings.
+
+================================================================================
+
+For licensing inquiries, contact:
+Email: license@medinatech.com
+Web: https://medinatech.com/licensing
+
+For commercial licensing, enterprise agreements, or OEM partnerships:
+Email: sales@medinatech.com
+
+================================================================================
+
+MEDINA TECH | ALFREDO MEDINA HERNANDEZ | DALLAS, TEXAS | 2026
+
+ALL RIGHTS RESERVED. UNAUTHORIZED REPRODUCTION OR DISTRIBUTION PROHIBITED.

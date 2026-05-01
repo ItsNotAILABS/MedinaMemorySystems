@@ -20,9 +20,13 @@ MedinaMemorySystems/
 ├── packages/                    # SDK Packages (5 total)
 │   ├── organism-sdk/            # Core Organism Runtime (Motoko)
 │   ├── intelligence-sdk/        # 823+ Intelligence Modules
-│   ├── enterprise-sdk/          # Business Integration Layer
+│   ├── enterprise-sdk/          # Business Integration Layer ✅ NEW
 │   ├── client-sdk/              # TypeScript Client Library
-│   └── protocol-adapters/       # Protocol Bridges
+│   └── protocol-adapters/       # Protocol Bridges ✅ NEW
+│
+├── apps/                        # Production Applications ✅ NEW
+│   ├── medina-dashboard/        # Next.js Enterprise Control Center
+│   └── medina-api-server/       # Node.js REST + WebSocket + GraphQL API
 │
 ├── portfolio/                   # IP & Commercial Assets
 │   ├── ip-registry/             # Intellectual Property Documentation
@@ -67,8 +71,8 @@ MedinaMemorySystems/
 **Package Files**:
 - ✅ README.md
 - ✅ mops.toml
-- 📋 LICENSE (to be added)
-- 📋 examples/ (to be added)
+- ✅ LICENSE
+- ✅ examples/ (basic-deployment, phi-harmonic-timing, animal-cognition)
 - 📋 docs/ (to be added)
 
 ---
@@ -91,26 +95,31 @@ MedinaMemorySystems/
 **Package Files**:
 - ✅ README.md
 - ✅ package.json
+- ✅ LICENSE
 - 📋 mops.toml (to be added)
-- 📋 LICENSE (to be added)
 - 📋 examples/ (to be added)
 
 ---
 
 ### 3. Enterprise SDK
 **Path**: `/packages/enterprise-sdk/`
-**Language**: Mixed (Motoko + TypeScript)
+**Language**: TypeScript
 **Version**: 1.0.0
-**Status**: 📋 To be packaged
+**Status**: ✅ Packaged
 
-**Planned Contents**:
-- Parallax.mo
-- EnterpriseIngest.mo
-- ModelOrchestrator.mo
-- EmergenceEngine.mo
-- SubstrateEngine.mo
-- ExternalUses.mo
-- Business integration libs
+**Contents**:
+- Workforce orchestration (8 φ-scaled agent types)
+- OMNIS™ 43-core governance voting engine
+- Sovereign Heart™ dual cardiac high-availability
+- Organizational memory with Fibonacci indexing
+- Compliance and audit tooling
+- Company onboarding automation
+
+**Package Files**:
+- ✅ README.md
+- ✅ package.json
+- ✅ LICENSE
+- ✅ examples/ (workforce-dashboard, governance-engine)
 
 ---
 
@@ -132,26 +141,69 @@ MedinaMemorySystems/
 **Package Files**:
 - ✅ README.md
 - ✅ package.json
-- 📋 LICENSE (to be added)
+- ✅ LICENSE
+- ✅ examples/ (basic-client)
 - 📋 src/ (to be implemented)
-- 📋 examples/ (to be added)
 
 ---
 
 ### 5. Protocol Adapters
 **Path**: `/packages/protocol-adapters/`
-**Language**: Mixed
+**Language**: TypeScript
 **Version**: 1.0.0
-**Status**: 📋 To be packaged
+**Status**: ✅ Packaged
 
-**Planned Contents**:
-- ICP Adapter
-- HTTP/REST Adapter
-- WebSocket Adapter
-- GraphQL Adapter
-- gRPC Adapter
-- MQTT Adapter
-- AMQP Adapter
+**Contents**:
+- Wave Router — Frequency multiplexing (7 channels)
+- ICP Adapter — Internet Computer Protocol
+- HTTP/REST Adapter — RESTful API bridge
+- WebSocket Adapter — Real-time bidirectional
+- GraphQL Adapter — Query interface
+- gRPC Adapter — High-performance RPC
+- MQTT Adapter — IoT messaging
+- AMQP Adapter — Message queue integration
+- Circuit Breaker — Automatic failure isolation
+- φ-Harmonic Rate Limiter — Golden ratio token bucket
+
+**Package Files**:
+- ✅ README.md
+- ✅ package.json
+- ✅ LICENSE
+- ✅ examples/ (icp-bridge, http-gateway)
+
+---
+
+## PRODUCTION APPS
+
+### 1. MEDINA Dashboard
+**Path**: `/apps/medina-dashboard/`
+**Tech**: Next.js 14, TypeScript, Tailwind CSS
+**Status**: ✅ Production Ready
+
+**Features**:
+- Live 873ms heartbeat visualization
+- 8 workforce agent real-time monitoring
+- OMNIS™ 43-core governance voting UI
+- Organizational memory browser
+- Intelligence module console
+- Sovereign Heart™ status monitor
+- Full audit trail viewer
+
+---
+
+### 2. MEDINA API Server
+**Path**: `/apps/medina-api-server/`
+**Tech**: Node.js, Express, TypeScript, WebSocket, GraphQL
+**Status**: ✅ Production Ready
+
+**Features**:
+- REST API for all organism operations
+- WebSocket real-time subscriptions
+- GraphQL flexible querying
+- JWT + API key authentication
+- φ-harmonic rate limiting
+- Multi-tenant organization support
+- Docker + docker-compose deployment
 
 ---
 
