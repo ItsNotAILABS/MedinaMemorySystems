@@ -1,0 +1,47 @@
+{
+  "name": "@medina/client-sdk",
+  "version": "1.0.0",
+  "description": "TypeScript/JavaScript client library for MEDINA organisms - Browser + Node.js support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/MedinaMemorySystems"
+  },
+  "keywords": [
+    "medina",
+    "icp",
+    "organism",
+    "client",
+    "sdk",
+    "phi",
+    "golden-ratio",
+    "typescript"
+  ],
+  "author": "Alfredo Medina Hernandez <medina@medinatech.com>",
+  "license": "Proprietary",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@dfinity/agent": "^2.1.0",
+    "@dfinity/candid": "^2.1.0",
+    "@dfinity/principal": "^2.1.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.5.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  }
+}

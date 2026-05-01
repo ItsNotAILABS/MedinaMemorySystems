@@ -1,0 +1,57 @@
+{
+  "name": "@medina/protocol-adapters",
+  "version": "1.0.0",
+  "description": "Multi-protocol bridge adapters for MEDINA organisms - ICP, HTTP, WebSocket, GraphQL, gRPC, MQTT, AMQP",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/MedinaMemorySystems"
+  },
+  "keywords": [
+    "medina",
+    "protocol",
+    "adapters",
+    "icp",
+    "websocket",
+    "graphql",
+    "grpc",
+    "mqtt",
+    "amqp",
+    "bridge"
+  ],
+  "author": "Alfredo Medina Hernandez <medina@medinatech.com>",
+  "license": "Proprietary",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@dfinity/agent": "^2.1.0",
+    "@dfinity/candid": "^2.1.0",
+    "@dfinity/principal": "^2.1.0",
+    "@medina/client-sdk": "^1.0.0",
+    "@apollo/server": "^4.10.0",
+    "graphql": "^16.8.0",
+    "ws": "^8.18.0",
+    "mqtt": "^5.3.0",
+    "amqplib": "^0.10.0",
+    "@grpc/grpc-js": "^1.10.0",
+    "@grpc/proto-loader": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.5.0",
+    "@types/amqplib": "^0.10.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  }
+}
