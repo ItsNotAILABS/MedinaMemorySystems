@@ -1,0 +1,52 @@
+{
+  "name": "@medina/intelligence-sdk",
+  "version": "1.0.0",
+  "description": "823+ Intelligence Modules Across 7 Pillars - Neural, Cognitive, Emergence, Adaptation, Scalability, Computing, Machine Learning",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItsNotAILABS/MedinaMemorySystems"
+  },
+  "keywords": [
+    "intelligence",
+    "ai",
+    "neuroscience",
+    "emergence",
+    "phi",
+    "golden-ratio",
+    "chaos-theory",
+    "lyapunov",
+    "antifragility",
+    "consciousness"
+  ],
+  "author": "Alfredo Medina Hernandez <medina@medinatech.com>",
+  "license": "Proprietary",
+  "exports": {
+    ".": "./dist/index.js",
+    "./neural": "./dist/neural/index.js",
+    "./cognitive": "./dist/cognitive/index.js",
+    "./emergence": "./dist/emergence/index.js",
+    "./adaptation": "./dist/adaptation/index.js",
+    "./scalability": "./dist/scalability/index.js",
+    "./computing": "./dist/computing/index.js",
+    "./machine-learning": "./dist/machine-learning/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  }
+}

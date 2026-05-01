@@ -1,0 +1,25 @@
+[package]
+name = "@medina/organism-sdk"
+version = "1.0.0"
+description = "Core Sovereign Organism Runtime for Internet Computer Protocol"
+repository = "https://github.com/ItsNotAILABS/MedinaMemorySystems"
+keywords = ["icp", "motoko", "organism", "phi", "neuroscience", "consciousness"]
+license = "Proprietary"
+authors = ["Alfredo Medina Hernandez <medina@medinatech.com>"]
+
+[dependencies]
+base = "0.13.7"
+
+[exports]
+# Core modules
+Organism = "../../src/organism/Organism.mo"
+Heart = "../../src/organism/Heart.mo"
+NeuralCore = "../../src/organism/NeuralCore.mo"
+AnimalBrains = "../../src/organism/AnimalBrains.mo"
+Constants = "../../src/organism/Constants.mo"
+Workforce = "../../src/organism/Workforce.mo"
+Sandbox = "../../src/organism/Sandbox.mo"
+Underworld = "../../src/organism/Underworld.mo"
+
+[dev-dependencies]
+# Testing and development
