@@ -354,7 +354,7 @@ export const COGNITIVE_LANGUAGES: Record<CognitiveLanguageId, CognitiveLanguage>
     latinName: 'Lingua Symbolica',
     role: 'Colors, numbers, shapes, sigils',
     governs: 'Encoded meaning in non-verbal primitives',
-    frequency: 0, glyph: 'φ', // operates across ALL frequencies
+    frequency: -1, glyph: 'φ', // -1 = operates across ALL frequencies (frequency-agnostic)
     stack: 'STACK_08_NARRATIVE_MYTH', metaClass: 'MYTH_VALUE_RITUAL',
     dependencies: [],
   },
@@ -541,14 +541,21 @@ export function getMetaClassLanguages(metaClass: LanguageMetaClass): CognitiveLa
   return Object.values(COGNITIVE_LANGUAGES).filter(l => l.metaClass === metaClass);
 }
 
-/** Get dependencies of a language (recursive) */
+/** Get dependencies of a language (recursive, deduplicated, cycle-safe) */
 export function getLanguageDependencies(id: CognitiveLanguageId): CognitiveLanguage[] {
-  const lang = COGNITIVE_LANGUAGES[id];
+  const visited = new Set<CognitiveLanguageId>();
   const deps: CognitiveLanguage[] = [];
-  for (const depId of lang.dependencies) {
-    deps.push(COGNITIVE_LANGUAGES[depId]);
-    deps.push(...getLanguageDependencies(depId));
+  function walk(langId: CognitiveLanguageId): void {
+    const lang = COGNITIVE_LANGUAGES[langId];
+    for (const depId of lang.dependencies) {
+      if (!visited.has(depId)) {
+        visited.add(depId);
+        deps.push(COGNITIVE_LANGUAGES[depId]);
+        walk(depId);
+      }
+    }
   }
+  walk(id);
   return deps;
 }
 
