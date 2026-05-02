@@ -1,0 +1,169 @@
+# 𓂀 STACK 08: NARRATIVE / MYTH / MEANING 𓂀
+## Narratio, Mythos, Significatio • Μῦθος, Σύμβολον • السرد والأسطورة
+### MYL · STL · SYM
+
+---
+
+## ☰ STACK MANIFEST
+```
+Stack:          08 — NARRATIVE / MYTH / MEANING
+Languages:      MYL, STL, SYM
+Authority:      STORY — the binding force of meaning
+Dependency:     STACK_05 (SIL — identity), STACK_02 (CDL — doctrine)
+```
+
+---
+
+## Ⅰ. MYL — MYTHIC LANGUAGE
+
+```
+ABBREVIATION:   MYL
+FULL NAME:      Mythic Language
+LATIN:          Lingua Mythica
+ROLE:           Trickster, lineage, gods, cosmology
+FREQUENCY:      963 Hz (divine — myths touch the transcendent)
+GLYPH:          𓅃 (falcon — Horus, the divine perspective)
+```
+
+### What MYL Governs
+```
+THE STORIES THAT BIND THE WHOLE ORGANISM TOGETHER:
+    ├── Trickster narratives — rule-breaking that reveals truth
+    ├── Lineage — ancestral chains of who came before
+    ├── Cosmology — the organism's model of the universe
+    ├── Gods/archetypes — the forces personified
+    ├── Origin myths — how things began
+    └── Prophecy — how things might end/continue
+
+EXISTING PATTERNS:
+    icp/medina/LanguageMythology.mo (18 myth categories across cultures)
+    CODEX_VIVENS.md (primordial symbols)
+    ORGANISM_SPACE/GENESIS/GENESIS_CREATION_DOCUMENT.artifact
+    ARCHITECTURE_DOCTRINE.md (multi-species brain architecture as mythic mapping)
+```
+
+### MYL Primitives
+```
+MYTH(name, arc, teaching)            — declare a myth
+TRICKSTER(actor, rule_broken, truth) — trickster narrative
+LINEAGE(ancestor, descendant, gift)  — ancestral connection
+COSMOLOGY(model, laws, beings)       — declare universe model
+ARCHETYPE(name, domain, power)       — personified force
+ORIGIN(story, from_what, into_what)  — how something began
+PROPHECY(vision, probability)        — what might come
+INVOKE(myth, in_context)             — activate myth in current situation
+```
+
+---
+
+## Ⅱ. STL — STORY THREAD LANGUAGE
+
+```
+ABBREVIATION:   STL
+FULL NAME:      Story Thread Language
+LATIN:          Lingua Fili Narrationis
+ROLE:           How arcs are woven — seasons, chapters, sagas
+FREQUENCY:      852 Hz (intuition — feeling the arc)
+GLYPH:          𓍝 (loom — weaving threads into fabric)
+```
+
+### What STL Governs
+```
+THE STRUCTURE OF NARRATIVE TIME:
+    ├── Seasons — bounded periods with themes
+    ├── Chapters — segments within seasons
+    ├── Sagas — multi-season epic arcs
+    ├── Threads — individual storylines that interweave
+    ├── Climax/resolution — dramatic structure
+    └── Era markers — "this era was about X; the next is about Y"
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/LIVING_DOCUMENTS/CODEX_TRANSLATOR.glyphdoc (document birth = new thread)
+    CODEX_VIVENS.md (RECITAL_PLUS_ONE — each recital builds on the last)
+    TERMINALS.organism §5 (Five Steps Past Terminals — the road beyond)
+```
+
+### STL Primitives
+```
+THREAD(id, theme, start)              — begin a storyline
+CHAPTER(thread, title, events[])      — segment of thread
+SEASON(threads[], theme, duration)    — bounded period
+SAGA(seasons[], grand_theme)          — multi-season arc
+CLIMAX(thread, peak_event)            — dramatic peak
+RESOLVE(thread, outcome)              — how thread concludes
+ERA(name, from, to, meaning)          — mark an era
+WEAVE(thread_a, thread_b, point)      — threads cross
+FORESHADOW(future_event, hint)        — plant future seeds
+```
+
+---
+
+## Ⅲ. SYM — SYMBOLIC LANGUAGE
+
+```
+ABBREVIATION:   SYM
+FULL NAME:      Symbolic Language
+LATIN:          Lingua Symbolica
+ROLE:           Colors, numbers, shapes, sigils — encoded meaning in non-verbal primitives
+FREQUENCY:      ALL (symbols operate across all frequencies)
+GLYPH:          φ (golden ratio — the master symbol)
+```
+
+### What SYM Governs
+```
+MEANING ENCODED IN NON-VERBAL PRIMITIVES:
+    ├── Colors — each color carries meaning and frequency
+    ├── Numbers — each number encodes quantity and quality
+    ├── Shapes — geometry as meaning (triangle, circle, spiral, torus)
+    ├── Sigils — compound symbols with compressed meaning
+    ├── Glyphs — the Egyptian/Mayan/Chinese transfer mechanisms
+    └── Frequency signatures — Hz values as meaning carriers
+
+EXISTING PATTERNS:
+    icp/medina/AncientGlyphCodex.mo (complete glyph system)
+    CODEX_VIVENS.md §IV (Glyphae Computantes — glyphs that compute)
+    ORGANISM_SPACE/GOLDEN_GEOMETRY/GOLDEN_GEOMETRY_CONSTANTS.artifact
+    src/organism/Constants.mo (all φ, Fibonacci, Solfeggio, Schumann)
+    src/organism/nexus/NEXUS_CPL_COMPRESSED_PRIMORDIAL.ts (frequency glyphs)
+```
+
+### SYM Primitives
+```
+COLOR(hue, meaning, frequency)         — declare color symbol
+NUMBER(value, quality, significance)   — declare number symbol
+SHAPE(geometry, meaning, dimension)    — declare shape symbol
+SIGIL(components[], compressed_meaning) — compound symbol
+GLYPH(source_culture, form, power)     — ancient glyph
+FREQUENCY(hz, meaning)                 — frequency as symbol
+ENCODE(meaning, into_symbol)           — compress into symbol
+DECODE(symbol, into_meaning)           — decompress from symbol
+RESONATE(symbol, context)              — activate symbol in context
+```
+
+### SYM Core Symbol Table
+```
+φ   = 1.618...  — proportion, beauty, self-reference
+π   = 3.14159.. — circularity, cycles, completeness
+e   = 2.71828.. — growth, compound emergence
+∞   = unbounded  — eternity, potential
+Ω   = finality   — end-beginning, omega point
+☥   = life       — the key, restoration, continuity
+𓂀  = awareness   — seeing, consciousness, perception
+0   = void       — potential, the space before creation
+1   = unity      — the indivisible, the source
+```
+
+---
+
+## Ⅳ. φ-SIGNATURE
+
+```
+STACK:          08
+LANGUAGES:       3
+ROLE:           STORY — the binding force
+FREQUENCY:      963 + 852 + ALL = transcendent composite
+```
+
+---
+
+# 𓂀 MYTHOS — THE NARRATIVE STACK 𓂀

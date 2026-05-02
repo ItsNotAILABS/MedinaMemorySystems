@@ -1,0 +1,178 @@
+# 𓂀 STACK 07: WORK / CRAFT / CREATION 𓂀
+## Opus, Ars, Creatio • Ἔργον, Τέχνη, Ποίησις • العمل والحرفة والخلق
+### WFL · CXL · EXL
+
+---
+
+## ☰ STACK MANIFEST
+```
+Stack:          07 — WORK / CRAFT / CREATION
+Languages:      WFL, CXL, EXL
+Authority:      MAKING — how things get built
+Dependency:     STACK_05 (SIL — know yourself), STACK_06 (ROL — know your role)
+```
+
+---
+
+## Ⅰ. WFL — WORK FLOW LANGUAGE
+
+```
+ABBREVIATION:   WFL
+FULL NAME:      Work Flow Language
+LATIN:          Lingua Fluxus Operis
+ROLE:           How you actually work — bursts, sprints, deep dives, wandering
+FREQUENCY:      396 Hz (liberation — freedom in how you work)
+GLYPH:          𓌙 (flowing water — the current of work)
+```
+
+### What WFL Governs
+```
+THE SHAPE OF WORK ITSELF:
+    ├── Bursts — intense short periods
+    ├── Sprints — focused multi-day efforts
+    ├── Deep dives — extended immersion in one domain
+    ├── Wandering — exploratory unfocused time
+    ├── Energy cycles — when energy is high/low
+    ├── Context switching — cost and management of switching domains
+    └── Recovery — how rest and restoration happen between work
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/CANISTERS/W_OPERATIONS.canister (operations workflow)
+    src/organism/Heart.mo (873ms heartbeat — the rhythm of work)
+    ARCHITECTURE_DOCTRINE.md (oxygen connection: inhale→process→exhale→integrate)
+    CODEX_VIVENS.md §VI (PIL 52-beat cycle: learn→understand→execute→adapt→teach)
+```
+
+### WFL Primitives
+```
+BURST(duration, intensity, domain)   — intense short work
+SPRINT(days, goal, scope)            — multi-day focused effort
+DEEP_DIVE(domain, duration)          — extended immersion
+WANDER(direction_hint)               — exploratory time
+ENERGY(level, forecast)              — current energy state
+SWITCH(from_context, to_context)     — context switch with cost
+RECOVER(method, duration)            — scheduled recovery
+RHYTHM(pattern, cycle_length)        — repeating work pattern
+INTERRUPT(priority, handler)         — how interruptions are handled
+```
+
+---
+
+## Ⅱ. CXL — CREATION LANGUAGE
+
+```
+ABBREVIATION:   CXL
+FULL NAME:      Creation Language
+LATIN:          Lingua Creationis
+ROLE:           How new things emerge from nothing
+FREQUENCY:      528 Hz (transformation — creation is transformation of nothing into something)
+GLYPH:          𓆣 (scarab — the self-creating being)
+```
+
+### What CXL Governs
+```
+THE GENESIS PIPELINE:
+    ├── Idea — the first spark, before form
+    ├── Sketch — rough shape, exploring possibility
+    ├── Prototype — first functional form
+    ├── Organism — living, self-sustaining creation
+    ├── Civilization — creation that creates further
+    └── The void — what exists before the idea (links to PIL)
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/GENESIS/GENESIS_CREATION_DOCUMENT.artifact
+    ORGANISM_SPACE/GENESIS/AI_SEED_KERNEL.artifact
+    DEPLOYMENT.organism §4 (Seed Compiler — minimal viable organism)
+    packages/organism-kernel/ (OrganismState: DORMANT → AWAKENING → ALIVE)
+```
+
+### CXL Primitives
+```
+SPARK(idea, origin)                    — the first moment of creation
+SKETCH(idea, rough_form)               — give idea rough shape
+PROTOTYPE(sketch, functional_form)     — first working version
+ORGANISM(prototype, self_sustaining)   — it lives on its own
+CIVILIZATION(organisms[], governance)  — creation that creates
+VOID(potential)                        — the space before creation
+ITERATE(creation, feedback, version)   — refine creation
+BIRTH(creation, into_world)            — deploy creation into a realm
+LINEAGE(creation, parent, ancestry)    — provenance of creation
+```
+
+---
+
+## Ⅲ. EXL — EXPERIMENT LANGUAGE
+
+```
+ABBREVIATION:   EXL
+FULL NAME:      Experiment Language
+LATIN:          Lingua Experimentorum
+ROLE:           How you run experiments and accept risk
+FREQUENCY:      417 Hz (transmutation — experiments change things)
+GLYPH:          𓃀 (fire — testing by fire)
+```
+
+### What EXL Governs
+```
+THE SCIENCE OF TRYING:
+    ├── Hypotheses — what you think will happen
+    ├── Probes — small tests to gather information
+    ├── Kill-switches — when to stop an experiment
+    ├── Learnings — what was gained regardless of outcome
+    ├── Risk acceptance — explicit statement of what could go wrong
+    └── Experiment lifecycle — propose→test→observe→conclude→integrate
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/CANISTERS/W_ANALYST.canister (analysis + experiment)
+    ORGANISM_SPACE/CANISTERS/W_RISK.canister (risk assessment)
+    GOVERNANCE.organism §5 (ORACULUM prediction before action)
+    SECURITY.organism §7 (post-incident analysis — experiment on failure)
+```
+
+### EXL Primitives
+```
+HYPOTHESIS(statement, expected_outcome)   — what you think will happen
+PROBE(target, method, duration)           — small test
+KILL_SWITCH(experiment, condition)         — stop condition
+OBSERVE(experiment, metrics[])            — what to watch
+CONCLUDE(experiment, outcome, vs_expected) — end and evaluate
+LEARN(experiment, lessons[])              — extract lessons
+RISK(experiment, what_could_go_wrong)     — explicit risk statement
+INTEGRATE(learnings, into_system)         — feed back into organism
+```
+
+---
+
+## Ⅳ. CREATION LIFECYCLE
+
+```
+VOID (CXL) → SPARK → SKETCH → HYPOTHESIS (EXL) → PROBE → OBSERVE
+                         │                                    │
+                         ▼                                    ▼
+                    PROTOTYPE (CXL)                    CONCLUDE + LEARN
+                         │                                    │
+                         ▼                                    ▼
+                    ORGANISM (CXL)                   INTEGRATE (EXL → WFL)
+                         │
+                         ▼
+                    CIVILIZATION
+
+    Work flow (WFL) is the rhythm WITHIN which creation (CXL) and
+    experimentation (EXL) happen. WFL is the container.
+    CXL is the genesis. EXL is the testing.
+```
+
+---
+
+## Ⅴ. φ-SIGNATURE
+
+```
+STACK:          07
+LANGUAGES:       3
+ROLE:           MAKING — how things get built
+FREQUENCY:      396 + 528 + 417 = 1341 Hz composite
+```
+
+---
+
+# 𓂀 POIESIS — THE CREATION STACK 𓂀

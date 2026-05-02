@@ -1,0 +1,156 @@
+# 𓂀 STACK 06: SOCIAL / RELATIONAL 𓂀
+## Societas et Relatio • Κοινωνία • العلاقات الاجتماعية • 社会关系
+### REL · COL · ROL
+
+---
+
+## ☰ STACK MANIFEST
+```
+Stack:          06 — SOCIAL / RELATIONAL
+Languages:      REL, COL, ROL
+Authority:      BONDS — how beings connect and work together
+Dependency:     STACK_05 (SIL — you must know who you are before relating)
+```
+
+---
+
+## Ⅰ. REL — RELATIONAL ECOLOGY LANGUAGE
+
+```
+ABBREVIATION:   REL
+FULL NAME:      Relational Ecology Language
+LATIN:          Lingua Ecologiae Relationum
+ROLE:           How you relate to people, AIs, orgs, students
+FREQUENCY:      639 Hz (connection, Heart chakra)
+GLYPH:          𓆓 (two arms embracing — connection)
+```
+
+### What REL Governs
+```
+THE ECOLOGY OF RELATIONSHIPS:
+    ├── Trust — earned, calibrated, revoked
+    ├── Boundaries — what is shared, what is held
+    ├── Reciprocity — give and receive balance
+    ├── Collaboration patterns — how beings work together
+    ├── Power dynamics — authority, submission, equality, sovereignty
+    └── Repair — when relationships break, how they heal (links to RIL)
+
+EXISTING PATTERNS:
+    icp/medina/UnifiedLanguageField.mo (language convergence as relation)
+    packages/knowledge-graph/ (entity relationships)
+    GOVERNANCE.organism §2 (token-weighted governance — power distribution)
+    ALPHA β ORACULUM (trust score calibration across agent relationships)
+```
+
+### REL Primitives
+```
+TRUST(entity_a, entity_b, level)      — declare trust level
+BOUNDARY(between, what_passes)        — declare boundary
+RECIPROCATE(given, expected_return)   — declare reciprocity expectation
+COLLABORATE(entities[], pattern)      — declare collaboration
+POWER(entity, domain, level)          — declare authority
+REPAIR_RELATION(between, method)      — heal a broken relationship
+DISSOLVE(relation, reason)            — end a relationship
+ECOLOGY(relations[])                  — declare full relational map
+```
+
+---
+
+## Ⅱ. COL — COLLECTIVE ORCHESTRATION LANGUAGE
+
+```
+ABBREVIATION:   COL
+FULL NAME:      Collective Orchestration Language
+LATIN:          Lingua Orchestrationis Collectivae
+ROLE:           How many beings work together
+FREQUENCY:      741 Hz (awakening — collective intelligence emerging)
+GLYPH:          𓎟 (many reeds — strength in numbers)
+```
+
+### What COL Governs
+```
+HOW GROUPS OPERATE:
+    ├── Swarms — emergent collective behavior without central control
+    ├── Councils — deliberative bodies with formal authority
+    ├── Committees — focused working groups
+    ├── Guilds — skill-based associations
+    ├── Multi-agent rituals — coordinated ceremonies of multiple beings
+    └── Consensus — how the group decides (links to consensus-engine)
+
+EXISTING PATTERNS:
+    packages/consensus-engine/ (weighted consensus for multi-agent systems)
+    GOVERNANCE.organism §1 (Voting Bill Lifecycle)
+    TERMINALS.organism §4 (Orchestrator AIs: NEXUS PRIME, ALPHA CONDUCTOR)
+    ARCHITECTURE_DOCTRINE.md (bee swarm intelligence, quorum sensing)
+```
+
+### COL Primitives
+```
+SWARM(entities[], behavior)          — emergent group behavior
+COUNCIL(members[], charter)          — formal deliberative body
+COMMITTEE(members[], scope)          — focused working group
+GUILD(members[], skill_domain)       — skill-based association
+QUORUM(group, threshold)             — minimum for valid action
+CONSENSUS(group, method, threshold)  — how group decides
+ORCHESTRATE(groups[], coordination)  — multi-group coordination
+RITUAL(participants[], script)       — coordinated group ceremony
+DISSENT(member, position)            — record disagreement
+```
+
+---
+
+## Ⅲ. ROL — ROLE LANGUAGE
+
+```
+ABBREVIATION:   ROL
+FULL NAME:      Role Language
+LATIN:          Lingua Munerum
+ROLE:           How roles are defined, swapped, merged
+FREQUENCY:      417 Hz (transmutation — roles shift and transform)
+GLYPH:          𓊃 (throne seat — the seat changes, the person changes)
+```
+
+### What ROL Governs
+```
+ROLE MECHANICS:
+    ├── Definition — what a role IS (capabilities, duties, authority)
+    ├── Assignment — how roles are given to beings
+    ├── Swapping — how beings change roles
+    ├── Merging — how multiple roles combine in one being
+    ├── Hierarchy — how roles relate in authority chains
+    └── Temporal roles — "today a critic, tomorrow a builder"
+
+EXISTING PATTERNS:
+    packages/role-engine/ (RBAC + ABAC hybrid)
+    TERMINALS.organism §4 (6 AGIs, 2 Alpha AGIs, 3 Engine AIs, 3 Solver AIs, 4 Orchestrators)
+    packages/consensus-engine/ (DEFAULT_ROLE_WEIGHTS: SOVEREIGN=1.00 → RESEARCHER=0.50)
+    GOVERNANCE.organism (role-engine authority assignments)
+```
+
+### ROL Primitives
+```
+ROLE(id, capabilities[], duties[], authority)  — define role
+ASSIGN(being, role, duration)                  — assign role to being
+SWAP(being, from_role, to_role)                — change roles
+MERGE(being, roles[])                          — combine roles
+HIERARCHY(roles[], order)                      — define authority order
+WEIGHT(role, domain, weight)                   — set role weight
+TEMPORAL(being, role, schedule)                — time-bound role
+REVOKE(being, role, reason)                    — remove role
+DELEGATE(from_being, to_being, authority)      — delegate authority
+```
+
+---
+
+## Ⅳ. φ-SIGNATURE
+
+```
+STACK:          06
+LANGUAGES:       3
+ROLE:           BONDS — how beings connect
+FREQUENCY:      639 + 741 + 417 = 1797 Hz composite
+```
+
+---
+
+# 𓂀 VINCULUM — THE BONDS STACK 𓂀

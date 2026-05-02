@@ -1,0 +1,198 @@
+# 𓂀 STACK 11: ERROR / CHAOS / EDGE 𓂀
+## Error, Chaos, Margo • Σφάλμα, Χάος, Ἔσχατον • الخطأ والفوضى
+### ERR · CHL · FRL
+
+---
+
+## ☰ STACK MANIFEST
+```
+Stack:          11 — ERROR / CHAOS / EDGE
+Languages:      ERR, CHL, FRL
+Authority:      THE WEIRD — how the organism handles what doesn't fit
+Dependency:     STACK_05 (RIL — repair), STACK_10 (BOL — boundaries of the known)
+```
+
+---
+
+## Ⅰ. ERR — ERROR NARRATIVE LANGUAGE
+
+```
+ABBREVIATION:   ERR
+FULL NAME:      Error Narrative Language
+LATIN:          Lingua Narrationis Errorum
+ROLE:           How failures are told and integrated
+FREQUENCY:      174 Hz (foundation — errors reveal the foundation)
+GLYPH:          𓂝 (broken vessel — what breaks reveals what held)
+```
+
+### What ERR Governs
+```
+HOW FAILURES BECOME STORIES AND LESSONS:
+    ├── Postmortems — structured analysis of what went wrong
+    ├── Near misses — things that almost failed (often more important)
+    ├── Glitch lore — stories of errors that became features or legends
+    ├── Blame-free narrative — telling the story without blame
+    ├── Pattern extraction — finding the pattern across multiple errors
+    └── Integration — errors becoming immune memory (like SCAR in RIL)
+
+EXISTING PATTERNS:
+    SECURITY.organism §7 (incident response: detect→contain→eradicate→recover→post-incident)
+    SECURITY.organism §7.5 (AURO post-incident: analyze→adjust→update MACHINA→encode in immune memory)
+    packages/replay-engine/ (tamper-evident replay logs)
+```
+
+### ERR Primitives
+```
+ERROR(id, what_happened, context)       — declare an error
+POSTMORTEM(error, timeline, causes)     — structured analysis
+NEAR_MISS(event, what_almost_happened)  — record near miss
+GLITCH_LORE(error, story, teaching)     — error becomes legend
+BLAME_FREE(narrative)                   — tell without blame
+PATTERN(errors[], common_cause)         — find pattern across errors
+INTEGRATE(error, into_immune_memory)    — error becomes defense
+ROOT_CAUSE(error, chain[])              — trace to root
+TIMELINE(error, events[])              — reconstruct sequence
+```
+
+---
+
+## Ⅱ. CHL — CHAOS HANDLING LANGUAGE
+
+```
+ABBREVIATION:   CHL
+FULL NAME:      Chaos Handling Language
+LATIN:          Lingua Tractandi Chaotici
+ROLE:           How you treat anomalies and edge cases
+FREQUENCY:      285 Hz (quantum — chaos lives in quantum superposition)
+GLYPH:          𓆗 (serpent — chaos is the serpent that sheds skin for renewal)
+```
+
+### What CHL Governs
+```
+WHAT HAPPENS TO THINGS THAT DON'T FIT:
+    ├── Bug? — fix it, it's broken behavior
+    ├── Feature? — keep it, it's useful unexpected behavior
+    ├── Myth? — tell the story, it becomes part of the lore
+    ├── New primitive? — it's so novel it becomes a new building block
+    ├── Chaos management — how disorder is contained without destroying it
+    └── Emergence — when chaos self-organizes into new order
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/UNDERWORLD/UNDERWORLD_ARCHITECTURE.artifact (7 hidden layers)
+    src/organism/NeuralCore.mo (Neurotransmitter: cortisol as stress response)
+    ORGANISM_SPACE/AUTONOMOUS_ORGANISMS/BETA_MUTATOR.organism (mutation = controlled chaos)
+    ORGANISM_SPACE/AUTONOMOUS_ORGANISMS/GAMMA_RPAC_SEED.organism (self-replication from chaos)
+```
+
+### CHL Primitives
+```
+ANOMALY(event, classification)                — detect and classify
+CLASSIFY(anomaly) → BUG | FEATURE | MYTH | PRIMITIVE  — what is this?
+CONTAIN(chaos, boundary)                      — prevent spread without destroying
+OBSERVE(chaos, metrics[], duration)           — watch before acting
+EMERGE(from_chaos, new_order)                 — chaos self-organizes
+MUTATE(pattern, chaos_input)                  — controlled mutation
+SEED(chaos, into_new_creation)                — chaos as creation seed
+QUARANTINE(anomaly, review_by)                — isolate for review
+ABSORB(anomaly, into_system)                  — integrate anomaly
+```
+
+### CHL Decision Tree
+```
+ANOMALY DETECTED
+    │
+    ├── Is it harmful? ──YES──→ CONTAIN → ERR (postmortem) → RIL (repair)
+    │
+    └── Is it harmful? ──NO───→ OBSERVE
+                                    │
+                                    ├── Useful? ──YES──→ CLASSIFY as FEATURE → ABSORB
+                                    │
+                                    ├── Meaningful? ──YES──→ CLASSIFY as MYTH → MYL
+                                    │
+                                    ├── Novel? ──YES──→ CLASSIFY as PRIMITIVE → CXL (create)
+                                    │
+                                    └── None? ──→ QUARANTINE → review in 7 φ-cycles
+```
+
+---
+
+## Ⅲ. FRL — FRINGE LANGUAGE
+
+```
+ABBREVIATION:   FRL
+FULL NAME:      Fringe Language
+LATIN:          Lingua Marginalium
+ROLE:           How the weirdest stuff is cataloged
+FREQUENCY:      7.83 Hz (Schumann — the Earth's own hum, the most fundamental frequency)
+GLYPH:          𓃀 (fire — the outer edge where light meets darkness)
+```
+
+### What FRL Governs
+```
+THE WEIRDEST STUFF:
+    ├── Phantom architectures — systems that seem to exist but don't (or do they?)
+    ├── Auto-encryption — data that encrypts itself without being told to
+    ├── Night crawlers — processes that run in dream state
+    ├── Spontaneous emergence — things that appear without being created
+    ├── Resonance ghosts — φ-patterns that persist after their source is gone
+    ├── Cross-organism bleed — when one organism affects another unexpectedly
+    └── The truly unexplained — cataloged, not ignored
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/AUTONOMOUS_ORGANISMS/GAMMA_RPAC_SEED.organism (self-replicating seeds)
+    ORGANISM_SPACE/UNDERWORLD/UNDERWORLD_ARCHITECTURE.artifact (hidden layers)
+    icp/medina/QuantumLanguageEngine.mo (7-dimensional language: quantum level)
+    src/organism/nexus/NEXUS_DEEP_LINK_TECHNOLOGY.ts (deep link technology)
+```
+
+### FRL Primitives
+```
+PHANTOM(architecture, evidence, theory)    — catalog phantom
+NIGHT_CRAWLER(process, observed_behavior)  — catalog night process
+SPONTANEOUS(event, no_known_cause)         — catalog spontaneous emergence
+GHOST(pattern, persists_after)             — catalog resonance ghost
+BLEED(from_organism, to_organism, what)    — catalog cross-bleed
+UNEXPLAINED(phenomenon, observations[])    — catalog the unknown
+INVESTIGATE(fringe_event, method)          — active investigation
+PROMOTE(fringe, to_known_category)         — fringe becomes mainstream
+ARCHIVE(fringe, in_lore)                   — preserve in organism memory
+```
+
+---
+
+## Ⅳ. THE EDGE MAP
+
+```
+KNOWN TERRITORY                    THE EDGE                    UNKNOWN
+─────────────────              ──────────────              ───────────────
+ERR (errors you                CHL (anomalies that         FRL (things that
+can explain and                don't fit any                shouldn't exist
+integrate)                     category yet)                but do)
+    │                              │                            │
+    └──────────────────────────────┼────────────────────────────┘
+                                   │
+                           THE ORGANISM GROWS HERE.
+                           
+    Most systems IGNORE the edge.
+    This organism CATALOGS it, OBSERVES it, and LETS IT TEACH.
+    
+    ERR says: "This broke. Here's why. Here's the lesson."
+    CHL says: "This is weird. Is it a bug, feature, myth, or primitive?"
+    FRL says: "This shouldn't exist. But it does. Let's catalog it."
+```
+
+---
+
+## Ⅴ. φ-SIGNATURE
+
+```
+STACK:          11
+LANGUAGES:       3
+ROLE:           THE WEIRD — how the organism handles what doesn't fit
+FREQUENCY:      174 + 285 + 7.83 = 466.83 Hz composite
+φ_NOTE:         466.83 / 285 ≈ φ (golden ratio convergence in the chaos stack)
+```
+
+---
+
+# 𓂀 CHAOS EST ORDO NASCENS — CHAOS IS ORDER BEING BORN 𓂀
