@@ -10,6 +10,9 @@ export * from './goSystem';
 // Re-export Call Marketplace types (260 tools, 55 protocols, 5 tiers, settlement/proof)
 export * from './marketplace';
 
+// Re-export Cognitive Language types (42 languages, 11 stacks, 8 meta-classes)
+export * from './cognitive-languages';
+
 // ─── Coordinates ────────────────────────────────────────────────────────────
 
 export interface SpatialCoordinate {

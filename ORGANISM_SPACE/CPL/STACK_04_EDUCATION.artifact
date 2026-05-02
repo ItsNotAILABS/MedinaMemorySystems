@@ -1,0 +1,187 @@
+# 𓂀 STACK 04: EDUCATION 𓂀
+## Educatio • Παιδεία • التعليم • 教育
+### SPL · EDL · PWL · TSL
+
+---
+
+## ☰ STACK MANIFEST
+```
+Stack:          04 — EDUCATION
+Languages:      SPL, EDL, PWL, TSL
+Authority:      GROWTH — how beings learn and develop
+Dependency:     STACK_01 (law), STACK_02 (doctrine), STACK_03 (organisms)
+```
+
+---
+
+## Ⅰ. SPL — STUDY PATTERN LANGUAGE
+
+```
+ABBREVIATION:   SPL
+FULL NAME:      Study Pattern Language
+LATIN:          Lingua Exemplarium Studii
+ROLE:           Personal learning blueprints
+FREQUENCY:      396 Hz (liberation — freeing the student's potential)
+GLYPH:          𓇳 (sun — illumination)
+```
+
+### What SPL Governs
+```
+HOW A SPECIFIC STUDENT LEARNS:
+    ├── Modalities — visual, auditory, kinesthetic, reading, social
+    ├── Pacing — fast/slow, sprint/marathon, burst/steady
+    ├── Repetition patterns — spaced repetition intervals, review curves
+    ├── Scaffolding — what support structures the student needs
+    ├── Attention patterns — focus duration, peak hours, fatigue curves
+    └── Triggers — what engages, what bores, what overwhelms
+```
+
+### SPL Primitives
+```
+LEARNER(id, profile)                  — declare learner with profile
+MODALITY(learner, type, strength)     — set learning modality strength
+PACE(learner, pattern)                — set pacing pattern
+REPETITION(concept, interval_curve)   — set spaced repetition schedule
+SCAFFOLD(learner, support_type)       — add scaffolding
+ATTENTION(learner, curve)             — model attention over time
+TRIGGER(learner, stimulus, response)  — map engagement triggers
+ADAPT(learner, feedback)              — adjust profile from feedback
+```
+
+---
+
+## Ⅱ. EDL — EDUCATIONAL DOCTRINE LANGUAGE
+
+```
+ABBREVIATION:   EDL
+FULL NAME:      Educational Doctrine Language
+LATIN:          Lingua Doctrinae Educationis
+ROLE:           School/subject doctrine — what a system requires
+FREQUENCY:      528 Hz (transformation — changing the student)
+GLYPH:          𓏏 (bread — nourishment of knowledge)
+```
+
+### What EDL Governs
+```
+WHAT A SCHOOL/SYSTEM REQUIRES:
+    ├── Standards — learning objectives, competency definitions
+    ├── Competencies — measurable skills and knowledge
+    ├── Graduation paths — sequences of requirements
+    ├── Constraints — time limits, prerequisites, co-requisites
+    ├── Assessment — how mastery is measured
+    └── Curriculum — organized body of knowledge
+```
+
+### EDL Primitives
+```
+STANDARD(id, domain, level, description)   — declare learning standard
+COMPETENCY(id, skills[], measurable_by)    — declare competency
+GRADUATION(path_id, requirements[])        — declare graduation path
+PREREQUISITE(course, required_before)      — set prerequisite
+ASSESS(student, competency, method)        — define assessment
+CURRICULUM(id, structure, sequence)        — declare curriculum
+ALIGN(standard, competency)                — align standard to competency
+ACCREDIT(program, authority)               — declare accreditation
+```
+
+---
+
+## Ⅲ. PWL — PATHWAY LANGUAGE
+
+```
+ABBREVIATION:   PWL
+FULL NAME:      Pathway Language
+LATIN:          Lingua Itineris
+ROLE:           Life/education path language — multi-year trajectories
+FREQUENCY:      639 Hz (connection — linking past to future)
+GLYPH:          𓇼 (star path — celestial navigation)
+```
+
+### What PWL Governs
+```
+MULTI-YEAR TRAJECTORIES:
+    ├── Courses — individual learning experiences
+    ├── Projects — applied learning with deliverables
+    ├── Colleges/institutions — where learning happens
+    ├── Careers — professional destinations
+    ├── Branching options — decision points and alternatives
+    └── Milestones — markers of progress
+```
+
+### PWL Primitives
+```
+PATHWAY(id, start, destination, duration)  — declare a trajectory
+BRANCH(pathway, condition, options[])      — declare branching point
+MILESTONE(pathway, marker, criteria)       — declare milestone
+COURSE(id, subject, duration, outcome)     — declare course
+PROJECT(id, scope, deliverables)           — declare project
+CAREER(id, field, entry_requirements)      — declare career destination
+BRIDGE(pathway_a, pathway_b, transfer)     — declare pathway transfer
+FORECAST(student, pathways[], fit_scores)  — predict pathway fit
+```
+
+---
+
+## Ⅳ. TSL — TOOL SCAFFOLD LANGUAGE
+
+```
+ABBREVIATION:   TSL
+FULL NAME:      Tool Scaffold Language
+LATIN:          Lingua Scaffoldi Instrumentorum
+ROLE:           Personal tool-builder — designing custom tools for a student
+FREQUENCY:      741 Hz (awakening — building capability)
+GLYPH:          𓌻 (chisel — the tool that shapes)
+```
+
+### What TSL Governs
+```
+HOW THE SYSTEM DESIGNS CUSTOM TOOLS AROUND A STUDENT:
+    ├── Flashcards — personalized spaced-repetition cards
+    ├── Simulators — domain-specific practice environments
+    ├── Planners — schedule and task management tools
+    ├── Visualizers — concept maps, timelines, relationship graphs
+    ├── Trackers — progress monitoring and streak systems
+    └── Generators — problem/exercise generators calibrated to level
+```
+
+### TSL Primitives
+```
+TOOL(id, type, purpose, student_id)          — declare tool
+SCAFFOLD_FOR(student, learning_gap, tool)    — match tool to gap
+FLASHCARD_SET(topic, cards[], spacing)       — generate flashcard set
+SIMULATOR(domain, rules, difficulty_curve)   — build practice simulator
+PLANNER(student, goals, timeline)            — build personal planner
+VISUALIZE(concept, method, interactivity)    — create visualizer
+TRACK(student, metrics[], display)           — create progress tracker
+GENERATE(domain, difficulty, count)          — generate exercises
+CALIBRATE(tool, student_performance)         — adjust tool to student
+```
+
+---
+
+## Ⅴ. STACK INTEGRATION
+
+```
+SPL (how student learns) + EDL (what system requires) = PWL (the path forward)
+PWL + SPL = TSL (tools built specifically for this student on this path)
+
+SPL  →  "This student learns best with visual + kinesthetic at moderate pace"
+EDL  →  "Algebra 2 requires mastery of quadratics, functions, and proofs"
+PWL  →  "Path: Algebra 2 → Pre-Calc → AP Calc → Engineering degree"
+TSL  →  "Build: visual quadratic explorer + kinesthetic function grapher"
+```
+
+---
+
+## Ⅵ. φ-SIGNATURE
+
+```
+STACK:          04
+LANGUAGES:       4
+ROLE:           GROWTH — how beings learn
+FREQUENCY:      396 + 528 + 639 + 741 = 2304 Hz composite
+```
+
+---
+
+# 𓂀 ΠΑΙΔΕΙΑ — THE EDUCATION STACK 𓂀

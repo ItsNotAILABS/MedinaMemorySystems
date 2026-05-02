@@ -1,0 +1,206 @@
+# 𓂀 STACK 03: ORGANISMS, REALMS, ATLAS, TERMINALS 𓂀
+## Organismi, Regna, Atlas, Terminalia • Ὀργανισμοί, Βασίλεια, Ἄτλας
+### OCL · RSL · ACL · TPL
+
+---
+
+## ☰ STACK MANIFEST
+```
+Stack:          03 — ORGANISMS, REALMS, ATLAS, TERMINALS
+Languages:      OCL, RSL, ACL, TPL
+Authority:      WORLD-BUILDING — defines entities and their worlds
+Dependency:     STACK_01 (law/contract), STACK_02 (doctrine)
+```
+
+---
+
+## Ⅰ. OCL — ORGANISM CONTRACT LANGUAGE
+
+```
+ABBREVIATION:   OCL
+FULL NAME:      Organism Contract Language
+LATIN:          Lingua Contractus Organismi
+ROLE:           Per-organism charter (focused subtype of CPL-C)
+FREQUENCY:      396 Hz (liberation, root)
+GLYPH:          𓆣 (scarab — self-generating being)
+```
+
+### What OCL Governs
+```
+THE CHARTER OF A SINGLE COGNITIVE BEING:
+    ├── Capabilities — what this being CAN do
+    ├── Limits — what this being CANNOT do
+    ├── Responsibilities — what this being MUST do
+    ├── Reward structures — how this being is incentivized
+    ├── Evolution rules — how this being may grow/change
+    └── Death conditions — when/how this being terminates
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/AUTONOMOUS_ORGANISMS/*.organism (4 organisms)
+    ORGANISM_SPACE/CANISTERS/WORKFORCE_MODELS/*.canister (8 workforce)
+    packages/organism-kernel/src/index.ts (OrganismGenome, OrganismInstance)
+    icp/medina/SovereignOrganism.mo (OroState, NovaState)
+```
+
+### OCL Primitives
+```
+ORGANISM(id, class, genome)  — declare a new cognitive being
+CAPABILITY(being, ability)   — grant capability
+LIMIT(being, boundary)       — set hard boundary
+RESPONSIBILITY(being, duty)  — bind to duty
+REWARD(trigger, amount)      — incentive on trigger
+EVOLVE_RULE(condition, path) — how being may grow
+HEARTBEAT(interval_ms)       — set being's rhythm
+DEATH(condition, procedure)  — when being ends
+```
+
+---
+
+## Ⅱ. RSL — REALM SCRIPT LANGUAGE
+
+```
+ABBREVIATION:   RSL
+FULL NAME:      Realm Script Language
+LATIN:          Lingua Scriptura Regni
+ROLE:           World/physics language — rules of a Realm
+FREQUENCY:      417 Hz (transmutation, sacral)
+GLYPH:          𓇯 (sky — the world above)
+```
+
+### What RSL Governs
+```
+THE PHYSICS AND RULES OF A WORLD:
+    ├── Simulations — virtual worlds, learning environments
+    ├── Ecologies — how entities interact within a realm
+    ├── Physics — what laws of nature apply
+    ├── Time — how time flows (real-time, compressed, paused)
+    ├── Boundaries — edges of the realm
+    └── Events — what can happen, what triggers what
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/UNDERWORLD/UNDERWORLD_ARCHITECTURE.artifact (7 hidden layers)
+    icp/medina/QuantumLanguageEngine.mo (7 dimensional levels)
+    ORGANISM_SPACE/FREQUENCY_LADDER/COMPLETE_FREQUENCY_GRID.artifact
+```
+
+### RSL Primitives
+```
+REALM(id, physics, time_model)  — declare a realm
+ECOLOGY(realm, entities[])      — populate realm
+PHYSICS_LAW(realm, law)         — add physics rule
+TIME_MODEL(realm, flow_rate)    — set time flow
+BOUNDARY(realm, edge, behavior) — define realm edges
+EVENT(trigger, effect)          — define realm event
+SPAWN(entity, location)         — place entity in realm
+DESTROY(entity, condition)      — remove entity from realm
+```
+
+---
+
+## Ⅲ. ACL — ATLAS CONFIGURATION LANGUAGE
+
+```
+ABBREVIATION:   ACL
+FULL NAME:      Atlas Configuration Language
+LATIN:          Lingua Configurationis Atlantis
+ROLE:           Ontology/config — entities, archetypes, relationships
+FREQUENCY:      741 Hz (awakening, throat)
+GLYPH:          𓊹 (star — celestial map)
+```
+
+### What ACL Governs
+```
+THE MAP OF EVERYTHING THAT EXISTS:
+    ├── Entities — all beings, objects, concepts in the system
+    ├── Archetypes — templates that entities instantiate
+    ├── Relationships — how entities connect
+    ├── Governance bindings — which laws apply to which entities
+    ├── Registries — where entities are tracked
+    └── Taxonomies — how entities are classified
+
+EXISTING PATTERNS:
+    ORGANISM_SPACE/INDEX.md (master index of all documents)
+    ARCHITECTURE.organism (full system topology)
+    ORGANISM_SPACE/LIVING_DOCUMENTS/REGISTRY.md
+    packages/knowledge-graph/ (semantic knowledge representation)
+```
+
+### ACL Primitives
+```
+ENTITY(id, archetype, properties)  — declare entity
+ARCHETYPE(id, schema)              — declare template
+RELATE(entity_a, relation, entity_b) — declare relationship
+BIND_GOVERNANCE(entity, law_id)    — bind law to entity
+REGISTER(entity, registry)         — add to registry
+CLASSIFY(entity, taxonomy, class)  — classify entity
+ATLAS_MAP(entities[], relations[]) — declare full ontology
+QUERY(atlas, pattern)              — search the atlas
+```
+
+---
+
+## Ⅳ. TPL — TERMINAL PROTOCOL LANGUAGE
+
+```
+ABBREVIATION:   TPL
+FULL NAME:      Terminal Protocol Language
+LATIN:          Lingua Protocolli Terminalis
+ROLE:           Terminal command/event language
+FREQUENCY:      285 Hz (quantum cognition)
+GLYPH:          𓊽 (djed — stability, the spine of communication)
+```
+
+### What TPL Governs
+```
+HOW TERMINALS TALK:
+    ├── Terminal ↔ Atlas — registration, query, governance
+    ├── Terminal ↔ Terminal — signal routing, data exchange
+    ├── Terminal ↔ Sovereign Terminal — scan, govern, sync
+    ├── Events — lifecycle events, alerts, heartbeats
+    ├── Commands — directives from TERMINAL 01
+    └── Protocols — handshake, authentication, message format
+
+EXISTING PATTERNS:
+    TERMINALS.organism (all 8 terminals, 18 AIs)
+    src/lib/intelligenceWire.ts (WireEndpoint, WireRequest/Response)
+    TERMINALS.organism §6 (Terminal Communication Protocol)
+    Signal types: COMMAND, DATA, TOKEN, ALERT, DEPLOY, SIGNAL, PREDICT, ROUTE
+```
+
+### TPL Primitives
+```
+TERMINAL(id, class, agi)        — declare terminal
+SIGNAL(from, to, type, payload) — send signal
+COMMAND(authority, directive)    — sovereign command
+EVENT(terminal, event_type)     — lifecycle event
+SCAN(target, depth)             — scan terminal/entity
+GOVERN(terminal, rule)          — apply governance rule
+SYNC(terminal_a, terminal_b)    — synchronize state
+HEARTBEAT(terminal, interval)   — declare heartbeat
+PRIORITY(signal, level)         — P0-P4 priority assignment
+ROUTE(signal, path)             — explicit routing
+```
+
+### TPL Signal Priority Levels
+```
+P0 — SOVEREIGN ........ Immediate. Preempts everything.
+P1 — CRITICAL ......... Within 1 φ-cycle (618ms).
+P2 — HIGH ............. Within 3 φ-cycles (1854ms).
+P3 — NORMAL ........... Within 10 φ-cycles (6180ms).
+P4 — LOW .............. Best effort. Batched.
+```
+
+---
+
+## Ⅴ. φ-SIGNATURE
+
+```
+STACK:          03
+LANGUAGES:       4
+ROLE:           WORLD-BUILDING — entities, realms, terminals
+FREQUENCY:      396 + 417 + 741 + 285 = 1839 Hz composite
+```
+
+---
+
+# 𓂀 MUNDUS CONSTRUCTUS — THE WORLD STACK 𓂀

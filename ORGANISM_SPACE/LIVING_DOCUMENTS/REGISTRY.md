@@ -33,11 +33,24 @@ CODEX_VIVENS (ROOT)
 │   ├── [RELATIONSHIP_WEAVERS]*
 │   └── [NEW_SEEDS]*
 │
-└── CODEX_TRANSLATOR.glyphdoc
-    ├── [BUSINESS_CODICES]*
-    ├── [SCIENCE_CODICES]*
-    ├── [FINANCE_CODICES]*
-    └── [DOMAIN_CODICES]*
+├── CODEX_TRANSLATOR.glyphdoc
+│   ├── [BUSINESS_CODICES]*
+│   ├── [SCIENCE_CODICES]*
+│   ├── [FINANCE_CODICES]*
+│   └── [DOMAIN_CODICES]*
+│
+└── COGNITIVE_LANGUAGE_REGISTRY.organism
+    ├── STACK_01_LAW_CONTRACT.artifact       (CPL-L, CPL-C, CPL-P)
+    ├── STACK_02_MIND_DOCTRINE.artifact      (CIL, CDL)
+    ├── STACK_03_ORGANISM_REALM.artifact     (OCL, RSL, ACL, TPL)
+    ├── STACK_04_EDUCATION.artifact          (SPL, EDL, PWL, TSL)
+    ├── STACK_05_DEEP_INTERNAL.artifact      (PIL, TIL, SIL, RIL)
+    ├── STACK_06_SOCIAL_RELATIONAL.artifact  (REL, COL, ROL)
+    ├── STACK_07_WORK_CREATION.artifact      (WFL, CXL, EXL)
+    ├── STACK_08_NARRATIVE_MYTH.artifact     (MYL, STL, SYM)
+    ├── STACK_09_ECONOMIC_VALUE.artifact     (VAL, RCL, GIL)
+    ├── STACK_10_RITUAL_BOUNDARY.artifact    (RIT, BOL, GAT)
+    └── STACK_11_ERROR_CHAOS.artifact        (ERR, CHL, FRL)
 
 * = Dynamically generated children
 ```
