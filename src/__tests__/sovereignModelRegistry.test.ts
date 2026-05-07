@@ -1,5 +1,9 @@
 let sovereignModel: typeof import('@/lib/sovereign-model');
 let bootSovereignRegistry: typeof import('@/lib/sovereign-registry').bootSovereignRegistry;
+import type { SovereignModel } from '@/lib/sovereign-model';
+
+const REGISTERED_FIELD_MODELS_FOR_BOUNDARY_TEST = 6;
+const MAX_FIELD_POSSIBILITIES = 5;
 
 describe('sovereign-model', () => {
   beforeEach(() => {
@@ -7,7 +11,7 @@ describe('sovereign-model', () => {
     sovereignModel = require('@/lib/sovereign-model');
   });
 
-  const makeModel = (id: string, overrides: Partial<import('@/lib/sovereign-model').SovereignModel> = {}): import('@/lib/sovereign-model').SovereignModel => ({
+  const makeModel = (id: string, overrides: Partial<SovereignModel> = {}): SovereignModel => ({
     id,
     name: id,
     kind: 'intelligence',
@@ -58,7 +62,7 @@ describe('sovereign-model', () => {
   });
 
   it('expands from edge and builds bounded field of possibilities', () => {
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < REGISTERED_FIELD_MODELS_FOR_BOUNDARY_TEST; i++) {
       sovereignModel.registerModel(
         makeModel(`m${i}`, {
           keywords: ['shared'],
@@ -79,8 +83,9 @@ describe('sovereign-model', () => {
     expect(sovereignModel.expandFromEdge('m0')).toEqual(['possibility-0']);
     expect(sovereignModel.expandFromEdge('does-not-exist')).toEqual([]);
 
+    // fieldOfPossibilities explicitly caps output at top 5 scored models.
     const field = sovereignModel.fieldOfPossibilities('shared context');
-    expect(field).toHaveLength(5);
+    expect(field).toHaveLength(MAX_FIELD_POSSIBILITIES);
     expect(field.every((entry) => entry.possibilities.length > 0)).toBe(true);
     expect(field.some((entry) => entry.source === 'zero-score')).toBe(false);
   });

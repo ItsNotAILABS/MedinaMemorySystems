@@ -50,6 +50,26 @@ describe('sovereign-id', () => {
     expect(id).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
   });
 
+  it('normalizes version/variant bits for high-byte inputs', () => {
+    Object.defineProperty(globalThis, 'crypto', {
+      value: {
+        getRandomValues: (arr: Uint8Array) => {
+          arr.fill(255);
+          return arr;
+        },
+      },
+      configurable: true,
+      writable: true,
+    });
+
+    const { sovereignId } = require('@/lib/sovereign-id');
+    const id = sovereignId();
+    const [, , versionSegment, variantSegment] = id.split('-');
+
+    expect(versionSegment[0]).toBe('4');
+    expect(['8', '9', 'a', 'b']).toContain(variantSegment[0]);
+  });
+
   it('falls back to Math.random when crypto.getRandomValues is unavailable', () => {
     Object.defineProperty(globalThis, 'crypto', {
       value: {},
