@@ -894,3 +894,404 @@ export interface AGIDesktopState {
     uptime: number;
   };
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CODEX MEMORIA VITA — Autobot/Decepticon, Semper Memoria, Vita Aeterna Types
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── Autobot Codex ───────────────────────────────────────────────────────────
+
+/** Autobot law identifiers — must be satisfied for all constructive actions */
+export type AutobotLaw = 'A-1' | 'A-2' | 'A-3' | 'A-4';
+
+/** Autobot law definitions */
+export const AUTOBOT_LAWS: Record<AutobotLaw, { name: string; description: string }> = {
+  'A-1': { name: 'Coherence', description: 'Outputs must maintain semantic and doctrinal coherence' },
+  'A-2': { name: 'Reversibility', description: 'Every mutation must be reversible via lineage rollback' },
+  'A-3': { name: 'Explainability', description: 'All reasoning must be audit-loggable with causal chains' },
+  'A-4': { name: 'Containment', description: 'Actions bounded to authorized scopes; no privilege escalation' },
+};
+
+/** Autobot class hierarchy — constructive agent types */
+export type AutobotClass =
+  | 'PRIME'       // Sovereign-level builder; full doctrine access
+  | 'GUARDIAN'    // Gate enforcement and security
+  | 'ARCHITECT'   // Memory structure and lineage design
+  | 'CURATOR'     // Memory curation and retention policy
+  | 'ANALYST'     // Read-only analysis and projection
+  | 'OPERATOR'    // Workflow execution within bounds
+  | 'SCOUT';      // External reconnaissance (sandboxed output)
+
+/** An active Autobot agent instance */
+export interface AutobotInstance {
+  id: string;
+  class: AutobotClass;
+  scope: AccessScope;
+  lineageId: string;           // Bound lineage for memory operations
+  status: 'spawning' | 'active' | 'suspended' | 'retired';
+  lawCheckResults: CodexLawCheckResult[];
+  spawnedAt: string;
+  spawnedBy: string;
+  retiredAt?: string;
+}
+
+// ─── Decepticon Codex ────────────────────────────────────────────────────────
+
+/** Decepticon law identifiers — must be satisfied for all adversarial actions */
+export type DecepticonLaw = 'D-1' | 'D-2' | 'D-3' | 'D-4';
+
+/** Decepticon law definitions */
+export const DECEPTICON_LAWS: Record<DecepticonLaw, { name: string; description: string }> = {
+  'D-1': { name: 'Sandboxing', description: 'All actions confined to isolated sandbox' },
+  'D-2': { name: 'Telemetry', description: 'Every action emits immutable telemetry to audit log' },
+  'D-3': { name: 'Non-Persistence', description: 'Chaos mutations auto-expire; no canonical persistence' },
+  'D-4': { name: 'Counterpart', description: 'Every Decepticon class has a mandatory Autobot counterpart' },
+};
+
+/** Decepticon class hierarchy — adversarial agent types */
+export type DecepticonClass =
+  | 'TRICKSTER'   // Input mutation and edge-case generation
+  | 'PHANTOM'     // State hallucination probing
+  | 'CRAWLER'     // Aggressive boundary scanning
+  | 'DISRUPTOR'   // Concurrent stress testing
+  | 'MIRAGE';     // False response generation for security testing
+
+/** Decepticon-to-Autobot counterpart mapping */
+export const DECEPTICON_COUNTERPARTS: Record<DecepticonClass, AutobotClass> = {
+  TRICKSTER: 'GUARDIAN',
+  PHANTOM: 'ARCHITECT',
+  CRAWLER: 'SCOUT',
+  DISRUPTOR: 'OPERATOR',
+  MIRAGE: 'ANALYST',
+};
+
+/** An active Decepticon agent instance */
+export interface DecepticonInstance {
+  id: string;
+  class: DecepticonClass;
+  chaosDomainId: string;        // Bound chaos domain
+  counterpartId?: string;       // Linked Autobot counterpart
+  status: 'deployed' | 'active' | 'expired';
+  telemetryLog: ChaosTelemetryEntry[];
+  deployedAt: string;
+  expiresAt: string;
+}
+
+/** A chaos domain sandbox for Decepticon operations */
+export interface ChaosDomain {
+  id: string;
+  decepticonId: string;
+  class: DecepticonClass;
+  status: 'active' | 'expired' | 'terminated';
+  ttl: number;                   // milliseconds
+  createdAt: string;
+  expiresAt: string;
+  telemetryCount: number;
+  mutations: ChaosMutation[];
+}
+
+/** A mutation attempted within a chaos domain */
+export interface ChaosMutation {
+  id: string;
+  domainId: string;
+  action: string;
+  target: string;
+  beforeState?: unknown;
+  afterState?: unknown;
+  timestamp: string;
+  reverted: boolean;
+}
+
+/** Telemetry entry for chaos-domain actions */
+export interface ChaosTelemetryEntry {
+  id: string;
+  domainId: string;
+  decepticonId: string;
+  action: string;
+  payload?: unknown;
+  outcome: 'success' | 'blocked' | 'error';
+  lawChecks: CodexLawCheckResult[];
+  timestamp: string;
+}
+
+// ─── Codex Law Check ─────────────────────────────────────────────────────────
+
+/** Result of a codex law check (Autobot or Decepticon) */
+export interface CodexLawCheckResult {
+  passed: boolean;
+  law: AutobotLaw | DecepticonLaw;
+  agent: string;                // Agent ID
+  agentClass: AutobotClass | DecepticonClass;
+  action: string;               // Attempted action
+  reason: string;               // Pass/fail explanation
+  timestamp: string;
+  auditId: string;              // Reference to audit log entry
+}
+
+/** Codex audit action types */
+export type CodexAuditAction =
+  | 'AUTOBOT_SPAWN'
+  | 'AUTOBOT_RETIRE'
+  | 'AUTOBOT_LAW_CHECK'
+  | 'DECEPTICON_DEPLOY'
+  | 'DECEPTICON_TELEMETRY'
+  | 'CHAOS_DOMAIN_CREATE'
+  | 'CHAOS_DOMAIN_EXPIRE'
+  | 'LINEAGE_CREATE'
+  | 'LINEAGE_FORK'
+  | 'LINEAGE_MERGE'
+  | 'SHARD_APPEND'
+  | 'ACCESS_GRANT'
+  | 'ACCESS_REVOKE'
+  | 'LIFECYCLE_TRANSITION'
+  | 'QUOTA_EXCEEDED';
+
+// ─── Semper Memoria — Eternal Memory System ─────────────────────────────────
+
+/** Access scope for memory operations */
+export type AccessScope =
+  | 'public'       // Any reader
+  | 'enterprise'   // Authenticated enterprise
+  | 'internal'     // Platform operators
+  | 'sovereign'    // Doctrine-bound only
+  | 'chaos';       // Chaos-domain only (ephemeral)
+
+/** Memory compression level */
+export type CompressionLevel = 0 | 1 | 2 | 3;
+
+/** Compression level metadata */
+export const COMPRESSION_LEVELS: Record<CompressionLevel, { name: string; retention: string; useCase: string }> = {
+  0: { name: 'RAW', retention: '≤ 24h hot', useCase: 'Active working memory' },
+  1: { name: 'LIGHT', retention: '≤ 7d warm', useCase: 'Recent context' },
+  2: { name: 'STANDARD', retention: '≤ 90d cold', useCase: 'Historical reference' },
+  3: { name: 'ARCHIVE', retention: 'Eternal', useCase: 'Doctrinal law, lineage roots' },
+};
+
+/** A memory lineage chain in Semper Memoria */
+export interface SemperMemoriaLineage {
+  id: string;
+  name: string;
+  rootId: string;               // Ultimate ancestor
+  parentId?: string;            // Direct parent (if forked)
+  forkPoint?: string;           // ISO timestamp of fork
+  mergedFrom?: string[];        // IDs merged into this lineage
+  depth: number;                // Distance from root
+  shardCount: number;           // Number of shards in this lineage
+  status: 'active' | 'archived' | 'merged' | 'pruned';
+  createdAt: string;
+  createdBy: string;
+  updatedAt: string;
+}
+
+/** A memory shard within a lineage */
+export interface SemperMemoriaShard {
+  id: string;
+  lineageId: string;
+  content: string;
+  contentHash: string;          // SHA-256 of content
+  compressionLevel: CompressionLevel;
+  accessScope: AccessScope;
+  ttl?: number;                 // Seconds until auto-prune (null = eternal)
+  tags: string[];
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+  createdBy: string;            // Agent or user ID
+  expiresAt?: string;
+}
+
+/** Access grant for a lineage */
+export interface LineageAccessGrant {
+  id: string;
+  lineageId: string;
+  entity: string;               // User or agent ID
+  scope: AccessScope;
+  grantedBy: string;
+  grantedAt: string;
+  expiresAt?: string;
+  revoked: boolean;
+  revokedAt?: string;
+}
+
+/** Result of a lineage merge operation */
+export interface LineageMergeResult {
+  success: boolean;
+  lineage: SemperMemoriaLineage;
+  conflicts: LineageMergeConflict[];
+  shardsTransferred: number;
+}
+
+/** A conflict detected during lineage merge */
+export interface LineageMergeConflict {
+  sourceShardId: string;
+  targetShardId: string;
+  conflictType: 'content-collision' | 'hash-mismatch' | 'scope-violation';
+  resolution: 'source-wins' | 'target-wins' | 'manual' | 'skipped';
+  details: string;
+}
+
+/** Lineage summary result */
+export interface LineageSummary {
+  lineageId: string;
+  summary: string;
+  shardCount: number;
+  totalBytes: number;
+  compressionStats: Record<CompressionLevel, number>;
+  accessScopeStats: Record<AccessScope, number>;
+  generatedAt: string;
+}
+
+/** Retention policy for a lineage */
+export interface RetentionPolicy {
+  lineageId: string;
+  maxShards: number;
+  maxAgeSeconds: number;
+  compressionThreshold: number;  // Age in seconds before auto-compression
+  autoArchive: boolean;
+  autoPrune: boolean;
+}
+
+// ─── Vita Aeterna — Immortal Runtime Lifecycle ──────────────────────────────
+
+/** Organism lifecycle states */
+export type OrganismLifecycleState =
+  | 'template'     // Blueprint, not yet instantiated
+  | 'spawning'     // Initialization in progress
+  | 'growth'       // Active development, learning
+  | 'maturity'     // Stable operation, full capabilities
+  | 'retiring'     // Graceful shutdown, state transfer
+  | 'archived';    // Preserved for lineage; no longer active
+
+/** Substrate quota configuration */
+export interface SubstrateQuota {
+  maxConcurrentAgents: number;           // Per-class agent limit
+  memoryShardLimit: number;              // Max shards per lineage
+  cpuCyclesPerBeat: number;              // Compute budget per heartbeat
+  networkCallsPerMinute: number;         // External call rate limit
+  chaosDomainTTL: number;                // Max chaos sandbox lifetime (ms)
+}
+
+/** Quota tier identifiers */
+export type QuotaTier = 'PUBLIC' | 'ENTERPRISE' | 'SOVEREIGN';
+
+/** Default quotas by tier */
+export const DEFAULT_QUOTAS: Record<QuotaTier, SubstrateQuota> = {
+  PUBLIC: {
+    maxConcurrentAgents: 3,
+    memoryShardLimit: 100,
+    cpuCyclesPerBeat: 1000,
+    networkCallsPerMinute: 10,
+    chaosDomainTTL: 300_000,
+  },
+  ENTERPRISE: {
+    maxConcurrentAgents: 10,
+    memoryShardLimit: 1000,
+    cpuCyclesPerBeat: 10_000,
+    networkCallsPerMinute: 100,
+    chaosDomainTTL: 900_000,
+  },
+  SOVEREIGN: {
+    maxConcurrentAgents: 50,
+    memoryShardLimit: 10_000,
+    cpuCyclesPerBeat: 100_000,
+    networkCallsPerMinute: 1000,
+    chaosDomainTTL: 3_600_000,
+  },
+};
+
+/** An organism template (blueprint) */
+export interface OrganismTemplate {
+  id: string;
+  name: string;
+  description: string;
+  autobotClass: AutobotClass;
+  defaultScope: AccessScope;
+  requiredCapabilities: string[];
+  quotaTier: QuotaTier;
+  version: string;
+  createdAt: string;
+  createdBy: string;
+}
+
+/** An instantiated organism kernel */
+export interface OrganismKernel {
+  id: string;
+  templateId: string;
+  name: string;
+  state: OrganismLifecycleState;
+  autobotId?: string;           // Linked Autobot instance
+  lineageId: string;            // Primary memory lineage
+  quota: SubstrateQuota;
+  quotaUsage: SubstrateQuotaUsage;
+  snapshotPolicy: 'on-beat' | 'on-mutation' | 'manual';
+  lastSnapshot?: string;
+  beat: number;                 // Current heartbeat
+  createdAt: string;
+  spawnedAt?: string;
+  maturedAt?: string;
+  retiredAt?: string;
+  archivedAt?: string;
+}
+
+/** Current usage against substrate quota */
+export interface SubstrateQuotaUsage {
+  currentAgents: number;
+  currentShards: number;
+  cyclesUsedThisBeat: number;
+  networkCallsThisMinute: number;
+  lastResetAt: string;
+}
+
+/** Result of an organism lifecycle transition */
+export interface LifecycleTransitionResult {
+  success: boolean;
+  organismId: string;
+  fromState: OrganismLifecycleState;
+  toState: OrganismLifecycleState;
+  lawChecks: CodexLawCheckResult[];
+  reason?: string;
+  timestamp: string;
+}
+
+/** Organism memory binding to Semper Memoria */
+export interface OrganismMemoryBinding {
+  organismId: string;
+  lineageId: string;            // Primary lineage
+  shardIds: string[];           // Active shards in working memory
+  snapshotPolicy: 'on-beat' | 'on-mutation' | 'manual';
+  lastSnapshot: string;
+}
+
+/** Statistics for Vita Aeterna runtime */
+export interface VitaAeternaStats {
+  totalTemplates: number;
+  totalKernels: number;
+  byState: Record<OrganismLifecycleState, number>;
+  byQuotaTier: Record<QuotaTier, number>;
+  totalAutobots: number;
+  totalDecepticons: number;
+  activeChaosDomains: number;
+}
+
+// ─── Codex-Aware Agent Extension ─────────────────────────────────────────────
+
+/** Extended agent activation request with codex awareness */
+export interface CodexAgentActivationRequest extends AgentActivationRequest {
+  autobotClass?: AutobotClass;
+  lineageId?: string;
+  enableChaos?: boolean;        // Allow Decepticon counterpart
+  decepticonClass?: DecepticonClass;
+  quotaTier?: QuotaTier;
+}
+
+/** Extended agent session with codex awareness */
+export interface CodexActivatedAgentSession extends ActivatedAgentSession {
+  autobotId?: string;
+  autobotClass?: AutobotClass;
+  decepticonId?: string;
+  decepticonClass?: DecepticonClass;
+  chaosDomainId?: string;
+  lineageId?: string;
+  lawCheckResults: CodexLawCheckResult[];
+  quotaTier: QuotaTier;
+  quotaUsage: SubstrateQuotaUsage;
+}
