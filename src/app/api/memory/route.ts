@@ -229,9 +229,12 @@ export async function POST(req: NextRequest) {
         if (!body.lineageId || !body.content || !body.createdBy) {
           return json({ success: false, error: 'lineageId, content, and createdBy required', timestamp: now() }, 400);
         }
+        if (!body.scope) {
+          return json({ success: false, error: 'scope is required for shard.append', timestamp: now() }, 400);
+        }
         const shard = appendShard(body.lineageId, {
           content: body.content,
-          scope: body.scope ?? 'internal',
+          scope: body.scope,
           compressionLevel: body.compressionLevel,
           tags: body.tags,
           metadata: body.metadata,

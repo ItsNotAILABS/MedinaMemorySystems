@@ -502,8 +502,9 @@ export function deployDecepticon(
 ): { decepticon: DecepticonInstance; chaosDomain: ChaosDomain } {
   const counterpartClass = DECEPTICON_COUNTERPARTS[decepticonClass];
   
-  // Spawn counterpart Autobot first
-  const lineage = createLineage(`chaos-${decepticonClass}-lineage`, deployedBy);
+  // Include unique ID in lineage name to avoid collisions when deploying multiple of same class
+  const uniqueSuffix = sovereignId().slice(0, 8);
+  const lineage = createLineage(`chaos-${decepticonClass}-${uniqueSuffix}-lineage`, deployedBy);
   const counterpart = spawnAutobot(counterpartClass, 'chaos', lineage.id, deployedBy);
 
   // Create chaos domain
@@ -712,10 +713,14 @@ export function updateQuotaUsage(
     quotaUsage: { ...kernel.quotaUsage, ...updates },
   };
 
-  // Check for quota exceeded
-  if (updated.quotaUsage.currentAgents > kernel.quota.maxConcurrentAgents ||
-      updated.quotaUsage.currentShards > kernel.quota.memoryShardLimit) {
-    logAudit('QUOTA_EXCEEDED', `Organism "${kernel.name}" exceeded quota`);
+  // Check for quota exceeded - reject update if quota would be exceeded
+  if (updated.quotaUsage.currentAgents > kernel.quota.maxConcurrentAgents) {
+    logAudit('QUOTA_EXCEEDED', `Organism "${kernel.name}" would exceed agent quota - update rejected`);
+    return null;
+  }
+  if (updated.quotaUsage.currentShards > kernel.quota.memoryShardLimit) {
+    logAudit('QUOTA_EXCEEDED', `Organism "${kernel.name}" would exceed shard quota - update rejected`);
+    return null;
   }
 
   kernels.set(organismId, updated);
