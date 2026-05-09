@@ -2,20 +2,14 @@
 
 This folder contains research papers derived from the MEDINA / NOVA OVO architecture, suitable for submission to arXiv.
 
-## Papers
+## Papers — Set 1 (Technical/Mathematical)
 
 ### 1. Toroidal Memory Navigation
 **File:** `TOROIDAL_MEMORY_NAVIGATION.md`  
 **arXiv Categories:** cs.AI, cs.IR, cs.CL  
 **Status:** Ready for submission
 
-A novel spatial framework for organizing and retrieving knowledge using toroidal coordinate systems (θ, φ, ρ, ring, beat). Demonstrates improved retrieval coherence for cyclic concepts and temporal versioning compared to flat embedding approaches.
-
-**Key contributions:**
-- Five-dimensional memory coordinate system
-- Toroidal distance metrics for semantic similarity
-- Navigation operations (traversal, dive, ring shift, time travel)
-- Experimental results showing 78% cyclic recall vs. 34% for flat embeddings
+A novel spatial framework for organizing and retrieving knowledge using toroidal coordinate systems. Demonstrates improved retrieval coherence for cyclic concepts and temporal versioning compared to flat embedding approaches.
 
 ---
 
@@ -24,13 +18,7 @@ A novel spatial framework for organizing and retrieving knowledge using toroidal
 **arXiv Categories:** cs.MA, cs.DC, cs.AI  
 **Status:** Ready for submission
 
-Golden ratio-derived intervals for coordination in distributed multi-agent systems. The primary heartbeat (875ms = φ⁴ × Schumann period) provides self-similar timing hierarchies that minimize collision rates.
-
-**Key contributions:**
-- Mathematical derivation of φ-harmonic interval family
-- Fibonacci-based integer approximations for practical implementation
-- Beat frequency analysis showing minimal resonance interference
-- Experimental results: 40-60% collision reduction, 15-20% throughput improvement
+Golden ratio-derived intervals for coordination in distributed multi-agent systems. Provides self-similar timing hierarchies that minimize collision rates.
 
 ---
 
@@ -39,13 +27,7 @@ Golden ratio-derived intervals for coordination in distributed multi-agent syste
 **arXiv Categories:** cs.DC, cs.AI, cs.MA  
 **Status:** Ready for submission
 
-A biomimetic validation architecture employing two specialized sovereign agents: Primary Sovereign (proposal/execution) and Doctrine Guardian (review/gate). Inspired by cerebral hemispheres, maker-checker patterns, and adversarial testing.
-
-**Key contributions:**
-- Formal model of dual-sovereign consensus gate
-- Game-theoretic equilibrium analysis
-- Biological analogues (hemispheres, prefrontal-limbic loop, immune system)
-- Experimental results: 65% reduction in contradiction rate, 74% less drift at 10k decisions
+A biomimetic validation architecture employing two specialized sovereign agents: Primary Sovereign (proposal/execution) and Doctrine Guardian (review/gate).
 
 ---
 
@@ -54,13 +36,69 @@ A biomimetic validation architecture employing two specialized sovereign agents:
 **arXiv Categories:** cs.AI, cs.CL, cs.SE  
 **Status:** Ready for submission
 
-A framework for day-night operational mode switching in long-running AI agents. Moon-Sovereign handles nocturnal consolidation; Sun-Sovereign handles diurnal engagement. Formalized handoff protocol ensures reliable phase transitions.
+A framework for day-night operational mode switching in long-running AI agents with formalized handoff protocols.
+
+---
+
+## Papers — Set 2 (Practical/Applied)
+
+### 5. Multi-Species Cognitive Architecture
+**File:** `MULTI_SPECIES_COGNITIVE_ARCHITECTURE.md`  
+**arXiv Categories:** cs.AI, cs.NE  
+**Status:** Ready for submission
+
+Biomimetic intelligence design using eight animal brain specializations (pigeon, cat, dog, bee, octopus, elephant, crow, dolphin). Each species contributes twelve distinct capabilities for a total of 96 specialized processing modes.
 
 **Key contributions:**
-- Dual-phase operational architecture (nocturnal/diurnal)
-- Formalized handoff protocol with compression and topology updates
-- Dream logic vs. conscious logic separation
-- Experimental results: 63% memory bloat reduction, 67% latency improvement, 71% better old memory recall
+- Eight specialized processing modules inspired by animal cognition
+- Task routing based on cognitive requirements
+- Multi-module composition for complex tasks
+- Experimental results on navigation, pattern recognition, collective decision-making, and memory
+
+---
+
+### 6. Swarm-Based Agent Coordination
+**File:** `SWARM_BASED_AGENT_COORDINATION.md`  
+**arXiv Categories:** cs.MA, cs.AI  
+**Status:** Ready for submission
+
+Emergent behavior in multi-agent AI systems through field gradient following rather than central control. A 50-agent builder swarm with ten specialized roles produces artifacts without explicit task assignment.
+
+**Key contributions:**
+- Field gradient coordination model
+- Six gradient directions (ascending, descending, lateral, spiral, convergent, divergent)
+- Ten specialized builder roles
+- Experimental results: 85% communication reduction, improved failure resilience
+
+---
+
+### 7. Three-Gate Governance Systems
+**File:** `THREE_GATE_GOVERNANCE_SYSTEMS.md`  
+**arXiv Categories:** cs.AI, cs.CR, cs.SE  
+**Status:** Ready for submission
+
+Layered authorization architecture with three independent gates: Governance (Gate A), Memory (Gate B), and Sovereign (Gate C). Each gate maintains independent status and can block operations.
+
+**Key contributions:**
+- Three-gate authorization model
+- Independent gate status (green, amber, red)
+- Proposal workflow with voting and enactment
+- Experimental results: prevented 100% of unauthorized policy changes
+
+---
+
+### 8. Workforce Scaling in Distributed AI
+**File:** `WORKFORCE_SCALING_DISTRIBUTED_AI.md`  
+**arXiv Categories:** cs.DC, cs.AI, cs.SE  
+**Status:** Ready for submission
+
+Dynamic agent allocation for enterprise AI operations with eight specialized agent types. Supports multi-tenant isolation with configurable deployment models.
+
+**Key contributions:**
+- Eight workforce agent types with differentiated resource allocation
+- Per-client spawning with multi-tenant isolation
+- Dynamic scaling based on workload
+- Experimental results: 110% improvement in resource utilization
 
 ---
 
@@ -84,6 +122,10 @@ A framework for day-night operational mode switching in long-running AI agents. 
 | Phi-Harmonic | cs.MA | cs.DC, cs.AI |
 | Dual-Sovereign | cs.DC | cs.AI, cs.MA |
 | Circadian | cs.AI | cs.CL, cs.SE |
+| Multi-Species Cognitive | cs.AI | cs.NE |
+| Swarm-Based Coordination | cs.MA | cs.AI |
+| Three-Gate Governance | cs.AI | cs.CR, cs.SE |
+| Workforce Scaling | cs.DC | cs.AI, cs.SE |
 
 ### License
 
