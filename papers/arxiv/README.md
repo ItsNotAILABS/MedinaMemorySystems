@@ -102,6 +102,68 @@ Dynamic agent allocation for enterprise AI operations with eight specialized age
 
 ---
 
+## Papers — Set 3 (Practical/Applied)
+
+### 9. City-State AI Governance
+**File:** `CITY_STATE_AI_GOVERNANCE.md`  
+**arXiv Categories:** cs.AI, cs.MA, cs.SE  
+**Status:** Ready for submission
+
+Organizing AI components as citizens, districts, and infrastructure using city-state metaphor. Includes Senate (voting), Treasury (resources), Courts (disputes), and Census (identity).
+
+**Key contributions:**
+- Six specialized districts (Memory, Intelligence, Contracts, Security, Manufacturing, Prediction)
+- Democratic governance processes for autonomous decisions
+- Infrastructure metaphors (Spinal Road, Aqueducts, City Walls, Gates)
+- Experimental results: 40% faster developer onboarding, 35% fewer coordination errors
+
+---
+
+### 10. Tiered Sandbox Access Control
+**File:** `TIERED_SANDBOX_ACCESS_CONTROL.md`  
+**arXiv Categories:** cs.CR, cs.AI, cs.SE  
+**Status:** Ready for submission
+
+Immune system architecture with five access tiers and five gate levels. Includes "mirage responses" that return structure without content for unauthorized access.
+
+**Key contributions:**
+- Five access tiers (Public, Enterprise, Partner, Internal, Sovereign)
+- Five gate levels (Open, Partial, Obscured, Sealed, Protected)
+- Mirage response system for information leakage prevention
+- Experimental results: zero data breaches across 100,000 attack attempts
+
+---
+
+### 11. Voice-Based AI Interaction
+**File:** `VOICE_BASED_AI_INTERACTION.md`  
+**arXiv Categories:** cs.HC, cs.AI, cs.CL  
+**Status:** Ready for submission
+
+Two-way conversational interfaces with personality-weighted voice characteristics (warmth, authority, resonance, cadence). Supports multiple AI personas with distinct voice profiles.
+
+**Key contributions:**
+- Four personality dimensions mapped to voice parameters
+- Multi-agent conversation support with voice differentiation
+- Waveform visualization and analysis
+- Experimental results: 34% higher engagement, 28% higher trust ratings
+
+---
+
+### 12. Enterprise Connector Architecture
+**File:** `ENTERPRISE_CONNECTOR_ARCHITECTURE.md`  
+**arXiv Categories:** cs.SE, cs.DB, cs.AI  
+**Status:** Ready for submission
+
+Three-mode onboarding (CONNECT, INTERNALIZE, HYBRID) for enterprise data integration. Supports eight connector types with flexible data governance.
+
+**Key contributions:**
+- Three onboarding modes for different governance requirements
+- Eight connector types (CRM, ERP, Email, Calendar, Storage, Communication, Analytics, Custom)
+- Progressive adoption path from CONNECT to HYBRID to INTERNALIZE
+- Experimental results: 45% faster integration, 60% reduction in governance concerns
+
+---
+
 ## Submission Guidelines
 
 ### Preparing for arXiv
@@ -126,6 +188,10 @@ Dynamic agent allocation for enterprise AI operations with eight specialized age
 | Swarm-Based Coordination | cs.MA | cs.AI |
 | Three-Gate Governance | cs.AI | cs.CR, cs.SE |
 | Workforce Scaling | cs.DC | cs.AI, cs.SE |
+| City-State Governance | cs.AI | cs.MA, cs.SE |
+| Tiered Sandbox Access | cs.CR | cs.AI, cs.SE |
+| Voice-Based Interaction | cs.HC | cs.AI, cs.CL |
+| Enterprise Connector | cs.SE | cs.DB, cs.AI |
 
 ### License
 
