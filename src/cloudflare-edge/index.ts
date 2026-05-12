@@ -157,15 +157,102 @@ export {
 } from './CloudflareEdgeOrchestrator';
 
 // ═══════════════════════════════════════════════════════════════════════════
+// EDGE ENTANGLEMENT ENGINE (CF-ENT-001)
+// Quantum-inspired state synchronization
+// ═══════════════════════════════════════════════════════════════════════════
+export {
+  EdgeEntanglementEngine,
+  edgeEntanglementEngine,
+  // Types
+  type EntanglementState,
+  type EntanglementChannel,
+  type StateUpdate,
+  type SyncProof,
+  type EntanglementMetrics,
+  type NodeState,
+  // Constants
+  ENGINE_ID as ENTANGLEMENT_ENGINE_ID,
+  ENTANGLEMENT_VERSION,
+  BELL_STATES,
+  // Type aliases
+  type BellState,
+  type EntanglementType,
+} from './EdgeEntanglementEngine';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CLOUDFLARE BLOCKCHAIN BRIDGE (CF-CHAIN-001)
+// Unified edge + blockchain integration
+// ═══════════════════════════════════════════════════════════════════════════
+export {
+  CloudflareBlockchainBridge,
+  cloudflareBlockchainBridge,
+  // Types
+  type BridgeConfig,
+  type CrossChainMemory,
+  type MemoryMetadata,
+  type ChainAnchorProof,
+  type BridgeTransaction,
+  type SyncBatch,
+  type BridgeStatistics,
+  // Constants
+  BRIDGE_ID,
+  BRIDGE_VERSION,
+  SUPPORTED_CHAINS,
+  // Type aliases
+  type ChainId,
+} from './CloudflareBlockchainBridge';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// UNIFIED MEMORY SYSTEM (MEM-001)
+// Complete sovereign memory infrastructure
+// ═══════════════════════════════════════════════════════════════════════════
+export {
+  UnifiedMemorySystem,
+  unifiedMemorySystem,
+  // Types
+  type UnifiedMemoryConfig,
+  type UnifiedMemory,
+  type MemoryQuery,
+  type MemorySearchResult,
+  type PromotionResult,
+  type DemotionResult,
+  type MemorySystemStatistics,
+  // Constants
+  SYSTEM_ID as MEMORY_SYSTEM_ID,
+  SYSTEM_VERSION as MEMORY_SYSTEM_VERSION,
+  MEMORY_TIERS,
+  // Type aliases
+  type MemoryTier,
+} from './UnifiedMemorySystem';
+
+// ═══════════════════════════════════════════════════════════════════════════
 // DEFAULT EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { CloudflareEdgeOrchestrator, cloudflareEdgeOrchestrator } from './CloudflareEdgeOrchestrator';
+import { UnifiedMemorySystem, unifiedMemorySystem } from './UnifiedMemorySystem';
+import { CloudflareBlockchainBridge, cloudflareBlockchainBridge } from './CloudflareBlockchainBridge';
+import { EdgeEntanglementEngine, edgeEntanglementEngine } from './EdgeEntanglementEngine';
 
 /**
  * Main entry point - the unified orchestrator
  */
 export default cloudflareEdgeOrchestrator;
+
+/**
+ * Unified Memory System - the complete memory infrastructure
+ */
+export { unifiedMemorySystem as memorySystem };
+
+/**
+ * Blockchain Bridge - cross-chain memory anchoring
+ */
+export { cloudflareBlockchainBridge as blockchainBridge };
+
+/**
+ * Entanglement Engine - quantum-inspired state sync
+ */
+export { edgeEntanglementEngine as entanglementEngine };
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CHARTER SUMMARY
@@ -205,10 +292,33 @@ export default cloudflareEdgeOrchestrator;
  * │   └── L4: D1 (SQLite)
  * │   └── L5: Vectorize (Semantic Search)
  * │
- * └── CF-ORCH-001 (Orchestrator Charter)
- *     └── Unified Coordination
- *     └── φ-Harmonic Mode
- *     └── OMNIS Integration
+ * ├── CF-ORCH-001 (Orchestrator Charter)
+ * │   └── Unified Coordination
+ * │   └── φ-Harmonic Mode
+ * │   └── OMNIS Integration
+ * │
+ * ├── CF-ENT-001 (Entanglement Charter) ← NEW
+ * │   └── Quantum-Inspired State Sync
+ * │   └── Bell State Correlation
+ * │   └── Cross-Edge Entanglement
+ * │
+ * ├── CF-CHAIN-001 (Blockchain Bridge Charter) ← NEW
+ * │   └── Multi-Chain Anchoring
+ * │   └── Edge-to-Chain Bridge
+ * │   └── Cross-Chain Memory Sync
+ * │
+ * └── MEM-001 (Memory System Charter) ← NEW
+ *     └── 4-Tier Memory Hierarchy
+ *     └── Auto-Promotion/Demotion
+ *     └── Blockchain Persistence
+ *     └── φ-Harmonic Resonance
  * 
- * TOTAL: 6 Main Charters + 1 Sub-Charter
+ * TOTAL: 9 Main Charters + 1 Sub-Charter
+ * 
+ * STATISTICS:
+ * - Total Chains: 12 (via Blockchain Bridge)
+ * - Total Engines: 60+ (5 per chain)
+ * - Edge Locations: 330+ (via Cloudflare)
+ * - Memory Tiers: 4 (Immediate → Permanent)
+ * - φ-Coherence: 0.854
  */

@@ -770,6 +770,31 @@ export class CloudflareStorageBridge {
     this.vectorIndex.clear();
     this.initializeD1Tables();
   }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DURABLE OBJECT STORAGE (For UnifiedMemorySystem compatibility)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /**
+   * Store in durable object (uses immediate memory as simulation)
+   */
+  async durableStore(key: string, value: any): Promise<void> {
+    this.setImmediate(`durable:${key}`, value);
+  }
+
+  /**
+   * Get from durable object
+   */
+  async durableGet(key: string): Promise<any | null> {
+    return this.getImmediate(`durable:${key}`) || null;
+  }
+
+  /**
+   * Delete from durable object
+   */
+  async durableDelete(key: string): Promise<boolean> {
+    return this.deleteImmediate(`durable:${key}`);
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
