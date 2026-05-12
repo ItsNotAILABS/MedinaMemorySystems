@@ -226,6 +226,31 @@ export {
 } from './UnifiedMemorySystem';
 
 // ═══════════════════════════════════════════════════════════════════════════
+// MASTER ORCHESTRATOR (MASTER-001)
+// Unified production system controller
+// ═══════════════════════════════════════════════════════════════════════════
+export {
+  MasterOrchestrator,
+  masterOrchestrator,
+  // Types
+  type MasterConfig,
+  type SystemStatus,
+  type HealthStatus,
+  type ComponentHealth,
+  type SystemsStatus,
+  type MasterStatistics,
+  type DeploymentManifest,
+  // Constants
+  MASTER_ID,
+  MASTER_VERSION,
+  BUILD_NUMBER,
+  ENVIRONMENTS,
+  DEFAULT_CONFIG,
+  // Type aliases
+  type Environment,
+} from './MasterOrchestrator';
+
+// ═══════════════════════════════════════════════════════════════════════════
 // DEFAULT EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -233,11 +258,17 @@ import { CloudflareEdgeOrchestrator, cloudflareEdgeOrchestrator } from './Cloudf
 import { UnifiedMemorySystem, unifiedMemorySystem } from './UnifiedMemorySystem';
 import { CloudflareBlockchainBridge, cloudflareBlockchainBridge } from './CloudflareBlockchainBridge';
 import { EdgeEntanglementEngine, edgeEntanglementEngine } from './EdgeEntanglementEngine';
+import { MasterOrchestrator, masterOrchestrator } from './MasterOrchestrator';
 
 /**
- * Main entry point - the unified orchestrator
+ * Main entry point - the master orchestrator (production)
  */
-export default cloudflareEdgeOrchestrator;
+export default masterOrchestrator;
+
+/**
+ * Edge Orchestrator - Cloudflare edge coordination
+ */
+export { cloudflareEdgeOrchestrator as edgeOrchestrator };
 
 /**
  * Unified Memory System - the complete memory infrastructure
@@ -321,4 +352,26 @@ export { edgeEntanglementEngine as entanglementEngine };
  * - Edge Locations: 330+ (via Cloudflare)
  * - Memory Tiers: 4 (Immediate → Permanent)
  * - φ-Coherence: 0.854
+ * - Build Number: 50
+ * 
+ * MASTER ORCHESTRATOR (MASTER-001)
+ * ================================
+ * The Master Orchestrator is the unified production system controller.
+ * It wires together all sub-systems:
+ * 
+ * MasterOrchestrator
+ * ├── EdgeOrchestrator (CF-ORCH-001)
+ * ├── MemorySystem (MEM-001)
+ * ├── BlockchainBridge (CF-CHAIN-001)
+ * ├── EntanglementEngine (CF-ENT-001)
+ * ├── AIGateway (CF-AI-001)
+ * ├── StorageBridge (CF-STR-001)
+ * └── EthereumGateway (CF-ETH-001)
+ * 
+ * DEPLOYMENT SURFACES
+ * ===================
+ * - Worker Entry Point: worker.ts
+ * - Configuration: wrangler.toml
+ * - CI/CD: .github/workflows/deploy-production.yml
+ * - Guide: PRODUCTION_DEPLOYMENT_GUIDE.md
  */
