@@ -91,6 +91,57 @@ export const ZERO_COST_ENGINE_REGISTRY = {
     capabilities: ['pure_functional', 'immutable_state', 'monadic', 'type_safe'],
     costReductionFactor: 0.89,
     description: 'Pure functional approach with immutable state'
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // Mathematical/Proof Language Engines (Verified Cost Guarantees)
+  // ═══════════════════════════════════════════════════════════════
+  'ZCE-HASKELL-001': {
+    name: 'Lazy Functional Engine',
+    language: 'Haskell',
+    path: './haskell/ZeroCostEngine.hs',
+    capabilities: ['lazy_eval', 'unboxed_types', 'fusion', 'stream_processing'],
+    costReductionFactor: 0.85,
+    description: 'Pure functional with unboxed types and stream fusion'
+  },
+  'ZCE-COQ-001': {
+    name: 'Verified Proof Engine',
+    language: 'Coq',
+    path: './coq/ZeroCostProofs.v',
+    capabilities: ['formal_proofs', 'extraction', 'certified_code', 'dependent_types'],
+    costReductionFactor: 0.93,
+    description: 'Formally verified zero-allocation with proof certificates'
+  },
+  'ZCE-LEAN4-001': {
+    name: 'Theorem Prover Engine',
+    language: 'Lean4',
+    path: './lean4/ZeroCostEngine.lean',
+    capabilities: ['dependent_types', 'tactics', 'verified_extraction', 'metaprogramming'],
+    costReductionFactor: 0.94,
+    description: 'Dependently-typed verified cost elimination'
+  },
+  'ZCE-AGDA-001': {
+    name: 'Dependent Type Engine',
+    language: 'Agda',
+    path: './agda/ZeroCostEngine.agda',
+    capabilities: ['dependent_types', 'totality_checking', 'proof_relevance', 'universe_polymorphism'],
+    costReductionFactor: 0.92,
+    description: 'Dependently-typed proofs with totality guarantees'
+  },
+  'ZCE-IDRIS2-001': {
+    name: 'Linear Type Engine',
+    language: 'Idris2',
+    path: './idris2/ZeroCostEngine.idr',
+    capabilities: ['linear_types', 'quantities', 'runtime_erasure', 'totality'],
+    costReductionFactor: 0.91,
+    description: 'Linear types for guaranteed resource usage'
+  },
+  'ZCE-FSHARP-001': {
+    name: 'Functional-First Engine',
+    language: 'F#',
+    path: './fsharp/ZeroCostEngine.fs',
+    capabilities: ['structs', 'spans', 'active_patterns', 'computation_expressions'],
+    costReductionFactor: 0.89,
+    description: 'Functional-first with struct types and Span<T>'
   }
 } as const;
 

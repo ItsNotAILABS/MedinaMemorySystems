@@ -10,7 +10,7 @@
 
 ## Overview
 
-The Zero-Cost Engines are a collection of high-performance modules implemented in 10 different programming languages, designed to eliminate operational costs through:
+The Zero-Cost Engines are a collection of high-performance modules implemented in **16 different programming languages** (including 6 mathematical/proof languages), designed to eliminate operational costs through:
 
 - **Zero-allocation patterns** - Avoid heap allocations entirely
 - **φ-harmonic optimization** - Use golden ratio for natural efficiency
@@ -32,6 +32,13 @@ The Zero-Cost Engines are a collection of high-performance modules implemented i
 | ZCE-V-001 | V | Zero-Alloc Engine | 93% |
 | ZCE-ELIXIR-001 | Elixir | Distributed Cost Engine | 88% |
 | ZCE-OCAML-001 | OCaml | Functional Cost Engine | 89% |
+| **Mathematical/Proof Languages** |
+| ZCE-HASKELL-001 | Haskell | Lazy Functional Engine | 85% |
+| ZCE-COQ-001 | Coq | Verified Proof Engine | 93% |
+| ZCE-LEAN4-001 | Lean4 | Theorem Prover Engine | 94% |
+| ZCE-AGDA-001 | Agda | Dependent Type Engine | 92% |
+| ZCE-IDRIS2-001 | Idris2 | Linear Type Engine | 91% |
+| ZCE-FSHARP-001 | F# | Functional-First Engine | 89% |
 | ZCE-ORCH-001 | TypeScript | Orchestrator | - |
 
 ## Core Concepts

@@ -332,20 +332,21 @@ describe('Zero-Cost Engines', () => {
     it('should calculate aggregate cost potential', () => {
       const potential = orchestrator.getAggregateCostPotential();
       
-      expect(potential.totalEngines).toBe(10);
+      expect(potential.totalEngines).toBe(16);  // 10 original + 6 mathematical
       expect(potential.combinedReductionFactor).toBeGreaterThan(0.5);
       expect(potential.estimatedMonthlySavings).toBeGreaterThan(0);
     });
   });
 
   describe('Engine Registry', () => {
-    it('should have 10 engines registered', () => {
-      expect(Object.keys(ZERO_COST_ENGINE_REGISTRY).length).toBe(10);
+    it('should have 16 engines registered', () => {
+      expect(Object.keys(ZERO_COST_ENGINE_REGISTRY).length).toBe(16);
     });
 
     it('should have valid engine configurations', () => {
       Object.entries(ZERO_COST_ENGINE_REGISTRY).forEach(([id, engine]) => {
-        expect(id).toMatch(/^ZCE-[A-Z]+-001$/);
+        // Allow alphanumeric characters in engine ID (e.g., LEAN4, FSHARP)
+        expect(id).toMatch(/^ZCE-[A-Z0-9]+-001$/);
         expect(engine.name).toBeTruthy();
         expect(engine.language).toBeTruthy();
         expect(engine.path).toBeTruthy();
@@ -360,7 +361,9 @@ describe('Zero-Cost Engines', () => {
       const languages = Object.values(ZERO_COST_ENGINE_REGISTRY).map(e => e.language);
       const uniqueLanguages = new Set(languages);
       
-      expect(uniqueLanguages.size).toBe(10);
+      // 16 unique languages: 10 original + 6 mathematical/proof languages
+      expect(uniqueLanguages.size).toBe(16);
+      // Original 10
       expect(uniqueLanguages.has('Rust')).toBe(true);
       expect(uniqueLanguages.has('Go')).toBe(true);
       expect(uniqueLanguages.has('Python')).toBe(true);
@@ -371,6 +374,13 @@ describe('Zero-Cost Engines', () => {
       expect(uniqueLanguages.has('V')).toBe(true);
       expect(uniqueLanguages.has('Elixir')).toBe(true);
       expect(uniqueLanguages.has('OCaml')).toBe(true);
+      // Mathematical/Proof Languages
+      expect(uniqueLanguages.has('Haskell')).toBe(true);
+      expect(uniqueLanguages.has('Coq')).toBe(true);
+      expect(uniqueLanguages.has('Lean4')).toBe(true);
+      expect(uniqueLanguages.has('Agda')).toBe(true);
+      expect(uniqueLanguages.has('Idris2')).toBe(true);
+      expect(uniqueLanguages.has('F#')).toBe(true);
     });
 
     it('should have combined cost reduction > 95%', () => {
