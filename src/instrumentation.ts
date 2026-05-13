@@ -23,7 +23,6 @@
 
 export async function register() {
   // Only boot on the server side (not in Edge runtime or client)
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (typeof globalThis !== 'undefined' && typeof (globalThis as Record<string, unknown>).process !== 'undefined') {
     const proc = (globalThis as Record<string, unknown>).process as { env?: Record<string, string | undefined> };
     if (proc.env?.NEXT_RUNTIME === 'nodejs') {

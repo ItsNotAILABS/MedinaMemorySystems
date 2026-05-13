@@ -60,7 +60,7 @@ export default function JarvisPanel() {
   const [messages, setMessages] = useState<JarvisChatMessage[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [sending, setSending] = useState(false);
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatEndRef = useRef<HTMLDivElement | null>(null);
 
   // Commands
   const [commands, setCommands] = useState<JarvisCommand[]>([]);
@@ -321,7 +321,7 @@ function ChatTab({
             </div>
           </div>
         ))}
-        <div ref={chatEndRef} />
+        <div ref={chatEndRef as React.RefObject<HTMLDivElement>} />
       </div>
 
       <div

@@ -8,7 +8,6 @@
 // Each describe block re-imports via jest.isolateModules so state is fresh.
 
 describe('circadianSovereignty', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let cs: typeof import('../lib/circadianSovereignty');
 
   beforeAll(async () => {
@@ -304,7 +303,6 @@ describe('circadianSovereignty', () => {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 describe('showEmissionEngine', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let se: typeof import('../lib/showEmissionEngine');
 
   beforeAll(async () => {
