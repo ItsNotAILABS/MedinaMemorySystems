@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol governs production incident response through detection, blast-radius containment, and service restoration with complete incident evidence trails.
 
 ## 2. Interfaces
 

@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines runtime telemetry requirements for AI organisms, including metric capture, cross-trace correlation, and policy-driven alert emission.
 
 ## 2. Interfaces
 

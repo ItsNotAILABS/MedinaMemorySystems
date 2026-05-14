@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines staged deployment orchestration for AI systems, with guard enforcement at each stage and controlled production activation.
 
 ## 2. Interfaces
 

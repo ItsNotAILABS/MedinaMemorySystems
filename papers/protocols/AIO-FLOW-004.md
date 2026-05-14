@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines verification workflows that cross-check outputs against acceptance criteria, evaluate risk posture, and produce attestation artifacts.
 
 ## 2. Interfaces
 

@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines deterministic execution semantics for committed plans, including step orchestration, run-state progression, and final run closure evidence.
 
 ## 2. Interfaces
 

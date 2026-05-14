@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines permissioned AI communication with fine-grained authorization checks, scoped delegation, and revocable communication authority.
 
 ## 2. Interfaces
 

@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol governs escalation workflows for uncertainty, failures, and policy conflicts by formalizing case creation, reviewer assignment, and authoritative resolution.
 
 ## 2. Interfaces
 

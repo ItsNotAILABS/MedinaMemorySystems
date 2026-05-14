@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines reliability governance with explicit SLO contracts, compliance monitoring, and remediation triggers when objectives are violated.
 
 ## 2. Interfaces
 

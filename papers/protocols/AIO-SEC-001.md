@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol governs boundary-safe handling of communications and artifacts through violation scanning, redaction paths, and secure-handling attestations.
 
 ## 2. Interfaces
 

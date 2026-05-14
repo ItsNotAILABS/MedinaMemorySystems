@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines the intake workflow for incoming AI tasks, including request acceptance, complexity classification, and deterministic routing into execution graphs.
 
 ## 2. Interfaces
 

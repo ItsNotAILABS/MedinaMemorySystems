@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines mandatory production readiness gates, requiring checklist compliance, risk thresholds, and explicit governance approval before release.
 
 ## 2. Interfaces
 

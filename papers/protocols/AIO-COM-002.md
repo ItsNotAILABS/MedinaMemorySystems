@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines the trust handshake lifecycle for AI sessions, including mutual attestation exchange, session authorization, and controlled closure.
 
 ## 2. Interfaces
 

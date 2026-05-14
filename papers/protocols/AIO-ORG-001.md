@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol governs AI organism registration, lifecycle state transitions (sandbox, staging, production, retirement), and controlled decommissioning with complete governance traceability.
 
 ## 2. Interfaces
 

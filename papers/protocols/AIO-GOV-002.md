@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines immutable audit and trace retention behavior for AI workflows, including lineage queries and policy-based retention/retirement.
 
 ## 2. Interfaces
 

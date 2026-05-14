@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines reliable consensus broadcast semantics for multi-organism communication, including acknowledgements, quorum completion, and final outcome recording.
 
 ## 2. Interfaces
 

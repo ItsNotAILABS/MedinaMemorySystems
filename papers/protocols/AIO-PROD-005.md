@@ -11,7 +11,7 @@
 
 ## 1. Definition
 
-This protocol defines mandatory behavior for AI organisms operating in production, with explicit workflow controls, communication guarantees, and sovereign traceability.
+This protocol defines rollback and recovery controls, ensuring every rollback is planned, safely executed, and followed by integrity verification.
 
 ## 2. Interfaces
 
