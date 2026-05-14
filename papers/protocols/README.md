@@ -1,6 +1,6 @@
 # Sovereign Protocol Canon — Protocols Directory
 
-This directory contains the **28 chapters** of the Sovereign Protocol Canon, organized as:
+This directory contains the **48 chapters** of the Sovereign Protocol Canon, organized as:
 
 ## Part I: The Five Charters (Chapters 1-5)
 
@@ -42,6 +42,31 @@ This directory contains the **28 chapters** of the Sovereign Protocol Canon, org
 | 19 | CPE-001 | `CPE-001.md` | Conceptual Persistence Engines |
 | 20 | CIV-ORG-001 | `CIV-ORG-001.md` | Civilization-Scale Organism |
 
+## Part II-B: AI Organism Production + Communication Expansion (Chapters 24-43)
+
+| Chapter | Protocol ID | File | Role |
+|---------|-------------|------|------|
+| 24 | AIO-ORG-001 | `AIO-ORG-001.md` | AI Organism Identity and Lifecycle Protocol |
+| 25 | AIO-ORG-002 | `AIO-ORG-002.md` | AI Organism Capability Registry Protocol |
+| 26 | AIO-COM-001 | `AIO-COM-001.md` | AI Communication Envelope Protocol |
+| 27 | AIO-COM-002 | `AIO-COM-002.md` | AI Session Handshake Protocol |
+| 28 | AIO-COM-003 | `AIO-COM-003.md` | AI Consensus Broadcast Protocol |
+| 29 | AIO-FLOW-001 | `AIO-FLOW-001.md` | AI Task Intake Workflow Protocol |
+| 30 | AIO-FLOW-002 | `AIO-FLOW-002.md` | AI Planning Workflow Protocol |
+| 31 | AIO-FLOW-003 | `AIO-FLOW-003.md` | AI Execution Workflow Protocol |
+| 32 | AIO-FLOW-004 | `AIO-FLOW-004.md` | AI Verification Workflow Protocol |
+| 33 | AIO-FLOW-005 | `AIO-FLOW-005.md` | AI Escalation Workflow Protocol |
+| 34 | AIO-PROD-001 | `AIO-PROD-001.md` | AI Production Readiness Gate Protocol |
+| 35 | AIO-PROD-002 | `AIO-PROD-002.md` | AI Deployment Orchestration Protocol |
+| 36 | AIO-PROD-003 | `AIO-PROD-003.md` | AI Runtime Telemetry Protocol |
+| 37 | AIO-PROD-004 | `AIO-PROD-004.md` | AI Incident Response Protocol |
+| 38 | AIO-PROD-005 | `AIO-PROD-005.md` | AI Rollback and Recovery Protocol |
+| 39 | AIO-GOV-001 | `AIO-GOV-001.md` | AI Permissioned Communication Protocol |
+| 40 | AIO-GOV-002 | `AIO-GOV-002.md` | AI Audit and Trace Retention Protocol |
+| 41 | AIO-SEC-001 | `AIO-SEC-001.md` | AI Boundary and Secret Handling Protocol |
+| 42 | AIO-INT-001 | `AIO-INT-001.md` | AI Cross-Protocol Compatibility Protocol |
+| 43 | AIO-OPS-001 | `AIO-OPS-001.md` | AI Reliability and SLO Protocol |
+
 ## Part III: Integration (Chapters 21-23)
 
 | Chapter | File | Description |
@@ -58,8 +83,14 @@ Start with CIV-CORE-001 (Chapter 9), then CIV-ORG-001 (Chapter 20).
 ### For Developers
 Start with REV-001 (Chapter 6) and CBI-001 (Chapter 7).
 
-### For Economists
-Start with ECO-001 (Chapter 10) and ECO-001-EXT (Chapter 17).
+### For Production Operators
+Start with AIO-PROD-001 (Chapter 34), then AIO-PROD-004 (Chapter 37).
+
+### For Workflow Designers
+Start with AIO-FLOW-001 (Chapter 29), then AIO-FLOW-003 (Chapter 31).
+
+### For AI Communication Designers
+Start with AIO-COM-001 (Chapter 26), then AIO-GOV-001 (Chapter 39).
 
 ### For Governance Designers
 Start with the Charters (Chapters 1-5), then FIN-001 (Chapter 16).
@@ -68,7 +99,7 @@ Start with the Charters (Chapters 1-5), then FIN-001 (Chapter 16).
 Start with CHARTER_SVA (Chapter 5), then the SVA Protocols (Chapters 5.1-5.5).
 
 ### For Integrators
-Start with INTEGRATION_DEPENDENCIES (Chapter 21).
+Start with INTEGRATION_DEPENDENCIES (Chapter 21) and AIO-INT-001 (Chapter 42).
 
 ---
 
