@@ -142,6 +142,90 @@ export const ZERO_COST_ENGINE_REGISTRY = {
     capabilities: ['structs', 'spans', 'active_patterns', 'computation_expressions'],
     costReductionFactor: 0.89,
     description: 'Functional-first with struct types and Span<T>'
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // Julia Mathematical Engines (Advanced Mathematics)
+  // ═══════════════════════════════════════════════════════════════
+  'ZCE-JULIA-001': {
+    name: 'Julia Zero-Cost Manifold Engine',
+    language: 'Julia',
+    path: './julia/ZeroCostManifold.jl',
+    capabilities: ['topological_optimization', 'differential_geometry', 'quantum_superposition', 'category_theory', 'phi_harmonic'],
+    costReductionFactor: 0.96,
+    description: 'Advanced mathematical engine with topological cost space, differential geometry, and quantum-inspired optimization'
+  },
+  'ZCE-JULIA-002': {
+    name: 'Julia Hopf Algebra Engine',
+    language: 'Julia',
+    path: './julia/ZeroCostHopfAlgebra.jl',
+    capabilities: ['hopf_algebra', 'coproduct_decomposition', 'antipode_optimization', 'quantum_groups', 'braiding'],
+    costReductionFactor: 0.94,
+    description: 'Hopf algebraic cost elimination via coproduct decomposition and antipode-based optimization'
+  },
+  'ZCE-JULIA-003': {
+    name: 'Julia String Geometry Engine',
+    language: 'Julia',
+    path: './julia/ZeroCostStringGeometry.jl',
+    capabilities: ['calabi_yau', 'mirror_symmetry', 'moduli_optimization', 'kahler_geometry', 'string_corrections'],
+    costReductionFactor: 0.95,
+    description: 'String-theoretic cost elimination using Calabi-Yau compactification and mirror symmetry'
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // Modern JVM Languages (Enterprise-Grade)
+  // ═══════════════════════════════════════════════════════════════
+  'ZCE-SCALA-001': {
+    name: 'Scala Functional Engine',
+    language: 'Scala',
+    path: './scala/ZeroCostEngine.scala',
+    capabilities: ['immutable_structures', 'functional_composition', 'type_safe_caching', 'effect_tracking', 'concurrent_safe'],
+    costReductionFactor: 0.91,
+    description: 'Functional-first cost elimination with immutable data structures and pure functions'
+  },
+  'ZCE-KOTLIN-001': {
+    name: 'Kotlin Coroutines Engine',
+    language: 'Kotlin',
+    path: './kotlin/ZeroCostEngine.kt',
+    capabilities: ['coroutines', 'null_safety', 'inline_classes', 'concurrent_cache', 'channel_batching'],
+    costReductionFactor: 0.92,
+    description: 'Modern JVM engine with coroutines, null-safety, and zero-overhead inline classes'
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // Systems Languages (Maximum Performance)
+  // ═══════════════════════════════════════════════════════════════
+  'ZCE-SWIFT-001': {
+    name: 'Swift Value-Type Engine',
+    language: 'Swift',
+    path: './swift/ZeroCostEngine.swift',
+    capabilities: ['value_types', 'copy_on_write', 'protocol_oriented', 'arc_optimized', 'concurrent_safe'],
+    costReductionFactor: 0.93,
+    description: 'Zero-cost abstractions using Swift value types, COW optimization, and protocol-oriented design'
+  },
+  'ZCE-D-001': {
+    name: 'D Language CTFE Engine',
+    language: 'D',
+    path: './d/ZeroCostEngine.d',
+    capabilities: ['ctfe_hash', 'nogc_allocations', 'betterc_compatible', 'templates', 'static_arrays'],
+    costReductionFactor: 0.96,
+    description: 'Systems-level engine with CTFE, @nogc, and compile-time optimization'
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // Safety-Critical Languages (Verified & Proven)
+  // ═══════════════════════════════════════════════════════════════
+  'ZCE-ADA-001': {
+    name: 'Ada SPARK Engine',
+    language: 'Ada',
+    path: './ada/ZeroCostEngine.ads',
+    capabilities: ['strong_typing', 'contracts', 'spark_verification', 'protected_types', 'real_time'],
+    costReductionFactor: 0.94,
+    description: 'Safety-critical cost elimination with Ada contracts and SPARK verification'
+  },
+  'ZCE-FORTRAN-001': {
+    name: 'Fortran Numerical Engine',
+    language: 'Fortran',
+    path: './fortran/ZeroCostEngine.f90',
+    capabilities: ['array_operations', 'coarray_parallel', 'vectorized_hash', 'numerical_optimization', 'cache_oblivious'],
+    costReductionFactor: 0.97,
+    description: 'High-performance numerical cost elimination with vectorized array operations and coarray parallelism'
   }
 } as const;
 

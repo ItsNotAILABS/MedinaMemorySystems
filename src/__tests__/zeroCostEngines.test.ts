@@ -332,21 +332,21 @@ describe('Zero-Cost Engines', () => {
     it('should calculate aggregate cost potential', () => {
       const potential = orchestrator.getAggregateCostPotential();
       
-      expect(potential.totalEngines).toBe(16);  // 10 original + 6 mathematical
+      expect(potential.totalEngines).toBe(25);  // 25 total engines across all paradigms
       expect(potential.combinedReductionFactor).toBeGreaterThan(0.5);
       expect(potential.estimatedMonthlySavings).toBeGreaterThan(0);
     });
   });
 
   describe('Engine Registry', () => {
-    it('should have 16 engines registered', () => {
-      expect(Object.keys(ZERO_COST_ENGINE_REGISTRY).length).toBe(16);
+    it('should have 25 engines registered', () => {
+      expect(Object.keys(ZERO_COST_ENGINE_REGISTRY).length).toBe(25);
     });
 
     it('should have valid engine configurations', () => {
       Object.entries(ZERO_COST_ENGINE_REGISTRY).forEach(([id, engine]) => {
-        // Allow alphanumeric characters in engine ID (e.g., LEAN4, FSHARP)
-        expect(id).toMatch(/^ZCE-[A-Z0-9]+-001$/);
+        // Allow alphanumeric characters and multiple engine versions (e.g., LEAN4, JULIA-002)
+        expect(id).toMatch(/^ZCE-[A-Z0-9]+-\d{3}$/);
         expect(engine.name).toBeTruthy();
         expect(engine.language).toBeTruthy();
         expect(engine.path).toBeTruthy();
@@ -361,26 +361,41 @@ describe('Zero-Cost Engines', () => {
       const languages = Object.values(ZERO_COST_ENGINE_REGISTRY).map(e => e.language);
       const uniqueLanguages = new Set(languages);
       
-      // 16 unique languages: 10 original + 6 mathematical/proof languages
-      expect(uniqueLanguages.size).toBe(16);
-      // Original 10
+      // 23 unique languages (Julia has 3 specialized engines)
+      expect(uniqueLanguages.size).toBe(23);
+      
+      // Systems Languages
       expect(uniqueLanguages.has('Rust')).toBe(true);
       expect(uniqueLanguages.has('Go')).toBe(true);
-      expect(uniqueLanguages.has('Python')).toBe(true);
-      expect(uniqueLanguages.has('Zig')).toBe(true);
       expect(uniqueLanguages.has('C')).toBe(true);
+      expect(uniqueLanguages.has('Zig')).toBe(true);
+      expect(uniqueLanguages.has('V')).toBe(true);
       expect(uniqueLanguages.has('Nim')).toBe(true);
       expect(uniqueLanguages.has('Crystal')).toBe(true);
-      expect(uniqueLanguages.has('V')).toBe(true);
-      expect(uniqueLanguages.has('Elixir')).toBe(true);
+      expect(uniqueLanguages.has('D')).toBe(true);
+      expect(uniqueLanguages.has('Swift')).toBe(true);
+      
+      // Functional Languages
       expect(uniqueLanguages.has('OCaml')).toBe(true);
-      // Mathematical/Proof Languages
+      expect(uniqueLanguages.has('Elixir')).toBe(true);
       expect(uniqueLanguages.has('Haskell')).toBe(true);
+      expect(uniqueLanguages.has('F#')).toBe(true);
+      expect(uniqueLanguages.has('Scala')).toBe(true);
+      expect(uniqueLanguages.has('Kotlin')).toBe(true);
+      
+      // Mathematical/Proof Languages
       expect(uniqueLanguages.has('Coq')).toBe(true);
       expect(uniqueLanguages.has('Lean4')).toBe(true);
       expect(uniqueLanguages.has('Agda')).toBe(true);
       expect(uniqueLanguages.has('Idris2')).toBe(true);
-      expect(uniqueLanguages.has('F#')).toBe(true);
+      expect(uniqueLanguages.has('Julia')).toBe(true);
+      
+      // Safety-Critical/Scientific
+      expect(uniqueLanguages.has('Ada')).toBe(true);
+      expect(uniqueLanguages.has('Fortran')).toBe(true);
+      
+      // ML/AI
+      expect(uniqueLanguages.has('Python')).toBe(true);
     });
 
     it('should have combined cost reduction > 95%', () => {
