@@ -455,4 +455,228 @@ describe('Zero-Cost Engines', () => {
       expect(potential.combinedReductionFactor).toBeGreaterThan(0.8);
     });
   });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // UNIFIED LANGUAGE BRIDGE TESTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  describe('UnifiedLanguageBridge', () => {
+    // Import dynamically to avoid circular dependencies in test setup
+    const getBridge = async () => {
+      const { UnifiedLanguageBridge, JuliaHierarchyRouter, LanguageParadigm, ENGINE_PARADIGMS, JULIA_HIERARCHY, generatePhiSignature } = await import('../zero-cost-engines/UnifiedLanguageBridge');
+      return { UnifiedLanguageBridge, JuliaHierarchyRouter, LanguageParadigm, ENGINE_PARADIGMS, JULIA_HIERARCHY, generatePhiSignature };
+    };
+
+    it('should classify all engines by paradigm', async () => {
+      const { ENGINE_PARADIGMS } = await getBridge();
+      
+      // All 25 engines should be classified
+      expect(Object.keys(ENGINE_PARADIGMS).length).toBe(25);
+      
+      // Each engine should have at least one paradigm
+      Object.values(ENGINE_PARADIGMS).forEach(paradigms => {
+        expect((paradigms as string[]).length).toBeGreaterThan(0);
+      });
+    });
+
+    it('should define Julia hierarchy correctly', async () => {
+      const { JULIA_HIERARCHY } = await getBridge();
+      
+      expect(JULIA_HIERARCHY.foundation).toBe('ZCE-JULIA-001');
+      expect(JULIA_HIERARCHY.structure).toBe('ZCE-JULIA-002');
+      expect(JULIA_HIERARCHY.application).toBe('ZCE-JULIA-003');
+    });
+
+    it('should generate consistent φ-signatures', async () => {
+      const { generatePhiSignature } = await getBridge();
+      
+      const message = {
+        id: 'test-msg-001',
+        sourceEngine: 'ZCE-RUST-001' as const,
+        targetEngine: 'ZCE-JULIA-001' as const,
+        messageType: 'request' as const,
+        payload: new Uint8Array([1, 2, 3]),
+        timestamp: 1234567890
+      };
+      
+      const sig1 = generatePhiSignature(message);
+      const sig2 = generatePhiSignature(message);
+      
+      expect(sig1).toBe(sig2);
+      expect(typeof sig1).toBe('bigint');
+    });
+
+    it('should create bridge and route requests', async () => {
+      const { UnifiedLanguageBridge, LanguageParadigm } = await getBridge();
+      
+      const bridge = new UnifiedLanguageBridge();
+      
+      // Route a mathematical computation
+      const decision = bridge.route({
+        mathematical: true,
+        complexity: 'high'
+      });
+      
+      // Should route to Julia hierarchy
+      expect(['ZCE-JULIA-001', 'ZCE-JULIA-002', 'ZCE-JULIA-003']).toContain(decision.primaryEngine);
+      expect(decision.estimatedCostReduction).toBeLessThan(0.001); // ~99.9% reduction
+    });
+
+    it('should provide aggregate metrics', async () => {
+      const { UnifiedLanguageBridge } = await getBridge();
+      
+      const bridge = new UnifiedLanguageBridge();
+      
+      // Make some routing decisions
+      bridge.route({ mathematical: true });
+      bridge.route({ concurrent: true });
+      bridge.route({ proofRequired: true });
+      
+      const metrics = bridge.getAggregateMetrics();
+      
+      expect(metrics.activeEngines).toBe(25);
+      expect(metrics.totalEngines).toBe(25);
+      expect(metrics.averageCostReduction).toBeGreaterThan(0.85);
+    });
+
+    it('should health check all connections', async () => {
+      const { UnifiedLanguageBridge } = await getBridge();
+      
+      const bridge = new UnifiedLanguageBridge();
+      const health = bridge.healthCheck();
+      
+      expect(health.healthy).toBe(true);
+      expect(health.totalEngines).toBe(25);
+      expect(health.healthyEngines).toBe(25);
+      expect(health.degradedEngines.length).toBe(0);
+      expect(health.disconnectedEngines.length).toBe(0);
+    });
+  });
+
+  describe('JuliaHierarchyRouter', () => {
+    const getRouter = async () => {
+      const { JuliaHierarchyRouter, JULIA_HIERARCHY } = await import('../zero-cost-engines/UnifiedLanguageBridge');
+      return { JuliaHierarchyRouter, JULIA_HIERARCHY };
+    };
+
+    it('should route based on complexity', async () => {
+      const { JuliaHierarchyRouter, JULIA_HIERARCHY } = await getRouter();
+      
+      const router = new JuliaHierarchyRouter();
+      
+      expect(router.routeComputation('low')).toBe(JULIA_HIERARCHY.foundation);
+      expect(router.routeComputation('medium')).toBe(JULIA_HIERARCHY.structure);
+      expect(router.routeComputation('high')).toBe(JULIA_HIERARCHY.application);
+    });
+
+    it('should calculate cascade optimization correctly', async () => {
+      const { JuliaHierarchyRouter } = await getRouter();
+      
+      const router = new JuliaHierarchyRouter();
+      const result = router.cascadeOptimization(1.0);
+      
+      // Expected: 1 * (1-0.96) * (1-0.94) * (1-0.95) = 0.04 * 0.06 * 0.05 = 0.00012
+      expect(result).toBeCloseTo(0.00012, 5);
+    });
+
+    it('should select entry point based on cost vector', async () => {
+      const { JuliaHierarchyRouter, JULIA_HIERARCHY } = await getRouter();
+      
+      const router = new JuliaHierarchyRouter();
+      
+      // Small, low-norm vector → foundation
+      expect(router.analyzeEntryPoint([1, 2, 3])).toBe(JULIA_HIERARCHY.foundation);
+      
+      // Medium dimension, medium norm → structure
+      expect(router.analyzeEntryPoint([100, 100, 100, 100, 100])).toBe(JULIA_HIERARCHY.structure);
+      
+      // Large dimension → application
+      expect(router.analyzeEntryPoint(Array(15).fill(100))).toBe(JULIA_HIERARCHY.application);
+    });
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MULTI-TERMINAL AI ORCHESTRATOR TESTS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  describe('MultiTerminalAIOrchestrator', () => {
+    const getOrchestrator = async () => {
+      const { MultiTerminalAIOrchestrator, TaskType, createTask, createAIOrchestrator, getOrchestratorInfo } = await import('../zero-cost-engines/MultiTerminalAIOrchestrator');
+      return { MultiTerminalAIOrchestrator, TaskType, createTask, createAIOrchestrator, getOrchestratorInfo };
+    };
+
+    it('should create orchestrator with all terminals', async () => {
+      const { createAIOrchestrator } = await getOrchestrator();
+      
+      const orchestrator = createAIOrchestrator();
+      const status = orchestrator.getStatus();
+      
+      expect(status.charterId).toBe('ZCE-AI-TERM-001');
+      expect(status.sessions.totalSessions).toBe(25);
+    });
+
+    it('should create tasks correctly', async () => {
+      const { TaskType, createTask } = await getOrchestrator();
+      
+      const task = createTask(
+        TaskType.MATHEMATICAL_OPTIMIZATION,
+        'high',
+        { code: 'optimize(x)' },
+        { mathematical: true }
+      );
+      
+      expect(task.id).toMatch(/^task-/);
+      expect(task.type).toBe(TaskType.MATHEMATICAL_OPTIMIZATION);
+      expect(task.priority).toBe('high');
+    });
+
+    it('should process tasks through AI routing', async () => {
+      const { createAIOrchestrator, TaskType, createTask } = await getOrchestrator();
+      
+      const orchestrator = createAIOrchestrator();
+      
+      const task = createTask(
+        TaskType.NUMERICAL_COMPUTATION,
+        'medium',
+        { data: new Uint8Array([1, 2, 3]) },
+        { numerical: true }
+      );
+      
+      const result = await orchestrator.processTask(task);
+      
+      expect(result.taskId).toBe(task.id);
+      expect(result.success).toBe(true);
+      expect(result.costReduction).toBeGreaterThan(0);
+    });
+
+    it('should provide AI recommendations', async () => {
+      const { createAIOrchestrator } = await getOrchestrator();
+      
+      const orchestrator = createAIOrchestrator();
+      const recommendations = orchestrator.getAIRecommendations();
+      
+      // Should return an array of recommendations
+      expect(Array.isArray(recommendations)).toBe(true);
+      
+      // Each recommendation should have required fields
+      recommendations.forEach(rec => {
+        expect(rec.type).toBeTruthy();
+        expect(['info', 'warning', 'critical']).toContain(rec.severity);
+        expect(rec.message).toBeTruthy();
+        expect(rec.suggestedAction).toBeTruthy();
+      });
+    });
+
+    it('should return comprehensive orchestrator info', async () => {
+      const { getOrchestratorInfo } = await getOrchestrator();
+      
+      const info = getOrchestratorInfo();
+      
+      expect(info.charterId).toBe('ZCE-AI-TERM-001');
+      expect(info.totalEngines).toBe(25);
+      expect(info.supportedLanguages.length).toBe(25);
+      expect(info.capabilities).toContain('ai_driven_task_distribution');
+      expect(info.capabilities).toContain('julia_hierarchy_cascade');
+    });
+  });
 });
