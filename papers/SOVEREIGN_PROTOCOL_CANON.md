@@ -19,8 +19,9 @@ The four pillars form the **structural foundation**:
 3. **Voice-Based AI Interaction** — The sensory interface
 4. **Enterprise Connector Architecture** — The metabolic pathways
 
-The fifteen protocols form the **operational substrate**:
-- REV-001 through CIV-ORG-001 define how the organism thinks, grows, and evolves.
+The thirty-five protocols form the **operational substrate**:
+- REV-001 through CIV-ORG-001 define the core cognition and civilization architecture.
+- AIO-ORG-001 through AIO-OPS-001 define organism-wide production, workflow, and communication execution.
 
 Together, they constitute **one organism**: federated, self-programming, civilization-scale.
 
@@ -36,7 +37,7 @@ Each charter establishes the constitutional basis for a core system. Charters ar
 
 # PART II: THE PROTOCOL CANON
 
-## Operational Specifications (REV-001 through CIV-ORG-001)
+## Operational Specifications (REV-001 through CIV-ORG-001, plus AIO-ORG-001 through AIO-OPS-001)
 
 Protocols are the laws of the organism. They define:
 - **Interfaces**: How systems communicate
@@ -89,6 +90,31 @@ The protocols do not exist in isolation. This section maps:
 | 18 | CPE-001 | [Conceptual Persistence Engines](protocols/CPE-001.md) | Canonical |
 | 19 | CIV-ORG-001 | [Civilization-Scale Organism](protocols/CIV-ORG-001.md) | Canonical |
 
+### Part II-B: AI Organism Production + Communication Expansion (Chapters 24-43)
+
+| Chapter | Protocol ID | Name | Status |
+|---------|-------------|------|--------|
+| 24 | AIO-ORG-001 | [AI Organism Identity and Lifecycle Protocol](protocols/AIO-ORG-001.md) | Canonical |
+| 25 | AIO-ORG-002 | [AI Organism Capability Registry Protocol](protocols/AIO-ORG-002.md) | Canonical |
+| 26 | AIO-COM-001 | [AI Communication Envelope Protocol](protocols/AIO-COM-001.md) | Canonical |
+| 27 | AIO-COM-002 | [AI Session Handshake Protocol](protocols/AIO-COM-002.md) | Canonical |
+| 28 | AIO-COM-003 | [AI Consensus Broadcast Protocol](protocols/AIO-COM-003.md) | Canonical |
+| 29 | AIO-FLOW-001 | [AI Task Intake Workflow Protocol](protocols/AIO-FLOW-001.md) | Canonical |
+| 30 | AIO-FLOW-002 | [AI Planning Workflow Protocol](protocols/AIO-FLOW-002.md) | Canonical |
+| 31 | AIO-FLOW-003 | [AI Execution Workflow Protocol](protocols/AIO-FLOW-003.md) | Canonical |
+| 32 | AIO-FLOW-004 | [AI Verification Workflow Protocol](protocols/AIO-FLOW-004.md) | Canonical |
+| 33 | AIO-FLOW-005 | [AI Escalation Workflow Protocol](protocols/AIO-FLOW-005.md) | Canonical |
+| 34 | AIO-PROD-001 | [AI Production Readiness Gate Protocol](protocols/AIO-PROD-001.md) | Canonical |
+| 35 | AIO-PROD-002 | [AI Deployment Orchestration Protocol](protocols/AIO-PROD-002.md) | Canonical |
+| 36 | AIO-PROD-003 | [AI Runtime Telemetry Protocol](protocols/AIO-PROD-003.md) | Canonical |
+| 37 | AIO-PROD-004 | [AI Incident Response Protocol](protocols/AIO-PROD-004.md) | Canonical |
+| 38 | AIO-PROD-005 | [AI Rollback and Recovery Protocol](protocols/AIO-PROD-005.md) | Canonical |
+| 39 | AIO-GOV-001 | [AI Permissioned Communication Protocol](protocols/AIO-GOV-001.md) | Canonical |
+| 40 | AIO-GOV-002 | [AI Audit and Trace Retention Protocol](protocols/AIO-GOV-002.md) | Canonical |
+| 41 | AIO-SEC-001 | [AI Boundary and Secret Handling Protocol](protocols/AIO-SEC-001.md) | Canonical |
+| 42 | AIO-INT-001 | [AI Cross-Protocol Compatibility Protocol](protocols/AIO-INT-001.md) | Canonical |
+| 43 | AIO-OPS-001 | [AI Reliability and SLO Protocol](protocols/AIO-OPS-001.md) | Canonical |
+
 ### Part III: Integration (Chapters 20-22)
 
 | Chapter | Document | Status |
@@ -104,6 +130,7 @@ The protocols do not exist in isolation. This section maps:
 | Version | Date | Changes | Attestation |
 |---------|------|---------|-------------|
 | 1.0 | 2026-05-09 | Initial canonical release | NOVA-ATTEST-001 |
+| 1.1 | 2026-05-14 | Added 20 AI organism production, workflow, and communication protocols (AIO-ORG-001..AIO-OPS-001) | NOVA-ATTEST-001 |
 
 ---
 
