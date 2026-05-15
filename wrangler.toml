@@ -1,0 +1,182 @@
+# 𓂀 Cloudflare Workers Configuration
+# MEDINA Sovereign Edge Intelligence
+# "The Edge Awakens"
+
+name = "medina-edge-worker"
+main = "src/cloudflare-edge/worker.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ENVIRONMENTS
+# ═══════════════════════════════════════════════════════════════════════════
+
+[env.development]
+name = "medina-edge-worker-dev"
+vars = { ENVIRONMENT = "development", PHI_HARMONIC_MODE = "true" }
+
+[env.staging]
+name = "medina-edge-worker-staging"
+vars = { ENVIRONMENT = "staging", PHI_HARMONIC_MODE = "true" }
+
+[env.production]
+name = "medina-edge-worker"
+vars = { ENVIRONMENT = "production", PHI_HARMONIC_MODE = "true" }
+
+# ═══════════════════════════════════════════════════════════════════════════
+# KV NAMESPACES
+# ═══════════════════════════════════════════════════════════════════════════
+
+[[kv_namespaces]]
+binding = "MEDINA_KV"
+id = "YOUR_KV_NAMESPACE_ID"
+preview_id = "YOUR_KV_PREVIEW_NAMESPACE_ID"
+
+[[kv_namespaces]]
+binding = "MEDINA_AGENTS_KV"
+id = "YOUR_AGENTS_KV_NAMESPACE_ID"
+preview_id = "YOUR_AGENTS_KV_PREVIEW_NAMESPACE_ID"
+
+[[kv_namespaces]]
+binding = "MEDINA_MEMORY_KV"
+id = "YOUR_MEMORY_KV_NAMESPACE_ID"
+preview_id = "YOUR_MEMORY_KV_PREVIEW_NAMESPACE_ID"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# R2 BUCKETS
+# ═══════════════════════════════════════════════════════════════════════════
+
+[[r2_buckets]]
+binding = "MEDINA_R2"
+bucket_name = "medina-storage"
+preview_bucket_name = "medina-storage-preview"
+
+[[r2_buckets]]
+binding = "MEDINA_MEMORY_R2"
+bucket_name = "medina-long-term-memory"
+preview_bucket_name = "medina-long-term-memory-preview"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# D1 DATABASES
+# ═══════════════════════════════════════════════════════════════════════════
+
+[[d1_databases]]
+binding = "MEDINA_D1"
+database_name = "medina-structured-data"
+database_id = "YOUR_D1_DATABASE_ID"
+
+[[d1_databases]]
+binding = "MEDINA_AGENTS_D1"
+database_name = "medina-agents-db"
+database_id = "YOUR_AGENTS_D1_DATABASE_ID"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# DURABLE OBJECTS
+# ═══════════════════════════════════════════════════════════════════════════
+
+[durable_objects]
+bindings = [
+  { name = "MEDINA_AGENT", class_name = "AgentDurableObject" },
+  { name = "MEDINA_COORDINATOR", class_name = "CoordinatorDurableObject" },
+  { name = "MEDINA_ENTANGLEMENT", class_name = "EntanglementDurableObject" },
+  { name = "MEDINA_MEMORY", class_name = "MemoryDurableObject" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["AgentDurableObject", "CoordinatorDurableObject", "EntanglementDurableObject", "MemoryDurableObject"]
+
+# ═══════════════════════════════════════════════════════════════════════════
+# VECTORIZE INDEXES
+# ═══════════════════════════════════════════════════════════════════════════
+
+[[vectorize]]
+binding = "MEDINA_VECTORIZE"
+index_name = "medina-embeddings"
+
+[[vectorize]]
+binding = "MEDINA_MEMORY_VECTORIZE"
+index_name = "medina-memory-embeddings"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# AI GATEWAY
+# ═══════════════════════════════════════════════════════════════════════════
+
+[ai]
+binding = "AI"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# QUEUES
+# ═══════════════════════════════════════════════════════════════════════════
+
+[[queues.producers]]
+binding = "MEDINA_QUEUE"
+queue = "medina-tasks"
+
+[[queues.consumers]]
+queue = "medina-tasks"
+max_batch_size = 10
+max_retries = 3
+dead_letter_queue = "medina-tasks-dlq"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# HYPERDRIVE (Database Connection Pooling)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# [[hyperdrive]]
+# binding = "MEDINA_HYPERDRIVE"
+# id = "YOUR_HYPERDRIVE_ID"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# TRIGGERS (CRON)
+# ═══════════════════════════════════════════════════════════════════════════
+
+[triggers]
+crons = [
+  "*/5 * * * *",  # Memory tier management every 5 minutes
+  "0 * * * *",    # Blockchain anchoring every hour
+  "0 0 * * *"     # Daily cleanup
+]
+
+# ═══════════════════════════════════════════════════════════════════════════
+# BUILD CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════
+
+[build]
+command = "npm run build:worker"
+
+[build.upload]
+format = "modules"
+main = "./dist/worker.mjs"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# OBSERVABILITY
+# ═══════════════════════════════════════════════════════════════════════════
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+
+# ═══════════════════════════════════════════════════════════════════════════
+# LIMITS
+# ═══════════════════════════════════════════════════════════════════════════
+
+[limits]
+cpu_ms = 30000
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PLACEMENT
+# ═══════════════════════════════════════════════════════════════════════════
+
+[placement]
+mode = "smart"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SITE (Optional Static Assets)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# [site]
+# bucket = "./public"
