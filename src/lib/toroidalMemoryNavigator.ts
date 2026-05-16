@@ -669,7 +669,7 @@ export class ToroidalMemoryNavigator {
     for (const m of this.memories.values()) {
       sumDepth     += m.coordinates.rho;
       maxBeat       = Math.max(maxBeat, m.coordinates.beat);
-      sumResonance += m.coordinates.rho > 0 ? m.resonanceScore : 0;
+      sumResonance += m.resonanceScore;
     }
 
     const total = this.memories.size;

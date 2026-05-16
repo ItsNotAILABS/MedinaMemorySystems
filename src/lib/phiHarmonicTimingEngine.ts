@@ -362,9 +362,9 @@ export class PhiHarmonicTimingEngine {
       if (task.scheduleType === 'one-shot' || task.executionCount >= (task.maxExecutions ?? Infinity)) {
         task.status = 'complete';
       } else {
-        // Schedule next fire with golden-angle jitter
+        // Schedule next fire at full interval from now, with golden-angle jitter
         task.jitterMs = goldenAngleJitter(task.executionCount, task.intervalMs);
-        task.nextFireMs = nowMs + task.intervalMs * (1 - task.phase) + task.jitterMs;
+        task.nextFireMs = nowMs + task.intervalMs + task.jitterMs;
         task.status = 'scheduled';
       }
     }
