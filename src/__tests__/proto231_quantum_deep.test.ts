@@ -159,14 +159,14 @@ describe('PROTO-231 Deep: QuantumCognitiveState Amplitude Laws', () => {
     s.probabilities().forEach(p => expect(p).toBeLessThanOrEqual(1));
   });
 
-  test('applyPhase changes distribution', () => {
+  test('applyPhase preserves Born-rule probabilities (phase is global)', () => {
+    // Phase rotation e^(iθ)·α changes the complex phase but not the magnitude,
+    // so |α|² = probability is unchanged. This is correct quantum behavior.
     const s = mkState(4);
     const before = s.probabilities().slice();
     s.applyPhase(0, Math.PI);
     const after = s.probabilities();
-    // At least one probability must have changed
-    const changed = before.some((p,i) => Math.abs(p - after[i]) > 1e-10);
-    expect(changed).toBe(true);
+    before.forEach((p, i) => expect(after[i]).toBeCloseTo(p, 9));
   });
 
   test('applyPhase preserves norm', () => {
