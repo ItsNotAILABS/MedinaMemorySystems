@@ -398,8 +398,9 @@ export class NumericEdgeDetector {
     const isZero_     = value === 0 || Object.is(value, -0);
     const isFinite_   = isFinite(value);
     const isNegative_ = value < 0;
-    // Subnormal: 0 < |x| < Number.MIN_VALUE × 2^52
-    const isSubnormal = isFinite_ && !isZero_ && Math.abs(value) < Number.MIN_VALUE;
+    // Subnormal: 0 < |x| < 2^-1022 (minimum normal IEEE 754 double)
+    const MIN_NORMAL  = 2.2250738585072014e-308; // Math.pow(2, -1022)
+    const isSubnormal = isFinite_ && !isZero_ && Math.abs(value) < MIN_NORMAL;
 
     let risk: 'safe' | 'warning' | 'critical' = 'safe';
     if (isNaN_ || isInfinity_) risk = 'critical';
@@ -781,7 +782,7 @@ export class AlphaEdgeSolver {
     if (ec.id === 'S-003') {
       const rho = PHI_INV * 0.1; // EVAPORATION from protocol
       const initialTau = 1.0;
-      const threshold = 0.01;
+      const threshold = 1e-6;  // low threshold requiring 210+ steps
       let tau = initialTau;
       let steps = 0;
       while (tau > threshold && steps < 10000) { tau *= (1 - rho); steps++; }

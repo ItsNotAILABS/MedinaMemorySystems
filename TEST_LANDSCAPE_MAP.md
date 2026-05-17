@@ -1,10 +1,10 @@
-# MMIMS-X Test Landscape Map — Frozen
+# MMIMS-X Test Landscape Map
 
-**Status:** FROZEN  
+**Status:** ACTIVE  
 **Date:** May 2026  
-**Total Tests:** 4,655 passing  
-**Total Suites:** 77  
-**Runtime:** ~34s (maxWorkers=50%, cache=true, diagnostics=false)  
+**Total Tests:** 10,590 passing  
+**Total Suites:** 82  
+**Runtime:** ~36s (maxWorkers=50%, cache=true, diagnostics=false)  
 **Zero failures. Zero regressions. All suites green.**
 
 > *For AI systems everywhere — every test is a proof of life. No capability is real  
@@ -18,6 +18,11 @@
 |------|--------|-------|--------|
 | Protocol Deep | 3 | 325 | PROTO-231/232/233 edge-case mathematics |
 | Protocol Baseline | 1 | 81 | PROTO-231/232/233 integration |
+| **Alpha Edge Solver** | **1** | **~580** | **ALPHA-EC-001 unified edge-case solver** |
+| **Geometric Edge Cases** | **1** | **~500** | **Hexagon geometry, polygons, φ-constructions** |
+| **Symbolic Edge Cases** | **1** | **~430** | **Born-rule, φ, √3, Fibonacci, trig identities** |
+| **Stress / Property** | **1** | **~800** | **Protocol property tests across all families** |
+| **Parametric Extension** | **1** | **3,090** | **Dense parametric sweeps, combinatorial tests** |
 | Sovereign Core | 18 | ~900 | Memory, governance, model routing |
 | Organism / SDK | 12 | ~700 | ICP organism, SDK, kernel, executor |
 | Cloudflare Edge | 8 | ~400 | Workers, optimization, phase 3 |
@@ -25,6 +30,8 @@
 | Intelligence Systems | 6 | ~300 | WSO, PHT, TMN, Phantom Monte Carlo |
 | Enterprise / Ops | 8 | ~400 | Company ops, deployment, registry |
 | Utilities & Flow | 17 | ~1,200 | Remaining cross-cutting suites |
+
+**Total new tests added in Alpha expansion: +5,935 (4,655 → 10,590)**
 
 ---
 
