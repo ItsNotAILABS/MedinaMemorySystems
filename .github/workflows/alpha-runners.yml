@@ -1,0 +1,384 @@
+name: Alpha Systems — Native Self-Hosted Runners
+
+# ┌─────────────────────────────────────────────────────────────────────────────┐
+# │  ALPHA RUNNER FLEET — 5 Full-Native Self-Hosted Runners                     │
+# │                                                                             │
+# │  All runners execute on internal infrastructure (no GitHub compute).        │
+# │  They register as GitHub Actions runners and report status back to GitHub.  │
+# │                                                                             │
+# │  RUNNER ROSTER:                                                             │
+# │  1. alpha-linux-x64    — Primary Linux x86-64 compute                      │
+# │  2. alpha-linux-arm64  — Linux ARM64 (native, not emulated)                │
+# │  3. alpha-macos-arm64  — macOS Apple Silicon (native M-series)             │
+# │  4. alpha-high-memory  — Linux x64, 64GB+ RAM for large test suites        │
+# │  5. alpha-gpu          — Linux x64 + CUDA for accelerated workloads         │
+# │                                                                             │
+# │  No Windows runners. Full native only.                                      │
+# └─────────────────────────────────────────────────────────────────────────────┘
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      runner_target:
+        description: 'Which runner(s) to target'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - alpha-linux-x64
+          - alpha-linux-arm64
+          - alpha-macos-arm64
+          - alpha-high-memory
+          - alpha-gpu
+      test_suite:
+        description: 'Test suite to run'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - edge-cases-only
+          - alpha-solver-only
+          - geometric-only
+
+permissions:
+  contents: read
+  checks: write
+
+env:
+  NODE_VERSION: '20'
+  PHI: '1.618033988749895'
+  ALPHA_RUNNER_VERSION: '1.0.0'
+
+# ─── RUNNER 1: Linux x86-64 Primary ──────────────────────────────────────────
+jobs:
+  alpha-linux-x64:
+    name: 𝛂₁ Linux x64 — Primary Compute
+    runs-on: [self-hosted, linux, x64, alpha-linux-x64]
+    if: >
+      github.event_name != 'workflow_dispatch' ||
+      github.event.inputs.runner_target == 'all' ||
+      github.event.inputs.runner_target == 'alpha-linux-x64'
+    timeout-minutes: 60
+    env:
+      RUNNER_ID: 'ALPHA-LX64-001'
+      RUNNER_ARCH: 'linux/amd64'
+
+    steps:
+      - name: 𓂀 Runner Identification
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "  ALPHA RUNNER: ${RUNNER_ID}"
+          echo "  ARCH:         ${RUNNER_ARCH}"
+          echo "  HOST:         $(hostname)"
+          echo "  KERNEL:       $(uname -r)"
+          echo "  CPUs:         $(nproc)"
+          echo "  RAM:          $(free -h | awk '/^Mem:/{print $2}')"
+          echo "  PHI:          ${PHI}"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (native)
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run full test suite
+        run: npm test -- --forceExit
+        env:
+          ALPHA_RUNNER: 'alpha-linux-x64'
+
+      - name: Report runner health
+        if: always()
+        run: |
+          echo "## 𝛂₁ Alpha Runner: linux-x64" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Runner ID | ${RUNNER_ID} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Architecture | ${RUNNER_ARCH} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Node.js | ${{ env.NODE_VERSION }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| φ | ${PHI} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ─── RUNNER 2: Linux ARM64 Native ───────────────────────────────────────────
+  alpha-linux-arm64:
+    name: 𝛂₂ Linux ARM64 — Native ARM
+    runs-on: [self-hosted, linux, arm64, alpha-linux-arm64]
+    if: >
+      github.event_name != 'workflow_dispatch' ||
+      github.event.inputs.runner_target == 'all' ||
+      github.event.inputs.runner_target == 'alpha-linux-arm64'
+    timeout-minutes: 60
+    env:
+      RUNNER_ID: 'ALPHA-ARM64-001'
+      RUNNER_ARCH: 'linux/arm64'
+
+    steps:
+      - name: 𓂀 Runner Identification
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "  ALPHA RUNNER: ${RUNNER_ID}"
+          echo "  ARCH:         ${RUNNER_ARCH}"
+          echo "  HOST:         $(hostname)"
+          echo "  KERNEL:       $(uname -r)"
+          echo "  CPUs:         $(nproc)"
+          echo "  RAM:          $(free -h | awk '/^Mem:/{print $2}')"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (native ARM64)
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Run edge-case and alpha-solver suites
+        run: |
+          npm test -- \
+            --testPathPattern="(alphaEdgeSolver|geometric_edge|symbolic_edge|proto_alpha_stress|proto23)" \
+            --forceExit
+        env:
+          ALPHA_RUNNER: 'alpha-linux-arm64'
+
+      - name: Report runner health
+        if: always()
+        run: |
+          echo "## 𝛂₂ Alpha Runner: linux-arm64" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Runner ID | ${RUNNER_ID} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Architecture | ${RUNNER_ARCH} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ─── RUNNER 3: macOS Apple Silicon ──────────────────────────────────────────
+  alpha-macos-arm64:
+    name: 𝛂₃ macOS ARM64 — Apple Silicon
+    runs-on: [self-hosted, macos, arm64, alpha-macos-arm64]
+    if: >
+      github.event_name != 'workflow_dispatch' ||
+      github.event.inputs.runner_target == 'all' ||
+      github.event.inputs.runner_target == 'alpha-macos-arm64'
+    timeout-minutes: 60
+    env:
+      RUNNER_ID: 'ALPHA-MACOS-ARM64-001'
+      RUNNER_ARCH: 'darwin/arm64'
+
+    steps:
+      - name: 𓂀 Runner Identification
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "  ALPHA RUNNER: ${RUNNER_ID}"
+          echo "  ARCH:         ${RUNNER_ARCH}"
+          echo "  HOST:         $(hostname)"
+          echo "  macOS:        $(sw_vers -productVersion)"
+          echo "  CPUs:         $(sysctl -n hw.ncpu)"
+          echo "  RAM:          $(sysctl -n hw.memsize | awk '{printf "%.1fGB\n", $1/1073741824}')"
+          echo "  Chip:         $(sysctl -n machdep.cpu.brand_string 2>/dev/null || echo 'Apple Silicon')"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (native ARM64 macOS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Run quantum + geometric suites
+        run: |
+          npm test -- \
+            --testPathPattern="(proto231|geometric_edge|alphaEdgeSolver)" \
+            --forceExit
+        env:
+          ALPHA_RUNNER: 'alpha-macos-arm64'
+
+      - name: Report runner health
+        if: always()
+        run: |
+          echo "## 𝛂₃ Alpha Runner: macos-arm64" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Runner ID | ${RUNNER_ID} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | macOS Apple Silicon |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ─── RUNNER 4: High-Memory Linux ────────────────────────────────────────────
+  alpha-high-memory:
+    name: 𝛂₄ High-Memory — 64GB+ Compute
+    runs-on: [self-hosted, linux, x64, alpha-high-memory]
+    if: >
+      github.event_name != 'workflow_dispatch' ||
+      github.event.inputs.runner_target == 'all' ||
+      github.event.inputs.runner_target == 'alpha-high-memory'
+    timeout-minutes: 90
+    env:
+      RUNNER_ID: 'ALPHA-HIMEM-001'
+      RUNNER_ARCH: 'linux/amd64-himem'
+      # Allow Jest to use more workers on high-memory nodes
+      JEST_MAX_WORKERS: '75%'
+
+    steps:
+      - name: 𓂀 Runner Identification
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "  ALPHA RUNNER: ${RUNNER_ID}"
+          echo "  ARCH:         ${RUNNER_ARCH}"
+          echo "  HOST:         $(hostname)"
+          echo "  KERNEL:       $(uname -r)"
+          echo "  CPUs:         $(nproc)"
+          echo "  RAM:          $(free -h | awk '/^Mem:/{print $2}')"
+          echo "  MODE:         High-Memory Stress Testing"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run complete 10k+ test suite (full parallel)
+        run: npm test -- --maxWorkers="${JEST_MAX_WORKERS}" --forceExit
+        env:
+          ALPHA_RUNNER: 'alpha-high-memory'
+          NODE_OPTIONS: '--max-old-space-size=8192'
+
+      - name: Memory profiling summary
+        if: always()
+        run: |
+          echo "## 𝛂₄ Alpha Runner: high-memory" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Runner ID | ${RUNNER_ID} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Workers | ${JEST_MAX_WORKERS} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Heap Limit | 8192 MB |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ─── RUNNER 5: GPU / Accelerated ────────────────────────────────────────────
+  alpha-gpu:
+    name: 𝛂₅ GPU — CUDA Accelerated
+    runs-on: [self-hosted, linux, x64, gpu, alpha-gpu]
+    if: >
+      github.event_name != 'workflow_dispatch' ||
+      github.event.inputs.runner_target == 'all' ||
+      github.event.inputs.runner_target == 'alpha-gpu'
+    timeout-minutes: 60
+    env:
+      RUNNER_ID: 'ALPHA-GPU-001'
+      RUNNER_ARCH: 'linux/amd64-cuda'
+
+    steps:
+      - name: 𓂀 Runner Identification
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "  ALPHA RUNNER: ${RUNNER_ID}"
+          echo "  ARCH:         ${RUNNER_ARCH}"
+          echo "  HOST:         $(hostname)"
+          echo "  KERNEL:       $(uname -r)"
+          echo "  CPUs:         $(nproc)"
+          echo "  RAM:          $(free -h | awk '/^Mem:/{print $2}')"
+          echo "  GPU:          $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1 || echo 'GPU not available')"
+          echo "  CUDA:         $(nvcc --version 2>/dev/null | grep 'release' || echo 'CUDA not in PATH')"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run swarm + stress suites (GPU-accelerated node)
+        run: |
+          npm test -- \
+            --testPathPattern="(proto233|proto_alpha_stress|symbolic_edge)" \
+            --forceExit
+        env:
+          ALPHA_RUNNER: 'alpha-gpu'
+          CUDA_VISIBLE_DEVICES: '0'
+
+      - name: Report GPU runner health
+        if: always()
+        run: |
+          echo "## 𝛂₅ Alpha Runner: GPU" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Runner ID | ${RUNNER_ID} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Architecture | ${RUNNER_ARCH} |" >> $GITHUB_STEP_SUMMARY
+          echo "| GPU | $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1 || echo 'N/A') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ─── FLEET AGGREGATOR ────────────────────────────────────────────────────────
+  alpha-fleet-report:
+    name: 𝛀 Alpha Fleet Status
+    runs-on: [self-hosted, linux, x64, alpha-linux-x64]
+    needs:
+      - alpha-linux-x64
+      - alpha-linux-arm64
+      - alpha-macos-arm64
+      - alpha-high-memory
+      - alpha-gpu
+    if: always()
+    timeout-minutes: 10
+
+    steps:
+      - name: Fleet Status Report
+        run: |
+          echo "## 𓂀 MEDINA Alpha Runner Fleet — Status Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Runner | ID | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 𝛂₁ linux-x64     | ALPHA-LX64-001       | ${{ needs.alpha-linux-x64.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 𝛂₂ linux-arm64   | ALPHA-ARM64-001      | ${{ needs.alpha-linux-arm64.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 𝛂₃ macos-arm64   | ALPHA-MACOS-ARM64-001| ${{ needs.alpha-macos-arm64.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 𝛂₄ high-memory   | ALPHA-HIMEM-001      | ${{ needs.alpha-high-memory.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 𝛂₅ gpu           | ALPHA-GPU-001        | ${{ needs.alpha-gpu.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "_φ = 1.618033988749895 — Architecture is Intelligence_" >> $GITHUB_STEP_SUMMARY
