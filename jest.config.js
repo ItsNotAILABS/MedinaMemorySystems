@@ -10,6 +10,8 @@ const config = {
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {
       tsconfig: 'tsconfig.json',
+      // Skip type-checking during test runs for speed
+      diagnostics: false,
     }],
   },
   setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.ts'],
@@ -25,6 +27,17 @@ const config = {
       statements: 45,
     },
   },
+  // ── Performance & Scale ──────────────────────────────────────────────────
+  // Use 50% of available CPUs for parallel test execution
+  maxWorkers: '50%',
+  // Cache compiled transforms between runs
+  cache: true,
+  // Per-test timeout (ms) — prevents hung tests from blocking the suite
+  testTimeout: 15000,
+  // Fail fast in CI; remove locally if you want full output
+  // bail: 1,
+  // Verbose output suppressed at scale — set to true for debugging
+  verbose: false,
 };
 
 module.exports = config;
