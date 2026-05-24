@@ -152,11 +152,88 @@ export {
   type TargetRegion
 } from './deployment/XDeploy';
 
+// XSecrets
+export {
+  XSecretsManager,
+  XSecretsNamespace,
+  PhiRotationCalculator,
+  getXSecretsManager,
+  createSecretsNamespace,
+  type XSecret,
+  type XSecretValue,
+  type XSecretConfig,
+  type XSecretAuditEntry,
+  type XSecretsManagerConfig,
+  type SecretType,
+  type EncryptionAlgorithm,
+  type RotationStrategy
+} from './secrets/XSecrets';
+
+// XCron
+export {
+  XCronScheduler,
+  CronExpressionParser,
+  PhiJitterCalculator,
+  getXCronScheduler,
+  createCronJob,
+  type XCronJob,
+  type CronExecution,
+  type CronLogEntry,
+  type CronSchedulerConfig,
+  type CronStatus,
+  type ExecutionStatus,
+  type RetryPolicy
+} from './cron/XCron';
+
+// XRealtime (WebSocket, SSE, PubSub)
+export {
+  XRealtimeManager,
+  XWebSocketServer,
+  XSSEServer,
+  XPubSub,
+  PhiBackpressureController,
+  getXRealtimeManager,
+  getXWebSocket,
+  getXSSE,
+  getXPubSub,
+  type XWebSocketConnection,
+  type XWebSocketMessage,
+  type XWebSocketConfig,
+  type XSSEConnection,
+  type XSSEEvent,
+  type XSSEConfig,
+  type XPubSubChannel,
+  type XPubSubMessage,
+  type ConnectionState,
+  type MessageType
+} from './realtime/XRealtime';
+
+// XCLI
+export {
+  XCREWCLI,
+  CLIOutput,
+  getXCREWCLI,
+  type CLICommand,
+  type CLIOption,
+  type CLIArgs,
+  type CLIContext,
+  type CLIResult,
+  type XCREWConfig,
+  type RouteConfig,
+  type KVNamespaceConfig,
+  type R2BucketConfig,
+  type DurableObjectConfig,
+  type QueueConfig,
+  type AIConfig,
+  type BuildConfig,
+  type DevConfig
+} from './cli/XCLI';
+
 // ═══════════════════════════════════════════════════════════════════════════
 // PLATFORM CONSTANTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export const XCREW_VERSION = '1.0.0';
+export const XCREW_VERSION = '1.1.0';
 export const XCREW_PROTOCOL = 'XCREW-PLATFORM-001';
 export const PHI = 1.618033988749895;
 export const PHI_INV = 0.618033988749895;
@@ -176,6 +253,10 @@ export interface XCREWPlatform {
   ai: ReturnType<typeof getXAIGateway>;
   analytics: ReturnType<typeof getXAnalytics>;
   deploy: ReturnType<typeof getXDeployManager>;
+  secrets: ReturnType<typeof getXSecretsManager>;
+  cron: ReturnType<typeof getXCronScheduler>;
+  realtime: ReturnType<typeof getXRealtimeManager>;
+  cli: ReturnType<typeof getXCREWCLI>;
 }
 
 let platformInstance: XCREWPlatform | null = null;
@@ -204,6 +285,9 @@ export function initXCREW(): XCREWPlatform {
 ║                                                                              ║
 ║    "Execute anywhere, instantly, at zero marginal cost."                     ║
 ║                                                                              ║
+║    Components: Workers, Network, Store, Queues, Durable Objects,             ║
+║                AI Gateway, Analytics, Deploy, Secrets, Cron, Realtime, CLI   ║
+║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 `);
 
@@ -217,12 +301,17 @@ export function initXCREW(): XCREWPlatform {
     durable: getXDurableManager(),
     ai: getXAIGateway(),
     analytics: getXAnalytics(),
-    deploy: getXDeployManager()
+    deploy: getXDeployManager(),
+    secrets: getXSecretsManager(),
+    cron: getXCronScheduler(),
+    realtime: getXRealtimeManager(),
+    cli: getXCREWCLI()
   };
   
   console.log(`[${XCREW_PROTOCOL}] Platform initialized successfully`);
   console.log(`[${XCREW_PROTOCOL}] Edge locations: ${platformInstance.network.getAllLocations().length}`);
   console.log(`[${XCREW_PROTOCOL}] Healthy locations: ${platformInstance.network.getHealthyLocationCount()}`);
+  console.log(`[${XCREW_PROTOCOL}] Components: 12 active modules`);
   
   return platformInstance;
 }
@@ -269,7 +358,11 @@ export function getXCREWHealth(): {
       durable: true,
       ai: true,
       analytics: true,
-      deploy: true
+      deploy: true,
+      secrets: true,
+      cron: true,
+      realtime: true,
+      cli: true
     },
     metrics: {
       edgeLocations,
@@ -302,5 +395,9 @@ export default {
   durable: getXDurableManager,
   ai: getXAIGateway,
   analytics: getXAnalytics,
-  deploy: getXDeployManager
+  deploy: getXDeployManager,
+  secrets: getXSecretsManager,
+  cron: getXCronScheduler,
+  realtime: getXRealtimeManager,
+  cli: getXCREWCLI
 };
