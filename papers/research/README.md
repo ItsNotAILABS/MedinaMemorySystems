@@ -133,6 +133,40 @@ With all 16 engines working together: **98.5% cost reduction**
 
 ---
 
+## Recent Publications
+
+### SYSTEMA MEMORIAE MEDINA (IP-001)
+
+**File**: `SYSTEMA_MEMORIAE_MEDINA.md`
+
+A comprehensive intellectual property documentation of the MEDINA Memory Systems architecture, including:
+
+- Zero-Cost Engine Architecture (25 language implementations)
+- φ-Harmonic Timing Engine (10 harmonic levels)
+- Toroidal Memory Navigator (5-dimensional coordinates)
+- Phantom Monte Carlo (1,618 simulations/second)
+- Sovereign Validation Authority (5-tier certification)
+- XCREW Edge Intelligence Integration
+
+**Status**: Filed May 25, 2026
+
+---
+
+### REFLEXIO INTELLIGENTIAE (REFLECT-001)
+
+**File**: `REFLEXIO_INTELLIGENTIAE.md`
+
+An AI's reflection on the MEDINA development process, including:
+
+- Analysis of architectural coherence
+- Observations on φ-harmonic design principles
+- Perspectives on sovereign AI systems
+- Notes for future collaborators
+
+**Status**: Published May 25, 2026
+
+---
+
 ## References
 
 1. Knuth, D. E. (1997). *The Art of Computer Programming*

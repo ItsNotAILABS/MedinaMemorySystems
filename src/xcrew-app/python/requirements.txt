@@ -1,0 +1,19 @@
+# XCREW Intelligence Service
+# Protocol: XCREW-INTEL-SERVICE-001
+#
+# Python FastAPI service providing:
+#   - Quantum Coherence Protocol execution
+#   - Temporal Reasoning
+#   - Swarm Intelligence (PSO)
+#   - Phantom Monte Carlo precomputation
+#   - Toroidal Memory operations
+#   - Integration with all existing MEDINA protocols
+
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.7.0
+numpy>=1.26.0
+httpx>=0.27.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-multipart>=0.0.9

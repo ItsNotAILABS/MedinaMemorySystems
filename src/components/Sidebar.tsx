@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { cls } from '@/lib/sovereign-cls';
 import { usePlatformSync } from '@/hooks/usePlatformSync';
+import { useAuth } from '@/lib/auth';
 import type { PanelId, NavItem } from '@/types';
 
 const NAV_ITEMS: NavItem[] = [
@@ -26,6 +27,7 @@ interface SidebarProps {
 export default function Sidebar({ activePanel, onNavigate }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
   const sync = usePlatformSync();
+  const { user, logout } = useAuth();
 
   const getBadge = (id: PanelId): number | undefined => {
     switch (id) {
@@ -108,6 +110,35 @@ export default function Sidebar({ activePanel, onNavigate }: SidebarProps) {
 
       {/* Collapse toggle + sync info */}
       <div className="p-2 border-t border-[#1e1e2e] space-y-1">
+        {/* User profile */}
+        {user && !collapsed && (
+          <div className="px-2 py-2 mb-1">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white shrink-0">
+                {user.displayName.charAt(0).toUpperCase()}
+              </div>
+              <div className="overflow-hidden flex-1">
+                <div className="text-[11px] text-slate-300 truncate font-medium">{user.displayName}</div>
+                <div className="text-[9px] text-slate-600 truncate">{user.role}</div>
+              </div>
+            </div>
+            <button
+              onClick={logout}
+              className="mt-2 w-full py-1.5 rounded-md text-[10px] text-slate-500 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all font-mono"
+            >
+              Sign Out
+            </button>
+          </div>
+        )}
+        {user && collapsed && (
+          <button
+            onClick={logout}
+            className="w-full flex items-center justify-center py-2 rounded-lg text-slate-500 hover:text-red-400 transition-colors text-xs"
+            title={`${user.displayName} — Sign Out`}
+          >
+            👤
+          </button>
+        )}
         {!collapsed && (
           <div className="text-[9px] text-slate-600 font-mono px-2 py-1">
             Sync: {new Date(sync.timestamp).toLocaleTimeString()}

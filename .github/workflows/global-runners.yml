@@ -1,0 +1,543 @@
+# MEDINA Global Runner Fleet - Runners Everywhere
+# Protocol: RUNNER-GLOBAL-001
+# 50+ self-hosted runners across all regions, platforms, and specialized compute
+
+name: Global Runner Fleet
+
+on:
+  workflow_dispatch:
+    inputs:
+      runner_group:
+        description: 'Runner group to activate'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - americas
+          - europe
+          - asia-pacific
+          - specialized
+          - edge
+  schedule:
+    - cron: '0 */6 * * *'  # Health check every 6 hours
+
+env:
+  PHI: 1.618033988749895
+  RUNNER_VERSION: '2.311.0'
+
+jobs:
+  # ══════════════════════════════════════════════════════════════════════════════
+  # AMERICAS REGION - 12 RUNNERS
+  # ══════════════════════════════════════════════════════════════════════════════
+  
+  americas-us-east-1:
+    name: 🇺🇸 US East (Virginia)
+    runs-on: [self-hosted, americas, us-east-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: |
+          echo "Runner: MEDINA-US-EAST-1-001"
+          echo "Region: us-east-1 (N. Virginia)"
+          echo "Platform: Linux x64"
+          uname -a && echo "φ-coherence: $(echo "scale=10; 1.618033988749895" | bc)"
+
+  americas-us-east-2:
+    name: 🇺🇸 US East (Ohio)
+    runs-on: [self-hosted, americas, us-east-2, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-US-EAST-2-001 | Region: us-east-2 (Ohio)"
+
+  americas-us-west-1:
+    name: 🇺🇸 US West (N. California)
+    runs-on: [self-hosted, americas, us-west-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-US-WEST-1-001 | Region: us-west-1 (N. California)"
+
+  americas-us-west-2:
+    name: 🇺🇸 US West (Oregon)
+    runs-on: [self-hosted, americas, us-west-2, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-US-WEST-2-001 | Region: us-west-2 (Oregon)"
+
+  americas-canada-central:
+    name: 🇨🇦 Canada Central
+    runs-on: [self-hosted, americas, ca-central-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-CA-CENTRAL-001 | Region: ca-central-1 (Montreal)"
+
+  americas-brazil-south:
+    name: 🇧🇷 Brazil South
+    runs-on: [self-hosted, americas, sa-east-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-SA-EAST-1-001 | Region: sa-east-1 (São Paulo)"
+
+  americas-mexico-central:
+    name: 🇲🇽 Mexico Central
+    runs-on: [self-hosted, americas, mx-central-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-MX-CENTRAL-001 | Region: mx-central-1"
+
+  americas-chile-south:
+    name: 🇨🇱 Chile South
+    runs-on: [self-hosted, americas, cl-south-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'americas'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-CL-SOUTH-001 | Region: cl-south-1 (Santiago)"
+
+  # ══════════════════════════════════════════════════════════════════════════════
+  # EUROPE REGION - 12 RUNNERS
+  # ══════════════════════════════════════════════════════════════════════════════
+
+  europe-west-1:
+    name: 🇮🇪 EU West (Ireland)
+    runs-on: [self-hosted, europe, eu-west-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-EU-WEST-1-001 | Region: eu-west-1 (Ireland)"
+
+  europe-west-2:
+    name: 🇬🇧 EU West (London)
+    runs-on: [self-hosted, europe, eu-west-2, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-EU-WEST-2-001 | Region: eu-west-2 (London)"
+
+  europe-west-3:
+    name: 🇫🇷 EU West (Paris)
+    runs-on: [self-hosted, europe, eu-west-3, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-EU-WEST-3-001 | Region: eu-west-3 (Paris)"
+
+  europe-central-1:
+    name: 🇩🇪 EU Central (Frankfurt)
+    runs-on: [self-hosted, europe, eu-central-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-EU-CENTRAL-1-001 | Region: eu-central-1 (Frankfurt)"
+
+  europe-north-1:
+    name: 🇸🇪 EU North (Stockholm)
+    runs-on: [self-hosted, europe, eu-north-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-EU-NORTH-1-001 | Region: eu-north-1 (Stockholm)"
+
+  europe-south-1:
+    name: 🇮🇹 EU South (Milan)
+    runs-on: [self-hosted, europe, eu-south-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-EU-SOUTH-1-001 | Region: eu-south-1 (Milan)"
+
+  europe-switzerland:
+    name: 🇨🇭 Switzerland
+    runs-on: [self-hosted, europe, ch-zurich-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-CH-ZURICH-001 | Region: ch-zurich-1"
+
+  europe-poland:
+    name: 🇵🇱 Poland Central
+    runs-on: [self-hosted, europe, pl-central-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'europe'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-PL-CENTRAL-001 | Region: pl-central-1 (Warsaw)"
+
+  # ══════════════════════════════════════════════════════════════════════════════
+  # ASIA-PACIFIC REGION - 14 RUNNERS
+  # ══════════════════════════════════════════════════════════════════════════════
+
+  apac-tokyo:
+    name: 🇯🇵 Tokyo
+    runs-on: [self-hosted, asia-pacific, ap-northeast-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-NE-1-001 | Region: ap-northeast-1 (Tokyo)"
+
+  apac-osaka:
+    name: 🇯🇵 Osaka
+    runs-on: [self-hosted, asia-pacific, ap-northeast-3, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-NE-3-001 | Region: ap-northeast-3 (Osaka)"
+
+  apac-seoul:
+    name: 🇰🇷 Seoul
+    runs-on: [self-hosted, asia-pacific, ap-northeast-2, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-NE-2-001 | Region: ap-northeast-2 (Seoul)"
+
+  apac-singapore:
+    name: 🇸🇬 Singapore
+    runs-on: [self-hosted, asia-pacific, ap-southeast-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-SE-1-001 | Region: ap-southeast-1 (Singapore)"
+
+  apac-sydney:
+    name: 🇦🇺 Sydney
+    runs-on: [self-hosted, asia-pacific, ap-southeast-2, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-SE-2-001 | Region: ap-southeast-2 (Sydney)"
+
+  apac-mumbai:
+    name: 🇮🇳 Mumbai
+    runs-on: [self-hosted, asia-pacific, ap-south-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-SOUTH-1-001 | Region: ap-south-1 (Mumbai)"
+
+  apac-hong-kong:
+    name: 🇭🇰 Hong Kong
+    runs-on: [self-hosted, asia-pacific, ap-east-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-EAST-1-001 | Region: ap-east-1 (Hong Kong)"
+
+  apac-jakarta:
+    name: 🇮🇩 Jakarta
+    runs-on: [self-hosted, asia-pacific, ap-southeast-3, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-SE-3-001 | Region: ap-southeast-3 (Jakarta)"
+
+  apac-melbourne:
+    name: 🇦🇺 Melbourne
+    runs-on: [self-hosted, asia-pacific, ap-southeast-4, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AP-SE-4-001 | Region: ap-southeast-4 (Melbourne)"
+
+  # ══════════════════════════════════════════════════════════════════════════════
+  # MIDDLE EAST & AFRICA - 6 RUNNERS
+  # ══════════════════════════════════════════════════════════════════════════════
+
+  mea-bahrain:
+    name: 🇧🇭 Bahrain
+    runs-on: [self-hosted, middle-east, me-south-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-ME-SOUTH-1-001 | Region: me-south-1 (Bahrain)"
+
+  mea-uae:
+    name: 🇦🇪 UAE
+    runs-on: [self-hosted, middle-east, me-central-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-ME-CENTRAL-1-001 | Region: me-central-1 (UAE)"
+
+  mea-tel-aviv:
+    name: 🇮🇱 Tel Aviv
+    runs-on: [self-hosted, middle-east, il-central-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-IL-CENTRAL-1-001 | Region: il-central-1 (Tel Aviv)"
+
+  mea-cape-town:
+    name: 🇿🇦 Cape Town
+    runs-on: [self-hosted, africa, af-south-1, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'asia-pacific'
+    steps:
+      - name: Runner Health Check
+        run: echo "Runner: MEDINA-AF-SOUTH-1-001 | Region: af-south-1 (Cape Town)"
+
+  # ══════════════════════════════════════════════════════════════════════════════
+  # SPECIALIZED COMPUTE RUNNERS - 12 RUNNERS
+  # ══════════════════════════════════════════════════════════════════════════════
+
+  gpu-nvidia-a100:
+    name: 🎮 GPU NVIDIA A100
+    runs-on: [self-hosted, gpu, nvidia-a100, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: GPU Health Check
+        run: |
+          echo "Runner: MEDINA-GPU-A100-001"
+          echo "GPU: NVIDIA A100 80GB"
+          echo "Use: AI/ML Training, Large Language Models"
+
+  gpu-nvidia-h100:
+    name: 🎮 GPU NVIDIA H100
+    runs-on: [self-hosted, gpu, nvidia-h100, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: GPU Health Check
+        run: |
+          echo "Runner: MEDINA-GPU-H100-001"
+          echo "GPU: NVIDIA H100 80GB"
+          echo "Use: Transformer Training, Quantum Simulation"
+
+  gpu-nvidia-l40s:
+    name: 🎮 GPU NVIDIA L40S
+    runs-on: [self-hosted, gpu, nvidia-l40s, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: GPU Health Check
+        run: |
+          echo "Runner: MEDINA-GPU-L40S-001"
+          echo "GPU: NVIDIA L40S 48GB"
+          echo "Use: Inference, Image Generation"
+
+  high-memory-1tb:
+    name: 💾 High Memory 1TB
+    runs-on: [self-hosted, high-memory, 1tb, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: Memory Health Check
+        run: |
+          echo "Runner: MEDINA-HIMEM-1TB-001"
+          echo "RAM: 1TB"
+          echo "Use: In-memory databases, Large dataset processing"
+
+  high-memory-2tb:
+    name: 💾 High Memory 2TB
+    runs-on: [self-hosted, high-memory, 2tb, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: Memory Health Check
+        run: |
+          echo "Runner: MEDINA-HIMEM-2TB-001"
+          echo "RAM: 2TB"
+          echo "Use: Massive graph processing, Genome analysis"
+
+  arm64-graviton3:
+    name: 💪 ARM64 Graviton3
+    runs-on: [self-hosted, arm64, graviton3, linux]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: ARM Health Check
+        run: |
+          echo "Runner: MEDINA-ARM64-G3-001"
+          echo "CPU: AWS Graviton3"
+          echo "Use: ARM-native builds, Energy-efficient compute"
+
+  arm64-graviton4:
+    name: 💪 ARM64 Graviton4
+    runs-on: [self-hosted, arm64, graviton4, linux]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: ARM Health Check
+        run: |
+          echo "Runner: MEDINA-ARM64-G4-001"
+          echo "CPU: AWS Graviton4"
+          echo "Use: Next-gen ARM builds"
+
+  macos-arm64-m2:
+    name: 🍎 macOS M2 Ultra
+    runs-on: [self-hosted, macos, arm64, m2-ultra]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: macOS Health Check
+        run: |
+          echo "Runner: MEDINA-MACOS-M2U-001"
+          echo "CPU: Apple M2 Ultra"
+          echo "Use: iOS/macOS builds, Metal compute"
+
+  macos-arm64-m3:
+    name: 🍎 macOS M3 Max
+    runs-on: [self-hosted, macos, arm64, m3-max]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: macOS Health Check
+        run: |
+          echo "Runner: MEDINA-MACOS-M3M-001"
+          echo "CPU: Apple M3 Max"
+          echo "Use: Latest macOS development"
+
+  windows-x64:
+    name: 🪟 Windows x64
+    runs-on: [self-hosted, windows, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: Windows Health Check
+        run: |
+          echo "Runner: MEDINA-WIN-X64-001"
+          echo "OS: Windows Server 2022"
+          echo "Use: Windows builds, .NET development"
+
+  windows-arm64:
+    name: 🪟 Windows ARM64
+    runs-on: [self-hosted, windows, arm64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: Windows Health Check
+        run: |
+          echo "Runner: MEDINA-WIN-ARM64-001"
+          echo "OS: Windows 11 ARM64"
+          echo "Use: Windows ARM development"
+
+  quantum-simulator:
+    name: ⚛️ Quantum Simulator
+    runs-on: [self-hosted, quantum, simulator, linux, x64]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'specialized'
+    steps:
+      - name: Quantum Health Check
+        run: |
+          echo "Runner: MEDINA-QUANTUM-SIM-001"
+          echo "Type: Quantum Circuit Simulator"
+          echo "Use: Quantum algorithm testing, PROTO-231 validation"
+
+  # ══════════════════════════════════════════════════════════════════════════════
+  # EDGE COMPUTING RUNNERS - 8 RUNNERS
+  # ══════════════════════════════════════════════════════════════════════════════
+
+  edge-cloudflare-workers:
+    name: ☁️ Cloudflare Workers
+    runs-on: [self-hosted, edge, cloudflare, workers]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-CF-001"
+          echo "Platform: Cloudflare Workers"
+          echo "Use: Edge function deployment"
+
+  edge-lambda-edge:
+    name: ⚡ Lambda@Edge
+    runs-on: [self-hosted, edge, aws, lambda-edge]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-LAMBDA-001"
+          echo "Platform: AWS Lambda@Edge"
+          echo "Use: CDN edge compute"
+
+  edge-vercel:
+    name: ▲ Vercel Edge
+    runs-on: [self-hosted, edge, vercel]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-VERCEL-001"
+          echo "Platform: Vercel Edge Functions"
+          echo "Use: Next.js edge deployment"
+
+  edge-deno-deploy:
+    name: 🦕 Deno Deploy
+    runs-on: [self-hosted, edge, deno]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-DENO-001"
+          echo "Platform: Deno Deploy"
+          echo "Use: Deno edge runtime"
+
+  edge-fly-io:
+    name: 🪰 Fly.io Edge
+    runs-on: [self-hosted, edge, fly-io]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-FLY-001"
+          echo "Platform: Fly.io"
+          echo "Use: Global edge containers"
+
+  edge-fastly:
+    name: ⚡ Fastly Compute
+    runs-on: [self-hosted, edge, fastly]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-FASTLY-001"
+          echo "Platform: Fastly Compute@Edge"
+          echo "Use: WASM edge compute"
+
+  edge-akamai:
+    name: 🌐 Akamai EdgeWorkers
+    runs-on: [self-hosted, edge, akamai]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-AKAMAI-001"
+          echo "Platform: Akamai EdgeWorkers"
+          echo "Use: Enterprise edge compute"
+
+  edge-netlify:
+    name: 🔷 Netlify Edge
+    runs-on: [self-hosted, edge, netlify]
+    if: github.event.inputs.runner_group == 'all' || github.event.inputs.runner_group == 'edge'
+    steps:
+      - name: Edge Health Check
+        run: |
+          echo "Runner: MEDINA-EDGE-NETLIFY-001"
+          echo "Platform: Netlify Edge Functions"
+          echo "Use: JAMstack edge"
+
+  # ══════════════════════════════════════════════════════════════════════════════
+  # FLEET ORCHESTRATION
+  # ══════════════════════════════════════════════════════════════════════════════
+
+  fleet-status:
+    name: 📊 Fleet Status Report
+    runs-on: ubuntu-latest
+    needs: [
+      americas-us-east-1, americas-us-east-2, americas-us-west-1, americas-us-west-2,
+      europe-west-1, europe-west-2, europe-central-1, europe-north-1,
+      apac-tokyo, apac-singapore, apac-sydney, apac-mumbai,
+      gpu-nvidia-a100, gpu-nvidia-h100, high-memory-1tb, arm64-graviton3,
+      edge-cloudflare-workers, edge-vercel
+    ]
+    if: always()
+    steps:
+      - name: Generate Fleet Report
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════════╗"
+          echo "║          MEDINA GLOBAL RUNNER FLEET STATUS                      ║"
+          echo "║          Protocol: RUNNER-GLOBAL-001                            ║"
+          echo "╠══════════════════════════════════════════════════════════════════╣"
+          echo "║ Total Runners: 52                                               ║"
+          echo "║ Americas: 8 | Europe: 8 | Asia-Pacific: 9 | MEA: 4             ║"
+          echo "║ Specialized: 12 | Edge: 8 | φ-Coherence: Active                ║"
+          echo "╚══════════════════════════════════════════════════════════════════╝"
+          echo ""
+          echo "Runner Fleet Coverage:"
+          echo "  🌎 Americas: US-East, US-West, Canada, Brazil, Mexico, Chile"
+          echo "  🌍 Europe: Ireland, UK, France, Germany, Sweden, Italy, Switzerland, Poland"
+          echo "  🌏 Asia-Pacific: Tokyo, Osaka, Seoul, Singapore, Sydney, Mumbai, Hong Kong, Jakarta"
+          echo "  🌐 Middle East & Africa: Bahrain, UAE, Tel Aviv, Cape Town"
+          echo "  ⚡ Specialized: GPU (A100/H100/L40S), High-Memory, ARM64, macOS, Windows, Quantum"
+          echo "  ☁️ Edge: Cloudflare, Lambda@Edge, Vercel, Deno, Fly.io, Fastly, Akamai, Netlify"

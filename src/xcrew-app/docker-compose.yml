@@ -1,0 +1,102 @@
+# XCREW Production Deployment
+# Protocol: XCREW-DEPLOY-001
+#
+# Three-service architecture:
+#   1. xcrew-api (Rust/Axum) - Main API server, port 8080
+#   2. xcrew-edge (Go) - Edge networking & caching, port 9001
+#   3. xcrew-intelligence (Python/FastAPI) - AI/ML engine, port 9000
+
+services:
+  # ═══════════════════════════════════════════════════════════════
+  # RUST API SERVER (Primary Gateway)
+  # ═══════════════════════════════════════════════════════════════
+  xcrew-api:
+    build:
+      context: ./rust
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - XCREW_HOST=0.0.0.0
+      - XCREW_PORT=8080
+      - INTELLIGENCE_SERVICE_URL=http://xcrew-intelligence:9000
+      - EDGE_SERVICE_URL=http://xcrew-edge:9001
+      - RUST_LOG=xcrew_server=info,tower_http=info
+    depends_on:
+      - xcrew-intelligence
+      - xcrew-edge
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "2.0"
+
+  # ═══════════════════════════════════════════════════════════════
+  # GO EDGE SERVICE (Networking & Cache)
+  # ═══════════════════════════════════════════════════════════════
+  xcrew-edge:
+    build:
+      context: ./go
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    environment:
+      - XCREW_EDGE_PORT=9001
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "1.0"
+
+  # ═══════════════════════════════════════════════════════════════
+  # PYTHON INTELLIGENCE SERVICE (AI/ML Engine)
+  # ═══════════════════════════════════════════════════════════════
+  xcrew-intelligence:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    environment:
+      - XCREW_INTEL_HOST=0.0.0.0
+      - XCREW_INTEL_PORT=9000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "2.0"
+
+  # ═══════════════════════════════════════════════════════════════
+  # REDIS (Enable when distributed caching is needed)
+  # ═══════════════════════════════════════════════════════════════
+  # redis:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+  #   restart: unless-stopped
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 128M
+
+networks:
+  default:
+    name: xcrew-network
