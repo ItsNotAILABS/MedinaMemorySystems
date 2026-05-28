@@ -2,6 +2,11 @@
 
 import { useState, useEffect, useCallback, createContext, useContext } from 'react';
 import type { PlatformSyncState } from '@/types';
+import { pulseOrganism } from '@/lib/organismSovereign';
+import { getGates, getGovernanceStats } from '@/lib/governanceEngine';
+import { getMemoryStats, listMemories } from '@/lib/memoryEngine';
+import { getModels, getModelStats } from '@/lib/modelRouter';
+import { getReplayStats } from '@/lib/replayEngine';
 
 const SYNC_INTERVAL = 4000;
 
@@ -22,21 +27,35 @@ export const PlatformSyncContext = createContext<PlatformSyncState>(DEFAULT_STAT
 export function usePlatformSyncProvider() {
   const [state, setState] = useState<PlatformSyncState>(DEFAULT_STATE);
 
-  const sync = useCallback(async () => {
+  const sync = useCallback(() => {
     try {
-      const res = await fetch('/api/sync');
-      if (res.ok) {
-        const data = await res.json() as PlatformSyncState;
-        setState(data);
-      }
+      const organism = pulseOrganism();
+      const gates = getGates();
+      const governance = getGovernanceStats();
+      const memory = getMemoryStats();
+      const models = { families: getModels(), stats: getModelStats() };
+      const replay = getReplayStats();
+      const recentMemories = listMemories(5);
+
+      setState({
+        organism,
+        gates,
+        governance,
+        memory,
+        models,
+        replay,
+        recentMemories,
+        timestamp: new Date().toISOString(),
+        beat: organism.lastBeat,
+      });
     } catch {
       // silently ignore sync failures
     }
   }, []);
 
   useEffect(() => {
-    void sync();
-    const interval = setInterval(() => void sync(), SYNC_INTERVAL);
+    sync();
+    const interval = setInterval(sync, SYNC_INTERVAL);
     return () => clearInterval(interval);
   }, [sync]);
 
