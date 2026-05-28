@@ -372,7 +372,9 @@ export function installApiInterceptor(): void {
 
     if (init?.body) {
       try {
-        body = JSON.parse(init.body as string);
+        body = typeof init.body === 'string'
+          ? JSON.parse(init.body)
+          : {};
       } catch {
         body = {};
       }
