@@ -169,7 +169,7 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   required
                   autoComplete="new-password"
-                  minLength={4}
+                  minLength={6}
                 />
               </div>
               <button

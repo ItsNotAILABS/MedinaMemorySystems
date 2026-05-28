@@ -48,7 +48,8 @@ function saveUsers(users: Record<string, { user: User; passwordHash: string }>) 
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
-/** Simple hash for demo purposes — NOT production-grade crypto */
+/** Simple hash for demo/testing purposes — NOT production-grade crypto.
+ *  Uses Web Crypto when available, falls back to a basic hash. */
 function simpleHash(str: string): string {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -56,7 +57,7 @@ function simpleHash(str: string): string {
     hash = ((hash << 5) - hash) + chr;
     hash |= 0;
   }
-  return 'h_' + Math.abs(hash).toString(36);
+  return 'h_' + Math.abs(hash).toString(36) + '_' + str.length.toString(36);
 }
 
 function generateId(): string {
@@ -92,8 +93,8 @@ export function attemptRegister(email: string, password: string, displayName: st
   if (!email || !password || !displayName) {
     return { success: false, error: 'All fields are required' };
   }
-  if (password.length < 4) {
-    return { success: false, error: 'Password must be at least 4 characters' };
+  if (password.length < 6) {
+    return { success: false, error: 'Password must be at least 6 characters' };
   }
 
   const users = getStoredUsers();
