@@ -1,0 +1,35 @@
+[package]
+name = "xcrew-server"
+version = "1.0.0"
+edition = "2021"
+authors = ["ItsNotAILABS"]
+description = "XCREW Production Web Server - Sovereign Edge Computing Platform"
+license = "MIT"
+
+[dependencies]
+axum = { version = "0.7", features = ["macros", "ws"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tower = { version = "0.4", features = ["full"] }
+tower-http = { version = "0.5", features = ["cors", "trace", "compression-gzip"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+dashmap = "5"
+sqlx = { version = "0.7", features = ["runtime-tokio", "postgres", "uuid", "chrono"] }
+redis = { version = "0.25", features = ["tokio-comp", "connection-manager"] }
+reqwest = { version = "0.12", features = ["json"] }
+jsonwebtoken = "9"
+argon2 = "0.5"
+rand = "0.8"
+thiserror = "1"
+anyhow = "1"
+dotenvy = "0.15"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
