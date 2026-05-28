@@ -4,8 +4,13 @@ use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation}
 use serde::{Deserialize, Serialize};
 use std::time::{SystemTime, UNIX_EPOCH};
 
-const JWT_SECRET: &str = "xcrew-sovereign-edge-secret-change-in-production";
 const TOKEN_EXPIRY_HOURS: u64 = 24;
+
+fn get_jwt_secret() -> String {
+    std::env::var("JWT_SECRET")
+        .unwrap_or_else(|_| "xcrew-dev-only-secret-set-JWT_SECRET-in-production".to_string())
+}
+
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Claims {
@@ -28,17 +33,19 @@ pub fn create_token(user_id: &str, role: &str) -> Result<String, jsonwebtoken::e
         role: role.to_string(),
     };
 
+    let secret = get_jwt_secret();
     encode(
         &Header::default(),
         &claims,
-        &EncodingKey::from_secret(JWT_SECRET.as_bytes()),
+        &EncodingKey::from_secret(secret.as_bytes()),
     )
 }
 
 pub fn verify_token(token: &str) -> Result<Claims, jsonwebtoken::errors::Error> {
+    let secret = get_jwt_secret();
     let token_data = decode::<Claims>(
         token,
-        &DecodingKey::from_secret(JWT_SECRET.as_bytes()),
+        &DecodingKey::from_secret(secret.as_bytes()),
         &Validation::default(),
     )?;
     Ok(token_data.claims)

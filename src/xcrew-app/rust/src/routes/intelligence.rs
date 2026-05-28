@@ -108,10 +108,8 @@ pub async fn quantum_measure(
         .collect();
     let total: f64 = probs.iter().sum();
 
-    let rand_val = (std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .unwrap()
-        .subsec_nanos() as f64) / 4_294_967_295.0;
+    // Use proper random for Born rule measurement
+    let rand_val: f64 = rand::random();
 
     let mut cumulative = 0.0;
     let mut result = &qstate.amplitudes[0].0;

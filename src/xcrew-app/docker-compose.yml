@@ -85,17 +85,17 @@ services:
           cpus: "2.0"
 
   # ═══════════════════════════════════════════════════════════════
-  # REDIS (Optional - for distributed caching)
+  # REDIS (Enable when distributed caching is needed)
   # ═══════════════════════════════════════════════════════════════
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-    restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 128M
+  # redis:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+  #   restart: unless-stopped
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 128M
 
 networks:
   default:

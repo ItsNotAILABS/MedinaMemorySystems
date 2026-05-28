@@ -3,7 +3,6 @@ WORKDIR /app
 COPY go.mod ./
 RUN go mod download 2>/dev/null || true
 COPY cmd/ ./cmd/
-COPY internal/ ./internal/
 RUN CGO_ENABLED=0 go build -o xcrew-edge ./cmd/xcrew-edge
 
 FROM alpine:3.19

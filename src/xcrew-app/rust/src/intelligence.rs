@@ -3,7 +3,7 @@
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 
-const PHI: f64 = 1.618033988749895;
+const PHI: f64 = crate::PHI;
 
 /// Intelligence decision request
 #[derive(Debug, Clone, Serialize, Deserialize)]

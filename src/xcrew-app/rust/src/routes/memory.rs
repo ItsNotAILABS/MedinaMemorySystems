@@ -80,8 +80,8 @@ pub async fn search_memory(
             std::f64::consts::TAU - (req.phi - entry.phi).abs()
         );
         let d_rho = (req.rho - entry.rho).abs();
-        let d_ring = ((req.ring as i32 - entry.ring as i32).unsigned_abs())
-            .min(rings - (req.ring as i32 - entry.ring as i32).unsigned_abs());
+        let d_ring_raw = (req.ring as i32 - entry.ring as i32).unsigned_abs();
+        let d_ring = d_ring_raw.min(rings - d_ring_raw);
 
         let dist = (d_theta.powi(2) + d_phi.powi(2) + (d_rho * PHI).powi(2)
             + (d_ring as f64 / rings as f64).powi(2)).sqrt();
