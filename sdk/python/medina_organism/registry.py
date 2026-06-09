@@ -35,7 +35,7 @@ class ProtocolEntry:
     is_active: bool = True
 
 
-# Complete protocol manifest — all 44 protocols from the organism
+# Complete protocol manifest — all 43 protocols from the organism
 PROTOCOL_MANIFEST: List[Dict[str, Any]] = [
     # Core Protocols (PROTO-231/232/233)
     {"id": "PROTO-231", "name": "Quantum Coherence", "domain": ProtocolDomain.QUANTUM,
