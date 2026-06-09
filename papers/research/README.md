@@ -167,6 +167,24 @@ An AI's reflection on the MEDINA development process, including:
 
 ---
 
+### CRYPTOGRAPHIA PHANTASMA (CP-001)
+
+**File**: `CRYPTOGRAPHIA_PHANTASMA.md`
+
+A public-safe architecture paper introducing Phantom Cryptography for sovereign AI systems, including:
+
+- **Quantum-Inspired Keying**: Ephemeral, context-derived, non-reusable access design
+- **Shadow Wires**: Protected communication channels between cognitive components
+- **Sovereign Vaults**: Governed memory structures for persistent AI systems
+- **Computational Receipts**: Proof objects without full private-core exposure
+- **Private-Core / Public-Proof Architecture**: Separation of sensitive operations from verifiable artifacts
+
+**Key Principle**: A sovereign AI system should be able to prove that protected work occurred without exposing the full private pathway by which that work was produced.
+
+**Status**: Published June 2026
+
+---
+
 ## References
 
 1. Knuth, D. E. (1997). *The Art of Computer Programming*

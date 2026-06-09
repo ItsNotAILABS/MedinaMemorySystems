@@ -75,6 +75,21 @@ This directory contains the **48 chapters** of the Sovereign Protocol Canon, org
 | 22 | `INTEGRATION_DATAFLOW.md` | Data Flow Architecture |
 | 23 | `INTEGRATION_GOVERNANCE.md` | Governance Hierarchy |
 
+## Part IV: Multi-Model AI Protocols (Chapters 44-53)
+
+| Chapter | Protocol ID | File | Role |
+|---------|-------------|------|------|
+| 44 | PROTO-MM-001 | `PROTO-MM-001.md` | Model Registry & Discovery Protocol |
+| 45 | PROTO-MM-002 | `PROTO-MM-002.md` | Adaptive Model Routing Protocol |
+| 46 | PROTO-MM-003 | `PROTO-MM-003.md` | Cross-Model Consensus Protocol |
+| 47 | PROTO-MM-004 | `PROTO-MM-004.md` | Model Capability Negotiation Protocol |
+| 48 | PROTO-MM-005 | `PROTO-MM-005.md` | Multi-Model Memory Fusion Protocol |
+| 49 | PROTO-MM-006 | `PROTO-MM-006.md` | Model Health & Failover Protocol |
+| 50 | PROTO-MM-007 | `PROTO-MM-007.md` | Sovereign Model Governance Protocol |
+| 51 | PROTO-MM-008 | `PROTO-MM-008.md` | Multi-Model Task Decomposition Protocol |
+| 52 | PROTO-MM-009 | `PROTO-MM-009.md` | Model Output Synthesis Protocol |
+| 53 | PROTO-MM-010 | `PROTO-MM-010.md` | Autonomous Model Evolution Protocol |
+
 ## Reading Order
 
 ### For Architects
