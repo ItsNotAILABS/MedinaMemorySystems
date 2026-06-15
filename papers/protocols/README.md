@@ -1,6 +1,6 @@
 # Sovereign Protocol Canon — Protocols Directory
 
-This directory contains the **48 chapters** of the Sovereign Protocol Canon, organized as:
+This directory contains the **52 chapters** of the Sovereign Protocol Canon, organized as:
 
 ## Part I: The Five Charters (Chapters 1-5)
 
@@ -90,6 +90,30 @@ This directory contains the **48 chapters** of the Sovereign Protocol Canon, org
 | 52 | PROTO-MM-009 | `PROTO-MM-009.md` | Model Output Synthesis Protocol |
 | 53 | PROTO-MM-010 | `PROTO-MM-010.md` | Autonomous Model Evolution Protocol |
 
+## Part V: Alpha AI Multi-Model Governance Charters (Chapters 54–57)
+
+The **Alpha Governance Tetrad** — four interlocking charters that together form
+a complete micro-to-macro governance architecture for sovereign multi-model AI.
+Each charter governs one dimension; all four bind together through MMG-001.
+
+| Chapter | Charter ID | File | Dimension |
+|---------|-----------|------|-----------|
+| 54 | CHARTER-ALPHA-UIA-001 | `CHARTER_ALPHA_UIA_001.md` | **User Intelligence Architecture** — How the AI works with the user, from atomic inference to lifelong relationship, across all 5 engagement layers (ATOM→EPOCH) |
+| 55 | CHARTER-ALPHA-MSG-001 | `CHARTER_ALPHA_MSG_001.md` | **Multi-System Governance** — How the AI expresses across all systems, from single model inference through federation to civilizational-scale substrate (MICRO→OMEGA) |
+| 56 | CHARTER-ALPHA-THG-001 | `CHARTER_ALPHA_THG_001.md` | **Temporal Horizon Governance** — How the AI governs across 7 time horizons (PULSE→OMEGA), with future injection at every decision point and pre-commitment to future stakeholders |
+| 57 | CHARTER-ALPHA-MMG-001 | `CHARTER_ALPHA_MMG_001.md` | **Micro-to-Macro Governance Binding** — The binding spine that unifies all three charters into a single Atomic Governance Unit (AGU) continuum from grain to civilization |
+
+### Alpha Tetrad Reading Order
+
+For the complete governance architecture, read in sequence:
+
+1. **UIA-001** — Understand the user sovereignty covenant
+2. **MSG-001** — Understand the system sovereignty covenant
+3. **THG-001** — Understand the temporal sovereignty covenant
+4. **MMG-001** — Understand how all three bind into one law
+
+---
+
 ## Reading Order
 
 ### For Architects
@@ -108,7 +132,7 @@ Start with AIO-FLOW-001 (Chapter 29), then AIO-FLOW-003 (Chapter 31).
 Start with AIO-COM-001 (Chapter 26), then AIO-GOV-001 (Chapter 39).
 
 ### For Governance Designers
-Start with the Charters (Chapters 1-5), then FIN-001 (Chapter 16).
+Start with the Charters (Chapters 1-5), then the Alpha Tetrad (Chapters 54-57).
 
 ### For QA/Validation Engineers
 Start with CHARTER_SVA (Chapter 5), then the SVA Protocols (Chapters 5.1-5.5).
