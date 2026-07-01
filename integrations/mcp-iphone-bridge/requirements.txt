@@ -1,0 +1,4 @@
+# MESIE iPhone Bridge MCP Server
+mcp>=1.27,<2
+# Optional — real USB iPhone access (device info, screenshots, app list):
+# pymobiledevice3>=4.0
