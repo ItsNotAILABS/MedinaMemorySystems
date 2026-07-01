@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "iphone-bridge": {
+      "command": "/path/to/mcp-iphone-bridge/.venv/bin/python",
+      "args": ["/path/to/mcp-iphone-bridge/MESIEServer.py"]
+    }
+  }
+}

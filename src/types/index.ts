@@ -4,7 +4,7 @@
 // Re-export all organism types (300 models, engines, memory temple)
 export * from './organisms';
 
-// Re-export GO System types (50 models, 30 MCP servers, 100 scrapers, 20 workflows)
+// Re-export GO System types (50 models, 31 MCP servers, 100 scrapers, 20 workflows)
 export * from './goSystem';
 
 // Re-export Call Marketplace types (260 tools, 55 protocols, 5 tiers, settlement/proof)

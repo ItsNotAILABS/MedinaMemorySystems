@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════════
 // GO SYSTEM TYPES — Medina GO Systems
 // Enterprise AI Infrastructure Platform
-// 10 Divisions · 50 AI Models · 30 MCP Servers · 100 Scrapers · 20 Workflows
+// 10 Divisions · 50 AI Models · 31 MCP Servers · 100 Scrapers · 20 Workflows
 // ═══════════════════════════════════════════════════════════════
 
 // ─── Divisions ───────────────────────────────────────────────────────────────
@@ -51,7 +51,7 @@ export interface GOModel {
 export type MCPServerStatus = 'running' | 'stopped' | 'starting' | 'error' | 'maintenance';
 
 export interface MCPServer {
-  id: string;           // MCP-01 → MCP-30
+  id: string;           // MCP-01 → MCP-31
   name: string;
   division: GODivision;
   description: string;

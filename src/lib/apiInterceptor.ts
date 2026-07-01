@@ -18,6 +18,17 @@ import { ulriRoute, ulriConsensus } from '@/lib/ulriEngine';
 import { dualRead } from '@/lib/dualRead';
 import { checkAllGates } from '@/lib/gateEnforcement';
 import { sovereignId } from '@/lib/sovereign-id';
+import {
+  listMCPTools,
+  getMCPTool,
+  listMCPServerInfo,
+  callMCPTool,
+  getIPhoneBridgeConnection,
+  MCP_TOOL_REGISTRY,
+  type MCPToolServer,
+} from '@/lib/mcpToolRegistry';
+import { getMCPServer } from '@/lib/goSystem';
+import { IPHONE_BRIDGE_GO_SYSTEM_ID } from '@/lib/mcpToolRegistry';
 import type { ModelFamily, ParsedCommand } from '@/types';
 
 // ─── Response Helpers ───────────────────────────────────────────────────────
@@ -316,6 +327,56 @@ async function handleHealth(): Promise<Response> {
   return jsonResponse({ status: 'healthy', timestamp: now(), version: '1.0.0' });
 }
 
+async function handleAiMcp(url: URL, method: string, body?: any): Promise<Response> {
+  if (method === 'GET') {
+    const action = url.searchParams.get('action') ?? 'tools';
+    const server = url.searchParams.get('server') as MCPToolServer | null;
+    const toolName = url.searchParams.get('tool');
+
+    switch (action) {
+      case 'tools':
+        return jsonResponse({
+          success: true,
+          data: {
+            tools: listMCPTools(server ? { server } : undefined),
+            total: server ? listMCPTools({ server }).length : MCP_TOOL_REGISTRY.length,
+          },
+          timestamp: now(),
+        });
+      case 'tool':
+        if (!toolName) return jsonResponse({ success: false, error: 'tool parameter required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: getMCPTool(toolName), timestamp: now() });
+      case 'servers':
+        return jsonResponse({ success: true, data: listMCPServerInfo(), timestamp: now() });
+      case 'config': {
+        const goServer = getMCPServer(IPHONE_BRIDGE_GO_SYSTEM_ID);
+        return jsonResponse({
+          success: true,
+          data: {
+            mcpServers: {
+              'iphone-bridge': {
+                command: getIPhoneBridgeConnection().command,
+                args: getIPhoneBridgeConnection().args,
+              },
+            },
+            goSystem: goServer,
+            docs: 'Copy .cursor/mcp.json.example to .cursor/mcp.json and update paths for your machine.',
+          },
+          timestamp: now(),
+        });
+      }
+      default:
+        return jsonResponse({ success: false, error: 'Unknown action', timestamp: now() }, 400);
+    }
+  }
+
+  const tool = body?.tool;
+  if (!tool) return jsonResponse({ success: false, error: 'tool is required', timestamp: now() }, 400);
+  const result = callMCPTool(tool, body?.arguments ?? {});
+  const status = result.success ? 200 : result.bridgeRequired ? 202 : 400;
+  return jsonResponse({ success: result.success, data: result, timestamp: now() }, status);
+}
+
 // ─── Catch-all for unhandled routes ─────────────────────────────────────────
 
 async function handleFallback(path: string): Promise<Response> {
@@ -325,7 +386,12 @@ async function handleFallback(path: string): Promise<Response> {
 // ─── Main Router ────────────────────────────────────────────────────────────
 
 async function routeRequest(url: URL, method: string, body?: any): Promise<Response> {
-  const path = url.pathname.replace(/^\/api\//, '').split('/')[0];
+  const segments = url.pathname.replace(/^\/api\//, '').split('/');
+  const path = segments[0];
+
+  if (path === 'ai' && segments[1] === 'mcp') {
+    return handleAiMcp(url, method, body);
+  }
 
   switch (path) {
     case 'sync': return handleSync();

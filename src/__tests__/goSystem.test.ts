@@ -1,6 +1,6 @@
 /**
  * Tests for goSystem.ts
- * Tests the complete GO System: 50 models, 30 MCP servers, 100 scrapers, 20 workflows
+ * Tests the complete GO System: 50 models, 31 MCP servers, 100 scrapers, 20 workflows
  */
 
 let goSystem: typeof import('@/lib/goSystem');
@@ -21,10 +21,10 @@ describe('GO System — Medina GO Systems', () => {
       expect(m.companyName).toBe('Medina GO Systems');
       expect(m.divisions).toBe(10);
       expect(m.totalModels).toBe(50);
-      expect(m.totalMCPServers).toBe(30);
+      expect(m.totalMCPServers).toBe(31);
       expect(m.totalScrapers).toBe(100);
       expect(m.totalWorkflows).toBe(20);
-      expect(m.totalEntities).toBe(200);
+      expect(m.totalEntities).toBe(201);
     });
 
     it('should list all 8 model families', () => {
@@ -121,13 +121,13 @@ describe('GO System — Medina GO Systems', () => {
   });
 
   // ═══════════════════════════════════════════════════════════════
-  // MCP SERVERS (MCP-01 → MCP-30)
+  // MCP SERVERS (MCP-01 → MCP-31)
   // ═══════════════════════════════════════════════════════════════
 
   describe('MCP Servers', () => {
-    it('should have exactly 30 MCP servers', () => {
+    it('should have exactly 31 MCP servers', () => {
       const servers = goSystem.listMCPServers();
-      expect(servers).toHaveLength(30);
+      expect(servers).toHaveLength(31);
     });
 
     it('should use MCP-XX ID format', () => {
@@ -156,6 +156,14 @@ describe('GO System — Medina GO Systems', () => {
       const server = goSystem.getMCPServer('MCP-01');
       expect(server).toBeDefined();
       expect(server?.name).toBe('Terminal');
+    });
+
+    it('should register iPhone Bridge as MCP-31', () => {
+      const server = goSystem.getMCPServer('MCP-31');
+      expect(server).toBeDefined();
+      expect(server?.name).toBe('iPhone Bridge (MESIE)');
+      expect(server?.protocol).toBe('stdio');
+      expect(server?.division).toBe('TESTING');
     });
 
     it('should filter by division', () => {
@@ -369,7 +377,7 @@ describe('GO System — Medina GO Systems', () => {
     it('should return full fleet status', () => {
       const status = goSystem.getFleetStatus();
       expect(status.models.total).toBe(50);
-      expect(status.mcpServers.total).toBe(30);
+      expect(status.mcpServers.total).toBe(31);
       expect(status.scrapers.total).toBe(100);
       expect(status.workflows.total).toBe(20);
       expect(status.divisions).toHaveLength(10);
@@ -393,7 +401,7 @@ describe('GO System — Medina GO Systems', () => {
     it('should query all entity types', () => {
       const result = goSystem.queryGOSystem({ type: 'all' });
       expect(result.models).toHaveLength(50);
-      expect(result.mcpServers).toHaveLength(30);
+      expect(result.mcpServers).toHaveLength(31);
       expect(result.scrapers).toHaveLength(100);
       expect(result.workflows).toHaveLength(20);
       expect(result.divisions).toHaveLength(10);

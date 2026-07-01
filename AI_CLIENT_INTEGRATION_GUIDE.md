@@ -61,19 +61,67 @@ const memory = await fetch('/api/shared/memory?query=semantic_search&q=...');
 If you're an AI that uses Model Context Protocol:
 
 ```typescript
-// Available tools
-const tools = await fetch('/api/ai/mcp/tools');
+// List all registered MCP tools (Medina + iPhone Bridge)
+const tools = await fetch('/api/ai/mcp?action=tools');
 // Returns tool schemas compatible with MCP
 
-// Call a tool
-const result = await fetch('/api/ai/mcp/call', {
+// List only iPhone Bridge tools
+const iphoneTools = await fetch('/api/ai/mcp?action=tools&server=iphone-bridge');
+
+// List MCP servers and connection info
+const servers = await fetch('/api/ai/mcp?action=servers');
+
+// Get Cursor MCP config for iphone-bridge
+const config = await fetch('/api/ai/mcp?action=config');
+
+// Call a Medina-native tool (runs in-process)
+const result = await fetch('/api/ai/mcp', {
   method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
     tool: 'medina_memory_store',
-    arguments: { ... }
+    arguments: { content: 'Enterprise knowledge', type: 'semantic' }
+  })
+});
+
+// Call an iPhone Bridge tool (returns bridge connection info — live control via Cursor MCP)
+const iphoneResult = await fetch('/api/ai/mcp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    tool: 'iphone_screenshot',
+    arguments: { format: 'jpeg' }
   })
 });
 ```
+
+#### iPhone Bridge (MESIE) — Cursor MCP Setup
+
+Add to `.cursor/mcp.json` (see `.cursor/mcp.json.example`):
+
+```json
+{
+  "mcpServers": {
+    "iphone-bridge": {
+      "command": "/path/to/mcp-iphone-bridge/.venv/bin/python",
+      "args": ["/path/to/mcp-iphone-bridge/MESIEServer.py"]
+    }
+  }
+}
+```
+
+Registered in GO System as **MCP-31 — iPhone Bridge (MESIE)**. Available tools:
+
+| Tool | Description |
+|------|-------------|
+| `iphone_device_info` | Device model, iOS version, battery, storage |
+| `iphone_screenshot` | Capture screen image |
+| `iphone_tap` | Tap at (x, y) coordinates |
+| `iphone_swipe` | Swipe gesture between coordinates |
+| `iphone_launch_app` | Launch app by bundle ID |
+| `iphone_ui_scan` | Scan UI for tappable elements |
+| `iphone_type_text` | Type into focused field |
+| `iphone_list_apps` | List installed apps |
 
 ---
 
