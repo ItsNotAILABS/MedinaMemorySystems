@@ -1,9 +1,0 @@
-mcp<2,>=1.27
-bleak>=0.22
-
-[full]
-pymobiledevice3>=4.0
-bleak>=0.22
-
-[usb]
-pymobiledevice3>=4.0
