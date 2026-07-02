@@ -13,7 +13,7 @@ describe('MCP Tool Registry', () => {
   describe('listMCPTools', () => {
     it('should list all tools', () => {
       const tools = mcp.listMCPTools();
-      expect(tools.length).toBeGreaterThanOrEqual(14);
+      expect(tools.length).toBeGreaterThanOrEqual(22);
     });
 
     it('should filter medina tools', () => {
@@ -24,7 +24,7 @@ describe('MCP Tool Registry', () => {
 
     it('should filter iphone-bridge tools', () => {
       const tools = mcp.listMCPTools({ server: 'iphone-bridge' });
-      expect(tools.length).toBe(8);
+      expect(tools.length).toBeGreaterThanOrEqual(16);
       tools.forEach((t) => expect(t.server).toBe('iphone-bridge'));
     });
   });

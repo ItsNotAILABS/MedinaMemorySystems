@@ -159,7 +159,7 @@ const MCP_SEEDS: MCPSeed[] = [
   { name: 'Docs', division: 'CONTEXT_DOCS', description: 'Documentation generation and serving', capabilities: ['generate', 'serve', 'search', 'version', 'export'], protocol: 'http' },
   { name: 'Knowledge Base', division: 'CONTEXT_DOCS', description: 'Knowledge base management', capabilities: ['index', 'search', 'embed', 'retrieve', 'update'], protocol: 'http' },
   { name: 'Context Manager', division: 'CONTEXT_DOCS', description: 'Context window management and optimization', capabilities: ['compress', 'prioritize', 'chunk', 'summarize', 'cache'], protocol: 'http' },
-  { name: 'iPhone Bridge (MESIE)', division: 'TESTING', description: 'Physical iPhone control via MESIE bridge MCP server (MESIEServer.py)', capabilities: ['device-info', 'screenshot', 'tap', 'swipe', 'launch-app', 'ui-scan', 'type-text', 'list-apps'], protocol: 'stdio' },
+  { name: 'iPhone Bridge (MESIE)', division: 'TESTING', description: 'Cross-platform iPhone bridge — Bluetooth pairing + USB control via MCP for all AI hosts', capabilities: ['bluetooth', 'ble-scan', 'device-info', 'screenshot', 'tap', 'swipe', 'launch-app', 'ui-scan', 'type-text', 'list-apps', 'mcp-config'], protocol: 'stdio' },
 ];
 
 // ═══════════════════════════════════════════════════════════════

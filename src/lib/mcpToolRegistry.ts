@@ -154,6 +154,59 @@ const MEDINA_TOOLS: MCPToolSchema[] = [
 
 const IPHONE_BRIDGE_TOOLS: MCPToolSchema[] = [
   {
+    name: 'ping',
+    description: 'Test that the MESIE iPhone Bridge MCP server is alive',
+    server: 'iphone-bridge',
+    parameters: { type: 'object', properties: {} },
+  },
+  {
+    name: 'bridge_status',
+    description: 'Full bridge health: platform, Bluetooth link, USB, capabilities',
+    server: 'iphone-bridge',
+    parameters: { type: 'object', properties: {} },
+  },
+  {
+    name: 'connection_matrix',
+    description: 'Show how phone and laptop are connected (Bluetooth + USB)',
+    server: 'iphone-bridge',
+    parameters: { type: 'object', properties: {} },
+  },
+  {
+    name: 'bluetooth_list_devices',
+    description: 'List Bluetooth-paired devices; highlights iPhone/iPad',
+    server: 'iphone-bridge',
+    parameters: { type: 'object', properties: {} },
+  },
+  {
+    name: 'bluetooth_ble_scan',
+    description: 'Scan nearby BLE devices',
+    server: 'iphone-bridge',
+    parameters: {
+      type: 'object',
+      properties: {
+        timeout: { type: 'number', description: 'Scan duration in seconds (default 5)' },
+      },
+    },
+  },
+  {
+    name: 'bluetooth_phone_link',
+    description: 'Check if iPhone is paired/connected to laptop via Bluetooth',
+    server: 'iphone-bridge',
+    parameters: { type: 'object', properties: {} },
+  },
+  {
+    name: 'list_devices',
+    description: 'List all known devices across Bluetooth and USB',
+    server: 'iphone-bridge',
+    parameters: { type: 'object', properties: {} },
+  },
+  {
+    name: 'mcp_host_config',
+    description: 'Generate MCP config snippets for Cursor, Claude Desktop, and other hosts',
+    server: 'iphone-bridge',
+    parameters: { type: 'object', properties: {} },
+  },
+  {
     name: 'iphone_device_info',
     description: 'Get connected iPhone device details (model, iOS version, battery, storage)',
     server: 'iphone-bridge',
