@@ -29,6 +29,21 @@ import {
 } from '@/lib/mcpToolRegistry';
 import { getMCPServer } from '@/lib/goSystem';
 import { IPHONE_BRIDGE_GO_SYSTEM_ID } from '@/lib/mcpToolRegistry';
+import {
+  listProjects,
+  getProject,
+  createProject,
+  updateProjectDesign,
+  aiAssist,
+  scaffold,
+  buildCapsules,
+  createProjectToken,
+  deploy,
+  listDeployHistory,
+  exportProjectBundle,
+  getCompanyVault,
+  APP_BUILDER_MANIFEST,
+} from '@/lib/appBuilderEngine';
 import type { ModelFamily, ParsedCommand } from '@/types';
 
 // ─── Response Helpers ───────────────────────────────────────────────────────
@@ -377,6 +392,55 @@ async function handleAiMcp(url: URL, method: string, body?: any): Promise<Respon
   return jsonResponse({ success: result.success, data: result, timestamp: now() }, status);
 }
 
+async function handleBuilder(url: URL, method: string, body?: any): Promise<Response> {
+  if (method === 'GET') {
+    const action = url.searchParams.get('action') ?? 'manifest';
+    const id = url.searchParams.get('id') ?? undefined;
+    switch (action) {
+      case 'manifest':
+        return jsonResponse({ success: true, data: APP_BUILDER_MANIFEST, timestamp: now() });
+      case 'projects':
+        return jsonResponse({ success: true, data: listProjects(), timestamp: now() });
+      case 'project':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: getProject(id), timestamp: now() });
+      case 'vault':
+        return jsonResponse({ success: true, data: getCompanyVault(), timestamp: now() });
+      case 'deployments':
+        return jsonResponse({ success: true, data: listDeployHistory(id), timestamp: now() });
+      case 'export':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: exportProjectBundle(id), timestamp: now() });
+      default:
+        return jsonResponse({ success: false, error: 'Unknown action', timestamp: now() }, 400);
+    }
+  }
+  switch (body?.action) {
+    case 'create':
+      return jsonResponse({ success: true, data: createProject(body), timestamp: now() }, 201);
+    case 'design':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: updateProjectDesign(body.id, body.design ?? {}), timestamp: now() });
+    case 'ai-assist':
+      if (!body.id || !body.prompt) return jsonResponse({ success: false, error: 'id and prompt required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: aiAssist(body.id, body.prompt), timestamp: now() });
+    case 'scaffold':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: scaffold(body.id), timestamp: now() });
+    case 'build-capsules':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: buildCapsules(body.id), timestamp: now() });
+    case 'create-token':
+      if (!body.id || !body.token) return jsonResponse({ success: false, error: 'id and token required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: createProjectToken(body.id, body.token), timestamp: now() });
+    case 'deploy':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: deploy(body.id, body.target), timestamp: now() });
+    default:
+      return jsonResponse({ success: false, error: 'Unknown action', timestamp: now() }, 400);
+  }
+}
+
 // ─── Catch-all for unhandled routes ─────────────────────────────────────────
 
 async function handleFallback(path: string): Promise<Response> {
@@ -391,6 +455,10 @@ async function routeRequest(url: URL, method: string, body?: any): Promise<Respo
 
   if (path === 'ai' && segments[1] === 'mcp') {
     return handleAiMcp(url, method, body);
+  }
+
+  if (path === 'builder') {
+    return handleBuilder(url, method, body);
   }
 
   switch (path) {
