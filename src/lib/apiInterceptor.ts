@@ -42,6 +42,8 @@ import {
   listDeployHistory,
   exportProjectBundle,
   exportProjectToDisk,
+  getProjectSourceFiles,
+  updateProjectFile,
   listGeneratedProjects,
   getCompanyVault,
   listTemplates,
@@ -430,6 +432,9 @@ async function handleBuilder(url: URL, method: string, body?: any): Promise<Resp
         return jsonResponse({ success: true, data: exportProjectBundle(id), timestamp: now() });
       case 'generated':
         return jsonResponse({ success: true, data: listGeneratedProjects(), timestamp: now() });
+      case 'source-files':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: getProjectSourceFiles(id), timestamp: now() });
       default:
         return jsonResponse({ success: false, error: 'Unknown action', timestamp: now() }, 400);
     }
@@ -464,9 +469,14 @@ async function handleBuilder(url: URL, method: string, body?: any): Promise<Resp
     case 'export-disk':
       return jsonResponse({
         success: false,
-        error: 'Disk export requires server mode. Run: npm run builder:export (or builder:build to also npm install && build)',
+        error: 'Disk export requires server mode. Use Code Studio → Download ZIP, or run: npm run builder:export',
         timestamp: now(),
       }, 501);
+    case 'update-file':
+      if (!body.id || !body.path || body.content === undefined) {
+        return jsonResponse({ success: false, error: 'id, path, and content required', timestamp: now() }, 400);
+      }
+      return jsonResponse({ success: true, data: updateProjectFile(body.id, body.path, body.content), timestamp: now() });
     default:
       return jsonResponse({ success: false, error: 'Unknown action', timestamp: now() }, 400);
   }

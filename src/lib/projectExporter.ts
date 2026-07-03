@@ -7,6 +7,15 @@ import path from 'path';
 import type { AppProject, GeneratedFile } from '@/types/appBuilder';
 import { buildCompleteProject, projectSlug } from '@/lib/fullProjectScaffold';
 
+export function resolveProjectFiles(project: AppProject): GeneratedFile[] {
+  const files = buildCompleteProject(project);
+  if (!project.fileOverrides) return files;
+  return files.map((f) => ({
+    ...f,
+    content: project.fileOverrides![f.path] ?? f.content,
+  }));
+}
+
 export interface ExportResult {
   ok: boolean;
   outputDir: string;
@@ -40,7 +49,7 @@ export function exportProjectToDisk(project: AppProject, baseDir?: string): Expo
   try {
     const slug = projectSlug(project.name);
     const outputDir = path.join(baseDir ?? GENERATED_ROOT, slug);
-    const files = buildCompleteProject(project);
+    const files = resolveProjectFiles(project);
     const written = writeProjectFiles(outputDir, files);
 
     return {

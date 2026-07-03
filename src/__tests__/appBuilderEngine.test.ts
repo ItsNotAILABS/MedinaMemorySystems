@@ -55,7 +55,7 @@ describe('Deploy CLI', () => {
 describe('Company App Builder Engine v2', () => {
   it('should expose manifest with templates and CLI', () => {
     const m = builder.APP_BUILDER_MANIFEST;
-    expect(m.version).toBe('2.0.0');
+    expect(m.version).toBe('2.1.0');
     expect(m.templates).toBeGreaterThanOrEqual(16);
     expect(m.deployTargets).toBeGreaterThanOrEqual(18);
     expect(m.cli).toContain('medina-deploy');

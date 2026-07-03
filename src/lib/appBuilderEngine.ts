@@ -14,6 +14,7 @@ import { builderAIAssist, listAIContext } from '@/lib/builderAI';
 import {
   exportProjectToDisk as writeProjectToDisk,
   listGeneratedProjects,
+  resolveProjectFiles,
   type ExportResult,
 } from '@/lib/projectExporter';
 import type {
@@ -323,7 +324,32 @@ export function listDeployHistory(projectId?: string): DeployResult[] {
 export function exportProjectBundle(id: string): GeneratedFile[] | undefined {
   const project = projects.get(id);
   if (!project) return undefined;
-  return project.artifacts.flatMap((a) => a.files);
+  return resolveProjectFiles(project);
+}
+
+/** Full source tree for Code Studio preview / ZIP download */
+export function getProjectSourceFiles(id: string): GeneratedFile[] | undefined {
+  const project = projects.get(id);
+  if (!project) return undefined;
+  return resolveProjectFiles(project);
+}
+
+export function updateProjectFile(id: string, filePath: string, content: string): AppProject | undefined {
+  const project = projects.get(id);
+  if (!project) return undefined;
+  project.fileOverrides = { ...(project.fileOverrides ?? {}), [filePath]: content };
+  project.updatedAt = new Date().toISOString();
+  return project;
+}
+
+export function resetProjectFile(id: string, filePath: string): AppProject | undefined {
+  const project = projects.get(id);
+  if (!project?.fileOverrides?.[filePath]) return project;
+  const next = { ...project.fileOverrides };
+  delete next[filePath];
+  project.fileOverrides = Object.keys(next).length ? next : undefined;
+  project.updatedAt = new Date().toISOString();
+  return project;
 }
 
 /** Write a complete runnable Next.js app to generated/<slug>/ on disk */
@@ -358,7 +384,7 @@ export {
 
 export const APP_BUILDER_MANIFEST = {
   name: 'Medina Company App Builder',
-  version: '2.0.0',
+  version: '2.1.0',
   cli: `medina-deploy v${MEDINA_DEPLOY_VERSION}`,
   templates: listTemplates().length,
   deployTargets: listDeployTargets().length,

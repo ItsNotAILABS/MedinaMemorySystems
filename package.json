@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=20.0.0 <21"
+    "node": ">=20"
   },
   "scripts": {
     "dev": "next dev",
@@ -16,7 +16,7 @@
     "test:watch": "jest --watch",
     "builder:export": "tsx scripts/export-app.ts",
     "builder:build": "node scripts/build-generated-app.mjs",
-    "builder:dev": "npm run dev --prefix apps/medina-builder"
+    "builder:dev": "node scripts/check-env.mjs && npm run dev --prefix apps/medina-builder"
   },
   "dependencies": {
     "clsx": "^2.1.1",

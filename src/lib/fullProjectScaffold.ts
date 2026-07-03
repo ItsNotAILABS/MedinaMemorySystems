@@ -55,7 +55,7 @@ export function generateFullNextApp(project: AppProject): GeneratedFile[] {
         name: s,
         version: '1.0.0',
         private: true,
-        engines: { node: '>=20.0.0 <21' },
+        engines: { node: '>=20' },
         scripts: {
           dev: 'next dev',
           build: 'next build',
@@ -83,7 +83,7 @@ export function generateFullNextApp(project: AppProject): GeneratedFile[] {
     {
       path: '.nvmrc',
       language: 'text',
-      content: '20\n',
+      content: '22\n',
     },
     {
       path: 'next.config.js',

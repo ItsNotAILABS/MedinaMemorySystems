@@ -158,6 +158,8 @@ export interface AppProject {
   status: 'draft' | 'scaffolded' | 'built' | 'deployed';
   createdAt: string;
   updatedAt: string;
+  /** User edits in Code Studio — applied on export */
+  fileOverrides?: Record<string, string>;
 }
 
 export interface CrudEntity {

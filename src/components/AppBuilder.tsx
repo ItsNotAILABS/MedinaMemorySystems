@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import type { AppProject, AppTemplate, DeployPlan, DeployTarget, TokenSpec } from '@/types/appBuilder';
+import BuilderCodeStudio from '@/components/BuilderCodeStudio';
 
-type Tab = 'templates' | 'create' | 'deploy' | 'ai';
+type Tab = 'templates' | 'create' | 'code' | 'deploy' | 'ai';
 
 interface DeployTargetInfo {
   id: DeployTarget;
@@ -133,7 +134,7 @@ export default function AppBuilder() {
       <div className="w-52 border-r border-[#1e1e2e] flex flex-col shrink-0">
         <div className="p-3 border-b border-[#1e1e2e]">
           <h2 className="text-sm font-bold text-indigo-400">Medina Builder</h2>
-          <p className="text-[10px] text-slate-500">Templates · CLI · Deploy</p>
+          <p className="text-[10px] text-slate-500">Code Studio · Deploy · Export</p>
         </div>
         <div className="flex-1 overflow-y-auto p-2 space-y-1">
           {projects.map((p) => (
@@ -153,13 +154,13 @@ export default function AppBuilder() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Tabs */}
         <div className="flex border-b border-[#1e1e2e] px-4 gap-1 shrink-0">
-          {(['templates', 'create', 'deploy', 'ai'] as Tab[]).map((t) => (
+          {(['templates', 'create', 'code', 'deploy', 'ai'] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
               className={`px-4 py-2.5 text-xs capitalize ${tab === t ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-slate-500 hover:text-slate-300'}`}
             >
-              {t === 'ai' ? 'AI Assist' : t}
+              {t === 'ai' ? 'AI Assist' : t === 'code' ? 'Code Studio' : t}
             </button>
           ))}
         </div>
@@ -224,8 +225,18 @@ export default function AppBuilder() {
                   </>
                 )}
               </div>
-              <p className="text-[10px] text-slate-600">CLI: <code className="text-slate-500">npm run builder:build</code> writes to <code className="text-slate-500">generated/</code> and runs npm install + build</p>
+              <p className="text-[10px] text-slate-600">
+                <strong className="text-slate-500">Code Studio</strong> tab to edit files · <strong className="text-slate-500">Download ZIP</strong> works in browser · CLI: <code className="text-slate-500">npm run builder:build</code>
+              </p>
             </section>
+          )}
+
+          {tab === 'code' && (
+            <BuilderCodeStudio
+              projectId={selected?.id ?? null}
+              projectName={selected?.name ?? 'app'}
+              onLog={pushLog}
+            />
           )}
 
           {tab === 'deploy' && (

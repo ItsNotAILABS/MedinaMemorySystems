@@ -14,6 +14,8 @@ import {
   listDeployHistory,
   exportProjectBundle,
   exportProjectToDisk,
+  getProjectSourceFiles,
+  updateProjectFile,
   listGeneratedProjects,
   getCompanyVault,
   listTemplates,
@@ -71,6 +73,9 @@ export async function GET(req: NextRequest) {
         return json({ success: true, data: exportProjectBundle(id), timestamp: now() });
       case 'generated':
         return json({ success: true, data: listGeneratedProjects(), timestamp: now() });
+      case 'source-files':
+        if (!id) return json({ success: false, error: 'id required', timestamp: now() }, 400);
+        return json({ success: true, data: getProjectSourceFiles(id), timestamp: now() });
       default:
         return json({ success: false, error: 'Unknown action', timestamp: now() }, 400);
     }
@@ -97,6 +102,8 @@ export async function POST(req: NextRequest) {
       design?: Record<string, unknown>;
       token?: TokenSpec;
       target?: DeployTarget;
+      path?: string;
+      content?: string;
     };
 
     switch (body.action) {
@@ -134,6 +141,11 @@ export async function POST(req: NextRequest) {
           if (!result.ok) return json({ success: false, error: result.error ?? 'Export failed', timestamp: now() }, 500);
           return json({ success: true, data: result, timestamp: now() });
         }
+      case 'update-file':
+        if (!body.id || !body.path || body.content === undefined) {
+          return json({ success: false, error: 'id, path, and content required', timestamp: now() }, 400);
+        }
+        return json({ success: true, data: updateProjectFile(body.id, body.path, body.content), timestamp: now() });
       default:
         return json({ success: false, error: 'Unknown action', timestamp: now() }, 400);
     }
