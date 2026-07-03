@@ -106,6 +106,16 @@ export default function AppBuilder() {
     await api('deploy', { id: project.id, target: deployTarget });
   };
 
+  const exportToDisk = async (project: AppProject) => {
+    setSelected(project);
+    const data = await api('export-disk', { id: project.id });
+    if (data?.success && data.data?.outputDir) {
+      pushLog(`Exported → ${data.data.outputDir} (${data.data.fileCount} files)`);
+    } else if (data?.error?.includes('npm run builder')) {
+      pushLog('Use CLI: npm run builder:export');
+    }
+  };
+
   const askAI = async () => {
     if (!selected || !aiPrompt.trim()) return;
     const data = await api('ai-assist', { id: selected.id, prompt: aiPrompt });
@@ -201,14 +211,20 @@ export default function AppBuilder() {
                   <option value="cloud">Cloud</option>
                 </select>
               </label>
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-wrap">
                 <button onClick={create} disabled={loading} className="px-4 py-2 bg-indigo-600 rounded-lg text-sm disabled:opacity-50">Create</button>
                 {selected && (
-                  <button onClick={() => runPipeline(selected)} disabled={loading} className="px-4 py-2 bg-emerald-700 rounded-lg text-sm disabled:opacity-50">
-                    Build + Deploy
-                  </button>
+                  <>
+                    <button onClick={() => runPipeline(selected)} disabled={loading} className="px-4 py-2 bg-emerald-700 rounded-lg text-sm disabled:opacity-50">
+                      Build + Deploy
+                    </button>
+                    <button onClick={() => exportToDisk(selected)} disabled={loading} className="px-4 py-2 bg-amber-700 rounded-lg text-sm disabled:opacity-50">
+                      Export to Disk
+                    </button>
+                  </>
                 )}
               </div>
+              <p className="text-[10px] text-slate-600">CLI: <code className="text-slate-500">npm run builder:build</code> writes to <code className="text-slate-500">generated/</code> and runs npm install + build</p>
             </section>
           )}
 

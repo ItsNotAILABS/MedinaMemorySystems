@@ -10,7 +10,10 @@
     "type-check": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "builder:export": "tsx scripts/export-app.ts",
+    "builder:build": "node scripts/build-generated-app.mjs",
+    "builder:dev": "npm run dev --prefix apps/medina-builder"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -33,6 +36,7 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "ts-jest": "^29.4.9",
+    "tsx": "^4.19.0",
     "typescript": "^5"
   }
 }

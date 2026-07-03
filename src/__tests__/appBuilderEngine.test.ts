@@ -96,4 +96,16 @@ describe('Company App Builder Engine v2', () => {
     expect(result?.deployRecommendation).toMatch(/icp/);
     expect(result?.suggestions.length).toBeGreaterThan(0);
   });
+
+  it('should export runnable project files to disk', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const p = builder.createProject({ name: 'DiskApp', backend: 'python', deployTarget: 'saas-vercel' });
+    const result = builder.exportProjectToDisk(p.id, path.join(process.cwd(), 'generated-test'));
+    expect(result?.ok).toBe(true);
+    expect(result?.fileCount).toBeGreaterThan(5);
+    expect(fs.existsSync(path.join(result!.outputDir, 'package.json'))).toBe(true);
+    expect(fs.existsSync(path.join(result!.outputDir, 'src/app/page.tsx'))).toBe(true);
+    fs.rmSync(path.join(process.cwd(), 'generated-test'), { recursive: true, force: true });
+  });
 });

@@ -29,7 +29,6 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const action = searchParams.get('action') ?? 'manifest';
   const id = searchParams.get('id') ?? undefined;
-  const category = searchParams.get('category') ?? undefined;
 
   try {
     switch (action) {

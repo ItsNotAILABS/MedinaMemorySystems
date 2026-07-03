@@ -11,6 +11,11 @@ import { COMPANY_VAULT, vaultModulesForStack } from '@/lib/companyVault';
 import { applyTemplate, getTemplate, listTemplates, templateCategories } from '@/lib/templateLibrary';
 import { buildDeployPlan, listDeployTargets, MEDINA_DEPLOY_VERSION } from '@/lib/deployCli';
 import { builderAIAssist, listAIContext } from '@/lib/builderAI';
+import {
+  exportProjectToDisk as writeProjectToDisk,
+  listGeneratedProjects,
+  type ExportResult,
+} from '@/lib/projectExporter';
 import type {
   AIMode,
   AppProject,
@@ -320,6 +325,21 @@ export function exportProjectBundle(id: string): GeneratedFile[] | undefined {
   if (!project) return undefined;
   return project.artifacts.flatMap((a) => a.files);
 }
+
+/** Write a complete runnable Next.js app to generated/<slug>/ on disk */
+export function exportProjectToDisk(id: string, baseDir?: string): ExportResult | undefined {
+  const project = projects.get(id);
+  if (!project) return undefined;
+  if (!project.artifacts.find((a) => a.kind === 'source-bundle')) scaffold(id);
+  const result = writeProjectToDisk(project, baseDir);
+  if (result.ok) {
+    project.status = 'built';
+    project.updatedAt = new Date().toISOString();
+  }
+  return result;
+}
+
+export { listGeneratedProjects, type ExportResult };
 
 export function getCompanyVault() {
   return COMPANY_VAULT.map((m) => ({

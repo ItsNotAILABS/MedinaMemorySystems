@@ -1,0 +1,30 @@
+{
+  "name": "medina-builder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone Medina Company App Builder — exports real runnable apps to disk",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "export-app": "tsx ../../scripts/export-app.ts",
+    "build-app": "node ../../scripts/build-generated-app.mjs"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "next": "^15.5.15",
+    "react": "^18",
+    "react-dom": "^18",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5"
+  }
+}

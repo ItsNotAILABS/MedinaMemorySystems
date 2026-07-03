@@ -9,7 +9,6 @@
 # Next.js
 /.next/
 /out/
-/out/
 
 # Production
 /build
@@ -33,3 +32,10 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated apps (builder:export / builder:build)
+/generated/**/node_modules
+/generated/**/.next
+/generated/**/out
+/apps/**/node_modules
+/apps/**/.next
