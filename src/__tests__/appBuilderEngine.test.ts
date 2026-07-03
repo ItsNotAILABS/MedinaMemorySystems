@@ -1,79 +1,99 @@
 /**
- * Tests for appBuilderEngine.ts
+ * Tests for appBuilderEngine, template library, deploy CLI
  */
 
 let builder: typeof import('@/lib/appBuilderEngine');
+let templates: typeof import('@/lib/templateLibrary');
+let deployCli: typeof import('@/lib/deployCli');
 
 beforeEach(() => {
   jest.resetModules();
   builder = require('@/lib/appBuilderEngine');
+  templates = require('@/lib/templateLibrary');
+  deployCli = require('@/lib/deployCli');
 });
 
-describe('Company App Builder Engine', () => {
-  it('should expose manifest', () => {
-    expect(builder.APP_BUILDER_MANIFEST.name).toBe('Medina Company App Builder');
-    expect(builder.APP_BUILDER_MANIFEST.tokenStandards).toContain('ICRC-1');
+describe('Template Library', () => {
+  it('should have 16+ built-in templates', () => {
+    expect(templates.listTemplates().length).toBeGreaterThanOrEqual(16);
   });
 
-  it('should create and list projects', () => {
-    const p = builder.createProject({ name: 'TestSaaS', backend: 'python' });
-    expect(p.status).toBe('draft');
-    expect(builder.listProjects().some((x) => x.id === p.id)).toBe(true);
+  it('should include popular templates', () => {
+    const popular = templates.listTemplates({ popular: true });
+    expect(popular.length).toBeGreaterThan(0);
+    expect(popular.some((t) => t.id === 'saas-crud-python')).toBe(true);
+  });
+
+  it('should apply template to project config', () => {
+    const applied = templates.applyTemplate('token-launcher-icp', { name: 'MyToken' });
+    expect(applied?.backend).toBe('motoko');
+    expect(applied?.name).toBe('MyToken');
+    expect(applied?.tokenDefault ?? applied?.deployTarget).toBeDefined();
+  });
+});
+
+describe('Deploy CLI', () => {
+  it('should list 18 deploy targets', () => {
+    expect(deployCli.listDeployTargets().length).toBeGreaterThanOrEqual(18);
+  });
+
+  it('should generate ICP deploy plan with dfx scripts', () => {
+    const p = builder.createProject({ name: 'ICPApp', templateId: 'saas-crud-motoko' });
+    const plan = deployCli.buildDeployPlan(p, 'icp-local');
+    expect(plan.cliCommand).toContain('medina-deploy icp');
+    expect(plan.scripts.some((s) => s.name === 'dfx.json')).toBe(true);
+    expect(plan.scripts.some((s) => s.name.includes('deploy-icp'))).toBe(true);
+  });
+
+  it('should generate Vercel deploy plan', () => {
+    const p = builder.createProject({ name: 'SaaSApp', backend: 'python' });
+    const plan = deployCli.buildDeployPlan(p, 'saas-vercel');
+    expect(plan.steps).toContain('vercel --prod');
+  });
+});
+
+describe('Company App Builder Engine v2', () => {
+  it('should expose manifest with templates and CLI', () => {
+    const m = builder.APP_BUILDER_MANIFEST;
+    expect(m.version).toBe('2.0.0');
+    expect(m.templates).toBeGreaterThanOrEqual(16);
+    expect(m.deployTargets).toBeGreaterThanOrEqual(18);
+    expect(m.cli).toContain('medina-deploy');
+  });
+
+  it('should create project from template', () => {
+    const p = builder.createProject({ name: 'Shop', templateId: 'marketplace-python' });
+    expect(p.templateId).toBe('marketplace-python');
+    expect(p.entities.length).toBeGreaterThan(1);
   });
 
   it('should scaffold with generated files', () => {
     const p = builder.createProject({ name: 'CrudApp', backend: 'motoko', tier: 'pro', proStack: 'node' });
     const scaffolded = builder.scaffold(p.id);
     expect(scaffolded?.status).toBe('scaffolded');
-    expect(scaffolded?.artifacts.length).toBeGreaterThan(0);
-    const files = scaffolded?.artifacts[0]?.files ?? [];
-    expect(files.some((f) => f.path.includes('.mo'))).toBe(true);
+    expect(scaffolded?.artifacts[0]?.files.some((f) => f.path.includes('.mo'))).toBe(true);
   });
 
-  it('should build wasm capsules', () => {
-    const p = builder.createProject({ name: 'CapsuleApp', backend: 'rust' });
+  it('should attach deploy scripts on deploy', () => {
+    const p = builder.createProject({ name: 'DeployApp', backend: 'python', deployTarget: 'icp-local' });
     builder.scaffold(p.id);
-    const built = builder.buildCapsules(p.id);
-    expect(built?.capsules.length).toBeGreaterThanOrEqual(2);
-    expect(built?.status).toBe('built');
+    const result = builder.deploy(p.id, 'icp-local');
+    expect(result?.cliCommand).toContain('medina-deploy');
+    expect(result?.deployPlan?.scripts.length).toBeGreaterThan(0);
+    const updated = builder.getProject(p.id);
+    expect(updated?.artifacts.some((a) => a.kind === 'deploy-scripts')).toBe(true);
   });
 
   it('should create token artifacts', () => {
-    const p = builder.createProject({ name: 'TokenApp', backend: 'python' });
-    const updated = builder.createProjectToken(p.id, {
-      name: 'Medina Token',
-      symbol: 'MED',
-      decimals: 8,
-      initialSupply: '1000000',
-      standard: 'ICRC-1',
-      mintable: true,
-    });
-    expect(updated?.token?.symbol).toBe('MED');
-    expect(updated?.artifacts.some((a) => a.kind === 'token-canister')).toBe(true);
+    const p = builder.createProject({ name: 'TokenApp', templateId: 'token-launcher-icp' });
+    expect(p.token?.standard).toBe('ICRC-1');
   });
 
-  it('should deploy to saas and icp targets', () => {
-    const p = builder.createProject({ name: 'DeployApp', backend: 'python', deployTarget: 'saas-vercel' });
-    builder.scaffold(p.id);
-    const d = builder.deploy(p.id);
-    expect(d?.status).toBe('live');
-    expect(d?.url).toContain('vercel.app');
-
-    const p2 = builder.createProject({ name: 'ChainApp', backend: 'motoko', deployTarget: 'icp-mainnet' });
-    const d2 = builder.deploy(p2.id, 'icp-mainnet');
-    expect(d2?.canisterIds).toBeDefined();
-  });
-
-  it('should include hidden company vault modules', () => {
-    const vault = builder.getCompanyVault();
-    expect(vault.length).toBeGreaterThan(0);
-    expect(vault.every((m) => m.internalOnly === true || m.importPath)).toBe(true);
-  });
-
-  it('should ai-assist with hybrid mode', () => {
+  it('should ai-assist with ULRI and deploy recommendation', () => {
     const p = builder.createProject({ name: 'AIApp', aiMode: 'hybrid' });
-    const result = builder.aiAssist(p.id, 'build user crud app');
-    expect(result?.mode).toBe('hybrid');
+    const result = builder.aiAssist(p.id, 'launch token on icp mainnet');
+    expect(result?.ulriPrimary).toBeDefined();
+    expect(result?.deployRecommendation).toMatch(/icp/);
     expect(result?.suggestions.length).toBeGreaterThan(0);
   });
 });

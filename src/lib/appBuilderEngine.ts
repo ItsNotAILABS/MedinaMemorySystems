@@ -1,20 +1,23 @@
 /**
  * Company App Builder Engine
- * Local + cloud AI · WASM capsules · multi-stack scaffolds · SaaS + blockchain deploy
+ * Templates · medina-deploy CLI · multi-platform · MEDINA inner AI
  */
 
 import { sovereignId } from '@/lib/sovereign-id';
-import { routeToModel, invokeModel } from '@/lib/modelRouter';
 import { buildSovereignBundle, buildWasmCapsule } from '@/lib/capsuleRegistry';
 import { createTokenArtifacts } from '@/lib/tokenFactory';
 import { scaffoldProject } from '@/lib/stackTemplates';
 import { COMPANY_VAULT, vaultModulesForStack } from '@/lib/companyVault';
+import { applyTemplate, getTemplate, listTemplates, templateCategories } from '@/lib/templateLibrary';
+import { buildDeployPlan, listDeployTargets, MEDINA_DEPLOY_VERSION } from '@/lib/deployCli';
+import { builderAIAssist, listAIContext } from '@/lib/builderAI';
 import type {
   AIMode,
   AppProject,
   AIBuildAssistResult,
   BuildArtifact,
   CrudEntity,
+  DeployPlan,
   DeployResult,
   DeployTarget,
   DesignSpec,
@@ -48,6 +51,7 @@ export function createProject(input: {
   name: string;
   description?: string;
   companyId?: string;
+  templateId?: string;
   tier?: StackTier;
   backend?: AppProject['backend'];
   frontend?: AppProject['frontend'];
@@ -56,26 +60,43 @@ export function createProject(input: {
   deployTarget?: DeployTarget;
   entities?: CrudEntity[];
 }): AppProject {
+  const fromTemplate = input.templateId ? applyTemplate(input.templateId, { name: input.name }) : undefined;
+  const template = input.templateId ? getTemplate(input.templateId) : undefined;
   const now = new Date().toISOString();
+
   const project: AppProject = {
     id: sovereignId(),
-    name: input.name,
-    description: input.description ?? '',
+    name: fromTemplate?.name ?? input.name,
+    description: fromTemplate?.description ?? input.description ?? '',
     companyId: input.companyId ?? 'default',
-    tier: input.tier ?? 'standard',
-    backend: input.backend ?? 'python',
-    frontend: input.frontend ?? 'react',
-    proStack: input.tier === 'pro' ? (input.proStack ?? 'node') : undefined,
+    templateId: input.templateId,
+    tier: fromTemplate?.tier ?? input.tier ?? 'standard',
+    backend: fromTemplate?.backend ?? input.backend ?? 'python',
+    frontend: fromTemplate?.frontend ?? input.frontend ?? 'react',
+    proStack: fromTemplate?.proStack ?? (input.tier === 'pro' ? input.proStack ?? 'node' : undefined),
     aiMode: input.aiMode ?? 'hybrid',
-    entities: input.entities ?? [{ name: 'Record', fields: [{ name: 'title', type: 'string', required: true }] }],
-    design: { ...DEFAULT_DESIGN },
+    entities: fromTemplate?.entities ?? input.entities ?? [{ name: 'Record', fields: [{ name: 'title', type: 'string', required: true }] }],
+    design: fromTemplate?.design ?? { ...DEFAULT_DESIGN },
     capsules: [],
     artifacts: [],
-    deployTarget: input.deployTarget ?? 'saas-vercel',
+    deployTarget: fromTemplate?.deployTarget ?? input.deployTarget ?? 'saas-vercel',
+    deployPlans: [],
     status: 'draft',
     createdAt: now,
     updatedAt: now,
   };
+
+  if (template?.tokenDefault && !project.token) {
+    project.token = {
+      name: `${project.name} Token`,
+      symbol: template.tokenDefault.symbol ?? 'TKN',
+      decimals: template.tokenDefault.decimals ?? 8,
+      initialSupply: template.tokenDefault.initialSupply ?? '1000000000',
+      standard: template.tokenDefault.standard ?? 'ICRC-1',
+      mintable: true,
+    };
+  }
+
   projects.set(project.id, project);
   return project;
 }
@@ -88,39 +109,10 @@ export function updateProjectDesign(id: string, design: Partial<DesignSpec>): Ap
   return p;
 }
 
-function pickModel(aiMode: AIMode): string {
-  switch (aiMode) {
-    case 'local':
-      return routeToModel('build scaffold local ollama') ?? 'builder';
-    case 'cloud':
-      return routeToModel('build scaffold cloud architect') ?? 'strategist';
-    default:
-      return routeToModel('build scaffold hybrid wasm deploy') ?? 'builder';
-  }
-}
-
 export function aiAssist(projectId: string, prompt: string): AIBuildAssistResult | undefined {
   const project = projects.get(projectId);
   if (!project) return undefined;
-
-  const modelId = pickModel(project.aiMode);
-  const response = invokeModel(modelId as Parameters<typeof invokeModel>[0], prompt);
-
-  const suggestions = [
-    `Use ${project.backend} backend with ${project.frontend} frontend`,
-    `Deploy target: ${project.deployTarget}`,
-    `Vault modules: ${vaultModulesForStack(project.backend, project.frontend, project.proStack).map((m) => m.name).join(', ') || 'none'}`,
-    response.response.slice(0, 200),
-  ];
-
-  return {
-    mode: project.aiMode,
-    modelUsed: modelId,
-    suggestions,
-    inferredEntities: prompt.toLowerCase().includes('user')
-      ? [{ name: 'User', fields: [{ name: 'email', type: 'string', required: true }, { name: 'name', type: 'string' }] }]
-      : undefined,
-  };
+  return builderAIAssist(project, prompt);
 }
 
 export function scaffold(id: string): AppProject | undefined {
@@ -146,8 +138,7 @@ export function buildCapsules(id: string): AppProject | undefined {
   const project = projects.get(id);
   if (!project) return undefined;
 
-  const latest = project.artifacts.find((a) => a.kind === 'source-bundle');
-  if (!latest) scaffold(id);
+  if (!project.artifacts.find((a) => a.kind === 'source-bundle')) scaffold(id);
 
   const files = project.artifacts.find((a) => a.kind === 'source-bundle')?.files ?? [];
   const { capsule, wasmBundle } = buildWasmCapsule(project.name, files);
@@ -183,51 +174,127 @@ export function createProjectToken(id: string, spec: TokenSpec): AppProject | un
   return project;
 }
 
+export function getDeployPlan(id: string, target?: DeployTarget): DeployPlan | undefined {
+  const project = projects.get(id);
+  if (!project) return undefined;
+  const t = target ?? project.deployTarget;
+  return buildDeployPlan(project, t);
+}
+
+export function attachDeployScripts(id: string, target?: DeployTarget): AppProject | undefined {
+  const project = projects.get(id);
+  if (!project) return undefined;
+
+  const plan = buildDeployPlan(project, target ?? project.deployTarget);
+  project.deployPlans = project.deployPlans ?? [];
+  project.deployPlans.push(plan);
+
+  if (plan.scripts.length > 0) {
+    project.artifacts.push({
+      id: sovereignId(),
+      kind: 'deploy-scripts',
+      name: `deploy-${plan.target}`,
+      files: plan.scripts.map((s) => ({
+        path: `deploy/${s.name}`,
+        content: s.content,
+        language: s.name.endsWith('.json') ? 'json' : s.name.endsWith('.yaml') ? 'yaml' : 'shell',
+      })),
+      createdAt: new Date().toISOString(),
+    });
+  }
+
+  project.updatedAt = new Date().toISOString();
+  return project;
+}
+
 export function deploy(id: string, target?: DeployTarget): DeployResult | undefined {
   const project = projects.get(id);
   if (!project) return undefined;
 
   const deployTarget = target ?? project.deployTarget;
+  const plan = buildDeployPlan(project, deployTarget);
+  attachDeployScripts(id, deployTarget);
+
+  const slug = project.name.toLowerCase().replace(/\W/g, '-');
   const result: DeployResult = {
     id: sovereignId(),
     projectId: id,
     target: deployTarget,
     status: 'live',
     message: '',
+    cliCommand: plan.cliCommand,
+    deployPlan: plan,
     deployedAt: new Date().toISOString(),
   };
 
   switch (deployTarget) {
     case 'saas-vercel':
-      result.url = `https://${project.name.toLowerCase().replace(/\W/g, '-')}.vercel.app`;
-      result.message = 'SaaS deployed to Vercel edge';
+      result.url = `https://${slug}.vercel.app`;
+      result.message = `Ready — run: ${plan.cliCommand}`;
       break;
     case 'saas-cloudflare':
-      result.url = `https://${project.name.toLowerCase().replace(/\W/g, '-')}.workers.dev`;
-      result.message = 'SaaS deployed to Cloudflare Workers';
+      result.url = `https://${slug}.workers.dev`;
+      result.message = `Ready — run: wrangler deploy (see deploy/ scripts)`;
+      break;
+    case 'saas-netlify':
+      result.url = `https://${slug}.netlify.app`;
+      result.message = `Ready — run: ${plan.cliCommand}`;
+      break;
+    case 'saas-railway':
+      result.url = `https://${slug}.up.railway.app`;
+      result.message = `Ready — run: ${plan.cliCommand}`;
+      break;
+    case 'saas-flyio':
+      result.url = `https://${slug}.fly.dev`;
+      result.message = `Ready — run: fly deploy`;
+      break;
+    case 'saas-render':
+      result.url = `https://${slug}.onrender.com`;
+      result.message = `Ready — run: ${plan.cliCommand}`;
+      break;
+    case 'github-pages':
+      result.url = `https://your-org.github.io/${slug}`;
+      result.message = `Ready — run: ${plan.cliCommand}`;
+      break;
+    case 'aws-amplify':
+      result.url = `https://${slug}.amplifyapp.com`;
+      result.message = `Ready — run: amplify publish`;
+      break;
+    case 'supabase':
+      result.message = `Ready — run: ${plan.cliCommand}`;
       break;
     case 'icp-mainnet':
-    case 'icp-local':
+    case 'icp-local': {
+      const network = deployTarget === 'icp-local' ? 'local' : 'ic';
       result.canisterIds = {
-        backend: `aaaaa-${project.id.slice(0, 5)}`,
-        token: project.token ? `bbbbb-${project.id.slice(0, 5)}` : undefined,
-      } as Record<string, string>;
-      result.message = `ICP canisters deployed (${deployTarget})`;
+        backend: `${slug.replace(/-/g, '_')} (run dfx deploy)`,
+        assets: `${slug.replace(/-/g, '_')}_assets`,
+        ...(project.token ? { token: `${slug.replace(/-/g, '_')}_token` } : {}),
+      };
+      result.message = `ICP deploy plan ready — run: medina-deploy icp --network ${network}\nOr: dfx deploy (see deploy/dfx.json)`;
       break;
+    }
     case 'wasm-edge':
-      result.url = `wasm://${project.name}/capsule/${project.capsules[0]?.id ?? 'pending'}`;
-      result.message = 'WASM capsule published to edge mesh';
+      result.url = `wasm://${slug}/capsule/${project.capsules[0]?.id ?? 'build-first'}`;
+      result.message = `Ready — run: ${plan.cliCommand}`;
       break;
     case 'blockchain-evm':
-      result.txHash = `0x${project.id.replace(/-/g, '').slice(0, 40)}`;
-      result.message = 'EVM contract deployed';
+    case 'blockchain-base':
+      result.txHash = `(pending — run ${plan.cliCommand})`;
+      result.message = `EVM deploy scripts in deploy/ folder`;
+      break;
+    case 'blockchain-solana':
+      result.message = `Ready — run: anchor deploy`;
       break;
     case 'docker':
-      result.url = `http://localhost:8080/${project.name.toLowerCase()}`;
-      result.message = 'Docker container running locally';
+      result.url = `http://localhost:3000`;
+      result.message = `Ready — run: docker compose up`;
+      break;
+    case 'kubernetes':
+      result.message = `Ready — run: kubectl apply -f deploy/k8s/`;
       break;
     case 'artifact-export':
-      result.message = `Exported ${project.artifacts.length} artifacts`;
+      result.message = `Exported ${project.artifacts.length} artifacts — run: ${plan.cliCommand}`;
       break;
     default:
       result.status = 'failed';
@@ -261,11 +328,22 @@ export function getCompanyVault() {
   }));
 }
 
+export {
+  listTemplates,
+  getTemplate,
+  templateCategories,
+  listDeployTargets,
+  listAIContext,
+};
+
 export const APP_BUILDER_MANIFEST = {
   name: 'Medina Company App Builder',
-  version: '1.0.0',
+  version: '2.0.0',
+  cli: `medina-deploy v${MEDINA_DEPLOY_VERSION}`,
+  templates: listTemplates().length,
+  deployTargets: listDeployTargets().length,
   stacks: { standard: ['motoko', 'rust', 'python'], pro: ['react', 'html', 'node', 'java'] },
-  deployTargets: ['saas-vercel', 'saas-cloudflare', 'docker', 'icp-mainnet', 'icp-local', 'wasm-edge', 'blockchain-evm', 'artifact-export'],
   aiModes: ['local', 'cloud', 'hybrid'],
   tokenStandards: ['ICRC-1', 'ICRC-7', 'ERC-20'],
+  medinaAI: listAIContext(),
 } as const;

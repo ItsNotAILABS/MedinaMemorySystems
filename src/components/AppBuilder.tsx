@@ -1,43 +1,46 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import type { AppProject, DeployTarget, TokenSpec } from '@/types/appBuilder';
+import type { AppProject, AppTemplate, DeployPlan, DeployTarget, TokenSpec } from '@/types/appBuilder';
 
-const BACKENDS = [
-  { id: 'motoko', label: 'Motoko (ICP)' },
-  { id: 'python', label: 'Python CRUD' },
-  { id: 'rust', label: 'Rust CRUD' },
-] as const;
+type Tab = 'templates' | 'create' | 'deploy' | 'ai';
 
-const DEPLOY_TARGETS: { id: DeployTarget; label: string }[] = [
-  { id: 'saas-vercel', label: 'SaaS — Vercel' },
-  { id: 'saas-cloudflare', label: 'SaaS — Cloudflare' },
-  { id: 'icp-mainnet', label: 'ICP Mainnet' },
-  { id: 'icp-local', label: 'ICP Local (dfx)' },
-  { id: 'wasm-edge', label: 'WASM Edge Capsule' },
-  { id: 'blockchain-evm', label: 'Blockchain EVM' },
-  { id: 'docker', label: 'Docker' },
-  { id: 'artifact-export', label: 'Export Artifacts' },
-];
+interface DeployTargetInfo {
+  id: DeployTarget;
+  label: string;
+  category: string;
+  cli: string;
+}
 
 export default function AppBuilder() {
+  const [tab, setTab] = useState<Tab>('templates');
   const [projects, setProjects] = useState<AppProject[]>([]);
+  const [templates, setTemplates] = useState<AppTemplate[]>([]);
+  const [deployTargets, setDeployTargets] = useState<DeployTargetInfo[]>([]);
   const [selected, setSelected] = useState<AppProject | null>(null);
+  const [deployPlan, setDeployPlan] = useState<DeployPlan | null>(null);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
-  const [backend, setBackend] = useState<'motoko' | 'rust' | 'python'>('python');
-  const [tier, setTier] = useState<'standard' | 'pro'>('standard');
+  const [templateId, setTemplateId] = useState('');
   const [aiMode, setAiMode] = useState<'local' | 'cloud' | 'hybrid'>('hybrid');
   const [deployTarget, setDeployTarget] = useState<DeployTarget>('saas-vercel');
   const [tokenSymbol, setTokenSymbol] = useState('MED');
+  const [aiPrompt, setAiPrompt] = useState('');
+  const [aiResult, setAiResult] = useState<string[]>([]);
   const [log, setLog] = useState<string[]>([]);
 
-  const pushLog = (msg: string) => setLog((l) => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...l].slice(0, 20));
+  const pushLog = (msg: string) => setLog((l) => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...l].slice(0, 25));
 
   const refresh = useCallback(async () => {
-    const res = await fetch('/api/builder?action=projects');
-    const data = await res.json();
-    if (data.success) setProjects(data.data);
+    const [pRes, tRes, mRes] = await Promise.all([
+      fetch('/api/builder?action=projects'),
+      fetch('/api/builder?action=templates'),
+      fetch('/api/builder?action=deploy-targets'),
+    ]);
+    const [p, t, m] = await Promise.all([pRes.json(), tRes.json(), mRes.json()]);
+    if (p.success) setProjects(p.data);
+    if (t.success) setTemplates(t.data);
+    if (m.success) setDeployTargets(m.data);
   }, []);
 
   useEffect(() => { refresh(); }, [refresh]);
@@ -54,10 +57,13 @@ export default function AppBuilder() {
       if (data.success) {
         pushLog(`${action} ✓`);
         await refresh();
-        if (data.data?.id) setSelected(data.data);
-        else if (body.id && data.data) setSelected(data.data);
+        if (data.data?.id && !body.id) setSelected(data.data);
+        else if (body.id) {
+          setSelected(data.data);
+          if (action === 'deploy-plan' || action === 'deploy') setDeployPlan(data.data?.deployPlan ?? data.data);
+        }
       } else {
-        pushLog(`${action} failed: ${data.error}`);
+        pushLog(`${action} ✗ ${data.error}`);
       }
       return data;
     } finally {
@@ -65,143 +71,245 @@ export default function AppBuilder() {
     }
   };
 
+  const createFromTemplate = (t: AppTemplate) => {
+    setTemplateId(t.id);
+    setName(t.name);
+    setDeployTarget(t.deployTargets[0]);
+    setTab('create');
+  };
+
   const create = () => api('create', {
     name: name || 'MyApp',
-    backend,
-    tier,
+    templateId: templateId || undefined,
     aiMode,
     deployTarget,
-    frontend: 'react',
-    proStack: tier === 'pro' ? 'node' : undefined,
   });
 
   const runPipeline = async (project: AppProject) => {
     setSelected(project);
     await api('scaffold', { id: project.id });
     await api('build-capsules', { id: project.id });
-    const token: TokenSpec = {
-      name: `${project.name} Token`,
-      symbol: tokenSymbol,
-      decimals: 8,
-      initialSupply: '1000000000',
-      standard: deployTarget.includes('icp') ? 'ICRC-1' : 'ERC-20',
-      mintable: true,
-    };
-    await api('create-token', { id: project.id, token });
+    if (!project.token) {
+      await api('create-token', {
+        id: project.id,
+        token: {
+          name: `${project.name} Token`,
+          symbol: tokenSymbol,
+          decimals: 8,
+          initialSupply: '1000000000',
+          standard: deployTarget.includes('icp') ? 'ICRC-1' : 'ERC-20',
+          mintable: true,
+        } satisfies TokenSpec,
+      });
+    }
+    await api('deploy-plan', { id: project.id, target: deployTarget });
     await api('deploy', { id: project.id, target: deployTarget });
+  };
+
+  const askAI = async () => {
+    if (!selected || !aiPrompt.trim()) return;
+    const data = await api('ai-assist', { id: selected.id, prompt: aiPrompt });
+    if (data?.success && data.data?.suggestions) setAiResult(data.data.suggestions);
+  };
+
+  const copyCli = (cmd: string) => {
+    navigator.clipboard?.writeText(cmd);
+    pushLog(`Copied: ${cmd}`);
   };
 
   return (
     <div className="flex h-full bg-[#0a0a0f] text-slate-200">
-      {/* Left — projects */}
-      <div className="w-64 border-r border-[#1e1e2e] flex flex-col">
-        <div className="p-4 border-b border-[#1e1e2e]">
-          <h2 className="text-sm font-bold text-indigo-400">App Builder</h2>
-          <p className="text-[10px] text-slate-500 mt-1">WASM · Capsules · SaaS · Chain</p>
+      {/* Sidebar — projects */}
+      <div className="w-52 border-r border-[#1e1e2e] flex flex-col shrink-0">
+        <div className="p-3 border-b border-[#1e1e2e]">
+          <h2 className="text-sm font-bold text-indigo-400">Medina Builder</h2>
+          <p className="text-[10px] text-slate-500">Templates · CLI · Deploy</p>
         </div>
         <div className="flex-1 overflow-y-auto p-2 space-y-1">
           {projects.map((p) => (
             <button
               key={p.id}
-              onClick={() => setSelected(p)}
-              className={`w-full text-left px-3 py-2 rounded-lg text-xs transition-colors ${
-                selected?.id === p.id ? 'bg-indigo-900/40 text-white' : 'hover:bg-[#1a1a2e] text-slate-400'
-              }`}
+              onClick={() => { setSelected(p); setDeployPlan(null); }}
+              className={`w-full text-left px-2 py-2 rounded text-xs ${selected?.id === p.id ? 'bg-indigo-900/40 text-white' : 'text-slate-400 hover:bg-[#1a1a2e]'}`}
             >
-              <div className="font-medium truncate">{p.name}</div>
-              <div className="text-[10px] opacity-60">{p.backend} · {p.status}</div>
+              <div className="truncate font-medium">{p.name}</div>
+              <div className="text-[10px] opacity-60">{p.templateId ?? p.backend} · {p.status}</div>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Center — config */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
-        <section>
-          <h3 className="text-lg font-semibold mb-4">Create App</h3>
-          <div className="grid grid-cols-2 gap-4 max-w-2xl">
-            <label className="text-xs text-slate-400">
-              App name
-              <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm" placeholder="My SaaS App" />
-            </label>
-            <label className="text-xs text-slate-400">
-              Backend (70% stack)
-              <select value={backend} onChange={(e) => setBackend(e.target.value as typeof backend)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
-                {BACKENDS.map((b) => <option key={b.id} value={b.id}>{b.label}</option>)}
-              </select>
-            </label>
-            <label className="text-xs text-slate-400">
-              Tier
-              <select value={tier} onChange={(e) => setTier(e.target.value as typeof tier)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
-                <option value="standard">Standard (CRUD)</option>
-                <option value="pro">Pro (+ Node/Java)</option>
-              </select>
-            </label>
-            <label className="text-xs text-slate-400">
-              AI Mode
-              <select value={aiMode} onChange={(e) => setAiMode(e.target.value as typeof aiMode)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
-                <option value="local">Local (Ollama)</option>
-                <option value="cloud">Cloud</option>
-                <option value="hybrid">Hybrid</option>
-              </select>
-            </label>
-            <label className="text-xs text-slate-400 col-span-2">
-              Deploy target
-              <select value={deployTarget} onChange={(e) => setDeployTarget(e.target.value as DeployTarget)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
-                {DEPLOY_TARGETS.map((d) => <option key={d.id} value={d.id}>{d.label}</option>)}
-              </select>
-            </label>
-            <label className="text-xs text-slate-400">
-              Token symbol
-              <input value={tokenSymbol} onChange={(e) => setTokenSymbol(e.target.value.toUpperCase())} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm" />
-            </label>
-          </div>
-          <div className="flex gap-3 mt-4">
-            <button onClick={create} disabled={loading} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-medium disabled:opacity-50">
-              Create Project
+      {/* Main */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Tabs */}
+        <div className="flex border-b border-[#1e1e2e] px-4 gap-1 shrink-0">
+          {(['templates', 'create', 'deploy', 'ai'] as Tab[]).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`px-4 py-2.5 text-xs capitalize ${tab === t ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-slate-500 hover:text-slate-300'}`}
+            >
+              {t === 'ai' ? 'AI Assist' : t}
             </button>
-            {selected && (
-              <button onClick={() => runPipeline(selected)} disabled={loading} className="px-4 py-2 bg-emerald-700 hover:bg-emerald-600 rounded-lg text-sm font-medium disabled:opacity-50">
-                Full Build + Deploy
-              </button>
-            )}
-          </div>
-        </section>
+          ))}
+        </div>
 
-        {selected && (
-          <section className="border border-[#1e1e2e] rounded-xl p-4 bg-[#12121a]">
-            <h3 className="font-semibold text-indigo-300">{selected.name}</h3>
-            <div className="grid grid-cols-3 gap-2 mt-3 text-xs">
-              <div><span className="text-slate-500">Status</span><div>{selected.status}</div></div>
-              <div><span className="text-slate-500">Backend</span><div>{selected.backend}</div></div>
-              <div><span className="text-slate-500">Capsules</span><div>{selected.capsules.length}</div></div>
-              <div><span className="text-slate-500">Artifacts</span><div>{selected.artifacts.length}</div></div>
-              <div><span className="text-slate-500">Token</span><div>{selected.token?.symbol ?? '—'}</div></div>
-              <div><span className="text-slate-500">AI</span><div>{selected.aiMode}</div></div>
-            </div>
-            {selected.artifacts.length > 0 && (
-              <div className="mt-4">
-                <div className="text-xs text-slate-500 mb-2">Generated files</div>
-                <div className="max-h-40 overflow-y-auto text-[10px] font-mono space-y-1">
-                  {selected.artifacts.flatMap((a) => a.files.map((f) => (
-                    <div key={f.path} className="text-slate-400">{f.path} <span className="text-slate-600">({f.language})</span></div>
-                  )))}
-                </div>
+        <div className="flex-1 overflow-y-auto p-5">
+          {tab === 'templates' && (
+            <section>
+              <h3 className="text-lg font-semibold mb-1">Template Library</h3>
+              <p className="text-xs text-slate-500 mb-4">{templates.length} built-in templates — pick one to start</p>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                {templates.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => createFromTemplate(t)}
+                    className="text-left p-4 rounded-xl border border-[#1e1e2e] bg-[#12121a] hover:border-indigo-600/50 transition-colors"
+                  >
+                    {t.popular && <span className="text-[10px] bg-indigo-900/50 text-indigo-300 px-2 py-0.5 rounded-full">Popular</span>}
+                    <div className="font-medium text-sm mt-1">{t.name}</div>
+                    <div className="text-[10px] text-slate-500 mt-1 line-clamp-2">{t.description}</div>
+                    <div className="flex gap-1 mt-2 flex-wrap">
+                      <span className="text-[10px] bg-[#1a1a2e] px-2 py-0.5 rounded">{t.backend}</span>
+                      <span className="text-[10px] bg-[#1a1a2e] px-2 py-0.5 rounded">{t.category}</span>
+                    </div>
+                  </button>
+                ))}
               </div>
-            )}
-          </section>
-        )}
+            </section>
+          )}
 
-        <section>
-          <h3 className="text-xs text-slate-500 mb-2">Company vault (hidden imports)</h3>
-          <p className="text-[10px] text-slate-600">Auth, memory, governance, crypto, WASM cortex — auto-wired into scaffolds.</p>
-        </section>
+          {tab === 'create' && (
+            <section className="max-w-xl space-y-4">
+              <h3 className="text-lg font-semibold">Create Project</h3>
+              <label className="block text-xs text-slate-400">
+                App name
+                <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm" />
+              </label>
+              <label className="block text-xs text-slate-400">
+                Template
+                <select value={templateId} onChange={(e) => setTemplateId(e.target.value)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
+                  <option value="">Custom (no template)</option>
+                  {templates.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+                </select>
+              </label>
+              <label className="block text-xs text-slate-400">
+                AI mode
+                <select value={aiMode} onChange={(e) => setAiMode(e.target.value as typeof aiMode)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
+                  <option value="hybrid">Hybrid (local + cloud)</option>
+                  <option value="local">Local (Ollama)</option>
+                  <option value="cloud">Cloud</option>
+                </select>
+              </label>
+              <div className="flex gap-2">
+                <button onClick={create} disabled={loading} className="px-4 py-2 bg-indigo-600 rounded-lg text-sm disabled:opacity-50">Create</button>
+                {selected && (
+                  <button onClick={() => runPipeline(selected)} disabled={loading} className="px-4 py-2 bg-emerald-700 rounded-lg text-sm disabled:opacity-50">
+                    Build + Deploy
+                  </button>
+                )}
+              </div>
+            </section>
+          )}
+
+          {tab === 'deploy' && (
+            <section>
+              <h3 className="text-lg font-semibold mb-1">Deploy Anywhere</h3>
+              <p className="text-xs text-slate-500 mb-4">medina-deploy CLI — copy command and run locally</p>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 mb-6">
+                {deployTargets.map((d) => (
+                  <button
+                    key={d.id}
+                    onClick={() => { setDeployTarget(d.id); copyCli(d.cli); }}
+                    className={`text-left p-3 rounded-lg border text-xs ${deployTarget === d.id ? 'border-indigo-500 bg-indigo-900/20' : 'border-[#1e1e2e] bg-[#12121a] hover:border-slate-600'}`}
+                  >
+                    <div className="text-[10px] text-slate-500">{d.category}</div>
+                    <div className="font-medium">{d.label}</div>
+                    <code className="text-[10px] text-indigo-300 block mt-1 truncate">{d.cli}</code>
+                  </button>
+                ))}
+              </div>
+              {selected && (
+                <button
+                  onClick={async () => {
+                    const data = await api('deploy-plan', { id: selected.id, target: deployTarget });
+                    if (data?.success) setDeployPlan(data.data);
+                  }}
+                  disabled={loading}
+                  className="px-4 py-2 bg-slate-700 rounded-lg text-sm mb-4"
+                >
+                  Generate deploy plan for {selected.name}
+                </button>
+              )}
+              {deployPlan && (
+                <div className="border border-[#1e1e2e] rounded-xl p-4 bg-[#12121a] text-xs space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold text-indigo-300">Deploy plan: {deployPlan.target}</span>
+                    <button onClick={() => copyCli(deployPlan.cliCommand)} className="text-indigo-400 hover:underline">Copy CLI</button>
+                  </div>
+                  <code className="block bg-[#0a0a0f] p-2 rounded font-mono text-indigo-200">{deployPlan.cliCommand}</code>
+                  <div>
+                    <div className="text-slate-500 mb-1">Prerequisites</div>
+                    <ul className="list-disc pl-4 text-slate-400">{deployPlan.prerequisites.map((p) => <li key={p}>{p}</li>)}</ul>
+                  </div>
+                  <div>
+                    <div className="text-slate-500 mb-1">Steps</div>
+                    <ol className="list-decimal pl-4 text-slate-400">{deployPlan.steps.map((s) => <li key={s}>{s}</li>)}</ol>
+                  </div>
+                  {deployPlan.scripts.length > 0 && (
+                    <div>
+                      <div className="text-slate-500 mb-1">Generated scripts</div>
+                      {deployPlan.scripts.map((s) => (
+                        <div key={s.name} className="flex justify-between items-center py-1">
+                          <span className="font-mono text-slate-400">{s.name}</span>
+                          <button onClick={() => copyCli(s.content)} className="text-[10px] text-indigo-400">Copy</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </section>
+          )}
+
+          {tab === 'ai' && (
+            <section className="max-w-xl space-y-4">
+              <h3 className="text-lg font-semibold">MEDINA AI Assist</h3>
+              <p className="text-xs text-slate-500">ULRI routing · Memory Temple · template + deploy recommendations</p>
+              {!selected && <p className="text-sm text-amber-500/80">Select or create a project first</p>}
+              <textarea
+                value={aiPrompt}
+                onChange={(e) => setAiPrompt(e.target.value)}
+                placeholder="Describe your app: token launcher on ICP, marketplace with Python, deploy to Railway…"
+                className="w-full h-24 bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm"
+              />
+              <button onClick={askAI} disabled={loading || !selected} className="px-4 py-2 bg-purple-700 rounded-lg text-sm disabled:opacity-50">Ask MEDINA AI</button>
+              {aiResult.length > 0 && (
+                <ul className="text-xs space-y-2 text-slate-400">
+                  {aiResult.map((s, i) => <li key={i} className="border-l-2 border-purple-600 pl-3">{s}</li>)}
+                </ul>
+              )}
+            </section>
+          )}
+
+          {selected && tab !== 'deploy' && (
+            <section className="mt-6 border border-[#1e1e2e] rounded-xl p-4 bg-[#12121a] text-xs">
+              <div className="font-semibold text-indigo-300">{selected.name}</div>
+              <div className="grid grid-cols-4 gap-2 mt-2 text-slate-400">
+                <div>Status: {selected.status}</div>
+                <div>Artifacts: {selected.artifacts.length}</div>
+                <div>Capsules: {selected.capsules.length}</div>
+                <div>Token: {selected.token?.symbol ?? '—'}</div>
+              </div>
+            </section>
+          )}
+        </div>
       </div>
 
-      {/* Right — log */}
-      <div className="w-56 border-l border-[#1e1e2e] p-3 overflow-y-auto">
-        <div className="text-xs font-semibold text-slate-500 mb-2">Build log</div>
-        {log.map((l, i) => <div key={i} className="text-[10px] text-slate-500 mb-1 font-mono">{l}</div>)}
+      {/* Log */}
+      <div className="w-48 border-l border-[#1e1e2e] p-2 overflow-y-auto shrink-0">
+        <div className="text-[10px] font-semibold text-slate-500 mb-2">Log</div>
+        {log.map((l, i) => <div key={i} className="text-[10px] text-slate-600 font-mono mb-1">{l}</div>)}
       </div>
     </div>
   );

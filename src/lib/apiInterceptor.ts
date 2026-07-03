@@ -42,6 +42,12 @@ import {
   listDeployHistory,
   exportProjectBundle,
   getCompanyVault,
+  listTemplates,
+  getTemplate,
+  templateCategories,
+  listDeployTargets,
+  getDeployPlan,
+  attachDeployScripts,
   APP_BUILDER_MANIFEST,
 } from '@/lib/appBuilderEngine';
 import type { ModelFamily, ParsedCommand } from '@/types';
@@ -401,6 +407,15 @@ async function handleBuilder(url: URL, method: string, body?: any): Promise<Resp
         return jsonResponse({ success: true, data: APP_BUILDER_MANIFEST, timestamp: now() });
       case 'projects':
         return jsonResponse({ success: true, data: listProjects(), timestamp: now() });
+      case 'templates':
+        return jsonResponse({ success: true, data: listTemplates(), timestamp: now() });
+      case 'deploy-targets':
+        return jsonResponse({ success: true, data: listDeployTargets(), timestamp: now() });
+      case 'template-categories':
+        return jsonResponse({ success: true, data: templateCategories(), timestamp: now() });
+      case 'deploy-plan':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: getDeployPlan(id, url.searchParams.get('target') as never), timestamp: now() });
       case 'project':
         if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
         return jsonResponse({ success: true, data: getProject(id), timestamp: now() });
@@ -433,6 +448,12 @@ async function handleBuilder(url: URL, method: string, body?: any): Promise<Resp
     case 'create-token':
       if (!body.id || !body.token) return jsonResponse({ success: false, error: 'id and token required', timestamp: now() }, 400);
       return jsonResponse({ success: true, data: createProjectToken(body.id, body.token), timestamp: now() });
+    case 'deploy-plan':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: getDeployPlan(body.id, body.target), timestamp: now() });
+    case 'attach-scripts':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: attachDeployScripts(body.id, body.target), timestamp: now() });
     case 'deploy':
       if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
       return jsonResponse({ success: true, data: deploy(body.id, body.target), timestamp: now() });
