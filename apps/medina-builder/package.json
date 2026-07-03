@@ -2,6 +2,9 @@
   "name": "medina-builder",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0 <21"
+  },
   "description": "Standalone Medina Company App Builder — exports real runnable apps to disk",
   "scripts": {
     "dev": "next dev -p 3001",

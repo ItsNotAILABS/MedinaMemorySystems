@@ -10,6 +10,8 @@ MEDINA / NOVA OVO is a sovereign intelligence platform with two layers:
 
 ### Running the app
 
+**Requires Node.js 20** (see `.nvmrc`). Use `nvm use` or `fnm use` before installing.
+
 ```bash
 npm run dev       # Start Next.js dev server on http://localhost:3000
 npm run build     # Production build

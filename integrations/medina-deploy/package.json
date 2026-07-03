@@ -6,5 +6,8 @@
     "medina-deploy": "./cli.js"
   },
   "keywords": ["medina", "deploy", "icp", "dfx", "vercel", "saas"],
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0 <21"
+  }
 }
