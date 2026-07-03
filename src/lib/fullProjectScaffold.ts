@@ -64,7 +64,7 @@ export function generateFullNextApp(project: AppProject): GeneratedFile[] {
           deploy: deployPlan.cliCommand,
         },
         dependencies: {
-          next: '^15.0.0',
+          next: '^15.5.20',
           react: '^18.3.0',
           'react-dom': '^18.3.0',
           clsx: '^2.1.1',
