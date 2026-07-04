@@ -9,6 +9,11 @@ import BuilderGitGraph from '@/components/BuilderGitGraph';
 import BuilderLiveTerminal from '@/components/BuilderLiveTerminal';
 import BuilderAppPreview from '@/components/BuilderAppPreview';
 import BuilderAgentPanel from '@/components/BuilderAgentPanel';
+import BuilderTitleBar from '@/components/builder/BuilderTitleBar';
+import BuilderStatusBar from '@/components/builder/BuilderStatusBar';
+import {
+  IconFiles, IconGit, IconGithub, IconRocket, IconCode, IconGlobe, IconPlus, IconPlay, IconChevronDown,
+} from '@/components/builder/BuilderIcons';
 
 type CenterView = 'code' | 'preview' | 'github' | 'templates' | 'create';
 type ActivityId = 'explorer' | 'git' | 'github' | 'deploy';
@@ -181,52 +186,50 @@ export default function AppBuilder() {
     setCenterView('github');
   };
 
-  const ACTIVITY: { id: ActivityId; icon: string; title: string }[] = [
-    { id: 'explorer', icon: '📁', title: 'Explorer' },
-    { id: 'git', icon: '⎇', title: 'Source Control' },
-    { id: 'github', icon: '◉', title: 'GitHub' },
-    { id: 'deploy', icon: '▶', title: 'Deploy' },
+  const ACTIVITY: { id: ActivityId; Icon: typeof IconFiles; title: string }[] = [
+    { id: 'explorer', Icon: IconFiles, title: 'Explorer' },
+    { id: 'git', Icon: IconGit, title: 'Source Control' },
+    { id: 'github', Icon: IconGithub, title: 'GitHub' },
+    { id: 'deploy', Icon: IconRocket, title: 'Deploy' },
   ];
 
   return (
-    <div className="flex flex-col h-full bg-[#1e1e1e] text-[#cccccc]">
-      {/* Title bar */}
-      <div className="h-9 flex items-center justify-center shrink-0 bg-[#323233] border-b border-[#2d2d2d] relative">
-        <span className="text-xs text-[#cccccc]">MedinaMemorySystems</span>
-        <button
-          type="button"
-          onClick={() => setShowAgent((s) => !s)}
-          className="absolute right-3 text-[10px] px-2 py-0.5 rounded bg-[#007acc] text-white hover:bg-[#1c8ad9]"
-        >
-          Agents Window
-        </button>
-      </div>
+    <div className="mb-shell flex flex-col h-full">
+      <BuilderTitleBar
+        title={selected?.name ?? 'MedinaMemorySystems'}
+        onToggleAgent={() => setShowAgent((s) => !s)}
+        agentOpen={showAgent}
+      />
 
       <div className="flex flex-1 min-h-0">
         {/* Activity bar */}
-        <div className="w-12 shrink-0 flex flex-col items-center py-2 gap-1 bg-[#333333] border-r border-[#2d2d2d]">
-          {ACTIVITY.map((a) => (
+        <nav
+          className="shrink-0 flex flex-col items-center py-2 border-r"
+          style={{ width: 'var(--mb-activity-w)', background: 'var(--mb-bg-base)', borderColor: 'var(--mb-border)' }}
+        >
+          {ACTIVITY.map(({ id, Icon, title }) => (
             <button
-              key={a.id}
+              key={id}
               type="button"
-              title={a.title}
+              title={title}
               onClick={() => {
-                setActivity(a.id);
-                if (a.id === 'github') setCenterView('github');
-                if (a.id === 'explorer') setCenterView('code');
-                if (a.id === 'deploy') setCenterView('templates');
+                setActivity(id);
+                if (id === 'github') setCenterView('github');
+                if (id === 'explorer') setCenterView('code');
+                if (id === 'deploy') setCenterView('templates');
               }}
-              className={`w-10 h-10 flex items-center justify-center text-lg rounded ${
-                activity === a.id ? 'text-white border-l-2 border-[#007acc]' : 'text-[#858585] hover:text-[#cccccc]'
-              }`}
+              className={`mb-activity-btn ${activity === id ? 'mb-activity-btn-active' : ''}`}
             >
-              {a.icon}
+              <Icon size={20} />
             </button>
           ))}
-        </div>
+        </nav>
 
-        {/* Left sidebar */}
-        <div className="w-64 shrink-0 flex flex-col border-r border-[#2d2d2d] bg-[#252526] min-h-0">
+        {/* Sidebar */}
+        <aside
+          className="shrink-0 flex flex-col min-h-0 border-r overflow-hidden"
+          style={{ width: 'var(--mb-sidebar-w)', background: 'var(--mb-bg-surface)', borderColor: 'var(--mb-border)' }}
+        >
           {activity === 'explorer' && (
             <>
               <SidebarSection title="Projects">
@@ -235,24 +238,27 @@ export default function AppBuilder() {
                     key={p.id}
                     type="button"
                     onClick={() => { setSelected(p); setCenterView('code'); }}
-                    className={`w-full text-left px-3 py-1 text-[11px] truncate ${
-                      selected?.id === p.id ? 'bg-[#37373d] text-white' : 'hover:bg-[#2a2d2e]'
-                    }`}
+                    className="w-full text-left px-3 py-1.5 text-[12px] truncate transition-colors"
+                    style={{
+                      color: selected?.id === p.id ? 'var(--mb-text-primary)' : 'var(--mb-text-muted)',
+                      background: selected?.id === p.id ? 'var(--mb-bg-active)' : 'transparent',
+                    }}
                   >
-                    <span className="text-[#519aba] mr-1">◇</span>{p.name}
-                    <span className="text-[#858585] ml-1">· {p.status}</span>
+                    {p.name}
+                    <span className="ml-1 text-[10px]" style={{ color: 'var(--mb-text-faint)' }}>{p.status}</span>
                   </button>
                 ))}
                 <button
                   type="button"
                   onClick={() => setCenterView('create')}
-                  className="w-full text-left px-3 py-1 text-[11px] text-[#007acc] hover:bg-[#2a2d2e]"
+                  className="w-full flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors"
+                  style={{ color: 'var(--mb-accent)' }}
                 >
-                  + New Project
+                  <IconPlus size={12} /> New Project
                 </button>
               </SidebarSection>
-              <SidebarSection title="Templates" collapsed>
-                <div className="max-h-32 overflow-y-auto">
+              <SidebarSection title="Quick Start">
+                <div className="max-h-36 overflow-y-auto">
                   {templates.slice(0, 6).map((t) => (
                     <button
                       key={t.id}
@@ -284,13 +290,13 @@ export default function AppBuilder() {
               <SidebarSection title="Agent Review">
                 <button
                   type="button"
-                  className="mx-3 mb-2 w-[calc(100%-1.5rem)] py-1.5 text-[11px] bg-[#007acc] text-white rounded hover:bg-[#1c8ad9]"
+                  className="mx-3 mb-2 w-[calc(100%-1.5rem)] mb-btn mb-btn-primary text-[11px] justify-center"
                   onClick={() => { setShowAgent(true); askAI('Review my project for issues and improvements'); }}
                 >
                   Find Issues
                 </button>
               </SidebarSection>
-              <div className="flex-1 min-h-0 border-t border-[#2d2d2d]">
+              <div className="flex-1 min-h-0 border-t" style={{ borderColor: 'var(--mb-border)' }}>
                 <BuilderGitGraph />
               </div>
             </>
@@ -325,44 +331,46 @@ export default function AppBuilder() {
               ))}
             </SidebarSection>
           )}
-        </div>
+        </aside>
 
-        {/* Center */}
-        <div className="flex-1 flex flex-col min-w-0 min-h-0">
-          {/* Center tabs */}
-          <div className="flex items-center bg-[#252526] border-b border-[#2d2d2d] shrink-0">
+        {/* Workspace */}
+        <div className="flex-1 flex flex-col min-w-0 min-h-0" style={{ background: 'var(--mb-bg-panel)' }}>
+          {/* Tab bar */}
+          <div className="flex items-center shrink-0 border-b" style={{ borderColor: 'var(--mb-border)', background: 'var(--mb-bg-surface)' }}>
             {([
-              { id: 'code' as const, label: selected ? `Code — ${selected.name}` : 'Code Studio' },
-              { id: 'preview' as const, label: previewUrl ? `Preview — ${previewUrl.replace('http://', '')}` : 'Live Preview' },
-              { id: 'github' as const, label: githubRepo ? `GitHub — ${githubRepo.name}` : 'GitHub' },
-              { id: 'templates' as const, label: 'Templates' },
-              { id: 'create' as const, label: 'Create' },
-            ]).map((t) => (
+              { id: 'code' as const, label: selected?.name ?? 'Editor', icon: IconCode },
+              { id: 'preview' as const, label: 'Preview', icon: IconGlobe },
+              { id: 'github' as const, label: githubRepo?.name ?? 'GitHub', icon: IconGithub },
+              { id: 'templates' as const, label: 'Templates', icon: IconFiles },
+              { id: 'create' as const, label: 'New', icon: IconPlus },
+            ]).map(({ id, label, icon: TabIcon }) => (
               <button
-                key={t.id}
+                key={id}
                 type="button"
-                onClick={() => setCenterView(t.id)}
-                className={`px-4 py-2 text-[11px] border-r border-[#2d2d2d] ${
-                  centerView === t.id ? 'bg-[#1e1e1e] text-white' : 'text-[#858585] hover:text-[#cccccc]'
-                }`}
+                onClick={() => setCenterView(id)}
+                className={`mb-tab ${centerView === id ? 'mb-tab-active' : ''}`}
               >
-                {t.label}
+                <TabIcon size={13} />
+                {label}
               </button>
             ))}
+            <div className="flex-1" />
             <button
               type="button"
               onClick={buildAndRun}
               disabled={orchestrating || !selected}
-              className="ml-auto px-3 py-1.5 text-[10px] bg-[#238636] text-white rounded disabled:opacity-40 hover:bg-[#2ea043]"
+              className="mb-btn mb-btn-success text-[11px] mx-2 my-1"
             >
-              {orchestrating ? 'Building…' : '▶ Build & Run'}
+              <IconPlay size={12} />
+              {orchestrating ? 'Building…' : 'Build & Run'}
             </button>
             <button
               type="button"
               onClick={() => setShowBottom((b) => !b)}
-              className="px-3 py-2 text-[10px] text-[#858585] hover:text-white"
+              className="mb-btn mb-btn-ghost text-[10px] mx-2 my-1 border-0"
             >
-              {showBottom ? '▼' : '▲'} Terminal
+              <IconChevronDown size={12} className={showBottom ? '' : 'rotate-180'} />
+              Terminal
             </button>
           </div>
 
@@ -370,7 +378,7 @@ export default function AppBuilder() {
             <div className={`${showBottom ? 'flex-[3]' : 'flex-1'} min-h-0 overflow-hidden`}>
               {centerView === 'code' && (
                 <div className="flex h-full min-h-0">
-                  <div className={previewUrl ? 'w-1/2 border-r border-[#2d2d2d]' : 'w-full'}>
+                  <div className={previewUrl ? 'w-1/2 border-r' : 'w-full'} style={{ borderColor: 'var(--mb-border)' }}>
                     <BuilderCodeStudio
                       projectId={selected?.id ?? null}
                       projectName={selected?.name ?? 'app'}
@@ -397,45 +405,69 @@ export default function AppBuilder() {
                 />
               )}
               {centerView === 'templates' && (
-                <div className="h-full overflow-y-auto p-4 bg-[#1e1e1e]">
-                  <h3 className="text-sm font-semibold mb-3">Template Library</h3>
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="h-full overflow-y-auto p-6">
+                  <h3 className="text-[15px] font-semibold mb-1" style={{ color: 'var(--mb-text-primary)' }}>Template Library</h3>
+                  <p className="text-[12px] mb-5" style={{ color: 'var(--mb-text-muted)' }}>{templates.length} production-ready scaffolds</p>
+                  <div className="grid grid-cols-2 xl:grid-cols-3 gap-3">
                     {templates.map((t) => (
                       <button
                         key={t.id}
                         type="button"
                         onClick={() => createFromTemplate(t)}
-                        className="text-left p-3 rounded border border-[#3c3c3c] bg-[#252526] hover:border-[#007acc] text-[11px]"
+                        className="text-left p-4 rounded-xl transition-all hover:scale-[1.01]"
+                        style={{
+                          background: 'var(--mb-bg-elevated)',
+                          border: '1px solid var(--mb-border)',
+                        }}
                       >
-                        <div className="font-medium text-[#cccccc]">{t.name}</div>
-                        <div className="text-[#858585] mt-1 line-clamp-2">{t.description}</div>
+                        {t.popular && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-full font-medium mb-2 inline-block" style={{ background: 'var(--mb-accent-muted)', color: 'var(--mb-accent)' }}>
+                            Popular
+                          </span>
+                        )}
+                        <div className="text-[13px] font-medium" style={{ color: 'var(--mb-text-primary)' }}>{t.name}</div>
+                        <div className="text-[11px] mt-1.5 line-clamp-2 leading-relaxed" style={{ color: 'var(--mb-text-muted)' }}>{t.description}</div>
+                        <div className="flex gap-1.5 mt-3">
+                          <span className="text-[10px] px-2 py-0.5 rounded-md" style={{ background: 'var(--mb-bg-active)', color: 'var(--mb-text-secondary)' }}>{t.backend}</span>
+                          <span className="text-[10px] px-2 py-0.5 rounded-md" style={{ background: 'var(--mb-bg-active)', color: 'var(--mb-text-secondary)' }}>{t.category}</span>
+                        </div>
                       </button>
                     ))}
                   </div>
                 </div>
               )}
               {centerView === 'create' && (
-                <div className="h-full overflow-y-auto p-6 bg-[#1e1e1e] max-w-lg">
-                  <h3 className="text-sm font-semibold mb-4">Create Project</h3>
-                  <div className="space-y-3 text-[11px]">
+                <div className="h-full overflow-y-auto p-8 max-w-md mx-auto">
+                  <h3 className="text-[18px] font-semibold mb-1" style={{ color: 'var(--mb-text-primary)' }}>New Project</h3>
+                  <p className="text-[13px] mb-6" style={{ color: 'var(--mb-text-muted)' }}>Scaffold a real app — build, run, preview in one click</p>
+                  <div className="space-y-4">
                     <label className="block">
-                      <span className="text-[#858585]">App name</span>
-                      <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 w-full bg-[#3c3c3c] border border-[#3c3c3c] rounded px-2 py-1.5 text-[#cccccc] outline-none focus:border-[#007acc]" />
+                      <span className="text-[12px] font-medium" style={{ color: 'var(--mb-text-secondary)' }}>App name</span>
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="mt-1.5 w-full rounded-lg px-3 py-2.5 text-[13px] outline-none transition-colors focus:ring-2"
+                        style={{ background: 'var(--mb-bg-input)', border: '1px solid var(--mb-border)', color: 'var(--mb-text-primary)' }}
+                      />
                     </label>
                     <label className="block">
-                      <span className="text-[#858585]">Template</span>
-                      <select value={templateId} onChange={(e) => setTemplateId(e.target.value)} className="mt-1 w-full bg-[#3c3c3c] rounded px-2 py-1.5 outline-none">
-                        <option value="">Custom</option>
+                      <span className="text-[12px] font-medium" style={{ color: 'var(--mb-text-secondary)' }}>Template</span>
+                      <select
+                        value={templateId}
+                        onChange={(e) => setTemplateId(e.target.value)}
+                        className="mt-1.5 w-full rounded-lg px-3 py-2.5 text-[13px] outline-none"
+                        style={{ background: 'var(--mb-bg-input)', border: '1px solid var(--mb-border)', color: 'var(--mb-text-primary)' }}
+                      >
+                        <option value="">Custom scaffold</option>
                         {templates.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
                       </select>
                     </label>
                     <div className="flex gap-2 pt-2">
-                      <button type="button" onClick={create} disabled={loading} className="px-3 py-1.5 bg-[#007acc] rounded text-white disabled:opacity-50">Create</button>
+                      <button type="button" onClick={create} disabled={loading} className="mb-btn mb-btn-primary flex-1 justify-center">Create</button>
                       {selected && (
-                        <>
-                          <button type="button" onClick={() => setCenterView('code')} className="px-3 py-1.5 bg-[#37373d] rounded">Open in Code Studio</button>
-                      <button type="button" onClick={buildAndRun} disabled={orchestrating || !selected} className="px-3 py-1.5 bg-[#238636] rounded text-white disabled:opacity-50">Build & Run Live</button>
-                        </>
+                        <button type="button" onClick={buildAndRun} disabled={orchestrating} className="mb-btn mb-btn-success flex-1 justify-center">
+                          <IconPlay size={12} /> Run Live
+                        </button>
                       )}
                     </div>
                   </div>
@@ -444,41 +476,37 @@ export default function AppBuilder() {
             </div>
 
             {showBottom && (
-              <div className="flex-[1] min-h-[140px] max-h-[280px] border-t border-[#2d2d2d] shrink-0">
-                <BuilderLiveTerminal
-                  sessionId={sessionId}
-                  onBuildAndRun={buildAndRun}
-                  building={orchestrating}
-                />
+              <div
+                className="shrink-0 border-t"
+                style={{ minHeight: 'var(--mb-terminal-min)', maxHeight: 280, borderColor: 'var(--mb-border)' }}
+              >
+                <BuilderLiveTerminal sessionId={sessionId} onBuildAndRun={buildAndRun} building={orchestrating} />
               </div>
             )}
           </div>
         </div>
 
-        {/* Right — Agent */}
         {showAgent && (
-          <div className="w-80 shrink-0 min-h-0">
-            <BuilderAgentPanel projectName={selected?.name} onAsk={askAI} loading={loading} />
-          </div>
+          <BuilderAgentPanel projectName={selected?.name} onAsk={askAI} loading={loading || orchestrating} />
         )}
       </div>
+
+      <BuilderStatusBar
+        project={selected?.name}
+        previewUrl={previewUrl}
+        orchestrating={orchestrating}
+        shell="PowerShell"
+      />
     </div>
   );
 }
 
-function SidebarSection({
-  title,
-  children,
-  collapsed,
-}: {
-  title: string;
-  children: React.ReactNode;
-  collapsed?: boolean;
-}) {
+function SidebarSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className={`${collapsed ? '' : 'border-b border-[#2d2d2d]'}`}>
-      <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#bbbbbb] flex items-center gap-1">
-        <span>▼</span> {title}
+    <div className="border-b" style={{ borderColor: 'var(--mb-border)' }}>
+      <div className="mb-panel-header">
+        <IconChevronDown size={10} />
+        {title}
       </div>
       <div className="pb-2">{children}</div>
     </div>

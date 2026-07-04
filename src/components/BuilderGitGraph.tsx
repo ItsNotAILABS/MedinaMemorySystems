@@ -1,51 +1,30 @@
 'use client';
 
-interface CommitNode {
-  id: string;
-  message: string;
-  branch: string;
-  color: string;
-  lane: number;
-}
+const BRANCH_COLORS = ['#6366f1', '#22c55e', '#a78bfa', '#eab308', '#f472b6', '#38bdf8'];
 
-const BRANCH_COLORS = ['#569cd6', '#4ec9b0', '#c586c0', '#dcdcaa', '#ce9178', '#6a9955'];
-
-const DEMO_GRAPH: CommitNode[] = [
-  { id: '1', message: 'Upgrade Next.js to 15.5.20', branch: 'cursor/company-app-builder-51ae', color: BRANCH_COLORS[0], lane: 0 },
-  { id: '2', message: 'Add Code Studio with ZIP export', branch: 'cursor/company-app-builder-51ae', color: BRANCH_COLORS[0], lane: 0 },
-  { id: '3', message: 'Build real runnable apps on disk', branch: 'cursor/company-app-builder-51ae', color: BRANCH_COLORS[0], lane: 0 },
-  { id: '4', message: 'feat(builder): template library v2', branch: 'main', color: BRANCH_COLORS[1], lane: 1 },
-  { id: '5', message: 'feat: integrate iphone-bridge MCP', branch: 'cursor/iphone-bridge-mcp', color: BRANCH_COLORS[2], lane: 2 },
-  { id: '6', message: 'Merge PR #30 app builder', branch: 'main', color: BRANCH_COLORS[1], lane: 1 },
-  { id: '7', message: 'Merge PR #29 iphone bridge', branch: 'main', color: BRANCH_COLORS[1], lane: 1 },
-  { id: '8', message: 'Initial MedinaMemorySystems scaffold', branch: 'main', color: BRANCH_COLORS[1], lane: 1 },
+const DEMO_GRAPH = [
+  { message: 'Upgrade Next.js to 15.5.20', branch: 'cursor/company-app-builder-51ae', color: BRANCH_COLORS[0] },
+  { message: 'Real terminal + Python orchestrator', branch: 'cursor/company-app-builder-51ae', color: BRANCH_COLORS[0] },
+  { message: 'Add Code Studio with live preview', branch: 'cursor/company-app-builder-51ae', color: BRANCH_COLORS[0] },
+  { message: 'feat(builder): template library v2', branch: 'main', color: BRANCH_COLORS[1] },
+  { message: 'feat: integrate iphone-bridge MCP', branch: 'cursor/iphone-bridge-mcp', color: BRANCH_COLORS[2] },
+  { message: 'Merge PR #30 app builder', branch: 'main', color: BRANCH_COLORS[1] },
 ];
 
 export default function BuilderGitGraph() {
   return (
     <div className="flex flex-col h-full min-h-0">
-      <div className="px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#858585] border-b border-[#2d2d2d] shrink-0">
-        Git Graph
-      </div>
-      <div className="flex-1 overflow-y-auto p-2 font-mono text-[10px]">
+      <div className="mb-panel-header border-0">Git Graph</div>
+      <div className="flex-1 overflow-y-auto px-3 pb-3">
         {DEMO_GRAPH.map((node, i) => (
-          <div key={node.id} className="flex items-start gap-1 mb-0.5 group">
-            <div className="w-8 shrink-0 flex flex-col items-center pt-1">
-              <div
-                className="w-2 h-2 rounded-full border border-[#1e1e1e]"
-                style={{ background: node.color }}
-              />
-              {i < DEMO_GRAPH.length - 1 && (
-                <div className="w-px flex-1 min-h-[14px] bg-[#404040] mt-0.5" />
-              )}
+          <div key={i} className="flex gap-2 mb-1 group">
+            <div className="flex flex-col items-center w-4 pt-1.5 shrink-0">
+              <div className="w-2 h-2 rounded-full ring-2 ring-offset-1" style={{ background: node.color, ringColor: 'var(--mb-bg-surface)', '--tw-ring-offset-color': 'var(--mb-bg-surface)' } as React.CSSProperties} />
+              {i < DEMO_GRAPH.length - 1 && <div className="w-px flex-1 min-h-[18px] mt-0.5" style={{ background: 'var(--mb-border-strong)' }} />}
             </div>
-            <div className="flex-1 min-w-0 pb-2">
-              <div className="text-[#cccccc] truncate group-hover:text-white" title={node.message}>
-                {node.message}
-              </div>
-              <div className="text-[#6e7681] truncate" style={{ color: node.color }}>
-                {node.branch}
-              </div>
+            <div className="pb-2 min-w-0">
+              <div className="text-[11px] truncate" style={{ color: 'var(--mb-text-secondary)' }}>{node.message}</div>
+              <div className="text-[10px] font-mono truncate" style={{ color: node.color }}>{node.branch}</div>
             </div>
           </div>
         ))}

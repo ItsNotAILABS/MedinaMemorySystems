@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { downloadFilesAsZip } from '@/lib/zipDownload';
 import type { GeneratedFile } from '@/types/appBuilder';
+import { IconCode } from '@/components/builder/BuilderIcons';
 
 interface Props {
   projectId: string | null;
@@ -11,15 +12,18 @@ interface Props {
   onChangesUpdate?: (paths: string[]) => void;
 }
 
-function langIcon(path: string): string {
-  if (path.endsWith('.tsx') || path.endsWith('.ts')) return 'TS';
-  if (path.endsWith('.json')) return '{}';
-  if (path.endsWith('.css')) return '#';
-  if (path.endsWith('.md')) return 'M↓';
-  if (path.endsWith('.sh')) return '$';
-  if (path.endsWith('.js')) return 'JS';
-  return '◇';
+function extIcon(path: string): string {
+  if (path.endsWith('.tsx')) return 'tsx';
+  if (path.endsWith('.ts')) return 'ts';
+  if (path.endsWith('.json')) return 'json';
+  if (path.endsWith('.css')) return 'css';
+  if (path.endsWith('.md')) return 'md';
+  return 'file';
 }
+
+const EXT_COLORS: Record<string, string> = {
+  tsx: '#61dafb', ts: '#3178c6', json: '#f1c40f', css: '#563d7c', md: '#519aba', file: '#71717a',
+};
 
 export default function BuilderCodeStudio({ projectId, projectName, onLog, onChangesUpdate }: Props) {
   const [files, setFiles] = useState<GeneratedFile[]>([]);
@@ -49,10 +53,7 @@ export default function BuilderCodeStudio({ projectId, projectName, onLog, onCha
   }, [projectId, activePath]);
 
   useEffect(() => { loadFiles(); }, [loadFiles]);
-
-  useEffect(() => {
-    onChangesUpdate?.(Array.from(modified));
-  }, [modified, onChangesUpdate]);
+  useEffect(() => { onChangesUpdate?.(Array.from(modified)); }, [modified, onChangesUpdate]);
 
   const openFile = (f: GeneratedFile) => {
     setActivePath(f.path);
@@ -75,8 +76,6 @@ export default function BuilderCodeStudio({ projectId, projectName, onLog, onCha
         setDirty(false);
         setModified((m) => new Set([...m, activePath]));
         setFiles((prev) => prev.map((f) => (f.path === activePath ? { ...f, content } : f)));
-      } else {
-        onLog(`save failed: ${data.error}`);
       }
     } finally {
       setLoading(false);
@@ -97,72 +96,85 @@ export default function BuilderCodeStudio({ projectId, projectName, onLog, onCha
 
   if (!projectId) {
     return (
-      <div className="flex items-center justify-center h-full bg-[#1e1e1e] text-[#858585] text-sm">
-        Select or create a project in the sidebar
+      <div className="flex flex-col items-center justify-center h-full gap-3" style={{ background: 'var(--mb-bg-panel)' }}>
+        <IconCode size={32} className="opacity-20" />
+        <p className="text-[13px]" style={{ color: 'var(--mb-text-muted)' }}>Select a project to open the editor</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-full bg-[#1e1e1e]">
-      {/* Editor tabs */}
-      <div className="flex items-center bg-[#252526] border-b border-[#2d2d2d] shrink-0 overflow-x-auto">
-        {activePath && (
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-[#1e1e1e] border-r border-[#2d2d2d] text-[11px] text-[#cccccc]">
-            <span className="text-[#519aba]">{langIcon(activePath)}</span>
-            <span>{activePath.split('/').pop()}</span>
-            {dirty && <span className="w-2 h-2 rounded-full bg-white/80" />}
-          </div>
-        )}
-        <div className="ml-auto flex gap-1 px-2">
-          <button type="button" onClick={save} disabled={loading || !dirty} className="px-2 py-0.5 text-[10px] text-[#cccccc] hover:bg-[#37373d] rounded disabled:opacity-40">Save</button>
-          <button type="button" onClick={downloadZip} disabled={!files.length} className="px-2 py-0.5 text-[10px] text-[#cccccc] hover:bg-[#37373d] rounded">Export ZIP</button>
+    <div className="flex flex-col h-full" style={{ background: 'var(--mb-bg-panel)' }}>
+      {/* Breadcrumb bar */}
+      <div
+        className="flex items-center justify-between px-3 shrink-0 border-b"
+        style={{ height: 32, borderColor: 'var(--mb-border)', background: 'var(--mb-bg-elevated)' }}
+      >
+        <div className="flex items-center gap-2 text-[11px] truncate">
+          {activePath && (
+            <>
+              <span style={{ color: EXT_COLORS[extIcon(activePath)] }}>{extIcon(activePath)}</span>
+              <span style={{ color: 'var(--mb-text-secondary)' }}>{activePath}</span>
+              {dirty && <span className="w-2 h-2 rounded-full" style={{ background: 'var(--mb-warning)' }} />}
+            </>
+          )}
+        </div>
+        <div className="flex gap-1">
+          <button type="button" onClick={save} disabled={!dirty || loading} className="mb-btn mb-btn-ghost text-[10px] py-1">Save</button>
+          <button type="button" onClick={downloadZip} className="mb-btn mb-btn-ghost text-[10px] py-1">Export</button>
         </div>
       </div>
 
       <div className="flex flex-1 min-h-0">
-        {/* Explorer */}
-        <aside className="w-52 border-r border-[#2d2d2d] overflow-y-auto shrink-0 bg-[#252526]">
-          <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#bbbbbb]">
-            Explorer
-          </div>
-          {files.map((f) => (
-            <button
-              key={f.path}
-              type="button"
-              onClick={() => openFile(f)}
-              className={`w-full flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-mono truncate ${
-                activePath === f.path ? 'bg-[#37373d] text-white' : 'text-[#cccccc] hover:bg-[#2a2d2e]'
-              }`}
-              title={f.path}
-            >
-              <span className="text-[9px] text-[#519aba] w-4 shrink-0">{langIcon(f.path)}</span>
-              <span className="truncate">{f.path}</span>
-              {modified.has(f.path) && <span className="text-[#e2c08d] ml-auto">M</span>}
-            </button>
-          ))}
+        {/* File tree */}
+        <aside
+          className="w-56 shrink-0 overflow-y-auto border-r py-1"
+          style={{ borderColor: 'var(--mb-border)', background: 'var(--mb-bg-surface)' }}
+        >
+          <div className="mb-panel-header border-0 py-2">Explorer</div>
+          {files.map((f) => {
+            const ext = extIcon(f.path);
+            return (
+              <button
+                key={f.path}
+                type="button"
+                onClick={() => openFile(f)}
+                className="w-full flex items-center gap-2 px-3 py-1 text-[11px] transition-colors"
+                style={{
+                  color: activePath === f.path ? 'var(--mb-text-primary)' : 'var(--mb-text-muted)',
+                  background: activePath === f.path ? 'var(--mb-bg-active)' : 'transparent',
+                  fontFamily: 'var(--font-jetbrains, var(--mb-font-mono))',
+                }}
+              >
+                <span style={{ color: EXT_COLORS[ext], fontSize: 9, fontWeight: 700 }}>{ext}</span>
+                <span className="truncate">{f.path.split('/').pop()}</span>
+                {modified.has(f.path) && <span className="ml-auto text-[9px]" style={{ color: 'var(--mb-warning)' }}>M</span>}
+              </button>
+            );
+          })}
         </aside>
 
         {/* Editor */}
         <div className="flex-1 flex min-w-0 overflow-hidden">
-          <div className="w-10 shrink-0 bg-[#1e1e1e] text-right pr-2 pt-3 text-[11px] font-mono text-[#858585] select-none overflow-hidden">
-            {lines.map((_, i) => (
-              <div key={i} className="leading-[1.5rem] h-6">{i + 1}</div>
-            ))}
+          <div
+            className="w-11 shrink-0 text-right pr-3 pt-4 select-none text-[12px] leading-6"
+            style={{ color: 'var(--mb-text-faint)', fontFamily: 'var(--font-jetbrains, var(--mb-font-mono))', background: 'var(--mb-bg-panel)' }}
+          >
+            {lines.map((_, i) => <div key={i}>{i + 1}</div>)}
           </div>
           <textarea
             value={content}
             onChange={(e) => { setContent(e.target.value); setDirty(true); }}
             spellCheck={false}
-            className="flex-1 resize-none bg-[#1e1e1e] text-[#d4d4d4] text-[13px] font-mono leading-6 pt-3 pl-2 outline-none caret-white"
-            placeholder={loading ? 'Loading…' : ''}
+            className="flex-1 resize-none pt-4 pl-1 outline-none text-[13px] leading-6"
+            style={{
+              color: 'var(--mb-text-primary)',
+              background: 'var(--mb-bg-panel)',
+              fontFamily: 'var(--font-jetbrains, var(--mb-font-mono))',
+              caretColor: 'var(--mb-accent)',
+            }}
           />
         </div>
-      </div>
-
-      <div className="flex items-center justify-between px-3 py-0.5 bg-[#007acc] text-[11px] text-white shrink-0">
-        <span>{activePath ?? '—'}</span>
-        <span>Ln {lines.length}, Col 1 · UTF-8 · {files.find((f) => f.path === activePath)?.language ?? 'typescript'}</span>
       </div>
     </div>
   );
