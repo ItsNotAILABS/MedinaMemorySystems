@@ -37,11 +37,19 @@ node -v   # should be v20+ or v22+
 
 | Tab | What it does |
 |-----|----------------|
-| **Templates** | Pick a starting app |
-| **Create** | Name your project |
-| **Code Studio** | Edit every file · **Download ZIP** (works in browser) |
-| **Deploy** | Generate deploy plans for 18+ targets |
-| **AI Assist** | MEDINA routing + recommendations |
+| **Code Studio** | Edit files with line numbers |
+| **Live Preview** | Embedded browser — runs your app at localhost after Build & Run |
+| **Terminal** | Real PowerShell / WSL / bash on your PC |
+| **Agent** | "Build and run my app" → Python orchestrator + live preview |
+
+## Build & Run (real apps)
+
+1. Create project → **▶ Build & Run**
+2. Python orchestrator writes files to `generated/<app>/`
+3. Terminal runs `npm install` then `npm run dev`
+4. **Live Preview** opens your app immediately (like Cursor terminal)
+
+Requires **medina-builder** running locally (`npm run builder:dev`) — not static export mode.
 
 ## Export a runnable app
 

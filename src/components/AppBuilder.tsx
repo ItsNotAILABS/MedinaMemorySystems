@@ -6,10 +6,11 @@ import BuilderCodeStudio from '@/components/BuilderCodeStudio';
 import BuilderGitHubPanel from '@/components/BuilderGitHubPanel';
 import type { GitHubRepo } from '@/lib/githubRepos';
 import BuilderGitGraph from '@/components/BuilderGitGraph';
-import BuilderTerminal from '@/components/BuilderTerminal';
+import BuilderLiveTerminal from '@/components/BuilderLiveTerminal';
+import BuilderAppPreview from '@/components/BuilderAppPreview';
 import BuilderAgentPanel from '@/components/BuilderAgentPanel';
 
-type CenterView = 'code' | 'github' | 'templates' | 'create';
+type CenterView = 'code' | 'preview' | 'github' | 'templates' | 'create';
 type ActivityId = 'explorer' | 'git' | 'github' | 'deploy';
 
 interface DeployTargetInfo {
@@ -37,6 +38,10 @@ export default function AppBuilder() {
   const [log, setLog] = useState<string[]>([]);
   const [changes, setChanges] = useState<string[]>([]);
   const [githubRepo, setGithubRepo] = useState<GitHubRepo | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewDir, setPreviewDir] = useState<string | null>(null);
+  const [orchestrating, setOrchestrating] = useState(false);
+  const sessionId = 'medina-builder';
 
   const pushLog = (msg: string) => setLog((l) => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...l].slice(0, 50));
 
@@ -86,8 +91,81 @@ export default function AppBuilder() {
     setCenterView('create');
   };
 
+  const buildAndRun = async () => {
+    if (!selected) {
+      pushLog('Create or select a project first');
+      return;
+    }
+    setOrchestrating(true);
+    setPreviewUrl(null);
+    setCenterView('preview');
+    pushLog('Orchestrating: write files → npm install → npm run dev…');
+    try {
+      const res = await fetch('/api/orchestrate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'build-and-run',
+          projectId: selected.id,
+          sessionId,
+          shell: 'powershell',
+        }),
+      });
+      const data = await res.json();
+      if (data.success && data.data?.previewUrl) {
+        setPreviewUrl(data.data.previewUrl);
+        setPreviewDir(data.data.projectDir);
+        pushLog(`App live → ${data.data.previewUrl}`);
+        setCenterView('preview');
+      } else {
+        pushLog(`Build failed: ${data.error ?? data.data?.error ?? 'unknown'}`);
+      }
+    } catch (e) {
+      pushLog(`Orchestrate error: ${e}`);
+    } finally {
+      setOrchestrating(false);
+    }
+  };
+
   const askAI = async (prompt: string) => {
-    if (!selected) return undefined;
+    if (!selected) return ['Create a project first, then ask me to build and run it.'];
+
+    const wantsBuild = /build|run|create|deploy|launch|start|preview|app|make/i.test(prompt);
+    if (wantsBuild) {
+      setOrchestrating(true);
+      try {
+        const res = await fetch('/api/orchestrate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'from-prompt',
+            projectId: selected.id,
+            prompt,
+            sessionId,
+          }),
+        });
+        const data = await res.json();
+        if (data.success && data.data?.previewUrl) {
+          setPreviewUrl(data.data.previewUrl);
+          setPreviewDir(data.data.projectDir);
+          setCenterView('preview');
+        }
+        const aiRes = await fetch('/api/builder', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'ai-assist', id: selected.id, prompt }),
+        });
+        const aiData = await aiRes.json();
+        const suggestions = aiData.data?.suggestions ?? [];
+        return [
+          data.data?.message ?? (data.success ? 'Build complete.' : data.error),
+          ...suggestions,
+        ];
+      } finally {
+        setOrchestrating(false);
+      }
+    }
+
     const data = await api('ai-assist', { id: selected.id, prompt });
     return data?.success ? data.data?.suggestions : undefined;
   };
@@ -254,10 +332,11 @@ export default function AppBuilder() {
           {/* Center tabs */}
           <div className="flex items-center bg-[#252526] border-b border-[#2d2d2d] shrink-0">
             {([
-              { id: 'code' as const, label: selected ? `Code Studio — ${selected.name}` : 'Code Studio' },
-              { id: 'github' as const, label: githubRepo ? `GitHub — ${githubRepo.name}` : 'GitHub — ItsNotAILABS' },
+              { id: 'code' as const, label: selected ? `Code — ${selected.name}` : 'Code Studio' },
+              { id: 'preview' as const, label: previewUrl ? `Preview — ${previewUrl.replace('http://', '')}` : 'Live Preview' },
+              { id: 'github' as const, label: githubRepo ? `GitHub — ${githubRepo.name}` : 'GitHub' },
               { id: 'templates' as const, label: 'Templates' },
-              { id: 'create' as const, label: 'Create Project' },
+              { id: 'create' as const, label: 'Create' },
             ]).map((t) => (
               <button
                 key={t.id}
@@ -272,8 +351,16 @@ export default function AppBuilder() {
             ))}
             <button
               type="button"
+              onClick={buildAndRun}
+              disabled={orchestrating || !selected}
+              className="ml-auto px-3 py-1.5 text-[10px] bg-[#238636] text-white rounded disabled:opacity-40 hover:bg-[#2ea043]"
+            >
+              {orchestrating ? 'Building…' : '▶ Build & Run'}
+            </button>
+            <button
+              type="button"
               onClick={() => setShowBottom((b) => !b)}
-              className="ml-auto px-3 py-2 text-[10px] text-[#858585] hover:text-white"
+              className="px-3 py-2 text-[10px] text-[#858585] hover:text-white"
             >
               {showBottom ? '▼' : '▲'} Terminal
             </button>
@@ -282,12 +369,24 @@ export default function AppBuilder() {
           <div className="flex-1 min-h-0 flex flex-col">
             <div className={`${showBottom ? 'flex-[3]' : 'flex-1'} min-h-0 overflow-hidden`}>
               {centerView === 'code' && (
-                <BuilderCodeStudio
-                  projectId={selected?.id ?? null}
-                  projectName={selected?.name ?? 'app'}
-                  onLog={pushLog}
-                  onChangesUpdate={setChanges}
-                />
+                <div className="flex h-full min-h-0">
+                  <div className={previewUrl ? 'w-1/2 border-r border-[#2d2d2d]' : 'w-full'}>
+                    <BuilderCodeStudio
+                      projectId={selected?.id ?? null}
+                      projectName={selected?.name ?? 'app'}
+                      onLog={pushLog}
+                      onChangesUpdate={setChanges}
+                    />
+                  </div>
+                  {previewUrl && (
+                    <div className="w-1/2">
+                      <BuilderAppPreview url={previewUrl} projectDir={previewDir ?? undefined} loading={orchestrating} />
+                    </div>
+                  )}
+                </div>
+              )}
+              {centerView === 'preview' && (
+                <BuilderAppPreview url={previewUrl} projectDir={previewDir ?? undefined} loading={orchestrating} />
               )}
               {centerView === 'github' && (
                 <BuilderGitHubPanel
@@ -335,7 +434,7 @@ export default function AppBuilder() {
                       {selected && (
                         <>
                           <button type="button" onClick={() => setCenterView('code')} className="px-3 py-1.5 bg-[#37373d] rounded">Open in Code Studio</button>
-                          <button type="button" onClick={exportToDisk} disabled={loading} className="px-3 py-1.5 bg-[#37373d] rounded">Export to Disk</button>
+                      <button type="button" onClick={buildAndRun} disabled={orchestrating || !selected} className="px-3 py-1.5 bg-[#238636] rounded text-white disabled:opacity-50">Build & Run Live</button>
                         </>
                       )}
                     </div>
@@ -345,8 +444,12 @@ export default function AppBuilder() {
             </div>
 
             {showBottom && (
-              <div className="flex-[1] min-h-[120px] max-h-[220px] border-t border-[#2d2d2d] shrink-0">
-                <BuilderTerminal lines={log} />
+              <div className="flex-[1] min-h-[140px] max-h-[280px] border-t border-[#2d2d2d] shrink-0">
+                <BuilderLiveTerminal
+                  sessionId={sessionId}
+                  onBuildAndRun={buildAndRun}
+                  building={orchestrating}
+                />
               </div>
             )}
           </div>
