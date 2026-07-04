@@ -1,10 +1,16 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import type { AppProject, AppTemplate, DeployPlan, DeployTarget, TokenSpec } from '@/types/appBuilder';
+import type { AppProject, AppTemplate, DeployTarget, TokenSpec } from '@/types/appBuilder';
 import BuilderCodeStudio from '@/components/BuilderCodeStudio';
+import BuilderGitHubPanel from '@/components/BuilderGitHubPanel';
+import type { GitHubRepo } from '@/lib/githubRepos';
+import BuilderGitGraph from '@/components/BuilderGitGraph';
+import BuilderTerminal from '@/components/BuilderTerminal';
+import BuilderAgentPanel from '@/components/BuilderAgentPanel';
 
-type Tab = 'templates' | 'create' | 'code' | 'deploy' | 'ai';
+type CenterView = 'code' | 'github' | 'templates' | 'create';
+type ActivityId = 'explorer' | 'git' | 'github' | 'deploy';
 
 interface DeployTargetInfo {
   id: DeployTarget;
@@ -14,23 +20,25 @@ interface DeployTargetInfo {
 }
 
 export default function AppBuilder() {
-  const [tab, setTab] = useState<Tab>('templates');
+  const [centerView, setCenterView] = useState<CenterView>('code');
+  const [activity, setActivity] = useState<ActivityId>('explorer');
+  const [showAgent, setShowAgent] = useState(true);
+  const [showBottom, setShowBottom] = useState(true);
   const [projects, setProjects] = useState<AppProject[]>([]);
   const [templates, setTemplates] = useState<AppTemplate[]>([]);
   const [deployTargets, setDeployTargets] = useState<DeployTargetInfo[]>([]);
   const [selected, setSelected] = useState<AppProject | null>(null);
-  const [deployPlan, setDeployPlan] = useState<DeployPlan | null>(null);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
   const [templateId, setTemplateId] = useState('');
   const [aiMode, setAiMode] = useState<'local' | 'cloud' | 'hybrid'>('hybrid');
   const [deployTarget, setDeployTarget] = useState<DeployTarget>('saas-vercel');
   const [tokenSymbol, setTokenSymbol] = useState('MED');
-  const [aiPrompt, setAiPrompt] = useState('');
-  const [aiResult, setAiResult] = useState<string[]>([]);
   const [log, setLog] = useState<string[]>([]);
+  const [changes, setChanges] = useState<string[]>([]);
+  const [githubRepo, setGithubRepo] = useState<GitHubRepo | null>(null);
 
-  const pushLog = (msg: string) => setLog((l) => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...l].slice(0, 25));
+  const pushLog = (msg: string) => setLog((l) => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...l].slice(0, 50));
 
   const refresh = useCallback(async () => {
     const [pRes, tRes, mRes] = await Promise.all([
@@ -59,10 +67,7 @@ export default function AppBuilder() {
         pushLog(`${action} ✓`);
         await refresh();
         if (data.data?.id && !body.id) setSelected(data.data);
-        else if (body.id) {
-          setSelected(data.data);
-          if (action === 'deploy-plan' || action === 'deploy') setDeployPlan(data.data?.deployPlan ?? data.data);
-        }
+        else if (body.id) setSelected(data.data);
       } else {
         pushLog(`${action} ✗ ${data.error}`);
       }
@@ -72,272 +77,307 @@ export default function AppBuilder() {
     }
   };
 
+  const create = () => api('create', { name: name || 'MyApp', templateId: templateId || undefined, aiMode, deployTarget });
+
   const createFromTemplate = (t: AppTemplate) => {
     setTemplateId(t.id);
     setName(t.name);
     setDeployTarget(t.deployTargets[0]);
-    setTab('create');
+    setCenterView('create');
   };
 
-  const create = () => api('create', {
-    name: name || 'MyApp',
-    templateId: templateId || undefined,
-    aiMode,
-    deployTarget,
-  });
-
-  const runPipeline = async (project: AppProject) => {
-    setSelected(project);
-    await api('scaffold', { id: project.id });
-    await api('build-capsules', { id: project.id });
-    if (!project.token) {
-      await api('create-token', {
-        id: project.id,
-        token: {
-          name: `${project.name} Token`,
-          symbol: tokenSymbol,
-          decimals: 8,
-          initialSupply: '1000000000',
-          standard: deployTarget.includes('icp') ? 'ICRC-1' : 'ERC-20',
-          mintable: true,
-        } satisfies TokenSpec,
-      });
-    }
-    await api('deploy-plan', { id: project.id, target: deployTarget });
-    await api('deploy', { id: project.id, target: deployTarget });
+  const askAI = async (prompt: string) => {
+    if (!selected) return undefined;
+    const data = await api('ai-assist', { id: selected.id, prompt });
+    return data?.success ? data.data?.suggestions : undefined;
   };
 
-  const exportToDisk = async (project: AppProject) => {
-    setSelected(project);
-    const data = await api('export-disk', { id: project.id });
-    if (data?.success && data.data?.outputDir) {
-      pushLog(`Exported → ${data.data.outputDir} (${data.data.fileCount} files)`);
-    } else if (data?.error?.includes('npm run builder')) {
-      pushLog('Use CLI: npm run builder:export');
-    }
+  const exportToDisk = async () => {
+    if (!selected) return;
+    const data = await api('export-disk', { id: selected.id });
+    if (data?.success) pushLog(`Exported → ${data.data?.outputDir}`);
   };
 
-  const askAI = async () => {
-    if (!selected || !aiPrompt.trim()) return;
-    const data = await api('ai-assist', { id: selected.id, prompt: aiPrompt });
-    if (data?.success && data.data?.suggestions) setAiResult(data.data.suggestions);
+  const openRepo = (repo: GitHubRepo) => {
+    setGithubRepo(repo);
+    setCenterView('github');
   };
 
-  const copyCli = (cmd: string) => {
-    navigator.clipboard?.writeText(cmd);
-    pushLog(`Copied: ${cmd}`);
-  };
+  const ACTIVITY: { id: ActivityId; icon: string; title: string }[] = [
+    { id: 'explorer', icon: '📁', title: 'Explorer' },
+    { id: 'git', icon: '⎇', title: 'Source Control' },
+    { id: 'github', icon: '◉', title: 'GitHub' },
+    { id: 'deploy', icon: '▶', title: 'Deploy' },
+  ];
 
   return (
-    <div className="flex h-full bg-[#0a0a0f] text-slate-200">
-      {/* Sidebar — projects */}
-      <div className="w-52 border-r border-[#1e1e2e] flex flex-col shrink-0">
-        <div className="p-3 border-b border-[#1e1e2e]">
-          <h2 className="text-sm font-bold text-indigo-400">Medina Builder</h2>
-          <p className="text-[10px] text-slate-500">Code Studio · Deploy · Export</p>
-        </div>
-        <div className="flex-1 overflow-y-auto p-2 space-y-1">
-          {projects.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => { setSelected(p); setDeployPlan(null); }}
-              className={`w-full text-left px-2 py-2 rounded text-xs ${selected?.id === p.id ? 'bg-indigo-900/40 text-white' : 'text-slate-400 hover:bg-[#1a1a2e]'}`}
-            >
-              <div className="truncate font-medium">{p.name}</div>
-              <div className="text-[10px] opacity-60">{p.templateId ?? p.backend} · {p.status}</div>
-            </button>
-          ))}
-        </div>
+    <div className="flex flex-col h-full bg-[#1e1e1e] text-[#cccccc]">
+      {/* Title bar */}
+      <div className="h-9 flex items-center justify-center shrink-0 bg-[#323233] border-b border-[#2d2d2d] relative">
+        <span className="text-xs text-[#cccccc]">MedinaMemorySystems</span>
+        <button
+          type="button"
+          onClick={() => setShowAgent((s) => !s)}
+          className="absolute right-3 text-[10px] px-2 py-0.5 rounded bg-[#007acc] text-white hover:bg-[#1c8ad9]"
+        >
+          Agents Window
+        </button>
       </div>
 
-      {/* Main */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Tabs */}
-        <div className="flex border-b border-[#1e1e2e] px-4 gap-1 shrink-0">
-          {(['templates', 'create', 'code', 'deploy', 'ai'] as Tab[]).map((t) => (
+      <div className="flex flex-1 min-h-0">
+        {/* Activity bar */}
+        <div className="w-12 shrink-0 flex flex-col items-center py-2 gap-1 bg-[#333333] border-r border-[#2d2d2d]">
+          {ACTIVITY.map((a) => (
             <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-4 py-2.5 text-xs capitalize ${tab === t ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-slate-500 hover:text-slate-300'}`}
+              key={a.id}
+              type="button"
+              title={a.title}
+              onClick={() => {
+                setActivity(a.id);
+                if (a.id === 'github') setCenterView('github');
+                if (a.id === 'explorer') setCenterView('code');
+                if (a.id === 'deploy') setCenterView('templates');
+              }}
+              className={`w-10 h-10 flex items-center justify-center text-lg rounded ${
+                activity === a.id ? 'text-white border-l-2 border-[#007acc]' : 'text-[#858585] hover:text-[#cccccc]'
+              }`}
             >
-              {t === 'ai' ? 'AI Assist' : t === 'code' ? 'Code Studio' : t}
+              {a.icon}
             </button>
           ))}
         </div>
 
-        <div className="flex-1 overflow-y-auto p-5">
-          {tab === 'templates' && (
-            <section>
-              <h3 className="text-lg font-semibold mb-1">Template Library</h3>
-              <p className="text-xs text-slate-500 mb-4">{templates.length} built-in templates — pick one to start</p>
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                {templates.map((t) => (
+        {/* Left sidebar */}
+        <div className="w-64 shrink-0 flex flex-col border-r border-[#2d2d2d] bg-[#252526] min-h-0">
+          {activity === 'explorer' && (
+            <>
+              <SidebarSection title="Projects">
+                {projects.map((p) => (
                   <button
-                    key={t.id}
-                    onClick={() => createFromTemplate(t)}
-                    className="text-left p-4 rounded-xl border border-[#1e1e2e] bg-[#12121a] hover:border-indigo-600/50 transition-colors"
+                    key={p.id}
+                    type="button"
+                    onClick={() => { setSelected(p); setCenterView('code'); }}
+                    className={`w-full text-left px-3 py-1 text-[11px] truncate ${
+                      selected?.id === p.id ? 'bg-[#37373d] text-white' : 'hover:bg-[#2a2d2e]'
+                    }`}
                   >
-                    {t.popular && <span className="text-[10px] bg-indigo-900/50 text-indigo-300 px-2 py-0.5 rounded-full">Popular</span>}
-                    <div className="font-medium text-sm mt-1">{t.name}</div>
-                    <div className="text-[10px] text-slate-500 mt-1 line-clamp-2">{t.description}</div>
-                    <div className="flex gap-1 mt-2 flex-wrap">
-                      <span className="text-[10px] bg-[#1a1a2e] px-2 py-0.5 rounded">{t.backend}</span>
-                      <span className="text-[10px] bg-[#1a1a2e] px-2 py-0.5 rounded">{t.category}</span>
-                    </div>
+                    <span className="text-[#519aba] mr-1">◇</span>{p.name}
+                    <span className="text-[#858585] ml-1">· {p.status}</span>
                   </button>
                 ))}
-              </div>
-            </section>
-          )}
-
-          {tab === 'create' && (
-            <section className="max-w-xl space-y-4">
-              <h3 className="text-lg font-semibold">Create Project</h3>
-              <label className="block text-xs text-slate-400">
-                App name
-                <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm" />
-              </label>
-              <label className="block text-xs text-slate-400">
-                Template
-                <select value={templateId} onChange={(e) => setTemplateId(e.target.value)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
-                  <option value="">Custom (no template)</option>
-                  {templates.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
-                </select>
-              </label>
-              <label className="block text-xs text-slate-400">
-                AI mode
-                <select value={aiMode} onChange={(e) => setAiMode(e.target.value as typeof aiMode)} className="mt-1 w-full bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm">
-                  <option value="hybrid">Hybrid (local + cloud)</option>
-                  <option value="local">Local (Ollama)</option>
-                  <option value="cloud">Cloud</option>
-                </select>
-              </label>
-              <div className="flex gap-2 flex-wrap">
-                <button onClick={create} disabled={loading} className="px-4 py-2 bg-indigo-600 rounded-lg text-sm disabled:opacity-50">Create</button>
-                {selected && (
-                  <>
-                    <button onClick={() => runPipeline(selected)} disabled={loading} className="px-4 py-2 bg-emerald-700 rounded-lg text-sm disabled:opacity-50">
-                      Build + Deploy
-                    </button>
-                    <button onClick={() => exportToDisk(selected)} disabled={loading} className="px-4 py-2 bg-amber-700 rounded-lg text-sm disabled:opacity-50">
-                      Export to Disk
-                    </button>
-                  </>
-                )}
-              </div>
-              <p className="text-[10px] text-slate-600">
-                <strong className="text-slate-500">Code Studio</strong> tab to edit files · <strong className="text-slate-500">Download ZIP</strong> works in browser · CLI: <code className="text-slate-500">npm run builder:build</code>
-              </p>
-            </section>
-          )}
-
-          {tab === 'code' && (
-            <BuilderCodeStudio
-              projectId={selected?.id ?? null}
-              projectName={selected?.name ?? 'app'}
-              onLog={pushLog}
-            />
-          )}
-
-          {tab === 'deploy' && (
-            <section>
-              <h3 className="text-lg font-semibold mb-1">Deploy Anywhere</h3>
-              <p className="text-xs text-slate-500 mb-4">medina-deploy CLI — copy command and run locally</p>
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 mb-6">
-                {deployTargets.map((d) => (
-                  <button
-                    key={d.id}
-                    onClick={() => { setDeployTarget(d.id); copyCli(d.cli); }}
-                    className={`text-left p-3 rounded-lg border text-xs ${deployTarget === d.id ? 'border-indigo-500 bg-indigo-900/20' : 'border-[#1e1e2e] bg-[#12121a] hover:border-slate-600'}`}
-                  >
-                    <div className="text-[10px] text-slate-500">{d.category}</div>
-                    <div className="font-medium">{d.label}</div>
-                    <code className="text-[10px] text-indigo-300 block mt-1 truncate">{d.cli}</code>
-                  </button>
-                ))}
-              </div>
-              {selected && (
                 <button
-                  onClick={async () => {
-                    const data = await api('deploy-plan', { id: selected.id, target: deployTarget });
-                    if (data?.success) setDeployPlan(data.data);
-                  }}
-                  disabled={loading}
-                  className="px-4 py-2 bg-slate-700 rounded-lg text-sm mb-4"
+                  type="button"
+                  onClick={() => setCenterView('create')}
+                  className="w-full text-left px-3 py-1 text-[11px] text-[#007acc] hover:bg-[#2a2d2e]"
                 >
-                  Generate deploy plan for {selected.name}
+                  + New Project
                 </button>
-              )}
-              {deployPlan && (
-                <div className="border border-[#1e1e2e] rounded-xl p-4 bg-[#12121a] text-xs space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-indigo-300">Deploy plan: {deployPlan.target}</span>
-                    <button onClick={() => copyCli(deployPlan.cliCommand)} className="text-indigo-400 hover:underline">Copy CLI</button>
-                  </div>
-                  <code className="block bg-[#0a0a0f] p-2 rounded font-mono text-indigo-200">{deployPlan.cliCommand}</code>
-                  <div>
-                    <div className="text-slate-500 mb-1">Prerequisites</div>
-                    <ul className="list-disc pl-4 text-slate-400">{deployPlan.prerequisites.map((p) => <li key={p}>{p}</li>)}</ul>
-                  </div>
-                  <div>
-                    <div className="text-slate-500 mb-1">Steps</div>
-                    <ol className="list-decimal pl-4 text-slate-400">{deployPlan.steps.map((s) => <li key={s}>{s}</li>)}</ol>
-                  </div>
-                  {deployPlan.scripts.length > 0 && (
-                    <div>
-                      <div className="text-slate-500 mb-1">Generated scripts</div>
-                      {deployPlan.scripts.map((s) => (
-                        <div key={s.name} className="flex justify-between items-center py-1">
-                          <span className="font-mono text-slate-400">{s.name}</span>
-                          <button onClick={() => copyCli(s.content)} className="text-[10px] text-indigo-400">Copy</button>
-                        </div>
-                      ))}
+              </SidebarSection>
+              <SidebarSection title="Templates" collapsed>
+                <div className="max-h-32 overflow-y-auto">
+                  {templates.slice(0, 6).map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => createFromTemplate(t)}
+                      className="w-full text-left px-3 py-0.5 text-[10px] text-[#858585] hover:text-[#cccccc] truncate"
+                    >
+                      {t.name}
+                    </button>
+                  ))}
+                </div>
+              </SidebarSection>
+            </>
+          )}
+
+          {activity === 'git' && (
+            <>
+              <SidebarSection title={`Changes (${changes.length})`}>
+                {changes.length === 0 ? (
+                  <p className="px-3 text-[10px] text-[#858585]">No modified files</p>
+                ) : (
+                  changes.map((path) => (
+                    <div key={path} className="px-3 py-0.5 text-[10px] font-mono text-[#e2c08d] truncate" title={path}>
+                      M {path.split('/').pop()}
                     </div>
-                  )}
+                  ))
+                )}
+              </SidebarSection>
+              <SidebarSection title="Agent Review">
+                <button
+                  type="button"
+                  className="mx-3 mb-2 w-[calc(100%-1.5rem)] py-1.5 text-[11px] bg-[#007acc] text-white rounded hover:bg-[#1c8ad9]"
+                  onClick={() => { setShowAgent(true); askAI('Review my project for issues and improvements'); }}
+                >
+                  Find Issues
+                </button>
+              </SidebarSection>
+              <div className="flex-1 min-h-0 border-t border-[#2d2d2d]">
+                <BuilderGitGraph />
+              </div>
+            </>
+          )}
+
+          {activity === 'github' && (
+            <SidebarSection title="ItsNotAILABS">
+              <p className="px-3 text-[10px] text-[#858585] mb-2">Org repositories — click to open in center panel</p>
+              <button
+                type="button"
+                onClick={() => { setGithubRepo(null); setCenterView('github'); }}
+                className="w-full text-left px-3 py-1 text-[11px] text-[#58a6ff] hover:bg-[#2a2d2e]"
+              >
+                View all repositories →
+              </button>
+            </SidebarSection>
+          )}
+
+          {activity === 'deploy' && (
+            <SidebarSection title="Deploy Targets">
+              {deployTargets.slice(0, 10).map((d) => (
+                <button
+                  key={d.id}
+                  type="button"
+                  onClick={() => setDeployTarget(d.id)}
+                  className={`w-full text-left px-3 py-1 text-[10px] truncate ${
+                    deployTarget === d.id ? 'bg-[#37373d]' : 'hover:bg-[#2a2d2e]'
+                  }`}
+                >
+                  {d.label}
+                </button>
+              ))}
+            </SidebarSection>
+          )}
+        </div>
+
+        {/* Center */}
+        <div className="flex-1 flex flex-col min-w-0 min-h-0">
+          {/* Center tabs */}
+          <div className="flex items-center bg-[#252526] border-b border-[#2d2d2d] shrink-0">
+            {([
+              { id: 'code' as const, label: selected ? `Code Studio — ${selected.name}` : 'Code Studio' },
+              { id: 'github' as const, label: githubRepo ? `GitHub — ${githubRepo.name}` : 'GitHub — ItsNotAILABS' },
+              { id: 'templates' as const, label: 'Templates' },
+              { id: 'create' as const, label: 'Create Project' },
+            ]).map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => setCenterView(t.id)}
+                className={`px-4 py-2 text-[11px] border-r border-[#2d2d2d] ${
+                  centerView === t.id ? 'bg-[#1e1e1e] text-white' : 'text-[#858585] hover:text-[#cccccc]'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => setShowBottom((b) => !b)}
+              className="ml-auto px-3 py-2 text-[10px] text-[#858585] hover:text-white"
+            >
+              {showBottom ? '▼' : '▲'} Terminal
+            </button>
+          </div>
+
+          <div className="flex-1 min-h-0 flex flex-col">
+            <div className={`${showBottom ? 'flex-[3]' : 'flex-1'} min-h-0 overflow-hidden`}>
+              {centerView === 'code' && (
+                <BuilderCodeStudio
+                  projectId={selected?.id ?? null}
+                  projectName={selected?.name ?? 'app'}
+                  onLog={pushLog}
+                  onChangesUpdate={setChanges}
+                />
+              )}
+              {centerView === 'github' && (
+                <BuilderGitHubPanel
+                  embedded
+                  selectedRepo={githubRepo}
+                  onOpenRepo={openRepo}
+                  onBack={() => setGithubRepo(null)}
+                />
+              )}
+              {centerView === 'templates' && (
+                <div className="h-full overflow-y-auto p-4 bg-[#1e1e1e]">
+                  <h3 className="text-sm font-semibold mb-3">Template Library</h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    {templates.map((t) => (
+                      <button
+                        key={t.id}
+                        type="button"
+                        onClick={() => createFromTemplate(t)}
+                        className="text-left p-3 rounded border border-[#3c3c3c] bg-[#252526] hover:border-[#007acc] text-[11px]"
+                      >
+                        <div className="font-medium text-[#cccccc]">{t.name}</div>
+                        <div className="text-[#858585] mt-1 line-clamp-2">{t.description}</div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
-            </section>
-          )}
-
-          {tab === 'ai' && (
-            <section className="max-w-xl space-y-4">
-              <h3 className="text-lg font-semibold">MEDINA AI Assist</h3>
-              <p className="text-xs text-slate-500">ULRI routing · Memory Temple · template + deploy recommendations</p>
-              {!selected && <p className="text-sm text-amber-500/80">Select or create a project first</p>}
-              <textarea
-                value={aiPrompt}
-                onChange={(e) => setAiPrompt(e.target.value)}
-                placeholder="Describe your app: token launcher on ICP, marketplace with Python, deploy to Railway…"
-                className="w-full h-24 bg-[#12121a] border border-[#1e1e2e] rounded px-3 py-2 text-sm"
-              />
-              <button onClick={askAI} disabled={loading || !selected} className="px-4 py-2 bg-purple-700 rounded-lg text-sm disabled:opacity-50">Ask MEDINA AI</button>
-              {aiResult.length > 0 && (
-                <ul className="text-xs space-y-2 text-slate-400">
-                  {aiResult.map((s, i) => <li key={i} className="border-l-2 border-purple-600 pl-3">{s}</li>)}
-                </ul>
+              {centerView === 'create' && (
+                <div className="h-full overflow-y-auto p-6 bg-[#1e1e1e] max-w-lg">
+                  <h3 className="text-sm font-semibold mb-4">Create Project</h3>
+                  <div className="space-y-3 text-[11px]">
+                    <label className="block">
+                      <span className="text-[#858585]">App name</span>
+                      <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 w-full bg-[#3c3c3c] border border-[#3c3c3c] rounded px-2 py-1.5 text-[#cccccc] outline-none focus:border-[#007acc]" />
+                    </label>
+                    <label className="block">
+                      <span className="text-[#858585]">Template</span>
+                      <select value={templateId} onChange={(e) => setTemplateId(e.target.value)} className="mt-1 w-full bg-[#3c3c3c] rounded px-2 py-1.5 outline-none">
+                        <option value="">Custom</option>
+                        {templates.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+                      </select>
+                    </label>
+                    <div className="flex gap-2 pt-2">
+                      <button type="button" onClick={create} disabled={loading} className="px-3 py-1.5 bg-[#007acc] rounded text-white disabled:opacity-50">Create</button>
+                      {selected && (
+                        <>
+                          <button type="button" onClick={() => setCenterView('code')} className="px-3 py-1.5 bg-[#37373d] rounded">Open in Code Studio</button>
+                          <button type="button" onClick={exportToDisk} disabled={loading} className="px-3 py-1.5 bg-[#37373d] rounded">Export to Disk</button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
               )}
-            </section>
-          )}
+            </div>
 
-          {selected && tab !== 'deploy' && (
-            <section className="mt-6 border border-[#1e1e2e] rounded-xl p-4 bg-[#12121a] text-xs">
-              <div className="font-semibold text-indigo-300">{selected.name}</div>
-              <div className="grid grid-cols-4 gap-2 mt-2 text-slate-400">
-                <div>Status: {selected.status}</div>
-                <div>Artifacts: {selected.artifacts.length}</div>
-                <div>Capsules: {selected.capsules.length}</div>
-                <div>Token: {selected.token?.symbol ?? '—'}</div>
+            {showBottom && (
+              <div className="flex-[1] min-h-[120px] max-h-[220px] border-t border-[#2d2d2d] shrink-0">
+                <BuilderTerminal lines={log} />
               </div>
-            </section>
-          )}
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* Log */}
-      <div className="w-48 border-l border-[#1e1e2e] p-2 overflow-y-auto shrink-0">
-        <div className="text-[10px] font-semibold text-slate-500 mb-2">Log</div>
-        {log.map((l, i) => <div key={i} className="text-[10px] text-slate-600 font-mono mb-1">{l}</div>)}
+        {/* Right — Agent */}
+        {showAgent && (
+          <div className="w-80 shrink-0 min-h-0">
+            <BuilderAgentPanel projectName={selected?.name} onAsk={askAI} loading={loading} />
+          </div>
+        )}
       </div>
+    </div>
+  );
+}
+
+function SidebarSection({
+  title,
+  children,
+  collapsed,
+}: {
+  title: string;
+  children: React.ReactNode;
+  collapsed?: boolean;
+}) {
+  return (
+    <div className={`${collapsed ? '' : 'border-b border-[#2d2d2d]'}`}>
+      <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#bbbbbb] flex items-center gap-1">
+        <span>▼</span> {title}
+      </div>
+      <div className="pb-2">{children}</div>
     </div>
   );
 }
