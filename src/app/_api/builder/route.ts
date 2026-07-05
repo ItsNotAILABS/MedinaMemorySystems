@@ -26,6 +26,7 @@ import {
 } from '@/lib/appBuilderEngine';
 import type { ApiResponse } from '@/types';
 import type { DeployTarget, TokenSpec } from '@/types/appBuilder';
+import { staticStudioCapabilities } from '@/lib/studioCapabilities';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -36,7 +37,9 @@ export async function GET(req: NextRequest) {
   try {
     switch (action) {
       case 'manifest':
-        return json({ success: true, data: APP_BUILDER_MANIFEST, timestamp: now() });
+        return json({ success: true, data: { ...APP_BUILDER_MANIFEST, capabilities: staticStudioCapabilities() }, timestamp: now() });
+      case 'capabilities':
+        return json({ success: true, data: staticStudioCapabilities(), timestamp: now() });
       case 'projects':
         return json({ success: true, data: listProjects(), timestamp: now() });
       case 'project':

@@ -49,6 +49,15 @@ export function listProjects(): AppProject[] {
   );
 }
 
+/** Restore projects from disk (server startup) */
+export function hydrateProjects(list: AppProject[]): void {
+  for (const p of list) projects.set(p.id, p);
+}
+
+export function upsertProject(project: AppProject): void {
+  projects.set(project.id, project);
+}
+
 export function getProject(id: string): AppProject | undefined {
   return projects.get(id);
 }

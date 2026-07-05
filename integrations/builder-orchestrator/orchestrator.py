@@ -136,7 +136,7 @@ def main() -> int:
             "type": "done",
             "projectDir": str(project_dir.resolve()),
             "port": port,
-            "previewUrl": f"http://localhost:{port}",
+            "previewUrl": f"http://127.0.0.1:{port}",
         })
         return 0
 

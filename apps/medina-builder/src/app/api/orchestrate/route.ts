@@ -1,45 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getProject } from '@/lib/appBuilderEngine';
-import { orchestrateBuild, orchestrateFromPrompt } from '@/lib/buildOrchestrator';
-import type { ShellKind } from '@/lib/localTerminal';
+import { ensureStudioHydrated, studioBuildAndRun, studioFromPrompt } from '@/lib/studioApi';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
+/** Legacy route — delegates to studioApi */
 export async function POST(req: NextRequest) {
+  ensureStudioHydrated();
   const body = await req.json() as {
     action: string;
     projectId: string;
     prompt?: string;
-    shell?: ShellKind;
+    shell?: import('@/lib/localTerminal').ShellKind;
     sessionId?: string;
-    port?: number;
   };
 
-  const project = getProject(body.projectId);
-  if (!project) {
-    return NextResponse.json({ success: false, error: 'Project not found' }, { status: 404 });
+  if (body.action === 'build-and-run') {
+    const result = await studioBuildAndRun(body.projectId, { shell: body.shell, sessionId: body.sessionId });
+    return NextResponse.json({ success: result.ok, data: result, error: (result as { error?: string }).error });
   }
-
-  const opts = {
-    shell: body.shell ?? (process.platform === 'win32' ? 'powershell' as const : 'bash' as const),
-    sessionId: body.sessionId ?? 'orchestrate',
-    port: body.port,
-  };
-
-  switch (body.action) {
-    case 'build-and-run': {
-      const result = await orchestrateBuild(project, opts);
-      return NextResponse.json({ success: result.ok, data: result });
-    }
-    case 'from-prompt': {
-      if (!body.prompt) {
-        return NextResponse.json({ success: false, error: 'prompt required' }, { status: 400 });
-      }
-      const result = await orchestrateFromPrompt(project, body.prompt, opts);
-      return NextResponse.json({ success: result.ok, data: result });
-    }
-    default:
-      return NextResponse.json({ success: false, error: 'unknown action' }, { status: 400 });
+  if (body.action === 'from-prompt' && body.prompt) {
+    const result = await studioFromPrompt(body.projectId, body.prompt, { shell: body.shell, sessionId: body.sessionId });
+    return NextResponse.json({ success: result.ok, data: result });
   }
+  return NextResponse.json({ success: false, error: 'Unknown action' }, { status: 400 });
 }

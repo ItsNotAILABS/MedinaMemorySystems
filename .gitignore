@@ -37,5 +37,7 @@ next-env.d.ts
 /generated/**/node_modules
 /generated/**/.next
 /generated/**/out
+/generated/e2e-*/
+/generated/.medina-studio-state.json
 /apps/**/node_modules
 /apps/**/.next

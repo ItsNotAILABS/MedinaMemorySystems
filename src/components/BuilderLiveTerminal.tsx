@@ -14,6 +14,8 @@ interface TerminalLine {
 
 interface Props {
   sessionId?: string;
+  shell?: ShellKind;
+  onShellChange?: (shell: ShellKind) => void;
   onBuildAndRun?: () => void;
   building?: boolean;
 }
@@ -24,10 +26,24 @@ const SHELL_LABELS: Record<ShellKind, { label: string; color: string }> = {
   bash: { label: 'bash', color: 'var(--mb-text-secondary)' },
 };
 
-export default function BuilderLiveTerminal({ sessionId = 'default', onBuildAndRun, building }: Props) {
-  const [shell, setShell] = useState<ShellKind>(
-    typeof window !== 'undefined' && navigator.userAgent.includes('Windows') ? 'powershell' : 'bash',
-  );
+function defaultShell(): ShellKind {
+  if (typeof window !== 'undefined' && navigator.userAgent.includes('Windows')) return 'powershell';
+  return 'bash';
+}
+
+export default function BuilderLiveTerminal({
+  sessionId = 'default',
+  shell: shellProp,
+  onShellChange,
+  onBuildAndRun,
+  building,
+}: Props) {
+  const [shellInternal, setShellInternal] = useState<ShellKind>(defaultShell);
+  const shell = shellProp ?? shellInternal;
+  const setShell = (s: ShellKind) => {
+    setShellInternal(s);
+    onShellChange?.(s);
+  };
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [input, setInput] = useState('');
   const [running, setRunning] = useState(false);

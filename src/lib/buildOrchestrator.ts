@@ -112,19 +112,22 @@ export async function orchestrateBuild(
     let usedPython = false;
 
     if (pythonAvailable() && fs.existsSync(orchestratorPath())) {
-      usedPython = true;
       const pyResult = await runPythonOrchestrator(projectDir, files, shell, sessionId);
-      if (!pyResult.ok) {
-        // fallback to Node
-        usedPython = false;
+      if (pyResult.ok) {
+        usedPython = true;
+      } else {
+        appendLog(sessionId, {
+          ts: new Date().toISOString(),
+          shell,
+          stream: 'system',
+          text: '[orchestrator] Python path failed — falling back to Node',
+        });
       }
     }
 
     if (!usedPython) {
       writeFilesToDisk(projectDir, files);
       await runCommandStream('npm install', { shell, cwd: projectDir, sessionId });
-    } else {
-      // Python already ran npm install
     }
 
     const port = opts.port ?? (await import('@/lib/localTerminal').then((m) => m.findFreePort()));
@@ -137,17 +140,17 @@ export async function orchestrateBuild(
       { shell, sessionId },
     );
 
-    const ready = await waitForPort(dev.port, 90000);
+    const ready = await waitForPort(dev.port, 180000);
 
     return {
-      ok: true,
+      ok: ready,
       projectDir,
-      previewUrl: dev.previewUrl,
+      previewUrl: ready ? dev.previewUrl : undefined,
       port: dev.port,
       devServerId: dev.id,
       fileCount: files.length,
       usedPython,
-      error: ready ? undefined : 'Dev server starting — preview may take a moment',
+      error: ready ? undefined : 'Dev server did not become ready in time — check Terminal output',
     };
   } catch (err) {
     return {

@@ -208,19 +208,18 @@ export async function startDevServer(
   }
 
   const shell = isWindows() ? 'powershell' : 'bash';
-  const command = isWindows()
-    ? `$env:PORT=${port}; npm run dev -- -p ${port}`
-    : `PORT=${port} npm run dev -- -p ${port}`;
 
   appendLog(sessionId, { ts: ts(), shell, stream: 'system', text: `Starting dev server on port ${port}…` });
 
-  const { cmd, args } = resolveShell(shell);
-  const proc = spawn(cmd, args(command), {
+  const npmCmd = isWindows() ? 'npm.cmd' : 'npm';
+  const proc = spawn(npmCmd, ['run', 'dev', '--', '-p', String(port)], {
     cwd: projectDir,
     env: { ...process.env, PORT: String(port) },
     windowsHide: true,
-    detached: false,
+    detached: true,
+    stdio: ['ignore', 'pipe', 'pipe'],
   });
+  proc.unref();
 
   const push = (stream: TerminalLine['stream'], text: string) => {
     appendLog(sessionId, { ts: ts(), shell, stream, text });
@@ -238,7 +237,7 @@ export async function startDevServer(
     id,
     port,
     cwd: projectDir,
-    previewUrl: `http://localhost:${port}`,
+    previewUrl: `http://127.0.0.1:${port}`,
     pid: proc.pid ?? 0,
   };
   devServers.set(id, handle);

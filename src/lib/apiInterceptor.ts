@@ -54,7 +54,10 @@ import {
   attachDeployScripts,
   APP_BUILDER_MANIFEST,
 } from '@/lib/appBuilderEngine';
-import type { ModelFamily, ParsedCommand } from '@/types';
+import {
+  staticStudioCapabilities,
+  serverModeRequiredResponse,
+} from '@/lib/studioCapabilities';
 
 // ─── Response Helpers ───────────────────────────────────────────────────────
 
@@ -408,7 +411,13 @@ async function handleBuilder(url: URL, method: string, body?: any): Promise<Resp
     const id = url.searchParams.get('id') ?? undefined;
     switch (action) {
       case 'manifest':
-        return jsonResponse({ success: true, data: APP_BUILDER_MANIFEST, timestamp: now() });
+        return jsonResponse({
+          success: true,
+          data: { ...APP_BUILDER_MANIFEST, capabilities: staticStudioCapabilities() },
+          timestamp: now(),
+        });
+      case 'capabilities':
+        return jsonResponse({ success: true, data: staticStudioCapabilities(), timestamp: now() });
       case 'projects':
         return jsonResponse({ success: true, data: listProjects(), timestamp: now() });
       case 'templates':
@@ -467,11 +476,11 @@ async function handleBuilder(url: URL, method: string, body?: any): Promise<Resp
       if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
       return jsonResponse({ success: true, data: deploy(body.id, body.target), timestamp: now() });
     case 'export-disk':
-      return jsonResponse({
-        success: false,
-        error: 'Disk export requires server mode. Use Code Studio → Download ZIP, or run: npm run builder:export',
-        timestamp: now(),
-      }, 501);
+      return jsonResponse(serverModeRequiredResponse(), 501);
+    case 'build-and-run':
+    case 'create-and-run':
+    case 'from-prompt':
+      return jsonResponse(serverModeRequiredResponse(), 501);
     case 'update-file':
       if (!body.id || !body.path || body.content === undefined) {
         return jsonResponse({ success: false, error: 'id, path, and content required', timestamp: now() }, 400);
@@ -500,6 +509,10 @@ async function routeRequest(url: URL, method: string, body?: any): Promise<Respo
 
   if (path === 'builder') {
     return handleBuilder(url, method, body);
+  }
+
+  if (path === 'terminal' || path === 'orchestrate') {
+    return jsonResponse(serverModeRequiredResponse(), 501);
   }
 
   switch (path) {
