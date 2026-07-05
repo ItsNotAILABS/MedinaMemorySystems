@@ -13,10 +13,8 @@ import {
   attachDeployScripts,
   listDeployHistory,
   exportProjectBundle,
-  exportProjectToDisk,
   getProjectSourceFiles,
   updateProjectFile,
-  listGeneratedProjects,
   getCompanyVault,
   listTemplates,
   getTemplate,
@@ -24,6 +22,7 @@ import {
   listDeployTargets,
   APP_BUILDER_MANIFEST,
 } from '@/lib/appBuilderEngine';
+import { exportProjectToDisk, listGeneratedProjects } from '@/lib/appBuilderEngineDisk';
 import type { ApiResponse } from '@/types';
 import type { DeployTarget, TokenSpec } from '@/types/appBuilder';
 import { staticStudioCapabilities } from '@/lib/studioCapabilities';

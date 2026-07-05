@@ -6,24 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import type { AppProject, GeneratedFile } from '@/types/appBuilder';
 import { buildCompleteProject, projectSlug } from '@/lib/fullProjectScaffold';
-
-export function resolveProjectFiles(project: AppProject): GeneratedFile[] {
-  const files = buildCompleteProject(project);
-  if (!project.fileOverrides) return files;
-  return files.map((f) => ({
-    ...f,
-    content: project.fileOverrides![f.path] ?? f.content,
-  }));
-}
-
-export interface ExportResult {
-  ok: boolean;
-  outputDir: string;
-  fileCount: number;
-  files: string[];
-  readme: string;
-  error?: string;
-}
+import { resolveProjectFiles, type ExportResult } from '@/lib/projectFiles';
 
 const GENERATED_ROOT = path.join(process.cwd(), 'generated');
 

@@ -41,10 +41,8 @@ import {
   deploy,
   listDeployHistory,
   exportProjectBundle,
-  exportProjectToDisk,
   getProjectSourceFiles,
   updateProjectFile,
-  listGeneratedProjects,
   getCompanyVault,
   listTemplates,
   getTemplate,
@@ -440,7 +438,7 @@ async function handleBuilder(url: URL, method: string, body?: any): Promise<Resp
         if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
         return jsonResponse({ success: true, data: exportProjectBundle(id), timestamp: now() });
       case 'generated':
-        return jsonResponse({ success: true, data: listGeneratedProjects(), timestamp: now() });
+        return jsonResponse({ success: true, data: [], timestamp: now() });
       case 'source-files':
         if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
         return jsonResponse({ success: true, data: getProjectSourceFiles(id), timestamp: now() });

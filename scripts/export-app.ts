@@ -2,7 +2,8 @@
  * Export App Builder project to generated/<slug>/ on disk.
  * Usage: npx tsx scripts/export-app.ts [projectId]
  */
-import { createProject, exportProjectToDisk, getProject } from '../src/lib/appBuilderEngine';
+import { createProject, getProject } from '../src/lib/appBuilderEngine';
+import { exportProjectToDisk } from '../src/lib/appBuilderEngineDisk';
 
 const projectIdArg = process.argv[2];
 

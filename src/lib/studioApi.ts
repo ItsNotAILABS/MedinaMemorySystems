@@ -7,8 +7,8 @@ import {
   createProject,
   getProject,
   updateProjectFile,
-  exportProjectToDisk,
 } from '@/lib/appBuilderEngine';
+import { exportProjectToDisk } from '@/lib/appBuilderEngineDisk';
 import { loadProjectsFromDisk, saveProjectsToDisk, getStudioCapabilities } from '@/lib/studioPersistence';
 import { orchestrateBuild, orchestrateFromPrompt } from '@/lib/buildOrchestrator';
 import type { ShellKind } from '@/lib/localTerminal';

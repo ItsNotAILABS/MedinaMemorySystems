@@ -15,7 +15,7 @@ import {
   writeFilesToDisk,
   type ShellKind,
 } from '@/lib/localTerminal';
-import { resolveProjectFiles } from '@/lib/projectExporter';
+import { resolveProjectFiles } from '@/lib/projectFiles';
 import { projectSlug } from '@/lib/fullProjectScaffold';
 import type { AppProject } from '@/types/appBuilder';
 
