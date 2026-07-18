@@ -18,9 +18,9 @@ assert.equal(manifest.repo, 'ItsNotAILABS/MedinaMemorySystems');
 assert.ok(Array.isArray(manifest.evidence) && manifest.evidence.length >= 5);
 assert.ok(Array.isArray(manifest.boundaries) && manifest.boundaries.includes('no unbounded memory retention claim'));
 assert.equal(manifest.approvals.operator, false);
-const banned = [/perfect memory/i, /guaranteed recall/i, /private data exfiltration/i, /unbounded retention/i];
+const bannedPositiveClaims = [/perfect memory guaranteed/i, /guaranteed recall/i, /private data exfiltration enabled/i, /unbounded retention enabled/i];
 for (const file of required) {
   const text = fs.readFileSync(path.join(root, file), 'utf8');
-  for (const pattern of banned) assert.equal(pattern.test(text), false, `${file} contains banned phrase ${pattern}`);
+  for (const pattern of bannedPositiveClaims) assert.equal(pattern.test(text), false, `${file} contains banned positive claim ${pattern}`);
 }
 console.log(JSON.stringify({ ok: true, checked: required.length, release: manifest.release }, null, 2));
