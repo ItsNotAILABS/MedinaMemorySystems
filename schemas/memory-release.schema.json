@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://itsnotailabs.dev/schemas/medina-memory-release.schema.json",
+  "title": "Medina Memory Release",
+  "type": "object",
+  "required": ["memory_scope", "retention_boundary", "privacy_review_required", "operator_approval_required"],
+  "properties": {
+    "memory_scope": { "type": "string" },
+    "retention_boundary": { "type": "string" },
+    "privacy_review_required": { "type": "boolean" },
+    "operator_approval_required": { "type": "boolean" }
+  }
+}
