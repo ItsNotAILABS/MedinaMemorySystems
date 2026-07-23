@@ -1,0 +1,13 @@
+{
+  "name": "medina-deploy",
+  "version": "1.0.0",
+  "description": "Medina Company App Builder — unified deploy CLI (ICP, SaaS, EVM, Docker, WASM)",
+  "bin": {
+    "medina-deploy": "./cli.js"
+  },
+  "keywords": ["medina", "deploy", "icp", "dfx", "vercel", "saas"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0 <21"
+  }
+}

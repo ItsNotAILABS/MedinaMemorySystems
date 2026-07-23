@@ -10,6 +10,9 @@ export * from './goSystem';
 // Re-export Call Marketplace types (260 tools, 55 protocols, 5 tiers, settlement/proof)
 export * from './marketplace';
 
+// Re-export App Builder types
+export * from './appBuilder';
+
 // Re-export Cognitive Language types (42 languages, 11 stacks, 8 meta-classes)
 export * from './cognitive-languages';
 
@@ -505,7 +508,7 @@ export interface ApiResponse<T = unknown> {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
-export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents' | 'agi' | 'jarvis';
+export type PanelId = 'chat' | 'memory' | 'governance' | 'models' | 'company' | 'replay' | 'permissions' | 'organism' | 'devices' | 'messages' | 'campaigns' | 'export' | 'settings' | 'agents' | 'agi' | 'jarvis' | 'builder';
 
 export interface NavItem {
   id: PanelId;

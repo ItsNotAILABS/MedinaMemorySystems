@@ -15,6 +15,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'models', label: 'Models', icon: '⚡', color: '#6366f1' },
   { id: 'agents', label: 'Agents', icon: '🤖', color: '#f59e0b' },
   { id: 'company', label: 'Company', icon: '🏢', color: '#ec4899' },
+  { id: 'builder', label: 'App Builder', icon: '🏗️', color: '#a855f7' },
   { id: 'replay', label: 'Replay', icon: '⏮️', color: '#06b6d4' },
   { id: 'permissions', label: 'Perms', icon: '🔐', color: '#6366f1' },
 ];

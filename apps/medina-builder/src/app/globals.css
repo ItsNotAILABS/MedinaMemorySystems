@@ -1,0 +1,28 @@
+@import '../../../../src/styles/builder-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--mb-bg-base);
+  color: var(--mb-text-primary);
+  font-family: var(--font-inter, var(--mb-font-ui));
+  overflow: hidden;
+}
+
+* { box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+}

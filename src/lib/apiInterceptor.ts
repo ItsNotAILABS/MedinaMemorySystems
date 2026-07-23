@@ -29,7 +29,33 @@ import {
 } from '@/lib/mcpToolRegistry';
 import { getMCPServer } from '@/lib/goSystem';
 import { IPHONE_BRIDGE_GO_SYSTEM_ID } from '@/lib/mcpToolRegistry';
-import type { ModelFamily, ParsedCommand } from '@/types';
+import {
+  listProjects,
+  getProject,
+  createProject,
+  updateProjectDesign,
+  aiAssist,
+  scaffold,
+  buildCapsules,
+  createProjectToken,
+  deploy,
+  listDeployHistory,
+  exportProjectBundle,
+  getProjectSourceFiles,
+  updateProjectFile,
+  getCompanyVault,
+  listTemplates,
+  getTemplate,
+  templateCategories,
+  listDeployTargets,
+  getDeployPlan,
+  attachDeployScripts,
+  APP_BUILDER_MANIFEST,
+} from '@/lib/appBuilderEngine';
+import {
+  staticStudioCapabilities,
+  serverModeRequiredResponse,
+} from '@/lib/studioCapabilities';
 
 // ─── Response Helpers ───────────────────────────────────────────────────────
 
@@ -377,6 +403,92 @@ async function handleAiMcp(url: URL, method: string, body?: any): Promise<Respon
   return jsonResponse({ success: result.success, data: result, timestamp: now() }, status);
 }
 
+async function handleBuilder(url: URL, method: string, body?: any): Promise<Response> {
+  if (method === 'GET') {
+    const action = url.searchParams.get('action') ?? 'manifest';
+    const id = url.searchParams.get('id') ?? undefined;
+    switch (action) {
+      case 'manifest':
+        return jsonResponse({
+          success: true,
+          data: { ...APP_BUILDER_MANIFEST, capabilities: staticStudioCapabilities() },
+          timestamp: now(),
+        });
+      case 'capabilities':
+        return jsonResponse({ success: true, data: staticStudioCapabilities(), timestamp: now() });
+      case 'projects':
+        return jsonResponse({ success: true, data: listProjects(), timestamp: now() });
+      case 'templates':
+        return jsonResponse({ success: true, data: listTemplates(), timestamp: now() });
+      case 'deploy-targets':
+        return jsonResponse({ success: true, data: listDeployTargets(), timestamp: now() });
+      case 'template-categories':
+        return jsonResponse({ success: true, data: templateCategories(), timestamp: now() });
+      case 'deploy-plan':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: getDeployPlan(id, url.searchParams.get('target') as never), timestamp: now() });
+      case 'project':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: getProject(id), timestamp: now() });
+      case 'vault':
+        return jsonResponse({ success: true, data: getCompanyVault(), timestamp: now() });
+      case 'deployments':
+        return jsonResponse({ success: true, data: listDeployHistory(id), timestamp: now() });
+      case 'export':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: exportProjectBundle(id), timestamp: now() });
+      case 'generated':
+        return jsonResponse({ success: true, data: [], timestamp: now() });
+      case 'source-files':
+        if (!id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+        return jsonResponse({ success: true, data: getProjectSourceFiles(id), timestamp: now() });
+      default:
+        return jsonResponse({ success: false, error: 'Unknown action', timestamp: now() }, 400);
+    }
+  }
+  switch (body?.action) {
+    case 'create':
+      return jsonResponse({ success: true, data: createProject(body), timestamp: now() }, 201);
+    case 'design':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: updateProjectDesign(body.id, body.design ?? {}), timestamp: now() });
+    case 'ai-assist':
+      if (!body.id || !body.prompt) return jsonResponse({ success: false, error: 'id and prompt required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: aiAssist(body.id, body.prompt), timestamp: now() });
+    case 'scaffold':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: scaffold(body.id), timestamp: now() });
+    case 'build-capsules':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: buildCapsules(body.id), timestamp: now() });
+    case 'create-token':
+      if (!body.id || !body.token) return jsonResponse({ success: false, error: 'id and token required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: createProjectToken(body.id, body.token), timestamp: now() });
+    case 'deploy-plan':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: getDeployPlan(body.id, body.target), timestamp: now() });
+    case 'attach-scripts':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: attachDeployScripts(body.id, body.target), timestamp: now() });
+    case 'deploy':
+      if (!body.id) return jsonResponse({ success: false, error: 'id required', timestamp: now() }, 400);
+      return jsonResponse({ success: true, data: deploy(body.id, body.target), timestamp: now() });
+    case 'export-disk':
+      return jsonResponse(serverModeRequiredResponse(), 501);
+    case 'build-and-run':
+    case 'create-and-run':
+    case 'from-prompt':
+      return jsonResponse(serverModeRequiredResponse(), 501);
+    case 'update-file':
+      if (!body.id || !body.path || body.content === undefined) {
+        return jsonResponse({ success: false, error: 'id, path, and content required', timestamp: now() }, 400);
+      }
+      return jsonResponse({ success: true, data: updateProjectFile(body.id, body.path, body.content), timestamp: now() });
+    default:
+      return jsonResponse({ success: false, error: 'Unknown action', timestamp: now() }, 400);
+  }
+}
+
 // ─── Catch-all for unhandled routes ─────────────────────────────────────────
 
 async function handleFallback(path: string): Promise<Response> {
@@ -391,6 +503,14 @@ async function routeRequest(url: URL, method: string, body?: any): Promise<Respo
 
   if (path === 'ai' && segments[1] === 'mcp') {
     return handleAiMcp(url, method, body);
+  }
+
+  if (path === 'builder') {
+    return handleBuilder(url, method, body);
+  }
+
+  if (path === 'terminal' || path === 'orchestrate') {
+    return jsonResponse(serverModeRequiredResponse(), 501);
   }
 
   switch (path) {

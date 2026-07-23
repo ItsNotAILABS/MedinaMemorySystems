@@ -14,6 +14,7 @@ import OrganismField from '@/components/OrganismField';
 import AgentJournalPanel from '@/components/AgentJournalPanel';
 import AGIDesktopPanel from '@/components/AGIDesktopPanel';
 import JarvisPanel from '@/components/JarvisPanel';
+import AppBuilder from '@/components/AppBuilder';
 import type { PanelId } from '@/types';
 
 export default function HomePage() {
@@ -30,6 +31,7 @@ export default function HomePage() {
       case 'models': return <ModelRuntime />;
       case 'agents': return <AgentJournalPanel />;
       case 'company': return <CompanyOnboarding />;
+      case 'builder': return <AppBuilder />;
       case 'replay': return <ReplayPanel />;
       case 'permissions': return <PermissionsPanel />;
       default: return <OVOChat />;
