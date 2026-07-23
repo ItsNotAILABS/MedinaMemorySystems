@@ -1,0 +1,7 @@
+# MESIE iPhone Bridge — core
+mcp>=1.27,<2
+bleak>=0.22
+
+# Optional USB iPhone control (screenshots, apps, device info)
+# pip install pymobiledevice3
+# pymobiledevice3>=4.0

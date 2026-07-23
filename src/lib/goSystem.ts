@@ -2,7 +2,7 @@
  * GO SYSTEM ENGINE — Medina GO Systems
  * Enterprise AI Infrastructure Platform
  *
- * 10 Divisions · 50 AI Models (GOM-01→GOM-50) · 30 MCP Servers (MCP-01→MCP-30)
+ * 10 Divisions · 50 AI Models (GOM-01→GOM-50) · 31 MCP Servers (MCP-01→MCP-31)
  * 100 Scrapers (SCR-001→SCR-100) · 20 Automated Workflows (WF-01→WF-20)
  *
  * All state is in-memory. No external database required.
@@ -117,7 +117,7 @@ const MODEL_SEEDS: ModelSeed[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════
-// SEED DATA — 30 MCP SERVERS (MCP-01 → MCP-30)
+// SEED DATA — 31 MCP SERVERS (MCP-01 → MCP-31)
 // ═══════════════════════════════════════════════════════════════
 
 interface MCPSeed {
@@ -159,6 +159,7 @@ const MCP_SEEDS: MCPSeed[] = [
   { name: 'Docs', division: 'CONTEXT_DOCS', description: 'Documentation generation and serving', capabilities: ['generate', 'serve', 'search', 'version', 'export'], protocol: 'http' },
   { name: 'Knowledge Base', division: 'CONTEXT_DOCS', description: 'Knowledge base management', capabilities: ['index', 'search', 'embed', 'retrieve', 'update'], protocol: 'http' },
   { name: 'Context Manager', division: 'CONTEXT_DOCS', description: 'Context window management and optimization', capabilities: ['compress', 'prioritize', 'chunk', 'summarize', 'cache'], protocol: 'http' },
+  { name: 'iPhone Bridge (MESIE)', division: 'TESTING', description: 'Cross-platform iPhone bridge — Bluetooth pairing + USB control via MCP for all AI hosts', capabilities: ['bluetooth', 'ble-scan', 'device-info', 'screenshot', 'tap', 'swipe', 'launch-app', 'ui-scan', 'type-text', 'list-apps', 'mcp-config'], protocol: 'stdio' },
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -321,7 +322,7 @@ const WORKFLOW_SEEDS: WorkflowSeed[] = [
   { name: 'Business KPIs', division: 'WORKFLOWS', description: 'Collect and report key business performance indicators', triggerType: 'schedule', schedule: '0 8 * * *', stepNames: ['collect-metrics', 'calculate-kpis', 'compare-targets', 'generate-dashboard', 'send-report'] },
   { name: 'Capacity Planning', division: 'INFRASTRUCTURE', description: 'Infrastructure capacity forecasting and scaling', triggerType: 'schedule', schedule: '0 0 * * 0', stepNames: ['collect-utilization', 'forecast-growth', 'identify-bottlenecks', 'recommend-scaling', 'create-tickets'] },
   { name: 'Canister Deploy', division: 'WORKFLOWS', description: 'ICP canister deployment and upgrade workflow', triggerType: 'manual', stepNames: ['build-wasm', 'validate-candid', 'deploy-staging', 'integration-test', 'deploy-production'] },
-  { name: 'MCP Fleet Management', division: 'MCP_SERVERS', description: 'Monitor and manage all 30 MCP servers', triggerType: 'schedule', schedule: '*/5 * * * *', stepNames: ['health-check', 'restart-failed', 'collect-metrics', 'rotate-logs', 'report-status'] },
+  { name: 'MCP Fleet Management', division: 'MCP_SERVERS', description: 'Monitor and manage all 31 MCP servers', triggerType: 'schedule', schedule: '*/5 * * * *', stepNames: ['health-check', 'restart-failed', 'collect-metrics', 'rotate-logs', 'report-status'] },
   { name: 'End-of-Day Report', division: 'WORKFLOWS', description: 'Comprehensive daily summary across all divisions', triggerType: 'schedule', schedule: '0 23 * * *', stepNames: ['collect-all-metrics', 'summarize-divisions', 'highlight-incidents', 'generate-report', 'distribute'] },
 ];
 

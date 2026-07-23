@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mesie-bridge"
+version = "1.0.0"
+description = "MESIE iPhone Bridge — cross-platform MCP server with Bluetooth + USB"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "mcp>=1.27,<2",
+  "bleak>=0.22",
+]
+
+[project.optional-dependencies]
+usb = ["pymobiledevice3>=4.0"]
+full = ["pymobiledevice3>=4.0", "bleak>=0.22"]
+
+[project.scripts]
+mesie-bridge = "mesie_bridge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mesie_bridge*"]
