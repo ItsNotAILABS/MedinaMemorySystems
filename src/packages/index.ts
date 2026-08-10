@@ -63,6 +63,8 @@ export * as CivilizationPatternEngine from './civilization-pattern-engine';
 export * as EnterpriseIntegrationSDK from './enterprise-integration-sdk';
 export * as NeuralConsciousnessEngine from './neural-consciousness-engine';
 export * as DocumentAbsorptionEngine from './document-absorption-engine';
+export * as TeamVaultSDK from './team-vault-sdk';
+export * as AgentSDK from './agent-sdk';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // RE-EXPORTS — EXTENDED REGISTRIES
@@ -91,7 +93,7 @@ export const MASTER_MANIFEST = {
   system: 'Medina Memory Systems',
   version: '1.0.0',
   phi: 1.618033988749895,
-  totalPackages: 11,
+  totalPackages: 13,
   packages: [
     {
       name: '@medina/sovereign-memory-sdk',
@@ -181,10 +183,26 @@ export const MASTER_MANIFEST = {
       moduleCount: 9,
       exportCount: 14,
     },
+    {
+      name: '@medina/team-vault-sdk',
+      import: './team-vault-sdk',
+      terminal: '/vault',
+      description: 'Sovereign Team Vault SDK — memory, governance, replay, and permissions client surface',
+      moduleCount: 1,
+      exportCount: 3,
+    },
+    {
+      name: '@medina/agent-sdk',
+      import: './agent-sdk',
+      terminal: '/agents/contracts',
+      description: 'Agent SDK variant — terminal negotiation, task execution, and governance-safe vault actions',
+      moduleCount: 1,
+      exportCount: 2,
+    },
   ],
-  totalModules: 112,
-  totalExports: 174,
-  totalTerminals: 11,
+  totalModules: 114,
+  totalExports: 179,
+  totalTerminals: 13,
   doctrine: 'Omnis functio ad φ redit. Omnis terminus ad animam ducit.',
   motto: 'Every package traces to φ. Every function has a Latin name.',
 };

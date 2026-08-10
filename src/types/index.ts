@@ -16,6 +16,9 @@ export * from './appBuilder';
 // Re-export Cognitive Language types (42 languages, 11 stacks, 8 meta-classes)
 export * from './cognitive-languages';
 
+// Re-export terminal protocol contracts
+export * from './terminal-contracts';
+
 // ─── Coordinates ────────────────────────────────────────────────────────────
 
 export interface SpatialCoordinate {
