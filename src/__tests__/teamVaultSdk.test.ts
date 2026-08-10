@@ -24,7 +24,9 @@ describe('TeamVaultSDK', () => {
 
   it('supports governance and replay flows through the SDK', () => {
     const sdk = createTeamVaultSDK('Sovereign');
+    sdk.grantTeamPermission('governance:propose', 'Sovereign');
     sdk.grantTeamPermission('governance:vote', 'Sovereign');
+    sdk.grantTeamPermission('replay:read', 'Sovereign');
 
     const proposal = sdk.proposeGovernanceChange(
       'Team Vault Governance Proposal',

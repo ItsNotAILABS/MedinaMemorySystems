@@ -1,25 +1,73 @@
 import type { NextRequest } from 'next/server';
-import { GET, POST } from '@/app/_api/subsystem-terminals/route';
+import { URL as NodeURL } from 'url';
 
 function postRequest(body: Record<string, unknown>): NextRequest {
-  return new Request('http://localhost/api/subsystem-terminals', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(body),
-  }) as unknown as NextRequest;
+  return {
+    url: 'http://localhost/api/subsystem-terminals',
+    json: async () => body,
+  } as unknown as NextRequest;
 }
 
 function getRequest(action: string, terminalId?: string): NextRequest {
-  const url = new URL('http://localhost/api/subsystem-terminals');
+  const url = new NodeURL('http://localhost/api/subsystem-terminals');
   url.searchParams.set('action', action);
   if (terminalId) url.searchParams.set('terminalId', terminalId);
-  return new Request(url.toString(), { method: 'GET' }) as unknown as NextRequest;
+  return {
+    url: url.toString(),
+    json: async () => ({}),
+  } as unknown as NextRequest;
 }
 
 describe('subsystem terminals lifecycle route', () => {
   const terminalId = 'terminal-memory';
 
   it('supports create/activate/execute/status/deactivate flow', async () => {
+    (globalThis as any).URL = NodeURL;
+
+    if (typeof globalThis.Request === 'undefined') {
+      (globalThis as any).Request = class {
+        url: string;
+        constructor(input: string) {
+          this.url = input;
+        }
+      };
+    }
+    if (typeof globalThis.Headers === 'undefined') {
+      (globalThis as any).Headers = class {
+        private map = new Map<string, string>();
+        constructor(init?: Record<string, string>) {
+          if (init) {
+            for (const [key, value] of Object.entries(init)) this.map.set(key.toLowerCase(), value);
+          }
+        }
+        append(key: string, value: string) { this.map.set(key.toLowerCase(), value); }
+        set(key: string, value: string) { this.map.set(key.toLowerCase(), value); }
+        get(key: string) { return this.map.get(key.toLowerCase()) ?? null; }
+        delete(key: string) { this.map.delete(key.toLowerCase()); }
+        getSetCookie() { return []; }
+      };
+    }
+    if (typeof globalThis.Response === 'undefined') {
+      (globalThis as any).Response = class {
+        body: string;
+        status: number;
+        headers: any;
+        constructor(body?: string, init?: { status?: number; headers?: Record<string, string> }) {
+          this.body = body ?? '';
+          this.status = init?.status ?? 200;
+          this.headers = new (globalThis as any).Headers(init?.headers);
+        }
+        static json(data: unknown, init?: { status?: number; headers?: Record<string, string> }) {
+          return new (this as any)(JSON.stringify(data), { status: init?.status ?? 200, headers: init?.headers });
+        }
+        async json() {
+          return JSON.parse(this.body || 'null');
+        }
+      };
+    }
+
+    const { GET, POST } = await import('@/app/_api/subsystem-terminals/route');
+
     const createRes = await POST(postRequest({ action: 'create', terminalId }));
     const createBody = await createRes.json();
     expect(createBody.success).toBe(true);
