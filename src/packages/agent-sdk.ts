@@ -8,6 +8,7 @@ import type {
   TerminalCapability,
   TerminalCompatibilityContract,
 } from '@/types/terminal-contracts';
+import type { GateId } from '@/types';
 import { TeamVaultSDK, createTeamVaultSDK } from './team-vault-sdk';
 
 export type AgentAutonomy = 'observe' | 'recommend' | 'act' | 'sovereign';
@@ -96,11 +97,15 @@ export class SovereignAgentSDK {
     };
   }
 
-  governanceSafeProposal(title: string, description: string) {
+  governanceSafeProposal(
+    title: string,
+    description: string,
+    affectedGates: GateId[] = [],
+  ) {
     if (this.autonomy === 'observe') {
       throw new Error('Observe-only agents cannot propose governance changes.');
     }
-    return this.vault.proposeGovernanceChange(title, description, ['A']);
+    return this.vault.proposeGovernanceChange(title, description, affectedGates);
   }
 }
 

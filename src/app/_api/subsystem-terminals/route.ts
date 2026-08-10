@@ -407,11 +407,15 @@ export async function GET(req: NextRequest) {
         });
 
       case 'health': {
+        const healthByTerminal = TERMINALS.map((terminal) => ({
+          terminalId: terminal.terminalId,
+          health: determineTerminalHealth(getRuntime(terminal.terminalId).lastHeartbeat),
+        }));
         const summary = {
           total: TERMINALS.length,
-          online: TERMINALS.filter((terminal) => determineTerminalHealth(getRuntime(terminal.terminalId).lastHeartbeat) === 'ONLINE').length,
-          degraded: TERMINALS.filter((terminal) => determineTerminalHealth(getRuntime(terminal.terminalId).lastHeartbeat) === 'DEGRADED').length,
-          offline: TERMINALS.filter((terminal) => determineTerminalHealth(getRuntime(terminal.terminalId).lastHeartbeat) === 'OFFLINE').length,
+          online: healthByTerminal.filter((terminal) => terminal.health === 'ONLINE').length,
+          degraded: healthByTerminal.filter((terminal) => terminal.health === 'DEGRADED').length,
+          offline: healthByTerminal.filter((terminal) => terminal.health === 'OFFLINE').length,
           active: Array.from(runtimeState.values()).filter((runtime) => runtime.lifecycleState === 'active').length,
           avgCoherence: TERMINALS.reduce((s, t) => s + t.coherence, 0) / TERMINALS.length,
           terminals: TERMINALS.map((terminal) => hydrateTerminal(terminal)),
@@ -444,7 +448,6 @@ export async function POST(req: NextRequest) {
       case 'activate': {
         if (!body.terminalId) return json({ success: false, error: 'terminalId required', timestamp: now() }, 400);
         const terminal = getTerminal(body.terminalId);
-        const runtime = getRuntime(body.terminalId);
         const session = ensureSession(body.terminalId);
         setRuntime(body.terminalId, { lifecycleState: 'activating', status: 'ACTIVATING' });
 
