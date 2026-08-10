@@ -91,6 +91,26 @@ best = optimize(org, 3, x -> -(x[1]^2 + x[2]^2 + x[3]^2), iterations=100)
 report = tick!(org)
 ```
 
+## TypeScript SDKs (Team Vault + Agents)
+
+The repository also includes major user-facing TypeScript SDKs in `src/packages`:
+
+- `@medina/team-vault-sdk` (`src/packages/team-vault-sdk.ts`)
+- `@medina/agent-sdk` (`src/packages/agent-sdk.ts`)
+
+Quick start:
+
+```ts
+import { createTeamVaultSDK } from '@/packages/team-vault-sdk';
+import { createSovereignAgentSDK } from '@/packages/agent-sdk';
+
+const vault = createTeamVaultSDK('Sovereign');
+const memory = vault.storeMemory({ content: 'Team doctrine update', tags: ['team', 'doctrine'] });
+
+const agent = createSovereignAgentSDK({ agentId: 'architect-1', autonomy: 'act' });
+const result = agent.executeTask({ instruction: 'Prepare sub-terminal activation checklist', persistResult: true });
+```
+
 ## Architecture
 
 ```
