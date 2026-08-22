@@ -1,0 +1,27 @@
+{
+  "schema": "nexus.capability.v1",
+  "component": "medina-memory-systems",
+  "repository": "ItsNotAILABS/MedinaMemorySystems",
+  "role": "durable-memory-and-team-vault-plane",
+  "actions": [
+    "memory.event.append",
+    "memory.context.query",
+    "memory.context.pack",
+    "memory.artifact.link",
+    "memory.retention.apply",
+    "memory.health"
+  ],
+  "risk_tiers": {
+    "memory.event.append": "write-sensitive",
+    "memory.context.query": "read-sensitive",
+    "memory.context.pack": "read-sensitive",
+    "memory.artifact.link": "write-bounded",
+    "memory.retention.apply": "governed",
+    "memory.health": "read"
+  },
+  "produces": ["nexus.memory-event.v1","nexus.context-pack.v1","nexus.health.v1"],
+  "consumes": ["nexus.task.v1","nexus.policy-decision.v1","nexus.artifact.v1","nexus.handoff.v1"],
+  "limits": {"cross_tenant_recall":false,"hidden_reasoning_storage":false,"unclassified_retention":false,"secret_value_export":false},
+  "proof": {"state":"source","runtime_and_isolation_evidence_required":true},
+  "authority": "ItsNotAILABS/nexus"
+}
